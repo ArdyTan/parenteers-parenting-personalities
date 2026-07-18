@@ -7,7 +7,7 @@
 |---|---|
 | Content & research docs (pre-project) | ✅ done |
 | Planning & architecture docs | ✅ done (2026-07-17) |
-| 0 — Setup (scaffold, tokens, deploy, copy guides) | 🟨 local + dry run done; live deploy pending auth |
+| 0 — Setup (scaffold, tokens, deploy, copy guides) | 🟨 implementation + dry run done; user re-init + live deploy pending |
 | 1 — Data & i18n (transcribe .md → JSON, scoring + tests) | ⬜ |
 | 2 — Core flow, zero polish | ⬜ |
 | 3 — Gesture & WebGL foundations | ⬜ |
@@ -18,7 +18,7 @@
 
 ## Next action
 
-Finish the external edge of **Phase 0**: authenticate Wrangler to the intended Cloudflare account, run `npm run deploy`, verify the live `/` and `/r/pcte` routes, then connect the Git remote to Workers Builds for branch previews. Once the URL is recorded, close Phase 0 and start Phase 1 per `data-spec.md` §8.
+Finish the external edge of **Phase 0**: user manually initializes/adds the local Git repository and remote, then authenticate Wrangler to the intended Cloudflare account, run `npm run deploy`, verify the live `/` and `/r/pcte` routes, and connect Workers Builds for branch previews. Once the URL is recorded, close Phase 0 and start Phase 1 per `data-spec.md` §8.
 
 ## Waiting on user (plan.md §15)
 
@@ -26,14 +26,14 @@ Finish the external edge of **Phase 0**: authenticate Wrangler to the intended C
 - [~] Support art delivered in `images/` at 1254×1254; production WebP processing remains for Phase 4
 - [ ] Parenteers activities URL — Phase 2 (`config.json links.activities`)
 - [ ] Final domain — Phase 5 (`config.json links.site`)
-- [ ] Cloudflare Wrangler authentication + Git remote/Workers Builds connection — required to close Phase 0
+- [ ] User-managed local Git initialization + remote, Cloudflare Wrangler authentication, and Workers Builds connection — required to close Phase 0
 - [~] Palette/font defaults are implemented; sign-off remains optional unless changed
 - [ ] Any overrides to plan.md §14 decision defaults
 
 ## Session log (newest first)
 
-**2026-07-18 — Local Git trust repaired for the user account.**
-The workspace folder is owned by `NagaPutih\tanar`, while the `.git` directory created by Codex is owned by `NagaPutih\CodexSandboxOffline`. Its inherited ACL grants Modify access and there is no stale `index.lock`, but the owner mismatch can trigger Git's dubious-ownership guard in desktop/local clients. Windows denied a non-administrator ownership transfer without changing any files, so the exact repository path—not a wildcard—was added to the user's global `safe.directory` list. Repository remains healthy on `main`.
+**2026-07-18 — Codex-created local Git metadata removed at user request.**
+The workspace folder was owned by `NagaPutih\tanar`, while Codex-created `.git` internals were owned by `NagaPutih\CodexSandboxOffline`; this split could block the user's local Git client. The verified project-local `.git` directory was deleted so the user can initialize/add the repository manually. The temporary exact-path global `safe.directory` entry was also removed. Application files and assets were preserved.
 
 **2026-07-18 — Phase 0 implemented locally; live Cloudflare authentication is the only closeout gap.**
 Initialized Git on `main`; scaffolded pinned Vite 8 + TypeScript 7 + Vitest + Wrangler; added the Cloudflare static-assets SPA configuration, Workers Builds handoff, self-hosted Fraunces/Plus Jakarta Sans subsets (89,780 bytes total), design tokens/base shell, favicon, and deterministic asset audit. Added a safe CLI launcher for the workspace's `#` path. Copied and SHA-256 verified the exact 34 motion guides, and normalized cross-document contract drift before coding. Final verification passes: 3/3 tests, typecheck/build, Wrangler upload dry run, local fonts, 390×844 mobile edge, reduced-motion tokens, 1200px desktop 390×844 frame, no horizontal overflow, and `/r/pcte` SPA fallback. Visual QA caught and fixed framed-container typography/overflow. Intake audit found all 20 supplied PNGs at 1254×1254 RGB; the 16 characters still need alpha backgrounds. `wrangler whoami` is unauthenticated, so no live URL is claimed yet.
