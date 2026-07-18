@@ -1,0 +1,364 @@
+@layer reset, base, shell, utilities, accessibility;
+
+@layer reset {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html,
+  body {
+    min-block-size: 100%;
+  }
+
+  html {
+    background: var(--color-background);
+    color: var(--color-text);
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    margin: 0;
+  }
+
+  :where(h1, h2, h3, h4, h5, h6, p, figure, blockquote, dl, dd) {
+    margin: 0;
+  }
+
+  :where(ul, ol) {
+    margin: 0;
+    padding: 0;
+  }
+
+  :where(img, picture, video, canvas, svg) {
+    display: block;
+    max-inline-size: 100%;
+  }
+
+  :where(img, picture, video) {
+    block-size: auto;
+  }
+
+  :where(button, input, textarea, select) {
+    border-radius: 0;
+    color: inherit;
+    font: inherit;
+  }
+
+  :where(button, [type="button"], [type="reset"], [type="submit"]) {
+    -webkit-tap-highlight-color: var(--color-transparent);
+  }
+
+  :where(button, [role="button"]):not(:disabled) {
+    cursor: pointer;
+  }
+
+  :where(button, input, select, textarea):disabled,
+  [aria-disabled="true"] {
+    cursor: not-allowed;
+    opacity: var(--opacity-disabled);
+  }
+
+  :where(a) {
+    color: inherit;
+  }
+}
+
+@layer base {
+  body {
+    min-block-size: var(--viewport-block-size);
+    overflow-x: clip;
+    background: var(--color-background);
+    color: var(--color-text);
+    font-family: var(--font-family-ui);
+    font-size: var(--font-size-body);
+    font-weight: var(--font-weight-regular);
+    letter-spacing: var(--letter-spacing-body);
+    line-height: var(--line-height-body);
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  :where(h1, h2, h3, h4, h5, h6, .type-display) {
+    color: var(--color-heading);
+    font-family: var(--font-family-display);
+    font-optical-sizing: auto;
+    font-variation-settings: var(--font-variation-heading);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: var(--letter-spacing-heading);
+    line-height: var(--line-height-heading);
+    text-wrap: balance;
+  }
+
+  h1,
+  .type-hero {
+    font-size: var(--font-size-hero);
+    font-variation-settings: var(--font-variation-display);
+    letter-spacing: var(--letter-spacing-tight);
+    line-height: var(--line-height-tight);
+  }
+
+  h2,
+  .type-display {
+    font-size: var(--font-size-display);
+  }
+
+  h3 {
+    font-size: var(--font-size-title-lg);
+  }
+
+  h4 {
+    font-size: var(--font-size-title-md);
+  }
+
+  h5,
+  h6 {
+    font-size: var(--font-size-title-sm);
+  }
+
+  :where(p, li) {
+    text-wrap: pretty;
+  }
+
+  small,
+  .type-small {
+    font-size: var(--font-size-sm);
+  }
+
+  ::selection {
+    background: var(--color-selection);
+    color: var(--color-text);
+  }
+
+  :where(button, [role="button"], input, select, textarea, [data-touch-target]) {
+    min-block-size: var(--target-min-size);
+    min-inline-size: var(--target-min-size);
+  }
+
+  :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+    border-radius: var(--radius-xs);
+    outline: var(--focus-ring-width) solid var(--color-focus);
+    outline-offset: var(--focus-ring-offset);
+    box-shadow: var(--shadow-focus);
+  }
+}
+
+@layer shell {
+  #app,
+  .app-shell,
+  .mobile-app {
+    position: relative;
+    min-block-size: var(--viewport-block-size);
+  }
+
+  #app,
+  .phone-frame__screen {
+    container-type: inline-size;
+  }
+
+  .app-shell,
+  .mobile-app {
+    isolation: isolate;
+    overflow: clip;
+    background: var(--color-background);
+  }
+
+  .scene {
+    position: relative;
+    z-index: var(--z-scene);
+    min-block-size: var(--viewport-block-size);
+  }
+
+  .safe-area {
+    padding-block-start: var(--safe-padding-top);
+    padding-block-end: var(--safe-padding-bottom);
+    padding-inline-start: var(--safe-padding-left);
+    padding-inline-end: var(--safe-padding-right);
+  }
+
+  [data-world-canvas] {
+    position: fixed;
+    inset: 0;
+    z-index: var(--z-world);
+    inline-size: 100%;
+    block-size: 100%;
+    pointer-events: none;
+  }
+
+  .texture-layer {
+    position: absolute;
+    inset: 0;
+    z-index: var(--z-texture);
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .texture-layer--pattern {
+    background-image: var(--texture-pattern-image);
+    background-position: var(--texture-pattern-position);
+    background-repeat: repeat;
+    background-size: var(--texture-pattern-size);
+    mix-blend-mode: var(--texture-blend-mode);
+    opacity: var(--texture-pattern-opacity);
+  }
+
+  .texture-layer--grain {
+    background-image: var(--texture-grain-image);
+    background-position: var(--texture-pattern-position);
+    background-repeat: repeat;
+    background-size: var(--texture-grain-size);
+    mix-blend-mode: var(--texture-blend-mode);
+    opacity: var(--texture-grain-opacity);
+  }
+
+  .phone-frame-stage {
+    display: grid;
+    min-block-size: var(--viewport-block-size);
+    overflow: auto;
+    place-items: center;
+    padding: var(--phone-frame-stage-gap);
+    background: var(--color-background);
+  }
+
+  .phone-frame {
+    position: relative;
+    isolation: isolate;
+    inline-size: calc(
+      var(--phone-frame-canvas-width) + var(--phone-frame-bezel) + var(--phone-frame-bezel)
+    );
+    block-size: calc(
+      var(--phone-frame-canvas-height) + var(--phone-frame-bezel) + var(--phone-frame-bezel)
+    );
+    padding: var(--phone-frame-bezel);
+    overflow: hidden;
+    border: var(--border-width-hairline) solid var(--color-frame-highlight);
+    border-radius: var(--radius-phone-frame);
+    background: var(--color-frame);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .phone-frame__screen {
+    position: relative;
+    inline-size: var(--phone-frame-canvas-width);
+    block-size: var(--phone-frame-canvas-height);
+    aspect-ratio: var(--phone-frame-aspect);
+    overflow: hidden auto;
+    border-radius: var(--radius-phone-screen);
+    background: var(--color-background);
+    font-size: var(--font-size-body);
+    overscroll-behavior: contain;
+  }
+
+  .phone-frame__screen > :first-child {
+    min-block-size: 100%;
+  }
+
+  .rotate-lock {
+    position: fixed;
+    inset: 0;
+    z-index: var(--z-rotate-lock);
+    display: grid;
+    place-items: center;
+    padding-block-start: var(--safe-padding-top);
+    padding-block-end: var(--safe-padding-bottom);
+    padding-inline-start: var(--safe-padding-left);
+    padding-inline-end: var(--safe-padding-right);
+    visibility: hidden;
+    background: var(--color-background);
+    opacity: 0;
+    pointer-events: none;
+    text-align: center;
+    transition: opacity var(--duration-micro) var(--ease-out),
+      visibility var(--duration-micro) var(--ease-out);
+  }
+
+  .rotate-lock__content {
+    display: grid;
+    inline-size: min(100%, var(--copy-max-width));
+    gap: var(--space-md);
+    justify-items: center;
+  }
+
+  .is-landscape .rotate-lock,
+  .rotate-lock[aria-hidden="false"] {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+@media (orientation: landscape) and (pointer: coarse) {
+  @layer shell {
+    .mobile-app:not([data-rotate-lock="off"]) .rotate-lock {
+      visibility: visible;
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+}
+
+@layer utilities {
+  .flow > * + * {
+    margin-block-start: var(--flow-space, var(--space-md));
+  }
+
+  .cluster {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--cluster-gap, var(--space-sm));
+    align-items: var(--cluster-align, center);
+  }
+
+  .motion-only {
+    display: var(--motion-only-display, block);
+  }
+
+  [data-reduced-motion-only] {
+    display: none;
+  }
+}
+
+@layer accessibility {
+  .visually-hidden:not(:focus):not(:active) {
+    position: absolute;
+    inline-size: var(--border-width-hairline);
+    block-size: var(--border-width-hairline);
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+    clip-path: inset(50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  @layer accessibility {
+    *,
+    *::before,
+    *::after {
+      scroll-behavior: auto !important;
+      animation-delay: var(--duration-none) !important;
+      animation-duration: var(--duration-reduced) !important;
+      animation-iteration-count: 1 !important;
+      transition-delay: var(--duration-none) !important;
+      transition-duration: var(--duration-reduced) !important;
+    }
+
+    :where([data-motion="ambient"], .ambient-motion) {
+      animation-play-state: paused !important;
+      transform: none !important;
+    }
+
+    :where([data-motion="decorative"], .motion-only) {
+      display: none !important;
+    }
+
+    [data-reduced-motion-only] {
+      display: var(--reduced-motion-display, block);
+    }
+  }
+}

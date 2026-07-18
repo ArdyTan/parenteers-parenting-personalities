@@ -1,0 +1,16 @@
+node_modules/
+dist/
+coverage/
+.wrangler/
+.vite/
+
+.env
+.env.*
+!.env.example
+.dev.vars
+.dev.vars.*
+
+*.local
+*.log
+.DS_Store
+Thumbs.db

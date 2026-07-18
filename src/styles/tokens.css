@@ -1,0 +1,216 @@
+:root {
+  color-scheme: light;
+
+  /* Brand palette: plan.md section 5. */
+  --color-cream: #fff6ec;
+  --color-warm-brown: #8b5e3c;
+  --color-butter: #f4d58d;
+  --color-blush: #f6c6b8;
+  --color-sage: #bbc9a8;
+  --color-cocoa: #5c4033;
+
+  /* Semantic color roles. Per-result pages may replace --color-accent. */
+  --color-background: var(--color-cream);
+  --color-surface: #fffaf4;
+  --color-surface-raised: #ffffff;
+  --color-text: var(--color-cocoa);
+  --color-text-muted: #755d51;
+  --color-heading: var(--color-cocoa);
+  --color-interactive: var(--color-warm-brown);
+  --color-accent: var(--color-butter);
+  --color-accent-soft: #fae8be;
+  --color-border: #e8d7c8;
+  --color-border-strong: #c8a98f;
+  --color-selection: var(--color-butter);
+  --color-focus: var(--color-warm-brown);
+  --color-overlay: rgb(92 64 51 / 52%);
+  --color-overlay-soft: rgb(92 64 51 / 16%);
+  --color-disabled: rgb(92 64 51 / 46%);
+  --color-frame: #3d2b22;
+  --color-frame-highlight: #6e4c3c;
+  --color-transparent: transparent;
+
+  /* Font families and variable-font axes. */
+  --font-family-display: "Fraunces", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --font-family-ui: "Plus Jakarta Sans", Inter, ui-sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-axis-soft: 72;
+  --font-axis-wonk: 1;
+  --font-axis-opsz-display: 72;
+  --font-axis-opsz-heading: 36;
+  --font-variation-display: "SOFT" var(--font-axis-soft), "WONK" var(--font-axis-wonk),
+    "opsz" var(--font-axis-opsz-display);
+  --font-variation-heading: "SOFT" var(--font-axis-soft), "WONK" var(--font-axis-wonk),
+    "opsz" var(--font-axis-opsz-heading);
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-black: 800;
+
+  /* Container-relative fluid scale keeps the framed app faithful to its 390px canvas. */
+  --font-size-xs: clamp(0.72rem, 0.67rem + 0.22cqi, 0.8rem);
+  --font-size-sm: clamp(0.82rem, 0.77rem + 0.24cqi, 0.92rem);
+  --font-size-body: clamp(0.96rem, 0.9rem + 0.3cqi, 1.08rem);
+  --font-size-lead: clamp(1.08rem, 1rem + 0.42cqi, 1.24rem);
+  --font-size-title-sm: clamp(1.28rem, 1.09rem + 0.92cqi, 1.64rem);
+  --font-size-title-md: clamp(1.65rem, 1.3rem + 1.7cqi, 2.3rem);
+  --font-size-title-lg: clamp(2.15rem, 1.58rem + 2.85cqi, 3.25rem);
+  --font-size-display: clamp(2.8rem, 1.85rem + 4.75cqi, 4.65rem);
+  --font-size-hero: clamp(3.45rem, 2.08rem + 6.85cqi, 6.1rem);
+  --line-height-tight: 0.92;
+  --line-height-heading: 1.04;
+  --line-height-body: 1.58;
+  --line-height-ui: 1.24;
+  --letter-spacing-tight: -0.04em;
+  --letter-spacing-heading: -0.025em;
+  --letter-spacing-body: -0.008em;
+  --letter-spacing-label: 0.075em;
+
+  /* Fluid spacing scale. */
+  --space-0: 0;
+  --space-3xs: clamp(0.2rem, 0.17rem + 0.15cqi, 0.3rem);
+  --space-2xs: clamp(0.35rem, 0.29rem + 0.3cqi, 0.5rem);
+  --space-xs: clamp(0.55rem, 0.47rem + 0.42cqi, 0.75rem);
+  --space-sm: clamp(0.78rem, 0.65rem + 0.64cqi, 1rem);
+  --space-md: clamp(1rem, 0.79rem + 1.05cqi, 1.4rem);
+  --space-lg: clamp(1.35rem, 1.02rem + 1.65cqi, 2rem);
+  --space-xl: clamp(1.8rem, 1.24rem + 2.8cqi, 2.9rem);
+  --space-2xl: clamp(2.4rem, 1.55rem + 4.25cqi, 4rem);
+  --space-3xl: clamp(3.2rem, 2.02rem + 5.9cqi, 5.5rem);
+  --page-gutter: clamp(1rem, 0.7rem + 1.55cqi, 1.6rem);
+  --section-gap: var(--space-2xl);
+  --content-max-width: 42rem;
+  --copy-max-width: 34rem;
+
+  /* Viewport, safe-area, and the canonical desktop preview canvas. */
+  --viewport-block-size: 100vh;
+  --viewport-small-block-size: 100vh;
+  --safe-area-top: env(safe-area-inset-top, 0px);
+  --safe-area-right: env(safe-area-inset-right, 0px);
+  --safe-area-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-area-left: env(safe-area-inset-left, 0px);
+  --safe-padding-top: max(var(--safe-area-top), var(--page-gutter));
+  --safe-padding-right: max(var(--safe-area-right), var(--page-gutter));
+  --safe-padding-bottom: max(var(--safe-area-bottom), var(--page-gutter));
+  --safe-padding-left: max(var(--safe-area-left), var(--page-gutter));
+  --phone-frame-canvas-width: 390px;
+  --phone-frame-canvas-height: 844px;
+  --phone-frame-aspect: 390 / 844;
+  --phone-frame-bezel: 12px;
+  --phone-frame-stage-gap: var(--space-lg);
+
+  /* Geometry and tactile target contracts. */
+  --target-min-size: 44px;
+  --focus-ring-width: 3px;
+  --focus-ring-offset: 3px;
+  --border-width-hairline: 1px;
+  --border-width-strong: 2px;
+  --radius-xs: 0.45rem;
+  --radius-sm: 0.75rem;
+  --radius-md: 1.1rem;
+  --radius-lg: 1.6rem;
+  --radius-xl: 2.25rem;
+  --radius-pill: 999px;
+  --radius-phone-frame: 3.25rem;
+  --radius-phone-screen: 2.45rem;
+  --shadow-color: rgb(92 64 51 / 18%);
+  --shadow-color-deep: rgb(61 43 34 / 28%);
+  --shadow-sm: 0 0.25rem 0.75rem var(--shadow-color);
+  --shadow-md: 0 0.75rem 2rem var(--shadow-color);
+  --shadow-lg: 0 1.5rem 4rem var(--shadow-color-deep);
+  --shadow-focus: 0 0 0 0.35rem rgb(244 213 141 / 45%);
+  --opacity-disabled: 0.52;
+
+  /* CSS timing mirrors the GSAP duration and ease vocabulary. */
+  --duration-none: 0ms;
+  --duration-reduced: 1ms;
+  --duration-micro-fast: 120ms;
+  --duration-micro: 160ms;
+  --duration-micro-slow: 200ms;
+  --duration-reveal-fast: 400ms;
+  --duration-reveal: 500ms;
+  --duration-reveal-slow: 600ms;
+  --duration-scene: 700ms;
+  --duration-scene-slow: 900ms;
+  --stagger-fast: 40ms;
+  --stagger: 55ms;
+  --stagger-slow: 70ms;
+  --ease-linear: linear;
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in: cubic-bezier(0.64, 0, 0.78, 0);
+  --ease-pop: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-dough: cubic-bezier(0.3, 1.42, 0.52, 1);
+  --motion-distance-xs: 0.35rem;
+  --motion-distance-sm: 0.75rem;
+  --motion-distance-md: 1.5rem;
+  --motion-distance-lg: 3rem;
+  --motion-scale-press: 0.96;
+  --motion-scale-enter: 0.94;
+  --motion-rotate-enter: 3deg;
+
+  /* Texture hooks. Processing replaces `none` with the final asset URLs. */
+  --texture-grain-image: none;
+  --texture-pattern-image: none;
+  --texture-grain-opacity: 0.045;
+  --texture-pattern-opacity: 0.085;
+  --texture-grain-size: 10rem;
+  --texture-pattern-size: 16rem;
+  --texture-pattern-position: center;
+  --texture-blend-mode: multiply;
+
+  /* Shared layer contract: world stays behind every DOM scene. */
+  --z-world: 0;
+  --z-texture: 2;
+  --z-scene: 10;
+  --z-header: 20;
+  --z-floating-ui: 30;
+  --z-overlay: 40;
+  --z-sheet: 50;
+  --z-toast: 60;
+  --z-desktop-gate: 70;
+  --z-rotate-lock: 80;
+  --z-preloader: 90;
+  --z-skip-link: 100;
+}
+
+@supports (height: 100dvh) {
+  :root {
+    --viewport-block-size: 100dvh;
+  }
+}
+
+@supports (height: 100svh) {
+  :root {
+    --viewport-small-block-size: 100svh;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-micro-fast: var(--duration-reduced);
+    --duration-micro: var(--duration-reduced);
+    --duration-micro-slow: var(--duration-reduced);
+    --duration-reveal-fast: var(--duration-reduced);
+    --duration-reveal: var(--duration-reduced);
+    --duration-reveal-slow: var(--duration-reduced);
+    --duration-scene: var(--duration-reduced);
+    --duration-scene-slow: var(--duration-reduced);
+    --stagger-fast: var(--duration-none);
+    --stagger: var(--duration-none);
+    --stagger-slow: var(--duration-none);
+    --ease-standard: var(--ease-linear);
+    --ease-out: var(--ease-linear);
+    --ease-in: var(--ease-linear);
+    --ease-pop: var(--ease-linear);
+    --ease-dough: var(--ease-linear);
+    --motion-distance-xs: 0rem;
+    --motion-distance-sm: 0rem;
+    --motion-distance-md: 0rem;
+    --motion-distance-lg: 0rem;
+    --motion-scale-press: 1;
+    --motion-scale-enter: 1;
+    --motion-rotate-enter: 0deg;
+  }
+}

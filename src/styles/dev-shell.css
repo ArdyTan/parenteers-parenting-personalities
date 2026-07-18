@@ -1,0 +1,80 @@
+@layer shell {
+  .phase-zero-shell {
+    position: relative;
+    display: grid;
+    min-block-size: var(--viewport-block-size);
+    overflow: hidden;
+    place-items: center;
+    padding-block: var(--safe-padding-top) var(--safe-padding-bottom);
+    padding-inline: var(--safe-padding-left) var(--safe-padding-right);
+    background:
+      radial-gradient(circle at 20% 15%, var(--color-blush), var(--color-transparent) 34%),
+      radial-gradient(circle at 84% 86%, var(--color-sage), var(--color-transparent) 36%),
+      var(--color-background);
+  }
+
+  .phase-zero-glow {
+    position: absolute;
+    inset: 50% auto auto 50%;
+    inline-size: min(68vw, 24rem);
+    aspect-ratio: 1;
+    border-radius: var(--radius-pill);
+    background: var(--color-butter);
+    opacity: 0.36;
+    pointer-events: none;
+    transform: translate(-50%, -50%) rotate(var(--motion-rotate-enter));
+  }
+
+  .phase-zero-card {
+    position: relative;
+    display: grid;
+    inline-size: min(100%, var(--copy-max-width));
+    gap: var(--space-md);
+    padding: var(--space-xl);
+    border: var(--border-width-hairline) solid var(--color-border);
+    border-radius: var(--radius-xl);
+    background: var(--color-surface-raised);
+    box-shadow: var(--shadow-md);
+    text-align: center;
+  }
+
+  .phase-zero-kicker {
+    color: var(--color-interactive);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: var(--letter-spacing-label);
+    text-transform: uppercase;
+  }
+
+  .phase-zero-copy {
+    margin-inline: auto;
+    max-inline-size: var(--copy-max-width);
+    color: var(--color-text-muted);
+    font-size: var(--font-size-lead);
+  }
+
+  .phase-zero-status {
+    display: inline-flex;
+    min-block-size: var(--target-min-size);
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-xs);
+    margin-block-start: var(--space-xs);
+    padding-inline: var(--space-md);
+    border-radius: var(--radius-pill);
+    background: var(--color-accent-soft);
+    color: var(--color-text);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .phase-zero-status > span {
+    color: var(--color-interactive);
+  }
+
+  .phone-frame__screen .phase-zero-shell {
+    inline-size: 100%;
+    min-inline-size: 0;
+    min-block-size: 100%;
+  }
+}
