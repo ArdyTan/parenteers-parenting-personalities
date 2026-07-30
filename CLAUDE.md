@@ -22,7 +22,8 @@
 | `parenting-personality-research.md` | Science layer, the 16 types' source definitions |
 | `quiz-01-flow-dialogue.md` | Page-by-page copy EN/ID (transcribe, never rewrite) |
 | `quiz-02-ui-strings.md` | UI string table → i18n JSON verbatim |
-| `images/quiz-03-image-prompts.md` | **Ignore for build** — external image generation; only its §5 asset naming applies (mirrored in conventions.md §7). Delivered art lands in `images/` before moving into `public/characters/` |
+| `images/README.md` | Current source-art inventory, folder roles, exact reference/opening/type order, archive boundary, and production caveats |
+| `images/old images/quiz-03-image-prompts.md` | **Archived; ignore for build** — only its §5 asset naming remains relevant (mirrored in conventions.md §7) |
 
 ## Hard invariants (violating any of these is a bug)
 
@@ -32,6 +33,7 @@
 - **Database = bundled JSON files** per `data-spec.md`. No backend, no accounts. Content is never hardcoded in scenes.
 - **Endgame:** the story-mode screen must produce a clean screenshot in the Instagram in-app browser — that path can't depend on downloads or Web Share.
 - **Taste benchmark:** `D:\#dev\WebAnimation Library` — port from its `guides/`, don't invent patterns or cite blog posts.
+- **Phase 4 visual authority:** follow `images/README.md` and the ordered files in `images/Interface-Reference/`; copy/data documents still control wording.
 - **Copy honesty:** "built on 4 research-backed parenting dimensions," never "science says there are 16 types." Disclaimer on result + end pages. Equal love across all 16 types.
 - conventions.md §1 ground rules (Pointer Events only, `touch-action` discipline, transform/opacity-only, paired haptics, reduced-motion parity, one `gsap.ticker` clock) apply to every line of interaction code.
 
@@ -57,5 +59,5 @@ npm run preview    # production preview
 - Verify on a 390×844 viewport **and** with `prefers-reduced-motion` before calling any scene done; a phase closes only when its plan §13 ✓ criteria pass.
 - Real-device surface for QA is the **Instagram in-app browser**, not just Safari/Chrome.
 - Ask the user only for §15 blockers or genuine scope changes; everything else has a default.
-- Placeholders (colored circles + emoji) stand in for character art until the 16 images arrive.
+- The 16 active source images have arrived, but placeholders remain until Phase 4 creates intentional optimized derivatives from the opaque masters.
 - Session hygiene: small commits scoped by phase (`feat(scenes): …`, `data: …`), and always leave `progress.md` current.

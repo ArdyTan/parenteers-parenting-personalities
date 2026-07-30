@@ -1,6 +1,6 @@
 # Quiz Web App — Page-by-Page Dialogue (EN · ID)
 **Project:** Parenteers Parenting Bakes Quiz (working title)
-**File 1 of 3** · Companions: `quiz-02-ui-strings.md` (buttons/labels/i18n) · `images/quiz-03-image-prompts.md` (illustrations)
+**File 1 of 3** · Companions: `quiz-02-ui-strings.md` (buttons/labels/i18n) · `images/old images/quiz-03-image-prompts.md` (archived illustration prompts) · `images/README.md` (delivered asset inventory/order)
 **Status:** v1.0 draft copy — ready for review, then handoff to build
 
 **Working title used in copy:** EN "Parenting Bakes" · ID "Parenting Kamu, Tim Roti Apa?" — final naming is an open decision.

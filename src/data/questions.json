@@ -1,0 +1,242 @@
+[
+  {
+    "id": 1,
+    "dimension": "structure",
+    "scenario": {
+      "en": "Sunday morning. No plans, no schedule.",
+      "id": "Minggu pagi. Gak ada acara apa-apa."
+    },
+    "answers": [
+      {
+        "pole": "P",
+        "en": "I already prepped activity ideas last night ✨",
+        "id": "Aku udah nyiapin ide aktivitas dr semalam ✨"
+      },
+      {
+        "pole": "F",
+        "en": "We'll see — I follow the mood of the morning 🍃",
+        "id": "Lihat nanti aja — ikutin mood pagi ini 🍃"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "dimension": "structure",
+    "scenario": {
+      "en": "Packing for a family day out.",
+      "id": "Mau pergi seharian sekeluarga. Soal packing…"
+    },
+    "answers": [
+      {
+        "pole": "P",
+        "en": "Full checklist: spare outfit, snacks sorted by the hour, all covered",
+        "id": "Checklist lengkap: baju ganti, snack per jam, semua aman"
+      },
+      {
+        "pole": "F",
+        "en": "Grab the essentials — we'll figure out the rest on the way",
+        "id": "Bawa yg penting-penting aja, sisanya pikirin di jalan"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "dimension": "structure",
+    "scenario": {
+      "en": "Your little one's daily schedule…",
+      "id": "Jadwal harian si kecil…"
+    },
+    "answers": [
+      {
+        "pole": "P",
+        "en": "Nap, meals, play — roughly the same time every day",
+        "id": "Tidur, makan, main — jamnya kurang lebih sama tiap hari"
+      },
+      {
+        "pole": "F",
+        "en": "We follow the child's rhythm — every day can be different",
+        "id": "Ngikutin ritme anak — tiap hari bisa beda"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "dimension": "guidance",
+    "scenario": {
+      "en": "Choosing today's play activity.",
+      "id": "Milih aktivitas main hari ini…"
+    },
+    "answers": [
+      {
+        "pole": "C",
+        "en": "I pick and set up something good for their development",
+        "id": "Aku yg pilih & siapkan sesuatu yg bagus buat perkembangannya"
+      },
+      {
+        "pole": "G",
+        "en": "I lay out a few options and see what pulls them in",
+        "id": "Aku gelar beberapa pilihan, lihat dia tertarik yg mana"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "dimension": "guidance",
+    "scenario": {
+      "en": "Your kid wants to wear a superhero costume + rain boots to a family lunch.",
+      "id": "Anak mau pakai kostum superhero + sepatu boots ke acara keluarga."
+    },
+    "answers": [
+      {
+        "pole": "C",
+        "en": "Cute — but for events like this, I choose the outfit",
+        "id": "Lucu sih, tp utk acara begini aku yg tentuin bajunya"
+      },
+      {
+        "pole": "G",
+        "en": "Go for it — it's their fashion era 😎",
+        "id": "Boleh dong — ini era fashion dia 😎"
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "dimension": "guidance",
+    "scenario": {
+      "en": "About tidying up toys…",
+      "id": "Soal beresin mainan…"
+    },
+    "answers": [
+      {
+        "pole": "C",
+        "en": "Clear rule: playtime ends = toys go back",
+        "id": "Aturannya jelas: selesai main = mainan balik ke tempatnya"
+      },
+      {
+        "pole": "G",
+        "en": "I make cleanup inviting and let the habit grow from their lead",
+        "id": "Aku bikin beres-beres jadi menarik, pelan-pelan jd kebiasaan dia"
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "dimension": "emotion",
+    "scenario": {
+      "en": "Meltdown at the mall. (Yes, that one.)",
+      "id": "Tantrum di mal. (Iya, yg itu.)"
+    },
+    "answers": [
+      {
+        "pole": "T",
+        "en": "I crouch down and name it: \"You're really upset, huh…\"",
+        "id": "Aku jongkok, sebut perasaannya: \"Kamu kesel ya…\""
+      },
+      {
+        "pole": "D",
+        "en": "Scoop up, hug, change of scenery, offer water",
+        "id": "Gendong, peluk, ganti suasana, tawarin minum"
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "dimension": "emotion",
+    "scenario": {
+      "en": "Their block tower collapses and they burst into tears.",
+      "id": "Menara baloknya roboh, dia nangis kencang."
+    },
+    "answers": [
+      {
+        "pole": "T",
+        "en": "\"That's so frustrating — you worked hard on it.\" Talk first",
+        "id": "\"Sebel banget ya, padahal udah nyusun lama.\" Ngobrol dulu"
+      },
+      {
+        "pole": "D",
+        "en": "\"Let's build it again together\" — hands already moving",
+        "id": "\"Yuk bangun lagi bareng\" — tangan langsung gerak"
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "dimension": "emotion",
+    "scenario": {
+      "en": "Bedtime. Your kid seems a little sad.",
+      "id": "Menjelang tidur, anak kelihatan sedih."
+    },
+    "answers": [
+      {
+        "pole": "T",
+        "en": "I ask gentle questions about their day and let the feelings out",
+        "id": "Aku tanya pelan-pelan tentang harinya, biarin perasaannya keluar"
+      },
+      {
+        "pole": "D",
+        "en": "Extra-long cuddle, favorite blanket, warm milk",
+        "id": "Peluk ekstra lama, selimut favorit, susu hangat"
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "dimension": "adventure",
+    "scenario": {
+      "en": "At the playground, they eye the taller slide.",
+      "id": "Di playground, dia ngelirik perosotan yg tinggi."
+    },
+    "answers": [
+      {
+        "pole": "E",
+        "en": "\"Try it! I'm right here.\" I spot them up close",
+        "id": "\"Coba aja! Aku di sini.\" Aku jagain dr dekat"
+      },
+      {
+        "pole": "N",
+        "en": "\"Maybe next time\" — I steer them to the lower one first",
+        "id": "\"Nanti dulu ya\" — arahkan ke yg lebih rendah dulu"
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "dimension": "adventure",
+    "scenario": {
+      "en": "After the rain: puddles everywhere.",
+      "id": "Habis hujan, ada genangan di mana-mana."
+    },
+    "answers": [
+      {
+        "pole": "E",
+        "en": "Jump in! Clothes can be washed 😄",
+        "id": "Nyebur! Baju bisa dicuci 😄"
+      },
+      {
+        "pole": "N",
+        "en": "We go around — dry socks are happiness",
+        "id": "Muter dikit — kaos kaki kering itu kebahagiaan"
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "dimension": "adventure",
+    "scenario": {
+      "en": "Meeting new kids at a party.",
+      "id": "Ketemu anak-anak baru di sebuah acara."
+    },
+    "answers": [
+      {
+        "pole": "E",
+        "en": "I give a gentle push: \"Go say hi — I'm watching from here\"",
+        "id": "Aku dorong halus: \"Kenalan yuk, aku lihatin dr sini\""
+      },
+      {
+        "pole": "N",
+        "en": "They can stay on my lap until they're ready — no rush",
+        "id": "Biarin dia nempel dulu sm aku sampai siap — gak buru-buru"
+      }
+    ]
+  }
+]

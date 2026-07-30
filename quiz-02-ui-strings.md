@@ -1,6 +1,6 @@
 # Quiz Web App — UI Strings (EN · ID)
 **Project:** Parenteers Parenting Bakes Quiz (working title)
-**File 2 of 3** · Companions: `quiz-01-flow-dialogue.md` (page content) · `images/quiz-03-image-prompts.md` (illustrations)
+**File 2 of 3** · Companions: `quiz-01-flow-dialogue.md` (page content) · `images/old images/quiz-03-image-prompts.md` (archived illustration prompts) · `images/README.md` (delivered asset inventory/order)
 **Status:** v1.0 — i18n-ready string table
 
 **Dev notes:**
@@ -76,6 +76,7 @@
 | `result.retake` | Retake the quiz | Ulangi quiz |
 | `result.activities_cta` | Explore Parenteers activities | Intip aktivitas Parenteers |
 | `result.your_code` | Your code | Kode kamu |
+| `result.scroll_hint` | Scroll to continue | Scroll untuk lanjut |
 
 ## Gallery
 

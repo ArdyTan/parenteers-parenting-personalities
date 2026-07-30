@@ -39,8 +39,15 @@ Three pillars, and every decision follows from them:
 
 ```
 ├── index.html
-├── vite.config.ts            # + OG-stub prerender for /r/{slug}
+├── vite.config.ts            # Vite production build; scripts/ adds OG route shells
 ├── docs/motion/              # technique guides copied from the WebAnimation Library
+├── images/                    # source art + visual references; never imported directly
+│   ├── README.md              # authoritative inventory, roles, and order
+│   ├── Interface-Reference/   # ordered Phase 4 UI references
+│   ├── opening-image/         # ordered var-1 → var-4 source sequence
+│   ├── Pastries-personalities/ # active 16-character source set
+│   ├── web-component/         # preloader + 404 source/reference
+│   └── old images/            # archive only
 ├── public/
 │   ├── characters/           # 16 × {code}-{bake}.webp
 │   ├── og/                   # per-type social preview images
@@ -68,22 +75,21 @@ Three pillars, and every decision follows from them:
     │   ├── doughGradient.ts  # fbm gradient quad (+ .frag) — technique 09
     │   ├── flourTrail.ts     # flowmap touch wake — technique 16
     │   └── particles.ts      # instanced motes + burst pool — technique 08
-    ├── anim/
-    │   ├── ease.ts           # CustomEase registry ("doughEase" etc.)
-    │   ├── splitter.ts       # text splitting (SplitText or DIY from technique 02)
-    │   ├── transitions.ts    # scene-swap presets (wipe, oven-door, crossfade)
-    │   └── flipUtils.ts      # Flip helpers (card → thermometer, cell → sheet)
+    ├── motion/
+    │   ├── shared.ts         # scene timelines, splitter, press, reveal, tilt, confetti
+    │   └── preloader.ts      # real-progress 45→180°C boot + curtain exit
     ├── data/                 # THE DATABASE — see data-spec.md
-    │   ├── questions.json · types.json · config.json
+    │   ├── questions.json · types.json · scene-art.json · config.json
     │   └── i18n/en.json · id.json
     ├── scenes/               # one file per screen, all implementing Scene (§4)
-    │   ├── preloader.ts · gate.ts · landing.ts · intro.ts
+    │   ├── gate.ts · landing.ts · intro.ts
     │   ├── question.ts · interstitial.ts · calculating.ts
     │   ├── result.ts · story.ts · gallery.ts · end.ts · notFound.ts
     └── styles/
         ├── tokens.css        # ALL design values live here (colors, type, space, ease)
         ├── base.css          # reset, grain overlay, phone-frame, rotate-lock
-        └── scenes/*.css      # co-located per scene, tokens only
+        ├── scenes.css        # functional scene composition
+        └── motion.css        # Phase 4 choreography surfaces and reduced-motion fork
 ```
 
 **Responsibility rule:** `core/` knows nothing about scenes. `scenes/` know nothing about three.js (they talk to `world.ts`). `gl/` knows nothing about app state (it receives values, never reads the store). Data flows one way: `data/ → core → scenes`; events flow back through the store.
@@ -124,7 +130,7 @@ Rules that keep it sane:
 | `/gallery` · `/end` | gallery · end | |
 | `*` | notFound | "This page got eaten 🍪" |
 
-History API routing; the router only translates URL ↔ machine state — it owns no logic. The OG prerender emits 16 static `r/{slug}/index.html` stubs that meta-refresh into the SPA (WhatsApp/IG crawlers read the stub, humans get the app).
+History API routing; the router only translates URL ↔ machine state — it owns no logic. After Vite builds, the OG prerender copies the final executable SPA shell into 16 static `r/{slug}/index.html` files and injects type-specific social meta. Crawlers read the per-type tags; humans boot the same routed app without a redirect loop.
 
 ## 6. State & Persistence
 
@@ -194,14 +200,14 @@ To clone this architecture for a new linear mobile experience:
 | `core/` (store, i18n, assets, haptics, share skeleton) | `core/scoring.ts` → your domain logic |
 | `gestures/` (pointer, spring, velocity) | `data/*.json` → your content model |
 | `gl/context.ts` + world facade pattern | `gl/` shader visuals → your atmosphere |
-| `anim/` (eases, splitter, transition presets) | `scenes/` → your flow's screens |
+| `motion/` (shared scene timelines, splitter, preloader) | `scenes/` → your flow's screens |
 | Scene contract + manager + router skeleton | `styles/tokens.css` → your brand |
 | Boot sequence, gate, preloader mechanics | Character/OG assets, route table |
 | conventions.md rules + budgets (project-agnostic) | plan.md §8 → your moment→technique map |
 
 Step order that works:
 
-1. **Scaffold** Vite + TS; copy `core/`, `gestures/`, `gl/context+world`, `anim/`, the scene manager, and `tokens.css`.
+1. **Scaffold** Vite + TS; copy `core/`, `gestures/`, `gl/context+world`, `motion/`, the scene manager, and `tokens.css`.
 2. **Define the flow** as a scene list + route table (paper first — every screen, every transition, every guard).
 3. **Write the data model** (data-spec style: JSON schemas + a pure logic module + validation tests) and transcribe content into it.
 4. **Build all scenes ugly** — functional DOM, real data, zero animation. The whole flow must work before choreography starts.
@@ -220,7 +226,7 @@ The taste source is always `D:\#dev\WebAnimation Library` — 99 techniques, bri
 | A type's name, powers, accent | `src/data/types.json` |
 | Scoring behavior | `core/scoring.ts` (+ its tests) |
 | Colors / spacing / fonts | `styles/tokens.css` (+ shader palette uniforms in `gl/doughGradient.ts`) |
-| A transition between screens | `anim/transitions.ts` preset, referenced by the manager |
+| A transition between screens | `motion/shared.ts` lifecycle preset plus the owning scene hook |
 | Add a screen | new file in `scenes/` + route entry + transition preset |
 | Background behavior | `gl/` internals — the facade API stays stable |
 | Share card layout | `core/share.ts` draw list + story scene CSS |

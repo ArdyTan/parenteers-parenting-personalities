@@ -39,7 +39,7 @@
 Budgets live in plan.md §10 (JS ≤300KB gz, fonts ≤120KB, ≤300KB images/screen, LCP <2.5s). Enforcement rules:
 
 - DPR clamped ≤2; quality tier from the boot fps probe scales particles/noise/trail.
-- Character images: 1024px WebP with alpha for UI (masters stay out of the bundle); OG images pre-baked at build.
+- Character images: optimized WebP derivatives at ≤1024px for UI (masters stay out of the bundle); alpha is required only when the composition separates the pastry from its supplied cream background. OG images are pre-baked at build.
 - Fonts: 2 families max, subset (latin + latin-ext), self-hosted woff2, loaded behind the preloader.
 - Idle preloading (`requestIdleCallback`) for everything the result needs, started after Q1.
 - Shader compile + texture upload happen during the preloader (warm-up) — never on first interaction.
@@ -52,7 +52,7 @@ Budgets live in plan.md §10 (JS ≤300KB gz, fonts ≤120KB, ≤300KB images/sc
 - Focus moved to the new scene's heading on swap; visible focus styles.
 - All ARIA copy from `a11y.*` i18n keys — progressbar announces "Question {n} of {total}"; illustrations use the alt pattern.
 - `<html lang>` flips with the language toggle.
-- Contrast: cocoa `#5C4033` on cream `#FFF6EC` for body text; accent colors are decorative only, never the sole signal.
+- Contrast: deep brand blue `#182799` on canvas `#F0F1F5` is the body-text/control pair (10.4:1). Bright blue `#3073E9` and orange `#E86811` are accents, never normal-size text on the light canvas and never the sole signal.
 - Landscape shows the rotate-lock overlay; the app never renders broken sideways.
 
 ## 6. Copy & i18n Rules (from quiz-02 QA notes — binding)
@@ -67,10 +67,16 @@ Budgets live in plan.md §10 (JS ≤300KB gz, fonts ≤120KB, ≤300KB images/sc
 8. Disclaimer appears on result + end pages: *"For fun & reflection — not a clinical assessment or diagnostic tool."*
 9. Humor targets the parent experience (cold coffee, cardboard boxes) — never the child, never outcomes.
 
-## 7. Asset Conventions (from quiz-03 §5 — the only part of that file used in-app)
+## 7. Asset Conventions
 
-- Characters: `public/characters/{code}-{bake}.webp` — e.g. `pcte-croquembouche.webp`, `fgdn-bolu-kukus.webp` (16 total; full list in data-spec.md §4). Delivered masters: 2048×2048 PNG, background-removed → converted to ~1024px WebP for UI.
-- Support art: `asset-loading`, `asset-404`, `asset-pattern` (same pipeline).
+`images/README.md` is authoritative for delivered source folders, order, and archive status. The archived `images/old images/quiz-03-image-prompts.md` contributes naming rules only.
+
+- Brand masters stay in `brand/`; runtime copies live in `public/brand/`. Use the supplied `*-s.png` wordmark/mark files for interface chrome, keep `*-xl.png` for later export composition, and use the supplied favicon badge rather than recreating the logo.
+- Characters: active sources live in `images/Pastries-personalities/`; runtime derivatives remain `public/characters/{code}-{bake}.webp` — e.g. `pcte-croquembouche.webp`, `fgdn-bolu-kukus.webp` (16 total; full ordered list in data-spec.md §4). The delivered sources are 1254×1254 opaque PNGs with cream backgrounds. Use background removal/masking for layered compositions or retain the background only for an intentional full-bleed treatment, then optimize to fit the per-screen budget.
+- Opening art: `images/opening-image/var-1.png` → `var-4.png` is the supplied sequence order. Optimize derivatives before runtime use; the order does not imply an interaction pattern by itself.
+- UI references: follow `images/Interface-Reference/` in the order recorded by `images/README.md`. They control visual hierarchy/composition, not copy.
+- Support art: active sources are `images/web-component/asset-404.png` and `Preloader2.mp4`. The preloader video is a reference until codec/performance/reduced-motion checks pass. `asset-pattern.png` and `asset-loading.png` currently exist only in the archive.
+- Archive: never import from `images/old images/` unless the user explicitly requests rollback or comparison.
 - OG images: `public/og/{slug}.png` 1080×1350 (4:5) + `default.png` 1200×630.
 - SFX (optional): `public/sfx/{name}.mp3`, ≤20KB each, muted-by-default toggle.
 - Alt text pattern (both languages, from i18n): "Cute illustration of {type}, a parenting-style bake character."

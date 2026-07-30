@@ -7,6 +7,7 @@ The app deploys as an assets-only Cloudflare Worker. `wrangler.jsonc` points to 
 ```bash
 npm run test
 npm run build
+npm run build:release
 npm run deploy:dry
 ```
 
@@ -18,7 +19,8 @@ When the repository is connected in Cloudflare Workers Builds:
 
 - Worker name: `parenting-bakes` (must match `wrangler.jsonc`)
 - Production branch: `main`
-- Build command: `npm run build`
+- Preview build command: `npm run build`
+- Production release build command: `npm run build:release`
 - Deploy command: `npx wrangler deploy`
 - Non-production deploy command: `npx wrangler versions upload`
 - Root directory: repository root

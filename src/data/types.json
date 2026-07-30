@@ -1,0 +1,578 @@
+[
+  {
+    "code": "PCTE",
+    "slug": "pcte",
+    "emoji": "🍮",
+    "name": {
+      "en": "The Croquembouche",
+      "id": "The Croquembouche"
+    },
+    "tagline": {
+      "en": "Grand plans, big feelings, bigger adventures.",
+      "id": "Rencana besar, perasaan besar, petualangan lebih besar lagi."
+    },
+    "superpowers": {
+      "en": [
+        "You turn ordinary weekends into events",
+        "You can talk your kid through anything",
+        "Fearless cheerleader: \"Try it — I've got you\""
+      ],
+      "id": [
+        "Weekend biasa bisa kamu sulap jadi event",
+        "Jago nemenin anak ngobrolin perasaan apa pun",
+        "Cheerleader paling berani: \"Coba aja, ada aku di sini\""
+      ]
+    },
+    "watchout": {
+      "en": "Sometimes you over-engineer the fun. Plot twist: the cardboard box always wins. 📦",
+      "id": "Kadang serunya kamu terlalu dipersiapkan. Padahal… kardus bekas selalu menang. 📦"
+    },
+    "popCousin": {
+      "en": "Ambitious Pinterest-parent energy",
+      "id": "Ambitious Pinterest-parent energy"
+    },
+    "image": "/characters/pcte-croquembouche.webp",
+    "accent": "#D69E62",
+    "activityTags": ["C", "T"]
+  },
+  {
+    "code": "PCTN",
+    "slug": "pctn",
+    "emoji": "🍰",
+    "name": {
+      "en": "The Lapis Legit",
+      "id": "The Lapis Legit"
+    },
+    "tagline": {
+      "en": "A thousand thin layers of patience, baked with love.",
+      "id": "Seribu lapis kesabaran, dipanggang dgn cinta."
+    },
+    "superpowers": {
+      "en": [
+        "Your routines are legendary — your kid always knows what's next",
+        "Heart-to-heart talks are your home turf",
+        "Home feels like the safest place on earth"
+      ],
+      "id": [
+        "Rutinitas kamu legendaris — anak selalu tau apa yg akan terjadi",
+        "Ngobrol dr hati ke hati itu zona nyaman kamu",
+        "Rumah terasa kayak tempat paling aman sedunia"
+      ]
+    },
+    "watchout": {
+      "en": "Perfectionism sneaks in sometimes. Layer 27 is allowed to be \"good enough.\" 😌",
+      "id": "Kadang perfeksionisnya muncul. Lapisan ke-27 boleh kok \"cukup bagus aja.\" 😌"
+    },
+    "popCousin": {
+      "en": "Warm-traditional authoritative",
+      "id": "Warm-traditional authoritative"
+    },
+    "image": "/characters/pctn-lapis-legit.webp",
+    "accent": "#C77D57",
+    "activityTags": ["C", "T"]
+  },
+  {
+    "code": "PCDE",
+    "slug": "pcde",
+    "emoji": "🥖",
+    "name": {
+      "en": "The Baguette",
+      "id": "The Baguette"
+    },
+    "tagline": {
+      "en": "Crisp outside, simple goodness inside, ready to go anywhere.",
+      "id": "Renyah di luar, sederhana & baik di dalam, siap dibawa ke mana aja."
+    },
+    "superpowers": {
+      "en": [
+        "Decisive — your kid always knows the plan",
+        "Adventure logistics? Handled. Snacks? Packed.",
+        "Calm and practical, even on the move"
+      ],
+      "id": [
+        "Tegas — anak selalu tau rencananya apa",
+        "Logistik petualangan? Beres. Bekal? Aman.",
+        "Tenang & praktis, bahkan di perjalanan"
+      ]
+    },
+    "watchout": {
+      "en": "You fix things fast — sometimes feelings just want to be heard first. One \"how did that feel?\" goes a long way. 💬",
+      "id": "Kamu cepat banget nyelesain masalah — tp kadang perasaan cuma mau didengar dulu. Satu \"gimana rasanya?\" itu berarti banget. 💬"
+    },
+    "popCousin": {
+      "en": "Coach-captain parent",
+      "id": "Coach-captain parent"
+    },
+    "image": "/characters/pcde-baguette.webp",
+    "accent": "#DDA85A",
+    "activityTags": ["C", "D"]
+  },
+  {
+    "code": "PCDN",
+    "slug": "pcdn",
+    "emoji": "🍞",
+    "name": {
+      "en": "The Milk Bread",
+      "id": "The Milk Bread"
+    },
+    "tagline": {
+      "en": "Precisely soft — structure in service of comfort.",
+      "id": "Lembut yg terencana — struktur demi kenyamanan."
+    },
+    "superpowers": {
+      "en": [
+        "Unshakeable routines that feel like a hug",
+        "Practical-care level: backup socks for the backup socks",
+        "The calm in every chaos"
+      ],
+      "id": [
+        "Rutinitas kamu stabil, rasanya kayak pelukan",
+        "Level perhatian praktis: kaos kaki cadangan pun ada cadangannya",
+        "Paling tenang di tengah chaos"
+      ]
+    },
+    "watchout": {
+      "en": "Protective can quietly become hovering. It's okay to let them wobble — you're still right there. 🧦",
+      "id": "Protektif bisa pelan-pelan jadi hovering. Gakpapa biarin dia goyah dikit — kamu tetap ada di situ kok. 🧦"
+    },
+    "popCousin": {
+      "en": "The cozy scheduler",
+      "id": "The cozy scheduler"
+    },
+    "image": "/characters/pcdn-milk-bread.webp",
+    "accent": "#E7C9A9",
+    "activityTags": ["C", "D"]
+  },
+  {
+    "code": "PGTE",
+    "slug": "pgte",
+    "emoji": "🍩",
+    "name": {
+      "en": "The Cronut",
+      "id": "The Cronut"
+    },
+    "tagline": {
+      "en": "Knows the rules well enough to remix them.",
+      "id": "Paham aturannya, makanya berani nge-remix."
+    },
+    "superpowers": {
+      "en": [
+        "You go all-in on your kid's current obsession",
+        "Feelings get named in this house",
+        "You make learning feel like invention"
+      ],
+      "id": [
+        "Kalau anak lagi obsess sesuatu, kamu ikut all-in",
+        "Perasaan selalu dapet nama di rumah ini",
+        "Belajar jadi terasa kayak eksperimen seru"
+      ]
+    },
+    "watchout": {
+      "en": "So many experiments, so little follow-through. Finish one bake before starting three. 🍩",
+      "id": "Eksperimennya banyak, yg selesai… hmm. Selesaikan satu dulu sebelum mulai tiga. 🍩"
+    },
+    "popCousin": {
+      "en": "Montessori-inspired experimenter",
+      "id": "Montessori-inspired experimenter"
+    },
+    "image": "/characters/pgte-cronut.webp",
+    "accent": "#D99058",
+    "activityTags": ["G", "T"]
+  },
+  {
+    "code": "PGTN",
+    "slug": "pgtn",
+    "emoji": "🍃",
+    "name": {
+      "en": "The Pandan Chiffon",
+      "id": "The Pandan Chiffon"
+    },
+    "tagline": {
+      "en": "Light structure that rises with your child.",
+      "id": "Struktur ringan yg ikut mengembang bareng anak."
+    },
+    "superpowers": {
+      "en": [
+        "You read your kid's cues like a pro",
+        "Soft landings for every big feeling",
+        "Unhurried presence — no rush, just here"
+      ],
+      "id": [
+        "Kamu jago banget baca sinyal anak",
+        "Semua perasaan besar dapet pendaratan empuk",
+        "Hadir tanpa buru-buru — gak ke mana-mana"
+      ]
+    },
+    "watchout": {
+      "en": "Gentle can drift into no-limits. Kids need edges too — soft ones still count. 🌿",
+      "id": "Lembut bisa kebablasan jadi tanpa batas. Anak juga butuh pagar — yg empuk pun tetap pagar. 🌿"
+    },
+    "popCousin": {
+      "en": "Gentle parenting",
+      "id": "Gentle parenting"
+    },
+    "image": "/characters/pgtn-pandan-chiffon.webp",
+    "accent": "#9AB67B",
+    "activityTags": ["G", "T"]
+  },
+  {
+    "code": "PGDE",
+    "slug": "pgde",
+    "emoji": "🥨",
+    "name": {
+      "en": "The Pretzel",
+      "id": "The Pretzel"
+    },
+    "tagline": {
+      "en": "Rules that twist into games.",
+      "id": "Aturan yg bisa dipelintir jadi permainan."
+    },
+    "superpowers": {
+      "en": [
+        "Chores become missions in your house",
+        "Learning happens hands-on, knee-deep, mid-puddle",
+        "Mess doesn't scare you one bit"
+      ],
+      "id": [
+        "Beres-beres di rumah kamu = misi seru",
+        "Belajarnya langsung praktik: tangan kotor, kaki nyebur",
+        "Berantakan? Gak takut sama sekali"
+      ]
+    },
+    "watchout": {
+      "en": "Action-first can skip the debrief. Name the feeling after the fun — it seals the lesson. 🥨",
+      "id": "Karena serunya gerak terus, evaluasinya suka kelewat. Sebutin perasaannya setelah main — biar nempel. 🥨"
+    },
+    "popCousin": {
+      "en": "Free-range with a curriculum",
+      "id": "Free-range with a curriculum"
+    },
+    "image": "/characters/pgde-pretzel.webp",
+    "accent": "#B87945",
+    "activityTags": ["G", "D"]
+  },
+  {
+    "code": "PGDN",
+    "slug": "pgdn",
+    "emoji": "🧁",
+    "name": {
+      "en": "The Muffin",
+      "id": "The Muffin"
+    },
+    "tagline": {
+      "en": "A simple, reliable frame — your kid picks the mix-ins.",
+      "id": "Wadah yg sederhana & andal — isiannya anak yg pilih."
+    },
+    "superpowers": {
+      "en": [
+        "Low-drama consistency, every single day",
+        "Quietly empowering — \"you choose\" is your catchphrase",
+        "Comfort your kid can count on"
+      ],
+      "id": [
+        "Konsisten tanpa drama, tiap hari",
+        "Diam-diam memberdayakan — \"kamu pilih aja\" itu jargon kamu",
+        "Kenyamanan yg selalu bisa diandalkan anak"
+      ]
+    },
+    "watchout": {
+      "en": "\"Easygoing\" can hide your own needs. Muffins need care too — that's you. 🧁",
+      "id": "\"Santai aja\" kadang nutupin kebutuhan kamu sendiri. Muffin juga perlu dirawat — itu kamu. 🧁"
+    },
+    "popCousin": {
+      "en": "Panda parenting",
+      "id": "Panda parenting"
+    },
+    "image": "/characters/pgdn-muffin.webp",
+    "accent": "#C88B72",
+    "activityTags": ["G", "D"]
+  },
+  {
+    "code": "FCTE",
+    "slug": "fcte",
+    "emoji": "🍫",
+    "name": {
+      "en": "The Molten Lava Cake",
+      "id": "The Molten Lava Cake"
+    },
+    "tagline": {
+      "en": "Spontaneous outside, molten feelings at the center.",
+      "id": "Spontan di luar, perasaan meleleh di tengah."
+    },
+    "superpowers": {
+      "en": [
+        "Best no-plan adventure maker in the game",
+        "Big emotional honesty — your kid feels truly seen",
+        "You bring the spark to ordinary days"
+      ],
+      "id": [
+        "Petualangan tanpa rencana? Kamu jagonya",
+        "Jujur soal perasaan — anak merasa benar-benar dilihat",
+        "Hari biasa pun kamu kasih percikan seru"
+      ]
+    },
+    "watchout": {
+      "en": "Intensity spikes happen. One tiny anchor routine helps on the soft days. 🍫",
+      "id": "Kadang intensitasnya naik-turun. Satu rutinitas kecil bisa jadi jangkar di hari yg berat. 🍫"
+    },
+    "popCousin": {
+      "en": "Big-hearted fun parent",
+      "id": "Big-hearted fun parent"
+    },
+    "image": "/characters/fcte-molten-lava-cake.webp",
+    "accent": "#8F5147",
+    "activityTags": ["C", "T"]
+  },
+  {
+    "code": "FCTN",
+    "slug": "fctn",
+    "emoji": "🍯",
+    "name": {
+      "en": "The Cinnamon Roll",
+      "id": "The Cinnamon Roll"
+    },
+    "tagline": {
+      "en": "Unhurried swirls of warmth — leads with a hug.",
+      "id": "Gulungan kehangatan yg gak buru-buru — pelukan dulu, baru mikir."
+    },
+    "superpowers": {
+      "en": [
+        "World-class comforter",
+        "Slow mornings are your masterpiece",
+        "Feelings get talked through over breakfast"
+      ],
+      "id": [
+        "Ahli menenangkan kelas dunia",
+        "Pagi yg pelan-pelan itu karya kamu",
+        "Perasaan dibahas sambil sarapan"
+      ]
+    },
+    "watchout": {
+      "en": "Comfort-first can dodge the hard limits. Warm AND firm can share one oven. 🍯",
+      "id": "Karena nyaman duluan, batasan tegas suka dihindari. Hangat DAN tegas bisa kok satu oven. 🍯"
+    },
+    "popCousin": {
+      "en": "Elephant parenting",
+      "id": "Elephant parenting"
+    },
+    "image": "/characters/fctn-cinnamon-roll.webp",
+    "accent": "#C98A5B",
+    "activityTags": ["C", "T"]
+  },
+  {
+    "code": "FCDE",
+    "slug": "fcde",
+    "emoji": "🥯",
+    "name": {
+      "en": "The Bagel",
+      "id": "The Bagel"
+    },
+    "tagline": {
+      "en": "Boiled and baked — resilient, no-fuss, up for anything.",
+      "id": "Direbus lalu dipanggang — tangguh, gak ribet, siap apa aja."
+    },
+    "superpowers": {
+      "en": [
+        "Unflappable in tantrum weather",
+        "Practical problem-solver on the fly",
+        "Adventure without the itinerary"
+      ],
+      "id": [
+        "Badai tantrum? Kamu tetap kalem",
+        "Problem-solver praktis di segala situasi",
+        "Petualangan tanpa itinerary itu gaya kamu"
+      ]
+    },
+    "watchout": {
+      "en": "\"Shake it off\" can accidentally dismiss. One feeling word before the fix works wonders. 🥯",
+      "id": "\"Udah gakpapa, yuk lanjut\" bisa gak sengaja nge-skip perasaan. Satu kata perasaan sebelum solusi itu ajaib. 🥯"
+    },
+    "popCousin": {
+      "en": "Rough-and-tumble / FAFO-lite",
+      "id": "Rough-and-tumble / FAFO-lite"
+    },
+    "image": "/characters/fcde-bagel.webp",
+    "accent": "#C7A06B",
+    "activityTags": ["C", "D"]
+  },
+  {
+    "code": "FCDN",
+    "slug": "fcdn",
+    "emoji": "🍌",
+    "name": {
+      "en": "The Banana Bread",
+      "id": "The Banana Bread"
+    },
+    "tagline": {
+      "en": "Magic from whatever's on hand — steady, warm, zero waste.",
+      "id": "Sulap dr bahan seadanya — stabil, hangat, gak ada yg kebuang."
+    },
+    "superpowers": {
+      "en": [
+        "You improvise comfort anywhere",
+        "Consistent without being rigid",
+        "The calm in every storm"
+      ],
+      "id": [
+        "Bisa menciptakan rasa nyaman di mana aja",
+        "Konsisten tp gak kaku",
+        "Sumber ketenangan di tengah badai"
+      ]
+    },
+    "watchout": {
+      "en": "Comfort loops can shrink the world. One new little thing a week keeps it fresh. 🍌",
+      "id": "Zona nyaman bisa bikin dunia makin kecil. Satu hal baru kecil tiap minggu biar tetap segar. 🍌"
+    },
+    "popCousin": {
+      "en": "The homebody classic",
+      "id": "The homebody classic"
+    },
+    "image": "/characters/fcdn-banana-bread.webp",
+    "accent": "#E2BE62",
+    "activityTags": ["C", "D"]
+  },
+  {
+    "code": "FGTE",
+    "slug": "fgte",
+    "emoji": "✨",
+    "name": {
+      "en": "The Pavlova",
+      "id": "The Pavlova"
+    },
+    "tagline": {
+      "en": "Celebration energy — you follow your kid's sparkle.",
+      "id": "Energi perayaan — kamu ngikutin binar mata anak."
+    },
+    "superpowers": {
+      "en": [
+        "Yes-day generosity",
+        "Feelings are expressed loud and proud here",
+        "You make childhood feel like magic"
+      ],
+      "id": [
+        "Dermawan sm kata \"iya, boleh!\"",
+        "Di rumah ini perasaan bebas diekspresikan",
+        "Masa kecil anak kamu bikin terasa magis"
+      ]
+    },
+    "watchout": {
+      "en": "All sparkle needs a base. One predictable ritual keeps the magic grounded. ✨",
+      "id": "Semua kilau butuh alas. Satu ritual yg pasti bikin magisnya tetap membumi. ✨"
+    },
+    "popCousin": {
+      "en": "Jellyfish's glamorous cousin (with more heart)",
+      "id": "Jellyfish's glamorous cousin (with more heart)"
+    },
+    "image": "/characters/fgte-pavlova.webp",
+    "accent": "#E6AFC0",
+    "activityTags": ["G", "T"]
+  },
+  {
+    "code": "FGTN",
+    "slug": "fgtn",
+    "emoji": "☕",
+    "name": {
+      "en": "The Tiramisu",
+      "id": "The Tiramisu"
+    },
+    "tagline": {
+      "en": "Soft layers, pick-me-up empathy, your kid's own pace.",
+      "id": "Lapisan lembut, empati yg menenangkan, ikut ritme anak."
+    },
+    "superpowers": {
+      "en": [
+        "Deep listener — every mood has a safe harbor",
+        "Patience of a saint (a tired saint, but still)",
+        "Zero pressure, full presence"
+      ],
+      "id": [
+        "Pendengar sejati — semua mood anak punya pelabuhan aman",
+        "Kesabarannya level dewa (dewa yg ngantuk, tp tetap)",
+        "Tanpa tekanan, hadir sepenuhnya"
+      ]
+    },
+    "watchout": {
+      "en": "You absorb everyone's feelings. Schedule your own espresso break — literally. ☕",
+      "id": "Kamu nyerap perasaan semua orang. Jadwalkan espresso break buat diri sendiri — beneran. ☕"
+    },
+    "popCousin": {
+      "en": "Attachment / koala parenting",
+      "id": "Attachment / koala parenting"
+    },
+    "image": "/characters/fgtn-tiramisu.webp",
+    "accent": "#9C755D",
+    "activityTags": ["G", "T"]
+  },
+  {
+    "code": "FGDE",
+    "slug": "fgde",
+    "emoji": "🫒",
+    "name": {
+      "en": "The Focaccia",
+      "id": "The Focaccia"
+    },
+    "tagline": {
+      "en": "A forgiving dough — dimples, olive oil, learning by doing.",
+      "id": "Adonan yg pemaaf — belajar lewat praktik & main kotor."
+    },
+    "superpowers": {
+      "en": [
+        "Mess is your co-parent",
+        "Nature is your favorite classroom",
+        "You raise bounce-back kids by example"
+      ],
+      "id": [
+        "Berantakan itu partner parenting kamu",
+        "Alam = ruang kelas favorit",
+        "Anak belajar bangkit dr contoh kamu langsung"
+      ]
+    },
+    "watchout": {
+      "en": "Loose structure can become no structure. Three real house rules, max — but real. 🫒",
+      "id": "Longgar bisa kebablasan jadi tanpa struktur. Tiga aturan rumah aja cukup — tp beneran dijalanin. 🫒"
+    },
+    "popCousin": {
+      "en": "Free-range parenting",
+      "id": "Free-range parenting"
+    },
+    "image": "/characters/fgde-focaccia.webp",
+    "accent": "#A8A064",
+    "activityTags": ["G", "D"]
+  },
+  {
+    "code": "FGDN",
+    "slug": "fgdn",
+    "emoji": "🌸",
+    "name": {
+      "en": "The Bolu Kukus",
+      "id": "The Bolu Kukus"
+    },
+    "tagline": {
+      "en": "Steams quietly, then blooms on its own — trust, in full effect.",
+      "id": "Dikukus pelan-pelan, lalu mekar sendiri — kepercayaan penuh."
+    },
+    "superpowers": {
+      "en": [
+        "Master of letting kids figure it out",
+        "Judgment-free home base",
+        "Low-pressure joy, every day"
+      ],
+      "id": [
+        "Jagonya kasih ruang anak nemuin caranya sendiri",
+        "Home base tanpa penghakiman",
+        "Bahagia tanpa tekanan, tiap hari"
+      ]
+    },
+    "watchout": {
+      "en": "Hands-off can read as far-away. Narrate your presence: \"I'm right here.\" 🌸",
+      "id": "Terlalu hands-off bisa terasa jauh. Suarakan kehadiranmu: \"Aku di sini ya.\" 🌸"
+    },
+    "popCousin": {
+      "en": "Panda / free-range blend",
+      "id": "Panda / free-range blend"
+    },
+    "image": "/characters/fgdn-bolu-kukus.webp",
+    "accent": "#D89AB3",
+    "activityTags": ["G", "D"]
+  }
+]

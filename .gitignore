@@ -3,6 +3,12 @@ dist/
 coverage/
 .wrangler/
 .vite/
+.cache/
+.tmp/
+artifacts/
+tmp/
+temp/
+*.tsbuildinfo
 
 .env
 .env.*
@@ -10,7 +16,21 @@ coverage/
 .dev.vars
 .dev.vars.*
 
+playwright-report/
+test-results/
+
 *.local
 *.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+
 .DS_Store
 Thumbs.db
+Desktop.ini

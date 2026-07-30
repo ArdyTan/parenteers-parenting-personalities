@@ -1,0 +1,84 @@
+{
+  "questions": [
+    {
+      "id": 1,
+      "image": "/art/scenes/q01-sunday-morning.webp",
+      "objectPosition": "center"
+    },
+    {
+      "id": 2,
+      "image": "/art/scenes/q02-family-day-out.webp",
+      "objectPosition": "center"
+    },
+    {
+      "id": 3,
+      "image": "/art/scenes/q03-daily-schedule.webp",
+      "objectPosition": "center"
+    },
+    {
+      "id": 4,
+      "image": "/art/scenes/q04-play-activity.webp",
+      "objectPosition": "center"
+    },
+    {
+      "id": 5,
+      "image": "/art/scenes/q05-family-lunch-outfit.webp",
+      "objectPosition": "center"
+    },
+    {
+      "id": 6,
+      "image": "/art/scenes/q06-tidying-toys.webp",
+      "objectPosition": "center"
+    },
+    {
+      "id": 7,
+      "image": "/art/scenes/q07-mall-meltdown.webp",
+      "objectPosition": "center"
+    },
+    {
+      "id": 8,
+      "image": "/art/scenes/q08-block-tower.webp",
+      "objectPosition": "center"
+    },
+    {
+      "id": 9,
+      "image": "/art/scenes/q09-sad-bedtime.webp",
+      "objectPosition": "center"
+    },
+    {
+      "id": 10,
+      "image": "/art/scenes/q10-tall-slide.webp",
+      "objectPosition": "center"
+    },
+    {
+      "id": 11,
+      "image": "/art/scenes/q11-puddles.webp",
+      "objectPosition": "center"
+    },
+    {
+      "id": 12,
+      "image": "/art/scenes/q12-new-kids-party.webp",
+      "objectPosition": "center"
+    }
+  ],
+  "checkpoints": [
+    {
+      "afterQuestion": 6,
+      "image": "/art/scenes/checkpoint-q6-rising-dough.webp",
+      "objectPosition": "center"
+    },
+    {
+      "afterQuestion": 9,
+      "image": "/art/scenes/checkpoint-q9-nearly-baked.webp",
+      "objectPosition": "center"
+    }
+  ],
+  "continuity": {
+    "landing": "/opening/var-1.webp",
+    "intro": "/opening/var-2.webp",
+    "calculating": "/opening/var-3.webp",
+    "end": "/opening/var-4.webp",
+    "gate": "/opening/var-1.webp",
+    "preloader": "/opening/var-3.webp"
+  }
+}

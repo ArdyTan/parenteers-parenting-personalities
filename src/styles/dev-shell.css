@@ -8,8 +8,8 @@
     padding-block: var(--safe-padding-top) var(--safe-padding-bottom);
     padding-inline: var(--safe-padding-left) var(--safe-padding-right);
     background:
-      radial-gradient(circle at 20% 15%, var(--color-blush), var(--color-transparent) 34%),
-      radial-gradient(circle at 84% 86%, var(--color-sage), var(--color-transparent) 36%),
+      radial-gradient(circle at 20% 15%, var(--color-glow-blue), var(--color-transparent) 34%),
+      radial-gradient(circle at 84% 86%, var(--color-glow-orange), var(--color-transparent) 36%),
       var(--color-background);
   }
 
@@ -19,7 +19,7 @@
     inline-size: min(68vw, 24rem);
     aspect-ratio: 1;
     border-radius: var(--radius-pill);
-    background: var(--color-butter);
+    background: var(--color-accent);
     opacity: 0.36;
     pointer-events: none;
     transform: translate(-50%, -50%) rotate(var(--motion-rotate-enter));

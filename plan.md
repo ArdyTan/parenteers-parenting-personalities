@@ -2,7 +2,9 @@
 **Project:** Parenteers "Parenting Bakes" Quiz Web App · "Gaya Parenting Kamu, Roti atau Kue Apa?"
 **Goal:** An Awwwards-caliber, mobile-only interactive quiz. 12 questions → 1 of 16 bake personalities → a 9:16 result screen built to be screenshotted straight into an Instagram Story.
 
-**Sources of truth (content):** `parenting-personality-research.md` (science + 16 types) · `quiz-01-flow-dialogue.md` (page copy EN/ID) · `quiz-02-ui-strings.md` (i18n strings) · `images/quiz-03-image-prompts.md` (asset naming/specs only — art is generated externally and delivered as files).
+**Sources of truth (content):** `parenting-personality-research.md` (science + 16 types) · `quiz-01-flow-dialogue.md` (page copy EN/ID) · `quiz-02-ui-strings.md` (i18n strings) · `images/old images/quiz-03-image-prompts.md` (archived; asset naming/specs only).
+
+**Source of truth (delivered art and visual order):** `images/README.md`. Phase 4 follows the ordered portrait flow in `images/Interface-Reference/`, the opening sequence `var-1` → `var-4`, and the fixed type-registry order for `Pastries-personalities/`. These files guide composition; bilingual copy and runtime data remain authoritative elsewhere.
 
 **Source of truth (motion & interaction taste):** **`D:\#dev\WebAnimation Library`** — 99 offline, self-contained technique demos (52–99 are the mobile wave), each with a Claude-Code-ready brief in `guides/<nn>-<slug>.md`. This library defines the quality bar and the implementation vocabulary for this project; every animated moment below cites the technique(s) it steals from.
 
@@ -94,7 +96,7 @@ Answer render order is **randomized per render** (pole travels with the answer, 
   "watchout": { "en": "…", "id": "…" },
   "popCousin": { "en": "Ambitious Pinterest-parent energy", "id": "…" },
   "image": "/characters/pcte-croquembouche.webp",
-  "accent": "#F4D58D",
+  "accent": "#D69E62",
   "activityTags": ["C", "T"]
 }
 ```
@@ -108,7 +110,7 @@ Answer render order is **randomized per render** (pole travels with the answer, 
 
 ## 5. Design System
 
-- **Palette** (from art direction, pending final brand alignment): Cream `#FFF6EC` (bg) · Warm brown `#8B5E3C` · Butter `#F4D58D` · Blush `#F6C6B8` · Sage `#BBC9A8` · Cocoa `#5C4033` (text). Per-type accent stored in types.json.
+- **Palette** (approved Parenteers brand guide, 2026-07-18): Canvas `#F0F1F5` · deep blue `#182799` · bright blue `#3073E9` · orange `#E86811`. Deep blue on canvas is the readable text/control pair; bright blue and orange are accents and may be used through derived tints. Per-type accents in `types.json` remain decorative character-identity exceptions.
 - **Typography:** **Fraunces** (variable display serif — its SOFT/WONK axes are bakery-shaped) + **Plus Jakarta Sans** (UI — designed in Jakarta; on-brand for the ID audience). Subset woff2, self-hosted (same pattern as the library's `vendor/fonts.css`), preloaded behind the preloader.
 - **Motion language:** "everything proofs like dough" — soft squash-and-stretch, `CustomEase` with gentle overshoot ("dough ease"), steam/flour particles as punctuation. Durations 0.4–0.8s; nothing blocks input longer than 200ms; every transition interruptible.
 - **Layout:** fluid mobile, design canvas 390×844 (matches the library's frame), `dvh` units, thumb-zone CTAs, 44px minimum targets, portrait-locked (landscape shows a "rotate back 🍞" overlay).
@@ -120,7 +122,7 @@ Answer render order is **randomized per render** (pole travels with the answer, 
 
 One persistent full-screen canvas behind the DOM, alive across all screens so the world never "reloads." Built from three library techniques:
 
-1. **Dough gradient** — fbm-noise mesh gradient from **09 · Animated Shader Gradient** (`guides/09-animated-shader-gradient.md`), ported from raw WebGL to a Three.js fullscreen-quad `ShaderMaterial`, recolored to the bakery palette. Uniforms: `uHeat` (0–1, rises with quiz progress — the atmosphere warms from cool cream toward golden as the result nears), `uAccent` (tints toward the type's accent on the result page).
+1. **Dough gradient** — fbm-noise mesh gradient from **09 · Animated Shader Gradient** (`guides/09-animated-shader-gradient.md`), ported from raw WebGL to a Three.js fullscreen-quad `ShaderMaterial`, recolored to the approved Parenteers palette. Uniforms: `uHeat` (0–1, rises with quiz progress — the atmosphere warms from cool blue toward orange as the result nears), `uAccent` (tints toward the type's accent on the result page).
 2. **Flour touch trail** — the flowmap-lite cursor swirl from **16 · WebGL Ripple Cursor** (`guides/16-webgl-ripple-cursor.md`), driven by Pointer Events; a soft wake follows the finger everywhere.
 3. **Flour particles** — a scaled-down (~150–200 instances, quality-tiered) descendant of **08 · Particle Galaxy** (`guides/08-particle-galaxy.md`): drifting motes + a reusable burst emitter for answer-select poofs and result confetti-crumbs.
 
@@ -134,7 +136,7 @@ Trigger: viewport ≥ 900px **or** (`pointer: fine` and no touch points). The ga
 
 - Same WebGL dough background; characters peeking from the edges on gentle float loops.
 - Headline: "This one's baked for your phone 📱" / "Quiz ini dipanggang khusus buat HP kamu 📱".
-- Live QR (SVG, cocoa-on-cream, current URL + UTM) framed like an oven window; "Scan to start baking."
+- Live QR (SVG, deep-blue-on-brand-canvas, current URL + UTM) framed like an oven window; "Scan to start baking."
 - Ghost link **"or continue here anyway"** → the app loads inside the library's phone bezel snippet (ground rule 7). Awwwards jurors open on desktop first — they must still be able to complete the experience beautifully.
 
 ---
@@ -188,7 +190,7 @@ Most opens happen inside the **Instagram in-app browser**, where downloads and `
 |---|---|
 | JS (gz) | ≤ 300 KB — three.js tree-shaken ~150, GSAP+plugins ~80, Lenis ~3, app ~50 |
 | Fonts | ≤ 120 KB (2 families, subset woff2, self-hosted) |
-| Images per screen | ≤ 300 KB (characters ~1024px WebP with alpha; only the result's character loads eagerly) |
+| Images per screen | ≤ 300 KB (characters use optimized ≤1024px WebP derivatives; alpha only when the chosen composition needs separation; only the result's character loads eagerly) |
 | LCP | < 2.5s · TTI < 3.5s |
 | Frame rate | 60fps target / 30fps floor on low tier (fps-probe quality tiers) |
 | Preload trick | Quiz takes ~3 min — after Q1, `requestIdleCallback`-preload all 16 characters + share assets so the reveal is instant |
@@ -201,7 +203,7 @@ Plus library rules: transform/opacity only, idle rAF stops, no filters on large 
 
 - `prefers-reduced-motion`: crossfades instead of choreography, particles/shader drift frozen, 100% of function kept (every library demo models this).
 - ARIA strings already specced (`a11y.*` keys): per-question progressbar announcements, illustration alt pattern, loading state.
-- Focus management on scene swap; `lang` attribute flips with the toggle; cocoa-on-cream contrast checked (AA at used sizes).
+- Focus management on scene swap; `lang` attribute flips with the toggle; deep blue `#182799` on brand canvas `#F0F1F5` is the AA text pair.
 - Exit-confirm (from strings) intercepts back-navigation mid-quiz; gestures never the *only* path (buttons everywhere).
 
 ---
@@ -211,7 +213,7 @@ Plus library rules: transform/opacity only, idle rAF stops, no filters on large 
 ```
 parenting-bakes/
 ├── index.html
-├── vite.config.ts            # + prerender plugin for /r/{slug} OG stubs
+├── vite.config.ts            # Vite build; scripts/ adds /r/{slug} OG route shells
 ├── docs/motion/              # copied guides from the WebAnimation Library (build reference)
 ├── public/
 │   ├── characters/           # 16 × {code}-{bake}.webp; PNG masters stay outside public/
@@ -236,8 +238,8 @@ parenting-bakes/
 ## 13. Build Phases
 
 **Phase 0 — Setup (S)**
-`git init`, Vite + TS scaffold, tokens.css, fonts subset, deploy pipeline (Cloudflare Workers static assets — `wrangler.jsonc` + Workers Builds from the repo for preview URLs). **Copy exactly 34 guides from `D:\#dev\WebAnimation Library\guides\` into `docs/motion/`: the 32 unique guides cited by §8, plus gesture-utility guides 59 and 60.** Document the deterministic asset step from delivered, background-removed PNG masters in `images/` to ~1024px alpha WebP UI files in `public/characters/` (support art follows the same pipeline; masters remain outside the production bundle).
-✓ Blank app deploys; fonts render; all 34 guides are in repo; PNG → ~1024px alpha WebP conversion is documented and repeatable.
+`git init`, Vite + TS scaffold, tokens.css, fonts subset, deploy pipeline (Cloudflare Workers static assets — `wrangler.jsonc` + Workers Builds from the repo for preview URLs). **Copy exactly 34 guides from `D:\#dev\WebAnimation Library\guides\` into `docs/motion/`: the 32 unique guides cited by §8, plus gesture-utility guides 59 and 60.** Document the deterministic asset step from delivered source PNGs in `images/Pastries-personalities/` to optimized UI derivatives in `public/characters/`; alpha removal/masking is required only where the chosen composition needs separation from the supplied cream background. Support art follows the same source→derivative boundary.
+✓ Blank app deploys; fonts render; all 34 guides are in repo; PNG → optimized ≤1024px WebP conversion is documented and repeatable, with masking/alpha used only when the chosen composition needs separation.
 
 **Phase 1 — Data & i18n (S)**
 Transcribe the 3 content .md files into `questions.json`, `types.json`, `en/id.json`, `config.json`. Scoring function + unit tests (all 16 codes reachable; randomization keeps pole-answer binding).
@@ -252,11 +254,17 @@ Port `gestures/` utilities (52/59/60 math). Persistent canvas: dough gradient (0
 ✓ 60fps on mid-range Android with shader live; gestures share one Pointer-Events path.
 
 **Phase 4 — Motion layer (L)**
-Everything in §8: preloader (13+71), landing (02+10+95), question deck (52+83+82+21+85), back-swipe (73), interstitials (17), exit sheet (72), calculating (01+70), reveal (89+17), result card (97), result scroll (01+65+77), gallery (79+69+53), end (48). Reduced-motion fork throughout.
+First reconcile each existing scene with the ordered visual references in `images/README.md`, without replacing source copy or data. Then implement everything in §8: preloader (13+71), landing (02+10+95), question deck (52+83+82+21+85), back-swipe (73), interstitials (17), exit sheet (72), calculating (01+70), reveal (89+17), result card (97), result scroll (01+65+77), gallery (79+69+53), end (48). Reduced-motion fork throughout. Treat `Preloader2.mp4` as a motion reference until playback, codec, file-size, and reduced-motion behavior are validated.
 ✓ Every Phase-4-owned §8 row listed above ships; transitions interruptible; reduced-motion verified.
+
+**Phase 4.5 — Art-led interface realignment (M)**
+Recompose landing, question, Q6/Q9 checkpoint, and main result around the corresponding ordered `images/Interface-Reference/` files. Make warm bakery illustration a persistent part of every primary interface rather than a contained thumbnail. Preserve real copy/data/interactions; generate standalone text-free question/checkpoint art and map it through bundled JSON. Full implementation plan: `docs/phase-4-5-interface-plan.md`.
+Implemented locally 2026-07-30; physical Samsung and Instagram in-app-browser visual sign-off remains before closure.
+✓ Four named reference surfaces match their composition hierarchy at 390×844; every primary route contains art; ID/EN, reduced motion, payload budgets, and existing behavior all pass.
 
 **Phase 5 — Share pipeline (M)**
 Story mode (66), canvas PNG compositor, share/download/screenshot fallback chain (84 buttons, 86 toasts), caption templates, OG prerender ×16.
+Implemented locally 2026-07-30; the final domain, physical Story screenshot approval, and live WhatsApp unfurl remain before closure.
 ✓ Story screenshot pixel-perfect on iPhone + Android; WhatsApp unfurl shows per-type card.
 
 **Phase 6 — QA hardening (M)**
@@ -287,11 +295,12 @@ Sound design (muted-by-default toggle), analytics (quiz_start, answer, complete{
 
 | Item | Needed by | Notes |
 |---|---|---|
-| 16 character images | Phase 3 (placeholders until then) | Per file-3 naming: `pcte-croquembouche.png` … 2048×2048, background-removed |
-| Supporting art (loading, 404, pattern) | Phase 4 | Same batch |
+| 16 character images | ✅ Phase 4 derivatives complete | Active 1254×1254 opaque sources are rendered as intentional full-bleed 900×900 WebPs in registry order |
+| Interface + opening references | ✅ delivered 2026-07-18; indexed 2026-07-29 | Six ordered UI references and four ordered opening variants; see `images/README.md` |
+| Supporting art (preloader, 404, pattern) | ✅ Phase 4 path settled | Optimized 404 WebP ships; the 1.76 MB MP4 remains reference-only and the preloader is DOM/CSS/GSAP; CSS/grain is the intentional no-pattern default |
 | Parenteers activities URL(s) | Phase 2 | Soft-sell card + end CTA |
 | Final domain + IG handle link | Phase 5 | Share card + QR |
-| Palette/font sign-off | Phase 0–1 | Defaults in §5 proceed unless changed |
+| Official palette/logo assets | ✅ delivered 2026-07-18 | Applied per §5; existing fonts retained because the brand folder includes no typography specification |
 | Decisions §14 | Rolling | Defaults apply otherwise |
 
 ---

@@ -37,6 +37,10 @@
     max-inline-size: 100%;
   }
 
+  [hidden] {
+    display: none !important;
+  }
+
   :where(img, picture, video) {
     block-size: auto;
   }
@@ -130,7 +134,7 @@
 
   ::selection {
     background: var(--color-selection);
-    color: var(--color-text);
+    color: var(--color-on-interactive);
   }
 
   :where(button, [role="button"], input, select, textarea, [data-touch-target]) {

@@ -1,33 +1,38 @@
 :root {
   color-scheme: light;
 
-  /* Brand palette: plan.md section 5. */
-  --color-cream: #fff6ec;
-  --color-warm-brown: #8b5e3c;
-  --color-butter: #f4d58d;
-  --color-blush: #f6c6b8;
-  --color-sage: #bbc9a8;
-  --color-cocoa: #5c4033;
+  /* Approved Parenteers palette from brand/brand guide.jpg. */
+  --brand-canvas: #f0f1f5;
+  --brand-blue: #182799;
+  --brand-blue-bright: #3073e9;
+  --brand-orange: #e86811;
 
   /* Semantic color roles. Per-result pages may replace --color-accent. */
-  --color-background: var(--color-cream);
-  --color-surface: #fffaf4;
+  --color-background: var(--brand-canvas);
+  --color-editorial-canvas: #faf4ea;
+  --color-lavender-surface: #efedff;
+  --color-surface: #f7f8fb;
   --color-surface-raised: #ffffff;
-  --color-text: var(--color-cocoa);
-  --color-text-muted: #755d51;
-  --color-heading: var(--color-cocoa);
-  --color-interactive: var(--color-warm-brown);
-  --color-accent: var(--color-butter);
-  --color-accent-soft: #fae8be;
-  --color-border: #e8d7c8;
-  --color-border-strong: #c8a98f;
-  --color-selection: var(--color-butter);
-  --color-focus: var(--color-warm-brown);
-  --color-overlay: rgb(92 64 51 / 52%);
-  --color-overlay-soft: rgb(92 64 51 / 16%);
-  --color-disabled: rgb(92 64 51 / 46%);
-  --color-frame: #3d2b22;
-  --color-frame-highlight: #6e4c3c;
+  --color-text: var(--brand-blue);
+  --color-text-muted: rgb(24 39 153 / 72%);
+  --color-heading: var(--brand-blue);
+  --color-interactive: var(--brand-blue);
+  --color-on-interactive: var(--brand-canvas);
+  --color-secondary: var(--brand-blue-bright);
+  --color-accent: var(--brand-orange);
+  --color-accent-soft: rgb(232 104 17 / 14%);
+  --color-secondary-soft: rgb(48 115 233 / 14%);
+  --color-glow-blue: rgb(48 115 233 / 24%);
+  --color-glow-orange: rgb(232 104 17 / 18%);
+  --color-border: rgb(24 39 153 / 17%);
+  --color-border-strong: var(--brand-blue-bright);
+  --color-selection: var(--brand-blue);
+  --color-focus: var(--brand-blue-bright);
+  --color-overlay: rgb(24 39 153 / 52%);
+  --color-overlay-soft: rgb(24 39 153 / 16%);
+  --color-disabled: rgb(24 39 153 / 46%);
+  --color-frame: var(--brand-blue);
+  --color-frame-highlight: var(--brand-blue-bright);
   --color-transparent: transparent;
 
   /* Font families and variable-font axes. */
@@ -114,12 +119,12 @@
   --radius-pill: 999px;
   --radius-phone-frame: 3.25rem;
   --radius-phone-screen: 2.45rem;
-  --shadow-color: rgb(92 64 51 / 18%);
-  --shadow-color-deep: rgb(61 43 34 / 28%);
+  --shadow-color: rgb(24 39 153 / 16%);
+  --shadow-color-deep: rgb(24 39 153 / 28%);
   --shadow-sm: 0 0.25rem 0.75rem var(--shadow-color);
   --shadow-md: 0 0.75rem 2rem var(--shadow-color);
   --shadow-lg: 0 1.5rem 4rem var(--shadow-color-deep);
-  --shadow-focus: 0 0 0 0.35rem rgb(244 213 141 / 45%);
+  --shadow-focus: 0 0 0 0.35rem rgb(48 115 233 / 28%);
   --opacity-disabled: 0.52;
 
   /* CSS timing mirrors the GSAP duration and ease vocabulary. */

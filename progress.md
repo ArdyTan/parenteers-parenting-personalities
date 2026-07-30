@@ -7,30 +7,66 @@
 |---|---|
 | Content & research docs (pre-project) | ✅ done |
 | Planning & architecture docs | ✅ done (2026-07-17) |
-| 0 — Setup (scaffold, tokens, deploy, copy guides) | 🟨 implementation + dry run done; user re-init + live deploy pending |
-| 1 — Data & i18n (transcribe .md → JSON, scoring + tests) | ⬜ |
-| 2 — Core flow, zero polish | ⬜ |
-| 3 — Gesture & WebGL foundations | ⬜ |
-| 4 — Motion layer | ⬜ |
-| 5 — Share pipeline | ⬜ |
+| 0 — Setup (scaffold, tokens, deploy, copy guides) | 🟨 repo published + dry run done; live deploy pending auth |
+| 1 — Data & i18n (transcribe .md → JSON, scoring + tests) | ✅ done (2026-07-18) |
+| 2 — Core flow, zero polish | ✅ done (2026-07-18) |
+| 3 — Gesture & WebGL foundations | ✅ done (2026-07-30) |
+| 4 — Motion layer | ✅ done (2026-07-29) |
+| 4.5 — Art-led interface realignment | 🟨 implemented locally; fresh Samsung/Instagram visual sign-off pending |
+| 5 — Share pipeline | 🟨 implemented locally; final domain + physical share/unfurl sign-off pending |
 | 6 — QA hardening | ⬜ |
 | 7 — Launch extras (optional) | ⬜ |
 
 ## Next action
 
-Finish the external edge of **Phase 0**: user manually initializes/adds the local Git repository and remote, then authenticate Wrangler to the intended Cloudflare account, run `npm run deploy`, verify the live `/` and `/r/pcte` routes, and connect Workers Builds for branch previews. Once the URL is recorded, close Phase 0 and start Phase 1 per `data-spec.md` §8.
+User updates the interface next. After that update, re-run the Samsung A55/S25 FE and Instagram in-app-browser visual pass across Phase 4.5 plus Result → Story, and set `config.links.site` so the 16 OG shells contain absolute URLs for a live WhatsApp unfurl check.
 
 ## Waiting on user (plan.md §15)
 
-- [~] 16 character masters delivered in `images/` at 1254×1254; all are opaque and need background removal/alpha prep before Phase 3
-- [~] Support art delivered in `images/` at 1254×1254; production WebP processing remains for Phase 4
+- [x] New active 16-character set delivered in `images/Pastries-personalities/`: all expected 1254×1254 opaque files are ordered by the type registry and now have intentional full-bleed 900×900 WebP derivatives in `public/characters/`
+- [x] Six 941×1672 interface references and four 941×1672 opening variants inventoried and ordered in `images/README.md` (2026-07-29)
+- [x] Active support path settled: optimized 404 WebP ships; the 10-second 1.76 MB `Preloader2.mp4` remains reference-only and the production preloader is lighter DOM/CSS/GSAP
+- [x] No active `asset-pattern.png` exists outside `images/old images/`; Phase 4 intentionally retains the existing CSS/grain treatment
 - [ ] Parenteers activities URL — Phase 2 (`config.json links.activities`)
 - [ ] Final domain — Phase 5 (`config.json links.site`)
-- [ ] User-managed local Git initialization + remote, Cloudflare Wrangler authentication, and Workers Builds connection — required to close Phase 0
-- [~] Palette/font defaults are implemented; sign-off remains optional unless changed
+- [ ] Cloudflare Wrangler authentication + Workers Builds connection — required to close Phase 0 (GitHub remote is ready)
+- [x] Official Parenteers palette, logo set, and favicon delivered and applied (2026-07-18); existing fonts retained because the brand pack contains no typography specification
 - [ ] Any overrides to plan.md §14 decision defaults
 
 ## Session log (newest first)
+
+**2026-07-30 — Phase 5 share pipeline implemented locally; physical/unfurl sign-off pending.**
+Advanced Phase 5 at the user’s direction while keeping the Phase 4.5 device review deferred. Rebuilt Story as a full-viewport three-panel viewer with tap-thirds, visible controls, hold-to-hide chrome for clean screenshots, swipe-down dismissal, direct WhatsApp, native link/file share capability checks, copy/download/screenshot fallbacks, same-node async button states, and swipe-dismissible toasts. Added a true 1080×1920 canvas PNG compositor using bundled character/brand assets and localized copy; added deterministic 1080×1350 type OG cards ×16 plus a 1200×630 default, strict OG asset auditing, and build-time executable route shells under `dist/r/{slug}/index.html`. Browser QA caught and fixed a caption-interpolation mount fault, retained Result scroll position, and a late Phase 4.5 CSS override. Final checks pass: 17 test files / 151 tests, typecheck, production build at 214.41 KB JS gzip, strict asset audit with 17 OG images at 130–261 KB and zero issues, 16 route shells with app scripts + matching OG metadata, rendered Android 390×844 and iPhone 393×852 Story panels with zero overflow/broken images, all three panels in bounds, reduced-motion parity, tap/hold/swipe behavior, and a visually inspected 964,790-byte 1080×1920 PNG. Final-domain absolute OG URLs, physical-device screenshot approval, Instagram share behavior, and live WhatsApp unfurl remain intentionally unclaimed.
+
+**2026-07-30 — Full app Figma wireframe handoff complete.**
+Created a unified 20-state low-fidelity wireframe on the existing `Wireframe` page in the supplied Parenting Personalities Figma file. The board covers the desktop QR gate, preloader, landing, intro, question default/selected states, exit confirmation, Q6/Q9 checkpoints, calculating, result hero/details, all three Story panels, gallery and detail sheet, ending, 404, and a Q1–Q12 scenario-art inventory. Every interface keeps an explicit illustration slot, and repeated question/result variants are documented as templates rather than duplicated production screens. Figma section: `8:2` (`https://www.figma.com/design/ec1stJUhIM10rQNZ1LjCZ4/Parenting-Personalities?node-id=8-2`). The final board screenshot rendered correctly; no Figma variables, libraries, components, or paid-plan-only features were used.
+
+**2026-07-30 — Phase 4.5 implemented locally; physical visual sign-off pending.**
+Recomposed the shared chrome, landing, all questions, Q6/Q9 checkpoints, main result, intro, calculating, end, gate, and preloader around the approved art-led direction. Added 12 neutral text-free scenario illustrations and two checkpoint heroes under `images/scene-art/`, a validated `scene-art.json` manifest, deterministic WebP processing, and strict asset auditing; runtime scene assets are 9–27 KB. Question behavior, randomized poles, persistence, haptics, gestures, and reduced-motion parity remain intact. Validation passes: 16 test files / 145 tests, typecheck, production build, strict 51-derivative asset audit, reference-surface screenshots, existing full-flow/reduced-motion browser QA, and a new 24-render ID/EN sweep covering all 12 unique question images with zero overflow, broken images, or runtime errors. Fresh Samsung and Instagram in-app-browser visual approval remains before Phase 4.5 is closed.
+
+**2026-07-30 — Phase 4.5 art-led interface realignment examined and planned.**
+The user clarified that `reference-start.png`, `reference-question.png`, `reference-section-chekpoint.png`, and the two `reference-result-main-*` files are direct composition references, with cute bakery illustration required across the experience. Comparison found that the current implementation often contains art inside cards or omits it entirely, while the references integrate illustration as a dominant emotional layer. Added `docs/phase-4-5-interface-plan.md`: shared wordmark/toggle and warm editorial shell, reference-led landing/question/checkpoint/result recomposition, 12 neutral scenario vignettes plus two checkpoint illustrations in a JSON art manifest, and a continuity pass for intro/calculating/end/gate/preloader. No runtime code changed in this planning session.
+
+**2026-07-30 — Phase 3 real-Android sign-off complete.**
+The user tested the live local experience on a Samsung Galaxy S25 FE and Samsung Galaxy A55 and reported that it runs well. The A55 supplies the required physical mid-range Android surface, while the S25 FE provides a second contemporary Samsung confirmation. Combined with the existing synthetic 4× CPU/WebGL measurements and automated gesture checks, this closes the remaining Phase 3 device-performance criterion.
+
+**2026-07-29 — Phase 4 motion layer complete.**
+Created deterministic Phase 4 derivatives: 16 full-bleed 900×900 result WebPs (47–96 KB), 16 lightweight 360×360 gallery WebPs (10–18 KB), four ordered 540×960 opening WebPs (26–32 KB), and an 11.7 KB 404 WebP. Added the real-progress 45→180°C preloader, ordered landing art sequence with split-text, velocity marquee, pointer/gyro parallax, draggable language thumb, tactile/swipe/FLIP question cards, rolling progress, edge-back gesture, animated exit sheet, 90/135°C checkpoints, JSON-timed baking sequence, confetti reveal, result tilt/scroll reveals, swipeable Story panels, horizontal bakery shelves with detail sheet, footer reveals, and animated 404 crumbs. All lifecycles are abort-safe and use the shared GSAP clock; reduced motion keeps every function while removing choreography. Reconciled the stale alpha-only test/documentation with the intentional opaque full-bleed treatment and upgraded the strict asset audit. Verification passes: 16 test files / 145 tests, typecheck, production build at 209.19 KB JS gzip (under the 300 KB budget), strict derivative audit, and hidden real-Chrome QA across landing, intro, selected question, Q6 interstitial, timed baking/skip gate, result, gallery sheet, end, 404, and reduced motion at 390×844 with zero overflow, zero broken images, and no runtime faults. Only the known `TBD` launch-link warnings remain.
+
+**2026-07-29 — New image hierarchy, visual order, and Phase 4 intake reconciled.**
+Scanned the complete `images/` tree and separated active sources from the archived first delivery. Added `images/README.md` as the authoritative inventory: six interface references ordered start → question → checkpoint → two main-result examples → detailed result; four opening variants ordered `var-1` → `var-4`; and all 16 new pastry personalities ordered by the fixed type registry rather than filename sorting. Verified dimensions, hashes, and opacity: interface/opening files are 941×1672, active personalities are distinct 1254×1254 opaque PNGs, active 404 art is 1254×1254, and the newly added `Preloader2.mp4` is a 10-second 1.76 MB reference. Updated orchestrator, plan, conventions, structure, data-spec, and companion-doc paths; `old images/` is now explicitly archive-only. Frame-level MP4 inspection remains pending because local headless Chrome did not decode it reliably.
+
+**2026-07-18 — Official Parenteers identity applied across the runtime.**
+Replaced the provisional bakery palette with the supplied canvas `#F0F1F5`, deep blue `#182799`, bright blue `#3073E9`, and orange `#E86811`; deep blue remains the accessible text/control pair while bright blue and orange stay graphical accents. Installed exact runtime copies of all six small brand/favicon assets, replaced the placeholder browser icon, added the Apple touch icon, put the compact mark in persistent chrome and the full wordmark on landing/gate, recolored the QR, WebGL dough shader, particle field, placeholder generator, and browser theme metadata, and synchronized plan/convention documentation. Per-type result accents intentionally remain decorative character-identity exceptions. Verification passes: 16 test files / 145 tests, strict typecheck, production build at 194.50 KB JS gzip, byte-for-byte brand asset audit, and hidden real-Chrome QA at 390×844 normal + reduced motion, `/r/pcte`, and the 1200px desktop gate; supplied logos loaded at natural resolution with no horizontal overflow.
+
+**2026-07-18 — Phase 3 foundation implemented; real-Android performance sign-off remains.**
+Ported the technique-52/59/60 gesture math into leak-free Pointer Events bindings, velocity sampling, rubber-band/friction/spring/snap helpers, and 20 focused tests. Built a persistent Three.js world facade driven only by `gsap.ticker`: bakery FBM dough gradient (09), 16-point flour wake (16), quality-tiered 150–200 ambient motes plus a reusable burst pool in one Points draw call (08), `uHeat`/result accents, DPR clamps, visibility pause, reduced-motion static frame, context/resize lifecycle, pre-route shader warm-up, answer haptic+visual pairing, and a cancellable 2-second FPS probe. Added exact `@types/three@0.185.1`; browser QA caught and fixed a same-tick FPS-scheduler recursion before handoff. Verification passes: 16 test files / 145 tests, strict typecheck, production build at 194.31 KB JS gzip (under the 300 KB budget), Cloudflare dry run, full 12-question flow with WebGL, 14 focused world checks, static reduced-motion screenshots, correct 390×844 frame containment, 75.2fps normal headless, and 75.3fps at 4× CPU throttle classified as the mid tier. A physical mid-range Android run is still required before the Phase 3 ✓ criterion can be called device-complete.
+
+**2026-07-18 — Phase 2 complete; the full functional product path is live locally.**
+Implemented the observable persisted store, History API router and guards, scene contract/manager, all landing→intro→12 questions→calculating→result→story/gallery→end screens, exit confirmation, 404, progress resume, bilingual toggle, result deep links, accessible QR desktop gate, and exact 390×844 continue-here frame. Activities remain a disabled non-navigating control while the URL is `TBD`; result answers now clear only after the result route is reached so a refresh on `/baking` is safe. Added the complete responsive zero-polish stylesheet and fixed long result names plus programmatic-heading focus treatment during visual QA. Verification passes: 8 test files / 101 tests, typecheck, production build, asset audit, Wrangler dry run, and 54 real-browser checks covering the entire mobile flow, refresh/resume, `/r/pcte`, persisted EN/ID, 404, reduced motion, QR gate, and framed fallback. Git remains user-owned and all changes are intentionally unstaged for manual commit/push.
+
+**2026-07-18 — Phase 1 complete; repository support layer added.**
+Confirmed the user-created `.git` is owned by `NagaPutih\tanar`, clean on `main`, and published to `ArdyTan/parenteers-parenting-personalities`. Added the strengthened ignore rules, EditorConfig, Node/npm pins, environment template, README, and GitHub CI. Transcribed all five runtime JSON files: 12 questions, 16 types, exact default config, and 95 matching EN/ID keys (all 69 quiz-02 table rows verbatim plus 26 required page/activity keys). Added strict types, scoring from raw/persisted answers, answer-pair randomization, runtime data assertions, interpolation, release-TBD guard, and 16 non-overwriting alpha WebP placeholders. Verification passes: 5 test files / 49 tests, typecheck, production preview build, 390×844 dev boot with the expected TBD warning and no errors, placeholder idempotence, asset audit, and Wrangler upload dry run. `build:release` correctly blocks the unresolved activities/site URLs.
 
 **2026-07-18 — Codex-created local Git metadata removed at user request.**
 The workspace folder was owned by `NagaPutih\tanar`, while Codex-created `.git` internals were owned by `NagaPutih\CodexSandboxOffline`; this split could block the user's local Git client. The verified project-local `.git` directory was deleted so the user can initialize/add the repository manually. The temporary exact-path global `safe.directory` entry was also removed. Application files and assets were preserved.
