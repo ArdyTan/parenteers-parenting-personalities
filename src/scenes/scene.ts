@@ -10,7 +10,6 @@ export type SceneContext = Readonly<{
   data: ValidatedAppData;
   t: (key: string, values?: InterpolationValues) => string;
   navigate: (path: string, options?: NavigateOptions) => void;
-  presentInterstitial: (afterQuestion: 6 | 9, nextPath: string) => void;
   copyLink: (url: string) => Promise<boolean>;
 }>;
 

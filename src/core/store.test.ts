@@ -41,8 +41,8 @@ describe('app store', () => {
         { q: 1, pole: 'P' },
         { q: 4, pole: 'G' },
       ],
+      sound: false,
       result: 'FGDN',
-      tier: 'mid',
     });
     expect(Object.isFrozen(state)).toBe(true);
     expect(Object.isFrozen(state.answers)).toBe(true);
@@ -79,7 +79,7 @@ describe('app store', () => {
       lang: 'id',
       scene: 'landing',
       answers: [],
-      tier: 'mid',
+      sound: false,
     });
   });
 
@@ -102,6 +102,33 @@ describe('app store', () => {
     store.clearAnswers();
     expect(store.get().answers).toEqual([]);
     expect(session.values.has(STORAGE_KEYS.answers)).toBe(false);
+  });
+
+  it('keeps sound off by default and round-trips the preference through local storage', () => {
+    const local = new MemoryStorage();
+    const fresh = createAppStore({ localStorage: local, sessionStorage: null });
+
+    // plan.md §14 decision 5: muted-by-default, which is also what keeps the
+    // theme from costing a byte for anyone who never opts in.
+    expect(fresh.get().sound).toBe(false);
+
+    fresh.setSound(true);
+    expect(fresh.get().sound).toBe(true);
+    expect(local.values.get(STORAGE_KEYS.sound)).toBe('on');
+
+    const restored = createAppStore({ localStorage: local, sessionStorage: null });
+    expect(restored.get().sound).toBe(true);
+
+    restored.setSound(false);
+    expect(local.values.get(STORAGE_KEYS.sound)).toBe('off');
+    expect(createAppStore({ localStorage: local, sessionStorage: null }).get().sound).toBe(false);
+  });
+
+  it('falls back to muted when the stored sound preference is unreadable', () => {
+    const local = new MemoryStorage();
+    local.values.set(STORAGE_KEYS.sound, 'loud');
+
+    expect(createAppStore({ localStorage: local, sessionStorage: null }).get().sound).toBe(false);
   });
 
   it('persists language and timestamped results only in local storage', () => {
@@ -134,7 +161,7 @@ describe('app store', () => {
     const unsubscribe = store.subscribe(listener);
 
     const initial = store.get();
-    store.set({ scene: 'intro', tier: 'high' });
+    store.set({ scene: 'intro' });
     store.set({ scene: 'intro' });
 
     expect(listener).toHaveBeenCalledTimes(1);

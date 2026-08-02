@@ -192,7 +192,10 @@ function drawStoryCard(
   const name = personality.name[language];
   const margin = 84;
 
-  context.fillStyle = '#FAF4EA';
+  // Matches `--color-editorial-canvas`: the encoder quantises the authored
+  // #FEF2E1 to #FDF2E1 in every derivative, so filling with the source value
+  // would leave a one-unit halo around the composited character.
+  context.fillStyle = '#FDF2E1';
   context.fillRect(0, 0, STORY_IMAGE_WIDTH, STORY_IMAGE_HEIGHT);
 
   context.save();

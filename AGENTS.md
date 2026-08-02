@@ -16,12 +16,14 @@
 |---|---|
 | `progress.md` | Current status, next action, waiting-on, session history |
 | `plan.md` | Build phases + ✓ criteria, §8 moment→technique blueprint, §10 budgets, §14 open decisions, §15 user blockers |
-| `structure.md` | Architecture: scene machine, GL world facade, routing, boot, share pipeline — plus the §11 recipe to clone this architecture for similar projects |
+| `structure.md` | Architecture: scene machine, routing, boot, share pipeline — plus the §11 recipe to clone this architecture for similar projects. Its §8 GL world facade is historical; that layer was removed in Phase 5.5 |
 | `conventions.md` | Non-negotiable rules: interaction ground rules, motion, code, perf, a11y, copy/i18n, assets, git |
 | `data-spec.md` | JSON database schemas, type registry, scoring, i18n key conventions, validation invariants, .md→JSON transcription map |
 | `parenting-personality-research.md` | Science layer, the 16 types' source definitions |
 | `quiz-01-flow-dialogue.md` | Page-by-page copy EN/ID (transcribe, never rewrite) |
 | `quiz-02-ui-strings.md` | UI string table → i18n JSON verbatim |
+| `docs/phase-5-5-interface-plan.md` | Phase 5.5 interface spec: the design-system token table, the three-band shell, per-screen composition, and the `qa:phase55` contract |
+| `docs/performance-probes.md` | How runtime cost is measured: the `perf:probe`/`perf:canvas` harnesses, the recorded baselines, and the interpretation traps |
 | `images/README.md` | Current source-art inventory, folder roles, exact reference/opening/type order, archive boundary, and production caveats |
 | `images/old images/quiz-03-image-prompts.md` | **Archived; ignore for build** — only its §5 asset naming remains relevant (mirrored in conventions.md §7) |
 
@@ -33,7 +35,8 @@
 - **Database = bundled JSON files** per `data-spec.md`. No backend, no accounts. Content is never hardcoded in scenes.
 - **Endgame:** the story-mode screen must produce a clean screenshot in the Instagram in-app browser — that path can't depend on downloads or Web Share.
 - **Taste benchmark:** `D:\#dev\WebAnimation Library` — port from its `guides/`, don't invent patterns or cite blog posts.
-- **Phase 4 visual authority:** follow `images/README.md` and the ordered files in `images/Interface-Reference/`; copy/data documents still control wording.
+- **Visual authority (Phase 5.5):** the **Brilliant** design file `C:\Users\tanar\.config\brilliant\scratch\Canvas.design` (design system `figma-parenting-personalities`). Read exact geometry and tokens from it through the Brilliant connector rather than measuring the exports in `images/new-layout/`. Layout tokens are `universal-padding 34` / `header-to-body 16` / `component-spacing 12`; every scene is the three-band column (header 70/pad 17 · body fill · bottom section pad 0/34/34). Copy/data documents still control wording. `images/Interface-Reference/` is historical and no longer in the tree.
+- **No WebGL in the runtime** (removed Phase 5.5, plan §6). Before adding any full-bleed or fixed decorative layer, prove it contributes visible pixels with `npm run perf:canvas` — see `docs/performance-probes.md`.
 - **Copy honesty:** "built on 4 research-backed parenting dimensions," never "science says there are 16 types." Disclaimer on result + end pages. Equal love across all 16 types.
 - conventions.md §1 ground rules (Pointer Events only, `touch-action` discipline, transform/opacity-only, paired haptics, reduced-motion parity, one `gsap.ticker` clock) apply to every line of interaction code.
 
@@ -43,7 +46,7 @@ The library at `D:\#dev\WebAnimation Library` holds 99 offline technique demos; 
 
 1. Find its row in plan.md §8 → technique number(s).
 2. Read `docs/motion/<nn>-<slug>.md` (fall back to the library path if not yet copied).
-3. Port the **core mechanism, not the demo chrome** — swap its dark-editorial theme for our tokens, reuse our existing Lenis/ticker/world instances, keep its reduced-motion + performance structure.
+3. Port the **core mechanism, not the demo chrome** — swap its dark-editorial theme for our tokens, reuse our existing Lenis/ticker instances, keep its reduced-motion + performance structure. Skip the WebGL guides (08/09/16): that layer was removed in Phase 5.5 (plan §6).
 
 ## Commands (once scaffolded — Phase 0)
 
@@ -52,6 +55,9 @@ npm run dev        # Vite dev server (test on phone via LAN IP)
 npm run test       # scoring + data-integrity validation (data-spec.md §7)
 npm run build      # static build incl. 16 prerendered /r/{slug} OG stubs
 npm run preview    # production preview
+npm run qa:phase55 # interface contract at 390x844 (needs dev + Chrome --remote-debugging-port=9223)
+npm run perf:probe # heap, decoded-image footprint, throttled fps, leak check (same prerequisites)
+npm run perf:canvas # proves no background layer is rendering behind opaque paint
 ```
 
 ## Working agreements
@@ -60,4 +66,5 @@ npm run preview    # production preview
 - Real-device surface for QA is the **Instagram in-app browser**, not just Safari/Chrome.
 - Ask the user only for §15 blockers or genuine scope changes; everything else has a default.
 - The 16 active source images have arrived, but placeholders remain until Phase 4 creates intentional optimized derivatives from the opaque masters.
+- Measure before concluding: pixel-diff a layer before assuming it is visible, and read `docs/performance-probes.md` §Interpretation traps before trusting any probe output.
 - Session hygiene: small commits scoped by phase (`feat(scenes): …`, `data: …`), and always leave `progress.md` current.

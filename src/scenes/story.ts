@@ -13,6 +13,7 @@ import {
   type ImageDeliveryOutcome,
   type LinkDeliveryOutcome,
 } from '../core/share';
+import { playSfx } from '../core/audio';
 import { triggerHaptic } from '../core/haptics';
 import type { PersonalityType } from '../core/quiz-types';
 import {
@@ -139,6 +140,7 @@ export function createStoryScene(): FunctionalScene {
     function showPanel(index: number, moveFocus = true): void {
       if (index < 0 || index >= panels.length) {
         triggerHaptic('boundary');
+        playSfx('boundary');
         return;
       }
 
@@ -159,6 +161,9 @@ export function createStoryScene(): FunctionalScene {
       nextButton.disabled = activeIndex === panels.length - 1;
       viewport.dataset.activePanel = String(activeIndex + 1);
       triggerHaptic('tick');
+      // Panels advance by swipe or tap-third; either way the movement is what
+      // the cue describes, so it is the swipe voice rather than a selection.
+      playSfx('swipe');
 
       const activePanel = panels[activeIndex];
       if (activePanel && previousIndex >= 0 && !prefersReducedMotion()) {
@@ -382,6 +387,7 @@ function bindStoryGestures(
       draggingDown = false;
       if (dy > viewport.clientHeight * 0.2) {
         triggerHaptic('boundary');
+        playSfx('swipe');
         gsap.to(root, {
           y: viewport.clientHeight,
           scale: 0.88,

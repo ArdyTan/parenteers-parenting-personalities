@@ -8,16 +8,40 @@ This file is authoritative for the source-art inventory, folder roles, and image
 
 | Folder | Role | Runtime status |
 |---|---|---|
-| `Interface-Reference/` | Portrait UI composition references for Phase 4 | Reference only; never bundled |
+| `new-layout/` | **Phase 5.5 visual authority.** Frames exported from the Brilliant design file | Reference only; never bundled |
+| `current-layout/` | Phase 5.5 "before" screenshots of the running app, for comparison | Reference only; never bundled |
+| `icons/` | Icon and layout-mark sources | Sixteen 64×64 icons plus `button-expression.svg` and `progress-bar-star.svg` in `public/icons/` |
+| `Interface-Reference/` | Historical Phase 4/4.5 composition references; superseded by `new-layout/` and removed from the tree | Not reference; do not restore for build |
 | `opening-image/` | Ordered opening/landing artwork variants | Four 540×960 WebPs in `public/opening/` |
-| `scene-art/` | Phase 4.5 text-free question and checkpoint source illustrations | Twelve 720×480 question WebPs and two 600×900 checkpoint WebPs in `public/art/scenes/` |
+| `scene-art/` | Phase 4.5 text-free question art plus retained checkpoint sources | Twelve 720×480 question WebPs are active; two 600×900 checkpoint WebPs remain as inactive rollback assets |
 | `Pastries-personalities/` | Active 16-character source set | Full-bleed 900×900 result WebPs plus 360×360 shelf WebPs in `public/characters/` |
 | `web-component/` | Supporting 404 art and preloader motion reference | 404 derivative in `public/art/`; MP4 retained as reference-only |
 | `old images/` | Superseded first delivery plus the archived image-prompt document | Archive only; never use as the active source |
 
-## 1. Interface reference order
+## 0. Phase 5.5 layout authority (current)
 
-Use this order when reviewing or implementing the Phase 4 visual flow:
+The authoritative interface source is the **Brilliant** design file
+`C:\Users\tanar\.config\brilliant\scratch\Canvas.design` (design system
+`figma-parenting-personalities`). Read exact geometry and tokens from it via the Brilliant
+connector rather than measuring the exports. `new-layout/` holds its exported frames, in flow
+order:
+
+1. `1 Splash.jpg`
+2. `2 Quiz Opening.jpg`
+3. `3 Questions-sample1.jpg` and `3 Questions-sample2.jpg` — two states of one template (Q1 and Q10)
+4. `5 Result - short.jpg` (first screen) and `5 Result - long.jpg` (scrolled, with the docked CTA)
+
+`current-layout/` holds the matching pre-revision screenshots (`home`, `intro`, `question`,
+`baking-loading`, `result`) so the two can be diffed. There is no Phase 5.5 frame for the baking
+screen — it was specified in the user's notes, not the design file.
+
+Spacing tokens: `universal-padding 34`, `header-to-body 16`, `component-spacing 12`. Full spec in
+`docs/phase-5-5-interface-plan.md`.
+
+## 1. Interface reference order (historical — Phase 4)
+
+The six `Interface-Reference/` files below are no longer in the tree; the section is kept so the
+Phase 4 log stays readable. Use this order when reviewing or implementing the Phase 4 visual flow:
 
 1. `reference-start.png`
 2. `reference-question.png`
@@ -28,7 +52,9 @@ Use this order when reviewing or implementing the Phase 4 visual flow:
 
 All six files are 941×1672 portrait PNGs. `reference-result-main-1.png` and `reference-result-main-2.png` are two personality examples of the same main-result template, not two consecutive result scenes. The references control visual direction and hierarchy; content still comes from the bilingual JSON/copy sources.
 
-**Phase 4.5 clarification (2026-07-30):** the references are direct composition targets, not merely loose inspiration. Landing, questions, Q6/Q9 checkpoints, and the main result should reproduce their hierarchy and art-led warmth with real responsive DOM. Cute bakery illustration should remain present across every primary interface. Never bundle the reference screenshots themselves because their UI and localized text are baked in; use standalone source art and real ID/EN controls/copy.
+**Phase 4.5 clarification (2026-07-30):** the references are direct composition targets, not merely loose inspiration. Landing, questions, and the main result should reproduce their hierarchy and art-led warmth with real responsive DOM. Cute bakery illustration should remain present across every primary interface. Never bundle the reference screenshots themselves because their UI and localized text are baked in; use standalone source art and real ID/EN controls/copy.
+
+**Flow override (2026-07-31):** `reference-section-chekpoint.png` remains in the source inventory, but the Q6/Q9 checkpoint screens were removed because they interrupted quiz momentum. Its generated checkpoint art is retained only for rollback and has no runtime scene consumer.
 
 ## 2. Opening image order
 
@@ -59,8 +85,9 @@ Question sources follow quiz order:
 12. `q12-new-kids-party.png`
 
 Checkpoint sources are `checkpoint-q6-rising-dough.png` and
-`checkpoint-q9-nearly-baked.png`. Runtime order and paths are controlled by
-`src/data/scene-art.json`. The generated sources contain no interface text,
+`checkpoint-q9-nearly-baked.png`. Their retained paths remain recorded in
+`src/data/scene-art.json`, but no runtime scene consumes them after the
+2026-07-31 flow override. The generated sources contain no interface text,
 answer labels, or preferred-answer cues.
 
 ## 4. Personality image order
@@ -98,6 +125,7 @@ Phase 4 intentionally implements the preloader in lightweight DOM/CSS/GSAP rathe
 ## Production rules
 
 - Do not import directly from `images/`; production derivatives belong under `public/`.
+- The base background of every PNG in `opening-image/`, `Pastries-personalities/`, and `scene-art/` is normalized to exact `#FEF2E1`. Run `npm run assets:recolor-backgrounds -- --apply` after adding replacement source art, then rebuild derivatives with `npm run assets:phase4`.
 - Do not restore or consume files from `old images/` unless the user explicitly asks for rollback/reference comparison.
 - The active character PNGs have full cream backgrounds, not transparency. Phase 4 deliberately retains them as full-bleed card art in optimized 900×900 result WebPs and 360×360 gallery thumbnails; do not treat them as transparent cutouts.
 - Keep source order separate from runtime preload order. Runtime should eagerly load only the current critical scene, then idle-preload result assets after Q1.

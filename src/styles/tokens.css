@@ -9,7 +9,11 @@
 
   /* Semantic color roles. Per-result pages may replace --color-accent. */
   --color-background: var(--brand-canvas);
-  --color-editorial-canvas: #faf4ea;
+  /* The source art is authored at #FEF2E1, but the WebP encoder quantises that
+     flat field to #FDF2E1 in every derivative (verified across all 51). Matching
+     the encoder's output rather than the source makes the full-bleed art bands
+     mathematically seamless instead of one red unit off the page. */
+  --color-editorial-canvas: #fdf2e1;
   --color-lavender-surface: #efedff;
   --color-surface: #f7f8fb;
   --color-surface-raised: #ffffff;
@@ -24,6 +28,11 @@
   --color-secondary-soft: rgb(48 115 233 / 14%);
   --color-glow-blue: rgb(48 115 233 / 24%);
   --color-glow-orange: rgb(232 104 17 / 18%);
+  /* Phase 5.5 — literal values from the Brilliant `figma-parenting-personalities`
+     design system. These were previously repeated as raw hex across scenes.css. */
+  --color-outline: #dfc7ab;
+  --color-capsule-warm: #f3e3cb;
+
   --color-border: rgb(24 39 153 / 17%);
   --color-border-strong: var(--brand-blue-bright);
   --color-selection: var(--brand-blue);
@@ -63,6 +72,19 @@
   --font-size-title-lg: clamp(2.15rem, 1.58rem + 2.85cqi, 3.25rem);
   --font-size-display: clamp(2.8rem, 1.85rem + 4.75cqi, 4.65rem);
   --font-size-hero: clamp(3.45rem, 2.08rem + 6.85cqi, 6.1rem);
+  /* Phase 5.5 reference type scale. Each clamp is anchored so a 390 px container
+     resolves to the exact px value the Brilliant frames specify (px / 390 = cqi). */
+  --font-size-ref-display: clamp(2rem, 9.231cqi, 2.5rem); /* 36 */
+  --font-size-ref-name: clamp(2.6rem, 12.308cqi, 3.35rem); /* 48 */
+  --font-size-ref-heading: clamp(1.35rem, 6.154cqi, 1.7rem); /* 24 */
+  --font-size-ref-lead: clamp(1rem, 4.615cqi, 1.25rem); /* 18 */
+  --font-size-ref-ui: clamp(0.9rem, 4.103cqi, 1.1rem); /* 16 */
+  --font-size-ref-body: clamp(0.7rem, 3.077cqi, 0.85rem); /* 12 */
+  --font-size-ref-micro: clamp(0.58rem, 2.564cqi, 0.72rem); /* 10 */
+  --line-height-ref-display: 1.2;
+  --line-height-ref-body: 1.5;
+  --line-height-ref-micro: 0.8;
+
   --line-height-tight: 0.92;
   --line-height-heading: 1.04;
   --line-height-body: 1.58;
@@ -83,6 +105,23 @@
   --space-xl: clamp(1.8rem, 1.24rem + 2.8cqi, 2.9rem);
   --space-2xl: clamp(2.4rem, 1.55rem + 4.25cqi, 4rem);
   --space-3xl: clamp(3.2rem, 2.02rem + 5.9cqi, 5.5rem);
+  /* Phase 5.5 — the Brilliant layout contract. Fixed px on purpose: the app is
+     mobile-only and every frame in `Canvas.design` is authored at 390 px, so these
+     read 1:1 against the design file instead of drifting with a fluid scale.
+     `universal-padding` 34 · `header-to-body` 16 · `component-spacing` 12. */
+  --pad-universal: 34px;
+  --pad-chrome: 17px;
+  --gap-header-body: 16px;
+  --gap-component: 12px;
+  --gap-tight: 10px;
+  --gap-splash-header: 26px;
+  --gap-bullet: 11px;
+  --gap-result-group: 34px;
+  --pad-result-text: 40px;
+  --chrome-block-size: 70px;
+  /* Reference measures, expressed against the 390 px container. */
+  --measure-centered: 73cqi; /* 284.8px at 390 */
+
   --page-gutter: clamp(1rem, 0.7rem + 1.55cqi, 1.6rem);
   --section-gap: var(--space-2xl);
   --content-max-width: 42rem;
@@ -147,6 +186,11 @@
   --ease-in: cubic-bezier(0.64, 0, 0.78, 0);
   --ease-pop: cubic-bezier(0.34, 1.56, 0.64, 1);
   --ease-dough: cubic-bezier(0.3, 1.42, 0.52, 1);
+  /* Aliases for the two names the stylesheets already reference. Without these
+     declarations the `transition` shorthands using them were invalid, so those
+     transitions silently never ran. */
+  --ease-spring: var(--ease-pop);
+  --ease-in-out: var(--ease-standard);
   --motion-distance-xs: 0.35rem;
   --motion-distance-sm: 0.75rem;
   --motion-distance-md: 1.5rem;
@@ -166,7 +210,7 @@
   --texture-blend-mode: multiply;
 
   /* Shared layer contract: world stays behind every DOM scene. */
-  --z-world: 0;
+  /* --z-world retired with the WebGL layer in Phase 5.5 (plan §6). */
   --z-texture: 2;
   --z-scene: 10;
   --z-header: 20;
@@ -210,6 +254,8 @@
     --ease-in: var(--ease-linear);
     --ease-pop: var(--ease-linear);
     --ease-dough: var(--ease-linear);
+    --ease-spring: var(--ease-linear);
+    --ease-in-out: var(--ease-linear);
     --motion-distance-xs: 0rem;
     --motion-distance-sm: 0rem;
     --motion-distance-md: 0rem;

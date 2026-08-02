@@ -35,6 +35,26 @@ export function actionButton(
   return button;
 }
 
+/**
+ * The two bands every Brilliant frame shares: a filling `Body` and a hugging
+ * `Bottom Section` (pad 0/34/34, gap 10) that keeps its CTA in the thumb zone.
+ * Scenes append exactly these two children so the shell grid stays predictable.
+ */
+export function sceneBody(className: string, children: readonly Node[]): HTMLElement {
+  return element('div', { className: `scene__body ${className}` }, children);
+}
+
+export function sceneBottom(className: string, children: readonly Node[]): HTMLElement {
+  return element('div', { className: `scene__bottom ${className}` }, children);
+}
+
+export function sceneCaption(text: string, className?: string): HTMLParagraphElement {
+  return element('p', {
+    className: ['scene__caption', className].filter(Boolean).join(' '),
+    text,
+  });
+}
+
 export function localizedList(items: readonly string[], className?: string): HTMLUListElement {
   return element(
     'ul',

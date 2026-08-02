@@ -3,7 +3,6 @@ export const SCENE_NAMES = [
   'landing',
   'intro',
   'question',
-  'interstitial',
   'calculating',
   'result',
   'story',

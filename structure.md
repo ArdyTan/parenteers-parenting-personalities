@@ -9,11 +9,12 @@
 
 This architecture serves one class of product: **a guided linear flow on a phone, choreographed like a native app, ending in a moment worth sharing.** No backend, no accounts, static hosting.
 
-Three pillars, and every decision follows from them:
+Two pillars, and every decision follows from them:
 
-1. **One persistent WebGL canvas under the DOM** — the "world." It never unmounts, so the atmosphere (gradient, particles, touch trail) survives every screen change and the experience feels continuous.
-2. **A scene state machine over the DOM** — the "screens." Each screen is an isolated Scene module with a strict lifecycle contract; a manager choreographs transitions between them.
-3. **One clock** — `gsap.ticker` is the only rAF loop. Lenis smooth scroll, the WebGL render, and all tweens hang off it. Two competing loops is how sites drop frames.
+1. **A scene state machine over the DOM** — the "screens." Each screen is an isolated Scene module with a strict lifecycle contract; a manager choreographs transitions between them.
+2. **One clock** — `gsap.ticker` is the only rAF loop. Lenis smooth scroll and all tweens hang off it. Two competing loops is how sites drop frames.
+
+> A third pillar — a persistent WebGL "world" canvas under the DOM — was **removed in Phase 5.5** (plan §6). Phase 5.5 made every scene a flat opaque surface, which occluded it entirely: a pixel diff proved it painted nothing while costing 134.6 KB gzip and a per-frame draw. Everything the app ships is now DOM + GSAP.
 
 ```
 ┌──────────────────────────────────────────────┐
@@ -21,7 +22,6 @@ Three pillars, and every decision follows from them:
 │  ┌────────────────────────────────────────┐  │
 │  │  active DOM scene (one at a time)   z10│  │
 │  └────────────────────────────────────────┘  │
-│  persistent WebGL canvas (the world)      z0 │
 └──────────────────────────────────────────────┘
              ▲ all driven by gsap.ticker
 ```
@@ -30,7 +30,7 @@ Three pillars, and every decision follows from them:
 
 1. **`main.ts` boots:** parse the URL, hydrate persisted state (`lang`, in-progress answers), register CustomEases.
 2. **Device gate check:** viewport ≥ 900px or (`pointer:fine` + no touch) → mount the **gate scene** (QR + "continue anyway" → app inside a 390×844 phone-bezel frame). Otherwise continue full-viewport.
-3. **Preloader scene:** loads the critical manifest with *real* progress (fonts → critical images → GL init + shader compile warm-up). The WebGL world is created *here*, behind the preloader, so the first revealed frame is already warm.
+3. **Preloader scene:** loads the critical manifest with *real* progress (fonts → critical images), so the first revealed frame is already warm.
 4. **Scene machine starts** at the routed scene (usually landing; deep links like `/r/pcte` go straight to a result).
 5. **During the quiz,** `requestIdleCallback` quietly preloads everything the endgame needs (all 16 characters, share assets) — by the reveal, nothing loads.
 6. **Share:** the story scene (DOM, screenshot-proof) is the guaranteed path; the canvas compositor + Web Share API is the enhanced path.
@@ -64,17 +64,12 @@ Three pillars, and every decision follows from them:
     │   ├── share.ts          # canvas compositor + share/download fallback chain
     │   ├── haptics.ts        # vibrate patterns, always paired w/ visual pulse
     │   ├── qr.ts             # gate QR (SVG)
-    │   └── audio.ts          # optional, muted-by-default
+    │   └── audio.ts          # muted-by-default engine: synthesized one-shots +
+    │                         # streamed theme; never decodes long audio
     ├── gestures/
     │   ├── pointer.ts        # unified Pointer Events tracking + capture helpers
     │   ├── spring.ts         # spring/friction integrators
     │   └── velocity.ts       # velocity tracker (flings, momentum)
-    ├── gl/
-    │   ├── world.ts          # facade: the ONLY GL API scenes may touch (§8)
-    │   ├── context.ts        # renderer, DPR clamp, quality tiers, visibility pause
-    │   ├── doughGradient.ts  # fbm gradient quad (+ .frag) — technique 09
-    │   ├── flourTrail.ts     # flowmap touch wake — technique 16
-    │   └── particles.ts      # instanced motes + burst pool — technique 08
     ├── motion/
     │   ├── shared.ts         # scene timelines, splitter, press, reveal, tilt, confetti
     │   └── preloader.ts      # real-progress 45→180°C boot + curtain exit
@@ -83,7 +78,7 @@ Three pillars, and every decision follows from them:
     │   └── i18n/en.json · id.json
     ├── scenes/               # one file per screen, all implementing Scene (§4)
     │   ├── gate.ts · landing.ts · intro.ts
-    │   ├── question.ts · interstitial.ts · calculating.ts
+    │   ├── question.ts · calculating.ts
     │   ├── result.ts · story.ts · gallery.ts · end.ts · notFound.ts
     └── styles/
         ├── tokens.css        # ALL design values live here (colors, type, space, ease)
@@ -92,7 +87,7 @@ Three pillars, and every decision follows from them:
         └── motion.css        # Phase 4 choreography surfaces and reduced-motion fork
 ```
 
-**Responsibility rule:** `core/` knows nothing about scenes. `scenes/` know nothing about three.js (they talk to `world.ts`). `gl/` knows nothing about app state (it receives values, never reads the store). Data flows one way: `data/ → core → scenes`; events flow back through the store.
+**Responsibility rule:** `core/` knows nothing about scenes. Data flows one way: `data/ → core → scenes`; events flow back through the store.
 
 ## 4. The Scene Contract
 
@@ -113,7 +108,7 @@ interface Scene {
 Rules that keep it sane:
 
 - **`enter`/`exit` own their timelines** and must be safely killable mid-flight (interrupt = jump to end state, never a stuck half-state).
-- **Scenes never reference each other.** Cross-scene communication goes through the store; shared visuals go through the world facade.
+- **Scenes never reference each other.** Cross-scene communication goes through the store.
 - **`unmount` is symmetric to `mount`** — every listener, ScrollTrigger, Lenis instance, and tween registered gets destroyed. Scene swap must leak nothing.
 - The **manager** (`app.ts`) runs swaps: `await guard() → current.exit(next) → swapDOM → next.enter(current)` — or overlapped, per the transition preset. Guards are async gates (e.g. the exit-confirm sheet mid-quiz).
 
@@ -158,13 +153,12 @@ gsap.ticker.add((time, dt) => {
 lenis.on('scroll', ScrollTrigger.update);
 ```
 
-- **Idle discipline:** the world renders every frame only while something moves (ambient drift counts, at reduced rate on low tier); it fully pauses on `document.hidden` and under `prefers-reduced-motion`.
-- **Quality tiers:** a ~2s fps probe at boot sets `tier`, which scales DPR (≤2), particle count, noise octaves, and disables the flowmap trail on `low`.
+- **Idle discipline:** tweens stop when nothing moves; scenes tear down their tickers and listeners on exit through the scene AbortSignal.
 - Lenis exists **only on scrollable scenes** (landing, result, gallery, end); quiz scenes are fixed-viewport and gesture-driven.
 
-## 8. The GL World (facade pattern)
+## 8. The GL World (facade pattern) — **removed in Phase 5.5**
 
-Scenes never import three.js. They call a tiny API, which is also the complete list of ways the app can affect the background:
+**No longer in the runtime** (plan §6). Kept here because the facade pattern is the transferable idea, and because reverting the removal means restoring exactly this contract. Scenes never imported three.js; they called a tiny API that was also the complete list of ways the app could affect the background:
 
 ```ts
 world.setHeat(t)        // 0..1 — quiz progress warms the palette (uniform lerp)
@@ -174,7 +168,9 @@ world.burst(x, y, n)    // particle poof (answer select, confetti crumbs)
 world.pause() / resume()
 ```
 
-Internally: one fullscreen-quad `ShaderMaterial` (fbm gradient + grain), a flowmap render-target feeding UV distortion, and one instanced particle buffer with a pooled burst emitter. Everything else in the app is DOM + GSAP — WebGL is *atmosphere*, which is what keeps it fast.
+Internally: one fullscreen-quad `ShaderMaterial` (fbm gradient + grain), a flowmap render-target feeding UV distortion, and one instanced particle buffer with a pooled burst emitter.
+
+The lesson worth carrying forward: *atmosphere behind opaque paint is invisible atmosphere.* Verify a background layer actually contributes pixels before paying for it — `npm run perf:canvas` does exactly that.
 
 ## 9. Data Flow (the JSON database)
 
@@ -199,7 +195,7 @@ To clone this architecture for a new linear mobile experience:
 |---|---|
 | `core/` (store, i18n, assets, haptics, share skeleton) | `core/scoring.ts` → your domain logic |
 | `gestures/` (pointer, spring, velocity) | `data/*.json` → your content model |
-| `gl/context.ts` + world facade pattern | `gl/` shader visuals → your atmosphere |
+| ~~`gl/context.ts` + world facade~~ | Removed here (plan §6) — port it only if your design has somewhere *visible* for a background layer to live |
 | `motion/` (shared scene timelines, splitter, preloader) | `scenes/` → your flow's screens |
 | Scene contract + manager + router skeleton | `styles/tokens.css` → your brand |
 | Boot sequence, gate, preloader mechanics | Character/OG assets, route table |
@@ -207,7 +203,7 @@ To clone this architecture for a new linear mobile experience:
 
 Step order that works:
 
-1. **Scaffold** Vite + TS; copy `core/`, `gestures/`, `gl/context+world`, `motion/`, the scene manager, and `tokens.css`.
+1. **Scaffold** Vite + TS; copy `core/`, `gestures/`, `motion/`, the scene manager, and `tokens.css`.
 2. **Define the flow** as a scene list + route table (paper first — every screen, every transition, every guard).
 3. **Write the data model** (data-spec style: JSON schemas + a pure logic module + validation tests) and transcribe content into it.
 4. **Build all scenes ugly** — functional DOM, real data, zero animation. The whole flow must work before choreography starts.
@@ -225,9 +221,9 @@ The taste source is always `D:\#dev\WebAnimation Library` — 99 techniques, bri
 | A question / scenario | `src/data/questions.json` |
 | A type's name, powers, accent | `src/data/types.json` |
 | Scoring behavior | `core/scoring.ts` (+ its tests) |
-| Colors / spacing / fonts | `styles/tokens.css` (+ shader palette uniforms in `gl/doughGradient.ts`) |
+| Colors / spacing / fonts | `styles/tokens.css` |
 | A transition between screens | `motion/shared.ts` lifecycle preset plus the owning scene hook |
 | Add a screen | new file in `scenes/` + route entry + transition preset |
-| Background behavior | `gl/` internals — the facade API stays stable |
+
 | Share card layout | `core/share.ts` draw list + story scene CSS |
 | Links / flags / toggles | `src/data/config.json` |

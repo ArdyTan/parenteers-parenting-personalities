@@ -5,16 +5,22 @@ export const STORAGE_KEYS = {
   lang: 'pb1.lang',
   answers: 'pb1.answers',
   lastResult: 'pb1.lastResult',
+  sound: 'pb1.sound',
 } as const;
 
-export type PerformanceTier = 'high' | 'mid' | 'low';
+/**
+ * Sound ships off (plan.md §14 decision 5). That is also what keeps WCAG 1.4.2
+ * satisfied — nothing over three seconds starts without the user asking — and
+ * what makes the ~1.75 MB theme cost zero bytes for anyone who never opts in.
+ */
+export const SOUND_DEFAULT = false;
 
 export type AppState = Readonly<{
   lang: Language;
   scene: SceneName;
   answers: readonly PersistedAnswer[];
+  sound: boolean;
   result?: TypeCode;
-  tier: PerformanceTier;
 }>;
 
 export interface StorageAdapter {
@@ -30,8 +36,8 @@ type StatePatch = Readonly<
     lang: Language;
     scene: SceneName;
     answers: readonly PersistedAnswer[];
+    sound: boolean;
     result: TypeCode;
-    tier: PerformanceTier;
   }>
 >;
 
@@ -41,7 +47,6 @@ export type CreateStoreOptions = Readonly<{
   localStorage?: StorageAdapter | null;
   sessionStorage?: StorageAdapter | null;
   initialScene?: SceneName;
-  initialTier?: PerformanceTier;
   now?: () => number;
 }>;
 
@@ -50,6 +55,7 @@ export interface AppStore {
   set(update: StateUpdate): AppState;
   subscribe(listener: StoreListener): () => void;
   setLanguage(lang: Language): AppState;
+  setSound(enabled: boolean): AppState;
   upsertAnswer(answer: PersistedAnswer): AppState;
   clearAnswers(): AppState;
   setResult(code: TypeCode): AppState;
@@ -57,7 +63,6 @@ export interface AppStore {
 }
 
 const POLES = new Set<Pole>(['P', 'F', 'C', 'G', 'T', 'D', 'E', 'N']);
-const TIERS = new Set<PerformanceTier>(['high', 'mid', 'low']);
 const TYPE_CODE_PATTERN = /^[PF][CG][TD][EN]$/;
 
 export function createStore(options: CreateStoreOptions = {}): AppStore {
@@ -70,8 +75,8 @@ export function createStore(options: CreateStoreOptions = {}): AppStore {
     lang: readLanguage(local),
     scene: options.initialScene ?? 'landing',
     answers: readAnswers(session),
+    sound: readSound(local),
     result: readLastResult(local),
-    tier: options.initialTier ?? 'mid',
   });
 
   function set(update: StateUpdate): AppState {
@@ -97,6 +102,7 @@ export function createStore(options: CreateStoreOptions = {}): AppStore {
       return () => listeners.delete(listener);
     },
     setLanguage: (lang) => set({ lang }),
+    setSound: (enabled) => set({ sound: enabled }),
     upsertAnswer(answer) {
       assertAnswer(answer);
       return set(({ answers }) => ({
@@ -133,8 +139,8 @@ function freezeState(value: {
   lang: unknown;
   scene: unknown;
   answers: unknown;
+  sound: unknown;
   result?: unknown;
-  tier: unknown;
 }): AppState {
   if (value.lang !== 'id' && value.lang !== 'en') {
     throw new TypeError(`Invalid language "${String(value.lang)}".`);
@@ -142,11 +148,11 @@ function freezeState(value: {
   if (!SCENE_NAMES.includes(value.scene as SceneName)) {
     throw new TypeError(`Invalid scene "${String(value.scene)}".`);
   }
-  if (!TIERS.has(value.tier as PerformanceTier)) {
-    throw new TypeError(`Invalid performance tier "${String(value.tier)}".`);
-  }
   if (!isAnswerArray(value.answers)) {
     throw new TypeError('Answers must be unique, dimension-valid question records for questions 1–12.');
+  }
+  if (typeof value.sound !== 'boolean') {
+    throw new TypeError(`Invalid sound preference "${String(value.sound)}".`);
   }
   if (value.result !== undefined && !isTypeCode(value.result)) {
     throw new TypeError(`Invalid result code "${String(value.result)}".`);
@@ -161,7 +167,7 @@ function freezeState(value: {
     lang: value.lang as Language,
     scene: value.scene as SceneName,
     answers,
-    tier: value.tier as PerformanceTier,
+    sound: value.sound,
   };
 
   return Object.freeze(
@@ -179,6 +185,9 @@ function persistChanges(
   if (previous.lang !== next.lang) {
     safeSet(local, STORAGE_KEYS.lang, next.lang);
   }
+  if (previous.sound !== next.sound) {
+    safeSet(local, STORAGE_KEYS.sound, next.sound ? 'on' : 'off');
+  }
   if (!answersEqual(previous.answers, next.answers)) {
     if (next.answers.length === 0) {
       safeRemove(session, STORAGE_KEYS.answers);
@@ -194,6 +203,13 @@ function persistChanges(
 function readLanguage(storage: StorageAdapter | null): Language {
   const value = safeGet(storage, STORAGE_KEYS.lang);
   return value === 'en' || value === 'id' ? value : 'id';
+}
+
+function readSound(storage: StorageAdapter | null): boolean {
+  const value = safeGet(storage, STORAGE_KEYS.sound);
+  if (value === 'on') return true;
+  if (value === 'off') return false;
+  return SOUND_DEFAULT;
 }
 
 function readAnswers(storage: StorageAdapter | null): readonly PersistedAnswer[] {
@@ -261,8 +277,8 @@ function statesEqual(left: AppState, right: AppState): boolean {
   return (
     left.lang === right.lang &&
     left.scene === right.scene &&
+    left.sound === right.sound &&
     left.result === right.result &&
-    left.tier === right.tier &&
     answersEqual(left.answers, right.answers)
   );
 }

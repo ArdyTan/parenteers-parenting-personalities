@@ -1,21 +1,18 @@
+import { audioEngine, playSfx, resetAudioEngine } from './core/audio';
 import { readDeviceSignals, shouldShowDesktopGate } from './core/device';
 import { BRAND_ASSETS } from './core/brand';
-import { triggerHaptic } from './core/haptics';
 import { createTranslator, type InterpolationValues } from './core/i18n';
-import type { AppRoute } from './core/navigation';
+import type { AppRoute, SceneName } from './core/navigation';
 import { createQrSvg, deriveMobileQuizUrl } from './core/qr';
 import { createHistoryRouter, parseRoute, type HistoryRouter } from './core/router';
 import { createAppStore, type AppStore } from './core/store';
 import type { Language, PersonalityType } from './core/quiz-types';
 import { appData } from './data';
-import { createFpsProbe, type FpsProbe } from './gl/tiers';
-import { createGsapFrameScheduler, createWorld, type World } from './gl/world';
 import { runExperiencePreloader } from './motion/preloader';
 import { createCalculatingScene } from './scenes/calculating';
 import { createEndScene } from './scenes/end';
 import { createGalleryScene } from './scenes/gallery';
 import { createGateScene } from './scenes/gate';
-import { createInterstitialScene } from './scenes/interstitial';
 import { createIntroScene } from './scenes/intro';
 import { createLandingScene } from './scenes/landing';
 import { SceneManager } from './scenes/manager';
@@ -25,10 +22,13 @@ import { createResultScene } from './scenes/result';
 import type { Scene, SceneContext } from './scenes/scene';
 import { createStoryScene } from './scenes/story';
 
-type InterstitialIntent = Readonly<{
-  afterQuestion: 6 | 9;
-  nextPath: string;
-}>;
+/** Scenes the theme plays under; everything else fades it out. */
+const MUSIC_SCENES: ReadonlySet<SceneName> = new Set<SceneName>([
+  'landing',
+  'intro',
+  'question',
+  'calculating',
+]);
 
 export class ParentingBakesApp {
   readonly #store: AppStore;
@@ -38,13 +38,9 @@ export class ParentingBakesApp {
   #header: HTMLElement | null = null;
   #rotateLock: HTMLElement | null = null;
   #surfaceController: AbortController | null = null;
-  #world: World | null = null;
-  #fpsProbe: FpsProbe | null = null;
-  #qualityProbeComplete = false;
   #unsubscribeRoute: (() => void) | null = null;
   #unsubscribeStore: (() => void) | null = null;
   #currentRoute: AppRoute = { scene: 'landing' };
-  #interstitial: InterstitialIntent | null = null;
   #routerStarted = false;
   #gateVisible = false;
   #renderRevision = 0;
@@ -57,15 +53,18 @@ export class ParentingBakesApp {
   }
 
   async start(): Promise<void> {
+    // Restore the persisted preference without unlocking: no gesture has
+    // happened yet, so the context stays suspended until one does.
+    audioEngine().setEnabled(this.#store.get().sound);
+
     this.#unsubscribeStore = this.#store.subscribe((state, previous) => {
+      if (state.sound !== previous.sound) {
+        this.#applySound(state.sound);
+      }
       if (state.lang !== previous.lang) {
         this.#syncDocumentCopy();
         this.#renderChrome();
         void this.#renderCurrentExperience();
-      }
-      if (state.tier !== previous.tier) {
-        this.#world?.setTier(state.tier);
-        document.documentElement.dataset.qualityTier = state.tier;
       }
     });
 
@@ -86,13 +85,13 @@ export class ParentingBakesApp {
     this.#renderRevision += 1;
     this.#surfaceController?.abort();
     this.#surfaceController = null;
-    this.#teardownWorld();
     this.#manager?.destroy();
     this.#manager = null;
     this.#unsubscribeRoute?.();
     this.#unsubscribeRoute = null;
     this.#unsubscribeStore?.();
     this.#unsubscribeStore = null;
+    resetAudioEngine();
     this.#router.stop();
     this.#routerStarted = false;
     this.#root.replaceChildren();
@@ -100,13 +99,10 @@ export class ParentingBakesApp {
 
   #mountRuntime(container: HTMLElement): void {
     this.#surfaceController?.abort();
-    this.#teardownWorld();
     this.#surfaceController = new AbortController();
 
     const runtime = document.createElement('div');
     runtime.className = 'app-runtime mobile-app';
-
-    const worldCanvas = document.createElement('canvas');
 
     const header = document.createElement('header');
     header.className = 'app-header';
@@ -119,87 +115,75 @@ export class ParentingBakesApp {
     rotateLock.className = 'rotate-lock';
     rotateLock.setAttribute('aria-hidden', 'true');
 
-    runtime.append(worldCanvas, header, sceneHost, rotateLock);
+    runtime.append(header, sceneHost, rotateLock);
     container.replaceChildren(runtime);
 
     this.#header = header;
     this.#rotateLock = rotateLock;
     this.#manager = new SceneManager(sceneHost);
-    this.#mountWorld(worldCanvas, runtime);
     this.#syncDocumentCopy();
     this.#renderChrome();
+    this.#bindAudioLifecycle(runtime);
   }
 
-  #mountWorld(canvas: HTMLCanvasElement, runtime: HTMLElement): void {
+  /**
+   * Autoplay-with-sound is refused on every mobile surface this app targets, so
+   * the context can only start inside a real gesture. The first pointer down
+   * anywhere is that gesture; it costs nothing when sound is off because the
+   * engine no-ops and the ~1.75 MB theme is `preload="none"`.
+   */
+  #bindAudioLifecycle(runtime: HTMLElement): void {
     const signal = this.#surfaceController?.signal;
     if (!signal) return;
 
-    const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const framedViewport = runtime.closest<HTMLElement>('.phone-frame__screen');
+    runtime.addEventListener(
+      'pointerdown',
+      () => {
+        const engine = audioEngine();
+        engine.unlock();
+        this.#syncMusic(this.#store.get().scene);
+      },
+      { signal, once: true },
+    );
 
-    try {
-      const world = createWorld(canvas, {
-        reducedMotion: motionQuery.matches,
-        tier: this.#store.get().tier,
-        ...(framedViewport ? { viewport: framedViewport } : {}),
-      });
-      this.#world = world;
-      runtime.dataset.webgl = 'ready';
+    // In-app browsers suspend the context on share sheets and tab switches;
+    // without this the bed comes back silent after the user returns.
+    document.addEventListener(
+      'visibilitychange',
+      () => {
+        const engine = audioEngine();
+        if (document.visibilityState === 'hidden') engine.pauseForHidden();
+        else engine.resumeFromHidden();
+      },
+      { signal },
+    );
+  }
 
-      const moveWorldPointer = (event: PointerEvent): void => {
-        if (!event.isPrimary) return;
-        const point = normalizedPointer(runtime, event);
-        if (!point) return;
-        const strength = event.pressure > 0 ? event.pressure : 0.7;
-        world.pointer(point.x, point.y, strength);
-      };
-
-      runtime.addEventListener('pointerdown', moveWorldPointer, { passive: true, signal });
-      runtime.addEventListener('pointermove', moveWorldPointer, { passive: true, signal });
-      runtime.addEventListener(
-        'pointerup',
-        (event) => {
-          if (!event.isPrimary || !(event.target instanceof Element)) return;
-          if (!event.target.closest('.answer-card')) return;
-          const point = normalizedPointer(runtime, event);
-          if (!point) return;
-          world.burst(point.x, point.y, 18);
-          triggerHaptic('tick');
-        },
-        { passive: true, signal },
-      );
-      motionQuery.addEventListener(
-        'change',
-        (event) => world.setReducedMotion(event.matches),
-        { signal },
-      );
-
-      if (!this.#qualityProbeComplete) this.#startQualityProbe();
-    } catch (error) {
-      runtime.dataset.webgl = 'fallback';
-      console.warn('[world] WebGL atmosphere unavailable; using the CSS fallback.', error);
+  #applySound(enabled: boolean): void {
+    const engine = audioEngine();
+    engine.setEnabled(enabled);
+    if (enabled) {
+      // This runs inside the toggle's click, so it is a valid unlock point.
+      engine.unlock();
+      playSfx('press');
+      this.#syncMusic(this.#store.get().scene);
     }
+    this.#renderChrome();
   }
 
-  #startQualityProbe(): void {
-    this.#fpsProbe?.cancel();
-    const probe = createFpsProbe({ scheduler: createGsapFrameScheduler() });
-    this.#fpsProbe = probe;
+  /**
+   * The theme runs under the quiz and retires at the result — which is both the
+   * screenshot moment and, at 2:32.6, roughly where the track ends anyway.
+   */
+  #syncMusic(scene: SceneName): void {
+    const engine = audioEngine();
+    if (!this.#store.get().sound) {
+      engine.stopMusic();
+      return;
+    }
 
-    void probe.result.then((result) => {
-      if (this.#fpsProbe !== probe) return;
-      this.#fpsProbe = null;
-      if (result.cancelled) return;
-      this.#qualityProbeComplete = true;
-      this.#store.set({ tier: result.tier });
-    });
-  }
-
-  #teardownWorld(): void {
-    this.#fpsProbe?.cancel();
-    this.#fpsProbe = null;
-    this.#world?.destroy();
-    this.#world = null;
+    if (MUSIC_SCENES.has(scene)) engine.startMusic();
+    else engine.stopMusic();
   }
 
   #renderChrome(): void {
@@ -248,7 +232,14 @@ export class ParentingBakesApp {
     const language = document.createElement('div');
     language.className = 'app-header__language';
     language.append(languageSwitch);
-    header.replaceChildren(brand, language);
+
+    // The sound toggle sits outside `.app-header__language` on purpose: that
+    // container is hidden on Quiz Opening and Q1-Q12, which is precisely where
+    // the theme plays. WCAG 1.4.2 needs the control reachable while audio runs.
+    const controls = document.createElement('div');
+    controls.className = 'app-header__controls';
+    controls.append(this.#soundToggle(state.sound, t, signal), language);
+    header.replaceChildren(brand, controls);
 
     const rotateContent = document.createElement('div');
     rotateContent.className = 'rotate-lock__content';
@@ -258,6 +249,44 @@ export class ParentingBakesApp {
     rotateBody.textContent = t('landing.subtitle');
     rotateContent.append(rotateTitle, rotateBody);
     rotateLock.replaceChildren(rotateContent);
+  }
+
+  /**
+   * WCAG 1.4.2 requires a control for anything that plays longer than three
+   * seconds, so this button is not optional decoration — it is what lets the
+   * theme exist at all.
+   */
+  #soundToggle(
+    enabled: boolean,
+    t: (key: string, values?: InterpolationValues) => string,
+    signal: AbortSignal,
+  ): HTMLButtonElement {
+    const button = document.createElement('button');
+    button.className = 'sound-toggle';
+    button.type = 'button';
+    button.dataset.state = enabled ? 'on' : 'off';
+    button.setAttribute('aria-pressed', String(enabled));
+    button.setAttribute('aria-label', t(enabled ? 'a11y.sound_off' : 'a11y.sound_on'));
+    button.title = t('nav.sound_label');
+
+    // Mirrors `.language-switch`: an outline pill wrapping a 28x32 capsule that
+    // fills brand blue when active. The icon is a mask so it can invert against
+    // that fill the way the ID/EN labels do.
+    const capsule = document.createElement('span');
+    capsule.className = 'sound-toggle__capsule';
+    capsule.setAttribute('aria-hidden', 'true');
+
+    const icon = document.createElement('span');
+    icon.className = 'sound-toggle__icon';
+    capsule.append(icon);
+    button.append(capsule);
+
+    button.addEventListener(
+      'click',
+      () => this.#store.setSound(!this.#store.get().sound),
+      { signal },
+    );
+    return button;
   }
 
   #languageButton(
@@ -286,7 +315,6 @@ export class ParentingBakesApp {
     this.#renderChrome();
     this.#unsubscribeRoute = this.#router.subscribe((route) => {
       this.#currentRoute = route;
-      this.#interstitial = null;
       void this.#renderRoute(route);
     });
     this.#router.start();
@@ -295,11 +323,6 @@ export class ParentingBakesApp {
   async #renderCurrentExperience(): Promise<void> {
     if (this.#gateVisible) {
       await this.#renderGate();
-      return;
-    }
-
-    if (this.#interstitial) {
-      await this.#showInterstitial(this.#interstitial);
       return;
     }
 
@@ -317,7 +340,6 @@ export class ParentingBakesApp {
     if (revision !== this.#renderRevision || !this.#gateVisible) return;
 
     this.#store.set({ scene: 'gate' });
-    this.#syncWorld({ scene: 'landing' });
     await manager.show(
       createGateScene(qrSvg, () => this.#continueInFrame()),
       this.#sceneContext(),
@@ -396,6 +418,7 @@ export class ParentingBakesApp {
       const distance = event.clientX - startX;
       thumb.style.removeProperty('--language-drag');
       if (Math.abs(distance) < 18) return;
+      playSfx('swipe');
       this.#store.setLanguage(distance > 0 ? 'en' : 'id');
     };
     control.addEventListener('pointerup', settle, { signal });
@@ -414,7 +437,7 @@ export class ParentingBakesApp {
 
     const scene = this.#sceneForRoute(route);
     this.#store.set({ scene: scene.name });
-    this.#syncWorld(route);
+    this.#syncMusic(scene.name);
     this.#syncDocumentCopy(route);
     await manager.show(scene, this.#sceneContext());
     this.#focusScene();
@@ -476,60 +499,7 @@ export class ParentingBakesApp {
     return appData.types.find((personality) => personality.slug === slug.toLowerCase());
   }
 
-  #syncWorld(route: AppRoute): void {
-    const world = this.#world;
-    if (!world) return;
 
-    let heat = 0;
-    let personality: PersonalityType | undefined;
-
-    switch (route.scene) {
-      case 'question':
-        heat = route.question / appData.questions.length;
-        break;
-      case 'calculating':
-      case 'result':
-      case 'story':
-      case 'gallery':
-      case 'end':
-        heat = 1;
-        break;
-      case 'notFound':
-        heat = 0.35;
-        break;
-      case 'landing':
-      case 'intro':
-        heat = 0;
-        break;
-    }
-
-    if (route.scene === 'result') personality = this.#findPersonality(route.slug);
-    if (route.scene === 'story' || route.scene === 'gallery' || route.scene === 'end') {
-      const result = this.#store.get().result;
-      personality = appData.types.find((type) => type.code === result);
-    }
-
-    world.setHeat(heat);
-    const defaultAccent = getComputedStyle(document.documentElement)
-      .getPropertyValue('--brand-orange')
-      .trim();
-    if (personality) world.setAccent(personality.accent);
-    else if (defaultAccent) world.setAccent(defaultAccent);
-  }
-
-  async #showInterstitial(intent: InterstitialIntent): Promise<void> {
-    const manager = this.#manager;
-    if (!manager) return;
-
-    this.#interstitial = intent;
-    this.#store.set({ scene: 'interstitial' });
-    this.#world?.setHeat(intent.afterQuestion / appData.questions.length);
-    await manager.show(
-      createInterstitialScene(intent.afterQuestion, intent.nextPath),
-      this.#sceneContext(),
-    );
-    this.#focusScene();
-  }
 
   #sceneContext(): SceneContext {
     return {
@@ -537,9 +507,6 @@ export class ParentingBakesApp {
       data: appData,
       t: this.#translator(),
       navigate: (path, options) => this.#navigate(path, options),
-      presentInterstitial: (afterQuestion, nextPath) => {
-        void this.#showInterstitial({ afterQuestion, nextPath });
-      },
       copyLink,
     };
   }
@@ -559,7 +526,6 @@ export class ParentingBakesApp {
     const state = this.#store.get();
     const t = this.#translator();
     document.documentElement.lang = state.lang;
-    document.documentElement.dataset.qualityTier = state.tier;
 
     if (route.scene === 'result') {
       const personality = this.#findPersonality(route.slug);
@@ -612,15 +578,3 @@ async function copyLink(url: string): Promise<boolean> {
   }
 }
 
-function normalizedPointer(
-  element: HTMLElement,
-  event: Readonly<Pick<PointerEvent, 'clientX' | 'clientY'>>,
-): Readonly<{ x: number; y: number }> | null {
-  const rect = element.getBoundingClientRect();
-  if (rect.width <= 0 || rect.height <= 0) return null;
-
-  return {
-    x: Math.min(1, Math.max(0, (event.clientX - rect.left) / rect.width)),
-    y: Math.min(1, Math.max(0, (event.clientY - rect.top) / rect.height)),
-  };
-}

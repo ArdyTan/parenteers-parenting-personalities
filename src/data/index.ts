@@ -22,3 +22,13 @@ export const appData = {
 export function validateBundledData(options: ValidationOptions = {}): ValidationReport {
   return validateAppData(appData, options);
 }
+
+/**
+ * Maps a full-size character path to its 360px thumbnail. Shared by the gallery
+ * shelves and the baking marquee — 16 thumbs total ~232 KB, which keeps both
+ * screens inside the plan §10 per-screen image budget. The full set is ~1 MB.
+ */
+export function characterThumbnail(characterPath: string): string {
+  const filename = characterPath.split('/').at(-1);
+  return filename ? `/characters/thumbs/${filename}` : characterPath;
+}

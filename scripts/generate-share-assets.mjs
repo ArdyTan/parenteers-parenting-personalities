@@ -46,7 +46,7 @@ async function generateOgImages() {
         width: 1080,
         height: 1350,
         channels: 4,
-        background: '#FAF4EA',
+        background: '#FDF2E1', // matches --color-editorial-canvas (the encoder's quantised cream)
       },
     })
       .composite([
@@ -69,7 +69,7 @@ async function generateOgImages() {
       width: 1200,
       height: 630,
       channels: 4,
-      background: '#FAF4EA',
+      background: '#FDF2E1', // matches --color-editorial-canvas (the encoder's quantised cream)
     },
   })
     .composite([

@@ -183,15 +183,6 @@
     padding-inline-end: var(--safe-padding-right);
   }
 
-  [data-world-canvas] {
-    position: fixed;
-    inset: 0;
-    z-index: var(--z-world);
-    inline-size: 100%;
-    block-size: 100%;
-    pointer-events: none;
-  }
-
   .texture-layer {
     position: absolute;
     inset: 0;

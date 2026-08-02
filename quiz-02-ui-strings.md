@@ -21,6 +21,7 @@
 | `nav.continue` | Continue | Lanjutkan |
 | `nav.close` | Close | Tutup |
 | `nav.home` | Home | Beranda |
+| `nav.sound_label` | Sound | Suara |
 
 ## Landing
 
@@ -143,6 +144,8 @@
 | `a11y.type_illustration_alt` | Cute illustration of {type}, a parenting-style bake character | Ilustrasi lucu {type}, karakter kue gaya parenting |
 | `a11y.lang_switch` | Switch language to {lang} | Ganti bahasa ke {lang} |
 | `a11y.loading` | Loading, please wait | Memuat, mohon tunggu |
+| `a11y.sound_on` | Turn sound on | Nyalakan suara |
+| `a11y.sound_off` | Turn sound off | Matikan suara |
 
 ---
 

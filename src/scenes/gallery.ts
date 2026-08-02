@@ -1,6 +1,7 @@
 import { gsap } from 'gsap';
 
 import type { PersonalityType, TypeCode } from '../core/quiz-types';
+import { characterThumbnail } from '../data';
 import {
   bindPressFeedback,
   createSceneMotion,
@@ -38,7 +39,7 @@ export function createGalleryScene(): FunctionalScene {
           element('img', {
             className: 'gallery__illustration',
             attributes: {
-              src: galleryImagePath(personality.image),
+              src: characterThumbnail(personality.image),
               alt: context.t('a11y.type_illustration_alt', {
                 type: personality.name[lang],
               }),
@@ -271,7 +272,3 @@ function formatCode(code: string): string {
   return [...code].join('·');
 }
 
-function galleryImagePath(characterPath: string): string {
-  const filename = characterPath.split('/').at(-1);
-  return filename ? `/characters/thumbs/${filename}` : characterPath;
-}

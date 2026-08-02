@@ -32,12 +32,16 @@ export const EXPECTED_TYPE_CODES = [
 
 export const REQUIRED_I18N_KEYS = [
   'nav.lang_toggle_label', 'nav.lang_en', 'nav.lang_id', 'nav.back', 'nav.next',
-  'nav.continue', 'nav.close', 'nav.home',
+  'nav.continue', 'nav.close', 'nav.home', 'nav.sound_label',
   'landing.cta_start', 'landing.meta_time', 'landing.meta_questions', 'landing.meta_share',
   'landing.by_brand', 'landing.h1', 'landing.subtitle', 'landing.trust',
+  // Phase 5.5 placeholder — the reference wording pending the user's copy pass.
+  'landing.eyebrow',
   'intro.cta_begin', 'intro.disclaimer_short', 'intro.h2', 'intro.point1', 'intro.point2',
   'intro.point3',
   'quiz.progress', 'quiz.select_hint', 'quiz.answer_a_label', 'quiz.answer_b_label',
+  // Phase 5.5 placeholder — the "nothing picked yet" CTA label.
+  'quiz.cta_pick',
   'quiz.change_answer', 'quiz.exit_confirm_title', 'quiz.exit_confirm_body',
   'quiz.exit_confirm_stay', 'quiz.exit_confirm_leave', 'quiz.interstitial_q6',
   'quiz.interstitial_q9',
@@ -58,6 +62,7 @@ export const REQUIRED_I18N_KEYS = [
   'error.notfound_title', 'error.notfound_cta',
   'meta.title', 'meta.description', 'meta.og_title', 'meta.og_description',
   'a11y.progressbar', 'a11y.type_illustration_alt', 'a11y.lang_switch', 'a11y.loading',
+  'a11y.sound_on', 'a11y.sound_off',
   'activity.P', 'activity.F', 'activity.C', 'activity.G', 'activity.T', 'activity.D',
   'activity.E', 'activity.N',
 ] as const;

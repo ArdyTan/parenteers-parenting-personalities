@@ -1,6 +1,8 @@
 import { gsap } from 'gsap';
 import { Flip } from 'gsap/Flip';
 
+import { playSfx } from '../core/audio';
+import { triggerHaptic } from '../core/haptics';
 import { randomizeQuestionAnswers } from '../core/randomize';
 import type { Question } from '../core/quiz-types';
 import {
@@ -9,7 +11,7 @@ import {
   createSceneMotion,
   prefersReducedMotion,
 } from '../motion/shared';
-import { actionButton, element } from './dom';
+import { actionButton, element, sceneBody, sceneBottom, sceneCaption } from './dom';
 import { FunctionalScene, type SceneContext } from './scene';
 
 gsap.registerPlugin(Flip);
@@ -35,43 +37,18 @@ export function createQuestionScene(question: Question): FunctionalScene {
       Array.from({ length: 12 }, (_, index) =>
         element('span', {
           className: `quiz-progress__stop${
-            index + 1 < question.id
-              ? ' is-complete'
-              : index + 1 === question.id
-                ? ' is-current'
-                : ''
+            index + 1 <= question.id ? ' is-complete' : ''
           }`,
         }),
       ),
     );
+    // One text node, matching the design file's `indicator-text`. The old
+    // rolling-number window put the digit in its own inline-grid box, which is
+    // what knocked it off the label's baseline.
     const progressLabel = element('p', {
-      className: 'eyebrow quiz-progress__label',
-      attributes: { 'aria-label': progressText },
+      className: 'quiz-progress__label',
+      text: progressText,
     });
-    const progressMarker = String(question.id);
-    const markerIndex = progressText.indexOf(progressMarker);
-    const progressPrefix = markerIndex >= 0 ? progressText.slice(0, markerIndex) : progressText;
-    const progressSuffix = markerIndex >= 0
-      ? progressText.slice(markerIndex + progressMarker.length)
-      : '';
-    const oldProgressNumber = element('span', {
-      className: 'quiz-progress__number quiz-progress__number--old',
-      text: String(Math.max(0, question.id - 1)),
-    });
-    const currentProgressNumber = element('span', {
-      className: 'quiz-progress__number quiz-progress__number--current',
-      text: progressMarker,
-    });
-    const numberWindow = element(
-      'span',
-      { className: 'quiz-progress__number-window', attributes: { 'aria-hidden': 'true' } },
-      [oldProgressNumber, currentProgressNumber],
-    );
-    progressLabel.append(
-      document.createTextNode(progressPrefix),
-      numberWindow,
-      document.createTextNode(progressSuffix),
-    );
 
     const backPath = question.id === 1 ? '/intro' : `/q/${question.id - 1}`;
     const back = actionButton(
@@ -79,11 +56,11 @@ export function createQuestionScene(question: Question): FunctionalScene {
       () => context.navigate(backPath),
       signal,
       {
-        className: 'scene-toolbar__icon button--icon',
+        className: 'quiz-indicator__back button--icon',
         attributes: { 'aria-label': context.t('nav.back') },
       },
     );
-    back.textContent = '←';
+    back.textContent = `← ${context.t('nav.back')}`;
 
     const exitDialog = createExitDialog(context, signal);
     const close = actionButton(
@@ -91,7 +68,7 @@ export function createQuestionScene(question: Question): FunctionalScene {
       () => openDialog(exitDialog),
       signal,
       {
-        className: 'scene-toolbar__icon button--icon',
+        className: 'quiz-indicator__close button--icon',
         attributes: { 'aria-label': context.t('nav.close') },
       },
     );
@@ -135,51 +112,44 @@ export function createQuestionScene(question: Question): FunctionalScene {
       return button;
     });
 
-    const change = actionButton(
-      context.t('quiz.change_answer'),
-      () => {
-        selectedPole = undefined;
-        context.store.set(({ answers: currentAnswers }) => ({
-          answers: currentAnswers.filter(({ q }) => q !== question.id),
-        }));
-        updateAnswerState();
-      },
-      signal,
-      { className: 'button--text' },
-    );
-
+    // One always-present CTA. Its label carries the affordance instead of a
+    // separate "change answer" link, which is what used to shove the button
+    // around as the answer state flipped.
     const nextPath = question.id === 12 ? '/baking' : `/q/${question.id + 1}`;
     const next = actionButton(
-      context.t('nav.next'),
-      () => {
-        if (question.id === 6 || question.id === 9) {
-          context.presentInterstitial(question.id, nextPath);
-        } else {
-          context.navigate(nextPath);
-        }
-      },
+      context.t('quiz.cta_pick'),
+      () => context.navigate(nextPath),
       signal,
-      { className: 'button--primary' },
+      { className: 'button--primary question__cta' },
     );
 
-    const controls = element('div', { className: 'scene-actions' }, [change, next]);
     const answerGrid = element('div', { className: 'answer-grid' }, answerButtons);
+    const instruction = sceneCaption(context.t('quiz.select_hint'), 'question__instruction');
+
+    // Centres the scenario art in whatever space the headline and answers leave,
+    // clipping symmetrically rather than rescaling the illustration.
+    const artBand = element('figure', { className: 'question__art-band' }, [scenarioArt]);
 
     const progressRail = element('div', { className: 'quiz-progress__rail' }, [
       progress,
       progressStops,
     ]);
+    const indicator = element('div', { className: 'quiz-indicator' }, [
+      element('div', { className: 'quiz-indicator__row' }, [back, progressLabel, close]),
+      progressRail,
+    ]);
+    const stack = element('div', { className: 'question__stack' }, [
+      element('h1', {
+        className: 'question__title',
+        text: question.scenario[lang],
+        attributes: { tabindex: '-1' },
+      }),
+      answerGrid,
+    ]);
 
     root.append(
-      element('header', { className: 'scene-toolbar' }, [back, progressLabel, close]),
-      progressRail,
-      element('div', { className: 'scene-content flow' }, [
-        element('h1', { text: question.scenario[lang], attributes: { tabindex: '-1' } }),
-        element('p', { className: 'scene-lead', text: context.t('quiz.select_hint') }),
-        scenarioArt,
-        answerGrid,
-        controls,
-      ]),
+      sceneBody('question__body', [indicator, artBand, stack]),
+      sceneBottom('question__bottom', [next, instruction]),
       exitDialog,
     );
 
@@ -191,7 +161,7 @@ export function createQuestionScene(question: Question): FunctionalScene {
 
     function updateAnswerState(): void {
       const flipState = answerStateInitialized && !prefersReducedMotion()
-        ? Flip.getState([answerGrid, controls])
+        ? Flip.getState([answerGrid])
         : null;
       answerButtons.forEach((button) => {
         const selected = button.dataset.pole === selectedPole;
@@ -210,7 +180,12 @@ export function createQuestionScene(question: Question): FunctionalScene {
           );
         }
       });
-      controls.hidden = selectedPole === undefined;
+      const pending = selectedPole === undefined;
+      next.disabled = pending;
+      next.setAttribute('aria-disabled', String(pending));
+      const label = context.t(pending ? 'quiz.cta_pick' : 'nav.next');
+      const labelHost = next.querySelector('.async-button__label') ?? next;
+      if (labelHost.textContent !== label) labelHost.textContent = label;
       if (flipState) {
         Flip.from(flipState, {
           duration: 0.38,
@@ -229,7 +204,14 @@ export function createQuestionScene(question: Question): FunctionalScene {
       context.store.upsertAnswer({ q: question.id, pole });
       updateAnswerState();
       const rect = button.getBoundingClientRect();
+      // Visual pulse, haptic tick and audio cue stay paired (conventions.md §1).
+      // The tick used to ride the removed WebGL burst listener in app.ts; it
+      // belongs here, next to the burst it accompanies.
       burstAt(button, rect.width / 2, rect.height / 2);
+      triggerHaptic('tick');
+      // A swipe-to-choose reaches this same path, so the selection cue covers
+      // both input styles; layering a swipe whoosh on top only muddies it.
+      playSfx('select');
     }
 
     function bindAnswerGesture(button: HTMLButtonElement): void {
@@ -314,30 +296,39 @@ export function createQuestionScene(question: Question): FunctionalScene {
       );
     }
 
+    const currentStop = progressStops.children.item(question.id - 1);
+
     return createSceneMotion(root, {
       enterTargets: [
-        root.querySelector('.scene-toolbar'),
-        progressRail,
-        root.querySelector('.scene-content > h1'),
-        root.querySelector('.scene-lead'),
+        indicator,
         scenarioArt,
+        root.querySelector('.question__title'),
         ...answerButtons,
+        root.querySelector('.question__bottom'),
       ].filter((target): target is Element => target instanceof Element),
       onEnter() {
-        if (prefersReducedMotion()) {
-          oldProgressNumber.hidden = true;
-          return;
-        }
-        gsap.set(currentProgressNumber, { yPercent: 110 });
-        gsap.timeline({
-          defaults: { duration: 0.46, ease: 'power3.out' },
-          onComplete: () => {
-            oldProgressNumber.hidden = true;
-            gsap.set(currentProgressNumber, { clearProps: 'transform' });
+        if (prefersReducedMotion() || !currentStop) return;
+        // The star for this question pops in — the rail is a better home for the
+        // "one more step" beat than a rolling digit ever was.
+        gsap.fromTo(
+          currentStop,
+          { scale: 0.2, rotate: -35, opacity: 0.2 },
+          {
+            scale: 1,
+            rotate: 0,
+            opacity: 1,
+            duration: 0.62,
+            ease: 'elastic.out(1, 0.48)',
+            clearProps: 'transform,opacity',
           },
-        })
-          .to(oldProgressNumber, { yPercent: -110 }, 0)
-          .to(currentProgressNumber, { yPercent: 0 }, 0);
+        );
+        const bounds = currentStop.getBoundingClientRect();
+        const railBounds = progressRail.getBoundingClientRect();
+        burstAt(
+          progressRail,
+          bounds.left - railBounds.left + bounds.width / 2,
+          bounds.top - railBounds.top + bounds.height / 2,
+        );
       },
     });
   });

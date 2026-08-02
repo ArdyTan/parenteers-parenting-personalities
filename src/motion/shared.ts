@@ -1,5 +1,6 @@
 import { gsap } from 'gsap';
 
+import { playSfx } from '../core/audio';
 import { triggerHaptic } from '../core/haptics';
 import type { SceneName } from '../core/navigation';
 import type { SceneMotionHooks } from '../scenes/scene';
@@ -64,11 +65,17 @@ export function createSceneMotion(
   };
 }
 
+/**
+ * The single press hook every scene binds, so it is also where the press cue
+ * lives. Reduced motion drops the squash choreography but keeps the sound:
+ * conventions.md §1 removes movement, not feedback. Disabled buttons stay
+ * silent for free — the platform withholds pointer events from them.
+ */
 export function bindPressFeedback(
   targets: Iterable<Element>,
   signal: AbortSignal,
 ): void {
-  if (prefersReducedMotion()) return;
+  const reduced = prefersReducedMotion();
 
   for (const target of targets) {
     const element = target as HTMLElement;
@@ -86,6 +93,8 @@ export function bindPressFeedback(
       'pointerdown',
       (event) => {
         if (!event.isPrimary) return;
+        playSfx('press');
+        if (reduced) return;
         gsap.to(element, {
           scale: 0.975,
           duration: 0.12,
@@ -95,6 +104,8 @@ export function bindPressFeedback(
       },
       { signal },
     );
+
+    if (reduced) continue;
     element.addEventListener('pointerup', reset, { signal });
     element.addEventListener('pointercancel', reset, { signal });
     element.addEventListener('pointerleave', reset, { signal });
@@ -184,7 +195,15 @@ export function revealOnScroll(root: HTMLElement, signal: AbortSignal): void {
 }
 
 export function runConfetti(root: HTMLElement, signal: AbortSignal): void {
-  if (prefersReducedMotion() || signal.aborted) return;
+  if (signal.aborted) return;
+
+  // The celebration beat fires before the reduced-motion gate: sound and haptic
+  // are the feedback, the falling paper is the choreography. Only the latter is
+  // what `prefers-reduced-motion` asks us to drop.
+  playSfx('confetti');
+  triggerHaptic('celebrate');
+  if (prefersReducedMotion()) return;
+
   const layer = document.createElement('div');
   layer.className = 'confetti-layer';
   layer.setAttribute('aria-hidden', 'true');
@@ -216,7 +235,6 @@ export function runConfetti(root: HTMLElement, signal: AbortSignal): void {
       ease: 'power1.in',
     },
   );
-  triggerHaptic('celebrate');
 
   signal.addEventListener(
     'abort',

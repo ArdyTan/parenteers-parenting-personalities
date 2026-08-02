@@ -96,10 +96,6 @@
     will-change: transform;
   }
 
-  .landing__content {
-    gap: var(--space-md);
-  }
-
   .landing__art {
     position: relative;
     inline-size: min(100%, 17rem);
@@ -141,52 +137,11 @@
     opacity: 1;
   }
 
-  .landing__marquee {
-    position: absolute;
-    inset: auto 0 0;
-    z-index: 2;
-    padding-block: var(--space-2xs);
-    overflow: hidden;
-    color: white;
-    font-size: var(--font-size-xs);
-    font-weight: var(--font-weight-bold);
-    white-space: nowrap;
-  }
-
-  .landing__marquee-track {
-    display: flex;
-    inline-size: max-content;
-    gap: var(--space-lg);
-    will-change: transform;
-  }
-
-  .landing__marquee-name::after {
-    margin-inline-start: var(--space-lg);
-    color: var(--brand-orange);
-    content: "✦";
-  }
-
   .answer-card {
     position: relative;
     overflow: visible;
     will-change: transform;
     touch-action: pan-y;
-  }
-
-  .quiz-progress__number-window {
-    position: relative;
-    display: inline-grid;
-    min-inline-size: 1.25em;
-    block-size: 1.2em;
-    place-items: center;
-    overflow: hidden;
-    vertical-align: -0.24em;
-  }
-
-  .quiz-progress__number {
-    grid-area: 1 / 1;
-    font-variant-numeric: tabular-nums;
-    will-change: transform;
   }
 
   .tap-burst {
@@ -210,55 +165,6 @@
   .scene--question:has(.exit-dialog[open]) > :not(.exit-dialog) {
     transform: scale(0.985);
     filter: saturate(0.82);
-  }
-
-  .interstitial__wipe {
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(circle at center, var(--color-glow-orange), transparent 48%),
-      var(--brand-orange);
-    opacity: 0.16;
-    pointer-events: none;
-  }
-
-  .interstitial__temperature {
-    color: var(--brand-orange);
-    font-family: var(--font-family-display);
-    font-size: clamp(3.5rem, 20cqi, 6.5rem);
-    font-weight: var(--font-weight-black);
-    line-height: 0.86;
-  }
-
-  .calculating__oven {
-    --oven-progress: 0;
-    position: relative;
-    display: grid;
-    inline-size: min(12rem, 54cqi);
-    aspect-ratio: 1;
-    place-items: center;
-    border-radius: 50%;
-    background:
-      radial-gradient(circle, var(--color-surface-raised) 57%, transparent 58%),
-      conic-gradient(var(--brand-orange) var(--oven-angle, 0turn), var(--color-border) 0);
-    box-shadow: var(--shadow-md);
-  }
-
-  .calculating__dial {
-    position: absolute;
-    inset: 50% auto auto 50%;
-    inline-size: 0.18rem;
-    block-size: 42%;
-    border-radius: var(--radius-pill);
-    background: var(--brand-blue);
-    transform: translate(-50%, -100%) rotate(var(--oven-needle-angle, -118deg));
-    transform-origin: 50% 100%;
-  }
-
-  .calculating__temperature {
-    position: relative;
-    font-family: var(--font-family-display);
-    font-size: var(--font-size-title-lg);
   }
 
   .loading-lines > li {
@@ -503,18 +409,6 @@
     opacity: 1;
   }
 
-  .interstitial__wipe {
-    background: radial-gradient(circle at 50% 64%, var(--color-glow-orange), transparent 46%);
-    opacity: 0.06;
-  }
-
-  .interstitial__temperature {
-    font-family: var(--font-family-ui);
-    font-size: inherit;
-    font-weight: var(--font-weight-bold);
-    line-height: 1;
-  }
-
   .result__illustration {
     border-radius: 0;
   }
@@ -534,6 +428,914 @@
   @layer shell {
     .result__scroll-arrow {
       animation: none;
+    }
+  }
+}
+
+@layer shell {
+  /* Keep Brilliant's environmental artwork geometry authoritative over
+     the earlier Phase 4 motion presentation rules. */
+
+  .scene--landing .landing__art-image {
+    position: absolute;
+    inset: 0;
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
+    object-position: center 58%;
+    opacity: 1;
+  }
+
+  .scene--result .result__illustration {
+    border-radius: 0;
+    object-fit: contain;
+    mask-image: none;
+    mix-blend-mode: normal;
+  }
+}
+
+/* ==========================================================================
+   Phase 5.5 — per-scene composition from the Brilliant frames.
+
+   This is the last block of the last-imported stylesheet on purpose: the
+   earlier Phase 4 and 4.5 layers stay readable as history, and this one wins.
+   ========================================================================== */
+
+@layer shell {
+  /* Flat, opaque editorial surface ----------------------------------------
+     Phase 4.5 tinted the scenes at 96% alpha so the WebGL atmosphere showed
+     through. That translucency is what made the art bands read as pasted-on
+     rectangles: the band was opaque `#FEF2E1` while the page around it picked
+     up the shader. A seamless band needs both to be the same flat colour, and
+     the header needs it too now that it sits in flow rather than over a scene.
+     Consequence worth knowing: the ambient shader is now only visible in Story. */
+
+  .app-header,
+  .scene:not(.scene--story) {
+    background: var(--color-editorial-canvas);
+  }
+
+  /* The bands own their insets now. Phase 4.5 reserved room for a floating
+     header with `padding-block-start: safe-top + 4.8rem`; leaving that in place
+     pushed every scene 94px down and stole that height from the artwork. */
+  .scene:not(.scene--story) {
+    padding: 0;
+  }
+
+  /* `language-selection`: 64x36 outline pill, two 28x28 capsules ----------- */
+
+  .language-switch {
+    inline-size: 64px;
+    block-size: 36px;
+    grid-template-columns: repeat(2, 28px);
+    gap: 0;
+    padding: 2px 4px;
+    border: var(--border-width-hairline) solid var(--color-outline);
+    border-radius: 18px;
+    background: var(--color-transparent);
+    box-shadow: none;
+  }
+
+  .language-switch__thumb {
+    inset: 2px auto 2px 4px;
+    inline-size: 28px;
+    border-radius: 16px;
+    background: var(--brand-blue);
+    box-shadow: none;
+  }
+
+  .language-switch[data-lang="en"] {
+    --language-base: 28px;
+  }
+
+  .language-switch__button {
+    display: grid;
+    inline-size: 28px;
+    min-inline-size: 28px;
+    block-size: 32px;
+    min-block-size: 32px;
+    padding: 0;
+    border-radius: 16px;
+    place-items: center;
+    color: var(--color-text-muted);
+    font-size: var(--font-size-ref-micro);
+    font-weight: var(--font-weight-bold);
+    line-height: 1;
+  }
+
+  .language-switch__button[aria-pressed="true"],
+  .language-switch__button.is-active {
+    background: var(--color-transparent);
+    color: var(--color-editorial-canvas);
+  }
+
+  /* `sound-toggle`: the same outline pill as `language-selection`, one capsule
+     wide. Off reads like an unselected ID/EN label (muted, transparent); on
+     reads like the selected one (brand-blue capsule, canvas-coloured glyph).
+     The explicit min-sizes are required — base.css pins every button to the
+     44px touch target, and min-size beats size regardless of specificity. */
+
+  /* Both rings are true circles, not clamped capsules. With `box-sizing:
+     border-box` the 36px box minus its 1px border and 3px padding leaves a
+     square 28px content box, so `50%` can only ever describe a circle — the
+     same rule the icon family follows (`<circle>`, never `<ellipse>`). */
+  .sound-toggle {
+    inline-size: 36px;
+    min-inline-size: 36px;
+    block-size: 36px;
+    min-block-size: 36px;
+    padding: 3px;
+    border: var(--border-width-hairline) solid var(--color-outline);
+    border-radius: 50%;
+    background: var(--color-transparent);
+    box-shadow: none;
+  }
+
+  .sound-toggle__capsule {
+    display: grid;
+    inline-size: 100%;
+    block-size: 100%;
+    border-radius: 50%;
+    aspect-ratio: 1;
+    background: var(--color-transparent);
+    place-items: center;
+    transition: background var(--duration-micro) var(--ease-spring);
+  }
+
+  .sound-toggle[data-state="on"] .sound-toggle__capsule {
+    background: var(--brand-blue);
+  }
+
+  /* Masked rather than an <img> so one glyph can invert against the fill. */
+  .sound-toggle__icon {
+    inline-size: 18px;
+    block-size: 18px;
+    background-color: var(--color-text-muted);
+    -webkit-mask: url("/icons/sound-off.svg") center / contain no-repeat;
+    mask: url("/icons/sound-off.svg") center / contain no-repeat;
+    transition: background-color var(--duration-micro) var(--ease-spring);
+  }
+
+  .sound-toggle[data-state="on"] .sound-toggle__icon {
+    background-color: var(--color-editorial-canvas);
+    -webkit-mask-image: url("/icons/sound-on.svg");
+    mask-image: url("/icons/sound-on.svg");
+  }
+
+  /* Split-text masks must clear descenders ---------------------------------
+     The mask hides the pre-reveal glyph, so it has to be taller than the glyph
+     box. Without this, a display line-height below 1 clipped the tails of
+     y / g / p on the landing headline. */
+
+  .split-char-mask {
+    padding-block-end: 0.2em;
+    margin-block-end: -0.2em;
+  }
+
+  /* Shared reference primitives ------------------------------------------- */
+
+  .landing__eyebrow,
+  .result__code {
+    justify-self: center;
+    inline-size: fit-content;
+    padding: 8px 24px;
+    border-radius: 25px;
+    background: var(--color-capsule-warm);
+    color: var(--brand-orange);
+    font-family: var(--font-family-ui);
+    font-size: var(--font-size-ref-ui);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0;
+    line-height: 1.25;
+    text-align: center;
+    text-transform: none;
+  }
+
+  /* `Text Point`: 27px blue bullet + 12px copy, gap 11. */
+  .intro__point,
+  .result__power-list > li {
+    display: grid;
+    min-block-size: 27px;
+    grid-template-columns: 27px minmax(0, 1fr);
+    align-items: center;
+    gap: var(--gap-bullet);
+    padding: 0;
+    border: 0;
+    background: var(--color-transparent);
+    box-shadow: none;
+    font-size: var(--font-size-ref-body);
+    line-height: var(--line-height-ref-body);
+  }
+
+  /* Scoped with the scene class so these beat the Phase 4.5 rules that stretched
+     the bullet into a 42x27 pill; the spec's `Bullet Point` is a 27px circle. */
+  .scene--intro .intro__point::before,
+  .scene--result .result__power-list > li::before {
+    position: static;
+    display: grid;
+    inline-size: 27px;
+    min-inline-size: 27px;
+    max-inline-size: 27px;
+    block-size: 27px;
+    aspect-ratio: 1;
+    place-items: center;
+    border-radius: 13.5px;
+    background: var(--brand-blue);
+    color: var(--color-editorial-canvas);
+    font-family: var(--font-family-ui);
+    font-size: var(--font-size-ref-body);
+    font-weight: var(--font-weight-bold);
+    line-height: 1;
+  }
+
+  /* 1 · Splash ------------------------------------------------------------ */
+
+  .scene--landing {
+    background: var(--color-editorial-canvas);
+  }
+
+  /* Copy hugs the top, art takes every remaining pixel. Its own `#FEF2E1`
+     canvas meets the page colour exactly, so the band has no visible edge. */
+  .scene--landing .landing__body {
+    grid-template-rows: auto minmax(0, 1fr);
+  }
+
+  .scene--landing .landing__art {
+    position: relative;
+    inset: auto;
+    grid-row: 2;
+    inline-size: 100%;
+    min-block-size: 0;
+    block-size: 100%;
+    aspect-ratio: auto;
+    margin: 0;
+    overflow: hidden;
+    border: 0;
+    border-radius: 0;
+    background: var(--color-transparent);
+    box-shadow: none;
+    pointer-events: none;
+  }
+
+  .scene--landing .landing__art-image {
+    position: absolute;
+    inset: 0;
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
+    object-position: center 70%;
+    opacity: 1;
+  }
+
+  .scene--landing .landing__header {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-row: 1;
+    align-content: start;
+    justify-items: center;
+    gap: var(--gap-splash-header);
+    padding: var(--pad-universal);
+    padding-inline-start: max(var(--safe-area-left), var(--pad-universal));
+    padding-inline-end: max(var(--safe-area-right), var(--pad-universal));
+  }
+
+  .scene .landing__title {
+    max-inline-size: none;
+    margin-inline: 0;
+    font-size: var(--font-size-ref-display);
+    line-height: var(--line-height-ref-display);
+    text-align: center;
+  }
+
+  .scene--landing .landing__subtitle {
+    inline-size: min(100%, var(--measure-centered));
+    max-inline-size: none;
+    margin-inline: auto;
+    font-size: var(--font-size-ref-body);
+    line-height: var(--line-height-ref-body);
+    text-align: center;
+  }
+
+  .scene--landing .landing__resume-status {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-ref-micro);
+    text-align: center;
+  }
+
+  /* 2 · Quiz Opening ------------------------------------------------------ */
+
+  .scene--intro {
+    background: var(--color-editorial-canvas);
+  }
+
+  /* Art band centred in the leftover space above the copy, at its native 3:2.
+     The band clips; the image is never rescaled. */
+  .scene--intro .intro__body {
+    grid-template-rows: minmax(0, 1fr) auto;
+  }
+
+  .scene--intro .intro__art-band {
+    display: grid;
+    grid-row: 1;
+    min-block-size: 0;
+    align-content: center;
+    margin: 0;
+    overflow: clip;
+  }
+
+  .scene--intro .intro__art {
+    position: relative;
+    inset: auto;
+    z-index: 0;
+    inline-size: 100%;
+    block-size: auto;
+    aspect-ratio: 3 / 2;
+    margin: 0;
+    object-fit: cover;
+    mask-image: none;
+    pointer-events: none;
+  }
+
+  .scene--intro .intro__header {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-row: 2;
+    align-content: end;
+    gap: var(--gap-header-body);
+    padding: var(--pad-universal);
+    padding-inline-start: max(var(--safe-area-left), var(--pad-universal));
+    padding-inline-end: max(var(--safe-area-right), var(--pad-universal));
+  }
+
+  .scene .intro__title {
+    font-size: var(--font-size-ref-display);
+    line-height: var(--line-height-ref-display);
+    text-align: start;
+  }
+
+  .scene--intro .intro__points {
+    display: grid;
+    gap: var(--gap-component);
+  }
+
+  /* 3 & 4 · Questions ---------------------------------------------------- */
+
+  .scene--question {
+    background: var(--color-editorial-canvas);
+  }
+
+  /* indicator / art band / headline+answers. The band is the flexible row and
+     centres the illustration inside it; the illustration itself stays at its
+     native 3:2 at every viewport height, so it is never scaled. On the tightest
+     combination (a three-line scenario at 844px) the band clips it symmetrically
+     top and bottom, where these crops are empty cream anyway. */
+  .scene--question .question__body {
+    grid-template-rows: auto minmax(0, 1fr) auto;
+  }
+
+  .scene--question .question__art-band {
+    display: grid;
+    grid-row: 2;
+    min-block-size: 0;
+    align-content: center;
+    margin: 0;
+    overflow: clip;
+  }
+
+  .scene--question .question__art {
+    position: relative;
+    inset: auto;
+    z-index: 0;
+    inline-size: 100%;
+    block-size: auto;
+    aspect-ratio: 3 / 2;
+    max-block-size: none;
+    margin: 0;
+    object-fit: cover;
+    mask-image: none;
+    pointer-events: none;
+  }
+
+  .scene--question .quiz-indicator {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    gap: var(--pad-chrome);
+    padding-inline: var(--pad-chrome);
+    padding-inline-start: max(var(--safe-area-left), var(--pad-chrome));
+    padding-inline-end: max(var(--safe-area-right), var(--pad-chrome));
+  }
+
+  .scene--question .quiz-indicator__row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--gap-tight);
+  }
+
+  .scene--question .quiz-indicator__back,
+  .scene--question .quiz-indicator__close,
+  .scene--question .quiz-progress__label {
+    min-block-size: 0;
+    padding: 0;
+    border: 0;
+    background: var(--color-transparent);
+    box-shadow: none;
+    color: var(--color-outline);
+    font-family: var(--font-family-ui);
+    font-size: var(--font-size-ref-micro);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0;
+    line-height: var(--line-height-ui);
+    text-transform: none;
+  }
+
+  .scene--question .quiz-indicator__back,
+  .scene--question .quiz-indicator__close {
+    min-block-size: var(--target-min-size);
+    inline-size: auto;
+    min-inline-size: var(--target-min-size);
+  }
+
+  .scene--question .quiz-indicator__close {
+    justify-content: flex-end;
+    font-size: 1.35rem;
+    line-height: 1;
+  }
+
+  /* `Progress Bar`: 35 tall, rd 60, 1px outline, 12 stars space-between. */
+  .scene--question .quiz-progress__rail {
+    position: relative;
+    display: flex;
+    block-size: 35px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 var(--pad-chrome);
+    border: var(--border-width-hairline) solid var(--color-outline);
+    border-radius: 60px;
+    background: var(--color-editorial-canvas);
+    box-shadow: none;
+  }
+
+  .scene--question .quiz-progress__bar {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .scene--question .quiz-progress__stops {
+    display: flex;
+    inline-size: 100%;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0;
+  }
+
+  .scene--question .quiz-progress__stop {
+    display: block;
+    inline-size: 18px;
+    min-inline-size: 18px;
+    block-size: 20px;
+    aspect-ratio: auto;
+    border: 0;
+    border-radius: 0;
+    background-color: var(--color-transparent);
+    background-image: url("/icons/progress-bar-star.svg");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    box-shadow: none;
+    font-size: 0;
+    opacity: 0.2;
+  }
+
+  .scene--question .quiz-progress__stop.is-complete {
+    opacity: 1;
+  }
+
+  .scene--question .question__stack {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-row: 3;
+    align-content: end;
+    gap: var(--gap-header-body);
+    padding: var(--pad-universal);
+    padding-inline-start: max(var(--safe-area-left), var(--pad-universal));
+    padding-inline-end: max(var(--safe-area-right), var(--pad-universal));
+  }
+
+  .scene--question .question__title {
+    max-inline-size: none;
+    font-size: var(--font-size-ref-display);
+    line-height: var(--line-height-ref-display);
+    text-align: start;
+  }
+
+  .scene--question .answer-grid {
+    display: grid;
+    gap: var(--gap-tight);
+  }
+
+  /* `Choice Capsules`: rd 10, 1px outline, no fill, pad 10/20, gap 15. */
+  .scene--question .answer-card {
+    display: grid;
+    min-block-size: 68px;
+    grid-template-columns: 27px minmax(0, 1fr);
+    align-items: center;
+    gap: 15px;
+    padding: 10px 20px;
+    border: var(--border-width-hairline) solid var(--color-outline);
+    border-radius: 10px;
+    background: var(--color-transparent);
+    box-shadow: none;
+    backdrop-filter: none;
+    text-align: start;
+  }
+
+  .scene--question .answer-card__label {
+    display: grid;
+    inline-size: 27px;
+    block-size: 27px;
+    place-items: center;
+    border: 0;
+    border-radius: 13.5px;
+    background: var(--brand-blue);
+    color: var(--color-editorial-canvas);
+    font-family: var(--font-family-ui);
+    font-size: var(--font-size-ref-body);
+    font-weight: var(--font-weight-bold);
+    line-height: 1;
+  }
+
+  .scene--question .answer-card__copy {
+    font-size: var(--font-size-ref-body);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-ref-body);
+  }
+
+  .scene--question .answer-card.is-selected,
+  .scene--question .answer-card[aria-pressed="true"] {
+    border-color: var(--brand-blue);
+    background: var(--color-lavender-surface);
+  }
+
+  .scene--question .question__instruction {
+    max-inline-size: none;
+    margin: 0;
+    color: var(--color-text);
+  }
+
+  /* Baking: the whole cast drifts past instead of a dial in a card --------- */
+
+  .scene--calculating {
+    background: var(--color-editorial-canvas);
+  }
+
+  /* title / marquee / status line, where the status line owns the leftover space
+     and centres itself in it. */
+  .scene--calculating .baking__body {
+    grid-template-rows: auto auto minmax(0, 1fr);
+    align-content: stretch;
+    gap: var(--pad-universal);
+    padding-block: var(--pad-universal);
+  }
+
+  .scene--calculating .baking__title {
+    padding-inline: var(--pad-universal);
+    font-size: var(--font-size-ref-display);
+    line-height: var(--line-height-ref-display);
+    text-align: center;
+  }
+
+  .scene--calculating .baking__marquees {
+    display: grid;
+    gap: var(--gap-component);
+  }
+
+  .baking__marquee {
+    overflow: hidden;
+  }
+
+  .baking__marquee-track {
+    display: flex;
+    inline-size: max-content;
+    align-items: center;
+    will-change: transform;
+  }
+
+  /* Fixed size and a right margin rather than a flex `gap`: the marquee measures
+     one row as its repeat unit, and a gap would add an extra space at every
+     clone boundary, which shows up as a drifting seam. */
+  .baking__marquee-item {
+    inline-size: 104px;
+    block-size: 104px;
+    flex: 0 0 auto;
+    margin-inline-end: var(--gap-component);
+    object-fit: contain;
+  }
+
+  .scene--calculating .loading-lines {
+    display: grid;
+    align-content: center;
+    justify-items: center;
+    gap: var(--gap-tight);
+    padding-inline: var(--pad-universal);
+    text-align: center;
+  }
+
+  .scene--calculating .loading-lines > li {
+    padding: 0;
+    background: var(--color-transparent);
+    color: var(--color-text);
+    font-size: var(--font-size-ref-lead);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--line-height-ref-body);
+    list-style: none;
+  }
+
+  /* One line at a time: every item shares a single cell so they cross-fade in
+     place instead of stacking up. Reduced motion keeps the plain vertical list,
+     where all four lines stay readable at once. */
+  .scene--calculating .loading-lines--sequential > li {
+    grid-area: 1 / 1;
+  }
+
+  /* 5 · Result ----------------------------------------------------------- */
+
+  /* `minmax(0, 1fr)` is load-bearing: the column is otherwise content-sized, so a
+     single unbreakable word in the type name widened it past the viewport and
+     took the character illustration with it. */
+  .scene--result .result__body {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+
+  .scene--result .result__hero {
+    display: grid;
+    min-block-size: 0;
+    gap: var(--gap-header-body);
+    padding-block-end: var(--pad-universal);
+  }
+
+  .scene--result .result__illustration {
+    inline-size: 100%;
+    max-inline-size: none;
+    aspect-ratio: 1;
+    margin: 0;
+    object-fit: contain;
+  }
+
+  .scene--result .result__identity {
+    display: grid;
+    justify-items: center;
+    gap: var(--gap-header-body);
+    padding: 0 var(--pad-universal) var(--pad-universal);
+    padding-inline-start: max(var(--safe-area-left), var(--pad-universal));
+    padding-inline-end: max(var(--safe-area-right), var(--pad-universal));
+  }
+
+  .scene--result .result__intro {
+    color: var(--brand-blue);
+    font-family: var(--font-family-ui);
+    font-size: var(--font-size-ref-micro);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 2px;
+    line-height: var(--line-height-ref-body);
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  /* The eyebrow and the name read as one unit, so they sit gapless. */
+  .scene--result .result__intro + .result__name {
+    margin-block-start: calc(0px - var(--gap-header-body));
+  }
+
+  .scene .result__name {
+    max-inline-size: 100%;
+    font-size: var(--font-size-ref-name);
+    line-height: var(--line-height-ref-display);
+    text-align: center;
+    text-wrap: balance;
+  }
+
+  /* A word with no break opportunity ("Croquembouche") steps down so it fits the
+     34px insets instead of being clipped at the viewport edge. */
+  .scene .result__name[data-long-name] {
+    font-size: var(--font-size-ref-display);
+  }
+
+  .scene--result .result__tagline {
+    inline-size: min(100%, var(--measure-centered));
+    max-inline-size: none;
+    font-size: var(--font-size-ref-body);
+    line-height: var(--line-height-ref-body);
+    text-align: center;
+  }
+
+  .scene--result .result__scroll-cue {
+    display: grid;
+    justify-items: center;
+    gap: 14px;
+    color: var(--color-outline);
+    font-family: var(--font-family-ui);
+    font-size: var(--font-size-ref-micro);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-ref-micro);
+    text-align: center;
+  }
+
+  .scene--result .result__scroll-arrow {
+    color: var(--brand-orange);
+    font-size: 1.25rem;
+    line-height: 1;
+  }
+
+  /* `Result Text`: pad 34/40, gap 34 between groups, 10 inside. */
+  .scene--result .result__detail {
+    display: grid;
+    gap: var(--gap-result-group);
+    padding: var(--pad-universal) var(--pad-result-text);
+    padding-inline-start: max(var(--safe-area-left), var(--pad-result-text));
+    padding-inline-end: max(var(--safe-area-right), var(--pad-result-text));
+    padding-block-end: 7rem;
+  }
+
+  .scene--result .result__section {
+    display: grid;
+    gap: var(--gap-tight);
+    padding: 0;
+    border: 0;
+    background: var(--color-transparent);
+    box-shadow: none;
+  }
+
+  .scene--result .result__section h2 {
+    font-size: var(--font-size-ref-heading);
+    line-height: var(--line-height-ref-display);
+    text-align: start;
+  }
+
+  .scene--result .result__section p {
+    font-size: var(--font-size-ref-body);
+    line-height: var(--line-height-ref-body);
+  }
+
+  .scene--result .result__power-list {
+    display: grid;
+    gap: var(--gap-tight);
+  }
+
+  .scene--result .result__rule {
+    inline-size: 100%;
+    block-size: 0;
+    margin: 0;
+    border: 0;
+    border-block-start: var(--border-width-hairline) solid var(--color-outline);
+  }
+
+  .scene--result .result__soft-sell {
+    display: grid;
+    gap: var(--gap-tight);
+    padding: 0;
+    border: 0;
+    background: var(--color-transparent);
+    box-shadow: none;
+    font-size: var(--font-size-ref-body);
+    line-height: var(--line-height-ref-body);
+  }
+
+  .scene--result .result__disclaimer,
+  .scene--result .result__copy-status {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-ref-micro);
+    line-height: var(--line-height-ref-body);
+  }
+
+  /* Chip tray: the secondary destinations as warm capsules with an icon each,
+     instead of a stack of underlined links. Two up, with the last spanning. */
+  .scene--result .result__chips {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--gap-tight);
+  }
+
+  .scene--result .result__chip {
+    display: flex;
+    min-block-size: var(--target-min-size);
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 14px;
+    border: 0;
+    border-radius: 25px;
+    background: var(--color-capsule-warm);
+    box-shadow: none;
+    color: var(--brand-orange);
+    font-family: var(--font-family-ui);
+    font-size: var(--font-size-ref-body);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.25;
+    text-align: center;
+    text-decoration: none;
+  }
+
+  .scene--result .result__chip--wide {
+    grid-column: 1 / -1;
+  }
+
+  .scene--result .result__chip-icon {
+    inline-size: 20px;
+    block-size: 20px;
+    flex: 0 0 auto;
+  }
+
+  .scene--result .result__chip:active {
+    background: #ecd9bd;
+  }
+
+  /* The soft-sell block shares the chip language so the whole tail of the page
+     reads as one warm family instead of blue outlines beside tan capsules. */
+  .scene--result .result__activity-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 0;
+    list-style: none;
+  }
+
+  .scene--result .result__activity-tags > li {
+    padding: 6px 14px;
+    border: 0;
+    border-radius: 25px;
+    background: var(--color-capsule-warm);
+    color: var(--brand-blue);
+    font-size: var(--font-size-ref-micro);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .scene--result .result__activities-cta {
+    display: flex;
+    min-block-size: var(--target-min-size);
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 20px;
+    border: var(--border-width-hairline) solid var(--brand-orange);
+    border-radius: 25px;
+    background: var(--color-transparent);
+    box-shadow: none;
+    color: var(--brand-orange);
+    font-family: var(--font-family-ui);
+    font-size: var(--font-size-ref-body);
+    font-weight: var(--font-weight-bold);
+    text-decoration: none;
+  }
+
+  .scene--result .result__activities-cta:disabled,
+  .scene--result .result__activities-cta[aria-disabled="true"] {
+    border-color: var(--color-outline);
+    color: var(--color-outline);
+  }
+
+  /* Docked share bar (technique 65). `.phone-frame__screen` carries a
+     transform, so `fixed` is contained by the phone frame in preview too. */
+  .scene--result .result__bottom {
+    position: fixed;
+    inset: auto 0 0;
+    z-index: var(--z-floating-ui);
+    padding-block-start: var(--gap-tight);
+    background: var(--color-editorial-canvas);
+    box-shadow: 0 -0.75rem 1.5rem rgb(24 39 153 / 8%);
+    transform: translateY(115%);
+    transition: transform var(--duration-reveal) var(--ease-out);
+  }
+
+  .scene--result .result__bottom[data-docked="true"] {
+    transform: translateY(0);
+  }
+
+  .scene--result .toast-stack {
+    inset-block-end: calc(var(--safe-padding-bottom) + 6rem);
+  }
+}
+
+/* Short viewports: tighten the Splash stack before it can crowd the art. */
+@media (max-height: 46rem) {
+  @layer shell {
+    .scene--landing .landing__header {
+      gap: var(--gap-header-body);
+    }
+
+    .baking__marquee-item {
+      inline-size: 68px;
+      block-size: 68px;
     }
   }
 }

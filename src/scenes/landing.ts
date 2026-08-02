@@ -7,7 +7,7 @@ import {
   revealSplitText,
   splitTextForReveal,
 } from '../motion/shared';
-import { actionButton, element } from './dom';
+import { actionButton, element, sceneBody, sceneBottom, sceneCaption } from './dom';
 import { FunctionalScene, type SceneContext } from './scene';
 
 export function createLandingScene(): FunctionalScene {
@@ -26,10 +26,13 @@ function renderLanding(
   )?.id;
   const hasProgress = state.answers.length > 0;
 
-  const timePill = element('p', {
-    className: 'landing__time-pill',
-    text: context.t('landing.meta_time'),
+  // `Capsules-warm`: the eyebrow slot the design file puts above the headline.
+  // The 3-minute line it used to hold now sits under the CTA as plain text.
+  const eyebrow = element('p', {
+    className: 'landing__eyebrow',
+    text: context.t('landing.eyebrow'),
   });
+
   const openingArt = element('figure', { className: 'landing__art' }, [
     element('img', {
       className: 'landing__art-image',
@@ -51,27 +54,32 @@ function renderLanding(
     attributes: { id: 'landing-title' },
   });
   const titleCharacters = splitTextForReveal(title);
-  const hero = element('div', { className: 'landing__hero' }, [
+  const subtitle = element('p', {
+    className: 'landing__subtitle',
+    text: context.t('landing.subtitle'),
+  });
+  const header = element('div', { className: 'landing__header' }, [
+    eyebrow,
     title,
-    element('p', {
-      className: 'landing__subtitle',
-      text: context.t('landing.subtitle'),
-    }),
+    subtitle,
   ]);
 
-  const metadata = element('ul', { className: 'landing__meta' }, [
-    element('li', { className: 'landing__meta-item', text: context.t('landing.meta_time') }),
-    element('li', {
-      className: 'landing__meta-item',
-      text: context.t('landing.meta_questions'),
-    }),
-    element('li', {
-      className: 'landing__meta-item',
-      text: context.t('landing.meta_share'),
-    }),
-  ]);
+  const startButton = actionButton(
+    context.t('landing.cta_start'),
+    () => {
+      context.store.clearAnswers();
+      context.store.clearResult();
+      context.navigate('/intro');
+    },
+    signal,
+    {
+      className: `landing__cta landing__cta--start ${
+        hasProgress ? 'button--secondary' : 'button--primary'
+      }`,
+    },
+  );
 
-  const actions = element('div', { className: 'landing__actions' });
+  const bottomChildren: HTMLElement[] = [];
 
   if (hasProgress) {
     const resumeStatus =
@@ -82,10 +90,7 @@ function renderLanding(
             total: context.data.questions.length,
           });
 
-    actions.appendChild(
-      element('p', { className: 'landing__resume-status', text: resumeStatus }),
-    );
-    actions.appendChild(
+    bottomChildren.push(
       actionButton(
         context.t('nav.continue'),
         () => {
@@ -94,39 +99,19 @@ function renderLanding(
         signal,
         { className: 'landing__cta landing__cta--resume button--primary' },
       ),
+      element('p', { className: 'landing__resume-status', text: resumeStatus }),
     );
   }
 
-  actions.appendChild(
-    actionButton(
-      context.t('landing.cta_start'),
-      () => {
-        context.store.clearAnswers();
-        context.store.clearResult();
-        context.navigate('/intro');
-      },
-      signal,
-      {
-        className: `landing__cta landing__cta--start ${
-          hasProgress ? 'button--secondary' : 'button--primary'
-        }`,
-      },
-    ),
-  );
+  bottomChildren.push(startButton, sceneCaption(context.t('landing.trust'), 'landing__caption'));
+
+  // Header first, art second: the art fills whatever the copy leaves, so the
+  // subtitle can never end up printed over the illustration.
+  const body = sceneBody('landing__body', [header, openingArt]);
+  const bottom = sceneBottom('landing__bottom', bottomChildren);
 
   root.setAttribute('aria-labelledby', 'landing-title');
-  root.appendChild(
-    element('div', { className: 'landing__content' }, [
-      timePill,
-      hero,
-      openingArt,
-      metadata,
-      actions,
-    ]),
-  );
-  root.appendChild(
-    element('p', { className: 'landing__trust', text: context.t('landing.trust') }),
-  );
+  root.append(body, bottom);
 
   bindPressFeedback(root.querySelectorAll('.button'), signal);
 
@@ -164,11 +149,17 @@ function renderLanding(
   }
 
   return createSceneMotion(root, {
-    enterTargets: [timePill, hero, openingArt, metadata, actions, root.lastElementChild].filter(
-      (target): target is Element => target instanceof Element,
-    ),
+    enterTargets: [eyebrow, title, subtitle, openingArt, bottom],
     onEnter() {
       revealSplitText(titleCharacters);
+      if (prefersReducedMotion()) return;
+      // The warm capsule lands with a little pop so the first thing on screen
+      // already reads as playful rather than administrative.
+      gsap.fromTo(
+        eyebrow,
+        { scale: 0.86 },
+        { scale: 1, duration: 0.62, ease: 'elastic.out(1, 0.5)', clearProps: 'transform' },
+      );
     },
   });
 }

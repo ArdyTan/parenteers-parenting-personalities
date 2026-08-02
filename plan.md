@@ -24,7 +24,7 @@
 | Database | Static JSON files bundled with the app — no backend, no accounts |
 | Hosting | Static build → **Cloudflare Workers static assets, free plan** (decided 2026-07-17; static requests are free/unlimited, Jakarta edge PoP) |
 
-**Flow:** Preloader → Landing → Intro → Q1–Q12 (interstitials after Q6 & Q9) → Calculating → Result → Story-share mode → Gallery (all 16) → End page. Plus: 404 ("This page got eaten 🍪") and the desktop QR gate.
+**Flow:** Preloader → Landing → Intro → Q1–Q12 without mid-quiz interruption → Calculating → Result → Story-share mode → Gallery (all 16) → End page. Plus: 404 ("This page got eaten 🍪") and the desktop QR gate.
 
 ---
 
@@ -118,15 +118,33 @@ Answer render order is **randomized per render** (pole travels with the answer, 
 
 ---
 
-## 6. WebGL Layer (Three.js)
+## 6. WebGL Layer (Three.js) — **removed in Phase 5.5**
 
-One persistent full-screen canvas behind the DOM, alive across all screens so the world never "reloads." Built from three library techniques:
+**Status: cut on 2026-08-02.** Phase 5.5 made every editorial scene a flat opaque cream surface, which occluded this canvas completely. A pixel diff (capture → hide the canvas → capture again, motion frozen) came back identical on `result`/`story`/`end`; the 0.4–1.5% differences on `intro`/`question`/`gallery` were text antialiasing flipping from subpixel to grayscale because a composited layer disappeared, not canvas content. It was rendering every frame behind opaque paint.
+
+Removing it deleted `src/gl/`, the boot fps probe, and the store's performance tier, and dropped three.js from the dependencies:
+
+| | before | after |
+|---|---|---|
+| JS gzip | 214.86 KB | **78.84 KB** |
+| raw JS to parse | 753.52 KB | 215.26 KB |
+| GL drawing buffer | 2.83 MB (585×1266 @ mid tier) | none |
+| JS heap, landing → result | 11.95 → 17.32 MB | 9.32 → 12.04 MB |
+| Result page @ 8× CPU throttle | 40.4 fps, 100 ms worst frame | **51 fps, 33 ms worst frame** |
+
+Re-checkable with `npm run perf:canvas` (occlusion) and `npm run perf:probe` (heap, image footprint, throttled fps, leak) — methodology, baselines and interpretation traps in **`docs/performance-probes.md`**. The three shader guides stay in `docs/motion/` — recovering this layer is a `git revert` away if a future phase gives it somewhere visible to live.
+
+The original design, for reference:
+
+1. **Dough gradient** — fbm-noise mesh gradient from **09 · Animated Shader Gradient** (`guides/09-animated-shader-gradient.md`), ported from raw WebGL to a Three.js fullscreen-quad `ShaderMaterial`, recolored to the approved Parenteers palette. Uniforms: `uHeat` (0–1, rises with quiz progress — the atmosphere warms from cool blue toward orange as the result nears), `uAccent` (tints toward the type's accent on the result page).
 
 1. **Dough gradient** — fbm-noise mesh gradient from **09 · Animated Shader Gradient** (`guides/09-animated-shader-gradient.md`), ported from raw WebGL to a Three.js fullscreen-quad `ShaderMaterial`, recolored to the approved Parenteers palette. Uniforms: `uHeat` (0–1, rises with quiz progress — the atmosphere warms from cool blue toward orange as the result nears), `uAccent` (tints toward the type's accent on the result page).
 2. **Flour touch trail** — the flowmap-lite cursor swirl from **16 · WebGL Ripple Cursor** (`guides/16-webgl-ripple-cursor.md`), driven by Pointer Events; a soft wake follows the finger everywhere.
 3. **Flour particles** — a scaled-down (~150–200 instances, quality-tiered) descendant of **08 · Particle Galaxy** (`guides/08-particle-galaxy.md`): drifting motes + a reusable burst emitter for answer-select poofs and result confetti-crumbs.
 
-**Performance rules:** DPR clamped ≤2; 2-second fps probe assigns quality tier (particle count, noise octaves); render loop pauses on `document.hidden` and idles between animations (library rule 3); shaders compiled + textures uploaded during the preloader so first interaction never hitches.
+**Performance rules (historical):** DPR clamped ≤2; 2-second fps probe assigns quality tier (particle count, noise octaves); render loop pauses on `document.hidden` and idles between animations (library rule 3); shaders compiled + textures uploaded during the preloader so first interaction never hitches.
+
+Everything the app still ships is DOM + GSAP. Answer-select feedback keeps its visual+haptic pairing through the DOM `burstAt` and `triggerHaptic('tick')` in `scenes/question.ts`.
 
 ---
 
@@ -155,7 +173,6 @@ The core of the build. Each row names the technique number(s) and guide file(s) 
 | **Answer feedback** | Particle burst at exact tap point + haptic tick (visual pulse pair); chosen card Flip-morphs into the thermometer | **82** Double-Tap Heart Burst (burst-at-point) · **21** GSAP Flip Layout · **98** Haptic patterns |
 | **Progress thermometer** | Oven temperature climbs 12 notches (45°→180°C); the °C readout rolls per-digit with direction awareness | **85** Odometer Stepper |
 | **Back one question** | Edge-swipe drags the previous question back in 1:1 with counter-parallax | **73** iOS Back-Swipe |
-| **Interstitials (post-Q6/Q9)** | Full-screen beat ("The dough is coming together 🥣"): column-wipe overlay in, dough state visibly advances, wipe out | **17** Page Transition Overlay |
 | **Exit-confirm dialog** | Sheet pops over a depth-pushed page (page scales/tucks/dims behind) | **72** Stacked Modal Sheets |
 | **Calculating** | The 4 rotating copy lines swap via masked line reveals (tap-to-skip once computed); shader swirl syncs to line changes; a skeleton of the result card shimmers and **morphs into the real card** as the reveal begins | **01** masked lines · **70** Skeleton → Content Morph |
 | **Result reveal** | Oven-door wipe; character springs out (squash-and-stretch); self-drawing accent ring + **one-shot canvas confetti with gravity** (battery-friendly, stops itself); background tints to type accent; haptic celebration pattern | **89** Success Confetti Moment · **17** wipe · **98** haptics |
@@ -167,7 +184,9 @@ The core of the build. Each row names the technique number(s) and guide file(s) 
 | **Gallery (all 16)** | Bakery shelves: horizontal snap rows with peek margins + per-shelf entrance cascade; tap a bake → cell FLIP-expands to a detail sheet with snap points (peek/half/full), drag-dismiss | **79** Horizontal Snap Shelves · **69** Shared-Element Card → Detail · **53** Bottom Sheet |
 | **End page** | Fixed footer revealed curtain-lift style as the page scrolls away; CTA marquee band | **48** Curtain-Lift Footer Reveal · **10** marquee |
 | **404** | Bitten-cookie illustration + tap to fling crumb reactions | **30** Floating Emoji Reactions |
-| **Ambient (all screens)** | Dough gradient + flour trail + particles (§6) | **09** · **16** · **08** |
+| **Baking marquee** | Three counter-scrolling rows of the whole 16-bake cast, shuffled per render, accelerating with the oven ramp; replaces the dial-in-a-card so the art carries the wait | **10** Marquee & Velocity Skew |
+| **Result share dock** | The share CTA docks to the bottom once the first composition scrolls away and retreats at the top, with a dwell so a fast flick can't flash it | **65** Collapsing Large-Title Header |
+| ~~**Ambient (all screens)**~~ | ~~Dough gradient + flour trail + particles~~ — **cut in Phase 5.5**: the flat opaque editorial surfaces occluded it entirely, so it cost 134.6 KB gzip and a per-frame draw for zero pixels (§6) | ~~09 · 16 · 08~~ |
 
 Rejected on purpose (desktop-only patterns): magnetic cursor (05), hover index (44), mega-menu (37) — no cursor on the target device.
 
@@ -186,13 +205,16 @@ Most opens happen inside the **Instagram in-app browser**, where downloads and `
 
 ## 10. Performance Budget (mid-range Android, 4G)
 
+How these are measured, plus the recorded baselines and the traps that produce false readings: **`docs/performance-probes.md`**.
+
 | Metric | Budget |
 |---|---|
-| JS (gz) | ≤ 300 KB — three.js tree-shaken ~150, GSAP+plugins ~80, Lenis ~3, app ~50 |
+| JS (gz) | ≤ 300 KB. **Actual: 81.33 KB** — GSAP+plugins ~65, Lenis ~3, app ~13 (the audio engine adds ~2.5 KB and no dependency) |
 | Fonts | ≤ 120 KB (2 families, subset woff2, self-hosted) |
 | Images per screen | ≤ 300 KB (characters use optimized ≤1024px WebP derivatives; alpha only when the chosen composition needs separation; only the result's character loads eagerly) |
+| Audio | One-shots are synthesized — 0 KB download, +0.12 MB heap measured after 240 cues. The theme streams via `<audio preload="none">`, so it costs **0 bytes until a user turns sound on**; the shipped AAC is 3.67 MB (~202 kbps, would be ~1.75 MB at 96 kbps). Never decode it: 152.6s at 48 kHz stereo is 55.88 MB of Float32 |
 | LCP | < 2.5s · TTI < 3.5s |
-| Frame rate | 60fps target / 30fps floor on low tier (fps-probe quality tiers) |
+| Frame rate | 60fps target / 30fps floor. Measured 60fps to 6× CPU throttle and 51fps at 8× on the heaviest screen (Result); quality tiers were removed with the WebGL layer |
 | Preload trick | Quiz takes ~3 min — after Q1, `requestIdleCallback`-preload all 16 characters + share assets so the reveal is instant |
 
 Plus library rules: transform/opacity only, idle rAF stops, no filters on large surfaces, `will-change` added only during animation and removed after.
@@ -226,7 +248,6 @@ parenting-bakes/
     ├── core/                 # store, i18n, assets, haptics, audio, qr, share, scoring
     ├── gestures/             # pointer math, springs, velocity — ported from lib 52/59/60
     ├── data/                 # questions.json, types.json, config.json, i18n/
-    ├── gl/                   # renderer, doughGradient, flourTrail, particles, tiers
     ├── anim/                 # transitions, splitter, doughEase, flip morphs
     ├── scenes/               # preloader, gate, landing, intro, question, interstitial,
     │                         # calculating, result, story, gallery, end, notFound
@@ -250,17 +271,22 @@ Scene manager + router + all screens as functional DOM (landing → … → end,
 ✓ Full quiz completable on a phone; refresh resumes; `/r/pcte` deep link renders.
 
 **Phase 3 — Gesture & WebGL foundations (M)**
-Port `gestures/` utilities (52/59/60 math). Persistent canvas: dough gradient (09), flour trail (16), particles (08), `uHeat` wired, quality tiers, preloader warm-up.
+Port `gestures/` utilities (52/59/60 math). Persistent canvas: dough gradient (09), flour trail (16), particles (08), `uHeat` wired, quality tiers, preloader warm-up. **The WebGL half of this phase was removed in Phase 5.5** (§6) once the flat editorial surfaces made it invisible; the gesture utilities remain in use.
 ✓ 60fps on mid-range Android with shader live; gestures share one Pointer-Events path.
 
 **Phase 4 — Motion layer (L)**
-First reconcile each existing scene with the ordered visual references in `images/README.md`, without replacing source copy or data. Then implement everything in §8: preloader (13+71), landing (02+10+95), question deck (52+83+82+21+85), back-swipe (73), interstitials (17), exit sheet (72), calculating (01+70), reveal (89+17), result card (97), result scroll (01+65+77), gallery (79+69+53), end (48). Reduced-motion fork throughout. Treat `Preloader2.mp4` as a motion reference until playback, codec, file-size, and reduced-motion behavior are validated.
+First reconcile each existing scene with the ordered visual references in `images/README.md`, without replacing source copy or data. Then implement everything in §8: preloader (13+71), landing (02+10+95), question deck (52+83+82+21+85), back-swipe (73), exit sheet (72), calculating (01+70), reveal (89+17), result card (97), result scroll (01+65+77), gallery (79+69+53), end (48). Reduced-motion fork throughout. Treat `Preloader2.mp4` as a motion reference until playback, codec, file-size, and reduced-motion behavior are validated.
 ✓ Every Phase-4-owned §8 row listed above ships; transitions interruptible; reduced-motion verified.
 
 **Phase 4.5 — Art-led interface realignment (M)**
-Recompose landing, question, Q6/Q9 checkpoint, and main result around the corresponding ordered `images/Interface-Reference/` files. Make warm bakery illustration a persistent part of every primary interface rather than a contained thumbnail. Preserve real copy/data/interactions; generate standalone text-free question/checkpoint art and map it through bundled JSON. Full implementation plan: `docs/phase-4-5-interface-plan.md`.
+Recompose landing, question, and main result around the corresponding ordered `images/Interface-Reference/` files. Make warm bakery illustration a persistent part of every primary interface rather than a contained thumbnail. Preserve real copy/data/interactions; generate standalone text-free question art and map it through bundled JSON. The Q6/Q9 checkpoint screens were removed by user direction on 2026-07-31 so the 12 questions advance continuously. Full implementation plan: `docs/phase-4-5-interface-plan.md`.
 Implemented locally 2026-07-30; physical Samsung and Instagram in-app-browser visual sign-off remains before closure.
 ✓ Four named reference surfaces match their composition hierarchy at 390×844; every primary route contains art; ID/EN, reduced motion, payload budgets, and existing behavior all pass.
+
+**Phase 5.5 — Brilliant-spec interface revision (M)**
+Rebuild the interface against the authoritative Brilliant design file (`Canvas.design`, design system `figma-parenting-personalities`) rather than flat screenshots: the three-band scene shell (header 70/pad 17 · body fill · bottom section pad 0/34/34), the 34/16/12 spacing tokens, seamless full-bleed art bands, the real `progress-bar-star.svg` rail, `button-expression.svg` on every bottom CTA, a character marquee in place of the baking dial, and an art-first Result with a scroll-docked share bar. Exported frames in `images/new-layout/` are the visual authority; `images/current-layout/` records the surface being replaced. Full implementation plan: `docs/phase-5-5-interface-plan.md`.
+Implemented locally 2026-08-01; physical Samsung and Instagram in-app-browser visual sign-off remains before closure.
+✓ `npm run qa:phase55` passes in both motion modes at 390×844; every one-screen scene is exactly one viewport with its CTA in the thumb zone; art bands are full-bleed with no seam; §10 budgets hold.
 
 **Phase 5 — Share pipeline (M)**
 Story mode (66), canvas PNG compositor, share/download/screenshot fallback chain (84 buttons, 86 toasts), caption templates, OG prerender ×16.
@@ -272,7 +298,7 @@ Device matrix: iOS Safari, **Instagram in-app browser (iOS + Android)** — the 
 ✓ Matrix passes; §10 budgets hold.
 
 **Phase 7 — Launch extras (S, optional)**
-Sound design (muted-by-default toggle), analytics (quiz_start, answer, complete{code}, share{channel}, activities_click — Plausible default), founder-note flag, Awwwards submission assets (gate screenshots, 30s capture).
+Analytics (quiz_start, answer, complete{code}, share{channel}, activities_click — Plausible default), founder-note flag, Awwwards submission assets (gate screenshots, 30s capture). Sound design moved out of this phase and shipped early (§14 decision 5).
 
 ---
 
@@ -282,7 +308,7 @@ Sound design (muted-by-default toggle), analytics (quiz_start, answer, complete{
 2. **Loading duration** — 4 lines × 2.5s ≈ 10s, tap-to-skip after line 2. Tunable constant.
 3. **Swipe-to-answer** — deck fling is technique 52 either way; default is **tap to choose** (spec-safe, faster), with directional swipe as a progressive enhancement. Flag if you want swipe primary.
 4. **Activity-tag pairs per type** — deterministic default: D2+D3 letters; editorial override in types.json.
-5. **Sound** — ship muted-by-default toggle (Phase 7) or cut. Default: ship.
+5. **Sound** — ✅ **shipped 2026-08-02**, muted by default with a header toggle. Synthesized one-shots on press/select/swipe/boundary/confetti/reveal, plus the streamed `ayo-main-bersama-asik` theme under Landing→Calculating, retiring at the Result. The toggle sits outside `.app-header__language` because that container is hidden on Quiz Opening and Q1–Q12 — WCAG 1.4.2 needs the control reachable while audio plays.
 6. **Desktop escape hatch** — phone-frame "continue here anyway." Default: yes.
 7. **Founder note** on end page — config flag. Default: on.
 8. **Analytics** — none / Plausible / Meta Pixel. Default: Plausible (cookieless).

@@ -10,8 +10,9 @@
 3. **60fps on mid-range phones** — animate `transform` and `opacity` only. No layout-property animation (use GSAP Flip for layout changes), no filters/blur on large surfaces, no `background-attachment` parallax.
 4. **rAF loops stop when idle** — anything per-frame (world render, springs, marquees) must idle when nothing moves and pause on `document.hidden`.
 5. **Haptics are paired** — `navigator.vibrate()` (Android) always ships with a visual pulse so iOS users feel the same beat. Patterns live in `core/haptics.ts`: `tick` (answer select, ~10ms), `celebrate` (result, short pattern), `boundary` (detents).
-6. **`prefers-reduced-motion` in every scene** — choreography degrades to crossfades/instant states via `gsap.matchMedia()`; function is never lost. Particles/shader drift freeze; the world may render a static frame.
-7. **Gestures are never the only path** — every swipe/drag action has a visible tap alternative (buttons). A11y and discoverability both.
+6. **Audio is the third channel, never the only one** — every `playSfx` sits beside an existing visual and haptic beat in `core/audio.ts`; sound is off by default and must never be the sole carrier of feedback. Reduced motion drops choreography, **not** sound or haptics. Nothing longer than ~300ms is ever decoded into an `AudioBuffer` — long audio streams through `<audio>` so it stays out of the JS heap.
+7. **`prefers-reduced-motion` in every scene** — choreography degrades to crossfades/instant states via `gsap.matchMedia()`; function is never lost. Particles/shader drift freeze; the world may render a static frame.
+8. **Gestures are never the only path** — every swipe/drag action has a visible tap alternative (buttons). A11y and discoverability both.
 
 ## 2. Motion Rules
 
@@ -27,8 +28,7 @@
 
 - TypeScript strict; no framework; ES modules; kebab-case filenames.
 - **Scene contract compliance** (structure.md §4): symmetric mount/unmount, zero leaks on swap (listeners, tweens, ScrollTriggers, Lenis).
-- **Layer boundaries:** scenes ↛ three.js (use `world.ts` facade) · `gl/` ↛ store (values are pushed in) · `core/` ↛ scenes.
-- Three.js imported tree-shaken (`three/src/...` or careful named imports); no postprocessing chain.
+- **Layer boundaries:** `core/` ↛ scenes. (The `gl/` layer and its `world.ts` facade were removed in Phase 5.5 — plan §6.)
 - All design values from `styles/tokens.css` custom properties — **no raw hex/px-magic in scene CSS**.
 - Content **never hardcoded** — strings via `i18n`, data via `data/*.json` (boundary in data-spec.md §5).
 - Dev-time data validation runs in tests AND on app boot in dev mode (fail loud, not blank).
@@ -38,7 +38,7 @@
 
 Budgets live in plan.md §10 (JS ≤300KB gz, fonts ≤120KB, ≤300KB images/screen, LCP <2.5s). Enforcement rules:
 
-- DPR clamped ≤2; quality tier from the boot fps probe scales particles/noise/trail.
+- No WebGL in the runtime (Phase 5.5, plan §6). Before adding any background layer, prove it contributes visible pixels — `npm run perf:canvas`. Read `docs/performance-probes.md` §Interpretation traps first: a non-zero pixel diff is often just text antialiasing, and an unfrozen animation or a missing touch-emulation flag will hand you a confidently wrong number.
 - Character images: optimized WebP derivatives at ≤1024px for UI (masters stay out of the bundle); alpha is required only when the composition separates the pastry from its supplied cream background. OG images are pre-baked at build.
 - Fonts: 2 families max, subset (latin + latin-ext), self-hosted woff2, loaded behind the preloader.
 - Idle preloading (`requestIdleCallback`) for everything the result needs, started after Q1.

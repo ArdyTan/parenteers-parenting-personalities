@@ -75,7 +75,7 @@ for (const asset of sceneArtAssets) {
       fit: 'contain',
       position: 'centre',
       withoutEnlargement: true,
-      background: { r: 250, g: 244, b: 234, alpha: 1 },
+      background: { r: 254, g: 242, b: 225, alpha: 1 },
     })
     .webp({ quality: checkpoint ? 62 : 60, effort: 6, smartSubsample: true })
     .toFile(output);

@@ -1,6 +1,8 @@
 # Phase 4.5 — Art-led Interface Realignment
 
-**Status:** implemented locally 2026-07-30; physical Samsung and Instagram in-app-browser visual sign-off remains.
+**Status:** implemented locally 2026-07-30; Q6/Q9 checkpoint screens removed by user direction on 2026-07-31; physical Samsung and Instagram in-app-browser visual sign-off remains.
+
+**Flow override (2026-07-31):** the mid-quiz checkpoint treatment documented below is retained only as historical design context. It is no longer part of the runtime or acceptance criteria; Q1–Q12 now advance continuously.
 
 ## Direction
 
@@ -8,8 +10,7 @@ The ordered files in `images/Interface-Reference/` are composition authority for
 
 1. Landing → `reference-start.png`
 2. Question template → `reference-question.png`
-3. Checkpoints after Q6/Q9 → `reference-section-chekpoint.png`
-4. Main result reveal → `reference-result-main-1.png` and `reference-result-main-2.png`
+3. Main result reveal → `reference-result-main-1.png` and `reference-result-main-2.png`
 
 The user’s binding visual principle is that every primary interface should contain warm, cute bakery illustration. Art is not a detached thumbnail or decorative afterthought; it participates in the hierarchy and emotional pacing of the page.
 
