@@ -14,13 +14,15 @@
 | 4 — Motion layer | ✅ done (2026-07-29) |
 | 4.5 — Art-led interface realignment | ✅ superseded by Phase 5.5 |
 | 5 — Share pipeline | 🟨 implemented locally; final domain + physical share/unfurl sign-off pending |
-| 5.5 — Brilliant-spec interface revision | 🟨 implemented locally + headless QA green; Samsung/Instagram visual sign-off pending |
+| 5.5 — Brilliant-spec interface revision | 🟨 revised against the user's device review (2026-08-02); headless QA green; Samsung/Instagram re-check pending |
 | 6 — QA hardening | ⬜ |
 | 7 — Launch extras (optional) | 🟨 sound layer shipped early (2026-08-02); analytics, founder-note flag and Awwwards assets remain |
 
 ## Next action
 
-Run the Phase 5.5 interface on the Samsung A55/S25 FE and in the Instagram in-app browser. Look specifically at: the Splash headline descenders in both languages, the seam where the Quiz Opening and Q1–Q12 art bands meet the page, whether the question CTA lands in the thumb zone on a taller screen, the three-row baking marquee, and the Result share bar docking and retreating on real touch scroll. Then set `config.links.site` so the 16 OG shells contain absolute URLs for a live WhatsApp unfurl check.
+Re-run the interface on the Samsung A55/S25 FE and in the Instagram in-app browser, now that the seven screenshot notes are closed. Look specifically at: the question headline sitting over the faded illustration at each of the three size tiers (Q1 / Q2 / Q5), whether the indicator row now reads in daylight, the bigger baking marquee and its 5-second auto-advance, the quick-changing "other bakes" row on the result, and the ID/EN + sound toggles at arm's length. Then set `config.links.site` so the 16 OG shells contain absolute URLs for a live WhatsApp unfurl check.
+
+Two decisions the `/end` removal left open: the "Follow @parenteers" CTA and the made-by/copyright footer had no other home and are currently gone, and `config.flags.founderNote` is an unwired flag. If any of the three should live on the Result, say where.
 
 Then listen to the sound layer on a real device with the Instagram in-app browser: confirm the bed sits under the cues rather than fighting them (tune `MUSIC_BED_GAIN`, currently 0.22, and the per-voice peaks in `core/audio.ts` — not the file), that the iOS silent switch behaves as expected, and that the theme retires cleanly at the Result so a screen recording of the share moment stays quiet.
 
@@ -34,7 +36,7 @@ Worth adding to the device matrix: a **Samsung A23** (Snapdragon 680 class). The
 - [x] Six 941×1672 interface references and four 941×1672 opening variants inventoried and ordered in `images/README.md` (2026-07-29)
 - [x] Active support path settled: optimized 404 WebP ships; the 10-second 1.76 MB `Preloader2.mp4` remains reference-only and the production preloader is lighter DOM/CSS/GSAP
 - [x] No active `asset-pattern.png` exists outside `images/old images/`; Phase 4 intentionally retains the existing CSS/grain treatment
-- [x] Theme encoded by the user and shipped: `public/audio/ayo-main-bersama-asik.m4a`, 3.67 MB AAC at ~202 kbps, 152.62s — verified playing in-browser (`readyState` 4, no media error). Two optional refinements remain the user's call: 96 kbps would cut it to ~1.75 MB with no audible loss on a phone bed under UI, and the file is **not** `+faststart` (its `moov` sits after `mdat`), so playback waits on more buffering than it needs to.
+- [x] Both beds encoded by the user and shipped: `public/audio/ayo-main-bersama-asik.m4a` (3.67 MB, 152.62s) and `ayo-main-bersama-asik-result.m4a` (3.57 MB, 147.38s), AAC at ~200 kbps — both verified playing in-browser with no media error. Two optional refinements remain the user's call for **both** files: 96 kbps would roughly halve them with no audible loss on a phone bed under UI, and neither is `+faststart` (`moov` sits after `mdat`), so playback waits on more buffering than it needs to.
 - [ ] Parenteers activities URL — Phase 2 (`config.json links.activities`)
 - [ ] Final domain — Phase 5 (`config.json links.site`)
 - [ ] Cloudflare Wrangler authentication + Workers Builds connection — required to close Phase 0 (GitHub remote is ready)
@@ -42,6 +44,120 @@ Worth adding to the device matrix: a **Samsung A23** (Snapdragon 680 class). The
 - [ ] Any overrides to plan.md §14 decision defaults
 
 ## Session log (newest first)
+
+**2026-08-02 — Art fade reinstated, scoped to the heights that actually need it.**
+The user asked for the gradient back "just for the risk potential device, to make the image feel
+one with the environment". Scoped by measurement rather than by guess: the image is a fixed 260px
+starting just below the rail, so copy-on-art is purely a function of viewport height — 0px at 915
+and 870, 30 at 844, 49 at 820, 66 at 800, 95 at 730, 151 at 667. At 844 and above the copy only
+reaches the image's empty bottom margin, which is exactly why a full-height phone reads clean
+unmasked. **820px is where it first reaches real picture**, so `@media (max-height: 51.25rem)`
+reinstates the fade there (full to 50%, 45% at 72%, 14% at 88%, gone by 100%) and everything taller
+keeps the plain z-ordered layer. Verified the switch flips at exactly 820: 821 unfaded with 15px of
+overlap, 820 faded. `:root[data-presentation="framed"]` keeps the escape hatch unfaded for the same
+reason it keeps the width-only type scale — the query measures the window, not the 390×844 frame —
+confirmed at 700px and 620px windows. Honest limit recorded in the phase doc: below ~700px the
+headline starts above the image's halfway mark and the fade cannot fully keep ahead of it; that is
+below every device in the target matrix. `qa:phase55` now asserts *both* states — mask `none` on
+all four sampled questions at 844, and a gradient in the 390×720 pass.
+
+**Also this session: the dev server had died.** Port 5173 was unbound (a probe against it hung for
+ten minutes before I checked, which is how it surfaced), so the phone could not have been loading
+anything. Restarted via the `parenting-bakes` launch config and confirmed HTTP 200 on both
+`127.0.0.1:5173` and `192.168.1.6:5173`.
+
+**2026-08-02 — Display headlines sized as a percentage of the screen, not just its width.**
+The user asked for the font size to be a percentage on smaller screens. The existing scale was
+already percentage-based, but only of *width* (`cqi`) — which is exactly why it missed: an A55 with
+browser chrome is the same 390 wide as the design canvas and ~120px shorter, so a width-only scale
+handed it the identical 36px that overwhelmed it. Each display tier is now
+`clamp(floor, min(Ncqi, Msvh), ceiling)`, both terms resolving to the same number on 390×844, so
+the reference frames are untouched and the height half only bites below them. Floors dropped from
+2/1.7/1.45rem to 1.4/1.25/1.1rem or they would have blocked the shrink they exist to bound. `svh`
+rather than `dvh` on purpose: `dvh` would resize the headline every time the URL bar hides.
+Rejected `cqb` (which would have been container-faithful and needed no guard) because it requires
+`container-type: size`, and size containment makes those scenes a containing block for
+`position: fixed` — that would break the exit dialog's non-modal fallback, which lives in the
+question scene. Instead `:root[data-presentation="framed"]` pins the desktop escape hatch to the
+width-only scale; verified it holds at 26px in a 620px-tall window, where `svh` would otherwise
+have rendered ~19px and misreported the phone layout. Measured 8 screens × 5 prompts × both
+languages: 36/30/26 on the canvas, 31.1/25.9/22.5 on an A55 with chrome, 33.7/28.1/24.3 on an
+S25 FE with chrome, down to 23.9/20/17.6 at 390×560 — all 40 within three lines, CTA above the
+fold, art at native size, no overflow. **Correction to the previous entry:** the 24-case clip
+sweep it cited did not seed `pb1.answers`, so the route guard bounced every deep link to Q1 and it
+only ever measured the shortest prompt; the 40-case run supersedes it and reaches all three tiers.
+`qa:phase55` now asserts the 720px headline is strictly smaller than the 844px one.
+
+**2026-08-02 — Question art switched from a gradient fade to a plain z-ordered layer.**
+The user's call: they preferred the illustration to sit behind the copy as a background layer
+rather than dissolve into it. `mask-image` on `.question__art` is now `none`. The layering was
+already in place and does the whole job — the band is the scene's background at `z-index: 0`, the
+stack paints over it at `1`, and `.scene__body`'s `isolation: isolate` scopes both to the scene so
+they cannot fight the header or the toasts. Two things made the fade safe to drop: the image's own
+canvas is `--color-editorial-canvas`, so its frame edge is already seamless against the page, and
+the band is always taller than the 260px image, so `overflow: clip` never cuts it. Verified the
+second point rather than assuming it — 24 cases from 390×560 to 412×700, both languages, the
+longest prompts: **no hard clip, art never rescaled off its native 260, CTA above the fold every
+time**. The `qa:phase55` question block now asserts the *stacking* (mask `none`, stack z-index
+above the band, stack positioned, body isolated) instead of asserting a gradient. Known trade,
+flagged to the user: on a short screen the headline now sits on full-strength artwork.
+
+**2026-08-02 — S25 FE screenshot chased down: stale HMR stylesheet, not a live defect.**
+The user sent an S25 FE capture of `/q/1` with the question scene split into two columns and the
+headline breaking mid-word. Diagnosed rather than patched: the phone had the *new* muted-blue
+indicator row but the *old* two-column collapse, and those two edits landed at different points in
+the same session — the contrast fix early, `grid-column: 1` only after the first `qa:phase55` run
+caught the collapse. A page that HMR-updated between them and then lost its websocket (screen
+sleep) freezes in exactly that state. Confirmed the LAN server serves the fix (`grid-column: 1`
+present in `motion.css` fetched from `192.168.1.6:5173`) and reproduced across ten phone viewports
+— 360×640 through 480×900, including the S25 FE's 411×830 and 412×915 — where the stack is column
+1 at full viewport width every time, with no overflow. No code change was needed; the fix is a
+hard reload away. Two hardening changes went in anyway: `qa:phase55` now asserts
+`.question__stack` is in `grid-column: 1` at full width so a regression reports the *cause*
+("headline column collapsed") rather than the symptom (a cropped art band), and the baking
+auto-advance assertion now polls instead of sampling at a fixed delay — the hold and the scene
+transition are separate clocks, and a single read could land between them. Three consecutive
+normal runs plus reduced motion: 0 failures, 0 runtime errors.
+
+**2026-08-02 — Seven screenshot notes closed; the journey now ends on the result.**
+The user reviewed the build on a Samsung A55 and an S25 FE and filed seven notes. The structural
+one was the trimmed question artwork: centring the illustration in the *leftover* space only worked
+at the 844px design canvas, and an A55 with browser chrome is **~720 CSS px**, where Q5's five-line
+headline left the band **~40px of a 260px image**. The band is now `grid-row: 2 / 4` with
+`align-content: start`, so the art keeps its full native 260 whatever the copy does and the copy
+sits *over* its lower half behind a `mask-image` fade — which is also what the user asked for
+("background still can be seen under the text"). Every band needed `grid-column: 1`: without it
+the stack, whose row the band now occupies, auto-placed into an implicit second column and halved
+the scene — caught by the QA contract, not by eye. Headlines step down by scenario length
+(`data-scale` md/sm, >40 and >58 chars) so no prompt exceeds three lines; verified at 390×720 with
+Q5 at three lines and the CTA at 661. On the header row the suggestion turned into a fix: the
+design file draws `← Kembali`, the counter and the close control in `--color-outline`, **1.4:1**
+against the cream page — a WCAG 1.4.3 failure that is why they were nearly invisible in the
+screenshot; muted blue restores the quiet hierarchy at ~4.9:1. `/end` was removed entirely — scene,
+route, guard, QR regex, `end.*` keys, `continuity.end`, CSS and tests — and Story's Close button
+went with it, leaving "Balik ke hasilku". The result tail lost the Continue and See-all chips
+(2-up now) and gained a fourth section at the same weight as the pop-culture cousin: three tiles
+quick-changing through the other fifteen bakes (disjoint round-robin decks, one swap per 520ms,
+driven only while on screen, all fifteen warmed on first start) over a full-width "Lihat semua 16
+tipe". The ID/EN toggle had the exact oval defect already fixed on the sound toggle — `2px 4px`
+padding left the thumb 28×30 and the labels 28×32 — now uniform `3px` for a square 28px row and
+`50%` radii. The off-centre sound glyph was in the SVGs, not the CSS: a `contain` mask centres the
+viewBox, not the drawing, and both icons sat 6–7 units right of centre; recentred to 31.84/32.0
+with a shared speaker path so nothing shifts when the toggle flips. Baking handed its flexible row
+to the marquee instead of the status lines, so thumbnails are **164px at 390×844** (up from 104,
+or 68 on short screens) and scale with the viewport; the four cross-fading lines became one static
+line picked per run (the cross-fade *was* the flashing); and the continue button became a 5s
+`config.loading.holdMs` auto-advance, tap-to-skip, making it the only scene with no bottom band.
+Verification: **143 tests** / 14 files, typecheck clean, build **80.58 KB JS gzip** (−0.94 with the
+end scene gone) / 13.95 KB CSS, `qa:phase55` **0 failures / 0 runtime errors** in both motion modes
+against a contract extended with the header-ring geometry, the `getBBox()` glyph centring, the
+390×720 short-viewport pass, the marquee size and the baking auto-advance, asset audit 0 issues.
+Physical Samsung and Instagram in-app-browser re-check still owed. Two things the user should know:
+the `/end` removal also took the "Follow @parenteers" CTA and the made-by/copyright footer, which
+had no other home, and `config.flags.founderNote` is now an unwired flag.
+
+**2026-08-02 — Second bed added: the result reveal gets its own track.**
+The user supplied `ayo-main-bersama-asik-result.m4a` (3.57 MB AAC, 147.38s) as the result audio. Generalized the engine from one music element to a per-track voice map: each track owns its own `<audio>`, `MediaElementAudioSourceNode` and `GainNode` into the master, so the handover is a genuine crossfade (outgoing bed ramps down and pauses on landing, incoming swells over 1.2s) rather than a shared bus fighting itself. `startMusic` now takes a `MusicTrack`, is idempotent for the track already playing — re-entering a question must not rewind the quiz bed — and `SCENE_MUSIC` in app.ts maps scenes to beds: `theme` for Landing/Opening/Q1–Q12/Calculating, `result` for the reveal, nothing elsewhere. Story stays deliberately silent so a screen recording of the share surface carries no music. `preload="none"` still means only the bed a scene actually asks for is fetched, and neither is touched while sound is off. Verified in-browser across the real routes: Landing plays `ayo-main-bersama-asik.m4a`; navigating to `/r/pgde` leaves it paused at 2.9s while `ayo-main-bersama-asik-result.m4a` runs; `/story` leaves both paused; no media errors and no runtime errors. Verification: **145 tests** (+2: crossfade and no-restart), typecheck clean, build 81.52 KB JS / 13.94 KB CSS gzip, `qa:phase55` 0 failures / 0 runtime errors, asset audit 0 issues, both beds present in `dist/audio/`.
 
 **2026-08-02 — Sound toggle made a true circle; theme buffers ahead for returning visitors.**
 Two user reports, both closed. The toggle was not a perfect circle because `box-sizing: border-box` (base.css) meant the 36px box minus its 1px border and `2px 4px` padding left a **26×30** content box, while the capsule was pinned at 28×32 — it overflowed and the 16px radius clamped into a vertical oval. Both rings are now sized to square content (`padding: 3px` → 28×28) with `border-radius: 50%`, so they can only describe circles, matching the icon family's own no-`<ellipse>` rule; measured 36×36 and 28×28 at 50%. The "audio gone after refresh" report is the browser autoplay policy and cannot be bypassed — a reload always requires a fresh gesture before sound may start. Verified with trusted CDP input that the existing first-gesture unlock does work: with sound persisted on, a tap **anywhere** (not just the toggle) resumes the theme, 0 → 1.98 → 4.01s. The test did expose a real weakness though: `preload="none"` held after reload, so `readyState` was 0 and that first tap paid for the 3.67 MB fetch as well as the start. `startMusic()` now promotes the element to `preload="auto"`, which leaves the default-off path at zero bytes but takes a returning visitor to `readyState` 4 before they touch anything — playback is now instant on the first tap. Also fixed the detached-`<audio>` defect from the previous entry. Verification: **143 tests**, typecheck clean, build 81.37 KB JS / 13.94 KB CSS gzip, `qa:phase55` 0 failures / 0 runtime errors, asset audit 0 issues.

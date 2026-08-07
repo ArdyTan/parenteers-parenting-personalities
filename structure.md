@@ -79,7 +79,7 @@ Two pillars, and every decision follows from them:
     ├── scenes/               # one file per screen, all implementing Scene (§4)
     │   ├── gate.ts · landing.ts · intro.ts
     │   ├── question.ts · calculating.ts
-    │   ├── result.ts · story.ts · gallery.ts · end.ts · notFound.ts
+    │   ├── result.ts · story.ts · gallery.ts · notFound.ts
     └── styles/
         ├── tokens.css        # ALL design values live here (colors, type, space, ease)
         ├── base.css          # reset, grain overlay, phone-frame, rotate-lock
@@ -122,7 +122,7 @@ Rules that keep it sane:
 | `/baking` | calculating | computes + stores result |
 | `/r/:slug` | result | shareable deep link; **prerendered ×16** at build with per-type OG meta |
 | `/story` | story | guarded: needs a result |
-| `/gallery` · `/end` | gallery · end | |
+| `/gallery` | gallery | |
 | `*` | notFound | "This page got eaten 🍪" |
 
 History API routing; the router only translates URL ↔ machine state — it owns no logic. After Vite builds, the OG prerender copies the final executable SPA shell into 16 static `r/{slug}/index.html` files and injects type-specific social meta. Crawlers read the per-type tags; humans boot the same routed app without a redirect loop.
@@ -154,7 +154,7 @@ lenis.on('scroll', ScrollTrigger.update);
 ```
 
 - **Idle discipline:** tweens stop when nothing moves; scenes tear down their tickers and listeners on exit through the scene AbortSignal.
-- Lenis exists **only on scrollable scenes** (landing, result, gallery, end); quiz scenes are fixed-viewport and gesture-driven.
+- Lenis exists **only on scrollable scenes** (landing, result, gallery); quiz scenes are fixed-viewport and gesture-driven.
 
 ## 8. The GL World (facade pattern) — **removed in Phase 5.5**
 

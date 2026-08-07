@@ -74,7 +74,16 @@
   --font-size-hero: clamp(3.45rem, 2.08rem + 6.85cqi, 6.1rem);
   /* Phase 5.5 reference type scale. Each clamp is anchored so a 390 px container
      resolves to the exact px value the Brilliant frames specify (px / 390 = cqi). */
-  --font-size-ref-display: clamp(2rem, 9.231cqi, 2.5rem); /* 36 */
+  /* The display tiers are a percentage of the *screen*, not a fixed size. `cqi`
+     alone only answers "how wide": a Galaxy A55 with browser chrome is the same
+     390 wide as the design canvas but ~120px shorter, so a width-only scale
+     hands a short screen exactly the 36px that overwhelmed it. The `svh` term
+     below adds the height half; these floors are low enough to let it bite. */
+  --font-size-ref-display: clamp(1.4rem, 9.231cqi, 2.5rem); /* 36 */
+  /* Step-downs for headlines whose copy length would otherwise cost the scene
+     more lines than a real phone viewport can spare. Same anchoring rule. */
+  --font-size-ref-display-md: clamp(1.25rem, 7.692cqi, 2.1rem); /* 30 */
+  --font-size-ref-display-sm: clamp(1.1rem, 6.667cqi, 1.8rem); /* 26 */
   --font-size-ref-name: clamp(2.6rem, 12.308cqi, 3.35rem); /* 48 */
   --font-size-ref-heading: clamp(1.35rem, 6.154cqi, 1.7rem); /* 24 */
   --font-size-ref-lead: clamp(1rem, 4.615cqi, 1.25rem); /* 18 */
@@ -233,6 +242,34 @@
 @supports (height: 100svh) {
   :root {
     --viewport-small-block-size: 100svh;
+  }
+
+  /* Display headlines take whichever dimension is tighter. Both terms resolve to
+     the same value on the 390x844 design canvas — 9.231cqi and 4.265svh are both
+     36px there — so this changes nothing about the reference frames and only
+     bites when a screen is shorter than the canvas it was drawn on. `svh` (not
+     `dvh`) on purpose: the small viewport is stable, whereas `dvh` would resize
+     the headline as the browser's URL bar hides and shows. */
+  :root {
+    --font-size-ref-display: clamp(1.4rem, min(9.231cqi, 4.265svh), 2.5rem);
+    --font-size-ref-display-md: clamp(1.25rem, min(7.692cqi, 3.554svh), 2.1rem);
+    --font-size-ref-display-sm: clamp(1.1rem, min(6.667cqi, 3.081svh), 1.8rem);
+  }
+
+  /* The desktop escape hatch renders the app in a fixed 390x844 frame, and `svh`
+     measures the browser window rather than that frame. In a tall window `min()`
+     picks the width term anyway and nothing changes; the case this exists for is
+     a *short* window — at 620px tall the preview would render the headline at
+     ~19px instead of the canvas's 26 and misreport the phone layout. Container
+     units are why the rest of the scale stays faithful in the preview, but the
+     height half has no container equivalent short of `container-type: size`,
+     which would make these scenes a containing block for `position: fixed` and
+     break the exit dialog's non-modal fallback. So the preview keeps the
+     width-only scale — which is exactly the canvas it is emulating. */
+  :root[data-presentation="framed"] {
+    --font-size-ref-display: clamp(1.4rem, 9.231cqi, 2.5rem);
+    --font-size-ref-display-md: clamp(1.25rem, 7.692cqi, 2.1rem);
+    --font-size-ref-display-sm: clamp(1.1rem, 6.667cqi, 1.8rem);
   }
 }
 

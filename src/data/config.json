@@ -11,8 +11,7 @@
     "analytics": "plausible"
   },
   "loading": {
-    "lineMs": 2500,
-    "skippableAfterLine": 2
+    "holdMs": 5000
   },
   "gate": {
     "minDesktopWidth": 900

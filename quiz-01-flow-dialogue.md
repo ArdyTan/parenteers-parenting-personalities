@@ -430,9 +430,11 @@ Rotating lines, ~2.5s each, in order. Show a baking illustration (see File 3).
 
 ---
 
-## PAGE 18 — End Page (closing dialogue)
+## PAGE 18 — End Page (closing dialogue) — NOT SHIPPED
 
-Shown after the user shares, or via "Continue" from the result page.
+Removed from the build on 2026-08-02: the journey now ends on the result page,
+so nothing routes here. The copy is kept on record in case the closing beat is
+ever wanted somewhere else.
 
 **EN**
 - H2: **Every bake rises differently 🍞**

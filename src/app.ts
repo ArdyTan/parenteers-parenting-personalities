@@ -1,4 +1,4 @@
-import { audioEngine, playSfx, resetAudioEngine } from './core/audio';
+import { audioEngine, playSfx, resetAudioEngine, type MusicTrack } from './core/audio';
 import { readDeviceSignals, shouldShowDesktopGate } from './core/device';
 import { BRAND_ASSETS } from './core/brand';
 import { createTranslator, type InterpolationValues } from './core/i18n';
@@ -10,7 +10,6 @@ import type { Language, PersonalityType } from './core/quiz-types';
 import { appData } from './data';
 import { runExperiencePreloader } from './motion/preloader';
 import { createCalculatingScene } from './scenes/calculating';
-import { createEndScene } from './scenes/end';
 import { createGalleryScene } from './scenes/gallery';
 import { createGateScene } from './scenes/gate';
 import { createIntroScene } from './scenes/intro';
@@ -22,13 +21,18 @@ import { createResultScene } from './scenes/result';
 import type { Scene, SceneContext } from './scenes/scene';
 import { createStoryScene } from './scenes/story';
 
-/** Scenes the theme plays under; everything else fades it out. */
-const MUSIC_SCENES: ReadonlySet<SceneName> = new Set<SceneName>([
-  'landing',
-  'intro',
-  'question',
-  'calculating',
-]);
+/**
+ * Which bed belongs to which scene. Anything absent fades music out — Story
+ * above all, since that is the clean-capture surface where a screen recording
+ * must not pick up our music.
+ */
+const SCENE_MUSIC: Readonly<Partial<Record<SceneName, MusicTrack>>> = Object.freeze({
+  landing: 'theme',
+  intro: 'theme',
+  question: 'theme',
+  calculating: 'theme',
+  result: 'result',
+});
 
 export class ParentingBakesApp {
   readonly #store: AppStore;
@@ -172,17 +176,13 @@ export class ParentingBakesApp {
   }
 
   /**
-   * The theme runs under the quiz and retires at the result — which is both the
-   * screenshot moment and, at 2:32.6, roughly where the track ends anyway.
+   * The theme runs under the quiz and hands over to the result bed at the
+   * reveal — a crossfade, not a cut. Everything past that is silent again.
    */
   #syncMusic(scene: SceneName): void {
     const engine = audioEngine();
-    if (!this.#store.get().sound) {
-      engine.stopMusic();
-      return;
-    }
-
-    if (MUSIC_SCENES.has(scene)) engine.startMusic();
+    const track = this.#store.get().sound ? SCENE_MUSIC[scene] : undefined;
+    if (track) engine.startMusic(track);
     else engine.stopMusic();
   }
 
@@ -488,8 +488,6 @@ export class ParentingBakesApp {
         return createStoryScene();
       case 'gallery':
         return createGalleryScene();
-      case 'end':
-        return createEndScene();
       case 'notFound':
         return createNotFoundScene();
     }

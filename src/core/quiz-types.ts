@@ -60,7 +60,6 @@ export type SceneArtManifest = Readonly<{
     landing: string;
     intro: string;
     calculating: string;
-    end: string;
     gate: string;
     preloader: string;
   }>;
@@ -86,8 +85,8 @@ export type AppConfig = Readonly<{
     analytics: 'plausible' | false;
   }>;
   loading: Readonly<{
-    lineMs: number;
-    skippableAfterLine: number;
+    /** How long the baking screen holds before it advances to the result. */
+    holdMs: number;
   }>;
   gate: Readonly<{
     minDesktopWidth: number;

@@ -123,6 +123,18 @@ export function createQuestionScene(question: Question): FunctionalScene {
       { className: 'button--primary question__cta' },
     );
 
+    const title = element('h1', {
+      className: 'question__title',
+      text: question.scenario[lang],
+      attributes: { tabindex: '-1' },
+    });
+    // The reference headline is ~20 characters; the real prompts run to 74. Two
+    // step-downs keep even the longest scenario inside three lines so the art
+    // band, the answers and the CTA all still fit a short phone viewport.
+    const scenarioLength = question.scenario[lang].length;
+    if (scenarioLength > 58) title.dataset.scale = 'sm';
+    else if (scenarioLength > 40) title.dataset.scale = 'md';
+
     const answerGrid = element('div', { className: 'answer-grid' }, answerButtons);
     const instruction = sceneCaption(context.t('quiz.select_hint'), 'question__instruction');
 
@@ -138,14 +150,7 @@ export function createQuestionScene(question: Question): FunctionalScene {
       element('div', { className: 'quiz-indicator__row' }, [back, progressLabel, close]),
       progressRail,
     ]);
-    const stack = element('div', { className: 'question__stack' }, [
-      element('h1', {
-        className: 'question__title',
-        text: question.scenario[lang],
-        attributes: { tabindex: '-1' },
-      }),
-      answerGrid,
-    ]);
+    const stack = element('div', { className: 'question__stack' }, [title, answerGrid]);
 
     root.append(
       sceneBody('question__body', [indicator, artBand, stack]),
@@ -302,7 +307,7 @@ export function createQuestionScene(question: Question): FunctionalScene {
       enterTargets: [
         indicator,
         scenarioArt,
-        root.querySelector('.question__title'),
+        title,
         ...answerButtons,
         root.querySelector('.question__bottom'),
       ].filter((target): target is Element => target instanceof Element),

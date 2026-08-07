@@ -179,6 +179,41 @@ report.landing = await evaluate(`(() => {
 })()`);
 await capture('01-splash');
 
+// Header controls: both toggles are circles, and the sound glyph is centred
+// inside its own viewBox (a `contain` mask centres the box, not the drawing).
+report.headerControls = await evaluate(`(() => {
+  const round = (v) => Math.round(v * 10) / 10;
+  const ring = (selector) => {
+    const el = document.querySelector(selector);
+    if (!el) return null;
+    const b = el.getBoundingClientRect();
+    return { w: round(b.width), h: round(b.height), radius: getComputedStyle(el).borderRadius };
+  };
+  return {
+    langThumb: ring('.language-switch__thumb'),
+    langButton: ring('.language-switch__button'),
+    soundCapsule: ring('.sound-toggle__capsule'),
+  };
+})()`);
+
+report.soundGlyph = await evaluate(`(async () => {
+  const out = {};
+  for (const name of ['sound-on', 'sound-off']) {
+    const markup = await fetch('/icons/' + name + '.svg').then((response) => response.text());
+    const host = document.createElement('div');
+    host.style.cssText = 'position:absolute;left:-9999px;top:0';
+    host.innerHTML = markup;
+    document.body.append(host);
+    const box = host.querySelector('svg > g').getBBox();
+    out[name] = {
+      centreX: Math.round((box.x + box.width / 2) * 100) / 100,
+      centreY: Math.round((box.y + box.height / 2) * 100) / 100,
+    };
+    host.remove();
+  }
+  return out;
+})()`);
+
 // --- 2 Quiz Opening --------------------------------------------------------
 await go('/intro');
 report.intro = await evaluate(`(() => ({
@@ -191,9 +226,9 @@ report.intro = await evaluate(`(() => ({
 }))()`);
 await capture('02-quiz-opening');
 
-// --- 3 Questions: shortest and longest prompts -----------------------------
+// --- 3 Questions: shortest, both step-down tiers, and the last one ---------
 report.questions = [];
-for (const question of [1, 7, 12]) {
+for (const question of [1, 2, 5, 12]) {
   const answers = Array.from({ length: question - 1 }, (_, index) => ({
     q: index + 1,
     pole: poleForQuestion(index + 1),
@@ -218,15 +253,56 @@ for (const question of [1, 7, 12]) {
       labelNodes: label ? label.childNodes.length : null,
       labelNodeType: label?.firstChild?.nodeType ?? null,
       labelText: label?.textContent ?? null,
+      labelColor: label ? getComputedStyle(label).color : null,
+      titleFontPx: (() => {
+        const t = document.querySelector('.question__title');
+        return t ? Math.round(parseFloat(getComputedStyle(t).fontSize)) : null;
+      })(),
+      titleScale: document.querySelector('.question__title')?.dataset.scale ?? null,
+      titleLines: (() => {
+        const t = document.querySelector('.question__title');
+        if (!t) return null;
+        const cs = getComputedStyle(t);
+        return Math.round(t.getBoundingClientRect().height / parseFloat(cs.lineHeight));
+      })(),
+      artMask: (() => {
+        const a = document.querySelector('.question__art');
+        return a ? getComputedStyle(a).maskImage : null;
+      })(),
+      // The band is the scene's background layer; the copy paints over it. This
+      // is z-order, not a fade — assert the stacking rather than a gradient.
+      layerOrder: (() => {
+        const band = document.querySelector('.question__art-band');
+        const stack = document.querySelector('.question__stack');
+        const body = document.querySelector('.question__body');
+        if (!band || !stack || !body) return null;
+        return {
+          band: getComputedStyle(band).zIndex,
+          stack: getComputedStyle(stack).zIndex,
+          stackPositioned: getComputedStyle(stack).position,
+          isolated: getComputedStyle(body).isolation,
+        };
+      })(),
+      // The art band spans the headline's row, so the stack must be pinned to
+      // column 1 or it auto-places into an implicit second column and the whole
+      // scene halves. Named explicitly: the symptom (a cropped art band) is a
+      // long way from the cause.
+      stackColumn: (() => {
+        const s = document.querySelector('.question__stack');
+        return s ? getComputedStyle(s).gridColumnStart : null;
+      })(),
+      stackWidth: (() => {
+        const s = document.querySelector('.question__stack');
+        return s ? round(s.getBoundingClientRect().width) : null;
+      })(),
       changeAnswerPresent: !!document.querySelector('.question__stack .button--text, .question__bottom .button--text'),
       cards: cards.length,
       cardBottom: cards.at(-1) ? round(cards.at(-1).getBoundingClientRect().bottom) : null,
       cardRadius: cards[0] ? getComputedStyle(cards[0]).borderRadius : null,
       ctaDisabled: document.querySelector('.question__cta')?.disabled ?? null,
       ctaText: document.querySelector('.question__cta')?.textContent ?? null,
-      artBottom: (() => { const a = document.querySelector('.question__art-band'); return a ? round(a.getBoundingClientRect().bottom) : null; })(),
+      artBottom: (() => { const a = document.querySelector('.question__art'); return a ? round(a.getBoundingClientRect().bottom) : null; })(),
       bandTop: (() => { const a = document.querySelector('.question__art-band'); return a ? round(a.getBoundingClientRect().top) : null; })(),
-      artCentred: ${CENTRED('.question__art-band', '.question__art')},
       railBottom: rail ? round(rail.getBoundingClientRect().bottom) : null,
       titleTop: (() => { const t = document.querySelector('.question__title'); return t ? round(t.getBoundingClientRect().top) : null; })(),
     };
@@ -234,9 +310,46 @@ for (const question of [1, 7, 12]) {
   await capture(`03-question-${question}`);
 }
 
+// --- 3b The short-viewport case: a real phone minus its browser chrome ------
+await command('Emulation.setDeviceMetricsOverride', {
+  width: 390,
+  height: 720,
+  deviceScaleFactor: 2,
+  mobile: true,
+  screenWidth: 390,
+  screenHeight: 720,
+});
+await go('/q/5');
+report.shortViewport = await evaluate(`(() => {
+  const round = (v) => Math.round(v * 10) / 10;
+  const art = document.querySelector('.question__art');
+  const title = document.querySelector('.question__title');
+  const cta = document.querySelector('.question__cta');
+  return {
+    artHeight: art ? round(art.getBoundingClientRect().height) : null,
+    artBottom: art ? round(art.getBoundingClientRect().bottom) : null,
+    titleTop: title ? round(title.getBoundingClientRect().top) : null,
+    titleFontPx: title ? Math.round(parseFloat(getComputedStyle(title).fontSize)) : null,
+    ctaBottom: cta ? round(cta.getBoundingClientRect().bottom) : null,
+    artMask: art ? getComputedStyle(art).maskImage : null,
+    overflow: document.documentElement.scrollWidth - innerWidth,
+  };
+})()`);
+await capture('03-question-5-short');
+await command('Emulation.setDeviceMetricsOverride', {
+  width: 390,
+  height: 844,
+  deviceScaleFactor: 2,
+  mobile: true,
+  screenWidth: 390,
+  screenHeight: 844,
+});
+
 // --- Baking ----------------------------------------------------------------
 await evaluate(`sessionStorage.setItem('pb1.answers', JSON.stringify(${JSON.stringify(fullAnswers())}))`);
-await go('/baking', 2400);
+// Well inside the 5s hold: the scene now leaves on its own, so everything the
+// contract reads has to be read before it does.
+await go('/baking', 900);
 report.baking = await evaluate(`(() => {
   const items = [...document.querySelectorAll('.baking__marquee-item')];
   const thumbs = performance.getEntriesByType('resource').filter((r) => r.name.includes('/characters/thumbs/'));
@@ -253,16 +366,37 @@ report.baking = await evaluate(`(() => {
     fullSizeRequests: full.length,
     lines: document.querySelectorAll('.loading-lines > li').length,
     sequential: !!document.querySelector('.loading-lines--sequential'),
-    // With the lines stacked in one cell, only the current step should be visible.
+    // One line, held still. Anything animating its opacity is the flashing the
+    // sequential cross-fade used to cause.
     visibleLines: [...document.querySelectorAll('.loading-lines > li')]
       .filter((li) => parseFloat(getComputedStyle(li).opacity) > 0.5).length,
     lineFontPx: (() => {
       const li = document.querySelector('.loading-lines > li');
       return li ? Math.round(parseFloat(getComputedStyle(li).fontSize)) : null;
     })(),
+    continuePresent: !!document.querySelector('.baking__continue'),
+    itemPx: items[0] ? Math.round(items[0].getBoundingClientRect().height) : null,
+    itemSquare: items[0]
+      ? Math.abs(items[0].getBoundingClientRect().width - items[0].getBoundingClientRect().height) < 1.5
+      : null,
   };
 })()`);
 await capture('04-baking');
+
+// It leaves on its own, with no control to press. Polled rather than sampled at
+// a fixed delay: the hold and the scene transition that follows it are separate
+// clocks, and a single read lands between them.
+report.bakingAdvanced = await (async () => {
+  const deadline = Date.now() + 9000;
+  let state;
+  for (;;) {
+    state = await evaluate(
+      `({ path: location.pathname, scene: document.querySelector('.scene')?.dataset.scene ?? null })`,
+    );
+    if (state.scene === 'result' || Date.now() > deadline) return state;
+    await delay(250);
+  }
+})();
 
 // --- 5 Result --------------------------------------------------------------
 await go('/r/pgde');
@@ -284,6 +418,26 @@ report.result = await evaluate(`(() => {
     disclaimer: !!document.querySelector('.result__disclaimer'),
     chips: document.querySelectorAll('.result__chips .result__chip').length,
     chipIcons: document.querySelectorAll('.result__chips .result__chip-icon').length,
+    otherTiles: document.querySelectorAll('.result__other-tile').length,
+    otherHeading: document.querySelector('.result__other-types h2')?.textContent ?? null,
+    otherHeadingFont: (() => {
+      const h = document.querySelector('.result__other-types h2');
+      return h ? Math.round(parseFloat(getComputedStyle(h).fontSize)) : null;
+    })(),
+    sectionHeadingFont: (() => {
+      const h = document.querySelector('.result__reflection h2');
+      return h ? Math.round(parseFloat(getComputedStyle(h).fontSize)) : null;
+    })(),
+    seeAllHeight: (() => {
+      const b = document.querySelector('.result__see-all');
+      return b ? round(b.getBoundingClientRect().height) : null;
+    })(),
+    seeAllFullWidth: (() => {
+      const b = document.querySelector('.result__see-all');
+      const s = document.querySelector('.result__other-strip');
+      if (!b || !s) return null;
+      return Math.abs(b.getBoundingClientRect().width - s.getBoundingClientRect().width) < 1.5;
+    })(),
     chipRadius: (() => { const c = document.querySelector('.result__chip'); return c ? getComputedStyle(c).borderRadius : null; })(),
     // offsetWidth, not the client rect: the character's entrance tween scales it,
     // so a rect read mid-flight reports the animated size rather than the layout.
@@ -327,25 +481,32 @@ const shells = [
   ['result', report.result],
   ...report.questions.map((row) => [`q${row.id}`, row]),
 ];
+// Baking deliberately has neither: it advances on a timer, so there is nothing
+// to press and no bottom band to hold it.
+const BANDLESS_SCENES = new Set(['baking']);
+
 for (const [name, state] of shells) {
   if (!state.scene) failures.push(`${name}: scene did not mount`);
   if (state.overflow > 0) failures.push(`${name}: ${state.overflow}px horizontal overflow`);
   if (state.brokenImages.length > 0) failures.push(`${name}: broken images ${state.brokenImages.join(',')}`);
   if (state.headerPosition === 'absolute') failures.push(`${name}: header is still out of flow`);
-  if (!state.bottomBox) failures.push(`${name}: no bottom band`);
-  const cta = state.ctaExpression;
-  if (!cta?.bg?.includes('button-expression')) {
-    failures.push(`${name}: bottom CTA is missing the expression mark`);
-  }
-  // 52px is pad(16,32) around a 16/1.25 label — the spec's Button-blue height.
-  // Baking's continue button is intentionally hidden until the skip gate opens.
-  if (cta && cta.height > 0 && Math.abs(cta.height - 52) > 1.5) {
-    failures.push(`${name}: bottom CTA is ${cta.height}px tall, expected 52`);
-  }
-  if (cta && cta.gap > 3) failures.push(`${name}: ${cta.gap}px between CTA label and mark`);
-  if (cta && cta.afterRotate !== 'none') failures.push(`${name}: expression mark is still rotated`);
-  if (cta && cta.afterHeight >= 20) {
-    failures.push(`${name}: expression mark (${cta.afterHeight}px) can drive the CTA height`);
+  if (BANDLESS_SCENES.has(name)) {
+    if (state.bottomBox) failures.push(`${name}: should have no bottom band`);
+  } else {
+    if (!state.bottomBox) failures.push(`${name}: no bottom band`);
+    const cta = state.ctaExpression;
+    if (!cta?.bg?.includes('button-expression')) {
+      failures.push(`${name}: bottom CTA is missing the expression mark`);
+    }
+    // 52px is pad(16,32) around a 16/1.25 label — the spec's Button-blue height.
+    if (cta && cta.height > 0 && Math.abs(cta.height - 52) > 1.5) {
+      failures.push(`${name}: bottom CTA is ${cta.height}px tall, expected 52`);
+    }
+    if (cta && cta.gap > 3) failures.push(`${name}: ${cta.gap}px between CTA label and mark`);
+    if (cta && cta.afterRotate !== 'none') failures.push(`${name}: expression mark is still rotated`);
+    if (cta && cta.afterHeight >= 20) {
+      failures.push(`${name}: expression mark (${cta.afterHeight}px) can drive the CTA height`);
+    }
   }
   // The bands own their insets; any gap here means a stale scene padding is
   // stealing height from the artwork.
@@ -382,6 +543,26 @@ if (report.landing.subtitleAlign !== 'center') failures.push('splash: subtitle i
 if (!report.landing.captionText) failures.push('splash: no caption under the CTA');
 if (!report.landing.art?.fullBleed) failures.push('splash: art is not full-bleed');
 
+// A circle is a square box at 50% radius — an oval means the box is not square.
+for (const [name, ring] of Object.entries(report.headerControls)) {
+  if (!ring) {
+    failures.push(`header: ${name} is missing`);
+    continue;
+  }
+  if (Math.abs(ring.w - ring.h) > 0.5) {
+    failures.push(`header: ${name} is ${ring.w}x${ring.h}, not a square box`);
+  }
+  if (ring.radius !== '50%') failures.push(`header: ${name} radius is ${ring.radius}, expected 50%`);
+}
+
+for (const [name, centre] of Object.entries(report.soundGlyph)) {
+  if (Math.abs(centre.centreX - 32) > 0.75 || Math.abs(centre.centreY - 32) > 0.75) {
+    failures.push(
+      `icons/${name}.svg: artwork centres at ${centre.centreX},${centre.centreY} in a 64 viewBox`,
+    );
+  }
+}
+
 if (!report.intro.art?.src?.includes('q03-daily-schedule')) {
   failures.push(`intro: art is ${report.intro.art?.src}, expected the 3:2 scene derivative`);
 }
@@ -417,20 +598,75 @@ for (const row of report.questions) {
   if (row.cards !== 2) failures.push(`${tag}: ${row.cards} answer cards`);
   if (!row.art?.fullBleed) failures.push(`${tag}: art band is not full-bleed`);
   // Never rescaled at any viewport height: always its native 3:2 at 390 wide.
+  // The band now spans the headline row too, so this holds even when the copy
+  // is long — which is the whole point of the change.
   if (Math.abs(row.art.rendered[1] - 260) > 1) {
     failures.push(`${tag}: art is ${row.art.rendered[1]}px tall, expected its native 260`);
   }
-  if (!row.artCentred) failures.push(`${tag}: art is not centred in the leftover space`);
+  // At the 844 canvas the copy clears the artwork, so the illustration is a
+  // plain layer. The fade belongs only to the short-viewport case below.
+  if (row.artMask !== 'none') {
+    failures.push(`${tag}@844: art carries a mask (${row.artMask}); it should be a plain layer`);
+  }
+  const layers = row.layerOrder;
+  if (!layers || Number(layers.stack) <= Number(layers.band)) {
+    failures.push(
+      `${tag}: copy is not above the art layer (band ${layers?.band}, stack ${layers?.stack})`,
+    );
+  }
+  if (layers && layers.stackPositioned === 'static') {
+    failures.push(`${tag}: the copy stack is static, so its z-index does nothing`);
+  }
+  if (layers && layers.isolated !== 'isolate') {
+    failures.push(`${tag}: the scene body is not an isolated stacking context`);
+  }
+  if (row.stackColumn !== '1' || Math.abs(row.stackWidth - 390) > 1) {
+    failures.push(
+      `${tag}: headline column collapsed — stack is ${row.stackWidth}px in grid column ${row.stackColumn}`,
+    );
+  }
   if (row.langVisible) failures.push(`${tag}: language toggle should be hidden`);
   if (row.ctaDisabled !== true) failures.push(`${tag}: CTA should start disabled`);
   // Answers must sit low enough that the art keeps the upper composition.
   if (row.cardBottom < 470) failures.push(`${tag}: answers end at ${row.cardBottom}px, too high up the screen`);
-  // The star rail must read against flat cream, and the band must clear the
-  // headline. Measured against the band, which clips — the image's own layout box
-  // may sit above the band top when the band is shorter than 3:2.
+  // The star rail must still read against flat cream: the band starts below it.
   if (row.railBottom > row.bandTop + 0.5) failures.push(`${tag}: star rail sits on the artwork`);
-  if (row.artBottom > row.titleTop + 0.5) {
-    failures.push(`${tag}: art band overlaps the headline by ${Math.round(row.artBottom - row.titleTop)}px`);
+  // Long prompts step down so no scenario costs more than three lines.
+  if (row.titleLines > 3) {
+    failures.push(`${tag}: headline runs ${row.titleLines} lines at ${row.titleFontPx}px`);
+  }
+  if (row.labelColor === 'rgb(223, 199, 171)') {
+    failures.push(`${tag}: indicator row is still the 1.4:1 outline tan`);
+  }
+}
+
+// The short-viewport case this was built for: a Galaxy A55 with browser chrome
+// is ~720 CSS px, not the 844 design canvas. The art must still be its full
+// 260px there — it runs behind the headline rather than giving up its height.
+if (report.shortViewport) {
+  const short = report.shortViewport;
+  if (Math.abs(short.artHeight - 260) > 1) {
+    failures.push(`q5@720: art collapsed to ${short.artHeight}px, expected its native 260`);
+  }
+  if (short.artBottom <= short.titleTop) {
+    failures.push('q5@720: art stops above the headline instead of running behind it');
+  }
+  if (short.ctaBottom > 720.5) {
+    failures.push(`q5@720: the CTA is ${Math.round(short.ctaBottom - 720)}px below the fold`);
+  }
+  if (short.overflow > 0) failures.push(`q5@720: ${short.overflow}px horizontal overflow`);
+  // The display scale is a percentage of the screen, not a fixed size: the same
+  // headline on a 124px-shorter viewport must actually come down.
+  const tall = report.questions.find((row) => row.id === 5);
+  if (tall && !(short.titleFontPx < tall.titleFontPx)) {
+    failures.push(
+      `q5@720: headline is ${short.titleFontPx}px, same as at 844 — the height term is not applying`,
+    );
+  }
+  // Here the copy genuinely sits on the picture (~95px of it at this height), so
+  // the fade is on — the one place it is wanted.
+  if (!short.artMask?.includes('gradient')) {
+    failures.push('q5@720: art has no fade where the copy runs onto it');
   }
 }
 
@@ -443,17 +679,20 @@ if (report.baking.uniqueThumbRequests !== 16) {
   failures.push(`baking: ${report.baking.uniqueThumbRequests} unique thumb requests, expected 16`);
 }
 if (report.baking.thumbKB > 300) failures.push(`baking: marquee cost ${report.baking.thumbKB} KB, over the 300 KB budget`);
-if (report.baking.lines !== 4) failures.push('baking: expected the four loading lines');
+if (report.baking.lines !== 1) failures.push(`baking: ${report.baking.lines} status lines, expected 1 held still`);
+if (report.baking.sequential) failures.push('baking: the cross-fading line sequence is back');
+if (report.baking.visibleLines !== 1) failures.push('baking: the status line is not fully visible');
 if (report.baking.lineFontPx < 18) {
   failures.push(`baking: status line is ${report.baking.lineFontPx}px, expected 18`);
 }
-if (reduced) {
-  if (report.baking.sequential) failures.push('baking: reduced motion should keep the plain list');
-} else {
-  if (!report.baking.sequential) failures.push('baking: lines are not sequencing');
-  if (report.baking.visibleLines > 1) {
-    failures.push(`baking: ${report.baking.visibleLines} status lines visible at once, expected 1`);
-  }
+if (report.baking.continuePresent) failures.push('baking: the continue button is still rendered');
+if (!report.baking.itemSquare) failures.push('baking: marquee thumbnails are not square');
+// Sized off the row rather than a fixed 104px, so the cast reads big.
+if (report.baking.itemPx < 120) {
+  failures.push(`baking: thumbnails are ${report.baking.itemPx}px, expected the row to make them >=120`);
+}
+if (report.bakingAdvanced.scene !== 'result') {
+  failures.push(`baking: still on "${report.bakingAdvanced.scene}" (${report.bakingAdvanced.path}) after the 5s hold`);
 }
 
 if (!report.result.artBeforeIdentity) failures.push('result: identity is not below the character');
@@ -464,12 +703,26 @@ if (!/\w( \w){3}/.test(report.result.codeText ?? '')) {
 if (report.result.codeBackground !== 'rgb(243, 227, 203)') {
   failures.push(`result: code capsule is ${report.result.codeBackground}, expected the warm tan`);
 }
-if (report.result.sections !== 3) failures.push(`result: ${report.result.sections} detail sections, expected 3`);
+if (report.result.sections !== 4) failures.push(`result: ${report.result.sections} detail sections, expected 4`);
 if (!report.result.softSell) failures.push('result: soft-sell block is missing');
 if (!report.result.disclaimer) failures.push('result: disclaimer is missing');
-if (report.result.chips !== 4) failures.push(`result: ${report.result.chips} action chips, expected 4`);
-if (report.result.chipIcons !== 4) failures.push(`result: ${report.result.chipIcons} chip icons, expected 4`);
+// Copy link and Retake only: the gallery got a section of its own and `/end` is
+// gone, so "Continue" went with it.
+if (report.result.chips !== 2) failures.push(`result: ${report.result.chips} action chips, expected 2`);
+if (report.result.chipIcons !== 2) failures.push(`result: ${report.result.chipIcons} chip icons, expected 2`);
 if (parseFloat(report.result.chipRadius) < 20) failures.push('result: chips are not warm capsules');
+// The other-types teaser sits at the same weight as the pop-culture cousin.
+if (report.result.otherTiles !== 3) {
+  failures.push(`result: ${report.result.otherTiles} other-type tiles, expected 3`);
+}
+if (!report.result.otherHeading) failures.push('result: the other-types section has no heading');
+if (report.result.otherHeadingFont !== report.result.sectionHeadingFont) {
+  failures.push('result: the other-types heading is not at cousin-section weight');
+}
+if (report.result.seeAllHeight < 48) {
+  failures.push(`result: the see-all button is ${report.result.seeAllHeight}px, expected a wide one`);
+}
+if (!report.result.seeAllFullWidth) failures.push('result: the see-all button is not full width');
 // The long-name guard: both the name and the illustration must stay on screen.
 if (Math.abs(report.result.artWidth - 390) > 1) {
   failures.push(`result: character is ${report.result.artWidth}px wide in a 390px viewport`);

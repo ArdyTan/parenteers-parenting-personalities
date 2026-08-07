@@ -69,6 +69,7 @@
 | `result.superpowers_label` | Your superpowers | Superpower kamu |
 | `result.watchout_label` | Watch-out, with love | Watch-out, with love |
 | `result.popcousin_label` | Your pop-culture cousin | Sepupu pop-culture kamu |
+| `result.other_types_label` | Meet the other bakes | Kenalan sm bake lainnya |
 | `result.share_ig` | Share to IG Story | Share ke IG Story |
 | `result.save_image` | Save result card | Simpan kartu hasil |
 | `result.copy_link` | Copy link | Salin link |
@@ -88,14 +89,11 @@
 | `gallery.send_quiz` | Send the quiz to someone | Kirim quiz ke seseorang |
 | `gallery.back_to_result` | Back to my result | Balik ke hasilku |
 
-## End Page
+## End Page — retired
 
-| Key | EN | ID |
-|---|---|---|
-| `end.cta_activities` | Explore activities for your style | Intip aktivitas yg cocok buat gaya kamu |
-| `end.cta_follow` | Follow @parenteers | Follow @parenteers |
-| `end.cta_share` | Share with a parent friend | Share ke teman sesama orang tua |
-| `end.cta_retake` | Retake the quiz | Ulangi quiz |
+The `/end` page was removed on 2026-08-02; the journey now ends on the result.
+Its four CTA strings are no longer shipped, and the closing dialogue itself
+remains on record in `quiz-01-flow-dialogue.md` §PAGE 18.
 
 ## Share Sheet
 

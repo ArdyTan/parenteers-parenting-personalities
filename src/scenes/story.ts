@@ -95,8 +95,8 @@ export function createStoryScene(): FunctionalScene {
     const resultPath = `/r/${personality.slug}`;
     const chrome = element('div', { className: 'story__chrome' }, [
       segments,
+      // One way out, now that the journey ends at the result: back to the card.
       element('div', { className: 'story__exit-controls' }, [
-        actionButton(context.t('nav.close'), () => context.navigate('/end'), signal),
         actionButton(
           context.t('gallery.back_to_result'),
           () => context.navigate(resultPath),

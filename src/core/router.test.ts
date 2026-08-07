@@ -19,7 +19,6 @@ describe('route parsing', () => {
     ['/r/pcte', { scene: 'result', slug: 'pcte' }],
     ['/story', { scene: 'story' }],
     ['/gallery', { scene: 'gallery' }],
-    ['/end', { scene: 'end' }],
   ] satisfies ReadonlyArray<readonly [string, AppRoute]>)('maps %s to its route', (path, route) => {
     expect(parseRoute(path)).toEqual(route);
   });
@@ -52,7 +51,6 @@ describe('route building', () => {
     [{ scene: 'result', slug: 'choux pop' }, '/r/choux%20pop'],
     [{ scene: 'story' }, '/story'],
     [{ scene: 'gallery' }, '/gallery'],
-    [{ scene: 'end' }, '/end'],
     [{ scene: 'notFound', path: 'eaten///' }, '/eaten'],
   ] satisfies ReadonlyArray<readonly [AppRoute, string]>)('builds $expected', (route, expected) => {
     expect(buildRoutePath(route)).toBe(expected);
@@ -88,7 +86,7 @@ describe('History API router', () => {
     expect(listener).toHaveBeenLastCalledWith({ scene: 'gallery' });
 
     unsubscribe();
-    router.navigate({ scene: 'end' });
+    router.navigate({ scene: 'intro' });
     expect(listener).toHaveBeenCalledTimes(4);
   });
 

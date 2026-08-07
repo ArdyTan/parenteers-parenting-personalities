@@ -20,7 +20,7 @@ const DEFAULT_QR_LABEL = 'Scan to open Parenting Bakes on your phone';
 const QR_SIZE = 256;
 
 const APP_ROUTE_SUFFIX = new RegExp(
-  String.raw`/(?:intro|q/(?:[1-9]|1[0-2])|baking|r/[a-z0-9-]+|story|gallery|end)/?$`,
+  String.raw`/(?:intro|q/(?:[1-9]|1[0-2])|baking|r/[a-z0-9-]+|story|gallery)/?$`,
   'i',
 );
 

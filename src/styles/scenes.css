@@ -457,7 +457,6 @@
 
   .landing__actions,
   .intro__actions,
-  .end__actions,
   .gallery__actions,
   .result__actions {
     display: grid;
@@ -1188,67 +1187,19 @@
     pointer-events: none;
   }
 
-  /* End and not found ---------------------------------------------------- */
+  /* Not found ------------------------------------------------------------ */
 
-  .scene--end,
   .scene--notFound {
     justify-content: center;
   }
 
-  .end__content,
-  .end__actions,
-  .end__footer,
   .not-found__content {
     inline-size: min(100%, var(--copy-max-width));
     margin-inline: auto;
   }
 
-  .end__content {
-    display: grid;
-    gap: var(--space-md);
-    text-align: center;
-  }
-
-  .scene .end__title,
   .scene .not-found__title {
     font-size: var(--font-size-display);
-  }
-
-  .end__body {
-    color: var(--color-text-muted);
-    font-size: var(--font-size-lead);
-  }
-
-  .end__founder-note {
-    padding: var(--space-lg);
-    border: var(--border-width-hairline) solid var(--color-border);
-    border-radius: var(--radius-lg);
-    background: var(--color-surface-raised);
-    box-shadow: var(--shadow-sm);
-    font-family: var(--font-family-display);
-    font-size: var(--font-size-lead);
-    font-style: italic;
-  }
-
-  .end__actions {
-    margin-block-start: var(--space-xl);
-  }
-
-  .end__cta {
-    inline-size: 100%;
-  }
-
-  .end__footer {
-    display: grid;
-    gap: var(--space-2xs);
-    margin-block-start: var(--space-xl);
-    color: var(--color-text-muted);
-    font-size: var(--font-size-xs);
-    text-align: center;
-  }
-
-  .end__disclaimer {
-    margin-block-end: var(--space-xs);
   }
 
   .not-found__content {
@@ -1932,17 +1883,15 @@
     margin-block: var(--space-xs) var(--space-lg);
   }
 
-  /* Intro, calculating, and end continuity ----------------------------- */
+  /* Intro and calculating continuity ------------------------------------ */
 
   .scene--intro,
-  .scene--calculating,
-  .scene--end {
+  .scene--calculating {
     justify-content: flex-start;
   }
 
   .intro__art,
   .calculating__art,
-  .end__art,
   .gate-art {
     inline-size: calc(100% + var(--space-lg));
     margin-inline: calc(0rem - var(--space-sm));
@@ -1957,11 +1906,6 @@
 
   .intro__point {
     background: rgb(255 255 255 / 78%);
-  }
-
-  .end__art {
-    block-size: 18rem;
-    object-position: center 59%;
   }
 
   /* Result -------------------------------------------------------------- */
@@ -2035,8 +1979,7 @@
   }
 
   .result__section,
-  .result__soft-sell,
-  .end__founder-note {
+  .result__soft-sell {
     border-color: rgb(24 39 153 / 10%);
     background: rgb(255 255 255 / 78%);
     backdrop-filter: blur(0.45rem);
@@ -2325,7 +2268,6 @@
   /* Scenes that legitimately grow past the viewport keep document scroll. */
   .scene--result,
   .scene--gallery,
-  .scene--end,
   .scene--notFound,
   .scene--gate {
     grid-template-rows: auto auto;
@@ -2342,8 +2284,7 @@
   }
 
   .scene--result .scene__body,
-  .scene--gallery .scene__body,
-  .scene--end .scene__body {
+  .scene--gallery .scene__body {
     overflow: visible;
   }
 

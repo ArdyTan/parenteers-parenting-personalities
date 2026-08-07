@@ -34,7 +34,7 @@ describe('bundled data integrity', () => {
     const source = readFileSync(resolve(process.cwd(), 'quiz-02-ui-strings.md'), 'utf8');
     const sourceKeys = [...source.matchAll(/^\| `([^`]+)` \|/gm)].map(([, key]) => key);
 
-    expect(sourceKeys).toHaveLength(73);
+    expect(sourceKeys).toHaveLength(70);
     expect(Object.keys(appData.translations.en)).toEqual(expect.arrayContaining(sourceKeys));
   });
 

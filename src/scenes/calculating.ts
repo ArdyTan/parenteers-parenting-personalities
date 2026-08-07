@@ -3,11 +3,10 @@ import { gsap } from 'gsap';
 import { scorePersistedAnswers } from '../core/scoring';
 import { characterThumbnail } from '../data';
 import {
-  bindPressFeedback,
   createSceneMotion,
   prefersReducedMotion,
 } from '../motion/shared';
-import { actionButton, element, localizedList, sceneBody, sceneBottom } from './dom';
+import { element, localizedList, sceneBody } from './dom';
 import { FunctionalScene } from './scene';
 
 /** Three rows read as a whole bakery drifting past rather than a two-line ticker. */
@@ -17,10 +16,15 @@ export function createCalculatingScene(): FunctionalScene {
   return new FunctionalScene('calculating', (root, context, signal) => {
     const code = scorePersistedAnswers(context.store.get().answers);
     context.store.setResult(code);
+    const resultPath = `/r/${code.toLowerCase()}`;
 
+    // One line, held still for the whole wait. The four lines used to hand over
+    // to each other on a timer, which at this length reads as flashing text
+    // rather than progress; picking one per run keeps all four in rotation the
+    // same way the marquee shuffles the cast.
     const lines = [1, 2, 3, 4].map((line) => context.t(`loading.line${line}`));
-    const loadingList = localizedList(lines, 'loading-lines');
-    const loadingItems = Array.from(loadingList.children);
+    const statusLine = lines[Math.floor(Math.random() * lines.length)] ?? lines[0] ?? '';
+    const loadingList = localizedList([statusLine], 'loading-lines');
 
     const title = element('h1', {
       className: 'baking__title',
@@ -56,91 +60,45 @@ export function createCalculatingScene(): FunctionalScene {
       marquees.map(({ marquee }) => marquee),
     );
 
-    const next = actionButton(
-      context.t('nav.continue'),
-      () => context.navigate(`/r/${code.toLowerCase()}`),
-      signal,
-      { className: 'button--primary baking__continue' },
-    );
-    next.hidden = true;
-
     root.setAttribute('aria-label', context.t('loading.a11y'));
-    root.append(
-      sceneBody('baking__body', [title, marqueeStage, loadingList]),
-      sceneBottom('baking__bottom', [next]),
-    );
-    bindPressFeedback([next], signal);
-    if (!prefersReducedMotion()) {
-      gsap.set(loadingItems, { autoAlpha: 0, y: 14 });
+    root.append(sceneBody('baking__body', [title, marqueeStage, loadingList]));
+
+    let holdTimer: number | undefined;
+    let advanced = false;
+    let tick: ((time: number, deltaTime: number) => void) | null = null;
+    let heatTween: gsap.core.Tween | null = null;
+    const heat = { value: 45 };
+    const holdMs = context.data.config.loading.holdMs;
+
+    /** Idempotent: the tap shortcut and the timer race, and only one may win. */
+    function advance(): void {
+      if (advanced || signal.aborted) return;
+      advanced = true;
+      window.clearTimeout(holdTimer);
+      context.navigate(resultPath);
     }
 
-    let loadingTimeline: gsap.core.Timeline | null = null;
-    let tick: ((time: number, deltaTime: number) => void) | null = null;
-    const heat = { value: 45 };
+    // No visible control, but the wait is still skippable: a tap anywhere goes
+    // straight through, so nobody is held hostage by a timer they can't see.
+    root.addEventListener('pointerdown', advance, { signal });
 
     return createSceneMotion(root, {
       enterTargets: [title, marqueeStage],
       onEnter() {
-        if (prefersReducedMotion()) {
-          next.hidden = false;
-          gsap.set(loadingItems, { autoAlpha: 1 });
-          return;
-        }
-
+        holdTimer = window.setTimeout(advance, holdMs);
+        if (prefersReducedMotion()) return;
         startMarquee();
-
-        // Lines share one cell and hand over to each other, so only the current
-        // step is on screen — the wait reads as a sequence, not a growing list.
-        loadingList.classList.add('loading-lines--sequential');
-
-        const lineDuration = context.data.config.loading.lineMs / 1000;
-        loadingTimeline = gsap.timeline();
-        loadingTimeline.to(heat, {
+        heatTween = gsap.to(heat, {
           value: 180,
-          duration: lineDuration * loadingItems.length,
+          duration: holdMs / 1000,
           ease: 'none',
-        }, 0);
-
-        loadingItems.forEach((item, index) => {
-          loadingTimeline?.to(
-            item,
-            {
-              autoAlpha: 1,
-              y: 0,
-              duration: 0.42,
-              ease: 'power2.out',
-            },
-            index * lineDuration,
-          );
-          if (index < loadingItems.length - 1) {
-            loadingTimeline?.to(
-              item,
-              { autoAlpha: 0, y: -14, duration: 0.34, ease: 'power2.in' },
-              (index + 1) * lineDuration - 0.34,
-            );
-          }
-          if (index + 1 === context.data.config.loading.skippableAfterLine) {
-            loadingTimeline?.call(
-              () => {
-                next.hidden = false;
-                gsap.fromTo(
-                  next,
-                  { autoAlpha: 0, y: 14 },
-                  { autoAlpha: 1, y: 0, duration: 0.34, ease: 'power2.out', clearProps: 'all' },
-                );
-              },
-              [],
-              (index + 1) * lineDuration,
-            );
-          }
         });
       },
-      onExit() {
-        loadingTimeline?.pause();
-      },
       onDestroy() {
-        loadingTimeline?.kill();
-        loadingTimeline = null;
+        window.clearTimeout(holdTimer);
+        holdTimer = undefined;
+        heatTween?.kill();
+        heatTween = null;
         if (tick) gsap.ticker.remove(tick);
         tick = null;
       },

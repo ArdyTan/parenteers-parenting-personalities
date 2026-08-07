@@ -2,6 +2,7 @@ import { gsap } from 'gsap';
 
 import { playSfx } from '../core/audio';
 import type { PersonalityType } from '../core/quiz-types';
+import { characterThumbnail } from '../data';
 import {
   buildResultShareUrl,
   composeResultStoryCard,
@@ -33,6 +34,10 @@ import { FunctionalScene, type SceneContext } from './scene';
 
 /** Guards against the docked bar flashing during a fast flick past the hero. */
 const DOCK_DWELL_MS = 180;
+/** How many of the other bakes are on screen at once in the teaser row. */
+const OTHER_TYPE_SLOTS = 3;
+/** One tile changes at a time — a shuffle, not a strobe. */
+const OTHER_TYPE_SWAP_MS = 520;
 
 export function createResultScene(personality: PersonalityType): FunctionalScene {
   return new FunctionalScene('result', (root, context, signal) => {
@@ -211,15 +216,9 @@ export function createResultScene(personality: PersonalityType): FunctionalScene
 
     // A tray of warm capsule chips rather than a stack of underlined links: same
     // destinations, but they read as part of the bakery and each one has
-    // something to press. Icons come from the existing 16-icon family.
-    const galleryChip = actionButton(
-      context.t('result.see_all'),
-      () => context.navigate('/gallery'),
-      signal,
-      { className: 'result__chip' },
-    );
-    decorateChip(galleryChip, 'star-featured');
-
+    // something to press. Icons come from the existing 16-icon family. The
+    // gallery left this tray for a section of its own; `/end` no longer exists,
+    // so "continue" left with it.
     const retakeChip = actionButton(
       context.t('result.retake'),
       () => {
@@ -232,25 +231,15 @@ export function createResultScene(personality: PersonalityType): FunctionalScene
     );
     decorateChip(retakeChip, 'stopwatch');
 
-    const endChip = actionButton(
-      context.t('nav.continue'),
-      () => context.navigate('/end'),
-      signal,
-      { className: 'result__chip' },
-    );
-    decorateChip(endChip, 'thumbs-up');
+    const chipTray = element('div', { className: 'result__chips' }, [copyButton, retakeChip]);
 
-    const chipTray = element('div', { className: 'result__chips' }, [
-      copyButton,
-      galleryChip,
-      retakeChip,
-      endChip,
-    ]);
+    const otherTypes = createOtherTypesSection(context, personality, signal);
 
     const detail = element('div', { className: 'result__detail' }, [
       powers,
       watchout,
       popCousin,
+      otherTypes,
       element('hr', { className: 'result__rule' }),
       softSell,
       element('p', { className: 'result__disclaimer', text: context.t('footer.disclaimer') }),
@@ -332,6 +321,151 @@ function createShareBarDock(
       if (!signal.aborted) bar.dataset.docked = 'true';
     }, prefersReducedMotion() ? 0 : DOCK_DWELL_MS);
   };
+}
+
+/**
+ * The other fifteen bakes, at the same weight as "Your pop-culture cousin":
+ * a heading, three tiles that keep quick-changing through the rest of the cast,
+ * and one wide button into the gallery. Three tiles rather than fifteen keeps
+ * the page short and the image cost to whatever the cycle has actually shown.
+ */
+function createOtherTypesSection(
+  context: SceneContext,
+  current: PersonalityType,
+  signal: AbortSignal,
+): HTMLElement {
+  const others = shuffle(context.data.types.filter((type) => type.code !== current.code));
+  // Dealt round-robin so each tile owns a disjoint deck — no two tiles can ever
+  // show the same bake at the same time.
+  const decks = Array.from({ length: OTHER_TYPE_SLOTS }, (_, slot) =>
+    others.filter((_, index) => index % OTHER_TYPE_SLOTS === slot),
+  );
+
+  const tiles = decks.map((deck) =>
+    element('img', {
+      className: 'result__other-tile',
+      attributes: {
+        src: characterThumbnail((deck[0] ?? current).image),
+        alt: '',
+        width: '360',
+        height: '360',
+        decoding: 'async',
+        loading: 'lazy',
+      },
+    }),
+  );
+
+  const strip = element(
+    'div',
+    { className: 'result__other-strip', attributes: { 'aria-hidden': 'true' } },
+    tiles,
+  );
+
+  const seeAll = actionButton(
+    context.t('result.see_all'),
+    () => context.navigate('/gallery'),
+    signal,
+    { className: 'result__see-all' },
+  );
+
+  const section = element('section', { className: 'result__section result__other-types' }, [
+    element('h2', { text: context.t('result.other_types_label') }),
+    strip,
+    seeAll,
+  ]);
+  section.dataset.reveal = '';
+  bindTypeShuffle(section, tiles, decks, signal);
+  return section;
+}
+
+/**
+ * Runs the tile cycle only while the section is on screen — the result page is
+ * taller than the viewport and this sits well below the fold, so there is no
+ * reason to be swapping images (or fetching them) while the user is still
+ * reading the hero. Reduced motion keeps the three static bakes.
+ */
+function bindTypeShuffle(
+  section: HTMLElement,
+  tiles: readonly HTMLImageElement[],
+  decks: readonly (readonly PersonalityType[])[],
+  signal: AbortSignal,
+): void {
+  if (prefersReducedMotion() || !('IntersectionObserver' in window)) return;
+
+  let scheduled: gsap.core.Tween | null = null;
+  let step = 0;
+
+  const swapNext = (): void => {
+    const slot = step % tiles.length;
+    const round = Math.floor(step / tiles.length) + 1;
+    step += 1;
+    const tile = tiles[slot];
+    const deck = decks[slot];
+    const next = deck?.[round % Math.max(1, deck.length)];
+    if (!tile || !next) return;
+    tile.src = characterThumbnail(next.image);
+    gsap.fromTo(
+      tile,
+      { scale: 0.76, autoAlpha: 0.25 },
+      {
+        scale: 1,
+        autoAlpha: 1,
+        duration: 0.42,
+        ease: 'back.out(2.2)',
+        clearProps: 'transform,opacity,visibility',
+        overwrite: true,
+      },
+    );
+  };
+
+  const schedule = (): void => {
+    scheduled = gsap.delayedCall(OTHER_TYPE_SWAP_MS / 1000, () => {
+      swapNext();
+      schedule();
+    });
+  };
+
+  const stop = (): void => {
+    scheduled?.kill();
+    scheduled = null;
+  };
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      const visible = entries.some((entry) => entry.isIntersecting);
+      if (visible && !scheduled) {
+        // Warm every face once the row is in play, so a swap can never land on
+        // a tile that has not been fetched yet.
+        decks.flat().forEach((type) => {
+          const image = new Image();
+          image.src = characterThumbnail(type.image);
+        });
+        schedule();
+      } else if (!visible) {
+        stop();
+      }
+    },
+    { threshold: 0.25 },
+  );
+
+  observer.observe(section);
+  signal.addEventListener(
+    'abort',
+    () => {
+      observer.disconnect();
+      stop();
+    },
+    { once: true },
+  );
+}
+
+function shuffle<T>(items: readonly T[]): T[] {
+  const shuffled = [...items];
+  for (let index = shuffled.length - 1; index > 0; index -= 1) {
+    const swap = Math.floor(Math.random() * (index + 1));
+    [shuffled[index], shuffled[swap]] = [shuffled[swap] as T, shuffled[index] as T];
+  }
+  return shuffled;
 }
 
 /**

@@ -66,7 +66,7 @@ async function diff(a, b) {
 const rows = [];
 for (const [name, path] of [
   ['landing', '/'], ['intro', '/intro'], ['question', '/q/1'], ['baking', '/baking'],
-  ['result', '/r/pgde'], ['gallery', '/gallery'], ['story', '/story'], ['end', '/end'], ['404', '/nope'],
+  ['result', '/r/pgde'], ['gallery', '/gallery'], ['story', '/story'], ['404', '/nope'],
 ]) {
   await cmd('Page.navigate', { url: `${base}${path}` });
   const deadline = Date.now() + 20000;

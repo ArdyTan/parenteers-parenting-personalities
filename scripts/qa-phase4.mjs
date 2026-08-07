@@ -71,7 +71,6 @@ const routes = [
   ['question', '/q/1'],
   ['result', '/r/pcte'],
   ['gallery', '/gallery'],
-  ['end', '/end'],
   ['not-found', '/missing'],
 ];
 const results = [];

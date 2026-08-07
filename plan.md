@@ -24,7 +24,7 @@
 | Database | Static JSON files bundled with the app — no backend, no accounts |
 | Hosting | Static build → **Cloudflare Workers static assets, free plan** (decided 2026-07-17; static requests are free/unlimited, Jakarta edge PoP) |
 
-**Flow:** Preloader → Landing → Intro → Q1–Q12 without mid-quiz interruption → Calculating → Result → Story-share mode → Gallery (all 16) → End page. Plus: 404 ("This page got eaten 🍪") and the desktop QR gate.
+**Flow:** Preloader → Landing → Intro → Q1–Q12 without mid-quiz interruption → Calculating (auto-advances) → Result → Story-share mode → Gallery (all 16). The journey ends on the Result; the separate End page was removed 2026-08-02. Plus: 404 ("This page got eaten 🍪") and the desktop QR gate.
 
 ---
 
@@ -182,7 +182,7 @@ The core of the build. Each row names the technique number(s) and guide file(s) 
 | **Save / share buttons** | One button node morphs idle → loading pill → success tick / error shake ("Couldn't save — try screenshotting") | **84** Button State Machine |
 | **"Link copied!"** | Toast stack with squish, velocity swipe-to-dismiss, auto-expire bar | **86** Toast Choreography |
 | **Gallery (all 16)** | Bakery shelves: horizontal snap rows with peek margins + per-shelf entrance cascade; tap a bake → cell FLIP-expands to a detail sheet with snap points (peek/half/full), drag-dismiss | **79** Horizontal Snap Shelves · **69** Shared-Element Card → Detail · **53** Bottom Sheet |
-| **End page** | Fixed footer revealed curtain-lift style as the page scrolls away; CTA marquee band | **48** Curtain-Lift Footer Reveal · **10** marquee |
+| ~~**End page**~~ | ~~Fixed footer revealed curtain-lift style; CTA marquee band~~ — **cut 2026-08-02**: the journey now ends on the Result, so `/end` no longer exists | ~~48 · 10~~ |
 | **404** | Bitten-cookie illustration + tap to fling crumb reactions | **30** Floating Emoji Reactions |
 | **Baking marquee** | Three counter-scrolling rows of the whole 16-bake cast, shuffled per render, accelerating with the oven ramp; replaces the dial-in-a-card so the art carries the wait | **10** Marquee & Velocity Skew |
 | **Result share dock** | The share CTA docks to the bottom once the first composition scrolls away and retreats at the top, with a dwell so a fast flick can't flash it | **65** Collapsing Large-Title Header |
@@ -212,7 +212,7 @@ How these are measured, plus the recorded baselines and the traps that produce f
 | JS (gz) | ≤ 300 KB. **Actual: 81.33 KB** — GSAP+plugins ~65, Lenis ~3, app ~13 (the audio engine adds ~2.5 KB and no dependency) |
 | Fonts | ≤ 120 KB (2 families, subset woff2, self-hosted) |
 | Images per screen | ≤ 300 KB (characters use optimized ≤1024px WebP derivatives; alpha only when the chosen composition needs separation; only the result's character loads eagerly) |
-| Audio | One-shots are synthesized — 0 KB download, +0.12 MB heap measured after 240 cues. The theme streams via `<audio preload="none">`, so it costs **0 bytes until a user turns sound on**; the shipped AAC is 3.67 MB (~202 kbps, would be ~1.75 MB at 96 kbps). Never decode it: 152.6s at 48 kHz stereo is 55.88 MB of Float32 |
+| Audio | One-shots are synthesized — 0 KB download, +0.12 MB heap measured after 240 cues. Two beds stream via `<audio preload="none">`, so they cost **0 bytes until a user turns sound on**: `theme` 3.67 MB / 152.6s and `result` 3.57 MB / 147.4s (both ~200 kbps AAC; ~1.75 MB each at 96 kbps). Only the bed a scene asks for is ever fetched. Never decode them: 150s at 48 kHz stereo is ~55 MB of Float32 |
 | LCP | < 2.5s · TTI < 3.5s |
 | Frame rate | 60fps target / 30fps floor. Measured 60fps to 6× CPU throttle and 51fps at 8× on the heaviest screen (Result); quality tiers were removed with the WebGL layer |
 | Preload trick | Quiz takes ~3 min — after Q1, `requestIdleCallback`-preload all 16 characters + share assets so the reveal is instant |
@@ -298,7 +298,7 @@ Device matrix: iOS Safari, **Instagram in-app browser (iOS + Android)** — the 
 ✓ Matrix passes; §10 budgets hold.
 
 **Phase 7 — Launch extras (S, optional)**
-Analytics (quiz_start, answer, complete{code}, share{channel}, activities_click — Plausible default), founder-note flag, Awwwards submission assets (gate screenshots, 30s capture). Sound design moved out of this phase and shipped early (§14 decision 5).
+Analytics (quiz_start, answer, complete{code}, share{channel}, activities_click — Plausible default), re-homing the founder note now that `/end` is gone, Awwwards submission assets (gate screenshots, 30s capture). Sound design moved out of this phase and shipped early (§14 decision 5).
 
 ---
 
@@ -308,9 +308,9 @@ Analytics (quiz_start, answer, complete{code}, share{channel}, activities_click 
 2. **Loading duration** — 4 lines × 2.5s ≈ 10s, tap-to-skip after line 2. Tunable constant.
 3. **Swipe-to-answer** — deck fling is technique 52 either way; default is **tap to choose** (spec-safe, faster), with directional swipe as a progressive enhancement. Flag if you want swipe primary.
 4. **Activity-tag pairs per type** — deterministic default: D2+D3 letters; editorial override in types.json.
-5. **Sound** — ✅ **shipped 2026-08-02**, muted by default with a header toggle. Synthesized one-shots on press/select/swipe/boundary/confetti/reveal, plus the streamed `ayo-main-bersama-asik` theme under Landing→Calculating, retiring at the Result. The toggle sits outside `.app-header__language` because that container is hidden on Quiz Opening and Q1–Q12 — WCAG 1.4.2 needs the control reachable while audio plays.
+5. **Sound** — ✅ **shipped 2026-08-02**, muted by default with a header toggle. Synthesized one-shots on press/select/swipe/boundary/confetti/reveal, plus two streamed beds: `ayo-main-bersama-asik` under Landing→Calculating, crossfading to `ayo-main-bersama-asik-result` at the reveal. Story and everything after stay silent so a screen recording of the share moment carries no music. The toggle sits outside `.app-header__language` because that container is hidden on Quiz Opening and Q1–Q12 — WCAG 1.4.2 needs the control reachable while audio plays.
 6. **Desktop escape hatch** — phone-frame "continue here anyway." Default: yes.
-7. **Founder note** on end page — config flag. Default: on.
+7. **Founder note** — `config.flags.founderNote` survives but is unwired since `/end` was removed (2026-08-02); it needs a new home on the Result before it can ship. Default: on.
 8. **Analytics** — none / Plausible / Meta Pixel. Default: Plausible (cookieless).
 9. **Story-mode panels** — 1 static panel vs 2–3 tap-through panels (technique 66). Default: 3 panels, no auto-advance.
 10. **Couple mode** (compare two results) — v2 backlog.

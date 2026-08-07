@@ -202,7 +202,7 @@ await go('/');
 await cmd('HeapProfiler.collectGarbage');
 await wait(400);
 const before = (await metrics()).jsHeapMB;
-for (const path of ['/intro', '/q/1', '/q/2', '/q/3', '/q/4', '/q/5', '/q/6', '/q/7', '/q/8', '/q/9', '/q/10', '/q/11', '/q/12', '/baking', '/r/pgde', '/gallery', '/story', '/end', '/']) {
+for (const path of ['/intro', '/q/1', '/q/2', '/q/3', '/q/4', '/q/5', '/q/6', '/q/7', '/q/8', '/q/9', '/q/10', '/q/11', '/q/12', '/baking', '/r/pgde', '/gallery', '/story', '/']) {
   await go(path, 250);
 }
 await cmd('HeapProfiler.collectGarbage');

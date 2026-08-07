@@ -7,7 +7,6 @@ export const SCENE_NAMES = [
   'result',
   'story',
   'gallery',
-  'end',
   'notFound',
 ] as const;
 
@@ -21,5 +20,4 @@ export type AppRoute =
   | Readonly<{ scene: 'result'; slug: string }>
   | Readonly<{ scene: 'story' }>
   | Readonly<{ scene: 'gallery' }>
-  | Readonly<{ scene: 'end' }>
   | Readonly<{ scene: 'notFound'; path: string }>;

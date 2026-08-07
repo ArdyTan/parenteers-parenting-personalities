@@ -66,7 +66,7 @@ Array of exactly 16 objects — the full cartesian product of the four dimension
 {
   "links": { "activities": "TBD", "instagram": "https://instagram.com/parenteers", "site": "TBD" },
   "flags": { "founderNote": true, "sound": true, "desktopEscapeHatch": true, "analytics": "plausible" },
-  "loading": { "lineMs": 2500, "skippableAfterLine": 2 },
+  "loading": { "holdMs": 5000 },
   "gate": { "minDesktopWidth": 900 },
   "story": { "panels": 3 },
   "utm": { "source": "quiz", "medium": "share", "campaign": "parenting-bakes" }
@@ -98,8 +98,8 @@ Array of exactly 16 objects — the full cartesian product of the four dimension
 
 ## 5. i18n files — key conventions & content boundary
 
-- Keys are dot-namespaced exactly as in `quiz-02-ui-strings.md` (`nav.*`, `landing.*`, `intro.*`, `quiz.*`, `loading.*`, `result.*`, `gallery.*`, `end.*`, `share.*`, `footer.*`, `error.*`, `meta.*`, `a11y.*`).
-- **Page content from quiz-01 that quiz-02 doesn't cover gets new keys in the same namespaces:** `landing.h1`, `landing.subtitle`, `landing.trust` · `intro.h2`, `intro.point1..3` · `quiz.interstitial_q6`, `quiz.interstitial_q9` · `loading.line1..4` · `result.softsell_body` · `gallery.intro` · `end.h2`, `end.body`, `end.founder_note` · `share.hold_hint`, `share.image_shared`, `share.image_saved`, `share.link_shared` · `activity.P` … `activity.N` (the 8 activity-tag labels).
+- Keys are dot-namespaced exactly as in `quiz-02-ui-strings.md` (`nav.*`, `landing.*`, `intro.*`, `quiz.*`, `loading.*`, `result.*`, `gallery.*`, `share.*`, `footer.*`, `error.*`, `meta.*`, `a11y.*`). The `end.*` namespace was retired with the `/end` route on 2026-08-02.
+- **Page content from quiz-01 that quiz-02 doesn't cover gets new keys in the same namespaces:** `landing.h1`, `landing.subtitle`, `landing.trust` · `intro.h2`, `intro.point1..3` · `quiz.interstitial_q6`, `quiz.interstitial_q9` · `loading.line1..4` · `result.softsell_body`, `result.other_types_label` · `gallery.intro` · `share.hold_hint`, `share.image_shared`, `share.image_saved`, `share.link_shared` · `activity.P` … `activity.N` (the 8 activity-tag labels).
 - **Boundary rule:** if a string belongs to a *record* (a question, a type), it lives embedded in that record's JSON. If it belongs to a *page or reusable UI*, it lives in i18n. No third place.
 - Interpolation variables `{n} {total} {type} {emoji} {link} {year} {lang}` — never translated/reordered (conventions.md §6.5).
 - `en.json` and `id.json` must have **identical key sets** (validated).
@@ -139,7 +139,7 @@ At `/baking`, load the persisted `{q, pole}[]` records from `pb1.answers`, sort 
 | quiz-01 THE 16 RESULT COPIES | `types.json` tagline / superpowers / watchout / emoji |
 | research §4 table (pop cousins) | `types.json popCousin` |
 | quiz-01 PAGE 17 (gallery) | `i18n gallery.intro` (title/CTAs already in quiz-02) |
-| quiz-01 PAGE 18 (end) | `i18n end.h2 / .body / .founder_note` |
+| ~~quiz-01 PAGE 18 (end)~~ | ~~`i18n end.h2 / .body / .founder_note`~~ — route removed 2026-08-02, keys retired |
 | quiz-02 (all tables) | `i18n en.json / id.json` keys **verbatim** |
 | archived `images/old images/quiz-03-image-prompts.md` §5 (naming only) | runtime asset filenames (§4); nothing else from that file enters the app |
 | `images/README.md` | delivered source folders, exact source/reference order, and archive boundary; never runtime content |

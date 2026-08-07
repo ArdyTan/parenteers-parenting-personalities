@@ -153,13 +153,15 @@ class FakeAudioElement {
 
 function harness() {
   const context = new FakeContext();
-  const music = new FakeAudioElement();
+  const tracks = { theme: new FakeAudioElement(), result: new FakeAudioElement() };
   const engine = createAudioEngine({
     createContext: () => context as unknown as AudioContext,
-    createMusicElement: () => music as unknown as HTMLAudioElement,
+    createMusicElement: (track) => tracks[track] as unknown as HTMLAudioElement,
     random: () => 0.5,
   });
-  return { context, music, engine };
+  // Gains are created in order: master, sfx, then one per music voice.
+  const gainFor = (index: number) => context.gains[2 + index];
+  return { context, tracks, music: tracks.theme, engine, gainFor };
 }
 
 describe('audio engine', () => {
@@ -170,7 +172,7 @@ describe('audio engine', () => {
     const engine = createAudioEngine({ createContext, createMusicElement });
 
     engine.play('press');
-    engine.startMusic();
+    engine.startMusic('theme');
     engine.unlock();
 
     // No context means no audio hardware, and no <audio> element means the
@@ -236,7 +238,7 @@ describe('audio engine', () => {
   it('streams the theme rather than decoding it', () => {
     const { context, music, engine } = harness();
     engine.setEnabled(true);
-    engine.startMusic();
+    engine.startMusic('theme');
 
     expect(context.mediaRoutes).toBe(1);
     expect(music.played).toBe(1);
@@ -250,15 +252,43 @@ describe('audio engine', () => {
     // The factory ships `none`; nothing downloads for a default-off visitor.
     expect(music.preload).toBe('none');
 
-    engine.startMusic();
+    engine.startMusic('theme');
     // A returning visitor's first tap should not also pay for the fetch.
     expect(music.preload).toBe('auto');
+  });
+
+  it('hands the quiz bed over to the result bed instead of cutting', () => {
+    const { context, tracks, engine, gainFor } = harness();
+    engine.setEnabled(true);
+    engine.startMusic('theme');
+    expect(tracks.theme.played).toBe(1);
+
+    engine.startMusic('result');
+
+    expect(tracks.result.played).toBe(1);
+    // Separate elements, routes and gains, so the handover is a crossfade.
+    expect(context.mediaRoutes).toBe(2);
+    expect(gainFor(0)?.gain.calls).toContain('exponentialRampToValueAtTime');
+    expect(gainFor(0)?.gain.value).toBeLessThan(MUSIC_BED_GAIN);
+    expect(gainFor(1)?.gain.value).toBe(MUSIC_BED_GAIN);
+  });
+
+  it('does not restart a bed that is already the one playing', () => {
+    const { tracks, engine } = harness();
+    engine.setEnabled(true);
+
+    engine.startMusic('theme');
+    engine.startMusic('theme');
+    engine.startMusic('theme');
+
+    // Re-entering a question must not rewind the quiz bed to zero.
+    expect(tracks.theme.played).toBe(1);
   });
 
   it('fades the bed up to the trimmed level and back down on stop', () => {
     const { context, engine } = harness();
     engine.setEnabled(true);
-    engine.startMusic();
+    engine.startMusic('theme');
 
     const musicBus = context.gains[2];
     expect(musicBus?.gain.value).toBe(MUSIC_BED_GAIN);
@@ -271,7 +301,7 @@ describe('audio engine', () => {
   it('silences and suspends the moment sound is switched off', () => {
     const { context, music, engine } = harness();
     engine.setEnabled(true);
-    engine.startMusic();
+    engine.startMusic('theme');
 
     engine.setEnabled(false);
 
@@ -283,7 +313,7 @@ describe('audio engine', () => {
   it('releases the audio hardware while the page is hidden', () => {
     const { context, music, engine } = harness();
     engine.setEnabled(true);
-    engine.startMusic();
+    engine.startMusic('theme');
 
     engine.pauseForHidden();
     expect(music.paused).toBeGreaterThan(0);
@@ -302,7 +332,7 @@ describe('audio engine', () => {
     const { context, music, engine } = harness();
     engine.setEnabled(true);
     engine.play('press');
-    engine.startMusic();
+    engine.startMusic('theme');
 
     engine.destroy();
 
@@ -322,7 +352,7 @@ describe('audio engine', () => {
 
     expect(() => {
       engine.play('press');
-      engine.startMusic();
+      engine.startMusic('theme');
       engine.unlock();
       engine.destroy();
     }).not.toThrow();

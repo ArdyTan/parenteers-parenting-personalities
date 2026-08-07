@@ -23,7 +23,7 @@ const config = {
     desktopEscapeHatch: true,
     analytics: 'plausible',
   },
-  loading: { lineMs: 2500, skippableAfterLine: 2 },
+  loading: { holdMs: 5000 },
   gate: { minDesktopWidth: 900 },
   story: { panels: 3 },
   utm: { source: 'quiz', medium: 'share', campaign: 'parenting-bakes' },

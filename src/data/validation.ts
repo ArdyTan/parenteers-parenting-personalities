@@ -48,13 +48,12 @@ export const REQUIRED_I18N_KEYS = [
   'loading.title', 'loading.a11y', 'loading.line1', 'loading.line2', 'loading.line3',
   'loading.line4',
   'result.intro_label', 'result.superpowers_label', 'result.watchout_label',
-  'result.popcousin_label', 'result.share_ig', 'result.save_image', 'result.copy_link',
+  'result.popcousin_label', 'result.other_types_label',
+  'result.share_ig', 'result.save_image', 'result.copy_link',
   'result.copied', 'result.see_all', 'result.retake', 'result.activities_cta',
   'result.your_code', 'result.softsell_body', 'result.scroll_hint',
   'gallery.title', 'gallery.your_type_badge', 'gallery.send_quiz', 'gallery.back_to_result',
   'gallery.intro',
-  'end.cta_activities', 'end.cta_follow', 'end.cta_share', 'end.cta_retake', 'end.h2',
-  'end.body', 'end.founder_note',
   'share.title', 'share.caption_template', 'share.whatsapp', 'share.instagram', 'share.other',
   'share.hold_hint', 'share.image_shared', 'share.image_saved', 'share.link_shared',
   'footer.disclaimer', 'footer.made_by', 'footer.copyright', 'footer.privacy',
@@ -141,7 +140,7 @@ function validateSceneArt(value: unknown, errors: string[]): void {
 
   const continuity = asRecord(manifest.continuity, 'sceneArt.continuity', errors);
   if (continuity) {
-    for (const key of ['landing', 'intro', 'calculating', 'end', 'gate', 'preloader']) {
+    for (const key of ['landing', 'intro', 'calculating', 'gate', 'preloader']) {
       validateRuntimeImagePath(continuity[key], `sceneArt.continuity.${key}`, errors);
     }
   }
@@ -354,10 +353,7 @@ function validateConfig(
       errors.push('config.flags.analytics must be "plausible" or false.');
     }
   }
-  if (loading) {
-    expectPositiveNumber(loading.lineMs, 'config.loading.lineMs', errors);
-    expectNonNegativeInteger(loading.skippableAfterLine, 'config.loading.skippableAfterLine', errors);
-  }
+  if (loading) expectPositiveNumber(loading.holdMs, 'config.loading.holdMs', errors);
   if (gate) expectPositiveNumber(gate.minDesktopWidth, 'config.gate.minDesktopWidth', errors);
   if (story) expectPositiveNumber(story.panels, 'config.story.panels', errors);
   if (utm) {
@@ -416,12 +412,6 @@ function expectNonEmptyString(value: unknown, path: string, errors: string[]): v
 function expectPositiveNumber(value: unknown, path: string, errors: string[]): void {
   if (typeof value !== 'number' || !Number.isFinite(value) || value <= 0) {
     errors.push(`${path} must be a positive number.`);
-  }
-}
-
-function expectNonNegativeInteger(value: unknown, path: string, errors: string[]): void {
-  if (typeof value !== 'number' || !Number.isInteger(value) || value < 0) {
-    errors.push(`${path} must be a non-negative integer.`);
   }
 }
 

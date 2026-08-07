@@ -64,7 +64,7 @@ Budgets live in plan.md §10 (JS ≤300KB gz, fonts ≤120KB, ≤300KB images/sc
 5. Interpolation variables (`{n}`, `{total}`, `{type}`, `{emoji}`, `{link}`, `{year}`, `{lang}`) are never translated or reordered without updating template logic.
 6. **Honesty rule:** "built on 4 research-backed parenting dimensions" — never "science says there are 16 parenting types."
 7. **Equal love:** all 16 types keep the same compliment density and word counts; no type reads as the default good one.
-8. Disclaimer appears on result + end pages: *"For fun & reflection — not a clinical assessment or diagnostic tool."*
+8. Disclaimer appears on the result page, the terminal surface: *"For fun & reflection — not a clinical assessment or diagnostic tool."*
 9. Humor targets the parent experience (cold coffee, cardboard boxes) — never the child, never outcomes.
 
 ## 7. Asset Conventions

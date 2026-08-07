@@ -482,14 +482,19 @@
     padding: 0;
   }
 
-  /* `language-selection`: 64x36 outline pill, two 28x28 capsules ----------- */
+  /* `language-selection`: 64x36 outline pill, two 28x28 capsules -----------
+     Same circle rule as `.sound-toggle`: with `box-sizing: border-box` the 36px
+     box minus its 1px border and 3px padding leaves a 28px-tall content row, so
+     the thumb and both labels are square and `50%` can only describe a circle.
+     The previous `2px 4px` padding left them 28x30 and 28x32 — ovals. Uniform
+     3px padding also makes the inline track exactly 2 x 28. */
 
   .language-switch {
     inline-size: 64px;
     block-size: 36px;
     grid-template-columns: repeat(2, 28px);
     gap: 0;
-    padding: 2px 4px;
+    padding: 3px;
     border: var(--border-width-hairline) solid var(--color-outline);
     border-radius: 18px;
     background: var(--color-transparent);
@@ -497,9 +502,9 @@
   }
 
   .language-switch__thumb {
-    inset: 2px auto 2px 4px;
+    inset: 3px auto 3px 3px;
     inline-size: 28px;
-    border-radius: 16px;
+    border-radius: 50%;
     background: var(--brand-blue);
     box-shadow: none;
   }
@@ -512,10 +517,10 @@
     display: grid;
     inline-size: 28px;
     min-inline-size: 28px;
-    block-size: 32px;
-    min-block-size: 32px;
+    block-size: 28px;
+    min-block-size: 28px;
     padding: 0;
-    border-radius: 16px;
+    border-radius: 50%;
     place-items: center;
     color: var(--color-text-muted);
     font-size: var(--font-size-ref-micro);
@@ -786,20 +791,37 @@
     background: var(--color-editorial-canvas);
   }
 
-  /* indicator / art band / headline+answers. The band is the flexible row and
-     centres the illustration inside it; the illustration itself stays at its
-     native 3:2 at every viewport height, so it is never scaled. On the tightest
-     combination (a three-line scenario at 844px) the band clips it symmetrically
-     top and bottom, where these crops are empty cream anyway. */
+  /* indicator / art band / headline+answers. The band starts at row 2 but spans
+     the headline row too, so the illustration keeps its native 3:2 at 390 wide
+     instead of being squeezed into whatever the copy leaves over — which on a
+     short phone (a Galaxy A55 with browser chrome is ~720 CSS px, not 844) was
+     as little as ~40px of a 260px image.
+
+     The two share that row by z-order, not by fading: the band is the scene's
+     background layer at `z-index: 0` and the stack paints over it at `1`. On a
+     tall screen they simply do not meet; on a short one the copy sits straight
+     on the artwork. `.scene__body` carries `isolation: isolate`, so these two
+     indices are scoped to the scene and cannot fight the header or the toasts. */
   .scene--question .question__body {
     grid-template-rows: auto minmax(0, 1fr) auto;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* Every band is pinned to the single column. Without this the stack, whose
+     row is already taken by the spanning art band, auto-places into an implicit
+     second column and the whole scene halves in width. */
+  .scene--question .quiz-indicator,
+  .scene--question .question__art-band,
+  .scene--question .question__stack {
+    grid-column: 1;
   }
 
   .scene--question .question__art-band {
     display: grid;
-    grid-row: 2;
+    z-index: 0;
+    grid-row: 2 / 4;
     min-block-size: 0;
-    align-content: center;
+    align-content: start;
     margin: 0;
     overflow: clip;
   }
@@ -814,6 +836,10 @@
     max-block-size: none;
     margin: 0;
     object-fit: cover;
+    /* No fade. The illustration is a background *layer*, not a graded overlay:
+       it paints at full strength and the copy sits on top of it by z-order.
+       Its own canvas is the page colour, so the frame edge is already seamless
+       and there is nothing for a gradient to hide. */
     mask-image: none;
     pointer-events: none;
   }
@@ -835,6 +861,10 @@
     gap: var(--gap-tight);
   }
 
+  /* The design file draws this row in the outline tan, which is a 1.4:1 contrast
+     against the cream page — on a real phone in daylight the back link, the
+     counter and the close control all but vanish. Muted blue keeps the quiet
+     hierarchy and clears WCAG 1.4.3 at ~4.9:1. */
   .scene--question .quiz-indicator__back,
   .scene--question .quiz-indicator__close,
   .scene--question .quiz-progress__label {
@@ -843,7 +873,7 @@
     border: 0;
     background: var(--color-transparent);
     box-shadow: none;
-    color: var(--color-outline);
+    color: var(--color-text-muted);
     font-family: var(--font-family-ui);
     font-size: var(--font-size-ref-micro);
     font-weight: var(--font-weight-bold);
@@ -937,6 +967,18 @@
     text-align: start;
   }
 
+  /* The reference frames were drawn against a ~20-character prompt. Q5's is 74,
+     which at 36px is five lines — half the screen — and pushes the answers and
+     CTA past the fold on a short phone. Long prompts step down instead, the same
+     device the result name already uses for "Croquembouche". */
+  .scene--question .question__title[data-scale="md"] {
+    font-size: var(--font-size-ref-display-md);
+  }
+
+  .scene--question .question__title[data-scale="sm"] {
+    font-size: var(--font-size-ref-display-sm);
+  }
+
   .scene--question .answer-grid {
     display: grid;
     gap: var(--gap-tight);
@@ -997,10 +1039,12 @@
     background: var(--color-editorial-canvas);
   }
 
-  /* title / marquee / status line, where the status line owns the leftover space
-     and centres itself in it. */
+  /* title / marquee / status line, where the *marquee* owns the leftover space.
+     Handing the flexible row to the cast instead of to the status line is what
+     makes the bakes big: each row is a third of whatever the copy leaves, and
+     the thumbnails are sized from that rather than from a fixed 104px. */
   .scene--calculating .baking__body {
-    grid-template-rows: auto auto minmax(0, 1fr);
+    grid-template-rows: auto minmax(0, 1fr) auto;
     align-content: stretch;
     gap: var(--pad-universal);
     padding-block: var(--pad-universal);
@@ -1015,28 +1059,36 @@
 
   .scene--calculating .baking__marquees {
     display: grid;
+    min-block-size: 0;
+    grid-template-rows: repeat(3, minmax(0, 1fr));
     gap: var(--gap-component);
   }
 
   .baking__marquee {
+    min-block-size: 0;
     overflow: hidden;
   }
 
+  /* The track needs a definite height for the percentage on the items to
+     resolve; every ancestor up to `.app-runtime` already has one. */
   .baking__marquee-track {
     display: flex;
+    block-size: 100%;
     inline-size: max-content;
     align-items: center;
     will-change: transform;
   }
 
-  /* Fixed size and a right margin rather than a flex `gap`: the marquee measures
-     one row as its repeat unit, and a gap would add an extra space at every
-     clone boundary, which shows up as a drifting seam. */
+  /* Square, sized off the row rather than a fixed px, and spaced with a right
+     margin rather than a flex `gap`: the marquee measures one row as its repeat
+     unit, and a gap would add an extra space at every clone boundary, which
+     shows up as a drifting seam. */
   .baking__marquee-item {
-    inline-size: 104px;
-    block-size: 104px;
+    inline-size: auto;
+    block-size: 100%;
     flex: 0 0 auto;
     margin-inline-end: var(--gap-component);
+    aspect-ratio: 1;
     object-fit: contain;
   }
 
@@ -1057,13 +1109,6 @@
     font-weight: var(--font-weight-medium);
     line-height: var(--line-height-ref-body);
     list-style: none;
-  }
-
-  /* One line at a time: every item shares a single cell so they cross-fade in
-     place instead of stacking up. Reduced motion keeps the plain vertical list,
-     where all four lines stay readable at once. */
-  .scene--calculating .loading-lines--sequential > li {
-    grid-area: 1 / 1;
   }
 
   /* 5 · Result ----------------------------------------------------------- */
@@ -1190,6 +1235,44 @@
   .scene--result .result__power-list {
     display: grid;
     gap: var(--gap-tight);
+  }
+
+  /* The other bakes, carrying the same weight as the pop-culture cousin above:
+     heading, a row of quick-changing tiles, one wide way into the gallery. */
+  .scene--result .result__other-strip {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--gap-tight);
+  }
+
+  .scene--result .result__other-tile {
+    inline-size: 100%;
+    block-size: auto;
+    aspect-ratio: 1;
+    object-fit: contain;
+  }
+
+  .scene--result .result__see-all {
+    display: flex;
+    min-block-size: 52px;
+    align-items: center;
+    justify-content: center;
+    margin-block-start: 4px;
+    padding: 14px 20px;
+    border: 0;
+    border-radius: 25px;
+    background: var(--color-capsule-warm);
+    box-shadow: none;
+    color: var(--brand-orange);
+    font-family: var(--font-family-ui);
+    font-size: var(--font-size-ref-ui);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.25;
+    text-align: center;
+  }
+
+  .scene--result .result__see-all:active {
+    background: #ecd9bd;
   }
 
   .scene--result .result__rule {
@@ -1326,16 +1409,53 @@
   }
 }
 
-/* Short viewports: tighten the Splash stack before it can crowd the art. */
+/* Short viewports: tighten the Splash stack before it can crowd the art. The
+   baking marquee needs nothing here — its thumbnails are sized from the row it
+   is given, so a shorter screen shrinks them on its own. */
 @media (max-height: 46rem) {
   @layer shell {
     .scene--landing .landing__header {
       gap: var(--gap-header-body);
     }
+  }
+}
 
-    .baking__marquee-item {
-      inline-size: 68px;
-      block-size: 68px;
+/* Only where the copy actually lands on the artwork ---------------------------
+   Measured, not guessed. The image is a fixed 260px starting just below the
+   rail, so how far the headline runs onto it is purely a function of viewport
+   height: 0px at 915 and 870, 30px at 844 (the image's empty bottom edge, which
+   is why a full-height phone reads clean), then 49 at 820, 89 at 730 and 146 at
+   667. 820px is where the copy first reaches real picture rather than margin.
+
+   Above it the illustration stays a plain layer, which is the composition we
+   want. Below it a hard-edged picture with text dropped on top reads as two
+   pasted elements, so the lower half dissolves into the page and the scene goes
+   back to being one environment. */
+@media (max-height: 51.25rem) {
+  @layer shell {
+    .scene--question .question__art {
+      -webkit-mask-image: linear-gradient(
+        to bottom,
+        rgb(0 0 0) 0 50%,
+        rgb(0 0 0 / 45%) 72%,
+        rgb(0 0 0 / 14%) 88%,
+        rgb(0 0 0 / 0) 100%
+      );
+      mask-image: linear-gradient(
+        to bottom,
+        rgb(0 0 0) 0 50%,
+        rgb(0 0 0 / 45%) 72%,
+        rgb(0 0 0 / 14%) 88%,
+        rgb(0 0 0 / 0) 100%
+      );
+    }
+
+    /* Same reason the display scale is pinned there: the escape hatch renders a
+       fixed 390x844 frame, and this query measures the window, not the frame. A
+       short laptop window would otherwise fade art that a real phone would not. */
+    :root[data-presentation="framed"] .scene--question .question__art {
+      -webkit-mask-image: none;
+      mask-image: none;
     }
   }
 }

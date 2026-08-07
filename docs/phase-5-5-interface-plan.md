@@ -89,6 +89,16 @@ Shared band primitives live in `src/scenes/dom.ts`: `sceneBody`, `sceneBottom`, 
     flourish rather than a glyph on the baseline.
 - `.language-switch` restyled to `language-selection`: 64×36, `border-radius: 18px`, 1px outline,
   two 28×28 capsules. The draggable thumb (technique 64) is retained at the new geometry.
+  **Corrected 2026-08-02:** the padding was `2px 4px`, which with `box-sizing: border-box` left the
+  thumb 28×30 and each label 28×32 — ovals, the same defect already fixed on `.sound-toggle`.
+  Uniform `3px` padding gives a square 28px content row (and an inline track of exactly 2 × 28), so
+  `border-radius: 50%` on the thumb and both labels can only describe circles. The QA contract now
+  asserts every ring is square at 50%.
+- **`sound-on.svg` / `sound-off.svg` recentred 2026-08-02.** A `center / contain` mask centres the
+  *viewBox*, not the drawing: both glyphs sat 6–7 units right of centre inside their 64×64 box, so
+  the icon read visibly off-centre in its circle. The artwork now centres at 31.84 / 32.0 (was
+  38.35 / 39.0), and both states share one speaker path so nothing shifts when the toggle flips.
+  Asserted in QA via `getBBox()` rather than by eye.
 - The toggle is hidden on Quiz Opening and Q1–Q12 via `.app-runtime:has(.scene--intro/…)`, per
   the frames — zero JS.
 - `button-expression.svg` (12×20) and `progress-bar-star.svg` (18×20) are now runtime assets in
@@ -136,10 +146,87 @@ what shoved the CTA around. Re-selecting either card already changes the answer,
 label carries the affordance (`quiz.cta_pick` → `nav.next`).
 
 **The illustration is never rescaled.** It renders at its native 3:2 — **390×260 at every
-viewport height** — centred in the band. Where the band is shorter than 260 (a three-line scenario
-at 844px leaves it ~238) the band clips the illustration symmetrically top and bottom, which in
-these crops is empty cream. Taller phones give the band its full height. It always runs edge to
-edge with a matching cream, so there is no visible seam either way.
+viewport height** — and always runs edge to edge with a matching cream, so there is no visible
+seam.
+
+**Revised 2026-08-02 — the band spans the headline row.** Centring the art in the *leftover* space
+only worked at the 844px design canvas. A Galaxy A55 with browser chrome is ~720 CSS px, where a
+five-line Q5 headline left the band **~40px of a 260px image** — the user's "the picture is
+trimmed". The band is now `grid-row: 2 / 4` with `align-content: start`, so it keeps its full 260
+regardless of how tall the copy is, and the copy sits *over* its lower half rather than pushing it
+out. Every band is pinned to `grid-column: 1` — without that the stack, whose row the band now
+occupies, auto-places into an implicit second column and halves the scene. That failure is now
+asserted by name in `qa:phase55`, because the symptom (a cropped art band) is a long way from the
+cause.
+
+**The overlap is z-order, with the fade scoped to where it is needed** (user's calls, 2026-08-02).
+The first pass masked the image everywhere; the user asked for a plain background *layer* instead,
+then for the gradient back "just for the risk potential device, to make the image feel one with the
+environment". Both are now true, split by a measured threshold rather than a guess.
+
+The layer is the base state: the band is the scene's background at `z-index: 0`, the stack paints
+over it at `1`, and `.scene__body`'s `isolation: isolate` keeps both scoped to the scene. The
+image's own canvas is the page colour, so its frame edge is seamless, and the band is always taller
+than the image, so `overflow: clip` never bites.
+
+How far the copy runs onto the picture is purely a function of viewport height, because the image
+is a fixed 260px starting just below the rail:
+
+| viewport height | 915 | 870 | 844 | 820 | 800 | 780 | 730 | 667 |
+|---|---|---|---|---|---|---|---|---|
+| copy on art (px, worst prompt) | 0 | 3 | 30 | 49 | 66 | 83 | 95 | 151 |
+| headline starts at (% down) | — | 99 | 88 | 81 | 75 | 68 | 65 | 43 |
+
+At 844 and above the copy only reaches the image's empty bottom margin, which is why a full-height
+phone reads clean with no mask at all. **820px is where it first reaches real picture**, so that is
+the breakpoint: `@media (max-height: 51.25rem)` reinstates the fade (full to 50%, 45% at 72%, 14%
+at 88%, gone by 100%). Verified the switch flips at exactly 820 — 821 is unfaded with 15px of
+overlap, 820 is faded. `:root[data-presentation="framed"]` keeps the escape hatch unfaded for the
+same reason it keeps the width-only type scale: the query measures the window, not the 390×844
+frame, and a short laptop window would otherwise fade art a real phone would not (confirmed
+unfaded at 700px and 620px windows).
+
+Below about 700px the headline starts above the halfway mark and the fade can no longer fully keep
+ahead of it — that is below every device in the target matrix, and the type scale has stepped the
+headline down to ~20px by then.
+
+(A first sweep claiming the no-clip result ran without seeding `pb1.answers`, so the route guard
+bounced every case to Q1 and it only ever measured the shortest prompt; the 40-case table below is
+the one that actually exercises all three tiers.)
+
+**Two independent axes size the headline**, because two different things make it too big.
+
+*Copy length* — the reference headline is ~20 characters; the real scenarios run to 74.
+`data-scale="md"` (>40 chars) and `"sm"` (>58) pick the tier, the same device
+`result__name[data-long-name]` already uses for "Croquembouche".
+
+*Screen height* — `cqi` alone only answers "how wide". An A55 with browser chrome is the same 390
+wide as the design canvas but ~120px shorter, so a width-only scale hands a short screen exactly
+the 36px that overwhelmed it. Each display tier is now
+`clamp(floor, min(Ncqi, Msvh), ceiling)`, with both terms resolving to the same value on the
+390×844 canvas — so the reference frames are untouched and the height term only bites below them.
+`svh`, not `dvh`: the small viewport is stable, whereas `dvh` would resize the headline as the URL
+bar hides and shows. The floors were lowered from 2/1.7/1.45rem to 1.4/1.25/1.1rem, or they would
+have blocked the shrink they exist to bound.
+
+Measured across 8 screens × 5 prompts × both languages, **40 cases, route guard satisfied**
+(seeding `pb1.answers` matters — without it every deep link bounces to Q1 and the sweep silently
+measures the same question eight times):
+
+| screen | base | md | sm |
+|---|---|---|---|
+| design canvas 390×844 | 36 | 30 | 26 |
+| A55 full 393×851 | 36.3 | 30.2 | 26.2 |
+| A55 + chrome 393×730 | 31.1 | 25.9 | 22.5 |
+| S25 FE + chrome 411×790 | 33.7 | 28.1 | 24.3 |
+| iPhone SE 375×667 | 28.4 | 23.7 | 20.6 |
+| 390×560 | 23.9 | 20 | 17.6 |
+
+In all 40: ≤3 lines, CTA above the fold, art at its native 260 with no clip, no overflow.
+
+**The indicator row is muted blue, not outline tan.** The design file draws `← Kembali`, the
+counter and the close control in `--color-outline`, which is 1.4:1 against the cream page. That is
+a WCAG 1.4.3 failure on a real phone; `--color-text-muted` keeps the quiet hierarchy at ~4.9:1.
 
 One deliberate deviation: the frames float the band at `y=25` *behind* the indicator, because
 their sample artwork has an empty top. Our twelve scenarios are full-frame crops, so the band
@@ -155,17 +242,22 @@ speed riding the oven ramp instead of scroll velocity).
 - Uses `public/characters/thumbs/` via the shared `characterThumbnail()` helper in
   `src/data/index.ts` — **16 unique requests, 204 KB measured**, inside the §10 ≤300 KB/screen
   budget. The full-size set is 1020 KB and would break it.
-- Items are fixed-size with a right margin rather than a flex `gap`: the marquee measures one row
-  as its repeat unit, and a gap would add an extra space at every clone boundary — a drifting seam.
-- The timing contract is untouched: `config.loading.lineMs`, the four `loading.line*` reveals,
-  `skippableAfterLine`, and abort-safe teardown.
-- **One status line at a time.** The body is `auto / auto / minmax(0,1fr)` — title, marquee, then
-  the status line owning the leftover space and centring itself in it. `loading-lines--sequential`
-  (added from TS only when motion is allowed) collapses all four `<li>` into a single grid cell so
-  they cross-fade in place instead of stacking into a growing list, at **18px**
-  (`--font-size-ref-lead`) rather than body size.
-- Reduced motion keeps the plain vertical list with all four lines visible at once — no stacking,
-  since overlapping text would be unreadable without the cross-fade.
+- Items are square and sized from the row they are given rather than a fixed px, and spaced with a
+  right margin rather than a flex `gap`: the marquee measures one row as its repeat unit, and a gap
+  would add an extra space at every clone boundary — a drifting seam.
+- **Revised 2026-08-02.** The body is `auto / minmax(0,1fr) / auto` — title, *marquee*, status
+  line. Handing the flexible row to the cast instead of to the copy is what makes the bakes big:
+  **164px at 390×844**, up from the fixed 104 (68 on short viewports). A shorter screen shrinks
+  them on its own, so the `max-height: 46rem` override is gone.
+- **One status line, held still.** The four lines used to hand over to each other on a
+  `lineMs` timer; at this length that reads as flashing text rather than progress. One line is
+  picked per run — the same "no two runs look the same" idea as the shuffled marquee — and never
+  animates, at **18px** (`--font-size-ref-lead`).
+- **No button.** `config.loading.holdMs` (5000) replaces `lineMs`/`skippableAfterLine`: the scene
+  advances to `/r/{slug}` on its own, and a tap anywhere skips ahead so nobody is held by a timer
+  they cannot see. It is consequently the one scene with no `Bottom Section`. The timer is
+  idempotent against the tap and cleared in `onDestroy`.
+- Reduced motion drops the marquee animation and the entrance, not the hold or the advance.
 
 ### 5 · Result — `src/scenes/result.ts`
 **First screen** now leads with the art, per the frames: character (full-width, `contain`) →
@@ -193,18 +285,30 @@ li::before` (0,2,1) outranked the Phase 5.5 rule (0,1,1) and stretched them to 4
 Superpower kamu         Fraunces 24 + numbered Text Points (27px circles)
 Watch-out, with love    Fraunces 24 + paragraph
 Sepupu pop-culture      Fraunces 24 + line
+Kenalan sm bake lainnya Fraunces 24 + 3 quick-changing tiles + wide button
 ──────────────────────  hairline in --color-outline
 soft-sell               warm activity tags + outlined "Intip aktivitas Parenteers"
 disclaimer              required by the CLAUDE.md copy-honesty rule
-[ 🔗 Salin link ]  [ ⭐ Lihat semua 16 tipe ]      2x2 warm chip tray
-[ ⏱ Ulangi quiz ]  [ 👍 Lanjutkan          ]
+[ 🔗 Salin link ]  [ ⏱ Ulangi quiz ]              2-up warm chip tray
 ```
+
+**The other bakes** (added 2026-08-02) is a fourth `result__section`, deliberately at the same
+weight as the pop-culture cousin above it: a 24px Fraunces heading, three square tiles, and one
+full-width `Capsules-warm` button into `/gallery`. The other fifteen types are shuffled and dealt
+round-robin into three disjoint decks, so no two tiles can show the same bake; a `gsap.delayedCall`
+chain swaps **one tile every 520ms** with an elastic pop. An `IntersectionObserver` runs it only
+while the row is on screen — it sits well below the fold, so there is no reason to be swapping (or
+fetching) images while the user is still reading the hero — and warms all fifteen thumbnails the
+first time it starts, so a swap can never land on an unfetched tile. Reduced motion keeps three
+static bakes. Verified: static off screen, one change at a time on screen, never a duplicate in a
+row, stops again when scrolled away.
 
 **The chip tray** replaces what was a stack of underlined text links. Each secondary destination is
 a `Capsules-warm` pill — tan fill, orange label, `border-radius: 25px` — with a 20px icon from the
-existing 16-icon family (`share`, `star-featured`, `stopwatch`, `thumbs-up`), laid out 2×2. On
-press the icon kicks with an elastic rotate (`bindChipWiggle`) on top of the shared press squash,
-so every one of them has something to feel. The soft-sell block was brought into the same warm
+existing 16-icon family (`share`, `stopwatch`), laid out 2-up. On press the icon kicks with an
+elastic rotate (`bindChipWiggle`) on top of the shared press squash, so both have something to
+feel. It was a 2×2 of four: the gallery chip was promoted into its own section above, and
+"Lanjutkan" left with `/end`. The soft-sell block was brought into the same warm
 language — activity tags as small tan labels instead of blue outlines, and the Parenteers CTA as an
 orange-outlined capsule that mutes to `--color-outline` while its URL is still `TBD`.
 
@@ -215,7 +319,8 @@ decorated after the controller is attached.
 Text block insets `34px 40px`, `gap 34` between groups, `10` inside. The old six-button stack
 collapsed into one primary action: `deliverResultImage` already routes to `/story` when the
 WebView can only offer a screenshot, so the single CTA covers both share entry points. Nothing is
-orphaned — `/story`, `/gallery` and `/end` all keep a reachable entry point.
+orphaned — `/story` and `/gallery` both keep a reachable entry point (the gallery through the
+"other bakes" section added 2026-08-02). `/end` was removed the same day.
 
 **Docked share bar** (technique 65): `position: fixed` at the bottom, `translateY(115%)` when
 away. It is driven by **scroll offset**, not an element sentinel — the hero is taller than the
@@ -266,16 +371,27 @@ linearised under reduced motion.
 emulation, which bypasses the desktop QR gate. It asserts, per surface:
 
 - scene mounted, no horizontal overflow, no broken images, no runtime errors
-- header in flow, no dead space between header and body, bottom band flush with the scene bottom
+- header in flow, no dead space between header and body, bottom band flush with the scene bottom.
+  Baking is the one listed exception — it is asserted to have *no* bottom band
 - every bottom CTA: the expression mark present, **52px** tall, ≤3px label gap, unrotated, and a
   mark shorter than the label's line box
-- art bands full-bleed, at their **native 260px**, and **centred** in their band
-- the star rail clear of the artwork; the band clear of the headline
-- the progress label a single text node; no change-answer link; the CTA disabled until an answer
-- baking: no dial or card, 3 marquee rows, 16 unique thumb requests, ≤300 KB, 18px status line,
-  and exactly **one** line visible at a time (plain list under reduced motion)
-- result: character exactly 390px wide, name inside the inset, 27px circular bullets, 4 icon chips
-  in warm capsules, and the docked bar's full appear/hide cycle
+- header controls: the language thumb, both language labels and the sound capsule are square boxes
+  at `border-radius: 50%`, and both sound glyphs centre within 0.75 units of 32 in their viewBox
+  (read with `getBBox()`, since a `contain` mask hides the offset from every layout measurement)
+- art bands full-bleed and at their **native 260px**, carrying **no mask at 844** (the copy clears
+  the artwork there) but **a fade at 720**, with the copy stack positioned above the band by
+  z-index inside an isolated `.scene__body`; the star rail clear of the artwork; the copy stack in
+  `grid-column: 1` at full viewport width
+- questions sampled at **1 / 2 / 5 / 12** — one at each headline tier — and no scenario may run
+  more than three lines; the indicator row may not be the outline tan
+- a dedicated **390×720** pass on Q5 (the A55-with-chrome case): art still 260px, art bottom below
+  the headline top, CTA above the fold
+- baking: no dial or card, 3 marquee rows, **square thumbnails ≥120px**, 16 unique thumb requests,
+  ≤300 KB, exactly one 18px status line at full opacity, no continue button, and the scene on
+  `result` after the 5s hold
+- result: character exactly 390px wide, name inside the inset, 27px circular bullets, **4** detail
+  sections, **2** icon chips in warm capsules, **3** other-type tiles under a heading at
+  cousin-section weight, a full-width ≥48px see-all button, and the docked bar's appear/hide cycle
 
 Screenshots land in `artifacts/phase55-qa/`. Requires `npm run dev` plus Chrome on
 `--remote-debugging-port=9223`.
@@ -285,9 +401,9 @@ result character — its entrance tween scales it, so a rect read mid-flight rep
 size and produces a phantom ~5px failure. More of these are collected in
 `docs/performance-probes.md` §Interpretation traps.
 
-Last run: **0 failures, 0 runtime errors** in both `no-preference` and `reduce`; typecheck clean;
-17 test files / 151 tests; production build **214.86 KB JS gzip** and **13.83 KB CSS gzip** (down
-from 14.35 after ~47 dead rules were removed); strict asset audit 0 issues across 51 derivatives
+Last run (2026-08-02, after the seven-note revision): **0 failures, 0 runtime errors** in both
+`no-preference` and `reduce`; typecheck clean; 14 test files / 143 tests; production build
+**80.58 KB JS gzip** and **13.95 KB CSS gzip**; strict asset audit 0 issues across 51 derivatives
 and 17 OG images.
 
 ## Still open
@@ -296,6 +412,8 @@ and 17 OG images.
   `quiz.cta_pick` ship as marked placeholders in both locales. Any new key must also be added to
   `REQUIRED_I18N_KEYS` in `src/data/validation.ts` — `data-integrity.test.ts` asserts the key set
   matches it exactly, and all 70 keys from `quiz-02-ui-strings.md` must survive.
+- The founder note. `config.flags.founderNote` still exists but is unwired: its only surface was
+  `/end`, which was removed 2026-08-02. It needs a home on the Result before it can ship.
 - Physical Samsung A55 / S25 FE and Instagram in-app-browser sign-off. A Samsung A23 (or similar
   Snapdragon 680 class) is worth adding: the throttled proxy says it should be fine, but GPU cost
   and memory bandwidth were never measured on real silicon.

@@ -73,8 +73,6 @@ export function parseRoute(pathname: string): AppRoute {
         return { scene: 'story' };
       case 'gallery':
         return { scene: 'gallery' };
-      case 'end':
-        return { scene: 'end' };
       default:
         return { scene: 'notFound', path: normalizedPath };
     }
@@ -117,8 +115,6 @@ export function buildRoutePath(route: AppRoute): string {
       return '/story';
     case 'gallery':
       return '/gallery';
-    case 'end':
-      return '/end';
     case 'notFound':
       return normalizePathname(route.path);
   }

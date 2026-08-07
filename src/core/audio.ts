@@ -30,15 +30,23 @@ export type SfxName =
   | 'confetti'
   | 'reveal';
 
+export type MusicTrack = 'theme' | 'result';
+
 /**
- * The shipped derivative of `audio/ayo-main-bersama-asik.wav`. AAC is listed
- * first because it is supported in every iOS WebView; the MP3 entry is a
- * fallback slot that costs nothing when the file is absent.
+ * Two beds: `theme` carries the quiz, `result` takes over at the reveal. Each
+ * lists AAC first because it is supported in every iOS WebView, with an MP3
+ * slot that costs nothing while the file is absent.
  */
-export const MUSIC_SOURCES: readonly string[] = Object.freeze([
-  '/audio/ayo-main-bersama-asik.m4a',
-  '/audio/ayo-main-bersama-asik.mp3',
-]);
+export const MUSIC_TRACKS: Readonly<Record<MusicTrack, readonly string[]>> = Object.freeze({
+  theme: Object.freeze([
+    '/audio/ayo-main-bersama-asik.m4a',
+    '/audio/ayo-main-bersama-asik.mp3',
+  ]),
+  result: Object.freeze([
+    '/audio/ayo-main-bersama-asik-result.m4a',
+    '/audio/ayo-main-bersama-asik-result.mp3',
+  ]),
+});
 
 /**
  * The theme is mastered at roughly -19 dBFS RMS, i.e. as a foreground piece.
@@ -135,7 +143,7 @@ const VOICES: Readonly<Record<SfxName, Voice>> = Object.freeze({
 
 export type AudioEngineOptions = Readonly<{
   createContext?: () => AudioContext | null;
-  createMusicElement?: () => HTMLAudioElement | null;
+  createMusicElement?: (track: MusicTrack) => HTMLAudioElement | null;
   random?: () => number;
 }>;
 
@@ -146,7 +154,8 @@ export interface AudioEngine {
   /** Must be called from inside a real user gesture, or the context stays suspended. */
   unlock(): void;
   play(name: SfxName): void;
-  startMusic(): void;
+  /** Crossfades if another track is already running. */
+  startMusic(track: MusicTrack): void;
   stopMusic(fadeSeconds?: number): void;
   /** Page hidden: release the audio hardware without forgetting the preference. */
   pauseForHidden(): void;
@@ -159,14 +168,20 @@ export function createAudioEngine(options: AudioEngineOptions = {}): AudioEngine
   const createMusicElement = options.createMusicElement ?? defaultMusicElementFactory;
   const random = options.random ?? Math.random;
 
+  type MusicVoice = Readonly<{
+    element: HTMLAudioElement;
+    gain: GainNode;
+    route: MediaElementAudioSourceNode | null;
+  }>;
+
   let context: AudioContext | null = null;
   let master: GainNode | null = null;
   let sfxBus: GainNode | null = null;
-  let musicBus: GainNode | null = null;
   let noiseBuffer: AudioBuffer | null = null;
-  let music: HTMLAudioElement | null = null;
-  let musicRoute: MediaElementAudioSourceNode | null = null;
-  let musicWanted = false;
+  // One voice per track, each with its own gain, so a crossfade is just two
+  // ramps rather than a shared bus fighting itself.
+  const voices = new Map<MusicTrack, MusicVoice>();
+  let musicWanted: MusicTrack | null = null;
   let hidden = false;
   let enabled = false;
   let destroyed = false;
@@ -189,10 +204,6 @@ export function createAudioEngine(options: AudioEngineOptions = {}): AudioEngine
     sfxBus = created.createGain();
     sfxBus.gain.value = 1;
     sfxBus.connect(master);
-
-    musicBus = created.createGain();
-    musicBus.gain.value = 0;
-    musicBus.connect(master);
 
     return context;
   }
@@ -289,28 +300,47 @@ export function createAudioEngine(options: AudioEngineOptions = {}): AudioEngine
     };
   }
 
-  function ensureMusic(ctx: AudioContext, bus: GainNode): HTMLAudioElement | null {
-    if (music) return music;
+  function ensureVoice(ctx: AudioContext, track: MusicTrack): MusicVoice | null {
+    const existing = voices.get(track);
+    if (existing) return existing;
 
-    const element = safely(createMusicElement);
+    const element = safely(() => createMusicElement(track));
     if (!element) return null;
 
-    music = element;
+    const gain = ctx.createGain();
+    gain.gain.value = 0;
+    if (master) gain.connect(master);
+
     // `createMediaElementSource` streams: the decode buffers stay native, so a
-    // 152.6s track never becomes 55.88 MB of Float32 in the JS heap.
-    musicRoute = safely(() => ctx.createMediaElementSource(element)) ?? null;
-    if (musicRoute) musicRoute.connect(bus);
-    return music;
+    // 150s track never becomes ~55 MB of Float32 in the JS heap.
+    const route = safely(() => ctx.createMediaElementSource(element)) ?? null;
+    if (route) route.connect(gain);
+
+    const voice: MusicVoice = { element, gain, route };
+    voices.set(track, voice);
+    return voice;
   }
 
-  function fadeMusicTo(target: number, seconds: number): void {
-    if (!context || !musicBus) return;
+  function fadeVoice(voice: MusicVoice, target: number, seconds: number): void {
+    if (!context) return;
     const now = context.currentTime;
-    const gain = musicBus.gain;
+    const gain = voice.gain.gain;
     gain.cancelScheduledValues?.(now);
     gain.setValueAtTime(Math.max(gain.value, SILENCE), now);
     if (target <= 0) gain.exponentialRampToValueAtTime(SILENCE, now + seconds);
     else gain.linearRampToValueAtTime(target, now + seconds);
+  }
+
+  /** Rings down every voice except `keep`, pausing each once its ramp lands. */
+  function retireOtherVoices(keep: MusicTrack | null, seconds: number): void {
+    for (const [name, voice] of voices) {
+      if (name === keep) continue;
+      if (voice.element.paused && voice.gain.gain.value <= SILENCE) continue;
+      fadeVoice(voice, 0, seconds);
+      setTimeout(() => {
+        if (musicWanted !== name) voice.element.pause();
+      }, Math.ceil(seconds * 1000));
+    }
   }
 
   const engine: AudioEngine = {
@@ -323,9 +353,11 @@ export function createAudioEngine(options: AudioEngineOptions = {}): AudioEngine
       enabled = next;
       if (next) return;
 
-      musicWanted = false;
-      music?.pause();
-      if (musicBus) musicBus.gain.value = 0;
+      musicWanted = null;
+      for (const voice of voices.values()) {
+        voice.element.pause();
+        voice.gain.gain.value = 0;
+      }
       if (context?.state === 'running') void context.suspend?.().catch(() => undefined);
     },
 
@@ -349,49 +381,50 @@ export function createAudioEngine(options: AudioEngineOptions = {}): AudioEngine
       scheduleIdleSuspend();
     },
 
-    startMusic(): void {
+    startMusic(track: MusicTrack): void {
       const ctx = ensureGraph();
-      const bus = musicBus;
-      if (!ctx || !bus || hidden) return;
+      if (!ctx || hidden) return;
 
-      musicWanted = true;
+      const already = musicWanted === track;
+      musicWanted = track;
       resumeIfNeeded(ctx);
 
-      const element = ensureMusic(ctx, bus);
-      if (!element) return;
+      // The outgoing bed rings down while the new one swells, so the reveal
+      // reads as a handover rather than a cut.
+      retireOtherVoices(track, MUSIC_FADE_OUT);
+
+      const voice = ensureVoice(ctx, track);
+      if (!voice) return;
 
       // Once someone has opted in, buffer ahead. `preload="none"` is what keeps
-      // the theme free for everyone else, but holding it there after a reload
+      // the tracks free for everyone else, but holding it there after a reload
       // means the first tap pays for the fetch *and* the start. Promoting it
       // here lets a returning visitor hear the bed the instant they touch
       // anything, since autoplay still forbids starting it before that.
-      if (element.preload !== 'auto') element.preload = 'auto';
+      if (voice.element.preload !== 'auto') voice.element.preload = 'auto';
+
+      if (already && !voice.element.paused) return;
 
       // `play()` rejects outside a gesture; that is an expected outcome, not an
       // error, so the bed simply stays silent until the next toggle or tap.
-      const started = safely(() => element.play());
+      const started = safely(() => voice.element.play());
       if (started && typeof started.catch === 'function') {
         started.catch(() => {
-          musicWanted = false;
+          if (musicWanted === track) musicWanted = null;
         });
       }
-      fadeMusicTo(MUSIC_BED_GAIN, MUSIC_FADE_IN);
+      fadeVoice(voice, MUSIC_BED_GAIN, MUSIC_FADE_IN);
     },
 
     stopMusic(fadeSeconds: number = MUSIC_FADE_OUT): void {
-      if (!musicWanted && !music) return;
-      musicWanted = false;
-      fadeMusicTo(0, fadeSeconds);
-      const element = music;
-      if (!element) return;
-      setTimeout(() => {
-        if (!musicWanted) element.pause();
-      }, Math.ceil(fadeSeconds * 1000));
+      if (musicWanted === null && voices.size === 0) return;
+      musicWanted = null;
+      retireOtherVoices(null, fadeSeconds);
     },
 
     pauseForHidden(): void {
       hidden = true;
-      music?.pause();
+      for (const voice of voices.values()) voice.element.pause();
       if (context?.state === 'running') void context.suspend?.().catch(() => undefined);
     },
 
@@ -401,28 +434,29 @@ export function createAudioEngine(options: AudioEngineOptions = {}): AudioEngine
       const ctx = context;
       if (!ctx) return;
       resumeIfNeeded(ctx);
-      if (musicWanted) void music?.play?.()?.catch?.(() => undefined);
+      const resuming = musicWanted === null ? null : voices.get(musicWanted);
+      if (resuming) void resuming.element.play?.()?.catch?.(() => undefined);
     },
 
     destroy(): void {
       destroyed = true;
       enabled = false;
-      musicWanted = false;
+      musicWanted = null;
       if (idleTimer !== null) clearTimeout(idleTimer);
       idleTimer = null;
-      music?.pause();
-      music?.remove();
-      musicRoute?.disconnect();
+      for (const voice of voices.values()) {
+        voice.element.pause();
+        voice.element.remove();
+        voice.route?.disconnect();
+        voice.gain.disconnect();
+      }
+      voices.clear();
       sfxBus?.disconnect();
-      musicBus?.disconnect();
       master?.disconnect();
       void context?.close?.().catch(() => undefined);
       context = null;
       master = null;
       sfxBus = null;
-      musicBus = null;
-      musicRoute = null;
-      music = null;
       noiseBuffer = null;
     },
   };
@@ -450,15 +484,15 @@ function defaultContextFactory(): AudioContext | null {
   return typeof Ctor === 'function' ? new Ctor() : null;
 }
 
-function defaultMusicElementFactory(): HTMLAudioElement | null {
+function defaultMusicElementFactory(track: MusicTrack): HTMLAudioElement | null {
   if (typeof document === 'undefined') return null;
   const element = document.createElement('audio');
-  // `none` is what makes sound-off cost literally zero bytes: the ~1.75 MB
-  // theme is not requested until someone turns sound on.
+  // `none` is what makes sound-off cost literally zero bytes: neither track is
+  // requested until someone turns sound on.
   element.preload = 'none';
   element.loop = false;
   element.setAttribute('playsinline', '');
-  for (const src of MUSIC_SOURCES) {
+  for (const src of MUSIC_TRACKS[track]) {
     const source = document.createElement('source');
     source.src = src;
     source.type = src.endsWith('.m4a') ? 'audio/mp4' : 'audio/mpeg';
@@ -467,7 +501,7 @@ function defaultMusicElementFactory(): HTMLAudioElement | null {
   // Attached rather than detached: in-app WebViews are inconsistent about
   // resource selection on a media element that is not in the document, and an
   // uncontrolled <audio> has no box, so this costs no layout.
-  element.dataset.appMusic = '';
+  element.dataset.appMusic = track;
   document.body.append(element);
   return element;
 }
