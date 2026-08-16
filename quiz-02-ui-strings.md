@@ -102,6 +102,22 @@ The `/end` page was removed on 2026-08-02; the journey now ends on the result.
 Its four CTA strings are no longer shipped, and the closing dialogue itself
 remains on record in `quiz-01-flow-dialogue.md` §PAGE 18.
 
+## Desktop Gate
+
+The QR gate a desktop visitor sees instead of the quiz. It has no page in
+`quiz-01-flow-dialogue.md`, so unlike every other row in this file these four were written
+for the layout rather than transcribed. **All four are placeholders awaiting a copy pass.**
+
+| Key | EN | ID |
+|---|---|---|
+| `gate.scan_title` | Scan to start on your phone | Scan buat mulai di HP |
+| `gate.scan_hint` | Open your phone camera and point it here. | Buka kamera HP kamu, arahin ke kode ini. |
+| `gate.reason` | This quiz is built for phone screens, so the result card fits an IG Story. | Quiz ini dibuat buat layar HP, biar kartu hasilnya pas dipajang di IG Story. |
+| `gate.continue_anyway` | Continue on this screen | Lanjut di layar ini aja |
+
+The gate also reuses `landing.eyebrow`, `landing.h1`, `landing.subtitle`, `landing.meta_time`,
+`landing.meta_questions` and `landing.meta_share` verbatim.
+
 ## Share Sheet
 
 | Key | EN | ID |

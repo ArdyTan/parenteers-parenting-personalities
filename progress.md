@@ -20,10 +20,18 @@
 
 ## Next action
 
-Deploy the verified landing-art visibility hotfix to `quiz.parenteers.id` after Ardy gives explicit
-deployment approval, then hard-refresh and repeat the exact Samsung Chrome check that produced the
-blank cream band. The local fix makes the primary illustration visible independently of the GSAP
-entrance timeline, so early `deviceorientation` events can no longer strand it at `opacity: 0`.
+The landing-art visibility hotfix is now live (deployed 2026-08-16). Hard-refresh on the Samsung
+and repeat the exact Chrome check that produced the blank cream band. The fix makes the primary
+illustration visible independently of the GSAP entrance timeline, so early `deviceorientation`
+events can no longer strand it at `opacity: 0`.
+
+Also new in production and unverified on a real device: the rebuilt shareable result card, the
+preloader bowl clip, and the redesigned desktop gate. On a phone, watch the preloader specifically
+on a cold, throttled load: it is still a 1.8 MB clip for a surface that is on screen for about a
+second, and how quickly the first frame lands is the whole question. On a desktop, the gate's four
+`gate.*` strings are placeholders and need a copy pass.
+
+Nothing in these releases is committed to git yet.
 
 Re-run the interface on the Samsung A55/S25 FE and in the Instagram in-app browser, now that the seven screenshot notes are closed. Look specifically at: the question headline sitting over the faded illustration at each of the three size tiers (Q1 / Q2 / Q5), whether the indicator row now reads in daylight, the bigger baking marquee and its 5-second auto-advance, the quick-changing "other bakes" row on the result, and the ID/EN + sound toggles at arm's length. Then run the live WhatsApp unfurl check against the deployed 16 OG shells at `https://quiz.parenteers.id/r/{slug}`.
 
@@ -43,6 +51,8 @@ Worth adding to the device matrix: a **Samsung A23** (Snapdragon 680 class). The
 - [x] No active `asset-pattern.png` exists outside `images/old images/`; Phase 4 intentionally retains the existing CSS/grain treatment
 - [x] Both beds encoded by the user and shipped: `public/audio/ayo-main-bersama-asik.m4a` (3.67 MB, 152.62s) and `ayo-main-bersama-asik-result.m4a` (3.57 MB, 147.38s), AAC at ~200 kbps — both verified playing in-browser with no media error. Two optional refinements remain the user's call for **both** files: 96 kbps would roughly halve them with no audible loss on a phone bed under UI, and neither is `+faststart` (`moov` sits after `mdat`), so playback waits on more buffering than it needs to.
 - [x] Parenteers product destination set to `https://parenteers.id/`; Indonesian Result cards and CTA use it (2026-08-15)
+- [ ] Desktop gate copy, opened 2026-08-16: `gate.scan_title`, `gate.scan_hint`, `gate.reason` and `gate.continue_anyway` were written for the layout, not transcribed, because the gate has no page in `quiz-01-flow-dialogue.md`. All four need a copy pass in both languages
+- [ ] Desktop gate illustration, opened 2026-08-16: the asset set has no landscape opening art, so the two-column gate is typographic. A wide illustration would let it carry a hero image
 - [ ] Preloader clip weight, opened 2026-08-16: `public/motion/preloader.mp4` is 1.8 MB for 10s of animation plus a 244 KB silent audio track, where the preloader is only on screen for about a second. Trimming to ~3s and stripping audio would land under 600 KB but needs ffmpeg, which this project does not carry
 - [ ] Two result-card copy/data calls opened 2026-08-16: the EN wording of `share.card_cta` ships as a placeholder ("Want yours too? Head to"), and `config.links.instagram` resolves to `@parenteers` while the design artwork shows `parenteers.id`
 - [x] Final domain — `https://quiz.parenteers.id/` deployed 2026-08-16
@@ -51,6 +61,59 @@ Worth adding to the device matrix: a **Samsung A23** (Snapdragon 680 class). The
 - [ ] Any overrides to plan.md §14 decision defaults
 
 ## Session log (newest first)
+
+**2026-08-16, Desktop gate deployed.**
+Worker version `3bcf963d-e096-4e78-9d77-eb31ca79e88e`; 20 files uploaded, 128 already present, live
+on both the workers.dev endpoint and `quiz.parenteers.id`. Production verification with a cleared
+cache at three viewports: 1440x900 and 1366x768 both put the scan panel right of the copy with the
+portrait art hidden and **0** vertical overflow; 820x900 stacks with the QR above the copy and the
+art shown. All three expose the accessible QR name, the typeable host, three fact pills and the
+escape hatch, with no runtime errors. The gate's host now reads `quiz.parenteers.id` rather than a
+dev address, and since `createQrSvg` and `displayShareHost` are handed the same `quizUrl`, that
+text confirms what the code encodes.
+
+**2026-08-16, Desktop gate redesigned: copy left, QR right.**
+The old gate was a `flow` stack with two-column rules bolted on at two different breakpoints via
+`grid-column` / `grid-row` line hacks, inside a card capped at `--copy-max-width`. The column was
+too narrow to hold the longest word, so the headline hyphenated as "Parentin / g Kamu", the QR
+floated mid-copy, and the page scrolled on every desktop size. Rebuilt around explicit markup:
+`.gate__card > .gate__main > [.gate__copy, .gate__scan]`, one breakpoint at `56.25rem`, and three
+stale override blocks deleted. Left column is eyebrow chip, headline, lead, three fact pills, the
+reason line and the escape hatch; right column is a warm panel with the scan title, the QR, the
+typeable host and a camera hint. The QR tile is `--brand-canvas`, exactly `QR_CANVAS` in
+`core/qr.ts`, so the code and its quiet zone are one surface. The duplicate in-card wordmark is
+gone, since the page header already carries it and the language toggle.
+The portrait artwork is now hidden while two columns are in play: `/opening/var-1.webp` is 540x960
+and a full-width band across a wide card is about a 10% horizontal slice that decapitates the
+characters. Tested at 11/14/9rem heights and 62/64/66% positions before concluding it, rather than
+assuming. It returns below the breakpoint at a proper 4:3 crop, where the card stacks and
+`.gate__scan` takes `order: -1` so the QR leads. Added a `max-height: 53rem` tightening block so a
+hand-off screen never becomes a scroll.
+Four new `gate.*` strings were written for the layout, since the gate has no page in
+`quiz-01-flow-dialogue.md`; **all four are placeholders awaiting a copy pass** and are marked as
+such in the source table and the required-key list. Added a desktop section to `qa:phase55`, the
+first coverage this surface has ever had: it leaves phone emulation for three passes and asserts
+column order, start-aligned copy, the hidden portrait art, the QR's accessible name, the typeable
+host, three fact pills, the escape hatch, and overflow. Verification: **14 test files / 168
+tests**, typecheck, and `qa:phase55` in normal and reduced motion (**0 failures / 0 runtime
+errors**), with 1440x900, 1366x768, 1280x800 and 1440x720 all at zero vertical overflow. Both
+languages were inspected, and the continue-anyway path still hands over to the framed phone.
+
+**2026-08-16, Deployed to Cloudflare Workers.**
+Ardy asked for the push. Release gate reported ready, **14 test files / 168 tests** passed, and the
+dry run read **179 assets** with no bindings. Deployed Worker version
+`1cee07ed-bd9c-4663-8960-e6173df7efe1`; Cloudflare uploaded 21 changed files (127 already present)
+and activated both the workers.dev endpoint and `quiz.parenteers.id`. This release carries three
+things that had not been live: the rebuilt shareable result card, the preloader bowl clip, and the
+Samsung landing-art race fix that had been verified locally on 2026-08-16 but never deployed.
+Production verification: `/`, `/q/7`, `/r/pgde/` and `/motion/preloader.mp4` all HTTP 200; the live
+clip serves `ftyp` then `moov` at byte 36, so faststart survived the upload; a cold load of the
+production URL showed the preloader as a playing, muted `<video>` with `mix-blend-mode: normal` and
+no shadow; the Result rendered The Pretzel with zero horizontal overflow and no runtime errors; the
+share card composed from the deployed bundle matches the design; and four sampled `/r/{slug}/`
+routes expose absolute `og:url` and `og:image` values whose images return 200. Deployed from a dirty
+working tree, so nothing in this release is committed yet. Physical Samsung/Instagram QA and a real
+WhatsApp unfurl remain separate sign-offs, and Workers Builds Git integration is still not connected.
 
 **2026-08-16, Preloader switched to the bowl clip and made seamless.**
 Two asks: the preloader artwork should read as part of the page rather than a card with a drop

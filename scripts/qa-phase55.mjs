@@ -861,6 +861,59 @@ report.gallerySpacing = await evaluate(`(() => {
 })()`);
 await capture('08-gallery-spacing');
 
+// --- 9 Desktop gate ---------------------------------------------------------
+// The only surface a desktop visitor sees, and the only one this script has to
+// leave phone emulation to reach: the gate triggers on a wide viewport or on a
+// fine pointer with no touch points.
+report.gate = {};
+for (const [label, width, height] of [
+  ['wide', 1440, 900],
+  ['laptop', 1366, 768],
+  ['stacked', 820, 900],
+]) {
+  await command('Emulation.setTouchEmulationEnabled', { enabled: false });
+  await command('Emulation.setDeviceMetricsOverride', {
+    width,
+    height,
+    deviceScaleFactor: 1,
+    mobile: false,
+    screenWidth: width,
+    screenHeight: height,
+  });
+  await command('Page.navigate', { url: `${baseUrl}/?gate=${width}` });
+  await delay(1600);
+  report.gate[label] = await evaluate(`(() => {
+    const round = (value) => Math.round(value);
+    const copy = document.querySelector('.gate__copy');
+    const scan = document.querySelector('.gate__scan');
+    const qr = document.querySelector('.gate__qr svg');
+    const card = document.querySelector('.gate__card');
+    const art = document.querySelector('.gate__art');
+    if (!copy || !scan || !card) return { mounted: false };
+    const copyBox = copy.getBoundingClientRect();
+    const scanBox = scan.getBoundingClientRect();
+    return {
+      mounted: true,
+      presentation: document.documentElement.dataset.presentation,
+      copyLeft: round(copyBox.left),
+      copyRight: round(copyBox.right),
+      scanLeft: round(scanBox.left),
+      copyTop: round(copyBox.top),
+      scanTop: round(scanBox.top),
+      sideBySide: scanBox.left >= copyBox.right - 1,
+      copyTextAlign: getComputedStyle(copy).textAlign,
+      qrLabel: qr?.getAttribute('aria-label') ?? null,
+      url: document.querySelector('.gate__url')?.textContent ?? null,
+      facts: document.querySelectorAll('.gate__meta > li').length,
+      continueLabel: document.querySelector('.gate__continue')?.textContent?.trim() ?? null,
+      artDisplay: art ? getComputedStyle(art).display : null,
+      overflowX: document.documentElement.scrollWidth - innerWidth,
+      overflowY: document.documentElement.scrollHeight - innerHeight,
+    };
+  })()`);
+  await capture(`09-gate-${label}`);
+}
+
 // --- Assertions ------------------------------------------------------------
 const shells = [
   ['landing', report.landing],
@@ -1295,6 +1348,49 @@ for (const [edge, inset] of [
 }
 if (report.gallerySpacing.overflow > 0) {
   failures.push(`gallery spacing: ${report.gallerySpacing.overflow}px horizontal overflow`);
+}
+
+// The desktop gate: copy on the left, scan panel on the right, and it has to
+// fit a laptop without turning a hand-off screen into a scroll.
+for (const [label, expectSideBySide, expectFits] of [
+  ['wide', true, true],
+  ['laptop', true, true],
+  ['stacked', false, false],
+]) {
+  const state = report.gate[label];
+  if (!state?.mounted) {
+    failures.push(`gate ${label}: did not mount`);
+    continue;
+  }
+  if (state.presentation !== 'gate') {
+    failures.push(`gate ${label}: presentation is ${state.presentation}`);
+  }
+  if (state.sideBySide !== expectSideBySide) {
+    failures.push(
+      `gate ${label}: sideBySide is ${state.sideBySide}, expected ${expectSideBySide}`,
+    );
+  }
+  if (expectSideBySide) {
+    if (state.scanLeft < state.copyRight) {
+      failures.push(`gate ${label}: the scan panel is not right of the copy`);
+    }
+    if (state.copyTextAlign !== 'start' && state.copyTextAlign !== 'left') {
+      failures.push(`gate ${label}: copy is ${state.copyTextAlign}-aligned, expected start`);
+    }
+    if (state.artDisplay !== 'none') {
+      failures.push(`gate ${label}: the portrait art is shown in the two-column layout`);
+    }
+  } else if (state.scanTop > state.copyTop) {
+    failures.push(`gate ${label}: stacked, but the QR is below the copy`);
+  }
+  if (state.overflowX > 0) failures.push(`gate ${label}: ${state.overflowX}px horizontal overflow`);
+  if (expectFits && state.overflowY > 0) {
+    failures.push(`gate ${label}: ${state.overflowY}px of vertical scroll on a hand-off screen`);
+  }
+  if (!state.qrLabel) failures.push(`gate ${label}: the QR has no accessible name`);
+  if (!state.url) failures.push(`gate ${label}: the typeable host is missing`);
+  if (state.facts !== 3) failures.push(`gate ${label}: ${state.facts} facts, expected 3`);
+  if (!state.continueLabel) failures.push(`gate ${label}: no continue-anyway escape hatch`);
 }
 
 // The preloader clip has to read as artwork on the page, not as a card sitting

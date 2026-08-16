@@ -363,41 +363,156 @@
     justify-content: center;
   }
 
-  .gate-content {
-    flex: initial;
-    align-content: initial;
-    inline-size: min(100%, var(--copy-max-width));
-    padding: var(--space-xl);
+  /*
+   * Two columns on a wide screen: what this is on the left, how to get it onto
+   * a phone on the right. One card, two tones. The card is the raised white
+   * surface; the scan panel and the art band are the editorial cream, so the
+   * bakery artwork sits flush on its own background with no plate behind it
+   * and no blend mode faking one.
+   */
+  .gate {
+    inline-size: min(100%, 62rem);
+    margin-inline: auto;
+    padding: var(--space-lg);
+  }
+
+  .gate__card {
+    overflow: hidden;
     border: var(--border-width-hairline) solid var(--color-border);
     border-radius: var(--radius-xl);
     background: var(--color-surface-raised);
     box-shadow: var(--shadow-md);
   }
 
-  .gate-content h1 {
-    font-size: var(--font-size-title-lg);
+  .gate__main {
+    display: grid;
+    gap: var(--space-xl);
+    align-items: center;
+    padding: var(--space-xl);
   }
 
-  .gate-qr {
+  .gate__copy {
     display: grid;
-    inline-size: min(62%, 15rem);
+    justify-items: start;
+    gap: var(--space-md);
+    align-content: start;
+    text-align: start;
+  }
+
+  .gate__eyebrow {
+    padding: var(--space-2xs) var(--space-sm);
+    border-radius: var(--radius-pill);
+    background: var(--color-editorial-canvas);
+    color: var(--color-accent);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+  }
+
+  .gate__title {
+    /* The old gate hyphenated "Parentin/g Kamu" because the column was too
+       narrow to hold the longest word. The column is wide enough now, and
+       this stops any future squeeze from breaking mid-word. */
+    overflow-wrap: normal;
+    font-size: var(--font-size-title-lg);
+    text-wrap: balance;
+  }
+
+  .gate__lead {
+    max-inline-size: 36ch;
+    color: var(--color-text-muted);
+  }
+
+  .gate__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2xs) var(--space-xs);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .gate__meta > li {
+    padding: var(--space-3xs) var(--space-xs);
+    border: var(--border-width-hairline) solid var(--color-border);
+    border-radius: var(--radius-pill);
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .gate__reason {
+    max-inline-size: 40ch;
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+  }
+
+  .gate__continue {
+    justify-self: start;
+  }
+
+  .gate__scan {
+    display: grid;
+    justify-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-lg);
+    border-radius: var(--radius-lg);
+    background: var(--color-editorial-canvas);
+    text-align: center;
+  }
+
+  .gate__scan-title {
+    font-weight: var(--font-weight-bold);
+  }
+
+  /*
+   * The tile is `--brand-canvas` because that is exactly the QR's own light
+   * module colour (`QR_CANVAS` in core/qr.ts), so the code and its quiet zone
+   * are one continuous surface rather than a square inside a square.
+   */
+  .gate__qr {
+    display: grid;
+    inline-size: min(100%, 13.5rem);
     aspect-ratio: 1;
     place-items: center;
     padding: var(--space-xs);
-    border: var(--border-width-strong) solid var(--color-border-strong);
     border-radius: var(--radius-md);
-    background: var(--color-surface-raised);
+    background: var(--brand-canvas);
   }
 
-  .gate-qr > svg {
+  .gate__qr > svg {
+    display: block;
     inline-size: 100%;
     block-size: 100%;
   }
 
-  .gate-meta {
+  .gate__url {
+    color: var(--color-text);
+    font-weight: var(--font-weight-bold);
+    overflow-wrap: anywhere;
+  }
+
+  .gate__hint {
+    max-inline-size: 26ch;
     color: var(--color-text-muted);
     font-size: var(--font-size-sm);
-    font-weight: var(--font-weight-semibold);
+  }
+
+  /* Roughly 4:3, the same crop the landing uses, on the artwork's own cream so
+     there is no plate behind it and no blend mode faking one. */
+  .gate__art {
+    display: block;
+    inline-size: 100%;
+    aspect-ratio: 4 / 3;
+    max-block-size: 17rem;
+    object-fit: cover;
+    object-position: center 58%;
+    background: var(--color-editorial-canvas);
+  }
+
+  /* Stacked, the scan panel leads: the QR is the action, and burying it under
+     a full column of copy would put it below the fold. */
+  .gate__scan {
+    order: -1;
   }
 
   :root[data-presentation="framed"] body {
@@ -1244,25 +1359,54 @@
 
 @media (min-width: 56.25rem) {
   @layer shell {
-    :root[data-presentation="gate"] .gate-content {
-      grid-template-columns: minmax(0, 1fr) minmax(10rem, 0.58fr);
-      align-items: center;
-      max-inline-size: var(--content-max-width);
-      text-align: start;
+    /* The one breakpoint the gate needs: copy left, scan right. Below this it
+       stacks, which is the right answer for a narrow desktop window too. */
+    .gate__main {
+      grid-template-columns: minmax(0, 1.12fr) minmax(16rem, 0.88fr);
+      gap: var(--space-2xl);
     }
 
-    :root[data-presentation="gate"] .gate-content > .gate-qr {
-      grid-column: 2;
-      grid-row: 1 / span 4;
-      inline-size: 100%;
+    .gate__scan {
+      order: 0;
     }
 
-    :root[data-presentation="gate"] .gate-content > :not(.gate-qr) {
-      grid-column: 1;
+    /* Two columns leave no width for a portrait illustration at a crop that
+       keeps the characters whole, so the wide gate is typographic. */
+    .gate__art {
+      display: none;
+    }
+  }
+}
+
+/* A 1366x768 laptop leaves roughly 660px of viewport and a 1280x800 one about
+   700px. The gate is a hand-off, not a page to read, so it tightens rather
+   than overflowing. */
+@media (min-width: 56.25rem) and (max-height: 53rem) {
+  @layer shell {
+    .gate {
+      padding: var(--space-sm);
     }
 
-    :root[data-presentation="gate"] .gate-content > .button {
-      justify-self: start;
+    .gate__main {
+      gap: var(--space-lg);
+      padding: var(--space-lg);
+    }
+
+    .gate__copy {
+      gap: var(--space-sm);
+    }
+
+    .gate__title {
+      font-size: var(--font-size-title-md);
+    }
+
+    .gate__scan {
+      gap: var(--space-xs);
+      padding: var(--space-md);
+    }
+
+    .gate__qr {
+      inline-size: min(100%, 10.5rem);
     }
   }
 }
@@ -1892,8 +2036,7 @@
   }
 
   .intro__art,
-  .calculating__art,
-  .gate-art {
+  .calculating__art {
     inline-size: calc(100% + var(--space-lg));
     margin-inline: calc(0rem - var(--space-sm));
     object-fit: cover;
@@ -1986,12 +2129,6 @@
     backdrop-filter: blur(0.45rem);
   }
 
-  /* Gate --------------------------------------------------------------- */
-
-  .gate-art {
-    block-size: 16rem;
-    object-position: center 58%;
-  }
 }
 
 @media (max-width: 23rem) {
@@ -2015,26 +2152,6 @@
 
     .question__art {
       block-size: 8.5rem;
-    }
-  }
-}
-
-@media (min-width: 56.25rem) {
-  @layer shell {
-    :root[data-presentation="gate"] .gate-content {
-      grid-template-columns: minmax(0, 1fr) minmax(11rem, 0.52fr);
-    }
-
-    :root[data-presentation="gate"] .gate-content > .gate-art {
-      grid-column: 1;
-      inline-size: 100%;
-      block-size: 14rem;
-      margin-inline: 0;
-    }
-
-    :root[data-presentation="gate"] .gate-content > .gate-qr {
-      grid-column: 2;
-      grid-row: 2 / span 5;
     }
   }
 }

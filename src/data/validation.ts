@@ -38,6 +38,9 @@ export const REQUIRED_I18N_KEYS = [
   'landing.by_brand', 'landing.h1', 'landing.subtitle', 'landing.trust',
   // Phase 5.5 placeholder — the reference wording pending the user's copy pass.
   'landing.eyebrow',
+  // Phase 5.5 placeholders: the desktop gate has no source copy document, so
+  // these four were written for the layout and still need a copy pass.
+  'gate.scan_title', 'gate.scan_hint', 'gate.reason', 'gate.continue_anyway',
   'intro.cta_begin', 'intro.disclaimer_short', 'intro.h2', 'intro.point1', 'intro.point2',
   'intro.point3',
   'quiz.progress', 'quiz.select_hint', 'quiz.answer_a_label', 'quiz.answer_b_label',

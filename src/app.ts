@@ -345,7 +345,7 @@ export class ParentingBakesApp {
 
     this.#store.set({ scene: 'gate' });
     await manager.show(
-      createGateScene(qrSvg, () => this.#continueInFrame()),
+      createGateScene(qrSvg, quizUrl, () => this.#continueInFrame()),
       this.#sceneContext(),
     );
     this.#focusScene();

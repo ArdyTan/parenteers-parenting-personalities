@@ -345,6 +345,41 @@ WebView can only offer a screenshot, so the single CTA covers both share entry p
 orphaned — `/story` and `/gallery` both keep a reachable entry point (the gallery through the
 "other bakes" section added 2026-08-02). `/end` was removed the same day.
 
+### Desktop gate (`createGateScene`)
+
+The only surface a desktop visitor ever sees, so it has to sell the quiz as well as redirect. One
+card, two columns at `min-width: 56.25rem`: **copy left, scan right.**
+
+Left is eyebrow chip, headline, lead, three fact pills (`landing.meta_*`), the reason line, and the
+"continue on this screen" escape hatch. Right is a warm `--color-editorial-canvas` panel holding the
+scan title, the QR, the **typeable host**, and a camera hint. The host in plain text is the manual
+path: a visitor who cannot scan can still read four words and type them.
+
+Three details worth keeping:
+
+- **The QR tile is `--brand-canvas`** because that is exactly `QR_CANVAS` in `core/qr.ts`, the
+  code's own light-module colour. Tile and code are one surface rather than a square in a square.
+- **The card does not repeat the wordmark.** The page header already carries it, plus the language
+  toggle.
+- **The portrait art is hidden in the two-column layout.** `/opening/var-1.webp` is 540x960 and only
+  reads at roughly 4:3 or taller. Across a wide card a full-width band is about a 10% horizontal
+  slice, which decapitates the characters at every `object-position` worth trying (measured at
+  11/14/9rem and 62/64/66%). It returns below the breakpoint, where the card stacks and there is
+  width for a proper 4:3 crop at the landing's own `center 58%`. A landscape gate illustration
+  would let the wide layout carry a hero image; there isn't one in the asset set.
+
+Under `56.25rem` the card stacks and `.gate__scan` takes `order: -1`, so the QR leads instead of
+sitting under a full column of copy.
+
+**It fits, rather than scrolling.** A gate is a hand-off, not a page to read. Above
+`max-height: 53rem` the full layout fits 1440x900 exactly; below it a tightening block trims
+padding, gaps, the headline tier and the QR so 1440x720, 1366x768 and 1280x800 all land at **zero**
+vertical overflow.
+
+Copy: four new `gate.*` keys. Unlike every other row in `quiz-02-ui-strings.md` they were written
+for this layout rather than transcribed, because the gate has no page in
+`quiz-01-flow-dialogue.md`. **All four are placeholders awaiting a copy pass.**
+
 ### Preloader (`runExperiencePreloader`)
 
 The launch overlay is wordmark, artwork, oven temperature, meter. The artwork is now the
@@ -478,6 +513,12 @@ emulation, which bypasses the desktop QR gate. It asserts, per surface:
   sections, **2** icon chips in warm capsules, **3** other-type tiles under a heading at
   cousin-section weight, a full-width ≥48px see-all button, ID's **9** linked product cards versus
   EN's Coming Soon state, both music beds set to loop, and the docked bar's appear/hide cycle
+- desktop gate at **1440×900**, **1366×768** and a stacked **820×900**: presentation `gate`, the
+  scan panel starting at or after the copy column's right edge on the two wide passes (and above
+  the copy when stacked), start-aligned copy, the portrait art `display: none` while two columns
+  are in play, an accessible name on the QR, the typeable host present, exactly **3** fact pills,
+  a continue-anyway control, **0** horizontal overflow everywhere and **0** vertical overflow on
+  both wide passes
 - preloader: the artwork is a `<video>` inside `.experience-preloader__stage`, muted, playsinline,
   `aria-hidden`, with **no** blend mode, border, radius or shadow, the stage wash present, and the
   composited edge within **0** of the page colour around the whole box. Normal motion additionally
