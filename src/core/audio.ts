@@ -306,6 +306,10 @@ export function createAudioEngine(options: AudioEngineOptions = {}): AudioEngine
 
     const element = safely(() => createMusicElement(track));
     if (!element) return null;
+    // Both beds are ambient loops. Set this at the engine boundary as well as
+    // in the browser factory so injected/custom media elements keep the same
+    // playback contract.
+    element.loop = true;
 
     const gain = ctx.createGain();
     gain.gain.value = 0;
@@ -396,11 +400,10 @@ export function createAudioEngine(options: AudioEngineOptions = {}): AudioEngine
       const voice = ensureVoice(ctx, track);
       if (!voice) return;
 
-      // Once someone has opted in, buffer ahead. `preload="none"` is what keeps
-      // the tracks free for everyone else, but holding it there after a reload
-      // means the first tap pays for the fetch *and* the start. Promoting it
-      // here lets a returning visitor hear the bed the instant they touch
-      // anything, since autoplay still forbids starting it before that.
+      // When sound is enabled, buffer ahead. Holding `preload="none"` until the
+      // first gesture would make that gesture pay for both the fetch and the
+      // start. Promoting it here lets a fresh or returning visitor hear the bed
+      // as soon as autoplay permits it.
       if (voice.element.preload !== 'auto') voice.element.preload = 'auto';
 
       if (already && !voice.element.paused) return;
@@ -487,10 +490,10 @@ function defaultContextFactory(): AudioContext | null {
 function defaultMusicElementFactory(track: MusicTrack): HTMLAudioElement | null {
   if (typeof document === 'undefined') return null;
   const element = document.createElement('audio');
-  // `none` is what makes sound-off cost literally zero bytes: neither track is
-  // requested until someone turns sound on.
+  // An explicit sound-off preference still costs zero bytes: neither track is
+  // requested while the engine is disabled.
   element.preload = 'none';
-  element.loop = false;
+  element.loop = true;
   element.setAttribute('playsinline', '');
   for (const src of MUSIC_TRACKS[track]) {
     const source = document.createElement('source');

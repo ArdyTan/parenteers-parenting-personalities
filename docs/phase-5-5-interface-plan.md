@@ -149,6 +149,15 @@ label carries the affordance (`quiz.cta_pick` → `nav.next`).
 viewport height** — and always runs edge to edge with a matching cream, so there is no visible
 seam.
 
+**Source normalization, 2026-08-15.** Every question master now uses the same 1536×1024 (3:2)
+canvas as `q01-sunday-morning.png`, and every runtime derivative remains 720×480. Q6/Q9 were
+padded rather than cropped to preserve their compositions. The portrait Q10 master was rejected
+and replaced with a newly generated landscape concept: the tall slide sweeps diagonally across the
+frame, with parent and child pastry characters readable at phone size. `assets:normalize-question-art`
+now refuses portrait question art rather than trying to crop it. The strict asset audit enforces
+both dimensions, and `qa:phase55` captures Q10 at 390×844 and 390×720 so the original small-screen
+regression cannot return silently.
+
 **Revised 2026-08-02 — the band spans the headline row.** Centring the art in the *leftover* space
 only worked at the 844px design canvas. A Galaxy A55 with browser chrome is ~720 CSS px, where a
 five-line Q5 headline left the band **~40px of a 260px image** — the user's "the picture is
@@ -279,15 +288,26 @@ li::before` (0,2,1) outranked the Phase 5.5 rule (0,1,1) and stretched them to 4
 `--radius-pill`. Both bullet rules are now scene-scoped and pinned with
 `min/max-inline-size: 27px`, so they are the spec's 27px circle. Same fix on `.intro__point`.
 
-**After scroll** (the layout the user asked me to propose):
+**After scroll** now begins with the parent-first reading flow before the original personality
+summary. The story uses four or more editorial paragraphs, with its 1200x800 illustration inserted
+full-bleed after paragraph two. The conclusion remains scannable and keeps this order: daily
+reality, guilt release, care for the parent, connection with the child, then three small actions.
+The four-part conclusion is one full-width brand-blue reflection block with white copy. Orange stays
+on its four numbered markers. Parent care receives the sole translucent-white inset, which makes
+that promise visible without turning the whole page into a card stack. The three weekly actions
+follow as a separate cream-canvas section with a blue heading and orange outlined number markers.
 
 ```
+Cerita sehari-hari      Fraunces title + long-form body
+[mid-story image]       full-bleed 3:2 illustration after paragraph two
+Yang perlu kamu ingat   full-width blue block, white copy, 4 orange number markers
+Coba minggu ini         separate cream section, blue heading + 3 orange outlined actions
 Superpower kamu         Fraunces 24 + numbered Text Points (27px circles)
 Watch-out, with love    Fraunces 24 + paragraph
 Sepupu pop-culture      Fraunces 24 + line
 Kenalan sm bake lainnya Fraunces 24 + 3 quick-changing tiles + wide button
 ──────────────────────  hairline in --color-outline
-soft-sell               warm activity tags + outlined "Intip aktivitas Parenteers"
+product shelf           ID: 9-card product rail + parenteers.id CTA · EN: Coming Soon
 disclaimer              required by the CLAUDE.md copy-honesty rule
 [ 🔗 Salin link ]  [ ⏱ Ulangi quiz ]              2-up warm chip tray
 ```
@@ -308,9 +328,12 @@ a `Capsules-warm` pill — tan fill, orange label, `border-radius: 25px` — wit
 existing 16-icon family (`share`, `stopwatch`), laid out 2-up. On press the icon kicks with an
 elastic rotate (`bindChipWiggle`) on top of the shared press squash, so both have something to
 feel. It was a 2×2 of four: the gallery chip was promoted into its own section above, and
-"Lanjutkan" left with `/end`. The soft-sell block was brought into the same warm
-language — activity tags as small tan labels instead of blue outlines, and the Parenteers CTA as an
-orange-outlined capsule that mutes to `--color-outline` while its URL is still `TBD`.
+"Lanjutkan" left with `/end`. On 2026-08-15 the former soft-sell tags were replaced by a localized
+product surface: Indonesian renders nine unique 400×400 product cards from `src/data/products.json`
+in a horizontally scrollable rail, and every card plus the outlined CTA targets
+`https://parenteers.id/`; English renders no Indonesian cards and shows an English-products Coming
+Soon panel instead. The duplicate `stimulation-guide-large.webp` source is intentionally not treated
+as a tenth product.
 
 `decorateChip` **prepends** the icon rather than replacing the button's children, because
 `createAsyncButtonController` rebuilds a button's children from its text — the copy chip is
@@ -322,12 +345,74 @@ WebView can only offer a screenshot, so the single CTA covers both share entry p
 orphaned — `/story` and `/gallery` both keep a reachable entry point (the gallery through the
 "other bakes" section added 2026-08-02). `/end` was removed the same day.
 
+### Preloader (`runExperiencePreloader`)
+
+The launch overlay is wordmark, artwork, oven temperature, meter. The artwork is now the
+`Preloader2.mp4` stirring bowl rather than a still, served from `public/motion/preloader.mp4`.
+
+**Seamless, by construction.** The old still was drawn with `mix-blend-mode: multiply`, and
+multiplying the artwork's cream against the page cream is precisely what painted a darker
+rectangle around it: the "card" look. The blend mode is gone, along with any border, radius or
+shadow. The clip's own paper is still a shade deeper than `--color-editorial-canvas` and is
+textured, so the rectangle cannot be colour-matched away. `.experience-preloader__stage::after`
+dissolves it with a radial wash painted *over* the video, fully transparent to 56% and reaching
+the page colour by 98%. This is deliberately a wash and not a `mask-image` on the video: ordinary
+paint does not depend on how a given engine composites a video layer. Measured across the whole
+perimeter of the box, the composited edge differs from the page by **0**.
+
+**It can never hold the launch up.** `<video>` is `muted` + `playsinline` (which is what makes
+autoplay legal before a gesture, and keeps the preloader silent while sound is still off),
+`loop`, `aria-hidden`, no controls. The preload gate waits on the first frame for at most
+`FIRST_FRAME_BUDGET_MS` (900ms) and never rejects: a clip that cannot play is a missing
+decoration, not a broken launch. On exit the element is paused and its `src` removed, which
+cancels the range requests still in flight, so a visitor only pays for the seconds they saw.
+Under reduced motion `autoplay` is false, so the bake holds on its first frame instead of
+stirring.
+
+**The clip is the one runtime asset that is not an image**, so `sceneArt.continuity.preloader` is
+validated as a root-relative `.mp4` while the other four continuity paths keep the WebP rule, and
+`assets:audit` checks its weight and its atom order. See `images/README.md` §5 for why the master
+is remuxed by `npm run assets:preloader` before it ships, and what a real encoder would still
+improve.
+
+### Shareable result card (`composeResultStoryCard`)
+
+The 1080×1920 PNG people save and post reproduces `images/Result Card.jpg`, which is authored at
+**390×768**. That is a phone screen, not the 9:16 the export has to be, so rather than stretch the
+artwork into a different aspect the whole design is scaled uniformly to the card's **height**
+(`CARD_SCALE = 1920/768 = 2.5`) and centred (`CARD_INSET = 52.5`). Type sizes, gaps and margins
+therefore keep their authored proportions. `CARD_LAYOUT` in `src/core/share.ts` holds the measured
+ink bounds of the source file in its own units, so a `baseline` really is a text baseline.
+
+Order, top to bottom: centred wordmark · full-width character square · tracked `KAMU ADALAH…`
+eyebrow · Fraunces name · `#F3E3CA` code pill with the four letters tracked in brand orange ·
+the tagline, wrapping to at most three lines · a footer of `share.card_cta` over the underlined
+quiz host on the left, and the outline-family Instagram glyph plus handle on the right.
+
+Three things it deliberately does **not** carry any more: the superpowers list, the watch-out
+paragraph and the disclaimer. `ShareCardLabels` narrowed to `{ intro, cta }` to match.
+
+Two consequences worth knowing:
+
+- **The character square is 975px, not the card's full 1080.** A full-width square at this aspect
+  would either overrun the eyebrow or paint over the wordmark. Because the character WebPs carry
+  the same opaque `#FDF2E1` as the canvas, the 52.5px columns are invisible except where a
+  character's own ink reaches its frame edge (the Croquembouche is the one that does).
+- **Tracked type is drawn glyph by glyph** (`drawTrackedText`), not via canvas `letterSpacing`,
+  which is not available on every WebView that offers `navigator.share`. The eyebrow is sized
+  against its *tracked* width so a longer label shrinks instead of overflowing.
+
+Verified across all 16 types in both languages: no name reaches the code pill and no tagline
+reaches the footer. Tightest case is the descender in "The Bagel" / "The Baguette", which clears
+the pill horizontally rather than vertically.
+
 **Docked share bar** (technique 65): `position: fixed` at the bottom, `translateY(115%)` when
-away. It is driven by **scroll offset**, not an element sentinel — the hero is taller than the
-viewport, so a sentinel placed after the scroll cue read as "already scrolled past" on first
-paint. Asymmetric thresholds (dock past `0.55 × vh`, undock below `0.35 × vh`) stop it chattering,
-and a 180ms dwell stops a fast flick flashing it. `.result__detail` reserves `7rem` at the bottom
-so the last links are never covered, and the toast stack lifts above the bar.
+away. It remains hidden at the Result top, then appears after one deliberate first scroll, currently
+28% of the viewport height. It retreats only within 12% of the top, so asymmetric thresholds stop
+chatter and a 180ms dwell stops a fast flick flashing it.
+`.result__detail` reserves `7rem` at the bottom so the last links are never covered, and the toast
+stack lifts above the bar. Browser QA locks it off at the top, on after a 280px first scroll, and
+available throughout the story and support captures.
 
 ## Two defects the screenshots caught that the DOM assertions did not
 
@@ -391,7 +476,16 @@ emulation, which bypasses the desktop QR gate. It asserts, per surface:
   `result` after the 5s hold
 - result: character exactly 390px wide, name inside the inset, 27px circular bullets, **4** detail
   sections, **2** icon chips in warm capsules, **3** other-type tiles under a heading at
-  cousin-section weight, a full-width ≥48px see-all button, and the docked bar's appear/hide cycle
+  cousin-section weight, a full-width ≥48px see-all button, ID's **9** linked product cards versus
+  EN's Coming Soon state, both music beds set to loop, and the docked bar's appear/hide cycle
+- preloader: the artwork is a `<video>` inside `.experience-preloader__stage`, muted, playsinline,
+  `aria-hidden`, with **no** blend mode, border, radius or shadow, the stage wash present, and the
+  composited edge within **0** of the page colour around the whole box. Normal motion additionally
+  requires it to be autoplaying with a decoded frame; reduced motion requires `autoplay` false
+- share card: composed at **1080×1920**, its wordmark / character / eyebrow / name / pill / footer
+  ink bands within tolerance of the `images/Result Card.jpg` positions (reported in that file's
+  390×768 units), the pill filled `#F3E3CA`, the tagline block above the footer, and **zero**
+  pixels of name ink over the code pill
 
 Screenshots land in `artifacts/phase55-qa/`. Requires `npm run dev` plus Chrome on
 `--remote-debugging-port=9223`.

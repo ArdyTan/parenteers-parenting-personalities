@@ -4,11 +4,58 @@ import type { AppConfig, Language, PersonalityType } from './quiz-types';
 export const STORY_IMAGE_WIDTH = 1080;
 export const STORY_IMAGE_HEIGHT = 1920;
 
+/**
+ * `images/Result Card.jpg` is authored at 390x768: a phone screen, not the
+ * 9:16 the export has to be. Rather than stretch the design into a different
+ * aspect, every position below stays in the artwork's own units and is scaled
+ * uniformly to the card's *height*, then centred. Type sizes, gaps and margins
+ * therefore keep their authored proportions; the card simply carries a little
+ * more air down each side than the source file does.
+ */
+const CARD_REFERENCE_WIDTH = 390;
+const CARD_REFERENCE_HEIGHT = 768;
+const CARD_SCALE = STORY_IMAGE_HEIGHT / CARD_REFERENCE_HEIGHT;
+const CARD_INSET = (STORY_IMAGE_WIDTH - CARD_REFERENCE_WIDTH * CARD_SCALE) / 2;
+
+/** The pill behind the type code: one step warmer than the canvas. */
+const CARD_CODE_PILL = '#F3E3CA';
+
+/** From the approved outline family, already drawn in `--color-blue`. */
+const INSTAGRAM_GLYPH = '/icons/instagram.svg';
+
+/**
+ * The reference geometry, in its own 390x768 units. Values are the measured
+ * ink bounds of the source file, so `baseline` really is a text baseline and
+ * `y` really is the top edge of a drawn box.
+ */
+const CARD_LAYOUT = {
+  wordmark: { x: 128, y: 42, width: 134, height: 21 },
+  /**
+   * Full-bleed square. The character WebPs carry the same opaque cream as the
+   * canvas, so a card-width square reads as bleed with no visible edge, and
+   * `y` is the *image* top. Where each character's ink lands inside its own
+   * 900x900 frame is the illustrator's decision, not the layout's.
+   */
+  character: { y: 70.7, size: CARD_REFERENCE_WIDTH },
+  eyebrow: { baseline: 488, size: 11.3, tracking: 2, maxWidth: 300 },
+  name: { baseline: 537, size: 47, minimumSize: 28, maxWidth: 340 },
+  code: { y: 549, height: 36, baseline: 573, size: 15.3, tracking: 3.45, paddingX: 25 },
+  tagline: { baseline: 614.5, lineHeight: 18.5, size: 13, maxWidth: 285, maxLines: 3 },
+  footer: {
+    left: 35,
+    right: 354,
+    cta: { baseline: 700.5, size: 10 },
+    link: { baseline: 714.8, size: 10, underline: 718, underlineWeight: 1.2 },
+    handle: { baseline: 707.5, size: 12 },
+    icon: { size: 12, y: 698, gap: 7 },
+  },
+} as const;
+
 export type ShareCardLabels = Readonly<{
+  /** The eyebrow above the name, "Kamu adalah…". */
   intro: string;
-  superpowers: string;
-  watchout: string;
-  disclaimer: string;
+  /** The footer invitation that precedes the quiz host. */
+  cta: string;
 }>;
 
 export type ShareCardInput = Readonly<{
@@ -96,11 +143,12 @@ export async function composeResultStoryCard(input: ShareCardInput): Promise<Blo
   const context = canvas.getContext('2d');
   if (!context) throw new Error('Canvas 2D is unavailable.');
 
-  const [character, wordmark] = await Promise.all([
+  const [character, wordmark, instagram] = await Promise.all([
     loadImage(input.personality.image),
     loadImage(BRAND_ASSETS.wordmarkBlue),
+    loadImage(INSTAGRAM_GLYPH),
   ]);
-  drawStoryCard(context, character, wordmark, input);
+  drawStoryCard(context, { character, wordmark, instagram }, input);
 
   return new Promise<Blob>((resolve, reject) => {
     canvas.toBlob(
@@ -182,15 +230,32 @@ export function isConfiguredLink(value: string): boolean {
   return normalized.length > 0 && normalized.toUpperCase() !== 'TBD';
 }
 
+/** Reference x to canvas x. */
+function rx(value: number): number {
+  return CARD_INSET + value * CARD_SCALE;
+}
+
+/** Reference y to canvas y. The design and the card share a top edge. */
+function ry(value: number): number {
+  return value * CARD_SCALE;
+}
+
+/** Reference length to canvas length. */
+function rs(value: number): number {
+  return value * CARD_SCALE;
+}
+
 function drawStoryCard(
   context: CanvasRenderingContext2D,
-  character: HTMLImageElement,
-  wordmark: HTMLImageElement,
+  art: Readonly<{
+    character: HTMLImageElement;
+    wordmark: HTMLImageElement;
+    instagram: HTMLImageElement;
+  }>,
   input: ShareCardInput,
 ): void {
   const { personality, language, labels, shareUrl, instagramUrl } = input;
-  const name = personality.name[language];
-  const margin = 84;
+  const centre = rx(CARD_REFERENCE_WIDTH / 2);
 
   // Matches `--color-editorial-canvas`: the encoder quantises the authored
   // #FEF2E1 to #FDF2E1 in every derivative, so filling with the source value
@@ -198,117 +263,186 @@ function drawStoryCard(
   context.fillStyle = '#FDF2E1';
   context.fillRect(0, 0, STORY_IMAGE_WIDTH, STORY_IMAGE_HEIGHT);
 
-  context.save();
-  context.globalAlpha = 0.16;
-  context.fillStyle = personality.accent;
-  context.beginPath();
-  context.arc(930, 210, 300, 0, Math.PI * 2);
-  context.fill();
-  context.fillStyle = BRAND_COLORS.brightBlue;
-  context.beginPath();
-  context.arc(80, 1500, 270, 0, Math.PI * 2);
-  context.fill();
-  context.restore();
+  const { wordmark } = CARD_LAYOUT;
+  drawContainedImage(
+    context,
+    art.wordmark,
+    rx(wordmark.x),
+    ry(wordmark.y),
+    rs(wordmark.width),
+    rs(wordmark.height),
+  );
 
-  drawContainedImage(context, wordmark, margin, 70, 360, 78);
-  context.fillStyle = BRAND_COLORS.blue;
-  context.font = '700 25px "Plus Jakarta Sans", sans-serif';
-  context.textAlign = 'right';
-  context.fillText(formatTypeCode(personality.code), STORY_IMAGE_WIDTH - margin, 116);
+  const { character } = CARD_LAYOUT;
+  const characterSize = rs(character.size);
+  context.drawImage(art.character, rx(0), ry(character.y), characterSize, characterSize);
 
+  const { eyebrow } = CARD_LAYOUT;
+  const introText = labels.intro.toUpperCase();
   context.textAlign = 'center';
-  context.font = '800 26px "Plus Jakarta Sans", sans-serif';
-  context.letterSpacing = '3px';
-  context.fillText(labels.intro.toUpperCase(), STORY_IMAGE_WIDTH / 2, 188);
-  context.letterSpacing = '0px';
-
-  const imageX = 190;
-  const imageY = 230;
-  const imageSize = 700;
-  context.save();
-  roundedRect(context, imageX, imageY, imageSize, imageSize, 74);
-  context.clip();
-  drawCoverImage(context, character, imageX, imageY, imageSize, imageSize);
-  context.restore();
-  context.strokeStyle = personality.accent;
-  context.lineWidth = 9;
-  roundedRect(context, imageX, imageY, imageSize, imageSize, 74);
-  context.stroke();
-
   context.fillStyle = BRAND_COLORS.blue;
-  context.textAlign = 'center';
-  const nameSize = fitFontSize(context, name, 88, 58, STORY_IMAGE_WIDTH - margin * 2, 'Fraunces');
+  // Tracked type overflows long before its untracked width does, so the
+  // eyebrow is sized against the width it will actually occupy.
+  const eyebrowScale = Math.min(
+    1,
+    rs(eyebrow.maxWidth)
+      / trackedTextWidth(
+        setFont(context, `800 ${rs(eyebrow.size)}px "Plus Jakarta Sans", sans-serif`),
+        introText,
+        rs(eyebrow.tracking),
+      ),
+  );
+  context.font = `800 ${rs(eyebrow.size) * eyebrowScale}px "Plus Jakarta Sans", sans-serif`;
+  drawTrackedText(
+    context,
+    introText,
+    centre,
+    ry(eyebrow.baseline),
+    rs(eyebrow.tracking) * eyebrowScale,
+  );
+
+  const { name } = CARD_LAYOUT;
+  const nameText = personality.name[language];
+  const nameSize = fitFontSize(
+    context,
+    nameText,
+    rs(name.size),
+    rs(name.minimumSize),
+    rs(name.maxWidth),
+    'Fraunces',
+  );
   context.font = `800 ${nameSize}px Fraunces, Georgia, serif`;
-  context.fillText(name, STORY_IMAGE_WIDTH / 2, 1024);
+  context.fillText(nameText, centre, ry(name.baseline));
 
-  context.font = '800 30px "Plus Jakarta Sans", sans-serif';
-  context.fillStyle = BRAND_COLORS.brightBlue;
-  context.fillText(formatTypeCode(personality.code), STORY_IMAGE_WIDTH / 2, 1082);
+  drawCodePill(context, personality.code);
 
+  const { tagline } = CARD_LAYOUT;
   context.fillStyle = BRAND_COLORS.blue;
-  context.font = '600 38px Fraunces, Georgia, serif';
-  let y = drawWrappedText(
-    context,
-    personality.tagline[language],
-    STORY_IMAGE_WIDTH / 2,
-    1150,
-    860,
-    48,
-    3,
-  );
-
-  context.textAlign = 'left';
-  context.font = '800 25px "Plus Jakarta Sans", sans-serif';
-  context.fillStyle = BRAND_COLORS.orange;
-  context.fillText(labels.superpowers.toUpperCase(), margin, y + 40);
-  y += 84;
-
-  context.font = '600 27px "Plus Jakarta Sans", sans-serif';
-  context.fillStyle = BRAND_COLORS.blue;
-  for (const power of personality.superpowers[language]) {
-    context.fillStyle = personality.accent;
-    context.beginPath();
-    context.arc(margin + 10, y - 10, 8, 0, Math.PI * 2);
-    context.fill();
-    context.fillStyle = BRAND_COLORS.blue;
-    y = drawWrappedText(context, power, margin + 36, y, 870, 36, 2, 'left') + 12;
-  }
-
-  context.font = '800 23px "Plus Jakarta Sans", sans-serif';
-  context.fillStyle = BRAND_COLORS.orange;
-  context.fillText(labels.watchout.toUpperCase(), margin, y + 12);
-  context.font = '500 23px "Plus Jakarta Sans", sans-serif';
-  context.fillStyle = BRAND_COLORS.blue;
-  y = drawWrappedText(
-    context,
-    personality.watchout[language],
-    margin,
-    y + 50,
-    910,
-    32,
-    3,
-    'left',
-  );
-
-  context.fillStyle = 'rgba(24, 39, 153, 0.72)';
-  context.font = '500 18px "Plus Jakarta Sans", sans-serif';
-  context.textAlign = 'center';
+  context.font = `700 ${rs(tagline.size)}px "Plus Jakarta Sans", sans-serif`;
   drawWrappedText(
     context,
-    labels.disclaimer,
-    STORY_IMAGE_WIDTH / 2,
-    Math.min(1790, y + 38),
-    900,
-    26,
-    2,
+    personality.tagline[language],
+    centre,
+    ry(tagline.baseline),
+    rs(tagline.maxWidth),
+    rs(tagline.lineHeight),
+    tagline.maxLines,
   );
 
-  context.fillStyle = BRAND_COLORS.blue;
-  context.font = '800 24px "Plus Jakarta Sans", sans-serif';
+  drawFooter(context, art.instagram, labels.cta, shareUrl, instagramUrl);
+}
+
+/**
+ * The type code sits in a warm pill that hugs its own tracked width, so a card
+ * is never laid out around a fixed box that the letters may not fill.
+ */
+function drawCodePill(context: CanvasRenderingContext2D, code: string): void {
+  const { code: layout } = CARD_LAYOUT;
+  const tracking = rs(layout.tracking);
+  const centre = rx(CARD_REFERENCE_WIDTH / 2);
+
+  context.font = `800 ${rs(layout.size)}px "Plus Jakarta Sans", sans-serif`;
+  const textWidth = trackedTextWidth(context, code, tracking);
+  const pillWidth = textWidth + rs(layout.paddingX) * 2;
+  const pillHeight = rs(layout.height);
+  const pillY = ry(layout.y);
+
+  context.fillStyle = CARD_CODE_PILL;
+  roundedRect(context, centre - pillWidth / 2, pillY, pillWidth, pillHeight, pillHeight / 2);
+  context.fill();
+
+  context.fillStyle = BRAND_COLORS.orange;
+  context.textAlign = 'center';
+  drawTrackedText(context, code, centre, ry(layout.baseline), tracking);
+}
+
+/**
+ * Two blocks on one line: the invitation plus the quiz host on the left, the
+ * Instagram glyph plus handle on the right. Both are pinned to the reference
+ * margins rather than to each other, so a longer host cannot push the handle.
+ */
+function drawFooter(
+  context: CanvasRenderingContext2D,
+  instagram: HTMLImageElement,
+  cta: string,
+  shareUrl: string,
+  instagramUrl: string,
+): void {
+  const { footer } = CARD_LAYOUT;
+
   context.textAlign = 'left';
-  context.fillText(instagramHandle(instagramUrl), margin, 1860);
+  context.fillStyle = BRAND_COLORS.orange;
+  context.font = `500 ${rs(footer.cta.size)}px "Plus Jakarta Sans", sans-serif`;
+  context.fillText(cta, rx(footer.left), ry(footer.cta.baseline));
+
+  const host = displayShareHost(shareUrl);
+  context.font = `800 ${rs(footer.link.size)}px "Plus Jakarta Sans", sans-serif`;
+  context.fillText(host, rx(footer.left), ry(footer.link.baseline));
+  context.fillRect(
+    rx(footer.left),
+    ry(footer.link.underline),
+    context.measureText(host).width,
+    rs(footer.link.underlineWeight),
+  );
+
+  const handle = instagramHandle(instagramUrl);
   context.textAlign = 'right';
-  context.fillText(displayShareHost(shareUrl), STORY_IMAGE_WIDTH - margin, 1860);
+  context.fillStyle = BRAND_COLORS.blue;
+  context.font = `600 ${rs(footer.handle.size)}px "Plus Jakarta Sans", sans-serif`;
+  context.fillText(handle, rx(footer.right), ry(footer.handle.baseline));
+
+  const iconSize = rs(footer.icon.size);
+  const iconRight = rx(footer.right) - context.measureText(handle).width - rs(footer.icon.gap);
+  context.drawImage(instagram, iconRight - iconSize, ry(footer.icon.y), iconSize, iconSize);
+}
+
+/**
+ * Canvas `letterSpacing` is not available everywhere `navigator.share` is, so
+ * tracking is applied by hand: the string is drawn glyph by glyph from a left
+ * edge derived from the tracked width and the requested alignment.
+ */
+function drawTrackedText(
+  context: CanvasRenderingContext2D,
+  text: string,
+  x: number,
+  y: number,
+  tracking: number,
+): void {
+  const characters = [...text];
+  const total = trackedTextWidth(context, text, tracking);
+  const align = context.textAlign;
+  let cursor = align === 'center' ? x - total / 2 : align === 'right' ? x - total : x;
+
+  context.textAlign = 'left';
+  for (const character of characters) {
+    context.fillText(character, cursor, y);
+    cursor += context.measureText(character).width + tracking;
+  }
+  context.textAlign = align;
+}
+
+/** Sets a font and hands the context back, so a measurement can be inlined. */
+function setFont(
+  context: CanvasRenderingContext2D,
+  font: string,
+): CanvasRenderingContext2D {
+  context.font = font;
+  return context;
+}
+
+function trackedTextWidth(
+  context: CanvasRenderingContext2D,
+  text: string,
+  tracking: number,
+): number {
+  const characters = [...text];
+  if (characters.length === 0) return 0;
+  const glyphs = characters.reduce(
+    (total, character) => total + context.measureText(character).width,
+    0,
+  );
+  // Trailing tracking is not part of the visible run.
+  return glyphs + tracking * (characters.length - 1);
 }
 
 function loadImage(source: string): Promise<HTMLImageElement> {
@@ -335,22 +469,6 @@ function drawContainedImage(
   const drawWidth = sourceWidth * scale;
   const drawHeight = sourceHeight * scale;
   context.drawImage(image, x, y + (height - drawHeight) / 2, drawWidth, drawHeight);
-}
-
-function drawCoverImage(
-  context: CanvasRenderingContext2D,
-  image: HTMLImageElement,
-  x: number,
-  y: number,
-  width: number,
-  height: number,
-): void {
-  const scale = Math.max(width / image.naturalWidth, height / image.naturalHeight);
-  const sourceWidth = width / scale;
-  const sourceHeight = height / scale;
-  const sourceX = (image.naturalWidth - sourceWidth) / 2;
-  const sourceY = (image.naturalHeight - sourceHeight) / 2;
-  context.drawImage(image, sourceX, sourceY, sourceWidth, sourceHeight, x, y, width, height);
 }
 
 function drawWrappedText(

@@ -13,8 +13,9 @@ This file is authoritative for the source-art inventory, folder roles, and image
 | `icons/` | Icon and layout-mark sources | Sixteen 64×64 icons plus `button-expression.svg` and `progress-bar-star.svg` in `public/icons/` |
 | `Interface-Reference/` | Historical Phase 4/4.5 composition references; superseded by `new-layout/` and removed from the tree | Not reference; do not restore for build |
 | `opening-image/` | Ordered opening/landing artwork variants | Four 540×960 WebPs in `public/opening/` |
-| `scene-art/` | Phase 4.5 text-free question art plus retained checkpoint sources | Twelve 720×480 question WebPs are active; two 600×900 checkpoint WebPs remain as inactive rollback assets |
+| `scene-art/` | Phase 4.5 text-free question art plus retained checkpoint sources | Twelve normalized 1536×1024 question PNGs feed active 720×480 WebPs; two 600×900 checkpoint WebPs remain as inactive rollback assets |
 | `Pastries-personalities/` | Active 16-character source set | Full-bleed 900×900 result WebPs plus 360×360 shelf WebPs in `public/characters/` |
+| `story-illustrations/` | Sixteen 1536×1024 narrative sources, one per personality | `npm run assets:stories` builds matching 1200×800 WebPs in `public/story-illustrations/`; each appears after story paragraph two |
 | `web-component/` | Supporting 404 art and preloader motion reference | 404 derivative in `public/art/`; MP4 retained as reference-only |
 | `old images/` | Superseded first delivery plus the archived image-prompt document | Archive only; never use as the active source |
 
@@ -116,15 +117,28 @@ The active set contains all 16 expected filenames. Each file is 1254×1254, opaq
 ## 5. Web components
 
 - `asset-404.png` — 1254×1254 opaque source illustration.
-- `Preloader2.mp4` — 10-second, 1.76 MB preloader motion reference; added 2026-07-29.
+- `Preloader2.mp4`: the preloader clip. 500×500, 10.008s, 300 H.264 frames at 30fps, plus an AAC track. 1.76 MB. Added 2026-07-29; promoted from reference to production on 2026-08-16.
 
-The MP4 duration and file integrity were verified. Frame-level visual inspection was not completed during intake because the local headless browser did not decode the file reliably. Inspect playback before using it as Phase 4 implementation authority.
+Frame-level inspection is now complete: it is a stirring mixing bowl on a textured cream paper, roughly `#F5EDE1`, which is a shade deeper than `--color-editorial-canvas` (`#FDF2E1`). The artwork sits in the middle of the frame with its own soft shadow baked in, and the paper reaches every edge.
 
-Phase 4 intentionally implements the preloader in lightweight DOM/CSS/GSAP rather than shipping the 1.76 MB MP4. This preserves the 45→180°C reference idea, real loading progress, interruptible exit, and a static reduced-motion path without adding a video decode dependency.
+**This master is not what ships.** Its `moov` atom sits after `mdat`, so a browser cannot decode a single frame until the whole 1.8 MB has arrived, which for a preloader is worse than having no clip at all. `npm run assets:preloader` relocates `moov` to the front and rewrites the chunk offset tables into `public/motion/preloader.mp4`. Nothing is re-encoded, so the derivative is pixel-identical (verified frame by frame against this master) and the same size.
+
+Two things a real encoder would still fix, and this project carries none: the AAC track is dead weight (244 KB of the 1.76 MB) and the clip is 10 seconds long when the preloader is only on screen for about one. Trimming to roughly 3 seconds and dropping the audio would take it under 600 KB. An animated WebP was measured as an alternative and rejected: 3 seconds at 400px/15fps already costs 816 KB.
+
+## 6. Result product assets
+
+The Indonesian Result product rail uses nine unique 400×400 WebPs in `public/products/`, registered
+in `src/data/products.json`. They are exact runtime copies of the matching product assets from
+`D:\#dev\parenteers-landingpage\dist\assets\images\products`. The source folder also contains
+`stimulation-guide-large.webp`; it is a wide layout variant of `stimulation-guide.webp`, not a
+tenth product, and is intentionally excluded from the rail. English renders a localized Coming Soon
+panel instead of these Indonesian product cards. Every Indonesian card and its CTA target
+`https://parenteers.id/` through `config.links.activities`.
 
 ## Production rules
 
 - Do not import directly from `images/`; production derivatives belong under `public/`.
+- Question source art is normalized to 1536×1024 (3:2), matching `q01-sunday-morning.png`. Run `npm run assets:normalize-question-art` after adding or replacing question art. Portrait sources are rejected: question compositions must be generated as native landscape artwork rather than recovered with a crop.
 - The base background of every PNG in `opening-image/`, `Pastries-personalities/`, and `scene-art/` is normalized to exact `#FEF2E1`. Run `npm run assets:recolor-backgrounds -- --apply` after adding replacement source art, then rebuild derivatives with `npm run assets:phase4`.
 - Do not restore or consume files from `old images/` unless the user explicitly asks for rollback/reference comparison.
 - The active character PNGs have full cream backgrounds, not transparency. Phase 4 deliberately retains them as full-bleed card art in optimized 900×900 result WebPs and 360×360 gallery thumbnails; do not treat them as transparent cutouts.

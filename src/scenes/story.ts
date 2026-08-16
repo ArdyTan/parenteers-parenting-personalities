@@ -219,9 +219,7 @@ function createShareActions(
             instagramUrl: context.data.config.links.instagram,
             labels: {
               intro: context.t('result.intro_label'),
-              superpowers: context.t('result.superpowers_label'),
-              watchout: context.t('result.watchout_label'),
-              disclaimer: context.t('footer.disclaimer'),
+              cta: context.t('share.card_cta'),
             },
           });
           return deliverResultImage(

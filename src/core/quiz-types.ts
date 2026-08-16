@@ -21,6 +21,22 @@ export type TypeCode = `${StructurePole}${GuidancePole}${EmotionPole}${Adventure
 export type LocalizedText = Readonly<Record<Language, string>>;
 export type LocalizedList = Readonly<Record<Language, readonly string[]>>;
 
+export type ParentStory = Readonly<{
+  image: string;
+  imageAlt: LocalizedText;
+  imageAfterParagraph: 2;
+  title: LocalizedText;
+  body: LocalizedText;
+}>;
+
+export type ParentSupport = Readonly<{
+  realLife: LocalizedText;
+  guiltRelease: LocalizedText;
+  careForYou: LocalizedText;
+  forYourChild: LocalizedText;
+  tryThisWeek: LocalizedList;
+}>;
+
 export type QuestionAnswer = Readonly<{
   pole: Pole;
   en: string;
@@ -42,10 +58,20 @@ export type PersonalityType = Readonly<{
   tagline: LocalizedText;
   superpowers: LocalizedList;
   watchout: LocalizedText;
+  parentStory: ParentStory;
+  parentSupport: ParentSupport;
   popCousin: LocalizedText;
   image: string;
   accent: string;
   activityTags: readonly [Pole, Pole];
+}>;
+
+export type Product = Readonly<{
+  id: string;
+  meta: string;
+  title: string;
+  image: string;
+  alt: string;
 }>;
 
 export type SceneArtAsset = Readonly<{

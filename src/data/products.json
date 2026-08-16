@@ -1,0 +1,65 @@
+[
+  {
+    "id": "stimulation-guide",
+    "meta": "200+ aktivitas",
+    "title": "Panduan stimulasi usia 0–5 tahun",
+    "image": "/products/stimulation-guide.webp",
+    "alt": "Koleksi e-book Panduan Praktis Stimulasi Parenteers"
+  },
+  {
+    "id": "sensory-play",
+    "meta": "30 hari",
+    "title": "Resep sensory play",
+    "image": "/products/sensory-play.webp",
+    "alt": "E-book 30 Hari Resep Sensory Play Parenteers"
+  },
+  {
+    "id": "body-feelings",
+    "meta": "Usia 3+",
+    "title": "Body Parts & Big Feelings",
+    "image": "/products/body-feelings.webp",
+    "alt": "E-book Body Parts and Big Feelings Parenteers"
+  },
+  {
+    "id": "alphabet",
+    "meta": "80 halaman",
+    "title": "Alphabet Adventure",
+    "image": "/products/alphabet.webp",
+    "alt": "E-book Alphabets Adventure Parenteers"
+  },
+  {
+    "id": "shapes",
+    "meta": "80 halaman",
+    "title": "Shape Explorer + pre-writing",
+    "image": "/products/shapes.webp",
+    "alt": "E-book Shapes Explorer Parenteers"
+  },
+  {
+    "id": "numbers",
+    "meta": "80 halaman",
+    "title": "Number Playbook",
+    "image": "/products/numbers.webp",
+    "alt": "Koleksi e-book Numbers Play, Shapes Explorer, dan Alphabets Adventure"
+  },
+  {
+    "id": "activity-sheets",
+    "meta": "100 lembar",
+    "title": "Activity Sheets usia 3+",
+    "image": "/products/activity-sheets.webp",
+    "alt": "E-book 100 Activities Book Parenteers"
+  },
+  {
+    "id": "father-guide",
+    "meta": "Untuk Papa",
+    "title": "Panduan Menjadi Papa Tanpa Panik",
+    "image": "/products/father-guide.webp",
+    "alt": "E-book Aku Belum Siap Jadi Ayah Parenteers"
+  },
+  {
+    "id": "mother-guide",
+    "meta": "Untuk Mama",
+    "title": "Rahasia Menjadi Mama yang Bahagia",
+    "image": "/products/mother-guide.webp",
+    "alt": "E-book Aku Belum Siap Jadi Ibu Parenteers"
+  }
+]

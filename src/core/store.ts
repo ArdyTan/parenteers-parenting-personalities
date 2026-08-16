@@ -9,11 +9,12 @@ export const STORAGE_KEYS = {
 } as const;
 
 /**
- * Sound ships off (plan.md §14 decision 5). That is also what keeps WCAG 1.4.2
- * satisfied — nothing over three seconds starts without the user asking — and
- * what makes the ~1.75 MB theme cost zero bytes for anyone who never opts in.
+ * Fresh visitors see sound enabled, but mobile autoplay still keeps the bed
+ * paused until the first trusted pointer or keyboard interaction. An explicit
+ * stored "off" always wins, and the header toggle remains reachable anywhere
+ * music can play (plan.md §14 decision 5).
  */
-export const SOUND_DEFAULT = false;
+export const SOUND_DEFAULT = true;
 
 export type AppState = Readonly<{
   lang: Language;

@@ -1,7 +1,7 @@
 import { gsap } from 'gsap';
 
 import { playSfx } from '../core/audio';
-import type { PersonalityType } from '../core/quiz-types';
+import type { Language, PersonalityType } from '../core/quiz-types';
 import { characterThumbnail } from '../data';
 import {
   buildResultShareUrl,
@@ -34,6 +34,10 @@ import { FunctionalScene, type SceneContext } from './scene';
 
 /** Guards against the docked bar flashing during a fast flick past the hero. */
 const DOCK_DWELL_MS = 180;
+/** A deliberate first swipe should reveal save without waiting for long-form copy. */
+const DOCK_ENTER_SCROLL_RATIO = 0.28;
+/** Keep enough hysteresis that a small reverse scroll does not chatter the dock. */
+const DOCK_EXIT_SCROLL_RATIO = 0.12;
 /** How many of the other bakes are on screen at once in the teaser row. */
 const OTHER_TYPE_SLOTS = 3;
 /** One tile changes at a time — a shuffle, not a strobe. */
@@ -121,22 +125,17 @@ export function createResultScene(personality: PersonalityType): FunctionalScene
     ]);
     popCousin.dataset.reveal = '';
 
-    const activityTags = element(
-      'ul',
-      { className: 'result__activity-tags' },
-      personality.activityTags.map((tag) =>
-        element('li', {
-          text: context.t(`activity.${tag}`),
-          attributes: { 'data-activity-tag': tag },
-        }),
-      ),
+    const parentStory = createParentStorySection(personality, language, context);
+    const { support: parentSupport, weekly: weeklyActions } = createParentSupportSections(
+      personality,
+      language,
+      context,
     );
-
-    const softSell = element('aside', { className: 'result__soft-sell' }, [
-      element('p', { text: context.t('result.softsell_body') }),
-      activityTags,
-      createActivityAction(context, signal),
-    ]);
+    const softSell = element(
+      'aside',
+      { className: 'result__soft-sell' },
+      createProductContent(context),
+    );
     softSell.dataset.reveal = '';
 
     const copyStatus = element('p', {
@@ -184,9 +183,7 @@ export function createResultScene(personality: PersonalityType): FunctionalScene
               instagramUrl: context.data.config.links.instagram,
               labels: {
                 intro: context.t('result.intro_label'),
-                superpowers: context.t('result.superpowers_label'),
-                watchout: context.t('result.watchout_label'),
-                disclaimer: context.t('footer.disclaimer'),
+                cta: context.t('share.card_cta'),
               },
             });
             return deliverResultImage(
@@ -236,6 +233,9 @@ export function createResultScene(personality: PersonalityType): FunctionalScene
     const otherTypes = createOtherTypesSection(context, personality, signal);
 
     const detail = element('div', { className: 'result__detail' }, [
+      parentStory,
+      parentSupport,
+      weeklyActions,
       powers,
       watchout,
       popCousin,
@@ -264,7 +264,8 @@ export function createResultScene(personality: PersonalityType): FunctionalScene
       const progress = Math.max(0, Math.min(1, -top / 260));
       illustration.style.transform = `translateY(${-progress * 25.6}px) scale(${1 - progress * 0.06})`;
       identity.style.transform = `translateY(${-progress * 12.8}px)`;
-      dock(-top);
+      const scrolled = 'scrollTop' in scrollSurface ? scrollSurface.scrollTop : window.scrollY;
+      dock(scrolled);
     };
     scrollSurface.addEventListener('scroll', updateHero, { passive: true, signal });
     dock(0);
@@ -289,11 +290,121 @@ export function createResultScene(personality: PersonalityType): FunctionalScene
 }
 
 /**
- * Technique 65, reduced to what this page needs: the share bar docks once the
- * first composition has scrolled away and retreats when the user returns to the
- * top. Driven by scroll offset rather than a sentinel, because the hero is
- * taller than the viewport — an element-based observer would read as "already
- * scrolled past" on first paint.
+ * The story is real prose, not a disguised checklist. Its illustration is inserted
+ * from the data contract after paragraph two, creating a deliberate visual breath
+ * before the parent returns to the child in the closing half.
+ */
+function createParentStorySection(
+  personality: PersonalityType,
+  language: Language,
+  context: SceneContext,
+): HTMLElement {
+  const story = personality.parentStory;
+  const paragraphs = story.body[language].split('\n\n').filter(Boolean);
+  const prose: Node[] = [];
+
+  paragraphs.forEach((paragraph, index) => {
+    if (index === story.imageAfterParagraph) {
+      prose.push(
+        element('figure', { className: 'result__story-figure' }, [
+          element('img', {
+            className: 'result__story-image',
+            attributes: {
+              src: story.image,
+              alt: story.imageAlt[language],
+              width: '1200',
+              height: '800',
+              loading: 'lazy',
+              decoding: 'async',
+            },
+          }),
+        ]),
+      );
+    }
+    prose.push(element('p', { className: 'result__story-paragraph', text: paragraph }));
+  });
+
+  const section = element(
+    'section',
+    {
+      className: 'result__section result__parent-story',
+      attributes: { 'data-story-image-after': String(story.imageAfterParagraph) },
+    },
+    [
+      element('p', {
+        className: 'result__story-label',
+        text: context.t('result.story_label'),
+      }),
+      element('h2', { className: 'result__story-title', text: story.title[language] }),
+      element('div', { className: 'result__story-prose' }, prose),
+    ],
+  );
+  section.dataset.reveal = '';
+  return section;
+}
+
+/** Parent capacity is acknowledged before the child-facing takeaway by design. */
+function createParentSupportSections(
+  personality: PersonalityType,
+  language: Language,
+  context: SceneContext,
+): Readonly<{ support: HTMLElement; weekly: HTMLElement }> {
+  const support = personality.parentSupport;
+  const takeaways = [
+    ['realLife', 'result.real_life_label'],
+    ['guiltRelease', 'result.guilt_release_label'],
+    ['careForYou', 'result.care_for_you_label'],
+    ['forYourChild', 'result.for_child_label'],
+  ] as const;
+
+  const list = element(
+    'ul',
+    { className: 'result__support-list' },
+    takeaways.map(([field, label], index) =>
+      element(
+        'li',
+        {
+          className: 'result__support-item',
+          attributes: { 'data-support-order': String(index + 1), 'data-support-field': field },
+        },
+        [
+          element('strong', {
+            className: 'result__support-label',
+            text: context.t(label),
+          }),
+          element('p', { text: support[field][language] }),
+        ],
+      ),
+    ),
+  );
+
+  const actions = element(
+    'ol',
+    { className: 'result__weekly-list' },
+    support.tryThisWeek[language].map((action) => element('li', { text: action })),
+  );
+
+  const supportSection = element('section', { className: 'result__section result__parent-support' }, [
+    element('h2', { text: context.t('result.summary_label') }),
+    list,
+  ]);
+  supportSection.dataset.reveal = '';
+
+  const weeklySection = element('section', { className: 'result__section result__weekly-section' }, [
+    element('h3', {
+      className: 'result__weekly-title',
+      text: context.t('result.try_this_week_label'),
+    }),
+    actions,
+  ]);
+  weeklySection.dataset.reveal = '';
+
+  return { support: supportSection, weekly: weeklySection };
+}
+
+/**
+ * Technique 65, reduced to what this page needs: one deliberate first swipe
+ * reveals the save action, while a return near the top retreats it again.
  */
 function createShareBarDock(
   bar: HTMLElement,
@@ -306,10 +417,9 @@ function createShareBarDock(
   signal.addEventListener('abort', () => window.clearTimeout(dwell), { once: true });
 
   return (scrolled: number): void => {
-    // Asymmetric thresholds so a scroll sitting near the boundary cannot chatter.
-    const next = docked
-      ? scrolled > window.innerHeight * 0.35
-      : scrolled > window.innerHeight * 0.55;
+    const threshold = window.innerHeight
+      * (docked ? DOCK_EXIT_SCROLL_RATIO : DOCK_ENTER_SCROLL_RATIO);
+    const next = scrolled > threshold;
     if (next === docked) return;
     docked = next;
     window.clearTimeout(dwell);
@@ -517,24 +627,69 @@ function bindChipWiggle(tray: HTMLElement, signal: AbortSignal): void {
   );
 }
 
-function createActivityAction(context: SceneContext, signal: AbortSignal): HTMLElement {
-  const { activities } = context.data.config.links;
+function createProductContent(context: SceneContext): readonly Node[] {
+  const heading = element('h2', {
+    className: 'result__products-heading',
+    text: context.t('result.products_heading'),
+  });
 
-  if (activities !== 'TBD') {
-    return externalLink(context.t('result.activities_cta'), activities, 'result__activities-cta');
+  if (context.store.get().lang === 'en') {
+    return [
+      element('div', { className: 'result__products-coming-soon' }, [
+        heading,
+        element('p', { text: context.t('result.products_coming_soon') }),
+      ]),
+    ];
   }
 
-  const disabledAction = actionButton(
-    context.t('result.activities_cta'),
-    () => undefined,
-    signal,
+  const { activities } = context.data.config.links;
+  const rail = element(
+    'div',
     {
-      className: 'result__activities-cta',
-      attributes: { 'aria-disabled': 'true' },
+      className: 'result__product-rail',
+      attributes: {
+        'aria-label': context.t('result.products_heading'),
+        tabindex: '0',
+      },
     },
+    context.data.products.map((product) =>
+      element(
+        'a',
+        {
+          className: 'result__product-card',
+          attributes: {
+            href: activities,
+            target: '_blank',
+            rel: 'noreferrer noopener',
+            'data-product-id': product.id,
+          },
+        },
+        [
+          element('span', { className: 'result__product-media' }, [
+            element('img', {
+              attributes: {
+                src: product.image,
+                alt: product.alt,
+                loading: 'lazy',
+                decoding: 'async',
+                width: '400',
+                height: '400',
+              },
+            }),
+          ]),
+          element('span', { className: 'result__product-meta', text: product.meta }),
+          element('span', { className: 'result__product-title', text: product.title }),
+        ],
+      ),
+    ),
   );
-  disabledAction.disabled = true;
-  return disabledAction;
+
+  return [
+    heading,
+    element('p', { text: context.t('result.softsell_body') }),
+    rail,
+    externalLink(context.t('result.products_cta'), activities, 'result__activities-cta'),
+  ];
 }
 
 function formatCode(code: string): string {

@@ -911,6 +911,7 @@
   .gallery__actions {
     inline-size: min(100%, var(--copy-max-width));
     margin-inline: auto;
+    padding-inline: var(--pad-chrome);
   }
 
   /* Story mode ----------------------------------------------------------- */

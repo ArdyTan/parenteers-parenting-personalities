@@ -20,6 +20,7 @@
 | `conventions.md` | Non-negotiable rules: interaction ground rules, motion, code, perf, a11y, copy/i18n, assets, git |
 | `data-spec.md` | JSON database schemas, type registry, scoring, i18n key conventions, validation invariants, .md→JSON transcription map |
 | `parenting-personality-research.md` | Science layer, the 16 types' source definitions |
+| `docs/personality-parent-first-content.md` | Research/editorial basis for the guilt-reducing, parent-first `types.json parentSupport` layer |
 | `quiz-01-flow-dialogue.md` | Page-by-page copy EN/ID (transcribe, never rewrite) |
 | `quiz-02-ui-strings.md` | UI string table → i18n JSON verbatim |
 | `docs/phase-5-5-interface-plan.md` | Phase 5.5 interface spec: the design-system token table, the three-band shell, per-screen composition, and the `qa:phase55` contract |

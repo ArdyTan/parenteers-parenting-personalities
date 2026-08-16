@@ -7,20 +7,25 @@
 |---|---|
 | Content & research docs (pre-project) | ✅ done |
 | Planning & architecture docs | ✅ done (2026-07-17) |
-| 0 — Setup (scaffold, tokens, deploy, copy guides) | 🟨 repo published + dry run done; live deploy pending auth |
+| 0 — Setup (scaffold, tokens, deploy, copy guides) | 🟨 live at `quiz.parenteers.id`; Workers Builds connection pending |
 | 1 — Data & i18n (transcribe .md → JSON, scoring + tests) | ✅ done (2026-07-18) |
 | 2 — Core flow, zero polish | ✅ done (2026-07-18) |
 | 3 — Gesture & WebGL foundations | ✅ gestures done (2026-07-30); WebGL half removed 2026-08-02 (plan §6) |
 | 4 — Motion layer | ✅ done (2026-07-29) |
 | 4.5 — Art-led interface realignment | ✅ superseded by Phase 5.5 |
-| 5 — Share pipeline | 🟨 implemented locally; final domain + physical share/unfurl sign-off pending |
+| 5 — Share pipeline | 🟨 live domain + 16 OG shells deployed; physical share/unfurl sign-off pending |
 | 5.5 — Brilliant-spec interface revision | 🟨 revised against the user's device review (2026-08-02); headless QA green; Samsung/Instagram re-check pending |
 | 6 — QA hardening | ⬜ |
 | 7 — Launch extras (optional) | 🟨 sound layer shipped early (2026-08-02); analytics, founder-note flag and Awwwards assets remain |
 
 ## Next action
 
-Re-run the interface on the Samsung A55/S25 FE and in the Instagram in-app browser, now that the seven screenshot notes are closed. Look specifically at: the question headline sitting over the faded illustration at each of the three size tiers (Q1 / Q2 / Q5), whether the indicator row now reads in daylight, the bigger baking marquee and its 5-second auto-advance, the quick-changing "other bakes" row on the result, and the ID/EN + sound toggles at arm's length. Then set `config.links.site` so the 16 OG shells contain absolute URLs for a live WhatsApp unfurl check.
+Deploy the verified landing-art visibility hotfix to `quiz.parenteers.id` after Ardy gives explicit
+deployment approval, then hard-refresh and repeat the exact Samsung Chrome check that produced the
+blank cream band. The local fix makes the primary illustration visible independently of the GSAP
+entrance timeline, so early `deviceorientation` events can no longer strand it at `opacity: 0`.
+
+Re-run the interface on the Samsung A55/S25 FE and in the Instagram in-app browser, now that the seven screenshot notes are closed. Look specifically at: the question headline sitting over the faded illustration at each of the three size tiers (Q1 / Q2 / Q5), whether the indicator row now reads in daylight, the bigger baking marquee and its 5-second auto-advance, the quick-changing "other bakes" row on the result, and the ID/EN + sound toggles at arm's length. Then run the live WhatsApp unfurl check against the deployed 16 OG shells at `https://quiz.parenteers.id/r/{slug}`.
 
 Two decisions the `/end` removal left open: the "Follow @parenteers" CTA and the made-by/copyright footer had no other home and are currently gone, and `config.flags.founderNote` is an unwired flag. If any of the three should live on the Result, say where.
 
@@ -37,13 +42,291 @@ Worth adding to the device matrix: a **Samsung A23** (Snapdragon 680 class). The
 - [x] Active support path settled: optimized 404 WebP ships; the 10-second 1.76 MB `Preloader2.mp4` remains reference-only and the production preloader is lighter DOM/CSS/GSAP
 - [x] No active `asset-pattern.png` exists outside `images/old images/`; Phase 4 intentionally retains the existing CSS/grain treatment
 - [x] Both beds encoded by the user and shipped: `public/audio/ayo-main-bersama-asik.m4a` (3.67 MB, 152.62s) and `ayo-main-bersama-asik-result.m4a` (3.57 MB, 147.38s), AAC at ~200 kbps — both verified playing in-browser with no media error. Two optional refinements remain the user's call for **both** files: 96 kbps would roughly halve them with no audible loss on a phone bed under UI, and neither is `+faststart` (`moov` sits after `mdat`), so playback waits on more buffering than it needs to.
-- [ ] Parenteers activities URL — Phase 2 (`config.json links.activities`)
-- [ ] Final domain — Phase 5 (`config.json links.site`)
-- [ ] Cloudflare Wrangler authentication + Workers Builds connection — required to close Phase 0 (GitHub remote is ready)
+- [x] Parenteers product destination set to `https://parenteers.id/`; Indonesian Result cards and CTA use it (2026-08-15)
+- [ ] Preloader clip weight, opened 2026-08-16: `public/motion/preloader.mp4` is 1.8 MB for 10s of animation plus a 244 KB silent audio track, where the preloader is only on screen for about a second. Trimming to ~3s and stripping audio would land under 600 KB but needs ffmpeg, which this project does not carry
+- [ ] Two result-card copy/data calls opened 2026-08-16: the EN wording of `share.card_cta` ships as a placeholder ("Want yours too? Head to"), and `config.links.instagram` resolves to `@parenteers` while the design artwork shows `parenteers.id`
+- [x] Final domain — `https://quiz.parenteers.id/` deployed 2026-08-16
+- [ ] Cloudflare Workers Builds connection — required to close Phase 0 (Wrangler authentication confirmed 2026-08-16; GitHub remote is ready)
 - [x] Official Parenteers palette, logo set, and favicon delivered and applied (2026-07-18); existing fonts retained because the brand pack contains no typography specification
 - [ ] Any overrides to plan.md §14 decision defaults
 
 ## Session log (newest first)
+
+**2026-08-16, Preloader switched to the bowl clip and made seamless.**
+Two asks: the preloader artwork should read as part of the page rather than a card with a drop
+shadow, and the supplied MP4 should be tried in place of the still. The card look had one cause,
+`mix-blend-mode: multiply` on `.experience-preloader__art`: multiplying the artwork's cream against
+the page cream is exactly what drew a darker rectangle. That is gone, along with any border,
+radius or shadow. `Preloader.mp4` does not exist; the only clip in `images/web-component/` is
+`Preloader2.mp4`, which is what was used. It is a stirring mixing bowl, 500x500, 10.008s, on
+textured paper about `#F5EDE1`, a shade deeper than `--color-editorial-canvas`, so its rectangle
+cannot be colour-matched away. A new `.experience-preloader__stage::after` radial wash dissolves
+the edge instead; measured around the whole perimeter of the composited box, the edge now differs
+from the page by **0**. The wash is painted over the video rather than applied as a `mask-image`
+on it, so it does not depend on how an engine composites video layers.
+The master ships through a new `npm run assets:preloader`: its `moov` atom sat after `mdat`, so no
+frame could decode until all 1.8 MB had arrived, which for a preloader is worse than no clip at
+all. The script relocates `moov` and rewrites the chunk offset tables without re-encoding; the
+derivative was verified pixel-identical to the master at four sample frames and now exposes `moov`
+at byte 36. The preloader never waits on it: the first-frame gate is capped at 900ms and never
+rejects, and on exit the element is paused and its `src` cleared so in-flight range requests are
+cancelled. Reduced motion holds the first frame instead of stirring. `sceneArt.continuity.preloader`
+is now validated as a root-relative MP4 while the other four continuity paths keep the WebP rule,
+and the strict audit checks the clip's weight and atom order. Extended `qa:phase55` with a
+preloader contract covering the element type, the muted/playsinline/aria-hidden attributes, the
+absence of blend mode, border, radius and shadow, the presence of the wash, and the measured seam.
+Verification: **14 test files / 168 tests**, typecheck, production build (**105.99 KB JS / 14.87 KB
+CSS gzip**), strict asset audit (**0 issues**, clip reported faststart at 1808 KB), and
+`qa:phase55` in normal and reduced motion (**0 failures / 0 runtime errors**).
+Left open for the user: the clip is still **1.8 MB for 10 seconds of animation when the preloader
+is on screen for about one**, and it still carries a 244 KB AAC track that nothing plays. Trimming
+to roughly 3 seconds and dropping the audio would take it under 600 KB, but that needs a real
+encoder (ffmpeg), which this project does not carry. An animated WebP was measured as an
+alternative and rejected: 3 seconds at 400px/15fps already cost 816 KB.
+
+**2026-08-16, Shareable result card rebuilt against `images/Result Card.jpg`.**
+The user supplied a 390×768 result-card design and asked for it to become the result layout;
+after checking, the surface it actually describes is the saved/posted card, not the in-app hero
+(its footer invitation only makes sense to someone who did not run the quiz), and the user
+confirmed that reading. `drawStoryCard` was rewritten from a nine-block editorial poster into the
+supplied composition: centred wordmark, full-width character square, tracked eyebrow, Fraunces
+name, `#F3E3CA` code pill with tracked orange letters, the tagline wrapping to at most three
+lines, and a two-block footer. The superpowers list, watch-out paragraph, disclaimer and the two
+decorative accent blobs are gone, and `ShareCardLabels` narrowed from four fields to
+`{ intro, cta }`. Because the design is authored at a taller aspect than the 9:16 export, the
+whole layout is scaled uniformly to the card's height and centred rather than stretched, so the
+character square is 975px inside 1080; the WebPs carry the same cream as the canvas, so the
+columns only show where a character's ink touches its own frame edge. Tracking is drawn glyph by
+glyph, since canvas `letterSpacing` is not available on every WebView that offers
+`navigator.share`. Added `share.card_cta` (ID transcribed from the artwork, **EN is a placeholder
+awaiting a copy pass**) to both i18n files, the source table, and the required-key list. Extended
+`qa:phase55` with a pixel-readback contract on the composed card: size, six ink bands measured
+back in the artwork's own 390×768 units, pill fill, tagline block, and zero name ink over the
+pill. Verification: **14 test files / 168 tests**, typecheck, production build (**105.76 KB JS /
+14.82 KB CSS gzip**), strict asset audit (**0 issues**), and `qa:phase55` in normal and reduced
+motion (**0 failures / 0 runtime errors**). All 16 types were rendered in both languages and
+measured: every band lands within a reference unit or two of the design, no name reaches the code
+pill, and no tagline reaches the footer. Two data mismatches are the user's call, not bugs: the
+artwork's footer handle reads `parenteers.id` while `config.links.instagram` yields
+`@parenteers`, and the artwork's three-line tagline is longer than any `types.json` `tagline`
+field, so real cards wrap to one or two lines.
+
+**2026-08-16, Samsung landing-art race fixed locally; production deployment awaiting approval.**
+The supplied Samsung Chrome screenshot confirmed that the landing art band had its expected height
+but the illustration itself was invisible. The device-only trigger was a GSAP ownership collision:
+the landing figure participated in an `autoAlpha` entrance tween while early pointer/gyro handlers
+targeted the same node with `overwrite: true`; a real phone can emit `deviceorientation` during mount
+and interrupt the entrance while the figure is still hidden. The hero artwork no longer depends on
+an opacity entrance, and the sensor tweens now use property-scoped `overwrite: 'auto'`. Extended
+`qa:phase55` so it injects an early synthetic sensor tilt and treats sub-opaque landing art as a
+contract failure. Verification passes: **14 test files / 168 tests**, typecheck, release build
+(**105.32 KB JS / 14.82 KB CSS gzip**), and normal plus reduced-motion QA at 390x844 with **0
+failures / 0 runtime errors**; the landing file loaded at
+540x960 and rendered `opacity: 1`, `visibility: visible`. No cloud deployment was made.
+
+**2026-08-16, Production opening-image report triaged; exact failing surface still needed.**
+Investigated the report that the image around “Mulai Quiz” did not appear. The live Custom Domain
+served the landing artwork and the Quiz Opening illustration successfully in the in-app browser at
+390×844, 390×720, and a constrained 390×600 viewport. The opening image resolved to
+`/art/scenes/q03-daily-schedule.webp`, completed eagerly at its native 720×480 dimensions, rendered
+at opacity 1, and produced no console warnings or errors; the public asset and route both returned
+HTTP 200. No speculative code or production deployment was made. A screenshot plus confirmation of
+whether the missing image is the large “Mulai Quiz” artwork or the following clock/schedule artwork
+is required to isolate a device/cache-specific failure.
+
+**2026-08-16, Production deployed at quiz.parenteers.id.**
+Set `config.links.site` to `https://quiz.parenteers.id/` and declared the hostname as a Wrangler
+Custom Domain, with the Worker as origin and Cloudflare-managed DNS/TLS. Updated the release-readiness
+tests so the current bundle must have zero launch warnings while a synthetic `TBD` fixture still
+proves the warning and release-blocking guard. Release verification passes: **14 test files / 168
+tests**, strict typecheck, production build (**105.31 KB JS / 14.82 KB CSS gzip**), and a 177-asset
+Wrangler dry run. Deployed Worker version `fe286e6b-52d6-4002-bb29-aa8bda1140ab`; Cloudflare uploaded
+146 changed assets and activated both the workers.dev endpoint and `quiz.parenteers.id`. Public DNS,
+TLS, `/`, `/q/7`, and `/r/pcte/` returned HTTP 200. All 16 live result routes expose the expected
+absolute `og:url` and `og:image` values with zero failures. Physical Samsung/Instagram QA and a real
+WhatsApp unfurl remain separate launch sign-offs; Workers Builds Git integration is still pending.
+
+**2026-08-16, Cloudflare Workers production build validated locally.**
+Confirmed the existing assets-only Workers architecture against current Cloudflare SPA and Workers
+Builds documentation plus the installed Wrangler 4.112.0 schema. Disabled Wrangler usage metrics and
+dependency instrumentation at project level, so both local CLI runs and Workers Builds inherit the
+no-telemetry policy. Verification passes: **14 test files / 168 tests**, typecheck, production Vite
+build (**105.31 KB JS / 14.82 KB CSS gzip**), 16 prerendered Result routes, and a Wrangler dry run
+reading **177 assets** with no bindings. The local Workers runtime returned HTTP 200 for `/`,
+`/r/pcte/`, `/q/7`, and SPA fallback navigation. Wrangler authentication is current; the intentional
+release guard still blocks deployment until `config.links.site` replaces `TBD`, after which the
+Workers Builds connection and live deploy remain the only Phase 0 cloud steps.
+
+**2026-08-16, Gallery edge spacing and weekly-action separation finalized.**
+Added a measured 17px horizontal inset to the two-row Gallery rail and its action buttons, replacing
+the flush card/button edges without changing card geometry. Moved `Coba minggu ini` out of the
+full-width blue parent-support block into its own cream-canvas Result section; its heading and body
+copy are blue, while its outlined number markers are orange. Updated the Phase 5.5 contract and QA
+to lock the sibling order, colors, 17px Gallery insets, and zero overflow. Verification: **14 test
+files / 168 tests**, typecheck, normal plus reduced-motion browser QA at 390x844 (**0 failures / 0
+runtime errors**), and visual screenshot review. Per user direction, the production build was not run;
+this pass finalizes UI first.
+
+**2026-08-16, Superpower transition simplified.**
+Changed the three Superpower number circles from blue to orange and removed the horizontal rule
+between the blue parent-support block and `Superpower kamu`. Screenshot QA was intentionally skipped
+per user instruction.
+
+**2026-08-16, Divider before the parent-care inset removed.**
+Removed only the horizontal rule after `guiltRelease`, directly before the translucent `careForYou`
+inset. Other support dividers remain unchanged. Screenshot QA was intentionally skipped per user
+instruction.
+
+**2026-08-16, Parent-support conclusion moved into one blue reflection block.**
+Turned `Yang perlu kamu ingat` and `Coba minggu ini` into one full-width brand-blue section with
+white headings, body copy, dividers, and weekly-action markers. Orange remains only on the four
+takeaway numbers. Replaced the former cream parent-care card with a translucent-white inset, and
+added a white inset outline to the fixed save CTA so it stays legible over the blue section. Extended
+browser QA with exact 390px width, background, text-color, parent-care surface, and save-label
+visibility assertions. Verification: **14 test files / 168 tests**, typecheck, production build
+(**105.29 KB JS / 14.81 KB CSS gzip**), and normal plus reduced-motion browser QA at 390x844 (**0
+failures / 0 runtime errors**). The support screenshot was visually inspected.
+
+**2026-08-16, Save-result CTA moved to the first meaningful scroll.**
+Removed the story-completion gate from the Result share dock. The CTA now enters after 28% of the
+viewport has been scrolled, about 236px at 390x844, and retreats only within 12% of the top. The
+180ms dwell remains, so small accidental movement does not flash the control. QA now performs an
+explicit 280px first scroll and requires the CTA to stay available through the story and parent
+support. Verification: **14 test files / 168 tests**, typecheck, production build (**105.29 KB JS /
+14.72 KB CSS gzip**), and normal plus reduced-motion browser QA at 390x844 (**0 failures / 0 runtime
+errors**). The first-scroll screenshot was visually inspected.
+
+**2026-08-16, Sensory-play extension parked and removed from runtime.**
+Ardy and his wife will continue developing the core product before adding a sensory-play bridge.
+Removed the experimental `Bayangan & Senter` Result section, bundled JSON, TypeScript contract,
+runtime validation, tests, asset audit, QA capture and assertions, CSS, generated image, source copy,
+and asset-processing command. Restored the share-dock boundary to the parent-support section. Saved
+the product rationale, content direction, proposed future data contract, safety guardrails, and
+reactivation criteria in `docs/future-sensory-play-result-extension.md`. The external 30-recipe
+booklet remains untouched at its original location. Verification: **14 test files / 168 tests**,
+typecheck, production build (**105.30 KB JS / 14.72 KB CSS gzip**), strict asset audit (**0
+issues**), and normal plus reduced-motion browser QA at 390×844 (**0 failures / 0 runtime
+errors**).
+
+**2026-08-15, Parent-first storytelling implemented in the Result UI.**
+Rendered each personality's bilingual `parentStory` directly below the Result hero, with four
+editorial paragraphs and the matching full-bleed 3:2 illustration inserted after paragraph two.
+Added the concise `parentSupport` layer beneath it in the required order: daily reality, guilt
+release, parent care, child connection, then three weekly actions. The parent-care point receives
+the only warm-card emphasis, so the visual hierarchy follows the content promise instead of making
+every point compete. Added seven transcribed ID/EN labels, runtime validation, and data-integrity
+coverage. Delayed the fixed save CTA until the complete story and parent-first summary have scrolled
+away, preventing the dock from covering long-form copy. Extended `qa:phase55` with DOM-order,
+mid-story image, localized alt, 390px full-bleed width, support-order, action-count, no-overflow, and
+no-dock-during-reading assertions plus dedicated story/support captures. Verification: **14 test
+files / 168 tests**, typecheck, production build (**105.30 KB JS / 14.72 KB CSS gzip**), and normal
+plus reduced-motion browser QA at 390x844 (**0 failures / 0 runtime errors**). Story and support
+screenshots were visually inspected; physical Samsung and Instagram in-app-browser review remains.
+
+**2026-08-15, Sixteen mid-story personality illustrations added; copy made more human.**
+Generated one 3:2 daily-life illustration for every bake personality, using the active character
+art as the identity and watercolor-style reference. Preserved the 1536x1024 PNG sources in
+`images/story-illustrations/` and added the repeatable `assets:stories` pipeline for 1200x800 WebPs
+under `public/story-illustrations/`. Extended `parentStory` with `image`, bilingual `imageAlt`, and
+the explicit `imageAfterParagraph: 2` presentation contract; runtime validation and integrity tests
+now enforce the path, alt copy, placement value, format, and dimensions. Removed every em dash from
+`types.json` and the editorial document, then replaced the repeated "The X dalam dirimu" phrasing
+with conversational parent language. Added a repeatable `content:parent-doc` sync for the local
+research/editorial note. Updated the existing Google Doc in place, renamed it with a comma, and
+inserted sixteen centered PNG figures without rebuilding its native headings, bullet lists, safety
+note, or source links. Connector readback verified 16 type headings, 16 inline objects, one image
+after exactly two story paragraphs for every type, 116 native list items, and zero em dashes. PDF
+export visual QA could not run because Drive returned 403, so page-level crop and pagination remain
+unverified. Verification: **14 test files / 168 tests**, typecheck, and production build
+(**104.62 KB JS / 14.22 KB CSS gzip**).
+
+**2026-08-15 — All 16 parent-first results moved to story-first presentation.**
+Researched daily parenting hassles, ordinary quality moments, Indonesia-specific screen guilt, and
+narrative transportation/heterogeneity. Added a bilingual `parentStory` (`title` + four-or-more
+paragraph `body`) to every `types.json` record. Each story uses a distinct daily-life scene, names
+the parent's hidden load and guilt, gives the parent a pause or source of relief first, and only then
+returns to connection with the child. The existing `parentSupport` fields remain as the concise
+summary layer beneath the story. Updated the TypeScript contract, runtime validation, integrity
+tests, `data-spec.md`, the research/editorial document, performance actual, and the Obsidian SSOT.
+Rebuilt the existing Google Doc in place as story → conclusion bullets → three weekly actions for
+all 16 types; connector readback verified one tab, all codes, 16 story headings, 16 conclusions,
+16 action sections, 116 native bullets, and 13 working source links. The Result UI remains unchanged;
+this pass fulfills the requested JSON + review-document content layer. Verification: **14 test files
+/ 168 tests**, typecheck, and production build (**103.58 KB JS / 14.22 KB CSS gzip**).
+
+**2026-08-15 — Parent-first depth added to all 16 personality records.**
+Researched parental stress, guilt/shame, burnout as a risk-resource imbalance, caregiver
+well-being, parent emotion regulation, and parent-child repair using official guidance and
+peer-reviewed sources, including an Indonesian validation of the Parental Burnout Assessment.
+Added a bilingual `parentSupport` object to every `types.json` record: `realLife`, `guiltRelease`,
+`careForYou`, `forYourChild`, and three `tryThisWeek` actions. The sequence deliberately sees and
+refills the parent before discussing the child; all 16 remain equal-love editorial interpretations,
+not separately validated psychological diagnoses. Added TypeScript/schema validation, integrity
+coverage, `docs/personality-parent-first-content.md`, doc-map entries, data-spec documentation, and
+the Obsidian SSOT update. The Result UI is intentionally unchanged pending content review.
+Created and read back the Google Doc “Parenting Bakes — Parent-First Personality Content (16
+Types)”; all 16 codes, the safety boundary, native headings/lists, and eight source hyperlinks are
+present. Verification: **14 test files / 168 tests**, typecheck, and production build (**90.59 KB
+JS / 14.22 KB CSS gzip**).
+
+**2026-08-15 — Localized Result products shipped; both music beds now loop.**
+Replaced the former activity-tag soft sell with a language-specific product surface. Indonesian now
+shows nine unique Parenteers products in a keyboard-focusable horizontal rail; the 400×400 WebPs are
+exact copies from the companion `parenteers-landingpage` build, registered in `products.json`, and
+every card plus CTA targets `https://parenteers.id/`. The landing page's
+`stimulation-guide-large.webp` is correctly treated as a layout variant rather than a tenth product.
+English renders no Indonesian product cards and instead shows “English-language products are coming
+soon.” Both the quiz and Result streamed music beds now set `loop=true` at the engine boundary and
+browser element factory. Updated the strict asset audit, data integrity tests, Phase 5.5 browser
+contract, project docs, and Obsidian SSOT.
+Verification: **14 test files / 152 tests**, typecheck, production build (**81.32 KB JS / 14.22 KB
+CSS gzip**), strict audit (**9/9 product WebPs at 400×400; 0 issues**), and `qa:phase55` at 390×844
+in normal and reduced motion (**0 failures / 0 runtime errors**). Chrome confirmed nine ID cards,
+nine exact `https://parenteers.id/` links, zero broken product images, a scrollable rail, EN Coming
+Soon with zero product cards, both active beds looping, and zero horizontal page overflow.
+
+**2026-08-15 — Result save dock flattened.**
+Removed the background and box shadow from the fixed wrapper behind the final “Simpan kartu hasil”
+CTA, scoped only to the Result scene. After the user's correction, the button itself retains its
+brand-blue background, white label, full accessible hit area, and save behavior. Added the wrapper's
+transparent/no-shadow state and the button's retained brand color to the Phase 5.5 browser contract.
+Verification: **143 tests**, typecheck, production build (**80.62 KB JS / 14.03 KB CSS gzip**),
+and `qa:phase55` at 390×844 (**0 failures / 0 runtime errors**); computed styles confirm the
+wrapper is transparent/shadowless while the CTA remains brand blue.
+
+**2026-08-15 — Sound defaults on and starts at the first trusted interaction.**
+The user asked for sound from the beginning or immediately after the first interaction. Mobile
+autoplay policy still makes pre-gesture playback impossible, so the implemented contract is the
+strongest reliable version: a fresh visitor starts with `sound: true`, the active bed buffers ahead,
+and the first pointer or keyboard interaction anywhere unlocks playback without requiring a tap on
+the sound toggle. A stored `pb1.sound=off` remains authoritative, the toggle stays reachable wherever
+music can play, and Story remains silent. Updated the store tests, plan/conventions, Obsidian SSOT,
+and `qa:phase55`; the browser contract now clears the stored preference, confirms the fresh toggle is
+on and the theme is preloading, sends a trusted first pointer interaction, then requires the media
+element to be playing with advancing `currentTime`.
+Verification: **143 tests**, typecheck, production build (**80.62 KB JS / 14.03 KB CSS gzip**),
+strict asset audit (**0 issues**), and `qa:phase55` in normal and reduced motion (**0 failures /
+0 runtime errors**). In both browser runs the fresh state was `toggle=on`, `paused=true`,
+`preload=auto` before input; after the first trusted pointer it was `paused=false`, `readyState=4`,
+with `currentTime` advancing past 0.09s.
+
+**2026-08-15 — Q10 regenerated as native landscape art; all questions share the Q1 3:2 contract.**
+The user identified Q10's playground illustration as tiny on a short phone even though the runtime
+file itself reported 720×480. The source was the outlier: Q10 was 1024×1536 portrait, and the
+Phase 4 derivative pipeline's `fit: contain` shrank the whole portrait into a landscape canvas.
+Normalized all twelve question sources to the Q1 contract, 1536×1024: Q4's one-pixel width drift
+was corrected and Q6/Q9 were padded horizontally to preserve their complete compositions. The
+first Q10 crop was correctly rejected by the user because it still read as portrait artwork forced
+into a landscape frame. Q10 was then regenerated from a new landscape-first concept: a wide
+side-view playground with the tall slide sweeping diagonally across the frame and two pastry
+characters readable at phone size. Rebuilt the active 720×480 WebPs, added
+`assets:normalize-question-art`, made the strict asset audit reject any non-1536×1024 question
+source or unexpected runtime size, and made the normalizer reject portrait question art instead
+of attempting another crop. Q10 remains in the 390×844 plus 390×720 Phase 5.5 QA pass.
+Verification: **143 tests**, typecheck, production build (**80.58 KB JS / 14.03 KB CSS gzip**),
+strict asset audit (**12/12 question sources 1536×1024; 12/12 derivatives 720×480; 0 issues**),
+and `qa:phase55` in normal and reduced motion (**0 failures / 0 runtime errors**). The short Q10
+capture kept the art at 390×260, CTA inside the 720px viewport, and horizontal overflow at zero.
 
 **2026-08-02 — Art fade reinstated, scoped to the heights that actually need it.**
 The user asked for the gradient back "just for the risk potential device, to make the image feel

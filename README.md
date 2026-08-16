@@ -2,7 +2,7 @@
 
 A mobile-only, bilingual personality quiz for Parenteers: 12 parenting scenarios resolve to one of 16 bake-character personalities, followed by a 9:16 Instagram Story result.
 
-Indonesian is the default language. The application is a static Vite site deployed through Cloudflare Workers static assets; content lives in bundled JSON rather than a backend.
+Indonesian is the default language. The application is a static Vite site deployed through Cloudflare Workers static assets at [quiz.parenteers.id](https://quiz.parenteers.id/); content lives in bundled JSON rather than a backend.
 
 ## Requirements
 
@@ -31,7 +31,7 @@ npm run assets:placeholders
 npm run deploy:dry
 ```
 
-`npm test` includes scoring and JSON integrity checks. `npm run build` remains available for local/preview validation while launch links are unresolved; `npm run build:release` and `npm run deploy` fail until every `TBD` in `src/data/config.json` is replaced.
+`npm test` includes scoring and JSON integrity checks. `npm run build:release` and `npm run deploy` enforce that every launch link in `src/data/config.json` is resolved before publishing.
 
 `npm run assets:phase4` deterministically rebuilds the active character, ordered opening, and 404 WebPs from `images/`. `npm run assets:placeholders` is a legacy fallback that creates only missing character WebPs and never overwrites delivered production assets unless explicitly run with `--force`.
 
@@ -47,6 +47,8 @@ npm run deploy:dry
 - `docs/deployment.md` — Cloudflare Workers and Workers Builds handoff
 
 ## Deployment
+
+Production: [https://quiz.parenteers.id/](https://quiz.parenteers.id/)
 
 ```bash
 npm run deploy

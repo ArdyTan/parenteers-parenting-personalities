@@ -2,6 +2,10 @@
 
 The app deploys as an assets-only Cloudflare Worker. `wrangler.jsonc` points to Vite's `dist/` and uses `single-page-application` fallback so direct navigation to client routes receives `index.html`.
 
+Project-level Wrangler usage metrics and dependency instrumentation are disabled in `wrangler.jsonc`; this applies to both local CLI runs and Workers Builds.
+
+Production custom domain: `https://quiz.parenteers.id/`. Wrangler owns this hostname as a Custom Domain, allowing Cloudflare to provision its DNS record and TLS certificate automatically.
+
 ## Local verification
 
 ```bash

@@ -132,23 +132,27 @@ export class ParentingBakesApp {
 
   /**
    * Autoplay-with-sound is refused on every mobile surface this app targets, so
-   * the context can only start inside a real gesture. The first pointer down
-   * anywhere is that gesture; it costs nothing when sound is off because the
-   * engine no-ops and the ~1.75 MB theme is `preload="none"`.
+   * the context can only start inside a real gesture. The first pointer or
+   * keyboard interaction anywhere is that gesture. An explicit stored "off"
+   * still makes the engine no-op.
    */
   #bindAudioLifecycle(runtime: HTMLElement): void {
     const signal = this.#surfaceController?.signal;
     if (!signal) return;
 
-    runtime.addEventListener(
-      'pointerdown',
-      () => {
-        const engine = audioEngine();
-        engine.unlock();
-        this.#syncMusic(this.#store.get().scene);
-      },
-      { signal, once: true },
-    );
+    const unlockFromFirstInteraction = (event: Event): void => {
+      runtime.removeEventListener('pointerdown', unlockFromFirstInteraction);
+      document.removeEventListener('keydown', unlockFromFirstInteraction);
+      const engine = audioEngine();
+      engine.unlock();
+      // If the first gesture is the sound toggle itself, its ensuing click owns
+      // the decision. This prevents a tiny music blip when a fresh visitor's
+      // first action is explicitly turning the default-on preference off.
+      if (event.target instanceof Element && event.target.closest('.sound-toggle')) return;
+      this.#syncMusic(this.#store.get().scene);
+    };
+    runtime.addEventListener('pointerdown', unlockFromFirstInteraction, { signal });
+    document.addEventListener('keydown', unlockFromFirstInteraction, { signal });
 
     // In-app browsers suspend the context on share sheets and tab switches;
     // without this the bed comes back silent after the user returns.
@@ -575,4 +579,3 @@ async function copyLink(url: string): Promise<boolean> {
     textarea.remove();
   }
 }
-

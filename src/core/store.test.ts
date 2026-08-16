@@ -41,7 +41,7 @@ describe('app store', () => {
         { q: 1, pole: 'P' },
         { q: 4, pole: 'G' },
       ],
-      sound: false,
+      sound: true,
       result: 'FGDN',
     });
     expect(Object.isFrozen(state)).toBe(true);
@@ -79,7 +79,7 @@ describe('app store', () => {
       lang: 'id',
       scene: 'landing',
       answers: [],
-      sound: false,
+      sound: true,
     });
   });
 
@@ -104,31 +104,31 @@ describe('app store', () => {
     expect(session.values.has(STORAGE_KEYS.answers)).toBe(false);
   });
 
-  it('keeps sound off by default and round-trips the preference through local storage', () => {
+  it('enables sound for a fresh visitor and round-trips explicit preferences', () => {
     const local = new MemoryStorage();
     const fresh = createAppStore({ localStorage: local, sessionStorage: null });
 
-    // plan.md §14 decision 5: muted-by-default, which is also what keeps the
-    // theme from costing a byte for anyone who never opts in.
-    expect(fresh.get().sound).toBe(false);
-
-    fresh.setSound(true);
+    // Playback still waits for a trusted interaction; this state only says the
+    // first interaction should unlock it.
     expect(fresh.get().sound).toBe(true);
-    expect(local.values.get(STORAGE_KEYS.sound)).toBe('on');
+
+    fresh.setSound(false);
+    expect(fresh.get().sound).toBe(false);
+    expect(local.values.get(STORAGE_KEYS.sound)).toBe('off');
 
     const restored = createAppStore({ localStorage: local, sessionStorage: null });
-    expect(restored.get().sound).toBe(true);
+    expect(restored.get().sound).toBe(false);
 
-    restored.setSound(false);
-    expect(local.values.get(STORAGE_KEYS.sound)).toBe('off');
-    expect(createAppStore({ localStorage: local, sessionStorage: null }).get().sound).toBe(false);
+    restored.setSound(true);
+    expect(local.values.get(STORAGE_KEYS.sound)).toBe('on');
+    expect(createAppStore({ localStorage: local, sessionStorage: null }).get().sound).toBe(true);
   });
 
   it('falls back to muted when the stored sound preference is unreadable', () => {
     const local = new MemoryStorage();
     local.values.set(STORAGE_KEYS.sound, 'loud');
 
-    expect(createAppStore({ localStorage: local, sessionStorage: null }).get().sound).toBe(false);
+    expect(createAppStore({ localStorage: local, sessionStorage: null }).get().sound).toBe(true);
   });
 
   it('persists language and timestamped results only in local storage', () => {

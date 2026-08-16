@@ -1,10 +1,11 @@
 # data-spec.md — JSON Database Specification
-**What this is:** the authoritative spec for the app's entire database — five JSON files under `src/data/`. Expands plan.md §4; on any conflict, **this file wins**. The JSON is transcribed once from the content .md files (§8 map); after that, JSON is runtime truth and the .md files are editorial reference.
+**What this is:** the authoritative spec for the app's entire database, including the six primary JSON registries under `src/data/`. Expands plan.md §4; on any conflict, **this file wins**. The JSON is transcribed once from the content .md files (§8 map); after that, JSON is runtime truth and the .md files are editorial reference.
 
 ```
 src/data/
 ├── questions.json      # 12 questions
 ├── types.json          # 16 result types
+├── products.json       # 9 Indonesian products shown on Result
 ├── scene-art.json      # question/checkpoint/continuity illustration manifest
 ├── config.json         # links, flags, tunables
 └── i18n/
@@ -55,16 +56,26 @@ Array of exactly 16 objects — the full cartesian product of the four dimension
 | `tagline` | `{en, id}` | from quiz-01 result copy |
 | `superpowers` | `{en: string[3], id: string[3]}` | exactly 3 each — equal-love rule |
 | `watchout` | `{en, id}` | one line incl. the tip |
+| `parentStory` | object | parent-first narrative opener: localized `title`, localized multi-paragraph `body`, `image`, localized `imageAlt`, and `imageAfterParagraph: 2`; the illustration interrupts the story after paragraph two, before the summary points |
+| `parentSupport` | object | parent-first depth layer: `realLife`, `guiltRelease`, `careForYou`, `forYourChild` as localized text plus `tryThisWeek` as exactly 3 localized actions |
 | `popCousin` | `{en, id}` | from research §4 table; ID may localize |
 | `image` | string | `/characters/{slug}-{bake}.webp` (§4 table) |
 | `accent` | hex | per-type accent; **draft until final art lands**, then matched to the character palette |
 | `activityTags` | letter[2] | 2 distinct letters from the code; defaults deterministically to D2+D3, with an explicit editorial override allowed |
 
+### products.json
+
+Array of exactly nine unique Indonesian Parenteers products. Each object contains non-empty `id`,
+`meta`, `title`, and `alt` strings plus a root-relative 400×400 WebP `image` under
+`/products/`. This registry drives only the Indonesian Result rail; English deliberately renders a
+localized Coming Soon state. The companion landing page's `stimulation-guide-large.webp` is a layout
+variant of the same guide and is not a tenth record.
+
 ## 3. config.json
 
 ```json
 {
-  "links": { "activities": "TBD", "instagram": "https://instagram.com/parenteers", "site": "TBD" },
+  "links": { "activities": "https://parenteers.id/", "instagram": "https://instagram.com/parenteers", "site": "TBD" },
   "flags": { "founderNote": true, "sound": true, "desktopEscapeHatch": true, "analytics": "plausible" },
   "loading": { "holdMs": 5000 },
   "gate": { "minDesktopWidth": 900 },
@@ -121,7 +132,8 @@ At `/baking`, load the persisted `{q, pole}[]` records from `pb1.answers`, sort 
 ## 7. Validation invariants (enforced by `npm run test` + dev-boot assert)
 
 - **questions:** exactly 12 · ids 1–12 contiguous · 3 questions per dimension in the fixed order · each has exactly 2 answers carrying that dimension's two opposing poles · all `en`/`id` non-empty.
-- **types:** exactly 16 · codes = full cartesian product, unique · slug = lowercase code · every `image` file exists (build-time check) · `superpowers` length 3 in both languages · all text fields non-empty both languages · `accent` valid hex · `activityTags` ⊂ code letters, length 2, values distinct.
+- **types:** exactly 16 · codes = full cartesian product, unique · slug = lowercase code · every `image` file exists (build-time check) · `superpowers` length 3 in both languages · every `parentStory` has a non-empty localized title, a multi-paragraph localized body, localized image alt text, the matching 1200×800 story WebP, and `imageAfterParagraph: 2` · every `parentSupport` contains four non-empty localized parent-first fields plus exactly 3 `tryThisWeek` actions per language · all text fields non-empty both languages · `accent` valid hex · `activityTags` ⊂ code letters, length 2, values distinct.
+- **products:** exactly 9 unique ids · every metadata field non-empty · every image is a root-relative 400×400 WebP under `public/products/`.
 - **i18n:** identical key sets across languages · interpolation vars per key match across languages.
 - **scoring:** all 16 codes reachable · shuffle-invariance (randomizing answer order never changes the result).
 - **config:** no `TBD` remaining at production build (warning in dev, error in release build).
@@ -135,9 +147,10 @@ At `/baking`, load the persisted `{q, pole}[]` records from `pb1.answers`, sort 
 | quiz-01 PAGES 3–14 (12 questions) | `questions.json` (scenario, answers, poles) |
 | quiz-01 interstitials (post-Q6/Q9) | `i18n quiz.interstitial_q6 / _q9` |
 | quiz-01 PAGE 15 (loading lines) | `i18n loading.line1..4` |
-| quiz-01 PAGE 16 (result template + soft-sell) | labels from quiz-02 `result.*`; `i18n result.softsell_body`; activity-tag letter labels → `i18n activity.*` |
+| quiz-01 PAGE 16 (result template) + 2026-08-15 product override | labels from quiz-02 `result.*`; ID product rail → `products.json` + `result.products_*`; EN → localized Coming Soon |
 | quiz-01 THE 16 RESULT COPIES | `types.json` tagline / superpowers / watchout / emoji |
 | research §4 table (pop cousins) | `types.json popCousin` |
+| `docs/personality-parent-first-content.md` | research/editorial basis → `types.json parentStory` + `parentSupport`; each result opens with a daily-life story, inserts its matching illustration after paragraph two, then summarizes the parent-first takeaways as points; the 16 profiles are interpretations of the four dimensions, not separately validated psychological types |
 | quiz-01 PAGE 17 (gallery) | `i18n gallery.intro` (title/CTAs already in quiz-02) |
 | ~~quiz-01 PAGE 18 (end)~~ | ~~`i18n end.h2 / .body / .founder_note`~~ — route removed 2026-08-02, keys retired |
 | quiz-02 (all tables) | `i18n en.json / id.json` keys **verbatim** |

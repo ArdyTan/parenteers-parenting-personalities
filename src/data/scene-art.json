@@ -78,6 +78,6 @@
     "intro": "/art/scenes/q03-daily-schedule.webp",
     "calculating": "/opening/var-3.webp",
     "gate": "/opening/var-1.webp",
-    "preloader": "/opening/var-3.webp"
+    "preloader": "/motion/preloader.mp4"
   }
 }

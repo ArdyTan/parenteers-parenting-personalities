@@ -10,7 +10,7 @@
 3. **60fps on mid-range phones** — animate `transform` and `opacity` only. No layout-property animation (use GSAP Flip for layout changes), no filters/blur on large surfaces, no `background-attachment` parallax.
 4. **rAF loops stop when idle** — anything per-frame (world render, springs, marquees) must idle when nothing moves and pause on `document.hidden`.
 5. **Haptics are paired** — `navigator.vibrate()` (Android) always ships with a visual pulse so iOS users feel the same beat. Patterns live in `core/haptics.ts`: `tick` (answer select, ~10ms), `celebrate` (result, short pattern), `boundary` (detents).
-6. **Audio is the third channel, never the only one** — every `playSfx` sits beside an existing visual and haptic beat in `core/audio.ts`; sound is off by default and must never be the sole carrier of feedback. Reduced motion drops choreography, **not** sound or haptics. Nothing longer than ~300ms is ever decoded into an `AudioBuffer` — long audio streams through `<audio>` so it stays out of the JS heap.
+6. **Audio is the third channel, never the only one** — every `playSfx` sits beside an existing visual and haptic beat in `core/audio.ts`; fresh visitors default to sound enabled but playback waits for the browser's first trusted interaction, and an explicit stored "off" always wins. Sound must never be the sole carrier of feedback. Reduced motion drops choreography, **not** sound or haptics. Nothing longer than ~300ms is ever decoded into an `AudioBuffer` — long audio streams through looping `<audio>` elements so they stay out of the JS heap.
 7. **`prefers-reduced-motion` in every scene** — choreography degrades to crossfades/instant states via `gsap.matchMedia()`; function is never lost. Particles/shader drift freeze; the world may render a static frame.
 8. **Gestures are never the only path** — every swipe/drag action has a visible tap alternative (buttons). A11y and discoverability both.
 
@@ -78,7 +78,8 @@ Budgets live in plan.md §10 (JS ≤300KB gz, fonts ≤120KB, ≤300KB images/sc
 - Support art: active sources are `images/web-component/asset-404.png` and `Preloader2.mp4`. The preloader video is a reference until codec/performance/reduced-motion checks pass. `asset-pattern.png` and `asset-loading.png` currently exist only in the archive.
 - Archive: never import from `images/old images/` unless the user explicitly requests rollback or comparison.
 - OG images: `public/og/{slug}.png` 1080×1350 (4:5) + `default.png` 1200×630.
-- SFX (optional): `public/sfx/{name}.mp3`, ≤20KB each, muted-by-default toggle.
+- Result products: `src/data/products.json` → nine 400×400 WebPs in `public/products/`; source copies come from the companion `parenteers-landingpage` build, and `stimulation-guide-large.webp` is a layout variant rather than a tenth product.
+- SFX (optional): `public/sfx/{name}.mp3`, ≤20KB each; the always-reachable sound toggle preserves explicit opt-out.
 - Alt text pattern (both languages, from i18n): "Cute illustration of {type}, a parenting-style bake character."
 
 ## 8. Git & Session Conventions

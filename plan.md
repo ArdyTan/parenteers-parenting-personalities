@@ -68,6 +68,7 @@ All content lives in versioned JSON under `src/data/`. The three .md content fil
 src/data/
 ├── questions.json      # 12 questions
 ├── types.json          # 16 result types
+├── products.json       # 9 Indonesian Parenteers products shown on Result
 ├── i18n/en.json        # UI strings (from quiz-02)
 ├── i18n/id.json
 └── config.json         # links, handles, toggles, share templates
@@ -177,7 +178,7 @@ The core of the build. Each row names the technique number(s) and guide file(s) 
 | **Calculating** | The 4 rotating copy lines swap via masked line reveals (tap-to-skip once computed); shader swirl syncs to line changes; a skeleton of the result card shimmers and **morphs into the real card** as the reveal begins | **01** masked lines · **70** Skeleton → Content Morph |
 | **Result reveal** | Oven-door wipe; character springs out (squash-and-stretch); self-drawing accent ring + **one-shot canvas confetti with gravity** (battery-friendly, stops itself); background tints to type accent; haptic celebration pattern | **89** Success Confetti Moment · **17** wipe · **98** haptics |
 | **Result card** | Orientation-driven 3D tilt with moving specular glare + holo sheen; content layers at `translateZ` depths; pointer fallback | **97** Tilt 3D Product Card · **95** gyro plumbing |
-| **Result page scroll** | Lenis smooth scroll; large title collapses into a frosted bar; superpower cards parallax in transform-only layers; masked reveals per section | **01** Smooth Scroll & Reveal · **65** Collapsing Large-Title Header · **77** Touch Parallax Cards |
+| **Result page scroll** | Parent-first editorial flow: daily-life story, full-bleed midpoint illustration, concise parent support, then the legacy personality details | **01** Smooth Scroll & Reveal · **65** Collapsing Large-Title Header |
 | **Story-share mode** | IG-native: segment bars across the top, **tap thirds to move between 2–3 panels** (card / superpowers / watch-out), hold-to-pause hides all chrome for a clean screenshot, swipe-down dismisses with scale-away follow. No auto-advance (screenshot-friendly) | **66** Stories Viewer |
 | **Save / share buttons** | One button node morphs idle → loading pill → success tick / error shake ("Couldn't save — try screenshotting") | **84** Button State Machine |
 | **"Link copied!"** | Toast stack with squish, velocity swipe-to-dismiss, auto-expire bar | **86** Toast Choreography |
@@ -185,7 +186,7 @@ The core of the build. Each row names the technique number(s) and guide file(s) 
 | ~~**End page**~~ | ~~Fixed footer revealed curtain-lift style; CTA marquee band~~ — **cut 2026-08-02**: the journey now ends on the Result, so `/end` no longer exists | ~~48 · 10~~ |
 | **404** | Bitten-cookie illustration + tap to fling crumb reactions | **30** Floating Emoji Reactions |
 | **Baking marquee** | Three counter-scrolling rows of the whole 16-bake cast, shuffled per render, accelerating with the oven ramp; replaces the dial-in-a-card so the art carries the wait | **10** Marquee & Velocity Skew |
-| **Result share dock** | The share CTA docks to the bottom once the first composition scrolls away and retreats at the top, with a dwell so a fast flick can't flash it | **65** Collapsing Large-Title Header |
+| **Result share dock** | The share CTA stays hidden at the Result top, appears after one deliberate first scroll, and retreats only when the reader returns near the top | **65** Collapsing Large-Title Header |
 | ~~**Ambient (all screens)**~~ | ~~Dough gradient + flour trail + particles~~ — **cut in Phase 5.5**: the flat opaque editorial surfaces occluded it entirely, so it cost 134.6 KB gzip and a per-frame draw for zero pixels (§6) | ~~09 · 16 · 08~~ |
 
 Rejected on purpose (desktop-only patterns): magnetic cursor (05), hover index (44), mega-menu (37) — no cursor on the target device.
@@ -209,10 +210,10 @@ How these are measured, plus the recorded baselines and the traps that produce f
 
 | Metric | Budget |
 |---|---|
-| JS (gz) | ≤ 300 KB. **Actual: 81.33 KB** — GSAP+plugins ~65, Lenis ~3, app ~13 (the audio engine adds ~2.5 KB and no dependency) |
+| JS (gz) | ≤ 300 KB. **Actual: 105.29 KB** with the 16 bilingual stories, parent-first summary, localized product surface, and current audio behavior |
 | Fonts | ≤ 120 KB (2 families, subset woff2, self-hosted) |
 | Images per screen | ≤ 300 KB (characters use optimized ≤1024px WebP derivatives; alpha only when the chosen composition needs separation; only the result's character loads eagerly) |
-| Audio | One-shots are synthesized — 0 KB download, +0.12 MB heap measured after 240 cues. Two beds stream via `<audio preload="none">`, so they cost **0 bytes until a user turns sound on**: `theme` 3.67 MB / 152.6s and `result` 3.57 MB / 147.4s (both ~200 kbps AAC; ~1.75 MB each at 96 kbps). Only the bed a scene asks for is ever fetched. Never decode them: 150s at 48 kHz stereo is ~55 MB of Float32 |
+| Audio | One-shots are synthesized — 0 KB download, +0.12 MB heap measured after 240 cues. Fresh visitors default to sound enabled, so the current scene's streamed bed may buffer before the first interaction: `theme` 3.67 MB / 152.6s and `result` 3.57 MB / 147.4s (both ~200 kbps AAC; ~1.75 MB each at 96 kbps). An explicit stored "off" keeps both at 0 bytes. Only the bed a scene asks for is fetched. Never decode them: 150s at 48 kHz stereo is ~55 MB of Float32 |
 | LCP | < 2.5s · TTI < 3.5s |
 | Frame rate | 60fps target / 30fps floor. Measured 60fps to 6× CPU throttle and 51fps at 8× on the heaviest screen (Result); quality tiers were removed with the WebGL layer |
 | Preload trick | Quiz takes ~3 min — after Q1, `requestIdleCallback`-preload all 16 characters + share assets so the reveal is instant |
@@ -308,7 +309,7 @@ Analytics (quiz_start, answer, complete{code}, share{channel}, activities_click 
 2. **Loading duration** — 4 lines × 2.5s ≈ 10s, tap-to-skip after line 2. Tunable constant.
 3. **Swipe-to-answer** — deck fling is technique 52 either way; default is **tap to choose** (spec-safe, faster), with directional swipe as a progressive enhancement. Flag if you want swipe primary.
 4. **Activity-tag pairs per type** — deterministic default: D2+D3 letters; editorial override in types.json.
-5. **Sound** — ✅ **shipped 2026-08-02**, muted by default with a header toggle. Synthesized one-shots on press/select/swipe/boundary/confetti/reveal, plus two streamed beds: `ayo-main-bersama-asik` under Landing→Calculating, crossfading to `ayo-main-bersama-asik-result` at the reveal. Story and everything after stay silent so a screen recording of the share moment carries no music. The toggle sits outside `.app-header__language` because that container is hidden on Quiz Opening and Q1–Q12 — WCAG 1.4.2 needs the control reachable while audio plays.
+5. **Sound** — ✅ **shipped 2026-08-02; default revised 2026-08-15.** Fresh visitors start with sound enabled: playback is attempted immediately and, where mobile autoplay blocks it, begins on the first pointer or keyboard interaction anywhere. An explicit stored "off" remains off. The reachable header toggle satisfies WCAG 1.4.2. Synthesized one-shots run on press/select/swipe/boundary/confetti/reveal; `ayo-main-bersama-asik` plays under Landing→Calculating and crossfades to `ayo-main-bersama-asik-result` at the reveal. Both streamed beds loop while active. Story and everything after stay silent so a screen recording of the share moment carries no music.
 6. **Desktop escape hatch** — phone-frame "continue here anyway." Default: yes.
 7. **Founder note** — `config.flags.founderNote` survives but is unwired since `/end` was removed (2026-08-02); it needs a new home on the Result before it can ship. Default: on.
 8. **Analytics** — none / Plausible / Meta Pixel. Default: Plausible (cookieless).
@@ -324,7 +325,7 @@ Analytics (quiz_start, answer, complete{code}, share{channel}, activities_click 
 | 16 character images | ✅ Phase 4 derivatives complete | Active 1254×1254 opaque sources are rendered as intentional full-bleed 900×900 WebPs in registry order |
 | Interface + opening references | ✅ delivered 2026-07-18; indexed 2026-07-29 | Six ordered UI references and four ordered opening variants; see `images/README.md` |
 | Supporting art (preloader, 404, pattern) | ✅ Phase 4 path settled | Optimized 404 WebP ships; the 1.76 MB MP4 remains reference-only and the preloader is DOM/CSS/GSAP; CSS/grain is the intentional no-pattern default |
-| Parenteers activities URL(s) | Phase 2 | Soft-sell card + end CTA |
+| Parenteers products URL | ✅ set 2026-08-15 | Result product rail → `https://parenteers.id/` |
 | Final domain + IG handle link | Phase 5 | Share card + QR |
 | Official palette/logo assets | ✅ delivered 2026-07-18 | Applied per §5; existing fonts retained because the brand folder includes no typography specification |
 | Decisions §14 | Rolling | Defaults apply otherwise |

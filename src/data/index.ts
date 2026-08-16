@@ -1,6 +1,7 @@
 import configJson from './config.json';
 import enJson from './i18n/en.json';
 import idJson from './i18n/id.json';
+import productsJson from './products.json';
 import questionsJson from './questions.json';
 import sceneArtJson from './scene-art.json';
 import typesJson from './types.json';
@@ -14,6 +15,7 @@ import {
 export const appData = {
   questions: questionsJson,
   types: typesJson,
+  products: productsJson,
   sceneArt: sceneArtJson,
   translations: { en: enJson, id: idJson },
   config: configJson,

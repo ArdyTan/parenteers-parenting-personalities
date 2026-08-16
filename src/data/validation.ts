@@ -5,6 +5,7 @@ import {
   type AppConfig,
   type Dimension,
   type PersonalityType,
+  type Product,
   type Question,
   type SceneArtManifest,
   type TranslationTable,
@@ -47,15 +48,22 @@ export const REQUIRED_I18N_KEYS = [
   'quiz.interstitial_q9',
   'loading.title', 'loading.a11y', 'loading.line1', 'loading.line2', 'loading.line3',
   'loading.line4',
-  'result.intro_label', 'result.superpowers_label', 'result.watchout_label',
+  'result.intro_label', 'result.story_label', 'result.summary_label',
+  'result.real_life_label', 'result.guilt_release_label', 'result.care_for_you_label',
+  'result.for_child_label', 'result.try_this_week_label',
+  'result.superpowers_label', 'result.watchout_label',
   'result.popcousin_label', 'result.other_types_label',
   'result.share_ig', 'result.save_image', 'result.copy_link',
   'result.copied', 'result.see_all', 'result.retake', 'result.activities_cta',
+  'result.products_heading', 'result.products_coming_soon', 'result.products_cta',
   'result.your_code', 'result.softsell_body', 'result.scroll_hint',
   'gallery.title', 'gallery.your_type_badge', 'gallery.send_quiz', 'gallery.back_to_result',
   'gallery.intro',
   'share.title', 'share.caption_template', 'share.whatsapp', 'share.instagram', 'share.other',
   'share.hold_hint', 'share.image_shared', 'share.image_saved', 'share.link_shared',
+  // Phase 5.5 placeholder in EN: the ID line is transcribed from the result-card
+  // artwork, the English wording still needs a copy pass.
+  'share.card_cta',
   'footer.disclaimer', 'footer.made_by', 'footer.copyright', 'footer.privacy',
   'error.generic', 'error.offline', 'error.save_failed', 'error.retry',
   'error.notfound_title', 'error.notfound_cta',
@@ -69,6 +77,7 @@ export const REQUIRED_I18N_KEYS = [
 type RawAppData = Readonly<{
   questions: unknown;
   types: unknown;
+  products: unknown;
   sceneArt: unknown;
   translations: Readonly<{ en: unknown; id: unknown }>;
   config: unknown;
@@ -96,6 +105,7 @@ export function validateAppData(
 
   validateQuestions(data.questions, errors);
   validateTypes(data.types, errors);
+  validateProducts(data.products, errors);
   validateSceneArt(data.sceneArt, errors);
   validateTranslations(data.translations.en, data.translations.id, errors);
   validateConfig(data.config, errors, warnings, options.release === true);
@@ -105,6 +115,29 @@ export function validateAppData(
   }
 
   return { warnings };
+}
+
+function validateProducts(value: unknown, errors: string[]): void {
+  if (!Array.isArray(value)) {
+    errors.push('products must be an array.');
+    return;
+  }
+
+  if (value.length !== 9) errors.push(`products must contain 9 unique records; found ${value.length}.`);
+  const ids = new Set<string>();
+  value.forEach((rawProduct, index) => {
+    const path = `products[${index}]`;
+    const product = asRecord(rawProduct, path, errors);
+    if (!product) return;
+    for (const key of ['id', 'meta', 'title', 'alt']) {
+      expectNonEmptyString(product[key], `${path}.${key}`, errors);
+    }
+    validateRuntimeImagePath(product.image, `${path}.image`, errors);
+    if (typeof product.id === 'string') {
+      if (ids.has(product.id)) errors.push(`${path}.id must be unique.`);
+      ids.add(product.id);
+    }
+  });
 }
 
 function validateSceneArt(value: unknown, errors: string[]): void {
@@ -140,9 +173,12 @@ function validateSceneArt(value: unknown, errors: string[]): void {
 
   const continuity = asRecord(manifest.continuity, 'sceneArt.continuity', errors);
   if (continuity) {
-    for (const key of ['landing', 'intro', 'calculating', 'gate', 'preloader']) {
+    for (const key of ['landing', 'intro', 'calculating', 'gate']) {
       validateRuntimeImagePath(continuity[key], `sceneArt.continuity.${key}`, errors);
     }
+    // The preloader is the one motion surface, so it is the one path that is
+    // not a still.
+    validateRuntimeVideoPath(continuity.preloader, 'sceneArt.continuity.preloader', errors);
   }
 }
 
@@ -162,6 +198,12 @@ function validateRuntimeImagePath(value: unknown, path: string, errors: string[]
     !value.endsWith('.webp')
   ) {
     errors.push(`${path} must be a root-relative WebP path.`);
+  }
+}
+
+function validateRuntimeVideoPath(value: unknown, path: string, errors: string[]): void {
+  if (typeof value !== 'string' || !value.startsWith('/') || !value.endsWith('.mp4')) {
+    errors.push(`${path} must be a root-relative MP4 path.`);
   }
 }
 
@@ -252,6 +294,33 @@ function validateTypes(value: unknown, errors: string[]): void {
     validateLocalizedText(type.watchout, `${path}.watchout`, errors);
     validateLocalizedText(type.popCousin, `${path}.popCousin`, errors);
     validateLocalizedLists(type.superpowers, `${path}.superpowers`, errors);
+
+    const parentStory = asRecord(type.parentStory, `${path}.parentStory`, errors);
+    if (parentStory) {
+      if (parentStory.image !== `/story-illustrations/${expectedSlug}-story.webp`) {
+        errors.push(
+          `${path}.parentStory.image must be /story-illustrations/${expectedSlug}-story.webp.`,
+        );
+      }
+      validateLocalizedText(parentStory.imageAlt, `${path}.parentStory.imageAlt`, errors);
+      if (parentStory.imageAfterParagraph !== 2) {
+        errors.push(`${path}.parentStory.imageAfterParagraph must be 2.`);
+      }
+      validateLocalizedText(parentStory.title, `${path}.parentStory.title`, errors);
+      validateLocalizedText(parentStory.body, `${path}.parentStory.body`, errors);
+    }
+
+    const parentSupport = asRecord(type.parentSupport, `${path}.parentSupport`, errors);
+    if (parentSupport) {
+      for (const key of ['realLife', 'guiltRelease', 'careForYou', 'forYourChild']) {
+        validateLocalizedText(parentSupport[key], `${path}.parentSupport.${key}`, errors);
+      }
+      validateLocalizedLists(
+        parentSupport.tryThisWeek,
+        `${path}.parentSupport.tryThisWeek`,
+        errors,
+      );
+    }
 
     const name = isRecord(type.name) ? type.name : null;
     if (name && name.en !== name.id) errors.push(`${path}.name must match across languages.`);
@@ -432,6 +501,7 @@ function findTbdPaths(record: Record<string, unknown>, prefix = 'config'): strin
 export type ValidatedAppData = Readonly<{
   questions: readonly Question[];
   types: readonly PersonalityType[];
+  products: readonly Product[];
   sceneArt: SceneArtManifest;
   translations: Readonly<{ en: TranslationTable; id: TranslationTable }>;
   config: AppConfig;

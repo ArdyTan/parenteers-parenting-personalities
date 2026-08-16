@@ -74,7 +74,8 @@ Two pillars, and every decision follows from them:
     │   ├── shared.ts         # scene timelines, splitter, press, reveal, tilt, confetti
     │   └── preloader.ts      # real-progress 45→180°C boot + curtain exit
     ├── data/                 # THE DATABASE — see data-spec.md
-    │   ├── questions.json · types.json · scene-art.json · config.json
+    │   ├── questions.json · types.json · products.json
+    │   ├── scene-art.json · config.json
     │   └── i18n/en.json · id.json
     ├── scenes/               # one file per screen, all implementing Scene (§4)
     │   ├── gate.ts · landing.ts · intro.ts

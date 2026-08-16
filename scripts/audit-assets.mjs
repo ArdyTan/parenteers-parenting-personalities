@@ -11,6 +11,9 @@ const registry = JSON.parse(
 const sceneArtRegistry = JSON.parse(
   await readFile(join(workspace, 'src', 'data', 'scene-art.json'), 'utf8'),
 );
+const productsRegistry = JSON.parse(
+  await readFile(join(workspace, 'src', 'data', 'products.json'), 'utf8'),
+);
 const characterDirectory = resolve('images', 'Pastries-personalities');
 const characterFiles = (await readdir(characterDirectory))
   .filter((file) => file.endsWith('.png'))
@@ -91,15 +94,25 @@ console.table(openingRows);
 
 const sceneArtRows = await Promise.all(
   [...sceneArtRegistry.questions, ...sceneArtRegistry.checkpoints].map(async (asset) => {
+    const sourcePath = resolve(
+      'images',
+      'scene-art',
+      `${asset.image.split('/').at(-1).replace(/\.webp$/, '')}.png`,
+    );
     const runtimePath = resolve('public', asset.image.replace(/^\//, ''));
+    const source = await sharp(sourcePath).metadata();
     const runtime = await sharp(runtimePath).metadata();
     const runtimeBytes = (await stat(runtimePath)).size;
     const checkpoint = 'afterQuestion' in asset;
     const rowIssues = [];
 
+    if (!checkpoint && (source.width !== 1536 || source.height !== 1024)) {
+      rowIssues.push('question-source-not-1536x1024');
+    }
     if (runtime.format !== 'webp') rowIssues.push('runtime-not-webp');
-    if ((runtime.width ?? Infinity) > 720 || (runtime.height ?? Infinity) > 900) {
-      rowIssues.push('runtime-too-large');
+    const expectedRuntimeSize = checkpoint ? [600, 900] : [720, 480];
+    if (runtime.width !== expectedRuntimeSize[0] || runtime.height !== expectedRuntimeSize[1]) {
+      rowIssues.push('runtime-unexpected-size');
     }
     if (runtimeBytes > (checkpoint ? 100_000 : 80_000)) {
       rowIssues.push(checkpoint ? 'checkpoint-over-100kb' : 'question-over-80kb');
@@ -107,6 +120,8 @@ const sceneArtRows = await Promise.all(
     issues.push(...rowIssues.map((issue) => `${asset.image}: ${issue}`));
 
     return {
+      source: sourcePath.replace(`${workspace}\\`, ''),
+      sourceSize: `${source.width ?? '?'}x${source.height ?? '?'}`,
       runtime: asset.image,
       runtimeSize: `${runtime.width ?? '?'}x${runtime.height ?? '?'}`,
       runtimeKB: Math.ceil(runtimeBytes / 1024),
@@ -116,6 +131,30 @@ const sceneArtRows = await Promise.all(
 );
 
 console.table(sceneArtRows);
+
+const productRows = await Promise.all(
+  productsRegistry.map(async (product) => {
+    const runtimePath = resolve('public', product.image.replace(/^\//, ''));
+    const metadata = await sharp(runtimePath).metadata();
+    const bytes = (await stat(runtimePath)).size;
+    const rowIssues = [];
+    if (metadata.format !== 'webp') rowIssues.push('product-not-webp');
+    if (metadata.width !== 400 || metadata.height !== 400) {
+      rowIssues.push('product-not-400x400');
+    }
+    if (bytes > 30_000) rowIssues.push('product-over-30kb');
+    issues.push(...rowIssues.map((issue) => `${product.image}: ${issue}`));
+    return {
+      product: product.id,
+      runtime: product.image,
+      runtimeSize: `${metadata.width ?? '?'}x${metadata.height ?? '?'}`,
+      runtimeKB: Math.ceil(bytes / 1024),
+      issues: rowIssues.join(', ') || 'none',
+    };
+  }),
+);
+
+console.table(productRows);
 
 const brandCopies = [
   ['brand/favicon.png', 'public/brand/favicon.png'],
@@ -163,8 +202,42 @@ const ogRows = await Promise.all(
 );
 
 console.table(ogRows);
+
+// The preloader clip is the one runtime asset that is not an image, so it is
+// audited on the two things that actually decide whether it helps or hurts:
+// its weight, and whether `moov` reaches the browser before `mdat`. Without
+// faststart nothing can be decoded until the whole file has arrived, which for
+// a preloader is worse than having no clip at all.
+const preloaderRows = await (async () => {
+  const runtimePath = resolve('public', sceneArtRegistry.continuity.preloader.replace(/^\//, ''));
+  const rowIssues = [];
+  let bytes = 0;
+  let order = 'missing';
+
+  try {
+    bytes = (await stat(runtimePath)).size;
+    const head = await readFile(runtimePath);
+    const moov = head.indexOf('moov', 0, 'latin1');
+    const mdat = head.indexOf('mdat', 0, 'latin1');
+    order = moov >= 0 && mdat >= 0 ? (moov < mdat ? 'faststart' : 'moov-last') : 'unknown';
+    if (order !== 'faststart') rowIssues.push('not-faststart');
+    if (bytes > 2_000_000) rowIssues.push('preloader-over-2mb');
+  } catch {
+    rowIssues.push('preloader-clip-missing');
+  }
+
+  issues.push(...rowIssues.map((issue) => `${sceneArtRegistry.continuity.preloader}: ${issue}`));
+  return [{
+    runtime: sceneArtRegistry.continuity.preloader,
+    runtimeKB: Math.ceil(bytes / 1024),
+    atomOrder: order,
+    issues: rowIssues.join(', ') || 'none',
+  }];
+})();
+
+console.table(preloaderRows);
 console.log(
-  `Asset intake: ${characterRows.length} character derivatives, ${openingRows.length} opening derivatives, ${sceneArtRows.length} scene-art derivatives, ${ogRows.length} OG images, ${issues.length} issues.`,
+  `Asset intake: ${characterRows.length} character derivatives, ${openingRows.length} opening derivatives, ${sceneArtRows.length} scene-art derivatives, ${productRows.length} product images, ${ogRows.length} OG images, ${preloaderRows.length} preloader clip, ${issues.length} issues.`,
 );
 
 if (strict && issues.length > 0) {

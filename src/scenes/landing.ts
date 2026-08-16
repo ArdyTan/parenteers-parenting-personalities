@@ -128,7 +128,7 @@ function renderLanding(
         y: y * 3,
         duration: 0.55,
         ease: 'power2.out',
-        overwrite: true,
+        overwrite: 'auto',
       });
     };
     root.addEventListener('pointermove', moveArt, { signal });
@@ -141,7 +141,7 @@ function renderLanding(
           rotateX: Math.max(-2.5, Math.min(2.5, (event.beta - 45) * -0.04)),
           duration: 0.65,
           ease: 'power2.out',
-          overwrite: true,
+          overwrite: 'auto',
         });
       },
       { signal },
@@ -149,7 +149,11 @@ function renderLanding(
   }
 
   return createSceneMotion(root, {
-    enterTargets: [eyebrow, title, subtitle, openingArt, bottom],
+    // Keep the hero artwork visible independently of the entrance timeline.
+    // Real phones can emit `deviceorientation` while this scene is mounting;
+    // if the same node is also mid-autoAlpha tween, a sensor transform can
+    // interrupt it and strand the artwork at opacity: 0.
+    enterTargets: [eyebrow, title, subtitle, bottom],
     onEnter() {
       revealSplitText(titleCharacters);
       if (prefersReducedMotion()) return;

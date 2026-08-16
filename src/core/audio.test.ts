@@ -136,6 +136,7 @@ class FakeContext {
 class FakeAudioElement {
   /** Matches what `defaultMusicElementFactory` ships. */
   preload = 'none';
+  loop = false;
   played = 0;
   paused = 0;
   removed = 0;
@@ -242,6 +243,7 @@ describe('audio engine', () => {
 
     expect(context.mediaRoutes).toBe(1);
     expect(music.played).toBe(1);
+    expect(music.loop).toBe(true);
     // A 152.6s decode would be 55.88 MB of Float32 in the JS heap.
     expect(context.decodeAudioData).not.toHaveBeenCalled();
   });

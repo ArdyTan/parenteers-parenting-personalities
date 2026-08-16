@@ -15,7 +15,7 @@
       "en": [
         "You turn ordinary weekends into events",
         "You can talk your kid through anything",
-        "Fearless cheerleader: \"Try it — I've got you\""
+        "Fearless cheerleader: \"Try it, I've got you\""
       ],
       "id": [
         "Weekend biasa bisa kamu sulap jadi event",
@@ -26,6 +26,52 @@
     "watchout": {
       "en": "Sometimes you over-engineer the fun. Plot twist: the cardboard box always wins. 📦",
       "id": "Kadang serunya kamu terlalu dipersiapkan. Padahal… kardus bekas selalu menang. 📦"
+    },
+    "parentStory": {
+      "image": "/story-illustrations/pcte-story.webp",
+      "imageAlt": {
+        "en": "A Croquembouche parent and child turn a rainy morning into building a crooked cardboard house together.",
+        "id": "Orang tua Croquembouche dan anaknya mengubah pagi yg hujan menjadi waktu membuat rumah kardus miring bersama."
+      },
+      "imageAfterParagraph": 2,
+      "title": {
+        "en": "The Sunday That Wasn't a Masterpiece",
+        "id": "Minggu yang Tidak Jadi Masterpiece"
+      },
+      "body": {
+        "en": "At 7:12 on Sunday morning, the table is already holding fruit slices, water bottles, museum tickets, and a plan for making today special. Then the rain comes. Your child refuses to get dressed and climbs into an old cardboard box instead. Looking at everything you prepared, a small verdict appears: I can't even make one family day go right.\n\nBeing The Croquembouche can feel like stacking too many delicate pieces into one beautiful tower. You carry the schedule, the snacks, the excitement, and everybody's feelings, then blame yourself when one piece falls.\n\nThis morning, you don't rescue the plan. You keep your coffee warm, cancel one optional stop, and take ten minutes that do not need to be useful or shareable.\n\nWhen you return, your child holds out the scissors. “Help me make a window?” There is no museum and no perfect photo. Just a crooked cardboard window, a small laugh, and your shoulders finally softening. Maybe your child did not need a bigger day. Maybe both of you just needed you to come back to yourself first.",
+        "id": "Jam 7.12 Minggu pagi, meja makan sudah penuh: potongan buah, botol minum, tiket museum, dan rencana utk membuat hari ini istimewa. Lalu hujan turun. Anakmu menolak ganti baju dan memilih masuk ke kardus bekas. Melihat semua persiapan itu, muncul satu vonis kecil: aku bahkan gak bisa bikin satu hari keluarga berjalan benar.\n\nSebagai orang tua Croquembouche, kadang rasanya seperti menyusun terlalu banyak kue kecil menjadi menara indah. Kamu membawa jadwal, bekal, keseruan, dan perasaan semua orang, lalu menyalahkan diri ketika satu bagian jatuh.\n\nPagi itu kamu gak menyelamatkan rencana. Kamu menjaga kopimu tetap hangat, membatalkan satu agenda, dan mengambil sepuluh menit yg gak perlu berguna atau layak di-posting.\n\nSaat kembali, anakmu menyodorkan gunting. “Bantu bikin jendela?” Gak ada museum dan foto sempurna. Hanya jendela miring di kardus, tawa kecil, dan bahumu yg akhirnya turun. Mungkin anakmu gak membutuhkan hari yg lebih hebat. Mungkin kalian cuma perlu kamu kembali kepada dirimu sendiri dulu."
+      }
+    },
+    "parentSupport": {
+      "realLife": {
+        "en": "You often become the family project manager: schedules, snacks, big experiences, and everyone's feelings all at once. When the plan falls apart, it can feel like failure when you were simply carrying too much.",
+        "id": "Kamu sering jadi project manager keluarga: mikirin jadwal, bekal, pengalaman seru, dan perasaan semua orang sekaligus. Saat rencana berantakan, kamu bisa merasa gagal padahal kamu cuma sedang membawa terlalu banyak hal."
+      },
+      "guiltRelease": {
+        "en": "Your child does not need every day to be a masterpiece. A failed plan is not proof that you are a failed parent; it was one day that became too full.",
+        "id": "Anakmu gak butuh setiap hari jadi masterpiece. Rencana yg gagal bukan bukti kamu orang tua yg gagal; itu cuma satu hari yg terlalu penuh."
+      },
+      "careForYou": {
+        "en": "Keep one enjoyable moment that does not need to be useful, educational, or shareable. Joy without an output still counts.",
+        "id": "Sisakan satu momen menyenangkan yg gak perlu berguna, edukatif, atau layak di-posting. Senang tanpa output tetap sah."
+      },
+      "forYourChild": {
+        "en": "Under all the big experiences, the clearest message your child can receive is simple: you stay present even when the event does not go to plan.",
+        "id": "Di balik semua pengalaman besar, anak paling mudah menangkap satu pesan sederhana: kamu tetap hadir ketika acaranya gak berjalan sesuai rencana."
+      },
+      "tryThisWeek": {
+        "en": [
+          "Cancel one optional plan",
+          "Take 10 minutes for something only you enjoy",
+          "If you became too controlling, say: “I got tense earlier. Let's try again together.”"
+        ],
+        "id": [
+          "Batalkan satu agenda opsional",
+          "Ambil 10 menit utk sesuatu yg cuma kamu suka",
+          "Kalau tadi terlalu mengatur, bilang: “Tadi aku keburu tegang. Kita coba lagi bareng ya.”"
+        ]
+      }
     },
     "popCousin": {
       "en": "Ambitious Pinterest-parent energy",
@@ -49,12 +95,12 @@
     },
     "superpowers": {
       "en": [
-        "Your routines are legendary — your kid always knows what's next",
+        "Your routines are legendary, your kid always knows what's next",
         "Heart-to-heart talks are your home turf",
         "Home feels like the safest place on earth"
       ],
       "id": [
-        "Rutinitas kamu legendaris — anak selalu tau apa yg akan terjadi",
+        "Rutinitas kamu legendaris, anak selalu tau apa yg akan terjadi",
         "Ngobrol dr hati ke hati itu zona nyaman kamu",
         "Rumah terasa kayak tempat paling aman sedunia"
       ]
@@ -62,6 +108,52 @@
     "watchout": {
       "en": "Perfectionism sneaks in sometimes. Layer 27 is allowed to be \"good enough.\" 😌",
       "id": "Kadang perfeksionisnya muncul. Lapisan ke-27 boleh kok \"cukup bagus aja.\" 😌"
+    },
+    "parentStory": {
+      "image": "/story-illustrations/pctn-story.webp",
+      "imageAlt": {
+        "en": "A Lapis Legit parent pauses beside their child after spilled milk disrupts a rushed school morning.",
+        "id": "Orang tua Lapis Legit berhenti sejenak bersama anaknya setelah susu tumpah mengacaukan pagi sekolah."
+      },
+      "imageAfterParagraph": 2,
+      "title": {
+        "en": "When the Morning Lost Its Shape",
+        "id": "Ketika Pagi Kehilangan Bentuknya"
+      },
+      "body": {
+        "en": "Monday usually has an order: wake up, breakfast, uniform, shoes, out the door. This Monday, milk spills across the table, one sock disappears, and the school message says the class starts earlier. By 7:28, everyone is late and you hear yourself speaking more sharply than you meant to. The thought arrives immediately: I ruined the safe routine I worked so hard to build.\n\nAs a Lapis Legit parent, you love through layers, small rituals placed carefully, day after day. That is why one crooked layer can feel enormous, even when the rest of the cake is still standing.\n\nYou stop trying to repair the whole morning. Breakfast becomes bread in the car. One task is left unfinished. You take one slow breath before turning the key.\n\n“Today changed shape,” you say, “but we're still okay.” Your child nods with one shoe half-fastened. The routine did not protect you from chaos; the relationship made the chaos survivable. One messy morning cannot erase hundreds of ordinary mornings that already taught your child what home feels like.",
+        "id": "Senin biasanya punya urutan: bangun, sarapan, seragam, sepatu, lalu berangkat. Senin ini, susu tumpah, satu kaos kaki hilang, dan pesan sekolah bilang kelas mulai lebih awal. Jam 7.28 semua terlambat dan suaramu terdengar lebih tajam dari yg kamu mau. Pikiran itu langsung datang: aku merusak rutinitas aman yg susah payah kubangun.\n\nSebagai orang tua Lapis Legit, kamu mencintai lewat lapisan, ritual kecil yg ditaruh hati-hati, hari demi hari. Itu sebabnya satu lapisan miring terasa besar, padahal seluruh kuenya masih berdiri.\n\nKamu berhenti mencoba memperbaiki seluruh pagi. Sarapan berubah jadi roti di mobil. Satu tugas dibiarkan belum selesai. Kamu menarik satu napas pelan sebelum menyalakan mesin.\n\n“Hari ini bentuknya berubah,” katamu, “tp kita tetap baik-baik aja.” Anakmu mengangguk dengan satu sepatu belum terpasang. Rutinitas bukan melindungi kalian dari kekacauan; hubungan kalianlah yg membuat kekacauan bisa dilewati. Satu pagi berantakan gak menghapus ratusan pagi biasa yg sudah mengajarkan rasa rumah."
+      }
+    },
+    "parentSupport": {
+      "realLife": {
+        "en": "You care for the family through routines, traditions, and small details. Because so much depends on you, even a minor schedule change can feel like you have disappointed everyone.",
+        "id": "Kamu menjaga keluarga lewat rutinitas, tradisi, dan detail kecil. Karena banyak hal bergantung padamu, perubahan jadwal sedikit saja bisa terasa seperti kamu mengecewakan semua orang."
+      },
+      "guiltRelease": {
+        "en": "Consistency is not the same as perfection. One uneven layer does not ruin the whole cake, and one chaotic day does not erase the safety you have built.",
+        "id": "Konsisten gak berarti selalu sempurna. Satu lapisan yg miring gak merusak seluruh kue, dan satu hari yg kacau gak menghapus rasa aman yg sudah kamu bangun."
+      },
+      "careForYou": {
+        "en": "Choose one family routine that may run in minimum mode this week. The energy left over is not laziness; it is your reserve.",
+        "id": "Pilih satu rutinitas keluarga yg minggu ini boleh dibuat versi minimum. Energi yg tersisa bukan kemalasan; itu cadangan hidupmu."
+      },
+      "forYourChild": {
+        "en": "Your child needs a pattern that is predictable enough, while also seeing that home remains safe when plans change.",
+        "id": "Anak membutuhkan pola yg cukup bisa diprediksi, sekaligus melihat bahwa rumah tetap aman ketika rencana berubah."
+      },
+      "tryThisWeek": {
+        "en": [
+          "Lower the standard for one task",
+          "Schedule a pause before the calendar fills",
+          "When plans change, say: “The plan changed, but we are still safe.”"
+        ],
+        "id": [
+          "Turunkan standar satu tugas",
+          "Jadwalkan jeda sebelum kalender penuh",
+          "Saat jadwal berubah, ucapkan: “Rencananya berubah, tp kita tetap aman.”"
+        ]
+      }
     },
     "popCousin": {
       "en": "Warm-traditional authoritative",
@@ -85,19 +177,65 @@
     },
     "superpowers": {
       "en": [
-        "Decisive — your kid always knows the plan",
+        "Decisive, your kid always knows the plan",
         "Adventure logistics? Handled. Snacks? Packed.",
         "Calm and practical, even on the move"
       ],
       "id": [
-        "Tegas — anak selalu tau rencananya apa",
+        "Tegas, anak selalu tau rencananya apa",
         "Logistik petualangan? Beres. Bekal? Aman.",
         "Tenang & praktis, bahkan di perjalanan"
       ]
     },
     "watchout": {
-      "en": "You fix things fast — sometimes feelings just want to be heard first. One \"how did that feel?\" goes a long way. 💬",
-      "id": "Kamu cepat banget nyelesain masalah — tp kadang perasaan cuma mau didengar dulu. Satu \"gimana rasanya?\" itu berarti banget. 💬"
+      "en": "You fix things fast, sometimes feelings just want to be heard first. One \"how did that feel?\" goes a long way. 💬",
+      "id": "Kamu cepat banget nyelesain masalah, tp kadang perasaan cuma mau didengar dulu. Satu \"gimana rasanya?\" itu berarti banget. 💬"
+    },
+    "parentStory": {
+      "image": "/story-illustrations/pcde-story.webp",
+      "imageAlt": {
+        "en": "A Baguette parent sits and listens to their child at the playground before offering a bandage.",
+        "id": "Orang tua Baguette duduk dan mendengarkan anaknya di taman bermain sebelum menawarkan plester."
+      },
+      "imageAfterParagraph": 2,
+      "title": {
+        "en": "The Bandage in the Front Pocket",
+        "id": "Plester di Saku Depan"
+      },
+      "body": {
+        "en": "At the playground, your child slips from the lowest step. Before the tears fully arrive, you already have the water bottle open and a bandage from the front pocket. “You're okay. Clean it, cover it, back to playing.” Everything practical is handled in under a minute. Still, your child stays quiet beside you.\n\nOn the way home, guilt starts rewriting the scene: Maybe I was too cold. Maybe a better parent would have known exactly what to say.\n\nAs a Baguette parent, you show love through readiness. Your care often looks like packed snacks, clear decisions, and hands that move quickly when something goes wrong. That love is real; it simply needs one small pause beside the solution.\n\nAt the red light, you turn back. “That fall scared you, huh?” Your child nods and finally tells you how high the step felt. Nothing needed a long speech. The bandage had cared for the knee; one question cared for the moment. You do not need to become a different kind of parent. You only need to let your capable hands arrive half a breath after your heart.",
+        "id": "Di playground, anakmu terpeleset dari anak tangga paling rendah. Sebelum tangisnya penuh, kamu sudah membuka botol minum dan mengambil plester dari saku depan. “Gakpapa. Dibersihin, ditutup, terus main lagi.” Semua yg praktis beres kurang dari semenit. Tp anakmu tetap diam di sampingmu.\n\nDi perjalanan pulang, rasa bersalah mulai menulis ulang adegan tadi: mungkin aku terlalu dingin. Mungkin orang tua yg lebih baik pasti tahu harus bilang apa.\n\nSebagai orang tua Baguette, kamu menunjukkan cinta lewat kesiapan. Sayangmu sering berbentuk bekal, keputusan jelas, dan tangan yg sigap ketika sesuatu terjadi. Cinta itu nyata; ia cuma butuh satu jeda kecil di samping solusi.\n\nDi lampu merah kamu menoleh. “Tadi jatuhnya bikin kaget ya?” Anakmu mengangguk dan akhirnya cerita betapa tinggi tangga itu terasa. Gak perlu pidato panjang. Plester merawat lututnya; satu pertanyaan merawat momennya. Kamu gak perlu menjadi orang tua yg berbeda. Cukup biarkan tanganmu yg cekatan datang setengah napas setelah hatimu."
+      }
+    },
+    "parentSupport": {
+      "realLife": {
+        "en": "You are used to being the person who knows what to do. Logistics handled, decisions made, problems solved, until you feel guilty for not always having gentle words ready.",
+        "id": "Kamu terbiasa menjadi orang yg tahu harus melakukan apa. Logistik beres, keputusan cepat, masalah ditangani, sampai kamu merasa bersalah karena gak selalu punya kata-kata lembut."
+      },
+      "guiltRelease": {
+        "en": "Love does not only sound like a long conversation; it often looks like a packed bag and capable hands. You are not cold, you may only need a little space before the solution.",
+        "id": "Cinta gak cuma terdengar seperti percakapan panjang; sering kali ia berbentuk bekal yg siap dan tangan yg sigap. Kamu gak dingin, kamu hanya perlu menambahkan sedikit ruang sebelum solusi."
+      },
+      "careForYou": {
+        "en": "Hand one small decision to someone else. You may step out of mission control without making the family lose direction.",
+        "id": "Serahkan satu keputusan kecil kepada orang lain. Kamu boleh berhenti menjadi pusat kendali tanpa membuat keluarga kehilangan arah."
+      },
+      "forYourChild": {
+        "en": "Before you fix the problem, one sentence that recognizes the feeling can help your child feel accompanied rather than managed.",
+        "id": "Sebelum kamu memperbaiki masalahnya, satu kalimat yg mengakui perasaan membantu anak merasa ditemani, bukan dikelola."
+      },
+      "tryThisWeek": {
+        "en": [
+          "Delegate one practical task",
+          "Take one breath before offering a solution",
+          "Try: “You are disappointed, would you like a hug or some help?”"
+        ],
+        "id": [
+          "Delegasikan satu urusan",
+          "Tarik satu napas sebelum memberi solusi",
+          "Coba: “Kamu kecewa ya, mau dipeluk atau dibantu?”"
+        ]
+      }
     },
     "popCousin": {
       "en": "Coach-captain parent",
@@ -116,8 +254,8 @@
       "id": "The Milk Bread"
     },
     "tagline": {
-      "en": "Precisely soft — structure in service of comfort.",
-      "id": "Lembut yg terencana — struktur demi kenyamanan."
+      "en": "Precisely soft, structure in service of comfort.",
+      "id": "Lembut yg terencana, struktur demi kenyamanan."
     },
     "superpowers": {
       "en": [
@@ -132,8 +270,54 @@
       ]
     },
     "watchout": {
-      "en": "Protective can quietly become hovering. It's okay to let them wobble — you're still right there. 🧦",
-      "id": "Protektif bisa pelan-pelan jadi hovering. Gakpapa biarin dia goyah dikit — kamu tetap ada di situ kok. 🧦"
+      "en": "Protective can quietly become hovering. It's okay to let them wobble, you're still right there. 🧦",
+      "id": "Protektif bisa pelan-pelan jadi hovering. Gakpapa biarin dia goyah dikit, kamu tetap ada di situ kok. 🧦"
+    },
+    "parentStory": {
+      "image": "/story-illustrations/pcdn-story.webp",
+      "imageAlt": {
+        "en": "A Milk Bread parent stays close while their child carefully climbs one step higher.",
+        "id": "Orang tua Milk Bread tetap dekat saat anaknya pelan-pelan mencoba naik satu anak tangga lebih tinggi."
+      },
+      "imageAfterParagraph": 2,
+      "title": {
+        "en": "One Step Higher",
+        "id": "Satu Anak Tangga Lebih Tinggi"
+      },
+      "body": {
+        "en": "At a birthday party, your child climbs a frame meant for bigger kids. Your body reacts before your mind does: one hand lifts, your eyes scan the ground, and three possible accidents appear at once. “Come down. It's not safe.” Your child looks back, disappointed. Around you, other parents seem relaxed, and guilt whispers that you are either too controlling or not protective enough, somehow both.\n\nAs a Milk Bread parent, you show love by anticipating what might happen. You carry spare clothes, backup snacks, and a plan B for plan B. But living in permanent alert has made your own body forget what “safe enough” feels like.\n\nYou lower your hand and move closer instead of pulling your child down. “Try one step. I'm right here.” Your heart still races; courage does not require calm.\n\nYour child climbs, wobbles, and comes back down smiling. You did not remove every risk, and you did not abandon protection. You became the soft place nearby: close enough to catch, far enough to let growing happen. On the ride home, you notice that your jaw is no longer clenched.",
+        "id": "Di pesta ulang tahun, anakmu memanjat rangka yg biasanya dipakai anak lebih besar. Tubuhmu bereaksi duluan: satu tangan terangkat, mata memeriksa tanah, dan tiga kemungkinan celaka muncul sekaligus. “Turun, itu gak aman.” Anakmu menoleh kecewa. Orang tua lain terlihat santai, dan rasa bersalah berbisik bahwa kamu terlalu mengontrol sekaligus kurang melindungi, entah bagaimana keduanya.\n\nSebagai orang tua Milk Bread, kamu menunjukkan cinta lewat antisipasi. Kamu membawa baju cadangan, snack cadangan, dan rencana B utk rencana B. Tp hidup terus dalam mode siaga membuat tubuhmu lupa seperti apa rasanya “cukup aman”.\n\nKamu menurunkan tangan dan mendekat, bukan langsung menarik anakmu turun. “Coba satu anak tangga. Aku di sini.” Jantungmu masih cepat; keberanian gak harus terasa tenang.\n\nAnakmu naik, goyah, lalu turun sambil tersenyum. Kamu gak menghapus semua risiko dan gak meninggalkan perlindungan. Kamu menjadi tempat lembut yg tetap dekat: cukup dekat utk menangkap, cukup jauh utk membiarkan pertumbuhan terjadi. Di perjalanan pulang, baru kamu sadar rahangmu gak lagi mengeras."
+      }
+    },
+    "parentSupport": {
+      "realLife": {
+        "en": "You show love through anticipation: backup food, safe schedules, and a plan B for plan B. That vigilance is exhausting and can make a small incident feel like proof you failed to protect your child.",
+        "id": "Kamu menunjukkan sayang lewat antisipasi: makanan cadangan, jadwal aman, dan rencana B utk rencana B. Kewaspadaan itu melelahkan dan membuat kejadian kecil mudah terasa sebagai bukti kamu kurang melindungi anak."
+      },
+      "guiltRelease": {
+        "en": "Not every scrape, disappointment, or discomfort is a failure of protection. Keeping a child safe also means trusting that they can recover with you nearby.",
+        "id": "Tidak semua goresan, kecewa, atau ketidaknyamanan adalah kegagalan perlindungan. Menjaga anak juga berarti percaya bahwa ia bisa pulih dengan kamu di dekatnya."
+      },
+      "careForYou": {
+        "en": "Choose one area that may be safe enough instead of zero-risk. Your body deserves a short break from alert mode too.",
+        "id": "Tentukan satu area yg boleh “cukup aman”, bukan “nol risiko”. Tubuhmu juga berhak keluar sebentar dari mode siaga."
+      },
+      "forYourChild": {
+        "en": "Your child needs a secure base and small chances to try, wobble, and return to you.",
+        "id": "Anak membutuhkan basis yg aman dan kesempatan kecil untuk mencoba, goyah, lalu kembali kepadamu."
+      },
+      "tryThisWeek": {
+        "en": [
+          "Release one repeated safety check",
+          "Do one calming activity without multitasking",
+          "Offer: “Try it first. I am right here.”"
+        ],
+        "id": [
+          "Lepaskan satu pemeriksaan berulang",
+          "Lakukan aktivitas tenang tanpa multitasking",
+          "Tawarkan: “Coba dulu, aku ada dekat sini.”"
+        ]
+      }
     },
     "popCousin": {
       "en": "The cozy scheduler",
@@ -171,6 +355,52 @@
       "en": "So many experiments, so little follow-through. Finish one bake before starting three. 🍩",
       "id": "Eksperimennya banyak, yg selesai… hmm. Selesaikan satu dulu sebelum mulai tiga. 🍩"
     },
+    "parentStory": {
+      "image": "/story-illustrations/pgte-story.webp",
+      "imageAlt": {
+        "en": "A Cronut parent and child sort unfinished creative projects after making room for the parent's own sketchbook.",
+        "id": "Orang tua Cronut dan anaknya memilah proyek kreatif yg belum selesai setelah memberi ruang untuk sketchbook milik orang tua."
+      },
+      "imageAfterParagraph": 2,
+      "title": {
+        "en": "The Volcano That Became a Dinosaur",
+        "id": "Gunung Meletus yang Berubah Jadi Dinosaurus"
+      },
+      "body": {
+        "en": "The dining table still holds baking soda, red paint, and half a cardboard volcano when your child runs in carrying a dinosaur book. “Can we make this one next?” Yesterday you were just as excited as they were. Today, seeing three unfinished experiments and a message from work, you hear yourself think: We never finish anything. I keep creating chaos.\n\nAs a Cronut parent, you understand the recipe and immediately want to remix it. Curiosity in your home grows fast, crosses categories, and rarely asks permission before changing direction. That is not failure. Sometimes a question is complete the moment wonder has been satisfied.\n\nBefore making another plan, you take fifteen minutes with your own sketchbook, no lesson, no photo, no output. Then you return with three choices: finish, save, or let go.\n\nYour child chooses to photograph the volcano and recycle it. The dinosaur can wait until tomorrow. The table is not perfectly clear, but one story has an ending. You have shown that exploring does not mean keeping everything forever, and that your own play deserves space too.",
+        "id": "Meja makan masih penuh baking soda, cat merah, dan gunung kardus setengah jadi ketika anakmu masuk membawa buku dinosaurus. “Besok bikin ini ya?” Kemarin kamu sama semangatnya. Hari ini, melihat tiga eksperimen belum selesai dan satu pesan kerja, kamu berpikir: kita gak pernah menyelesaikan apa pun. Aku cuma bikin rumah makin kacau.\n\nSebagai orang tua Cronut, kamu paham resep lalu langsung ingin me-remix-nya. Rasa ingin tahu di rumahmu tumbuh cepat, menyeberang ke mana-mana, dan sering berubah arah tanpa izin. Itu bukan kegagalan. Kadang sebuah pertanyaan memang selesai ketika rasa takjubnya sudah terjawab.\n\nSebelum membuat rencana baru, kamu mengambil lima belas menit dengan sketchbook milikmu sendiri, tanpa pelajaran, foto, atau output. Setelah itu kamu kembali membawa tiga pilihan: lanjutkan, simpan, atau lepaskan.\n\nAnakmu memilih memotret gunung lalu mendaur ulang kardusnya. Dinosaurus bisa menunggu besok. Meja belum sepenuhnya bersih, tp satu cerita sudah punya akhir. Kamu menunjukkan bahwa bereksplorasi gak berarti menyimpan semuanya selamanya, dan permainanmu sendiri juga pantas punya ruang."
+      }
+    },
+    "parentSupport": {
+      "realLife": {
+        "en": "You quickly catch your child's newest obsession and want to turn it into a rich experience. A pile of half-finished projects can make you feel inconsistent.",
+        "id": "Kamu mudah ikut bersemangat pada obsesi baru anak dan ingin mengubahnya jadi pengalaman yg kaya. Tumpukan proyek setengah jadi bisa membuatmu merasa gak konsisten."
+      },
+      "guiltRelease": {
+        "en": "Curiosity does not always need a finished product. A changing interest is not proof you failed to follow through; sometimes exploration ends when the question has been answered.",
+        "id": "Rasa ingin tahu gak harus selalu menghasilkan karya jadi. Minat yg berpindah bukan bukti kamu gagal mendampingi; kadang eksplorasi memang selesai setelah rasa penasarannya terjawab."
+      },
+      "careForYou": {
+        "en": "Do one creative thing that does not become a child activity, content, or a target. You are allowed to play too.",
+        "id": "Lakukan satu hal kreatif yg tidak berubah menjadi aktivitas anak, konten, atau target. Kamu juga boleh bermain."
+      },
+      "forYourChild": {
+        "en": "Your child benefits from freedom to explore and from seeing a simple way to close, store, or release a project.",
+        "id": "Anak mendapat manfaat dari kebebasan mengeksplorasi dan dari contoh sederhana tentang menutup, menyimpan, atau melepas sebuah proyek."
+      },
+      "tryThisWeek": {
+        "en": [
+          "Choose one project to finish or release",
+          "Play creatively for 15 minutes just for you",
+          "Ask: “Do we continue, store it, or finish here?”"
+        ],
+        "id": [
+          "Pilih satu proyek utk diselesaikan atau dilepas",
+          "Main 15 menit utk dirimu sendiri",
+          "Ajak anak bilang: “Kita lanjut, simpan, atau selesai sampai sini?”"
+        ]
+      }
+    },
     "popCousin": {
       "en": "Montessori-inspired experimenter",
       "id": "Montessori-inspired experimenter"
@@ -195,17 +425,63 @@
       "en": [
         "You read your kid's cues like a pro",
         "Soft landings for every big feeling",
-        "Unhurried presence — no rush, just here"
+        "Unhurried presence, no rush, just here"
       ],
       "id": [
         "Kamu jago banget baca sinyal anak",
         "Semua perasaan besar dapet pendaratan empuk",
-        "Hadir tanpa buru-buru — gak ke mana-mana"
+        "Hadir tanpa buru-buru, gak ke mana-mana"
       ]
     },
     "watchout": {
-      "en": "Gentle can drift into no-limits. Kids need edges too — soft ones still count. 🌿",
-      "id": "Lembut bisa kebablasan jadi tanpa batas. Anak juga butuh pagar — yg empuk pun tetap pagar. 🌿"
+      "en": "Gentle can drift into no-limits. Kids need edges too, soft ones still count. 🌿",
+      "id": "Lembut bisa kebablasan jadi tanpa batas. Anak juga butuh pagar, yg empuk pun tetap pagar. 🌿"
+    },
+    "parentStory": {
+      "image": "/story-illustrations/pgtn-story.webp",
+      "imageAlt": {
+        "en": "A Pandan Chiffon parent holds a kind boundary while their disappointed child reaches for candy.",
+        "id": "Orang tua Pandan Chiffon menjaga batas dengan lembut saat anaknya kecewa karena ingin permen."
+      },
+      "imageAfterParagraph": 2,
+      "title": {
+        "en": "The No Beside the Candy Shelf",
+        "id": "Kata Tidak di Depan Rak Permen"
+      },
+      "body": {
+        "en": "At the supermarket checkout, your child asks for candy. You say no gently. They ask again, louder. A minute later they are crying on the floor while people glance over their baskets. Your chest tightens. If I were truly gentle, you think, my child would not be this upset.\n\nAs a Pandan Chiffon parent, you notice every shift in a child's face. You make room for feelings so naturally that disappointment can start to feel like evidence that you caused harm. But softness without an edge eventually asks you to disappear.\n\nYou kneel down, not to change the answer but to steady yourself. “You really wanted it. You can be sad, and the answer is still no.” Then you stop explaining. Your body gets to keep one boundary too.\n\nThe crying does not end immediately. That is not proof the boundary failed. Outside, your child takes your hand and asks about the rain. Nothing in the relationship has broken. You were warm and firm in the same moment, the kind of soft structure that can rise without collapsing.",
+        "id": "Di kasir supermarket, anakmu minta permen. Kamu bilang tidak dengan lembut. Ia bertanya lagi, lebih keras. Semenit kemudian ia menangis di lantai sementara orang-orang melirik dari balik keranjang. Dadamu mengencang. Kalau aku benar-benar lembut, pikirmu, anakku gak akan sesedih ini.\n\nSebagai orang tua Pandan Chiffon, kamu cepat menangkap perubahan kecil di wajah anak. Kamu begitu alami memberi ruang utk perasaan sampai rasa kecewa anak terasa seperti bukti bahwa kamu menyakitinya. Tp kelembutan tanpa tepi akhirnya meminta kamu menghilang.\n\nKamu berjongkok, bukan utk mengubah jawaban, melainkan menenangkan dirimu sendiri. “Kamu pengin banget. Kamu boleh sedih, dan jawabannya tetap tidak.” Lalu kamu berhenti menjelaskan. Tubuhmu juga boleh punya batas.\n\nTangisnya gak langsung berhenti. Itu bukan bukti batasmu gagal. Di luar, anakmu menggenggam tanganmu dan bertanya soal hujan. Gak ada hubungan yg rusak. Kamu hangat dan tegas dalam momen yg sama, struktur lembut yg bisa mengembang tanpa ambruk."
+      }
+    },
+    "parentSupport": {
+      "realLife": {
+        "en": "You are highly attuned to your child's signals and want home to stay gentle. Saying no or seeing disappointment can immediately feel as if you have hurt them.",
+        "id": "Kamu sangat peka terhadap sinyal anak dan ingin menjaga rumah tetap lembut. Karena itu, berkata tidak atau melihat anak kecewa bisa langsung terasa seperti kamu menyakitinya."
+      },
+      "guiltRelease": {
+        "en": "A warm boundary is not rejection. Your child may be disappointed and still loved; you may be firm and still be a gentle parent.",
+        "id": "Batas yg hangat bukan penolakan. Anak boleh kecewa dan tetap dicintai; kamu boleh tegas dan tetap menjadi orang tua yg lembut."
+      },
+      "careForYou": {
+        "en": "Honor one limit in your body or energy before it is depleted. Healthy gentleness includes you.",
+        "id": "Hormati satu batas tubuh atau energimu sebelum habis. Kelembutan yg sehat juga berlaku untukmu."
+      },
+      "forYourChild": {
+        "en": "Your child needs empathy and a clear edge so they do not have to guess who is holding the situation.",
+        "id": "Anak membutuhkan empati sekaligus pagar yg jelas agar ia gak perlu menebak siapa yg memegang keadaan."
+      },
+      "tryThisWeek": {
+        "en": [
+          "Say one no without a long explanation",
+          "Take a quiet pause",
+          "Say: “You may feel sad, and the answer is still not yet.”"
+        ],
+        "id": [
+          "Katakan satu “tidak” tanpa penjelasan panjang",
+          "Ambil jeda sunyi",
+          "Gunakan kalimat: “Kamu boleh sedih, dan jawabannya tetap belum.”"
+        ]
+      }
     },
     "popCousin": {
       "en": "Gentle parenting",
@@ -240,8 +516,54 @@
       ]
     },
     "watchout": {
-      "en": "Action-first can skip the debrief. Name the feeling after the fun — it seals the lesson. 🥨",
-      "id": "Karena serunya gerak terus, evaluasinya suka kelewat. Sebutin perasaannya setelah main — biar nempel. 🥨"
+      "en": "Action-first can skip the debrief. Name the feeling after the fun, it seals the lesson. 🥨",
+      "id": "Karena serunya gerak terus, evaluasinya suka kelewat. Sebutin perasaannya setelah main, biar nempel. 🥨"
+    },
+    "parentStory": {
+      "image": "/story-illustrations/pgde-story.webp",
+      "imageAlt": {
+        "en": "A Pretzel parent and child quietly put toys away while a music player waits nearby.",
+        "id": "Orang tua Pretzel dan anaknya membereskan mainan dengan tenang, sementara pemutar musik menunggu di dekat mereka."
+      },
+      "imageAfterParagraph": 2,
+      "title": {
+        "en": "The Saturday Without a Mission",
+        "id": "Sabtu Tanpa Misi"
+      },
+      "body": {
+        "en": "On Saturday morning, the living room is covered in toys. Usually you can turn cleanup into a treasure hunt, a timer challenge, or a dramatic rescue mission. Today your body feels heavy. Your child waits for the game to begin, and guilt taps your shoulder: If I were more present, I could make this fun.\n\nAs a Pretzel parent, you bend ordinary rules into play. Movement is how you connect and how you keep a hard day from feeling stuck. But being the engine of fun all the time leaves no place for your own tiredness.\n\nSo today you let cleanup be boring. You put on one song for yourself, move slowly, and ask everyone to return five things. No storyline. No lesson. No camera.\n\nLater, you sit on the floor together and ask, “What was annoying today?” Your child says, “Cleaning.” You both laugh. The day did not need an adventure to count. The quiet check-in gives the ordinary moment an emotional ending, while your body learns that connection can stay even when you stop performing it.",
+        "id": "Sabtu pagi, ruang tamu tertutup mainan. Biasanya kamu bisa mengubah beres-beres jadi berburu harta, tantangan timer, atau misi penyelamatan. Hari ini tubuhmu berat. Anakmu menunggu permainan dimulai, dan rasa bersalah menepuk bahumu: kalau aku lebih hadir, pasti ini bisa kubikin seru.\n\nSebagai orang tua Pretzel, kamu suka mengubah aturan biasa menjadi permainan. Bergerak adalah caramu terhubung dan mencegah hari sulit terasa mandek. Tp terus menjadi mesin keseruan gak menyisakan tempat utk lelahmu sendiri.\n\nJadi hari ini kamu membiarkan beres-beres tetap membosankan. Kamu memutar satu lagu utk dirimu, bergerak pelan, dan meminta semua orang mengembalikan lima barang. Gak ada storyline, pelajaran, atau kamera.\n\nSetelahnya kalian duduk di lantai dan kamu bertanya, “Tadi bagian mana yg bikin kesal?” Anakmu menjawab, “Beres-beres.” Kalian tertawa. Hari itu gak perlu menjadi petualangan agar tetap berarti. Check-in kecil memberi akhir emosional pada momen biasa, sementara tubuhmu belajar bahwa koneksi tetap ada ketika kamu berhenti mempertunjukkannya."
+      }
+    },
+    "parentSupport": {
+      "realLife": {
+        "en": "You keep life moving: chores become games, learning happens by doing, and problems turn into missions. When a day stays ordinary, you can feel less present or less creative.",
+        "id": "Kamu membuat hidup bergerak: beres-beres jadi permainan, belajar lewat praktik, dan masalah cepat berubah jadi misi. Saat hari berjalan biasa saja, kamu bisa merasa kurang hadir atau kurang kreatif."
+      },
+      "guiltRelease": {
+        "en": "Your child does not need every task to become an adventure. Flat, ordinary days are part of a safe childhood too, you do not have to be an endless fun machine.",
+        "id": "Anak gak membutuhkan setiap tugas jadi petualangan. Hari yg datar juga bagian dari masa kecil yg aman, kamu gak harus terus menjadi mesin keseruan."
+      },
+      "careForYou": {
+        "en": "Choose movement that feels good in your body without inviting, teaching, or recording anyone else.",
+        "id": "Pilih gerak yg menyenangkan tubuhmu tanpa harus mengajak, mengajar, atau merekam siapa pun."
+      },
+      "forYourChild": {
+        "en": "After the activity, a short check-in helps a physical experience become an emotional experience too.",
+        "id": "Setelah aktivitas selesai, satu check-in singkat membantu pengalaman fisik menjadi pengalaman yg juga terasa secara emosional."
+      },
+      "tryThisWeek": {
+        "en": [
+          "Let one chore stay ordinary",
+          "Move your body for 10 minutes just for you",
+          "After play, ask: “Which part was fun or frustrating?”"
+        ],
+        "id": [
+          "Biarkan satu tugas tetap biasa",
+          "Gerakkan tubuh 10 menit utk dirimu",
+          "Setelah main, tanya: “Bagian mana yg seru atau bikin kesal?”"
+        ]
+      }
     },
     "popCousin": {
       "en": "Free-range with a curriculum",
@@ -260,24 +582,70 @@
       "id": "The Muffin"
     },
     "tagline": {
-      "en": "A simple, reliable frame — your kid picks the mix-ins.",
-      "id": "Wadah yg sederhana & andal — isiannya anak yg pilih."
+      "en": "A simple, reliable frame, your kid picks the mix-ins.",
+      "id": "Wadah yg sederhana & andal, isiannya anak yg pilih."
     },
     "superpowers": {
       "en": [
         "Low-drama consistency, every single day",
-        "Quietly empowering — \"you choose\" is your catchphrase",
+        "Quietly empowering, \"you choose\" is your catchphrase",
         "Comfort your kid can count on"
       ],
       "id": [
         "Konsisten tanpa drama, tiap hari",
-        "Diam-diam memberdayakan — \"kamu pilih aja\" itu jargon kamu",
+        "Diam-diam memberdayakan, \"kamu pilih aja\" itu jargon kamu",
         "Kenyamanan yg selalu bisa diandalkan anak"
       ]
     },
     "watchout": {
-      "en": "\"Easygoing\" can hide your own needs. Muffins need care too — that's you. 🧁",
-      "id": "\"Santai aja\" kadang nutupin kebutuhan kamu sendiri. Muffin juga perlu dirawat — itu kamu. 🧁"
+      "en": "\"Easygoing\" can hide your own needs. Muffins need care too, that's you. 🧁",
+      "id": "\"Santai aja\" kadang nutupin kebutuhan kamu sendiri. Muffin juga perlu dirawat, itu kamu. 🧁"
+    },
+    "parentStory": {
+      "image": "/story-illustrations/pgdn-story.webp",
+      "imageAlt": {
+        "en": "A Muffin parent finally sits to eat while their child gives them a calm five-minute pause.",
+        "id": "Orang tua Muffin akhirnya duduk untuk makan, sementara anaknya memberi jeda lima menit dengan tenang."
+      },
+      "imageAfterParagraph": 2,
+      "title": {
+        "en": "The Last Warm Plate",
+        "id": "Piring Hangat yang Terakhir"
+      },
+      "body": {
+        "en": "At dinner, everyone has a preference. One child wants sauce on the side, another wants the blue cup, and someone asks for more rice just as you finally sit down. You say “sure” so many times that your own food goes cold. When you suddenly snap over a spilled spoon, guilt arrives before the apology: Why am I angry when nobody asked for much?\n\nAs a Muffin parent, you make a dependable container. You make room, offer choices, and rarely ask to be the center. But needs do not disappear because they are quiet; they wait until exhaustion gives them a louder voice.\n\nYou warm your plate and say, without apologizing, “I'm eating first. Please give me five minutes.” The room survives. Nobody's love shrinks.\n\nWhen you return to the spilled spoon, you say, “I was tired and spoke sharply. That wasn't your fault.” Your child helps wipe the table. That evening, the family learns something bigger than generosity: home is not a place where one person disappears to keep everyone comfortable. It is where everybody, including you, gets to exist.",
+        "id": "Saat makan malam, semua orang punya pilihan. Satu anak mau saus dipisah, yg lain minta gelas biru, dan seseorang menambah nasi tepat ketika kamu akhirnya duduk. Kamu bilang “boleh” berkali-kali sampai makananmu sendiri dingin. Ketika tiba-tiba kamu kesal gara-gara sendok jatuh, rasa bersalah datang sebelum permintaan maaf: kenapa aku marah padahal mereka gak minta banyak?\n\nSebagai orang tua Muffin, kamu menjadi wadah yg bisa diandalkan. Kamu memberi ruang, menawarkan pilihan, dan jarang minta jadi pusat. Tp kebutuhan gak hilang hanya karena ia diam; ia menunggu sampai kelelahan memberinya suara lebih keras.\n\nKamu menghangatkan piring dan berkata tanpa minta maaf, “Aku makan dulu. Kasih aku lima menit ya.” Ruangan itu tetap aman. Cinta siapa pun gak berkurang.\n\nSaat kembali ke sendok yg jatuh, kamu bilang, “Aku capek dan tadi bicara terlalu tajam. Itu bukan salahmu.” Anakmu ikut mengelap meja. Malam itu keluarga belajar sesuatu yg lebih besar dari kemurahan hati: rumah bukan tempat satu orang menghilang agar semua nyaman. Rumah adalah tempat semua orang, termasuk kamu, boleh hadir."
+      }
+    },
+    "parentSupport": {
+      "realLife": {
+        "en": "You offer choices, keep the atmosphere calm, and rarely demand the spotlight. Your own needs can disappear from view until you are exhausted or suddenly irritated.",
+        "id": "Kamu memberi pilihan, menjaga suasana tetap tenang, dan jarang menuntut sorotan. Kadang kebutuhanmu hilang dari radar sampai kamu lelah atau mendadak kesal."
+      },
+      "guiltRelease": {
+        "en": "Having needs does not make you selfish. Saying “I need this too” creates more honesty than giving in repeatedly and then exploding.",
+        "id": "Punya kebutuhan gak membuatmu egois. Mengatakan “Mama/Papa juga perlu…” justru membuat hubungan lebih jujur daripada terus mengalah lalu meledak."
+      },
+      "careForYou": {
+        "en": "State one small preference each day without apologizing for having it.",
+        "id": "Nyatakan satu preferensi kecil setiap hari tanpa meminta maaf karena memilikinya."
+      },
+      "forYourChild": {
+        "en": "Your child learns that family is not only where their needs are received, but where everyone considers one another.",
+        "id": "Anak belajar bahwa keluarga bukan hanya tempat kebutuhannya diterima, tetapi juga tempat semua orang saling mempertimbangkan."
+      },
+      "tryThisWeek": {
+        "en": [
+          "Choose something you genuinely want",
+          "Ask for one specific form of help",
+          "Say: “I love you, and I need five minutes alone now.”"
+        ],
+        "id": [
+          "Pilih sesuatu yg kamu mau",
+          "Minta bantuan secara spesifik",
+          "Katakan: “Aku sayang kamu, dan sekarang aku perlu lima menit sendiri.”"
+        ]
+      }
     },
     "popCousin": {
       "en": "Panda parenting",
@@ -302,18 +670,64 @@
     "superpowers": {
       "en": [
         "Best no-plan adventure maker in the game",
-        "Big emotional honesty — your kid feels truly seen",
+        "Big emotional honesty, your kid feels truly seen",
         "You bring the spark to ordinary days"
       ],
       "id": [
         "Petualangan tanpa rencana? Kamu jagonya",
-        "Jujur soal perasaan — anak merasa benar-benar dilihat",
+        "Jujur soal perasaan, anak merasa benar-benar dilihat",
         "Hari biasa pun kamu kasih percikan seru"
       ]
     },
     "watchout": {
       "en": "Intensity spikes happen. One tiny anchor routine helps on the soft days. 🍫",
       "id": "Kadang intensitasnya naik-turun. Satu rutinitas kecil bisa jadi jangkar di hari yg berat. 🍫"
+    },
+    "parentStory": {
+      "image": "/story-illustrations/fcte-story.webp",
+      "imageAlt": {
+        "en": "A Molten Lava Cake parent brings water and reconnects with their child at bedtime after an intense day.",
+        "id": "Orang tua Molten Lava Cake membawa air dan kembali terhubung dengan anaknya sebelum tidur setelah hari yg intens."
+      },
+      "imageAfterParagraph": 2,
+      "title": {
+        "en": "After the Brightest Part of the Day",
+        "id": "Setelah Bagian Hari yang Paling Terang"
+      },
+      "body": {
+        "en": "The afternoon begins with an unplanned dance in the rain. You and your child jump through puddles, laughing too loudly, and for an hour you are the most alive person in the world. By bedtime, the wet clothes, noise, and three unfinished tasks have emptied you. When your child asks for one more game, your voice erupts: “Enough!”\n\nThe silence afterward feels worse than the shouting. As a Molten Lava Cake parent, you know both temperatures, spontaneous joy on the outside, intense feeling at the center. Guilt tells you that changing energy makes you unsafe. But steadiness does not mean having one mood forever.\n\nYou take a shower, drink water, and message someone who can hold the adult part of the story. Then you return.\n\n“My voice was too loud. That was my responsibility, not yours.” Your child leans against you. The day does not end at the rupture; it ends at the return. Tomorrow's anchor will be simple: one glass of water before bedtime begins. Not a perfect routine, just somewhere for both of you to land.",
+        "id": "Sore itu dimulai dengan tarian spontan di tengah hujan. Kamu dan anakmu melompat di genangan, tertawa terlalu keras, dan selama satu jam kamu merasa jadi manusia paling hidup sedunia. Menjelang tidur, baju basah, suara ramai, dan tiga urusan belum selesai sudah mengosongkanmu. Ketika anakmu minta satu permainan lagi, suaramu meledak: “Cukup!”\n\nHening setelahnya terasa lebih buruk dari teriakan tadi. Sebagai orang tua Molten Lava Cake, kamu mengenal dua suhu, kegembiraan spontan di luar, perasaan intens di tengah. Rasa bersalah bilang perubahan energimu membuatmu gak aman. Tp stabil bukan berarti punya satu mood selamanya.\n\nKamu mandi, minum, lalu menghubungi seseorang yg bisa menampung bagian dewasa dari cerita ini. Setelah itu kamu kembali.\n\n“Tadi suaraku terlalu keras. Itu tanggung jawabku, bukan salahmu.” Anakmu bersandar. Hari itu gak berakhir di ledakan; ia berakhir di kepulangan. Besok jangkar kalian sederhana: satu gelas air sebelum rutinitas tidur dimulai. Bukan rutinitas sempurna, cuma tempat bagi kalian berdua utk mendarat."
+      }
+    },
+    "parentSupport": {
+      "realLife": {
+        "en": "You bring energy, spontaneity, and big feelings. When your energy drops or an emotion spills over, the contrast can trigger guilt: “Why can't I be consistent?”",
+        "id": "Kamu membawa energi, spontanitas, dan perasaan yg besar. Saat energimu jatuh atau emosimu tumpah, kontrasnya bisa memicu rasa bersalah: “Kok aku gak konsisten?”"
+      },
+      "guiltRelease": {
+        "en": "Stability does not mean staying in the same mood. Your child can live with changing energy; what matters is that they are not made responsible for your emotions and that you return after a hard moment.",
+        "id": "Stabil bukan berarti selalu berada di mood yg sama. Anak bisa hidup dengan perubahan energi; yg penting mereka gak dibuat bertanggung jawab atas emosimu dan kamu kembali setelah momen sulit."
+      },
+      "careForYou": {
+        "en": "Build one tiny anchor that survives a chaotic day, a drink, a shower, a song, or a message to someone safe.",
+        "id": "Bangun satu jangkar kecil yg tetap ada bahkan di hari kacau, minum, mandi, lagu, atau pesan kepada orang yg aman."
+      },
+      "forYourChild": {
+        "en": "Your child needs clear language that your outburst or exhaustion was not their fault, followed by the real experience that a relationship can be repaired.",
+        "id": "Anak membutuhkan bahasa yg jelas bahwa ledakan atau lelahmu bukan salah mereka, lalu pengalaman nyata bahwa hubungan bisa diperbaiki."
+      },
+      "tryThisWeek": {
+        "en": [
+          "Choose one daily anchor ritual",
+          "Find one safe place for your adult feelings",
+          "After an outburst, say: “My voice was too loud. That is my responsibility, not your fault.”"
+        ],
+        "id": [
+          "Pilih satu ritual jangkar",
+          "Cari satu tempat aman utk menumpahkan perasaan dewasa",
+          "Kalau meledak, bilang: “Tadi suaraku terlalu keras. Itu tanggung jawabku, bukan salahmu.”"
+        ]
+      }
     },
     "popCousin": {
       "en": "Big-hearted fun parent",
@@ -332,8 +746,8 @@
       "id": "The Cinnamon Roll"
     },
     "tagline": {
-      "en": "Unhurried swirls of warmth — leads with a hug.",
-      "id": "Gulungan kehangatan yg gak buru-buru — pelukan dulu, baru mikir."
+      "en": "Unhurried swirls of warmth, leads with a hug.",
+      "id": "Gulungan kehangatan yg gak buru-buru, pelukan dulu, baru mikir."
     },
     "superpowers": {
       "en": [
@@ -350,6 +764,52 @@
     "watchout": {
       "en": "Comfort-first can dodge the hard limits. Warm AND firm can share one oven. 🍯",
       "id": "Karena nyaman duluan, batasan tegas suka dihindari. Hangat DAN tegas bisa kok satu oven. 🍯"
+    },
+    "parentStory": {
+      "image": "/story-illustrations/fctn-story.webp",
+      "imageAlt": {
+        "en": "A Cinnamon Roll parent closes the final bedtime book and holds their disappointed child close.",
+        "id": "Orang tua Cinnamon Roll menutup buku terakhir dan memeluk anaknya yg masih ingin satu cerita lagi."
+      },
+      "imageAfterParagraph": 2,
+      "title": {
+        "en": "The Story After the Last Story",
+        "id": "Cerita Setelah Cerita Terakhir"
+      },
+      "body": {
+        "en": "At bedtime, one story becomes two, then a glass of water, then a question about the moon. You love the warm weight of your child beside you. You also want a shower, ten quiet minutes, and a body that belongs to you again. When you close the book and say, “That's all tonight,” tears appear. Guilt immediately offers another chapter.\n\nAs a Cinnamon Roll parent, you wrap discomfort in warmth. You know how to soothe, soften, and make room. But comfort that always costs your last piece of energy eventually stops feeling tender.\n\nTonight you keep the boundary. “I know you want another one. I'll stay for one hug, and the answer is still finished.” You breathe through the protest instead of bargaining with it.\n\nLater, warm water runs over your shoulders. The house did not become less loving because you ended the ritual. Your child met disappointment and remained accompanied; you met your own need and remained a caring parent. Warm and firm were never opposites. They were always meant to share the same oven.",
+        "id": "Saat bedtime, satu cerita menjadi dua, lalu segelas air, lalu pertanyaan soal bulan. Kamu suka berat hangat tubuh anakmu di sampingmu. Kamu juga ingin mandi, punya sepuluh menit sunyi, dan merasakan tubuhmu milikmu lagi. Ketika buku ditutup dan kamu bilang, “Malam ini cukup,” air mata muncul. Rasa bersalah langsung menawarkan satu bab lagi.\n\nSebagai orang tua Cinnamon Roll, kamu membungkus ketidaknyamanan dengan kehangatan. Kamu tahu cara menenangkan, melembutkan, dan memberi ruang. Tp kenyamanan yg selalu menghabiskan sisa energimu lama-lama gak lagi terasa lembut.\n\nMalam ini kamu menjaga batasnya. “Aku tahu kamu mau satu lagi. Aku temani satu pelukan, dan ceritanya tetap selesai.” Kamu bernapas melewati protesnya tanpa menawar.\n\nSetelahnya, air hangat mengalir di bahumu. Rumah itu gak menjadi kurang penuh cinta hanya karena ritualnya berakhir. Anakmu mengalami kecewa dan tetap ditemani; kamu memenuhi kebutuhanmu dan tetap menjadi orang tua yg peduli. Hangat dan tegas gak pernah berlawanan. Keduanya memang seharusnya berbagi oven yg sama."
+      }
+    },
+    "parentSupport": {
+      "realLife": {
+        "en": "You instinctively offer hugs, flexibility, and comfort. You can feel guilty whenever you need to disappoint your child or choose a need of your own.",
+        "id": "Kamu naluriah memberi pelukan, kelonggaran, dan kenyamanan. Kamu bisa merasa bersalah setiap kali perlu mengecewakan anak atau memilih kebutuhanmu sendiri."
+      },
+      "guiltRelease": {
+        "en": "Keeping your child comfortable is not the only form of love. Holding a reasonable boundary, even through protest, is care too.",
+        "id": "Membuat anak nyaman bukan satu-satunya bentuk cinta. Menahan batas yg masuk akal, meski anak protes, juga merupakan perawatan."
+      },
+      "careForYou": {
+        "en": "Ask what you want before automatically making everyone else comfortable.",
+        "id": "Tanyakan apa yg kamu inginkan sebelum otomatis membuat semua orang lain nyaman."
+      },
+      "forYourChild": {
+        "en": "Your child needs your warmth and also the experience that disappointment can be survived without the boundary disappearing.",
+        "id": "Anak membutuhkan kehangatanmu, tetapi juga belajar bahwa rasa kecewa dapat dilewati tanpa batasnya harus hilang."
+      },
+      "tryThisWeek": {
+        "en": [
+          "Hold one small boundary",
+          "Accept one offer of help without repaying it",
+          "Say: “I know you really want it. I will stay with the sadness, and the answer is still no.”"
+        ],
+        "id": [
+          "Pertahankan satu batas kecil",
+          "Terima satu bantuan tanpa membalas",
+          "Katakan: “Aku tahu kamu pengin banget. Aku temani sedihnya, tp jawabannya tetap tidak.”"
+        ]
+      }
     },
     "popCousin": {
       "en": "Elephant parenting",
@@ -368,8 +828,8 @@
       "id": "The Bagel"
     },
     "tagline": {
-      "en": "Boiled and baked — resilient, no-fuss, up for anything.",
-      "id": "Direbus lalu dipanggang — tangguh, gak ribet, siap apa aja."
+      "en": "Boiled and baked, resilient, no-fuss, up for anything.",
+      "id": "Direbus lalu dipanggang, tangguh, gak ribet, siap apa aja."
     },
     "superpowers": {
       "en": [
@@ -386,6 +846,52 @@
     "watchout": {
       "en": "\"Shake it off\" can accidentally dismiss. One feeling word before the fix works wonders. 🥯",
       "id": "\"Udah gakpapa, yuk lanjut\" bisa gak sengaja nge-skip perasaan. Satu kata perasaan sebelum solusi itu ajaib. 🥯"
+    },
+    "parentStory": {
+      "image": "/story-illustrations/fcde-story.webp",
+      "imageAlt": {
+        "en": "A Bagel parent sits beside their child and listens after a small bicycle fall.",
+        "id": "Orang tua Bagel duduk di samping anaknya dan mendengarkan setelah jatuh kecil dari sepeda."
+      },
+      "imageAfterParagraph": 2,
+      "title": {
+        "en": "The Pause Before Fixing It",
+        "id": "Jeda Sebelum Membereskannya"
+      },
+      "body": {
+        "en": "A bicycle wheel catches the curb and your child lands on both hands. You lift the bike, check the palms, rinse the scrape, and say, “It's okay, let's keep going.” The whole situation has a solution. Yet your child does not reach for the handlebars again.\n\nAs a Bagel parent, you have been through heat and know how to keep moving. You make hard moments smaller, manageable, and less dramatic. In a parenting world full of emotional vocabulary, that directness can make you wonder whether something is missing.\n\nYou sit on the curb before doing anything else. One breath. No fixing. “That was scary.” Your child lets out the cry they had been holding.\n\nA minute later, they ask you to hold the bicycle while they climb back on. Practical care was never the problem; it simply arrived before the feeling had somewhere to go. You do not need a therapy speech. One honest word can connect the body, the emotion, and the next step. Even you are allowed to sit beside a problem before turning it into a task.",
+        "id": "Roda sepeda tersangkut trotoar dan anakmu jatuh dengan kedua tangan. Kamu mengangkat sepedanya, memeriksa telapak, membilas goresan, lalu berkata, “Gakpapa, yuk lanjut.” Seluruh masalah punya solusi. Tp anakmu gak mau memegang setang lagi.\n\nSebagai orang tua Bagel, kamu sudah melewati panas dan tahu cara terus bergerak. Kamu membuat momen sulit terasa lebih kecil, bisa ditangani, dan gak perlu dibesarkan. Di dunia parenting yg penuh istilah emosi, gaya langsung itu kadang membuatmu bertanya apakah ada yg kurang.\n\nKamu duduk di trotoar sebelum melakukan apa pun lagi. Satu napas. Gak ada yg dibereskan. “Tadi bikin takut ya.” Anakmu akhirnya mengeluarkan tangis yg ditahan.\n\nSemenit kemudian, ia minta kamu memegang sepeda saat naik lagi. Perawatan praktis gak pernah salah; ia cuma datang sebelum perasaannya punya tempat. Kamu gak butuh pidato terapi. Satu kata jujur bisa menghubungkan tubuh, emosi, dan langkah berikutnya. Bahkan kamu pun boleh duduk sebentar di samping masalah sebelum mengubahnya jadi tugas."
+      }
+    },
+    "parentSupport": {
+      "realLife": {
+        "en": "You are resilient, practical, and dislike making a problem bigger than it needs to be. In a parenting culture full of new terms, you can feel insensitive simply because your style is direct.",
+        "id": "Kamu tangguh, praktis, dan gak suka membuat masalah lebih besar dari yg diperlukan. Di tengah budaya parenting yg penuh istilah, kamu bisa merasa kurang peka hanya karena gayamu lebih langsung."
+      },
+      "guiltRelease": {
+        "en": "Your child does not need a therapy speech every time. Concrete help is love; add just one sign that you see the feeling.",
+        "id": "Anak gak membutuhkan pidato terapi setiap saat. Bantuan konkret adalah cinta; cukup tambahkan satu tanda bahwa kamu melihat perasaannya."
+      },
+      "careForYou": {
+        "en": "Pause before fix-it mode switches on. You may feel something without immediately turning it into a task.",
+        "id": "Berhenti sejenak sebelum mode “beresin” aktif. Kamu juga boleh merasakan sesuatu tanpa langsung mengubahnya jadi tugas."
+      },
+      "forYourChild": {
+        "en": "One emotion word before the action helps your child connect body, feeling, and solution.",
+        "id": "Satu kata emosi sebelum aksi membantu anak menghubungkan tubuh, perasaan, dan solusi."
+      },
+      "tryThisWeek": {
+        "en": [
+          "Delay the solution for one breath",
+          "Do something that does not need fixing",
+          "Try: “That surprised you. Let's sit first, then find a way.”"
+        ],
+        "id": [
+          "Tunda solusi selama satu napas",
+          "Lakukan sesuatu yg gak perlu diperbaiki",
+          "Coba: “Kaget ya. Kita duduk dulu, baru cari caranya.”"
+        ]
+      }
     },
     "popCousin": {
       "en": "Rough-and-tumble / FAFO-lite",
@@ -404,8 +910,8 @@
       "id": "The Banana Bread"
     },
     "tagline": {
-      "en": "Magic from whatever's on hand — steady, warm, zero waste.",
-      "id": "Sulap dr bahan seadanya — stabil, hangat, gak ada yg kebuang."
+      "en": "Magic from whatever's on hand, steady, warm, zero waste.",
+      "id": "Sulap dr bahan seadanya, stabil, hangat, gak ada yg kebuang."
     },
     "superpowers": {
       "en": [
@@ -422,6 +928,52 @@
     "watchout": {
       "en": "Comfort loops can shrink the world. One new little thing a week keeps it fresh. 🍌",
       "id": "Zona nyaman bisa bikin dunia makin kecil. Satu hal baru kecil tiap minggu biar tetap segar. 🍌"
+    },
+    "parentStory": {
+      "image": "/story-illustrations/fcdn-story.webp",
+      "imageAlt": {
+        "en": "A Banana Bread parent rests nearby while their child builds a cozy cushion fort at home.",
+        "id": "Orang tua Banana Bread beristirahat di dekat anaknya yg sedang membuat benteng bantal di rumah."
+      },
+      "imageAfterParagraph": 2,
+      "title": {
+        "en": "The Weekend That Stayed Home",
+        "id": "Weekend yang Tetap di Rumah"
+      },
+      "body": {
+        "en": "On Saturday morning, your feed shows swimming lessons, a family hike, and children painting pottery. In your house, laundry turns, bananas are browning, and nobody has changed out of pajamas. Your child is building a fort from sofa cushions. A familiar fear appears: Am I making their world too small?\n\nAs a Banana Bread parent, you know how to make warmth from whatever is available. You create jokes from inconvenience, rituals from leftovers, and a home people can exhale inside. Comparison makes that gift look ordinary because it cannot be counted in classes or tickets.\n\nYou put the phone down and bake the bananas instead of judging them. You eat one slice while it is still warm. Later, you suggest a walk to a street you have never taken; your child chooses when to turn home.\n\nNothing spectacular happens. You find a yellow gate, a sleeping cat, and a new shortcut. The day is both familiar and slightly wider. A good childhood is not a collection of impressive activities. Sometimes it is a safe home base with one small door left open to surprise.",
+        "id": "Sabtu pagi, feed-mu menampilkan kelas renang, family hike, dan anak-anak melukis keramik. Di rumahmu, mesin cuci berputar, pisang mulai terlalu matang, dan semua masih pakai piyama. Anakmu membangun benteng dari bantal sofa. Ketakutan lama muncul: apa aku membuat dunianya terlalu kecil?\n\nSebagai orang tua Banana Bread, kamu tahu cara membuat kehangatan dari apa yg tersedia. Kamu menciptakan lelucon dari kerepotan, ritual dari sisa, dan rumah tempat orang bisa mengembuskan napas. Perbandingan membuat hadiah itu terlihat biasa karena gak bisa dihitung lewat kelas atau tiket.\n\nKamu meletakkan ponsel dan memanggang pisangnya, bukan menghakiminya. Kamu makan satu potong ketika masih hangat. Sore harinya, kamu mengajak jalan lewat gang yg belum pernah dilewati; anakmu yg memilih kapan pulang.\n\nGak ada yg spektakuler. Kalian menemukan gerbang kuning, kucing tidur, dan jalan pintas baru. Hari itu tetap akrab sekaligus sedikit lebih luas. Masa kecil yg baik bukan koleksi aktivitas mengesankan. Kadang ia adalah home base yg aman dengan satu pintu kecil terbuka utk kejutan."
+      }
+    },
+    "parentSupport": {
+      "realLife": {
+        "en": "You are good at making whatever is available feel comfortable. Seeing families who look more active or organized can still make you fear your child is missing out.",
+        "id": "Kamu jago membuat keadaan seadanya tetap terasa nyaman. Namun melihat keluarga lain yg lebih aktif atau terencana bisa membuatmu takut anak kehilangan pengalaman."
+      },
+      "guiltRelease": {
+        "en": "A good childhood is not measured by the number of classes, trips, or activities. Safety, humor, and an available parent are big experiences too.",
+        "id": "Masa kecil yg baik gak diukur dari jumlah kelas, liburan, atau aktivitas. Rasa aman, humor, dan orang tua yg tersedia juga pengalaman besar."
+      },
+      "careForYou": {
+        "en": "Keep the comforts that genuinely refill you, not the ones that only help you postpone your needs.",
+        "id": "Pertahankan kenyamanan yg benar-benar mengisi tenagamu, bukan kenyamanan yg cuma membuatmu terus menunda kebutuhan."
+      },
+      "forYourChild": {
+        "en": "You give your child a strong home base; a small, measured dose of novelty lets their world grow without removing safety.",
+        "id": "Anak mendapat home base yg kuat darimu; sedikit kebaruan yg terukur membantu dunianya tumbuh tanpa menghilangkan rasa aman."
+      },
+      "tryThisWeek": {
+        "en": [
+          "Enjoy one home ritual without guilt",
+          "Choose one small new experience",
+          "Let your child decide when it is enough"
+        ],
+        "id": [
+          "Nikmati satu ritual rumah tanpa rasa bersalah",
+          "Pilih satu hal baru yg kecil",
+          "Biarkan anak menentukan kapan cukup"
+        ]
+      }
     },
     "popCousin": {
       "en": "The homebody classic",
@@ -440,8 +992,8 @@
       "id": "The Pavlova"
     },
     "tagline": {
-      "en": "Celebration energy — you follow your kid's sparkle.",
-      "id": "Energi perayaan — kamu ngikutin binar mata anak."
+      "en": "Celebration energy, you follow your kid's sparkle.",
+      "id": "Energi perayaan, kamu ngikutin binar mata anak."
     },
     "superpowers": {
       "en": [
@@ -458,6 +1010,52 @@
     "watchout": {
       "en": "All sparkle needs a base. One predictable ritual keeps the magic grounded. ✨",
       "id": "Semua kilau butuh alas. Satu ritual yg pasti bikin magisnya tetap membumi. ✨"
+    },
+    "parentStory": {
+      "image": "/story-illustrations/fgte-story.webp",
+      "imageAlt": {
+        "en": "A Pavlova parent gently says not today in a glittery kitchen and saves one song for themselves.",
+        "id": "Orang tua Pavlova berkata hari ini gak dulu di dapur penuh glitter, lalu menyimpan satu lagu untuk dirinya sendiri."
+      },
+      "imageAfterParagraph": 2,
+      "title": {
+        "en": "When the Sparkles Needed a Floor",
+        "id": "Ketika Kilau Membutuhkan Lantai"
+      },
+      "body": {
+        "en": "The kitchen still carries glitter from yesterday's craft when your child asks, “Can we make cupcakes and invite everyone today?” Usually your yes arrives before the sentence is finished. Today your head aches, the sink is full, and even smiling feels like another task. Saying no feels like switching off the magic yourself.\n\nAs a Pavlova parent, you follow bright eyes. You make childhood feel celebratory because delight matters deeply to you. But no one can be the weather, decorations, and music every day. Even lightness needs something solid underneath it.\n\nYou say, “Not today,” and let the disappointment exist. Then you choose one private pleasure: headphones, a favorite song, and ten minutes with no audience.\n\nThat night you keep only the family ritual that truly holds you, a simple bedtime song. Your child sings the wrong words and you laugh together. The house is not less magical because there were no cupcakes. The sparkle stayed because it was resting on something reliable, and because joy was allowed to belong to you too.",
+        "id": "Dapur masih menyimpan glitter dari craft kemarin ketika anakmu bertanya, “Hari ini bikin cupcake dan undang semua orang yuk?” Biasanya kata iya keluar sebelum kalimatnya selesai. Hari ini kepalamu sakit, wastafel penuh, dan tersenyum pun terasa seperti tugas tambahan. Mengatakan tidak terasa seperti mematikan keajaiban dengan tanganmu sendiri.\n\nSebagai orang tua Pavlova, kamu mengikuti mata yg berbinar. Kamu membuat masa kecil terasa seperti perayaan karena kegembiraan memang penting bagimu. Tp gak ada orang yg bisa menjadi cuaca, dekorasi, dan musik setiap hari. Bahkan sesuatu yg ringan butuh alas yg kokoh.\n\nKamu bilang, “Hari ini gak dulu,” dan membiarkan kekecewaan hadir. Lalu kamu memilih satu kesenangan privat: headphone, lagu favorit, dan sepuluh menit tanpa audiens.\n\nMalamnya kamu menjaga hanya ritual keluarga yg benar-benar menahanmu, satu lagu tidur sederhana. Anakmu salah menyanyikan lirik dan kalian tertawa. Rumah itu gak kurang magis hanya karena gak ada cupcake. Kilau tetap tinggal karena berdiri di atas sesuatu yg bisa diandalkan, dan karena kegembiraan akhirnya boleh menjadi milikmu juga."
+      }
+    },
+    "parentSupport": {
+      "realLife": {
+        "en": "You love saying yes, following your child's sparkle, and making home feel alive. When you must say no, feel tired, or cannot perform happiness, you can feel as if you ruined the magic.",
+        "id": "Kamu suka mengatakan iya, mengikuti kilau mata anak, dan membuat rumah terasa hidup. Saat harus menolak, kelelahan, atau gak sanggup tampil ceria, kamu bisa merasa telah merusak keajaiban."
+      },
+      "guiltRelease": {
+        "en": "You are not a celebration machine. “Not today” does not cancel the joy you already created, even sparkle needs a base to stand on.",
+        "id": "Kamu bukan mesin perayaan. “Tidak hari ini” gak membatalkan semua kegembiraan yg sudah kamu ciptakan, bahkan sparkle butuh alas untuk berdiri."
+      },
+      "careForYou": {
+        "en": "Choose pleasure that needs no audience and does not have to become a family memory.",
+        "id": "Pilih kesenangan yg gak membutuhkan audiens dan gak perlu menjadi memori keluarga."
+      },
+      "forYourChild": {
+        "en": "Your child enjoys your spontaneity and benefits from one steady ritual, especially when the energy at home changes.",
+        "id": "Anak menikmati spontanitasmu dan terbantu oleh satu ritual yg tetap, terutama saat energi rumah berubah."
+      },
+      "tryThisWeek": {
+        "en": [
+          "Say no to one thing that drains you",
+          "Choose one private pleasure",
+          "Keep one simple ritual such as a bedtime song or shared breakfast"
+        ],
+        "id": [
+          "Katakan tidak pada satu hal yg mengurasmu",
+          "Lakukan satu kesenangan privat",
+          "Jaga satu ritual sederhana seperti lagu tidur atau sarapan bersama"
+        ]
+      }
     },
     "popCousin": {
       "en": "Jellyfish's glamorous cousin (with more heart)",
@@ -481,19 +1079,65 @@
     },
     "superpowers": {
       "en": [
-        "Deep listener — every mood has a safe harbor",
+        "Deep listener, every mood has a safe harbor",
         "Patience of a saint (a tired saint, but still)",
         "Zero pressure, full presence"
       ],
       "id": [
-        "Pendengar sejati — semua mood anak punya pelabuhan aman",
+        "Pendengar sejati, semua mood anak punya pelabuhan aman",
         "Kesabarannya level dewa (dewa yg ngantuk, tp tetap)",
         "Tanpa tekanan, hadir sepenuhnya"
       ]
     },
     "watchout": {
-      "en": "You absorb everyone's feelings. Schedule your own espresso break — literally. ☕",
-      "id": "Kamu nyerap perasaan semua orang. Jadwalkan espresso break buat diri sendiri — beneran. ☕"
+      "en": "You absorb everyone's feelings. Schedule your own espresso break, literally. ☕",
+      "id": "Kamu nyerap perasaan semua orang. Jadwalkan espresso break buat diri sendiri, beneran. ☕"
+    },
+    "parentStory": {
+      "image": "/story-illustrations/fgtn-story.webp",
+      "imageAlt": {
+        "en": "A Tiramisu parent pauses in a parked car before giving full attention to their child's friendship story.",
+        "id": "Orang tua Tiramisu mengambil jeda di mobil sebelum mendengarkan penuh cerita pertemanan anaknya."
+      },
+      "imageAfterParagraph": 2,
+      "title": {
+        "en": "The Harbor Takes a Breath",
+        "id": "Ketika Pelabuhan Mengambil Napas"
+      },
+      "body": {
+        "en": "On the ride home, your child begins telling you about a friendship problem. Your phone has three work messages, dinner is not planned, and your own difficult conversation is still sitting in your chest. You listen at every red light until the words start to blur. Then guilt says: A good parent would have more room.\n\nAs a Tiramisu parent, you become a harbor for every mood. You absorb the atmosphere, soften sharp edges, and make people feel heard. But a harbor is not the whole ocean, and endless listening without somewhere to place your own feelings becomes another kind of disappearing.\n\nYou park before going inside. “I want to hear this. I need five quiet minutes so I can really listen.” You breathe, send one honest message to an adult you trust, and let your shoulders rest.\n\nWhen you return, your child is still ready to talk. This time you can hear the story instead of merely surviving its sound. The pause was not abandonment. It protected the attention you wanted to give, and taught that closeness can include breathing room.",
+        "id": "Di perjalanan pulang, anakmu mulai cerita soal masalah pertemanan. Ponselmu punya tiga pesan kerja, makan malam belum direncanakan, dan percakapan sulitmu sendiri masih tertahan di dada. Kamu mendengarkan di setiap lampu merah sampai kata-katanya mulai kabur. Lalu rasa bersalah berkata: orang tua yg baik pasti masih punya ruang.\n\nSebagai orang tua Tiramisu, kamu menjadi pelabuhan utk setiap mood. Kamu menyerap suasana, melembutkan sudut tajam, dan membuat orang merasa didengar. Tp pelabuhan bukan seluruh lautan, dan mendengarkan tanpa punya tempat utk perasaanmu sendiri adalah cara lain utk menghilang.\n\nKamu parkir sebelum masuk rumah. “Aku mau dengar. Aku butuh lima menit sunyi supaya bisa benar-benar mendengarkan.” Kamu bernapas, mengirim satu pesan jujur kepada orang dewasa yg dipercaya, lalu membiarkan bahumu beristirahat.\n\nKetika kembali, anakmu masih ingin cerita. Kali ini kamu bisa mendengar kisahnya, bukan sekadar bertahan di tengah suaranya. Jeda itu bukan meninggalkan. Ia melindungi perhatian yg ingin kamu berikan, dan mengajarkan bahwa kedekatan juga boleh punya ruang bernapas."
+      }
+    },
+    "parentSupport": {
+      "realLife": {
+        "en": "You absorb the atmosphere and become a harbor for everyone's feelings. Over time you can become exhausted, then feel guilty for wanting solitude or not being able to listen again.",
+        "id": "Kamu menyerap suasana dan menjadi pelabuhan untuk emosi semua orang. Lama-lama kamu bisa lelah, lalu merasa bersalah karena ingin sendiri atau gak sanggup mendengarkan lagi."
+      },
+      "guiltRelease": {
+        "en": "Stepping away briefly is not abandonment. Listening has a capacity; protecting it is part of the relationship, not a betrayal of it.",
+        "id": "Berjarak sebentar bukan meninggalkan anak. Kapasitas mendengarkan punya batas; menjaganya adalah bagian dari hubungan, bukan pengkhianatan terhadapnya."
+      },
+      "careForYou": {
+        "en": "Find a place where you do not have to be the container, a friend, partner, quiet room, or professional support when needed.",
+        "id": "Cari tempat di mana kamu gak harus menjadi penampung, teman, pasangan, ruang sunyi, atau bantuan profesional bila diperlukan."
+      },
+      "forYourChild": {
+        "en": "Your child needs empathy, but does not need you to be their only emotional regulator. Calm presence can sit beside space to try settling themselves.",
+        "id": "Anak membutuhkan empati, tetapi tidak perlu menjadikanmu satu-satunya regulator emosinya. Kehadiran yg tenang bisa berjalan bersama ruang untuk mencoba menenangkan diri."
+      },
+      "tryThisWeek": {
+        "en": [
+          "Protect 15 minutes without conversation",
+          "Tell one adult what you need",
+          "Say: “I hear you. I need one breath, then we can continue.”"
+        ],
+        "id": [
+          "Lindungi 15 menit tanpa percakapan",
+          "Ceritakan kebutuhanmu pada satu orang dewasa",
+          "Katakan: “Aku dengar kamu. Aku tarik napas dulu, lalu kita lanjut.”"
+        ]
+      }
     },
     "popCousin": {
       "en": "Attachment / koala parenting",
@@ -512,8 +1156,8 @@
       "id": "The Focaccia"
     },
     "tagline": {
-      "en": "A forgiving dough — dimples, olive oil, learning by doing.",
-      "id": "Adonan yg pemaaf — belajar lewat praktik & main kotor."
+      "en": "A forgiving dough, dimples, olive oil, learning by doing.",
+      "id": "Adonan yg pemaaf, belajar lewat praktik & main kotor."
     },
     "superpowers": {
       "en": [
@@ -528,8 +1172,54 @@
       ]
     },
     "watchout": {
-      "en": "Loose structure can become no structure. Three real house rules, max — but real. 🫒",
-      "id": "Longgar bisa kebablasan jadi tanpa struktur. Tiga aturan rumah aja cukup — tp beneran dijalanin. 🫒"
+      "en": "Loose structure can become no structure. Three real house rules, max, but real. 🫒",
+      "id": "Longgar bisa kebablasan jadi tanpa struktur. Tiga aturan rumah aja cukup, tp beneran dijalanin. 🫒"
+    },
+    "parentStory": {
+      "image": "/story-illustrations/fgde-story.webp",
+      "imageAlt": {
+        "en": "A Focaccia parent and child clean one muddy trail together without blame.",
+        "id": "Orang tua Focaccia dan anaknya membersihkan satu jejak lumpur bersama tanpa saling menyalahkan."
+      },
+      "imageAfterParagraph": 2,
+      "title": {
+        "en": "Mud on the Good Towels",
+        "id": "Lumpur di Handuk Bagus"
+      },
+      "body": {
+        "en": "After an afternoon in the garden, muddy footprints cross the floor and the good towels are brown at the edges. Your child is delighted. A visiting relative looks around and says, “You let the house get like this?” For a moment, your confidence folds. Maybe freedom is just another word for being careless.\n\nAs a Focaccia parent, you trust hands, dirt, weather, and trial and error. You know that learning can look untidy. Still, comparison with more controlled homes can make your generous looseness feel like a flaw.\n\nBefore cleaning, you step outside alone for three minutes of air. Then you return to the only three rules that matter here: protect bodies, respect people, help care for the shared space.\n\nYou and your child each take one towel and wipe one trail without a lecture. The house is still imperfect, but the responsibility is shared. Freedom did not vanish when structure arrived. It became safer. Like forgiving dough, your family can be pressed, stretched, and reshaped without needing every surface to stay untouched.",
+        "id": "Setelah sore di kebun, jejak lumpur melintasi lantai dan handuk bagus berubah cokelat di pinggirnya. Anakmu senang sekali. Seorang kerabat melihat sekeliling lalu berkata, “Rumah dibiarin begini?” Sesaat kepercayaan dirimu melipat. Mungkin kebebasan cuma nama lain dari kecerobohan.\n\nSebagai orang tua Focaccia, kamu percaya pada tangan, tanah, cuaca, dan salah coba. Kamu tahu belajar sering terlihat berantakan. Tp perbandingan dengan rumah yg lebih terkendali bisa membuat kelonggaranmu terasa seperti kekurangan.\n\nSebelum membersihkan, kamu keluar sendiri selama tiga menit utk mencari udara. Lalu kamu kembali pada tiga aturan yg benar-benar penting: jaga tubuh, hormati orang, bantu rawat ruang bersama.\n\nKamu dan anakmu mengambil satu handuk lalu membersihkan satu jejak masing-masing tanpa ceramah. Rumahnya masih belum sempurna, tp tanggung jawabnya dibagi. Kebebasan gak hilang saat struktur datang; ia menjadi lebih aman. Seperti adonan yg pemaaf, keluargamu boleh ditekan, ditarik, dan dibentuk ulang tanpa menuntut semua permukaan selalu bersih."
+      }
+    },
+    "parentSupport": {
+      "realLife": {
+        "en": "You trust children to learn from real life, soil, water, bodies, and trial and error. When the house is messy or others look more structured, comparison can turn into guilt.",
+        "id": "Kamu percaya anak belajar dari dunia nyata, tanah, air, tubuh, salah coba. Saat rumah berantakan atau orang lain lebih terstruktur, perbandingan bisa berubah menjadi rasa bersalah."
+      },
+      "guiltRelease": {
+        "en": "Loose is not the same as neglectful. You do not have to copy another home; you only need a few boundaries that are truly kept.",
+        "id": "Longgar bukan berarti lalai. Kamu gak harus meniru rumah lain; kamu hanya perlu beberapa batas yg benar-benar dijalankan."
+      },
+      "careForYou": {
+        "en": "Spend time outside or move your body without turning it into your child's learning session.",
+        "id": "Ambil waktu di luar atau bergerak tanpa mengubahnya menjadi sesi belajar anak."
+      },
+      "forYourChild": {
+        "en": "Freedom feels safer when your child knows three things do not change: what protects bodies, respects people, and cares for shared spaces.",
+        "id": "Kebebasan terasa lebih aman ketika anak tahu tiga hal yg tidak berubah: apa yg menjaga tubuh, menghormati orang, dan merawat tempat bersama."
+      },
+      "tryThisWeek": {
+        "en": [
+          "Choose no more than three house rules",
+          "Get outside for your own sake",
+          "After a mess, repair one thing together without a lecture"
+        ],
+        "id": [
+          "Pilih maksimal tiga aturan rumah",
+          "Cari udara luar utk dirimu",
+          "Sesudah kekacauan, ajak anak memperbaiki satu hal bersama tanpa ceramah"
+        ]
+      }
     },
     "popCousin": {
       "en": "Free-range parenting",
@@ -548,8 +1238,8 @@
       "id": "The Bolu Kukus"
     },
     "tagline": {
-      "en": "Steams quietly, then blooms on its own — trust, in full effect.",
-      "id": "Dikukus pelan-pelan, lalu mekar sendiri — kepercayaan penuh."
+      "en": "Steams quietly, then blooms on its own, trust, in full effect.",
+      "id": "Dikukus pelan-pelan, lalu mekar sendiri, kepercayaan penuh."
     },
     "superpowers": {
       "en": [
@@ -566,6 +1256,52 @@
     "watchout": {
       "en": "Hands-off can read as far-away. Narrate your presence: \"I'm right here.\" 🌸",
       "id": "Terlalu hands-off bisa terasa jauh. Suarakan kehadiranmu: \"Aku di sini ya.\" 🌸"
+    },
+    "parentStory": {
+      "image": "/story-illustrations/fgdn-story.webp",
+      "imageAlt": {
+        "en": "A Bolu Kukus parent watches warmly while their child builds a block tower independently.",
+        "id": "Orang tua Bolu Kukus mengamati dengan hangat saat anaknya membangun menara balok sendiri."
+      },
+      "imageAfterParagraph": 2,
+      "title": {
+        "en": "The Tower Built Without Help",
+        "id": "Menara yang Dibangun Tanpa Bantuan"
+      },
+      "body": {
+        "en": "Your child has been building a block tower alone for twenty minutes. You sit nearby answering one email, then another. On your feed, someone is teaching letters through an elaborate sensory game. Guilt looks at the quiet room and asks: Shouldn't I be doing more?\n\nAs a Bolu Kukus parent, you believe growth needs room. You resist correcting every move and trust that a child can discover their own way. In a culture that treats constant stimulation as proof of love, quiet confidence can be mistaken for absence, even by you.\n\nYou close the laptop, but you do not take over. First, you use five minutes of the space you have given your child to rest your eyes. Then you sit closer and say, “I see how hard you're working. I'm here if you need me.”\n\nThe tower falls. Your child studies the pieces and begins again without looking for rescue. You are not doing nothing. You are witnessing, trusting, and staying reachable. Presence does not always have busy hands. Sometimes it is simply the warm steam around something that is learning to rise on its own.",
+        "id": "Anakmu sudah dua puluh menit membangun menara balok sendirian. Kamu duduk di dekatnya membalas satu email, lalu satu lagi. Di feed, seseorang sedang mengajarkan huruf lewat sensory play yg rumit. Rasa bersalah melihat ruangan sunyi itu dan bertanya: bukannya aku seharusnya melakukan lebih banyak?\n\nSebagai orang tua Bolu Kukus, kamu percaya pertumbuhan butuh ruang. Kamu menahan diri utk gak mengoreksi setiap gerak dan percaya anak bisa menemukan caranya. Di budaya yg menganggap stimulasi terus-menerus sebagai bukti cinta, kepercayaan yg tenang mudah disalahartikan sebagai ketidakhadiran, bahkan olehmu sendiri.\n\nKamu menutup laptop, tp gak mengambil alih. Pertama, kamu memakai lima menit dari ruang yg sudah kamu berikan utk mengistirahatkan mata. Lalu kamu duduk lebih dekat dan berkata, “Aku lihat kamu berusaha keras. Aku di sini kalau kamu butuh.”\n\nMenaranya jatuh. Anakmu mengamati balok lalu mulai lagi tanpa meminta diselamatkan. Kamu bukan gak melakukan apa-apa. Kamu menyaksikan, mempercayai, dan tetap bisa dijangkau. Kehadiran gak selalu punya tangan yg sibuk. Kadang ia cuma uap hangat di sekitar sesuatu yg sedang belajar mekar sendiri."
+      }
+    },
+    "parentSupport": {
+      "realLife": {
+        "en": "You give your child generous space to find their own way. Under pressure to constantly stimulate, teach, and supervise, you may wonder whether you are doing enough.",
+        "id": "Kamu memberi anak ruang besar untuk menemukan caranya sendiri. Di tengah tekanan untuk selalu menstimulasi, mengajar, dan mengawasi, kamu bisa bertanya apakah kamu sudah “cukup melakukan”."
+      },
+      "guiltRelease": {
+        "en": "Not intervening every moment does not mean you do not care. Trust is also involvement, as long as your child can still feel your presence.",
+        "id": "Tidak mengintervensi setiap saat bukan berarti tidak peduli. Kepercayaan juga merupakan bentuk keterlibatan, selama anak tetap bisa merasakan kehadiranmu."
+      },
+      "careForYou": {
+        "en": "Use some of the space you give your child to restore yourself instead of quietly filling it with more work.",
+        "id": "Gunakan sebagian ruang yg kamu berikan kepada anak untuk memulihkan dirimu, bukan diam-diam mengisinya dengan pekerjaan lain."
+      },
+      "forYourChild": {
+        "en": "Your child receives autonomy and also needs simple signs that you see them, are interested, and are ready to help when asked.",
+        "id": "Anak mendapat otonomi, sekaligus membutuhkan tanda sederhana bahwa kamu melihat, tertarik, dan siap membantu ketika diminta."
+      },
+      "tryThisWeek": {
+        "en": [
+          "Take one pause without being productive",
+          "Observe before helping",
+          "Say: “I see you working on it. I am here if you need me.”"
+        ],
+        "id": [
+          "Ambil satu jeda tanpa produktivitas",
+          "Amati sebelum membantu",
+          "Ucapkan: “Aku lihat kamu lagi berusaha. Aku di sini kalau kamu butuh.”"
+        ]
+      }
     },
     "popCousin": {
       "en": "Panda / free-range blend",

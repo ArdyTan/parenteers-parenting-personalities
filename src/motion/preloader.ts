@@ -3,10 +3,17 @@ import { gsap } from 'gsap';
 import { BRAND_ASSETS } from '../core/brand';
 import { prefersReducedMotion } from './shared';
 
+/**
+ * The clip is faststart, so its first frame arrives in a few KB. This is the
+ * ceiling anyway: the preloader exists to cover the *app* loading, so it must
+ * never end up waiting on its own decoration.
+ */
+const FIRST_FRAME_BUDGET_MS = 900;
+
 export async function runExperiencePreloader(
   runtime: HTMLElement,
   label: string,
-  illustrationSource: string,
+  motionSource: string,
 ): Promise<void> {
   const overlay = document.createElement('div');
   overlay.className = 'experience-preloader';
@@ -31,24 +38,44 @@ export async function runExperiencePreloader(
   const fill = document.createElement('i');
   fill.className = 'experience-preloader__fill';
   meter.append(fill);
-  const illustration = document.createElement('img');
+  const reduced = prefersReducedMotion();
+
+  // Decorative, so it carries no accessible name and no controls. `muted` plus
+  // `playsinline` is what makes autoplay legal on a phone before any gesture,
+  // and it keeps the preloader silent while sound is still off.
+  const illustration = document.createElement('video');
   illustration.className = 'experience-preloader__art';
-  illustration.src = illustrationSource;
-  illustration.alt = '';
-  illustration.width = 540;
-  illustration.height = 960;
-  illustration.decoding = 'async';
-  overlay.append(logo, illustration, temperature, meter);
+  illustration.src = motionSource;
+  illustration.muted = true;
+  illustration.defaultMuted = true;
+  illustration.playsInline = true;
+  illustration.loop = true;
+  illustration.preload = 'auto';
+  illustration.width = 500;
+  illustration.height = 500;
+  illustration.setAttribute('aria-hidden', 'true');
+  illustration.setAttribute('disablepictureinpicture', '');
+  // Reduced motion keeps the bake but not the stirring: the clip holds on its
+  // first frame instead of looping.
+  illustration.autoplay = !reduced;
+
+  // The stage owns the wash that dissolves the clip's paper edge into the page.
+  const stage = document.createElement('div');
+  stage.className = 'experience-preloader__stage';
+  stage.append(illustration);
+
+  overlay.append(logo, stage, temperature, meter);
   runtime.append(overlay);
+  if (!reduced) void illustration.play().catch(() => undefined);
 
   const progress = { value: 45 };
   const update = (): void => {
     temperature.textContent = `${Math.round(progress.value)}°C`;
     fill.style.transform = `scaleX(${Math.max(0, (progress.value - 45) / 135)})`;
   };
-  const reduced = prefersReducedMotion();
   const preload = Promise.all([
-    ...[BRAND_ASSETS.wordmarkBlue, illustrationSource, '/opening/var-1.webp'].map(loadImage),
+    ...[BRAND_ASSETS.wordmarkBlue, '/opening/var-1.webp'].map(loadImage),
+    firstFrame(illustration, FIRST_FRAME_BUDGET_MS),
     document.fonts?.ready ?? Promise.resolve(),
   ]);
   const progressTween = gsap.to(progress, {
@@ -76,7 +103,32 @@ export async function runExperiencePreloader(
       ease: 'power4.inOut',
     }),
   );
+  // Removing the element cancels the range requests still in flight, so a
+  // visitor only ever pays for the seconds of clip they actually saw.
+  illustration.pause();
+  illustration.removeAttribute('src');
+  illustration.load();
   overlay.remove();
+}
+
+/**
+ * Resolves once there is a picture to show, or when the budget runs out,
+ * whichever is first. Never rejects: a clip that cannot play is a missing
+ * decoration, not a broken launch.
+ */
+function firstFrame(video: HTMLVideoElement, budgetMs: number): Promise<void> {
+  if (video.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA) return Promise.resolve();
+  return new Promise((resolve) => {
+    const settle = (): void => {
+      window.clearTimeout(timer);
+      video.removeEventListener('loadeddata', settle);
+      video.removeEventListener('error', settle);
+      resolve();
+    };
+    const timer = window.setTimeout(settle, budgetMs);
+    video.addEventListener('loadeddata', settle, { once: true });
+    video.addEventListener('error', settle, { once: true });
+  });
 }
 
 function loadImage(source: string): Promise<void> {

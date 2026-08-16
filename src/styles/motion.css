@@ -219,7 +219,7 @@
     grid-auto-columns: min(44cqi, 10.5rem);
     grid-auto-flow: column;
     padding: var(--space-2xs) var(--space-md) var(--space-sm);
-    margin-inline: calc(0rem - var(--space-md));
+    margin-inline: 0;
     overflow-x: auto;
     overscroll-behavior-inline: contain;
     scroll-padding-inline: var(--space-md);
@@ -365,12 +365,47 @@
     background: var(--color-editorial-canvas);
   }
 
-  .experience-preloader__art {
+  /*
+   * The clip is seamless by construction: no frame, no card, no shadow, and no
+   * `mix-blend-mode` (multiplying the clip's cream against the canvas cream is
+   * what used to draw a darker rectangle around it).
+   *
+   * Its paper is still a shade deeper than `--color-editorial-canvas`, and it
+   * is textured, so the rectangle cannot be colour-matched away. The stage
+   * dissolves it with a radial wash painted *over* the video rather than a
+   * `mask-image` on it. The wash is ordinary paint on an ordinary element, so
+   * it does not depend on how a given engine composites video layers, which is
+   * the sort of difference that only shows up on a real phone.
+   */
+  .experience-preloader__stage {
+    position: relative;
     inline-size: min(17rem, 70cqi);
+    aspect-ratio: 1;
+    isolation: isolate;
+  }
+
+  .experience-preloader__stage::after {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    pointer-events: none;
+    background: radial-gradient(
+      closest-side,
+      rgb(253 242 225 / 0) 56%,
+      rgb(253 242 225 / 0.65) 78%,
+      rgb(253 242 225 / 1) 98%
+    );
+  }
+
+  .experience-preloader__art {
+    display: block;
+    inline-size: 100%;
     block-size: 100%;
-    object-fit: cover;
-    object-position: center 58%;
-    mix-blend-mode: multiply;
+    object-fit: contain;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
   }
 
   .experience-preloader__temperature {
@@ -1232,9 +1267,187 @@
     line-height: var(--line-height-ref-body);
   }
 
+  /* Parent-first reading flow. The prose stays quiet and book-like; the one
+     full-bleed scene is the deliberate signature, a visual breath exactly at
+     the story midpoint rather than another decorative card. */
+  .scene--result .result__parent-story {
+    gap: var(--gap-header-body);
+  }
+
+  .scene--result .result__story-label {
+    color: var(--brand-orange);
+    font-family: var(--font-family-ui);
+    font-size: var(--font-size-ref-micro);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 1.5px;
+    line-height: var(--line-height-ref-micro);
+    text-transform: uppercase;
+  }
+
+  .scene--result .result__story-title {
+    max-inline-size: 14ch;
+    font-size: clamp(2rem, 9cqi, 2.75rem);
+    line-height: 1.02;
+    text-wrap: balance;
+  }
+
+  .scene--result .result__story-prose {
+    display: grid;
+    gap: 20px;
+  }
+
+  .scene--result .result__story-paragraph {
+    color: var(--brand-blue);
+    font-size: 1rem;
+    line-height: 1.72;
+    text-wrap: pretty;
+  }
+
+  .scene--result .result__story-figure {
+    inline-size: calc(100% + var(--pad-result-text) + var(--pad-result-text));
+    margin: 10px calc(0px - var(--pad-result-text));
+    overflow: hidden;
+    aspect-ratio: 3 / 2;
+    background: var(--color-capsule-warm);
+  }
+
+  .scene--result .result__story-image {
+    display: block;
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
+  }
+
+  .scene--result .result__parent-support {
+    inline-size: calc(100% + var(--pad-result-text) + var(--pad-result-text));
+    margin-inline: calc(0px - var(--pad-result-text));
+    gap: var(--gap-header-body);
+    padding: 32px var(--pad-result-text) 38px;
+    background: var(--brand-blue);
+    color: var(--color-surface-raised);
+  }
+
+  .scene--result .result__parent-support > h2 {
+    color: var(--color-surface-raised);
+  }
+
+  .scene--result .result__support-list,
+  .scene--result .result__weekly-list {
+    display: grid;
+    gap: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .scene--result .result__support-item {
+    position: relative;
+    display: grid;
+    gap: 6px;
+    padding: 16px 0 16px 30px;
+    border-block-end: var(--border-width-hairline) solid rgb(255 255 255 / 24%);
+  }
+
+  .scene--result .result__support-item:first-child {
+    border-block-start: var(--border-width-hairline) solid rgb(255 255 255 / 24%);
+  }
+
+  .scene--result .result__support-item[data-support-field="guiltRelease"] {
+    border-block-end: 0;
+  }
+
+  .scene--result .result__support-item::before {
+    position: absolute;
+    inset: 19px auto auto 0;
+    display: grid;
+    inline-size: 20px;
+    aspect-ratio: 1;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--brand-orange);
+    color: var(--color-editorial-canvas);
+    content: attr(data-support-order);
+    font-size: 0.625rem;
+    font-weight: var(--font-weight-bold);
+    line-height: 1;
+  }
+
+  /* Parent care receives the only inset treatment in the blue reflection
+     block, a quiet pause without returning to a separate cream card. */
+  .scene--result .result__support-item[data-support-field="careForYou"] {
+    margin-block: 10px;
+    padding: 18px 18px 18px 48px;
+    border: var(--border-width-hairline) solid rgb(255 255 255 / 28%);
+    border-radius: 20px;
+    background: rgb(255 255 255 / 10%);
+  }
+
+  .scene--result .result__support-item[data-support-field="careForYou"]::before {
+    inset-inline-start: 16px;
+    inset-block-start: 21px;
+  }
+
+  .scene--result .result__support-label {
+    color: var(--color-surface-raised);
+    font-size: var(--font-size-ref-micro);
+    letter-spacing: 0.02em;
+    line-height: var(--line-height-ref-body);
+  }
+
+  .scene--result .result__support-item > p {
+    color: var(--color-surface-raised);
+    font-size: 0.9375rem;
+    line-height: 1.62;
+  }
+
+  .scene--result .result__weekly-title {
+    color: var(--brand-blue);
+    font-family: var(--font-family-display);
+    font-size: 1.5rem;
+    line-height: 1.1;
+  }
+
+  .scene--result .result__weekly-section {
+    gap: var(--gap-header-body);
+  }
+
+  .scene--result .result__weekly-list {
+    counter-reset: weekly-actions;
+  }
+
+  .scene--result .result__weekly-list > li {
+    display: grid;
+    min-block-size: 48px;
+    grid-template-columns: 28px minmax(0, 1fr);
+    align-items: center;
+    gap: 10px;
+    padding-block: 10px;
+    border-block-end: var(--border-width-hairline) solid var(--color-outline);
+    color: var(--brand-blue);
+    counter-increment: weekly-actions;
+    font-size: 0.9375rem;
+    line-height: 1.5;
+  }
+
+  .scene--result .result__weekly-list > li::before {
+    display: grid;
+    inline-size: 28px;
+    aspect-ratio: 1;
+    place-items: center;
+    border: var(--border-width-hairline) solid var(--brand-orange);
+    border-radius: 50%;
+    color: var(--brand-orange);
+    content: counter(weekly-actions);
+    font-size: 0.6875rem;
+    font-weight: var(--font-weight-bold);
+  }
+
   .scene--result .result__power-list {
     display: grid;
     gap: var(--gap-tight);
+  }
+
+  .scene--result .result__power-list > li::before {
+    background: var(--brand-orange);
   }
 
   /* The other bakes, carrying the same weight as the pop-culture cousin above:
@@ -1285,6 +1498,7 @@
 
   .scene--result .result__soft-sell {
     display: grid;
+    min-inline-size: 0;
     gap: var(--gap-tight);
     padding: 0;
     border: 0;
@@ -1292,6 +1506,81 @@
     box-shadow: none;
     font-size: var(--font-size-ref-body);
     line-height: var(--line-height-ref-body);
+  }
+
+  .scene--result .result__products-heading {
+    color: var(--brand-blue);
+    font-family: var(--font-family-display);
+    font-size: var(--font-size-ref-heading);
+    line-height: var(--line-height-heading);
+  }
+
+  .scene--result .result__product-rail {
+    display: grid;
+    min-inline-size: 0;
+    grid-auto-columns: minmax(142px, 46%);
+    grid-auto-flow: column;
+    gap: var(--gap-tight);
+    padding-block: 2px 8px;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-snap-type: inline mandatory;
+    scrollbar-width: none;
+  }
+
+  .scene--result .result__product-rail::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scene--result .result__product-card {
+    display: grid;
+    min-inline-size: 0;
+    align-content: start;
+    gap: 5px;
+    color: var(--brand-blue);
+    scroll-snap-align: start;
+    text-decoration: none;
+  }
+
+  .scene--result .result__product-media {
+    display: block;
+    overflow: hidden;
+    inline-size: 100%;
+    aspect-ratio: 1;
+    border-radius: 18px;
+    background: var(--color-capsule-warm);
+  }
+
+  .scene--result .result__product-media > img {
+    display: block;
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
+  }
+
+  .scene--result .result__product-meta {
+    color: var(--brand-orange);
+    font-size: 0.6875rem;
+    font-weight: var(--font-weight-bold);
+    line-height: 1.35;
+  }
+
+  .scene--result .result__product-title {
+    font-size: 0.8125rem;
+    font-weight: var(--font-weight-bold);
+    line-height: 1.35;
+  }
+
+  .scene--result .result__products-coming-soon {
+    display: grid;
+    min-block-size: 10rem;
+    place-content: center;
+    gap: 8px;
+    padding: 24px;
+    border: var(--border-width-hairline) solid var(--color-outline);
+    border-radius: 24px;
+    color: var(--brand-blue);
+    text-align: center;
   }
 
   .scene--result .result__disclaimer,
@@ -1394,14 +1683,19 @@
     inset: auto 0 0;
     z-index: var(--z-floating-ui);
     padding-block-start: var(--gap-tight);
-    background: var(--color-editorial-canvas);
-    box-shadow: 0 -0.75rem 1.5rem rgb(24 39 153 / 8%);
+    background: var(--color-transparent);
+    box-shadow: none;
     transform: translateY(115%);
     transition: transform var(--duration-reveal) var(--ease-out);
   }
 
   .scene--result .result__bottom[data-docked="true"] {
     transform: translateY(0);
+  }
+
+  .scene--result .result__save-image {
+    outline: 2px solid var(--color-surface-raised);
+    outline-offset: -2px;
   }
 
   .scene--result .toast-stack {

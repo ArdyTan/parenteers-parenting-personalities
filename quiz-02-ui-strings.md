@@ -66,6 +66,13 @@
 | Key | EN | ID |
 |---|---|---|
 | `result.intro_label` | You are… | Kamu adalah… |
+| `result.story_label` | An everyday story | Cerita sehari-hari |
+| `result.summary_label` | What to remember | Yang perlu kamu ingat |
+| `result.real_life_label` | What often happens | Yang sering terjadi |
+| `result.guilt_release_label` | Release the guilt | Lepaskan rasa bersalah |
+| `result.care_for_you_label` | For you first | Untuk kamu dulu |
+| `result.for_child_label` | Then, for your child | Lalu, untuk anakmu |
+| `result.try_this_week_label` | Try this week | Coba minggu ini |
 | `result.superpowers_label` | Your superpowers | Superpower kamu |
 | `result.watchout_label` | Watch-out, with love | Watch-out, with love |
 | `result.popcousin_label` | Your pop-culture cousin | Sepupu pop-culture kamu |
@@ -104,6 +111,12 @@ remains on record in `quiz-01-flow-dialogue.md` §PAGE 18.
 | `share.whatsapp` | WhatsApp | WhatsApp |
 | `share.instagram` | Instagram | Instagram |
 | `share.other` | More options | Opsi lain |
+| `share.card_cta` | Want yours too? Head to | Mau juga? Langsung aja ke |
+
+The ID line of `share.card_cta` is transcribed from `images/Result Card.jpg`, which is the
+result card's visual source. That artwork has no English counterpart, so the EN column is a
+working placeholder awaiting a copy pass. It is drawn on the shareable card only, directly
+above `quiz.parenteers.id`.
 
 ## Footer & Legal
 

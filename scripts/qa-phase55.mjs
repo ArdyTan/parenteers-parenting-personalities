@@ -139,6 +139,8 @@ const ART = (selector) => `(() => {
   if (!el) return null;
   const b = el.getBoundingClientRect();
   const cs = getComputedStyle(el);
+  const image = el.matches('img') ? el : el.querySelector('img');
+  const imageStyle = image ? getComputedStyle(image) : null;
   return {
     src: el.getAttribute('src') ?? el.querySelector('img')?.getAttribute('src') ?? null,
     natural: el.naturalWidth ? [el.naturalWidth, el.naturalHeight] : null,
@@ -148,11 +150,130 @@ const ART = (selector) => `(() => {
     fullBleed: Math.abs(b.x) < 0.6 && Math.abs(b.width - innerWidth) < 1.2,
     mask: cs.maskImage,
     objectFit: cs.objectFit,
+    opacity: cs.opacity,
+    imageOpacity: imageStyle?.opacity ?? null,
+    visible:
+      parseFloat(cs.opacity) >= 0.99 &&
+      cs.visibility !== 'hidden' &&
+      (!imageStyle || (parseFloat(imageStyle.opacity) >= 0.99 && imageStyle.visibility !== 'hidden')),
   };
 })()`;
 
+const LANDING_SENSOR_TILT = `(() => {
+  const event = new Event('deviceorientation');
+  Object.defineProperties(event, {
+    gamma: { value: 24 },
+    beta: { value: 68 },
+  });
+  window.dispatchEvent(event);
+})()`;
+
+// --- 0 Preloader ------------------------------------------------------------
+// The preloader is gone in about a second, so it is re-run deliberately with a
+// slowed clock rather than raced. The seam figure is what matters: the clip's
+// paper is a shade deeper than the page, and the check composites the video
+// plus its wash exactly as the page does, then walks the whole perimeter of
+// the box. Anything above zero means a visible rectangle is back.
+await go('/');
+report.preloader = await evaluate(`(async () => {
+  const source = await fetch('/src/motion/preloader.ts').then((response) => response.text());
+  const gsapSpecifier = source.match(/from "([^"]*gsap[^"]*)"/)[1];
+  const { gsap } = await import(gsapSpecifier);
+  gsap.globalTimeline.timeScale(0.02);
+  const module = await import('/src/motion/preloader.ts');
+  const runtime = document.querySelector('.app-runtime');
+  const running = module.runExperiencePreloader(runtime, 'QA', '/motion/preloader.mp4');
+
+  const video = document.querySelector('.experience-preloader__art');
+  const stage = document.querySelector('.experience-preloader__stage');
+  // Snapshot now: getComputedStyle returns a live declaration, and it reads
+  // back empty once the overlay detaches, which reduced motion does at once.
+  const live = getComputedStyle(video);
+  const styles = {
+    mixBlendMode: live.mixBlendMode,
+    boxShadow: live.boxShadow,
+    borderRadius: live.borderRadius,
+    borderTopWidth: live.borderTopWidth,
+  };
+  const wash = stage ? getComputedStyle(stage, '::after').backgroundImage : '';
+
+  // Reduced motion collapses every duration to zero, so the overlay can be gone
+  // before a frame decodes. Wait only while there is still something to
+  // measure, and report a null seam rather than measuring a detached box.
+  const deadline = Date.now() + 1200;
+  while (
+    stage.isConnected
+    && video.readyState < 2
+    && Date.now() < deadline
+  ) {
+    await new Promise((resolve) => setTimeout(resolve, 50));
+  }
+
+  const measurable = stage.isConnected && video.readyState >= 2;
+  const rect = measurable ? stage.getBoundingClientRect() : { width: 0, height: 0 };
+  const width = Math.round(rect.width);
+  const height = Math.round(rect.height);
+  let worstEdgeDelta = null;
+
+  if (measurable && width > 0 && height > 0) {
+    const canvas = document.createElement('canvas');
+    canvas.width = width;
+    canvas.height = height;
+    const context = canvas.getContext('2d');
+    context.fillStyle = '#FDF2E1';
+    context.fillRect(0, 0, width, height);
+    context.drawImage(video, 0, 0, width, height);
+    const gradient = context.createRadialGradient(
+      width / 2, height / 2, 0, width / 2, height / 2, Math.min(width, height) / 2,
+    );
+    gradient.addColorStop(0.56, 'rgba(253,242,225,0)');
+    gradient.addColorStop(0.78, 'rgba(253,242,225,0.65)');
+    gradient.addColorStop(0.98, 'rgba(253,242,225,1)');
+    context.fillStyle = gradient;
+    context.fillRect(0, 0, width, height);
+
+    const pixels = context.getImageData(0, 0, width, height).data;
+    const perimeter = [];
+    for (let x = 0; x < width; x += 1) perimeter.push([x, 0], [x, height - 1]);
+    for (let y = 0; y < height; y += 1) perimeter.push([0, y], [width - 1, y]);
+    worstEdgeDelta = 0;
+    for (const [x, y] of perimeter) {
+      const index = (y * width + x) * 4;
+      const delta = Math.abs(pixels[index] - 253)
+        + Math.abs(pixels[index + 1] - 242)
+        + Math.abs(pixels[index + 2] - 225);
+      if (delta > worstEdgeDelta) worstEdgeDelta = delta;
+    }
+  }
+
+  const state = {
+    tag: video.tagName,
+    inStage: video.parentElement.className,
+    muted: video.muted,
+    loop: video.loop,
+    playsInline: video.playsInline,
+    ariaHidden: video.getAttribute('aria-hidden'),
+    autoplay: video.autoplay,
+    paused: video.paused,
+    readyState: video.readyState,
+    currentTime: Math.round(video.currentTime * 100) / 100,
+    blendMode: styles.mixBlendMode,
+    boxShadow: styles.boxShadow,
+    borderRadius: styles.borderRadius,
+    borderWidth: styles.borderTopWidth,
+    washIsGradient: /gradient/.test(wash ?? ''),
+    box: [width, height],
+    worstEdgeDelta,
+  };
+  await running;
+  state.overlayRemoved = !document.querySelector('.experience-preloader');
+  return state;
+})()`);
+
 // --- 1 Splash ---------------------------------------------------------------
 await go('/');
+await evaluate(`localStorage.removeItem('pb1.sound'); localStorage.removeItem('pb1.lang')`);
+await go('/', 450, LANDING_SENSOR_TILT);
 report.landing = await evaluate(`(() => {
   const round = (v) => Math.round(v * 10) / 10;
   const eyebrow = document.querySelector('.landing__eyebrow');
@@ -178,6 +299,52 @@ report.landing = await evaluate(`(() => {
   };
 })()`);
 await capture('01-splash');
+
+// Fresh visitors show sound on, but a mobile browser may keep the element
+// paused until a trusted gesture. The first pointer interaction must start it
+// without requiring a separate click on the sound toggle.
+report.audioLifecycle = {
+  before: await evaluate(`(() => {
+    const element = document.querySelector('[data-app-music="theme"]');
+    return {
+      toggle: document.querySelector('.sound-toggle')?.dataset.state ?? null,
+      present: !!element,
+      paused: element?.paused ?? null,
+      currentTime: element?.currentTime ?? null,
+      preload: element?.preload ?? null,
+      loop: element?.loop ?? null,
+    };
+  })()`),
+};
+await command('Input.dispatchMouseEvent', {
+  type: 'mousePressed',
+  x: 10,
+  y: 10,
+  button: 'left',
+  clickCount: 1,
+});
+await command('Input.dispatchMouseEvent', {
+  type: 'mouseReleased',
+  x: 10,
+  y: 10,
+  button: 'left',
+  clickCount: 1,
+});
+const audioDeadline = Date.now() + 2500;
+do {
+  report.audioLifecycle.after = await evaluate(`(() => {
+    const element = document.querySelector('[data-app-music="theme"]');
+    return {
+      present: !!element,
+      paused: element?.paused ?? null,
+      currentTime: element?.currentTime ?? null,
+      readyState: element?.readyState ?? null,
+      loop: element?.loop ?? null,
+    };
+  })()`);
+  if (report.audioLifecycle.after?.paused === false && report.audioLifecycle.after.currentTime > 0) break;
+  await delay(100);
+} while (Date.now() < audioDeadline);
 
 // Header controls: both toggles are circles, and the sound glyph is centred
 // inside its own viewBox (a `contain` mask centres the box, not the drawing).
@@ -228,7 +395,7 @@ await capture('02-quiz-opening');
 
 // --- 3 Questions: shortest, both step-down tiers, and the last one ---------
 report.questions = [];
-for (const question of [1, 2, 5, 12]) {
+for (const question of [1, 2, 5, 10, 12]) {
   const answers = Array.from({ length: question - 1 }, (_, index) => ({
     q: index + 1,
     pole: poleForQuestion(index + 1),
@@ -336,6 +503,18 @@ report.shortViewport = await evaluate(`(() => {
   };
 })()`);
 await capture('03-question-5-short');
+await go('/q/10');
+report.shortQuestion10 = await evaluate(`(() => {
+  const round = (v) => Math.round(v * 10) / 10;
+  const art = document.querySelector('.question__art');
+  const cta = document.querySelector('.question__cta');
+  return {
+    artHeight: art ? round(art.getBoundingClientRect().height) : null,
+    ctaBottom: cta ? round(cta.getBoundingClientRect().bottom) : null,
+    overflow: document.documentElement.scrollWidth - innerWidth,
+  };
+})()`);
+await capture('03-question-10-short');
 await command('Emulation.setDeviceMetricsOverride', {
   width: 390,
   height: 844,
@@ -406,6 +585,7 @@ report.result = await evaluate(`(() => {
   const identity = document.querySelector('.result__identity');
   const code = document.querySelector('.result__code');
   const bar = document.querySelector('.result__bottom');
+  const saveButton = document.querySelector('.result__save-image');
   return {
     ...${SHELL},
     artY: art ? round(art.getBoundingClientRect().y) : null,
@@ -414,6 +594,26 @@ report.result = await evaluate(`(() => {
     codeText: code?.textContent ?? null,
     codeBackground: code ? getComputedStyle(code).backgroundColor : null,
     sections: document.querySelectorAll('.result__section').length,
+    storyTitle: document.querySelector('.result__story-title')?.textContent?.trim() ?? null,
+    storyParagraphs: document.querySelectorAll('.result__story-paragraph').length,
+    storyImageAfter: document.querySelector('.result__parent-story')?.dataset.storyImageAfter ?? null,
+    storyChildOrder: (() => {
+      const children = [...(document.querySelector('.result__story-prose')?.children ?? [])];
+      return children.map((child) => child.classList.contains('result__story-figure') ? 'image' : 'paragraph');
+    })(),
+    supportOrder: [...document.querySelectorAll('.result__support-item')]
+      .map((item) => item.dataset.supportField),
+    weeklyActions: document.querySelectorAll('.result__weekly-list > li').length,
+    parentFirstBeforePowers: (() => {
+      const story = document.querySelector('.result__parent-story');
+      const support = document.querySelector('.result__parent-support');
+      const weekly = document.querySelector('.result__weekly-section');
+      const powers = document.querySelector('.result__powers');
+      return !!(story && support && weekly && powers
+        && story.compareDocumentPosition(support) & Node.DOCUMENT_POSITION_FOLLOWING
+        && support.compareDocumentPosition(weekly) & Node.DOCUMENT_POSITION_FOLLOWING
+        && weekly.compareDocumentPosition(powers) & Node.DOCUMENT_POSITION_FOLLOWING);
+    })(),
     softSell: !!document.querySelector('.result__soft-sell'),
     disclaimer: !!document.querySelector('.result__disclaimer'),
     chips: document.querySelectorAll('.result__chips .result__chip').length,
@@ -447,11 +647,79 @@ report.result = await evaluate(`(() => {
     bulletBox: ${BULLET('.result__power-list > li')},
     dockedAtTop: bar?.dataset.docked ?? null,
     barTransformAtTop: bar ? getComputedStyle(bar).transform : null,
+    barBackground: bar ? getComputedStyle(bar).backgroundColor : null,
+    barShadow: bar ? getComputedStyle(bar).boxShadow : null,
+    saveButtonBackground: saveButton ? getComputedStyle(saveButton).backgroundColor : null,
+    saveButtonShadow: saveButton ? getComputedStyle(saveButton).boxShadow : null,
+    products: document.querySelectorAll('.result__product-card').length,
+    productLinks: [...document.querySelectorAll('.result__product-card')].map((card) => card.href),
+    brokenProductImages: [...document.querySelectorAll('.result__product-card img')]
+      .filter((image) => !image.complete || image.naturalWidth === 0)
+      .map((image) => image.getAttribute('src')),
+    productRailScrollable: (() => {
+      const rail = document.querySelector('.result__product-rail');
+      return rail ? rail.scrollWidth > rail.clientWidth : null;
+    })(),
+    comingSoon: document.querySelector('.result__products-coming-soon')?.textContent ?? null,
+    resultMusicLoop: document.querySelector('[data-app-music="result"]')?.loop ?? null,
   };
 })()`);
 await capture('05-result-top');
 
-await evaluate(`scrollTo({ top: document.documentElement.scrollHeight, behavior: 'instant' })`);
+await evaluate(`(() => {
+  const surface = document.querySelector('.phone-frame__screen');
+  if (surface) surface.scrollTo({ top: 280, behavior: 'instant' });
+  else window.scrollTo({ top: 280, behavior: 'instant' });
+})()`);
+await delay(650);
+report.resultFirstScroll = await evaluate(`(() => ({
+  docked: document.querySelector('.result__bottom')?.dataset.docked ?? null,
+  scrollTop: document.querySelector('.phone-frame__screen')?.scrollTop ?? scrollY,
+  overflow: document.documentElement.scrollWidth - innerWidth,
+}))()`);
+await capture('05a-result-first-scroll');
+
+await evaluate(`document.querySelector('.result__story-figure')?.scrollIntoView({ block: 'center' })`);
+await delay(650);
+report.resultStory = await evaluate(`(() => {
+  const image = document.querySelector('.result__story-image');
+  const figure = document.querySelector('.result__story-figure');
+  return {
+    imageComplete: image?.complete ?? false,
+    imageNaturalWidth: image?.naturalWidth ?? 0,
+    imageAlt: image?.getAttribute('alt') ?? null,
+    figureWidth: figure ? Math.round(figure.getBoundingClientRect().width) : null,
+    docked: document.querySelector('.result__bottom')?.dataset.docked ?? null,
+    overflow: document.documentElement.scrollWidth - innerWidth,
+  };
+})()`);
+await capture('05b-result-story');
+
+await evaluate(`document.querySelector('.result__parent-support')?.scrollIntoView({ block: 'center' })`);
+await delay(650);
+report.resultSupport = await evaluate(`(() => ({
+  items: document.querySelectorAll('.result__support-item').length,
+  weeklyActions: document.querySelectorAll('.result__weekly-list li').length,
+  sectionWidth: Math.round(document.querySelector('.result__parent-support')?.getBoundingClientRect().width ?? 0),
+  background: getComputedStyle(document.querySelector('.result__parent-support')).backgroundColor,
+  headingColor: getComputedStyle(document.querySelector('.result__parent-support > h2')).color,
+  bodyColor: getComputedStyle(document.querySelector('.result__support-item > p')).color,
+  weeklyColor: getComputedStyle(document.querySelector('.result__weekly-list > li')).color,
+  weeklyTitleColor: getComputedStyle(document.querySelector('.result__weekly-title')).color,
+  weeklyBulletColor: getComputedStyle(document.querySelector('.result__weekly-list > li'), '::before').color,
+  weeklyInsideSupport: !!document.querySelector('.result__parent-support .result__weekly-list'),
+  careBackground: getComputedStyle(document.querySelector('[data-support-field="careForYou"]')).backgroundColor,
+  saveOutline: getComputedStyle(document.querySelector('.result__save-image')).outlineColor,
+  saveText: document.querySelector('.result__save-image')?.textContent?.trim() ?? null,
+  saveColor: getComputedStyle(document.querySelector('.result__save-image')).color,
+  saveLabelOpacity: getComputedStyle(document.querySelector('.result__save-image .async-button__label')).opacity,
+  saveLabelVisibility: getComputedStyle(document.querySelector('.result__save-image .async-button__label')).visibility,
+  docked: document.querySelector('.result__bottom')?.dataset.docked ?? null,
+  overflow: document.documentElement.scrollWidth - innerWidth,
+}))()`);
+await capture('05c-result-support');
+
+await evaluate(`document.querySelector('.result__copy-status')?.scrollIntoView({ block: 'end' })`);
 await delay(900);
 report.resultDocked = await evaluate(`(() => {
   const bar = document.querySelector('.result__bottom');
@@ -467,11 +735,131 @@ report.resultDocked = await evaluate(`(() => {
 })()`);
 await capture('06-result-docked');
 
-await evaluate(`scrollTo({ top: 0, behavior: 'instant' })`);
+await evaluate(`document.querySelector('.result__hero')?.scrollIntoView({ block: 'start' })`);
 await delay(900);
 report.resultUndocked = await evaluate(
   `(() => ({ docked: document.querySelector('.result__bottom')?.dataset.docked ?? null }))()`,
 );
+
+await evaluate(`localStorage.setItem('pb1.lang', 'en')`);
+await go('/r/pgde');
+await evaluate(`document.querySelector('.result__soft-sell')?.scrollIntoView({ block: 'center' })`);
+await delay(450);
+report.resultEnglish = await evaluate(`(() => ({
+  products: document.querySelectorAll('.result__product-card').length,
+  comingSoon: document.querySelector('.result__products-coming-soon')?.textContent?.trim() ?? null,
+  storyLabel: document.querySelector('.result__story-label')?.textContent?.trim() ?? null,
+  storyImageAlt: document.querySelector('.result__story-image')?.getAttribute('alt') ?? null,
+  weeklyActions: document.querySelectorAll('.result__weekly-list > li').length,
+  overflow: document.documentElement.scrollWidth - innerWidth,
+}))()`);
+await capture('07-result-products-en');
+
+// --- 7b Shareable result card ----------------------------------------------
+// The card is a canvas export, so it is measured the only way it can be: by
+// reading pixels back and reporting ink bands in the artwork's own 390x768
+// units (`images/Result Card.jpg`). Bands are what the design specifies, so a
+// font swap that keeps the composition intact will not trip this.
+await evaluate(`localStorage.setItem('pb1.lang', 'id')`);
+await go('/r/pgde');
+report.shareCard = await evaluate(`(async () => {
+  const share = await import('/src/core/share.ts');
+  const data = await import('/src/data/index.ts');
+  const personality = data.appData.types.find((type) => type.code === 'PGDE');
+  const translations = data.appData.translations.id;
+  const blob = await share.composeResultStoryCard({
+    personality,
+    language: 'id',
+    shareUrl: 'https://quiz.parenteers.id/r/pgde',
+    instagramUrl: data.appData.config.links.instagram,
+    labels: {
+      intro: translations['result.intro_label'],
+      cta: translations['share.card_cta'],
+    },
+  });
+  const bitmap = await createImageBitmap(blob);
+  const canvas = document.createElement('canvas');
+  canvas.width = bitmap.width;
+  canvas.height = bitmap.height;
+  const context = canvas.getContext('2d');
+  context.drawImage(bitmap, 0, 0);
+  const { data: pixels } = context.getImageData(0, 0, canvas.width, canvas.height);
+
+  const scale = canvas.height / 768;
+  const inset = (canvas.width - 390 * scale) / 2;
+  const at = (x, y) => {
+    const index = (y * canvas.width + x) * 4;
+    return [pixels[index], pixels[index + 1], pixels[index + 2]];
+  };
+  const background = at(2, 2);
+  const inked = (x, y, threshold) => {
+    const [r, g, b] = at(x, y);
+    return Math.abs(r - background[0]) + Math.abs(g - background[1])
+      + Math.abs(b - background[2]) > threshold;
+  };
+  const round = (value) => Math.round(value * 10) / 10;
+  const band = (top, bottom, threshold) => {
+    let first = null;
+    let last = null;
+    let left = canvas.width;
+    let right = -1;
+    for (let y = Math.round(top * scale); y <= Math.round(bottom * scale); y += 1) {
+      for (let x = 0; x < canvas.width; x += 1) {
+        if (!inked(x, y, threshold)) continue;
+        if (first === null) first = y;
+        last = y;
+        if (x < left) left = x;
+        if (x > right) right = x;
+      }
+    }
+    if (first === null) return null;
+    return {
+      top: round(first / scale),
+      bottom: round(last / scale),
+      left: round((left - inset) / scale),
+      right: round((right - inset) / scale),
+    };
+  };
+
+  // Brand blue only, so the pill fill and the orange code never register.
+  let nameOverPill = 0;
+  for (let y = Math.round(549 * scale); y <= Math.round(584 * scale); y += 1) {
+    for (let x = Math.round(inset + 140 * scale); x <= Math.round(inset + 250 * scale); x += 1) {
+      const [r, g, b] = at(x, y);
+      if (Math.abs(r - 24) + Math.abs(g - 39) + Math.abs(b - 153) < 90) nameOverPill += 1;
+    }
+  }
+
+  const pillCentre = at(Math.round(inset + 195 * scale), Math.round(566 * scale));
+  return {
+    size: [canvas.width, canvas.height],
+    wordmark: band(30, 75, 40),
+    character: band(80, 460, 26),
+    eyebrow: band(470, 496, 40),
+    name: band(496, 546, 40),
+    pill: band(546, 588, 30),
+    tagline: band(596, 686, 40),
+    footer: band(688, 726, 20),
+    pillFill: pillCentre.join(','),
+    nameOverPill,
+  };
+})()`);
+
+// --- 8 Gallery spacing -----------------------------------------------------
+await go('/gallery');
+report.gallerySpacing = await evaluate(`(() => {
+  const firstCard = document.querySelector('.gallery__item');
+  const sendButton = document.querySelector('.gallery__send');
+  const cardRect = firstCard?.getBoundingClientRect();
+  const buttonRect = sendButton?.getBoundingClientRect();
+  return {
+    cardLeft: cardRect ? Math.round(cardRect.left) : null,
+    buttonLeft: buttonRect ? Math.round(buttonRect.left) : null,
+    buttonRightGap: buttonRect ? Math.round(innerWidth - buttonRect.right) : null,
+    overflow: document.documentElement.scrollWidth - innerWidth,
+  };
+})()`);
+await capture('08-gallery-spacing');
 
 // --- Assertions ------------------------------------------------------------
 const shells = [
@@ -542,6 +930,23 @@ if (Math.abs(report.landing.subtitleWidth - 284.8) > 6) {
 if (report.landing.subtitleAlign !== 'center') failures.push('splash: subtitle is not centered');
 if (!report.landing.captionText) failures.push('splash: no caption under the CTA');
 if (!report.landing.art?.fullBleed) failures.push('splash: art is not full-bleed');
+if (!report.landing.art?.visible) failures.push('splash: art is hidden');
+
+if (report.audioLifecycle.before.toggle !== 'on') {
+  failures.push('audio: fresh visitor does not default to sound on');
+}
+if (!report.audioLifecycle.before.present || report.audioLifecycle.before.preload !== 'auto') {
+  failures.push('audio: theme is not buffering ahead of the first interaction');
+}
+if (!report.audioLifecycle.after?.present || report.audioLifecycle.after.paused !== false) {
+  failures.push('audio: theme did not start on the first pointer interaction');
+}
+if (!(report.audioLifecycle.after?.currentTime > 0)) {
+  failures.push('audio: theme currentTime did not advance after the first interaction');
+}
+if (report.audioLifecycle.before.loop !== true || report.audioLifecycle.after?.loop !== true) {
+  failures.push('audio: theme music is not configured to loop');
+}
 
 // A circle is a square box at 50% radius — an oval means the box is not square.
 for (const [name, ring] of Object.entries(report.headerControls)) {
@@ -670,6 +1075,17 @@ if (report.shortViewport) {
   }
 }
 
+if (report.shortQuestion10) {
+  const short = report.shortQuestion10;
+  if (Math.abs(short.artHeight - 260) > 1) {
+    failures.push(`q10@720: art collapsed to ${short.artHeight}px, expected its native 260`);
+  }
+  if (short.ctaBottom > 720.5) {
+    failures.push(`q10@720: the CTA is ${Math.round(short.ctaBottom - 720)}px below the fold`);
+  }
+  if (short.overflow > 0) failures.push(`q10@720: ${short.overflow}px horizontal overflow`);
+}
+
 if (report.baking.ovenPresent) failures.push('baking: the oven dial is still rendered');
 if (report.baking.cardPresent) failures.push('baking: the centered card is still rendered');
 if (report.baking.rows !== 3) failures.push(`baking: ${report.baking.rows} marquee rows, expected 3`);
@@ -703,7 +1119,96 @@ if (!/\w( \w){3}/.test(report.result.codeText ?? '')) {
 if (report.result.codeBackground !== 'rgb(243, 227, 203)') {
   failures.push(`result: code capsule is ${report.result.codeBackground}, expected the warm tan`);
 }
-if (report.result.sections !== 4) failures.push(`result: ${report.result.sections} detail sections, expected 4`);
+if (report.result.sections !== 7) failures.push(`result: ${report.result.sections} detail sections, expected 7`);
+if (!report.result.storyTitle) failures.push('result: parent story title is missing');
+if (report.result.storyParagraphs < 4) {
+  failures.push(`result: story has ${report.result.storyParagraphs} paragraphs, expected at least 4`);
+}
+if (report.result.storyImageAfter !== '2') {
+  failures.push(`result: story image contract is ${report.result.storyImageAfter}, expected 2`);
+}
+if (report.result.storyChildOrder.join(',') !== 'paragraph,paragraph,image,paragraph,paragraph') {
+  failures.push(`result: story child order is ${report.result.storyChildOrder.join(',')}`);
+}
+if (report.result.supportOrder.join(',') !== 'realLife,guiltRelease,careForYou,forYourChild') {
+  failures.push(`result: parent-first support order is ${report.result.supportOrder.join(',')}`);
+}
+if (report.result.weeklyActions !== 3) {
+  failures.push(`result: ${report.result.weeklyActions} weekly actions, expected 3`);
+}
+if (!report.result.parentFirstBeforePowers) {
+  failures.push('result: parent-first story and support do not precede the legacy personality summary');
+}
+if (!report.resultStory.imageComplete || report.resultStory.imageNaturalWidth !== 1200) {
+  failures.push(`result: story image did not load at 1200px (${report.resultStory.imageNaturalWidth})`);
+}
+if (!report.resultStory.imageAlt) failures.push('result: story image has no localized alt text');
+if (Math.abs(report.resultStory.figureWidth - 390) > 1) {
+  failures.push(`result: story figure is ${report.resultStory.figureWidth}px wide in a 390px viewport`);
+}
+if (report.resultStory.overflow > 0) {
+  failures.push(`result story: ${report.resultStory.overflow}px horizontal overflow`);
+}
+if (report.resultFirstScroll.scrollTop < 240 || report.resultFirstScroll.docked !== 'true') {
+  failures.push(
+    `result: save CTA did not dock after the first scroll (${report.resultFirstScroll.scrollTop}px, ${report.resultFirstScroll.docked})`,
+  );
+}
+if (report.resultFirstScroll.overflow > 0) {
+  failures.push(`result first scroll: ${report.resultFirstScroll.overflow}px horizontal overflow`);
+}
+if (report.resultStory.docked !== 'true') {
+  failures.push('result: save CTA disappeared while the parent story was being read');
+}
+if (report.resultSupport.items !== 4 || report.resultSupport.weeklyActions !== 3) {
+  failures.push(
+    `result: support view has ${report.resultSupport.items} takeaways and ${report.resultSupport.weeklyActions} actions`,
+  );
+}
+if (Math.abs(report.resultSupport.sectionWidth - 390) > 1) {
+  failures.push(`result support: blue block is ${report.resultSupport.sectionWidth}px wide`);
+}
+if (report.resultSupport.background !== 'rgb(24, 39, 153)') {
+  failures.push(`result support: background is ${report.resultSupport.background}`);
+}
+for (const [role, color] of [
+  ['heading', report.resultSupport.headingColor],
+  ['body', report.resultSupport.bodyColor],
+]) {
+  if (color !== 'rgb(255, 255, 255)') failures.push(`result support: ${role} color is ${color}`);
+}
+if (report.resultSupport.weeklyInsideSupport) {
+  failures.push('result weekly actions: section is still nested inside the blue support block');
+}
+for (const [role, color] of [
+  ['heading', report.resultSupport.weeklyTitleColor],
+  ['action', report.resultSupport.weeklyColor],
+]) {
+  if (color !== 'rgb(24, 39, 153)') failures.push(`result weekly actions: ${role} color is ${color}`);
+}
+if (report.resultSupport.weeklyBulletColor !== 'rgb(232, 104, 17)') {
+  failures.push(`result weekly actions: bullet color is ${report.resultSupport.weeklyBulletColor}`);
+}
+if (report.resultSupport.careBackground !== 'rgba(255, 255, 255, 0.1)') {
+  failures.push(`result support: parent-care emphasis is ${report.resultSupport.careBackground}`);
+}
+if (report.resultSupport.saveOutline !== 'rgb(255, 255, 255)') {
+  failures.push(`result support: save button outline is ${report.resultSupport.saveOutline}`);
+}
+if (!report.resultSupport.saveText
+  || report.resultSupport.saveLabelOpacity !== '1'
+  || report.resultSupport.saveLabelVisibility !== 'visible'
+  || report.resultSupport.saveColor === 'rgb(24, 39, 153)') {
+  failures.push(
+    `result support: save label is not visible (${report.resultSupport.saveText}, ${report.resultSupport.saveColor}, ${report.resultSupport.saveLabelOpacity}, ${report.resultSupport.saveLabelVisibility})`,
+  );
+}
+if (report.resultSupport.docked !== 'true') {
+  failures.push('result: save CTA disappeared while the parent-first takeaways were being read');
+}
+if (report.resultSupport.overflow > 0) {
+  failures.push(`result support: ${report.resultSupport.overflow}px horizontal overflow`);
+}
 if (!report.result.softSell) failures.push('result: soft-sell block is missing');
 if (!report.result.disclaimer) failures.push('result: disclaimer is missing');
 // Copy link and Retake only: the gallery got a section of its own and `/end` is
@@ -739,9 +1244,138 @@ if (!introBullet || Math.abs(introBullet.w - 27) > 0.5 || Math.abs(introBullet.h
   failures.push(`intro: point bullet is ${introBullet?.w}x${introBullet?.h}, expected a 27px circle`);
 }
 if (report.result.dockedAtTop !== 'false') failures.push('result: share bar is docked while at the top');
+if (report.result.barBackground !== 'rgba(0, 0, 0, 0)') {
+  failures.push(`result: save dock background is ${report.result.barBackground}, expected transparent`);
+}
+if (report.result.barShadow !== 'none') {
+  failures.push(`result: save dock shadow is ${report.result.barShadow}, expected none`);
+}
+if (report.result.saveButtonBackground !== 'rgb(24, 39, 153)') {
+  failures.push(`result: save CTA background is ${report.result.saveButtonBackground}, expected brand blue`);
+}
+if (report.result.saveButtonShadow !== 'none') {
+  failures.push(`result: save CTA shadow is ${report.result.saveButtonShadow}, expected none`);
+}
+if (report.result.products !== 9) {
+  failures.push(`result: ID product rail has ${report.result.products} cards, expected 9`);
+}
+if (!report.result.productLinks.every((href) => href === 'https://parenteers.id/')) {
+  failures.push(`result: product links do not all target parenteers.id (${report.result.productLinks.join(', ')})`);
+}
+if (report.result.brokenProductImages.length > 0) {
+  failures.push(`result: broken product images: ${report.result.brokenProductImages.join(', ')}`);
+}
+if (report.result.productRailScrollable !== true) failures.push('result: ID product rail is not horizontally scrollable');
+if (report.result.comingSoon !== null) failures.push('result: ID product rail was replaced by the EN coming-soon state');
+if (report.result.resultMusicLoop !== true) failures.push('audio: result music is not configured to loop');
 if (report.resultDocked.docked !== 'true') failures.push('result: share bar did not dock after scrolling');
 if (report.resultDocked.coversLastLinks) failures.push('result: docked bar covers the last links');
 if (report.resultUndocked.docked !== 'false') failures.push('result: share bar stayed docked back at the top');
+if (report.resultEnglish.products !== 0) failures.push('result: EN still renders Indonesian product cards');
+if (!report.resultEnglish.comingSoon?.includes('English-language products are coming soon.')) {
+  failures.push(`result: EN coming-soon copy is missing (${report.resultEnglish.comingSoon})`);
+}
+if (report.resultEnglish.storyLabel !== 'An everyday story') {
+  failures.push(`result EN: story label is missing (${report.resultEnglish.storyLabel})`);
+}
+if (!report.resultEnglish.storyImageAlt || report.resultEnglish.storyImageAlt.includes('Orang tua')) {
+  failures.push(`result EN: story image alt is not localized (${report.resultEnglish.storyImageAlt})`);
+}
+if (report.resultEnglish.weeklyActions !== 3) {
+  failures.push(`result EN: ${report.resultEnglish.weeklyActions} weekly actions, expected 3`);
+}
+if (report.resultEnglish.overflow > 0) failures.push(`result EN: ${report.resultEnglish.overflow}px horizontal overflow`);
+
+for (const [edge, inset] of [
+  ['first card', report.gallerySpacing.cardLeft],
+  ['send button left', report.gallerySpacing.buttonLeft],
+  ['send button right', report.gallerySpacing.buttonRightGap],
+]) {
+  if (inset == null || inset < 15) failures.push(`gallery spacing: ${edge} inset is ${inset}px`);
+}
+if (report.gallerySpacing.overflow > 0) {
+  failures.push(`gallery spacing: ${report.gallerySpacing.overflow}px horizontal overflow`);
+}
+
+// The preloader clip has to read as artwork on the page, not as a card sitting
+// on it, and it must never be able to make a sound.
+const preloader = report.preloader;
+if (!preloader) failures.push('preloader: did not run');
+else {
+  if (preloader.tag !== 'VIDEO') failures.push(`preloader: art is a ${preloader.tag}`);
+  if (preloader.inStage !== 'experience-preloader__stage') {
+    failures.push(`preloader: clip is not inside the stage (${preloader.inStage})`);
+  }
+  if (!preloader.muted) failures.push('preloader: clip is not muted');
+  if (!preloader.playsInline) failures.push('preloader: clip is not playsinline');
+  if (preloader.ariaHidden !== 'true') failures.push('preloader: clip is not hidden from AT');
+  if (!preloader.washIsGradient) failures.push('preloader: the stage wash is missing');
+  if (preloader.blendMode !== 'normal') {
+    failures.push(`preloader: clip blend mode is ${preloader.blendMode}, expected normal`);
+  }
+  if (preloader.boxShadow !== 'none') failures.push(`preloader: clip has a shadow (${preloader.boxShadow})`);
+  if (parseFloat(preloader.borderRadius) !== 0) failures.push(`preloader: clip is rounded (${preloader.borderRadius})`);
+  if (parseFloat(preloader.borderWidth) !== 0) failures.push(`preloader: clip has a border (${preloader.borderWidth})`);
+  if (preloader.worstEdgeDelta !== null && preloader.worstEdgeDelta > 6) {
+    failures.push(`preloader: clip edge differs from the page by ${preloader.worstEdgeDelta}, expected a seamless 0`);
+  }
+  if (!preloader.overlayRemoved) failures.push('preloader: overlay stayed on screen');
+  if (reduced) {
+    // Reduced motion keeps the bake and drops the stirring, and it collapses
+    // the whole preloader to zero duration, so there is nothing left to sample.
+    if (preloader.autoplay) failures.push('preloader: clip autoplays under reduced motion');
+  } else {
+    if (!preloader.autoplay) failures.push('preloader: clip does not autoplay');
+    if (preloader.readyState < 2) {
+      failures.push(`preloader: clip never produced a frame (readyState ${preloader.readyState})`);
+    }
+    if (preloader.paused) failures.push('preloader: clip is not playing');
+    if (preloader.worstEdgeDelta === null) failures.push('preloader: the seam could not be measured');
+  }
+}
+
+// The result card reproduces `images/Result Card.jpg`. Bands are asserted in
+// that file's 390x768 units, with a tolerance wide enough for hinting and
+// antialiasing but not for a band that has moved or gone missing.
+const card = report.shareCard;
+if (!card) failures.push('share card: did not compose');
+else {
+  if (card.size[0] !== 1080 || card.size[1] !== 1920) {
+    failures.push(`share card: ${card.size.join('x')}, expected 1080x1920`);
+  }
+  for (const [name, expected, tolerance] of [
+    ['wordmark', { top: 42, bottom: 62, left: 128, right: 261 }, 2],
+    ['character', { top: 88, bottom: 445, left: 23, right: 367 }, 4],
+    ['eyebrow', { top: 480, bottom: 488, left: 138, right: 250 }, 3],
+    ['name', { top: 501, bottom: 537, left: 59, right: 331 }, 4],
+    ['pill', { top: 549, bottom: 584, left: 144, right: 246 }, 3],
+    ['footer', { top: 691, bottom: 718, left: 35, right: 356 }, 3],
+  ]) {
+    const measured = card[name];
+    if (!measured) {
+      failures.push(`share card: ${name} band is missing`);
+      continue;
+    }
+    for (const edge of ['top', 'bottom', 'left', 'right']) {
+      const drift = Math.abs(measured[edge] - expected[edge]);
+      if (drift > tolerance) {
+        failures.push(
+          `share card: ${name} ${edge} is ${measured[edge]}, expected ~${expected[edge]}`,
+        );
+      }
+    }
+  }
+  // The tagline is data, so only its block is pinned, not its line count.
+  if (!card.tagline || card.tagline.top > 608 || card.tagline.bottom > 660) {
+    failures.push(`share card: tagline block at ${JSON.stringify(card.tagline)}`);
+  }
+  if (card.pillFill !== '243,227,202') {
+    failures.push(`share card: code pill is ${card.pillFill}, expected 243,227,202`);
+  }
+  if (card.nameOverPill > 0) {
+    failures.push(`share card: ${card.nameOverPill}px of name ink reaches the code pill`);
+  }
+}
 
 if (runtimeErrors.length > 0) failures.push(`runtime errors: ${runtimeErrors.join(' | ')}`);
 
@@ -758,20 +1392,21 @@ function aspectMatches(art) {
 
 /**
  * Navigates and then polls until the scene has actually mounted. The first load
- * has to clear the preloader (fonts + eager art + WebGL warm-up), so a fixed
+ * has to clear the preloader (fonts + eager art), so a fixed
  * delay is not reliable enough to assert against.
  */
-async function go(path, settle = 450) {
+async function go(path, settle = 450, afterMountExpression = null) {
   await command('Page.navigate', { url: `${baseUrl}${path}` });
   const deadline = Date.now() + 15_000;
   for (;;) {
     await delay(250);
     const ready = await evaluate(
-      `!!document.querySelector('.scene__body') && !document.querySelector('.experience-preloader')`,
+      `!!document.querySelector('.scene[data-scene]') && !document.querySelector('.experience-preloader')`,
     ).catch(() => false);
     if (ready) break;
     if (Date.now() > deadline) throw new Error(`${path} never mounted a scene`);
   }
+  if (afterMountExpression) await evaluate(afterMountExpression);
   await delay(settle);
 }
 
