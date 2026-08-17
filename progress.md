@@ -31,7 +31,7 @@ on a cold, throttled load: it is still a 1.8 MB clip for a surface that is on sc
 second, and how quickly the first frame lands is the whole question. On a desktop, the gate's four
 `gate.*` strings are placeholders and need a copy pass.
 
-Nothing in these releases is committed to git yet.
+All of this is now committed: as of 2026-08-17 the working tree is clean at `9d7f171`.
 
 Re-run the interface on the Samsung A55/S25 FE and in the Instagram in-app browser, now that the seven screenshot notes are closed. Look specifically at: the question headline sitting over the faded illustration at each of the three size tiers (Q1 / Q2 / Q5), whether the indicator row now reads in daylight, the bigger baking marquee and its 5-second auto-advance, the quick-changing "other bakes" row on the result, and the ID/EN + sound toggles at arm's length. Then run the live WhatsApp unfurl check against the deployed 16 OG shells at `https://quiz.parenteers.id/r/{slug}`.
 
@@ -61,6 +61,16 @@ Worth adding to the device matrix: a **Samsung A23** (Snapdragon 680 class). The
 - [ ] Any overrides to plan.md §14 decision defaults
 
 ## Session log (newest first)
+
+**2026-08-17, Orchestrator docs caught up with the three shipped surfaces.**
+`CLAUDE.md` and `AGENTS.md` are byte-identical apart from the title, so both got the same edit and
+were diffed afterwards to confirm they stayed in sync. Added `assets:audit`, `assets:preloader` and
+`deploy` to the command list, and three hard invariants that were only recorded in the phase doc:
+the share card reproduces `images/Result Card.jpg` through `CARD_LAYOUT` (so the design changes
+there, not via ad-hoc offsets), the preloader clip must stay faststart and must never block launch,
+and the desktop gate is copy left / QR right with one breakpoint plus a short-viewport tightening.
+Corrected the `/end` removal date from 2026-08-17 to 2026-08-02, which is what this log records.
+Docs only; no source, no build, no deploy.
 
 **2026-08-16, Desktop gate deployed.**
 Worker version `3bcf963d-e096-4e78-9d77-eb31ca79e88e`; 20 files uploaded, 128 already present, live

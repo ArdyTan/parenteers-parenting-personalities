@@ -210,7 +210,7 @@ How these are measured, plus the recorded baselines and the traps that produce f
 
 | Metric | Budget |
 |---|---|
-| JS (gz) | ≤ 300 KB. **Actual: 105.29 KB** with the 16 bilingual stories, parent-first summary, localized product surface, and current audio behavior |
+| JS (gz) | ≤ 300 KB. **Actual: 106.27 KB** (measured 2026-08-17, two consecutive builds, identical hashes) with the 16 bilingual stories, parent-first summary, localized product surface, and current audio behavior |
 | Fonts | ≤ 120 KB (2 families, subset woff2, self-hosted) |
 | Images per screen | ≤ 300 KB (characters use optimized ≤1024px WebP derivatives; alpha only when the chosen composition needs separation; only the result's character loads eagerly) |
 | Audio | One-shots are synthesized — 0 KB download, +0.12 MB heap measured after 240 cues. Fresh visitors default to sound enabled, so the current scene's streamed bed may buffer before the first interaction: `theme` 3.67 MB / 152.6s and `result` 3.57 MB / 147.4s (both ~200 kbps AAC; ~1.75 MB each at 96 kbps). An explicit stored "off" keeps both at 0 bytes. Only the bed a scene asks for is fetched. Never decode them: 150s at 48 kHz stereo is ~55 MB of Float32 |
