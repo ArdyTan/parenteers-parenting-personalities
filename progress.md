@@ -33,7 +33,7 @@ second, and how quickly the first frame lands is the whole question. On a deskto
 
 All of this is now committed: as of 2026-08-17 the working tree is clean at `9d7f171`.
 
-Re-run the interface on the Samsung A55/S25 FE and in the Instagram in-app browser, now that the seven screenshot notes are closed. Look specifically at: the question headline sitting over the faded illustration at each of the three size tiers (Q1 / Q2 / Q5), whether the indicator row now reads in daylight, the bigger baking marquee and its 5-second auto-advance, the quick-changing "other bakes" row on the result, and the ID/EN + sound toggles at arm's length. Then run the live WhatsApp unfurl check against the deployed 16 OG shells at `https://quiz.parenteers.id/r/{slug}`.
+Re-run the interface on the Samsung A55/S25 FE and in the Instagram in-app browser, now that the seven screenshot notes are closed. Look specifically at: the question headline sitting over the faded illustration at each of the three size tiers (Q1 / Q2 / Q5), whether the indicator row now reads in daylight, the bigger baking marquee and its 5-second auto-advance, the quick-changing "other treats" row on the result, and the ID/EN + sound toggles at arm's length. Then run the live WhatsApp unfurl check against the deployed 16 OG shells at `https://quiz.parenteers.id/r/{slug}`.
 
 Two decisions the `/end` removal left open: the "Follow @parenteers" CTA and the made-by/copyright footer had no other home and are currently gone, and `config.flags.founderNote` is an unwired flag. If any of the three should live on the Result, say where.
 
@@ -61,6 +61,31 @@ Worth adding to the device matrix: a **Samsung A23** (Snapdragon 680 class). The
 - [ ] Any overrides to plan.md §14 decision defaults
 
 ## Session log (newest first)
+
+**2026-08-18, English "bake" replaced everywhere it was a countable noun.**
+The EN copy called a result "a bake" ("Which Bake Is Your Parenting Style?", "Meet the other bakes",
+"Share your bake"), which is not idiomatic English: as a countable noun a bake is a dish, not a
+character. Costed the user's proposed swap to "dessert" first and rejected it, because 5 of the 16
+types are not desserts (Bagel, Baguette, Pretzel, Focaccia, Milk Bread) and 2 more are borderline
+(Muffin, Banana Bread), so "your parenting dessert is: The Baguette" would read worse than the
+problem it fixes. Fixed instead by mirroring what the ID copy already does: the two title slots
+become "Bread or Cake: What's Your Parenting Style?" (ID: "Roti atau Kue Apa?"), the inline
+countable noun becomes "treat", `intro.point2` becomes "different recipes", and
+`result.softsell_body` follows ID's "cocok sm gaya kamu" with "match your style". Every place where
+bake is a verb ("Let's bake", "Baking your result…", "baked with love", "Boiled and baked") or the
+collective "bakery" was left alone, since both are correct English.
+
+10 EN strings, plus `id.json` `result.other_types_label` where a stray English "bake" had leaked
+into an otherwise all-"kue" file, plus the Cronut watch-out in `types.json`. Both copy docs updated
+to match so they stay authoritative. Copy only: the `/baking` route, the `.baking__*` classes, the
+28 `qa:phase55` baking assertions, the `parenting-bakes` worker name, the UTM campaign and the
+`parenting-bake-{slug}.png` share filename are internal and were left untouched. 168 tests pass.
+The one layout risk was the longer landing headline; measured at 390x844 and 390x720 it renders
+identically to the old string (3 lines, 36.4px, same 717px bottom edge) with no overflow. Not
+visually confirmed on the result scene: the browser pane was hidden for this session, which freezes
+the preloader counter before the scene mounts, so `qa:phase55` on a real machine is still worth a
+pass. PAGE 18 of `quiz-01-flow-dialogue.md` still reads "Every bake rises differently"; that is
+retired `/end` copy deliberately kept on record.
 
 **2026-08-17, Orchestrator docs caught up with the three shipped surfaces.**
 `CLAUDE.md` and `AGENTS.md` are byte-identical apart from the title, so both got the same edit and

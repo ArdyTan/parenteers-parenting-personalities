@@ -76,7 +76,7 @@
 | `result.superpowers_label` | Your superpowers | Superpower kamu |
 | `result.watchout_label` | Watch-out, with love | Watch-out, with love |
 | `result.popcousin_label` | Your pop-culture cousin | Sepupu pop-culture kamu |
-| `result.other_types_label` | Meet the other bakes | Kenalan sm bake lainnya |
+| `result.other_types_label` | Meet the other treats | Kenalan sm kue lainnya |
 | `result.share_ig` | Share to IG Story | Share ke IG Story |
 | `result.save_image` | Save result card | Simpan kartu hasil |
 | `result.copy_link` | Copy link | Salin link |
@@ -122,8 +122,8 @@ The gate also reuses `landing.eyebrow`, `landing.h1`, `landing.subtitle`, `landi
 
 | Key | EN | ID |
 |---|---|---|
-| `share.title` | Share your bake | Share kue kamu |
-| `share.caption_template` | I'm {type} {emoji} — my parenting style as a bake. What's yours? {link} | Aku {type} {emoji} — gaya parenting-ku versi kue. Kamu tim apa? {link} |
+| `share.title` | Share your treat | Share kue kamu |
+| `share.caption_template` | I'm {type} {emoji} — my parenting style as a treat. What's yours? {link} | Aku {type} {emoji} — gaya parenting-ku versi kue. Kamu tim apa? {link} |
 | `share.whatsapp` | WhatsApp | WhatsApp |
 | `share.instagram` | Instagram | Instagram |
 | `share.other` | More options | Opsi lain |
@@ -158,9 +158,9 @@ above `quiz.parenteers.id`.
 
 | Key | EN | ID |
 |---|---|---|
-| `meta.title` | Which Bake Is Your Parenting Style? — Parenteers Quiz | Gaya Parenting Kamu, Roti atau Kue Apa? — Quiz Parenteers |
+| `meta.title` | Bread or Cake: What's Your Parenting Style? — Parenteers Quiz | Gaya Parenting Kamu, Roti atau Kue Apa? — Quiz Parenteers |
 | `meta.description` | 16 parenting personalities, from lapis legit to lava cake. 12 questions, 3 minutes, zero judgment. | 16 kepribadian parenting, dr lapis legit sampai lava cake. 12 pertanyaan, 3 menit, tanpa penghakiman. |
-| `meta.og_title` | I found my parenting bake 🍞 What's yours? | Aku udah nemu "kue parenting"-ku 🍞 Kamu tim apa? |
+| `meta.og_title` | I found my parenting treat 🍞 What's yours? | Aku udah nemu "kue parenting"-ku 🍞 Kamu tim apa? |
 | `meta.og_description` | Take the 3-minute Parenteers quiz. | Ikutan quiz 3 menit dr Parenteers. |
 
 ## Accessibility (a11y)
@@ -168,7 +168,7 @@ above `quiz.parenteers.id`.
 | Key | EN | ID |
 |---|---|---|
 | `a11y.progressbar` | Quiz progress: question {n} of {total} | Progres quiz: pertanyaan {n} dr {total} |
-| `a11y.type_illustration_alt` | Cute illustration of {type}, a parenting-style bake character | Ilustrasi lucu {type}, karakter kue gaya parenting |
+| `a11y.type_illustration_alt` | Cute illustration of {type}, a parenting-style bakery character | Ilustrasi lucu {type}, karakter kue gaya parenting |
 | `a11y.lang_switch` | Switch language to {lang} | Ganti bahasa ke {lang} |
 | `a11y.loading` | Loading, please wait | Memuat, mohon tunggu |
 | `a11y.sound_on` | Turn sound on | Nyalakan suara |

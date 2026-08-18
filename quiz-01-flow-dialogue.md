@@ -16,7 +16,7 @@
 ## PAGE 1 — Landing / Hero
 
 **EN**
-- H1: **Which Bake Is Your Parenting Style?**
+- H1: **Bread or Cake: What's Your Parenting Style?**
 - Subtitle: 16 parenting personalities, from lapis legit to lava cake. No judgment — just warm hugs and a little laugh.
 - Meta line: ⏱ 3 minutes · 12 questions · IG-story-ready result
 - CTA button: **Start the Quiz**
@@ -36,7 +36,7 @@
 **EN**
 - H2: **Before we preheat the oven 🔥**
 - Point 1: There are no wrong answers — only your style.
-- Point 2: Every type in this quiz is a loving parent. We're just different bakes.
+- Point 2: Every type in this quiz is a loving parent. We're just different recipes.
 - Point 3: Answer with what you *actually* do on a normal day — not your ideal-self answer. (We see you. No judgment.)
 - CTA button: **Let's bake**
 - Footnote (small): For fun & reflection — not a clinical assessment.
@@ -193,13 +193,13 @@ Rotating lines, ~2.5s each, in order. Show a baking illustration (see File 3).
 **Result disclaimer (reuse `footer.disclaimer`):** *For fun & reflection — not a clinical assessment or diagnostic tool.* / *Buat seru-seruan & refleksi — bukan penilaian klinis maupun alat diagnosis.*
 
 **Soft-sell card (same on all results; only the activity tags change per code):**
-- EN: *Play ideas that match your bake — screen-free activities for ages 0–5, made by a Certified Montessori & Play Therapy Practitioner (and a fellow tired parent).* → button: **Explore Parenteers activities**
+- EN: *Play ideas that match your style — screen-free activities for ages 0–5, made by a Certified Montessori & Play Therapy Practitioner (and a fellow tired parent).* → button: **Explore Parenteers activities**
 - ID: *Ide main yg cocok sm gaya kamu — aktivitas tanpa layar utk usia 0–5, dibuat oleh Certified Montessori & Play Therapy Practitioner (yg juga sesama orang tua lelah).* → button: **Intip aktivitas Parenteers**
 
 **Activity-tag mapping (dev note):** default deterministically to D2+D3 — the second and third letters of the result code (e.g. `PCTE` → C + T). An explicit `types.json` editorial override may replace that pair. Tag meanings: P structured printables · F no-prep play · C guided step-by-step · G open-ended invitations · T Big Feelings sheets · D hands-on sensory · E gross-motor/outdoor · N calm & cozy play.
 
 **Share caption template:**
-- EN: *I'm {type} {emoji} — my parenting style as a bake. What's yours? {link}*
+- EN: *I'm {type} {emoji} — my parenting style as a treat. What's yours? {link}*
 - ID: *Aku {type} {emoji} — gaya parenting-ku versi kue. Kamu tim apa? {link}*
 
 ---
@@ -263,7 +263,7 @@ Rotating lines, ~2.5s each, in order. Show a baking illustration (see File 3).
 - You go all-in on your kid's current obsession
 - Feelings get named in this house
 - You make learning feel like invention
-- Watch-out: So many experiments, so little follow-through. Finish one bake before starting three. 🍩
+- Watch-out: So many experiments, so little follow-through. Finish one recipe before starting three. 🍩
 
 **ID** — Tagline: *Paham aturannya, makanya berani nge-remix.*
 - Kalau anak lagi obsess sesuatu, kamu ikut all-in
@@ -420,7 +420,7 @@ Rotating lines, ~2.5s each, in order. Show a baking illustration (see File 3).
 
 **EN**
 - H2: **The whole bakery 🧺**
-- Intro: Tap any bake to peek at its personality. Which one is your partner? Send them the quiz and find out.
+- Intro: Tap any treat to peek at its personality. Which one is your partner? Send them the quiz and find out.
 - CTA under grid: **Send the quiz to someone**
 
 **ID**
