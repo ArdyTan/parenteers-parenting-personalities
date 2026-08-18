@@ -87,6 +87,12 @@ the preloader counter before the scene mounts, so `qa:phase55` on a real machine
 pass. PAGE 18 of `quiz-01-flow-dialogue.md` still reads "Every bake rises differently"; that is
 retired `/end` copy deliberately kept on record.
 
+Deployed the same day: worker version `44085bc4-0a2a-4729-ab9b-7e5f8012b671`, 19 files uploaded
+(129 already present), live on `quiz.parenteers.id` and the workers.dev endpoint. Production
+returns 200 and the deployed bundle serves the new EN strings with none of the old ones left in it.
+The 16 prerendered `/r/{slug}` stubs are unchanged, as expected: they carry ID metadata, and only
+the EN dictionary moved.
+
 **2026-08-17, Orchestrator docs caught up with the three shipped surfaces.**
 `CLAUDE.md` and `AGENTS.md` are byte-identical apart from the title, so both got the same edit and
 were diffed afterwards to confirm they stayed in sync. Added `assets:audit`, `assets:preloader` and
