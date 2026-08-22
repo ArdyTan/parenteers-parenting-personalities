@@ -17,8 +17,21 @@
 | 5.5 — Brilliant-spec interface revision | 🟨 revised against the user's device review (2026-08-02); headless QA green; Samsung/Instagram re-check pending |
 | 6 — QA hardening | ⬜ |
 | 7 — Launch extras (optional) | 🟨 sound layer shipped early (2026-08-02); analytics, founder-note flag and Awwwards assets remain |
+| 8 — Personality PDF booklet | 🟨 steps 8.1/8.2/8.4 shipped 2026-08-22 — 32 booklets generate at 16 pages and the Result button reaches them; 54 art slots empty, handover ready in `docs/personality-pdf-art-brief.md` |
 
 ## Next action
+
+**Active workstream: the per-type PDF booklet (Phase 8).** Steps 8.1, 8.2 and 8.4 are done — the two activity registries are authored bilingually, `npm run assets:pdf` writes all 32 booklets, and the Result carries both a PDF section and a dock link. What remains is 8.3 (the 53 illustrations, which is on Ardy) and 8.5 (Instagram in-app browser check on a real device). Original note follows:
+
+**Earlier plan.** Ardy asked for a downloadable PDF per
+personality with a download button on the Result. It was specified on 2026-08-22 and the spec lives in
+`docs/personality-pdf-plan.md` — 14 A4 pages, 32 files, two new activity registries, 53 image prompts.
+Steps 8.1 (author `parent-care.json` and `child-activities.json` bilingually, plus the selection rule
+and validation tests) and 8.2 (the booklet template and the Chrome `printToPDF` generator on
+placeholder art) have no dependency on the artwork and are the next things to build. Step 8.3 waits on
+Ardy for the 53 illustrations. Note that `npm install` has not been run on this machine yet.
+
+The device QA below is still outstanding and unchanged:
 
 The landing-art visibility hotfix is now live (deployed 2026-08-16). Hard-refresh on the Samsung
 and repeat the exact Chrome check that produced the blank cream band. The fix makes the primary
@@ -58,9 +71,124 @@ Worth adding to the device matrix: a **Samsung A23** (Snapdragon 680 class). The
 - [x] Final domain — `https://quiz.parenteers.id/` deployed 2026-08-16
 - [ ] Cloudflare Workers Builds connection — required to close Phase 0 (Wrangler authentication confirmed 2026-08-16; GitHub remote is ready)
 - [x] Official Parenteers palette, logo set, and favicon delivered and applied (2026-07-18); existing fonts retained because the brand pack contains no typography specification
+- [ ] **54 PDF booklet illustrations**, opened 2026-08-22: ready-to-run handover in `docs/personality-pdf-art-brief.md` — 25 parent-care tiles, 20 child-activity tiles, 9 furniture bands, with the style block, reference-image anchoring, `gpt-image-2`-legal sizes and a QC list. Ardy generates with `gpt-image-2`; this is the only thing blocking Phase 8.3
+- [ ] **Four PDF booklet decisions**, opened 2026-08-22 (`docs/personality-pdf-plan.md` §15): the page-14 QR target, whether the closing CTA points at parenteers.id or the *Panduan stimulasi 0–5* product, whether the five-per-type activity picks stay deterministic or get hand-authored overrides, and whether EN ships at launch or after a copy review
 - [ ] Any overrides to plan.md §14 decision defaults
 
 ## Session log (newest first)
+
+**2026-08-22 (later), Checklist extended, care opener rewritten, art handover written.**
+Three asks after Ardy tested the booklet on a phone.
+
+*More on "Coba minggu ini".* `types.json tryThisWeek` is validated at exactly three actions and also
+drives the Result page, so rather than renegotiate that contract and author 96 new per-type strings,
+added `src/data/weekly-extras.json` — 16 one-line actions, 2 per pole, each keyed to that pole's
+watch-out from the research doc §3. Page 7 now leads with the three authored actions and adds four
+selected by dimension letter: seven checkboxes, still personal, no change to the app.
+
+*More on "Untuk kamu dulu".* It was one lead line and one sentence of `careForYou` on a mostly empty
+page. Now two pages: page 8 carries three paragraphs arguing why the parent comes first and stating
+plainly that none of the next five pages are for the child, and page 9 carries the personal read —
+four `pdf.drain_{letter}` lines chosen by the reader's own code, then `careForYou`, then how to use
+the five, then a parent-side permission line mirroring the child one. The drain lines are shared
+per-pole copy, so it reads as written for this type without 16 bespoke passages.
+
+The booklet is now **16 pages**; folios, the QA contract and the phase criteria were all moved with
+it. 32 files regenerate with no page clipping anywhere, largest 600 KB, 18 MB total.
+
+*Art handover.* Ardy will generate with **GPT Image 2**, so wrote `docs/personality-pdf-art-brief.md`
+against what that model actually accepts rather than against my earlier guesses: `gpt-image-2`,
+released 2026-04-21, standard sizes 1024×1024 / 1536×1024 / 1024×1536, **width and height each
+divisible by 16**, aspect between 1:3 and 3:1, up to 10 images per request and up to 16 reference
+images per call. That last one is how the style gets anchored — the brief attaches
+`pcte-story.webp` and `pcte-croquembouche.webp` as references on every call instead of describing the
+style from scratch. It also corrected two sizes from the plan doc that `gpt-image-2` would have
+rejected outright: 1200×600 has a height not divisible by 16, so wide bands are now 1536×1024 and
+slim bands 1536×768. The count is **54, not 53** — the extra furniture band is the one closing the
+activity section on page 15. All 54 filenames were cross-checked against the record ids
+programmatically; zero mismatches. §9 of the plan doc no longer duplicates the prompts, it points at
+the brief, so there is one source of truth per topic.
+
+Verification: **14 test files / 168 tests**, typecheck clean, all 32 booklets regenerated with the
+per-page overflow assertion passing, and the two rebuilt pages read back out of the PDF to confirm
+seven checkboxes and the four drain lines land in the right order.
+
+**2026-08-22, PDF booklet built end to end (Phase 8 steps 8.1, 8.2, 8.4).**
+Ardy asked to run the app and to have the Result button actually reach a PDF, with image slots left
+empty until the artwork exists. All 32 booklets now generate and the button resolves.
+
+Authored `src/data/parent-care.json` (25 records: 1 universal + 3 per pole) and
+`src/data/child-activities.json` (20 records: 4 per age band, 2 per pole of that band's dimension),
+both bilingual, each child record carrying a method tag, materials and a safety line. Added 24 i18n
+keys in both languages and declared them in `REQUIRED_I18N_KEYS`, since the suite asserts the key set
+exactly. `scripts/generate-pdf-booklets.mjs` (`npm run assets:pdf`) renders the booklet through
+headless Chrome `Page.printToPDF`; the Result gained a `.result__pdf` section between the weekly
+actions and the other-types row.
+
+A `.result__pdf-dock` text link under the primary save button was built and then **removed the same
+day** at Ardy's direction, along with its `result.pdf_dock` key and CSS. The docked bar is back to one
+action — the save that feeds the Story — and the section is the booklet's only entry point.
+
+Three things the build corrected against the spec, all by measuring rather than guessing:
+the booklet is **15 pages, not 14** — a play card carries steps, materials, safety and method, and
+three of them overflowed A4 on every type, so the child activities run 2/2/1 across pages 12–14;
+embedding the existing character and story art straight from `public/` produced a **3.7 MB** file
+because Skia embeds a decoded bitmap for anything it resamples, fixed by pre-encoding to JPEG at the
+printed pixel size with sharp (largest file is now **585 KB**, all 32 total 17 MB); and the generator
+now asserts per-page `scrollHeight` against `clientHeight` before printing, so a clipped page fails
+the run instead of silently losing copy. Byte normalization of `/CreationDate`, `/ModDate` and `/ID`
+was verified by generating twice and comparing md5 — identical, so rebuilds produce empty diffs.
+
+The 53 commissioned illustrations are not in yet, per Ardy: every one of those slots renders as a
+labelled dashed frame reading "Ilustrasi menyusul". The two images that already exist — the character
+WebP and the story WebP — are embedded, since they are per-type and already shipped. The page-15 QR
+is a reserved tile, not a drawn code.
+
+Verification: **14 test files / 168 tests**, typecheck clean, all 32 booklets generated with **no page
+clipping any content**, and a headless 390×844 touch-emulated pass on the running dev server
+confirming the section sits after the weekly actions and before other-types, the link carries
+`target="_blank"`, `rel="noopener"` and **no** `download` attribute, the href tracks both language and
+type (`/pdf/id/pcte.pdf`, `/pdf/en/fcdn.pdf`), both fetch 200 as `application/pdf`, and horizontal
+overflow is 0. Not run: `qa:phase55` (no assertions added for the new section yet) and any deploy.
+
+**2026-08-22, Personality PDF booklet specified (Phase 8).**
+Ardy asked for a downloadable PDF per personality with a button on the Result, then expanded the
+scope mid-discussion: it also has to carry five self-care activities for the parent and five
+activities for the child aged 0–5, be heavily illustrated, and come with image prompts for every
+page. Wrote `docs/personality-pdf-plan.md` as the authoritative spec and added a Phase 8 row to
+`plan.md` §13, two blockers to §15, a doc-map row, a hard invariant and three commands to
+`CLAUDE.md` / `AGENTS.md` (patched together and diffed afterwards to confirm they stayed
+byte-identical apart from the title). No source, no build, no deploy.
+
+Decisions locked in the session: full profile plus both activity sections · separate ID and EN files
+(32) · per-activity illustration (45 activity + 8 furniture = 53 pieces) · Claude writes the prompts
+and Ardy generates them · ~1 MB per file at print quality, ≈30 MB total · the button appears both as
+its own Result section and as a link in the docked share bar · a plain `href` with `target="_blank"`
+and **no** `download` attribute, because Instagram's WebView silently drops `download` and `blob:`.
+The child activities are written fresh rather than curated from the 30 Resep Sensory Play booklet,
+at Ardy's direction, and must follow Montessori and play-therapy method.
+
+Research done before writing any activity, since "grounded in method" was the explicit ask: filial
+therapy / CPRT special play time (Bratton, Landreth & Bennett — 20–30 min weekly, child leads, no
+teaching or questions, describe, reflect, encourage effort, five- and one-minute warnings, guideline
+range 3–9, which is why it anchors only the 3y+ bands); Harvard's five serve-and-return steps as the
+0–3 spine; Montessori sensitive periods, prepared environment, control of error, practical life and
+Goldschmied's treasure basket; the AAP *Power of Play* report for why any of it matters; and CPSC
+16 CFR §1501.4 (the 2.25 × 1.25 in small-parts cylinder, i.e. the toilet-paper-tube test) as the
+choking baseline. All 45 activities are drafted in the spec with method tags, age bands, materials
+and safety lines.
+
+Two things this closes that were open elsewhere. Page 14 re-homes `footer.made_by`,
+`footer.copyright`, `footer.disclaimer` and the "Follow @parenteers" CTA, all orphaned when `/end`
+was removed on 2026-08-02. And it gives `docs/future-sensory-play-result-extension.md` a home that
+cannot lengthen the Result scroll, which was the objection that parked it on 2026-08-16.
+
+Machine note: the working copy has moved to Fedora Linux. `ffmpeg` **is** present here
+(`/usr/bin/ffmpeg`), so the preloader-weight blocker recorded as "needs ffmpeg, which this project
+does not carry" is no longer blocked on this box. The Brilliant design file and the WebAnimation
+Library live on Windows paths and are unreachable; the 34 motion guides were already copied into
+`docs/motion/`, so only exact Brilliant geometry lookups are lost. `node_modules/` is absent —
+`npm install` is required before any test, build or QA run.
 
 **2026-08-18, English "bake" replaced everywhere it was a countable noun.**
 The EN copy called a result "a bake" ("Which Bake Is Your Parenting Style?", "Meet the other bakes",

@@ -301,6 +301,10 @@ Device matrix: iOS Safari, **Instagram in-app browser (iOS + Android)** — the 
 **Phase 7 — Launch extras (S, optional)**
 Analytics (quiz_start, answer, complete{code}, share{channel}, activities_click — Plausible default), re-homing the founder note now that `/end` is gone, Awwwards submission assets (gate screenshots, 30s capture). Sound design moved out of this phase and shipped early (§14 decision 5).
 
+**Phase 8 — Personality PDF booklet (L)**
+A 16-page A4 illustrated booklet per type per language (32 files), downloadable from the Result. Built from existing `types.json` content plus three new registries — `parent-care.json` (25 recovery activities keyed to the eight dimension poles), `child-activities.json` (20 activities across five age bands, 0–5) and `weekly-extras.json` (16 one-line checklist actions, 2 per pole) — grounded in Montessori, filial therapy/CPRT special play time, serve-and-return and the AAP play report. Prerendered through headless Chrome by `npm run assets:pdf` and committed; **no PDF library may enter the runtime bundle**. Delivered by a plain `<a target="_blank">` with no `download` attribute, plus a copy-link toast fallback, because Instagram's WebView drops `download` and `blob:`. Page 16 re-homes `footer.made_by`, `footer.copyright`, `footer.disclaimer` and the Follow CTA, orphaned since `/end` was removed. Full spec and activity libraries: `docs/personality-pdf-plan.md`; the 54 illustration prompts and their `gpt-image-2` handover: `docs/personality-pdf-art-brief.md`.
+✓ 32 files exist at 16 pages and ≤1.2 MB each; `qa:pdf` confirms extractable per-language text and embedded fonts; the Result section and dock link pass `qa:phase55` in both motion modes at 390×844 and 390×720; the booklet opens in the Instagram in-app browser on a real device.
+
 ---
 
 ## 14. Open Decisions (defaults chosen, flag to change)
@@ -328,6 +332,8 @@ Analytics (quiz_start, answer, complete{code}, share{channel}, activities_click 
 | Parenteers products URL | ✅ set 2026-08-15 | Result product rail → `https://parenteers.id/` |
 | Final domain + IG handle link | Phase 5 | Share card + QR |
 | Official palette/logo assets | ✅ delivered 2026-07-18 | Applied per §5; existing fonts retained because the brand folder includes no typography specification |
+| 54 PDF booklet illustrations | Phase 8.3 | Ready-to-run handover in `docs/personality-pdf-art-brief.md`; Ardy generates with `gpt-image-2` |
+| PDF booklet open questions | Phase 8 | QR target, closing CTA, selection overrides, launch languages — `docs/personality-pdf-plan.md` §15 |
 | Decisions §14 | Rolling | Defaults apply otherwise |
 
 ---
