@@ -23,6 +23,7 @@
     "assets:phase4": "node ./scripts/process-phase4-assets.mjs",
     "assets:stories": "node ./scripts/process-story-illustrations.mjs",
     "assets:preloader": "node ./scripts/process-preloader-video.mjs",
+    "assets:pdf": "node ./scripts/generate-pdf-booklets.mjs",
     "content:parent-doc": "node ./scripts/sync-parent-content-doc.mjs",
     "qa:phase45": "node ./scripts/qa-phase45.mjs",
     "qa:phase55": "node ./scripts/qa-phase55.mjs",
