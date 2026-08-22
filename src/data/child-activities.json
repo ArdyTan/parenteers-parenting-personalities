@@ -1,0 +1,609 @@
+[
+  {
+    "id": "tummy-reach",
+    "band": "0-12m",
+    "poleAffinity": "E",
+    "method": "montessori-movement",
+    "minutes": 10,
+    "title": { "id": "Sedikit di luar jangkauan", "en": "Just out of reach" },
+    "why": {
+      "id": "Bayi belajar gerak dr usaha, bukan dr dibantu. Jarak sedikit itu ruang buat dia mencoba.",
+      "en": "Babies learn movement from effort, not from being handed things. That small gap is where the trying happens."
+    },
+    "steps": {
+      "id": [
+        "Baringkan bayi di alas yg rata dan agak keras.",
+        "Taruh satu benda menarik sejauh satu telapak tangan dr ujung jarinya.",
+        "Diam dan tunggu, walaupun lama. Jangan didekatkan."
+      ],
+      "en": [
+        "Lay your baby on a firm, flat surface.",
+        "Put one interesting object a hand's width past their fingers.",
+        "Say nothing and wait, even when it takes a while. Don't slide it closer."
+      ]
+    },
+    "materials": { "id": "Satu benda bertekstur atau berbunyi lembut.", "en": "One object with texture or a soft sound." },
+    "safety": {
+      "id": "Alas rata, jangan di kasur atau tepi sofa. Bendanya harus lebih besar dr lubang tisu gulung.",
+      "en": "Firm surface, never a bed or a sofa edge. The object must be too big to pass through a toilet-paper tube."
+    },
+    "image": "",
+    "imageAlt": { "id": "Mainan kayu lembut di atas alas main, sedikit di luar jangkauan.", "en": "A soft wooden rattle on a play mat, just beyond reach." }
+  },
+  {
+    "id": "texture-tour",
+    "band": "0-12m",
+    "poleAffinity": "E",
+    "method": "serve-return",
+    "minutes": 10,
+    "title": { "id": "Tur tekstur keliling rumah", "en": "The texture tour" },
+    "why": {
+      "id": "Menamai apa yg lagi disentuh bayi membangun bahasa jauh sebelum dia bisa bicara.",
+      "en": "Naming what a baby is touching builds language long before they can talk."
+    },
+    "steps": {
+      "id": [
+        "Pilih lima permukaan aman: tirai, kaca jendela yg sejuk, sendok kayu, daun, handuk.",
+        "Biarkan tangannya menyentuh duluan, baru kamu sebut namanya.",
+        "Tunggu suara atau tatapannya sebelum pindah ke berikutnya."
+      ],
+      "en": [
+        "Pick five safe textures: a curtain, a cool window, a wooden spoon, a leaf, a towel.",
+        "Let their hand land first, then name it.",
+        "Wait for their sound or look before moving on."
+      ]
+    },
+    "materials": { "id": "Rumahmu sendiri.", "en": "Your own house." },
+    "safety": {
+      "id": "Lewati apa pun yg panas, tajam, berlistrik, atau cukup kecil utk masuk lubang tisu gulung.",
+      "en": "Skip anything hot, sharp, electrical, or small enough to fit through a toilet-paper tube."
+    },
+    "image": "",
+    "imageAlt": { "id": "Lima tekstur rumah tangga berjajar: tirai, kaca, sendok kayu, daun, handuk.", "en": "Five household textures in a row: curtain, glass, wooden spoon, leaf, towel." }
+  },
+  {
+    "id": "treasure-basket",
+    "band": "0-12m",
+    "poleAffinity": "N",
+    "method": "montessori-heuristic",
+    "minutes": 15,
+    "title": { "id": "Keranjang harta", "en": "Treasure basket" },
+    "why": {
+      "id": "Benda asli lebih kaya dr mainan plastik, dan memilih sendiri itu bagian yg bikin dia betah lama.",
+      "en": "Real objects are richer than plastic toys, and choosing for himself is what makes the concentration last."
+    },
+    "steps": {
+      "id": [
+        "Isi keranjang dangkal dgn 5–6 benda asli dr bahan berbeda: kayu, logam, kain, alam.",
+        "Duduk di sampingnya dan biarkan dia yg memimpin sepenuhnya.",
+        "Tahan diri utk menyodorkan, mencontohkan, atau menamai — kecuali dia menoleh ke kamu."
+      ],
+      "en": [
+        "Fill a shallow basket with 5–6 real objects of different materials: wood, metal, fabric, natural.",
+        "Sit beside them and let them lead entirely.",
+        "Resist handing, demonstrating or naming unless they look up at you."
+      ]
+    },
+    "materials": { "id": "Sendok kayu, pengocok telur, potongan kain, sikat kecil, gelas silikon.", "en": "A wooden spoon, a whisk, a fabric scrap, a small brush, a silicone cup." },
+    "safety": {
+      "id": "Semua benda harus lebih besar dr lubang tisu gulung, gak gampang pecah, gak ada lapisan yg mengelupas, dan gak ada tali atau gagang panjang.",
+      "en": "Every object must be too big for a toilet-paper tube, unbreakable, with no coating that can flake and no cord or long handle."
+    },
+    "image": "",
+    "imageAlt": { "id": "Keranjang anyaman dangkal berisi benda rumah tangga asli di atas karpet.", "en": "A shallow woven basket of real household objects on a rug." }
+  },
+  {
+    "id": "peekaboo-scarf",
+    "band": "0-12m",
+    "poleAffinity": "N",
+    "method": "serve-return",
+    "minutes": 5,
+    "title": { "id": "Cilukba selendang", "en": "Peekaboo, with a scarf" },
+    "why": {
+      "id": "Permainan bergantian paling tua yg ada, dan dia yg menentukan ritmenya.",
+      "en": "The oldest turn-taking game there is, played at your baby's pace instead of yours."
+    },
+    "steps": {
+      "id": [
+        "Tutup wajahmu sendiri dgn selendang tipis, bukan wajahnya.",
+        "Tunggu suara atau gerak tangannya dulu, baru buka.",
+        "Berhenti begitu dia mengalihkan pandangan — itu caranya bilang sudah cukup."
+      ],
+      "en": [
+        "Drape a light scarf over your own face, not theirs.",
+        "Wait for their sound or reach before you reveal.",
+        "Stop the moment they look away — that's them saying done."
+      ]
+    },
+    "materials": { "id": "Satu selendang tipis yg mudah ditembus udara.", "en": "One light, breathable scarf." },
+    "safety": {
+      "id": "Selendangnya di wajahmu, bukan di wajah bayi. Jangan pernah tinggalkan kain di dekat wajahnya.",
+      "en": "The scarf goes over you, never the baby. Never leave fabric on or near a baby's face."
+    },
+    "image": "",
+    "imageAlt": { "id": "Selendang tipis melayang setengah terangkat di atas bantal.", "en": "A light scarf caught mid-air, half-lifted above a cushion." }
+  },
+  {
+    "id": "post-the-lids",
+    "band": "1-2y",
+    "poleAffinity": "P",
+    "method": "montessori-order",
+    "minutes": 10,
+    "title": { "id": "Masukkan, keluarkan, ulangi", "en": "In, out, again" },
+    "why": {
+      "id": "Pengulangan itu bukan kebosanan buat dia — itu cara dia memastikan dunianya bisa ditebak.",
+      "en": "Repetition isn't boredom to a toddler — it's how they confirm the world is predictable."
+    },
+    "steps": {
+      "id": [
+        "Lubangi tutup kardus sebesar telapak tangan, atau pakai toples bermulut lebar.",
+        "Contohkan sekali, pelan, lalu serahkan.",
+        "Biarkan dia mengulang jauh setelah kamu sendiri bosan."
+      ],
+      "en": [
+        "Cut one hand-sized hole in a box lid, or use a wide-mouth jar.",
+        "Show it once, slowly, then hand it over.",
+        "Let them repeat it far past the point where you're bored."
+      ]
+    },
+    "materials": { "id": "Kardus atau toples lebar, plus benda besar: tutup toples, balok, ring kayu.", "en": "A box or wide jar, plus large objects: jar lids, blocks, wooden rings." },
+    "safety": {
+      "id": "Semua benda lebih besar dr lubang tisu gulung, dan tepi lubangnya gak tajam.",
+      "en": "Every object larger than a toilet-paper tube, and no cut edges on the hole."
+    },
+    "image": "",
+    "imageAlt": { "id": "Kardus berlubang bundar dgn tutup toples berserakan di sampingnya.", "en": "A box with a round hole in its lid, jar lids scattered beside it." }
+  },
+  {
+    "id": "sponge-transfer",
+    "band": "1-2y",
+    "poleAffinity": "P",
+    "method": "montessori-practical-life",
+    "minutes": 10,
+    "title": { "id": "Pindah air pakai spons", "en": "Move the water with a sponge" },
+    "why": {
+      "id": "Airnya yg mengoreksi, bukan kamu. Tumpah itu bagian dr kegiatannya, bukan kegagalannya.",
+      "en": "The water does the correcting, not you. The spill is part of the activity, not a failure of it."
+    },
+    "steps": {
+      "id": [
+        "Taruh dua mangkuk dangkal di atas handuk, satu diisi sedikit air.",
+        "Contohkan cara memerasnya sekali.",
+        "Taruh lap kecil di sebelahnya, dan biarkan dia sendiri yg mengelap."
+      ],
+      "en": [
+        "Set two shallow bowls on a towel, one with a little water.",
+        "Show the squeeze once.",
+        "Put a small cloth beside them and let them mop it themselves."
+      ]
+    },
+    "materials": { "id": "Dua mangkuk dangkal, satu spons kecil, handuk, lap.", "en": "Two shallow bowls, one small sponge, a towel, a cloth." },
+    "safety": {
+      "id": "Airnya sedikit saja dan selalu dalam jangkauan tanganmu. Balita bisa tenggelam di air beberapa sentimeter.",
+      "en": "A very small amount of water, always within arm's reach. A toddler can drown in a few centimetres."
+    },
+    "image": "",
+    "imageAlt": { "id": "Dua mangkuk dangkal di atas handuk dgn spons menetes di antaranya.", "en": "Two shallow bowls on a towel with a sponge dripping between them." }
+  },
+  {
+    "id": "tape-line",
+    "band": "1-2y",
+    "poleAffinity": "F",
+    "method": "montessori-movement",
+    "minutes": 10,
+    "title": { "id": "Jalan di garis lakban", "en": "Walk the tape line" },
+    "why": {
+      "id": "Satu garis bisa jd titian, jalan raya, atau gak jd apa-apa. Yg dia bikin dr garis itu justru kegiatannya.",
+      "en": "One line becomes a balance beam, a road, or nothing at all. Whatever they turn it into is the activity."
+    },
+    "steps": {
+      "id": [
+        "Tempel lakban lurus atau melengkung di lantai.",
+        "Jalani sekali sendiri, lalu berhenti mengarahkan.",
+        "Ikuti aturan main yg dia bikin, walau berubah tiap menit."
+      ],
+      "en": [
+        "Run a straight or curved line of tape along the floor.",
+        "Walk it once yourself, then stop directing.",
+        "Follow whatever rules they invent, even if they change every minute."
+      ]
+    },
+    "materials": { "id": "Lakban kertas atau washi tape.", "en": "Masking or washi tape." },
+    "safety": {
+      "id": "Bersihkan lintasannya dr sudut furnitur yg keras. Kaki telanjang atau kaus kaki anti-selip.",
+      "en": "Clear the run of hard furniture corners. Bare feet or grippy socks."
+    },
+    "image": "",
+    "imageAlt": { "id": "Garis lakban melengkung di lantai kayu dgn sepasang kaus kaki kecil di pangkalnya.", "en": "A masking-tape line curving across a wooden floor with small socks at its start." }
+  },
+  {
+    "id": "laundry-hand-off",
+    "band": "1-2y",
+    "poleAffinity": "F",
+    "method": "montessori-practical-life",
+    "minutes": 10,
+    "title": { "id": "Bantu masukin cucian", "en": "Hand me the laundry" },
+    "why": {
+      "id": "Kerja beneran, dikerjakan bareng, tanpa standar yg harus dicapai. Balita ingin ikut, bukan ditemani main.",
+      "en": "Real work, done together, with no standard to meet. Toddlers want to take part, not to be entertained."
+    },
+    "steps": {
+      "id": [
+        "Duduk di dekat keranjang dan sodorkan satu helai satu-satu.",
+        "Biarkan dia yg memasukkan ke mesin atau ke tumpukan.",
+        "Terima kasihnya utk kerjanya, bukan utk hasilnya yg rapi."
+      ],
+      "en": [
+        "Sit by the basket and hand them one item at a time.",
+        "Let them put it in the machine or the pile.",
+        "Thank them for the work, not for doing it neatly."
+      ]
+    },
+    "materials": { "id": "Cucian yg memang sudah ada.", "en": "The laundry you already have." },
+    "safety": {
+      "id": "Pintu mesin tertutup dan mati kalau ditinggal. Deterjen kapsul disingkirkan sepenuhnya dr ruangan.",
+      "en": "Machine door closed and off when unattended. Keep detergent capsules completely out of the room."
+    },
+    "image": "",
+    "imageAlt": { "id": "Keranjang cucian setengah terisi dgn satu kaus kaki kecil di lantai.", "en": "A laundry basket half-loaded with one small sock on the floor beside it." }
+  },
+  {
+    "id": "pouring-jug",
+    "band": "2-3y",
+    "poleAffinity": "C",
+    "method": "montessori-practical-life",
+    "minutes": 10,
+    "title": { "id": "Menuang dr teko kecil", "en": "Pour from a small jug" },
+    "why": {
+      "id": "Presentasi Montessori klasik: tunjukkan sekali, lalu serahkan kendalinya sepenuhnya.",
+      "en": "The classic Montessori presentation: show once, then hand over control completely."
+    },
+    "steps": {
+      "id": [
+        "Isi teko kecil setengah, taruh dua gelas di atas nampan.",
+        "Tuang sekali, pelan, tanpa menjelaskan sambil jalan.",
+        "Taruh lapnya dalam jangkauannya dan jangan komentari tumpahannya."
+      ],
+      "en": [
+        "Half-fill a small jug and set two cups on a tray.",
+        "Pour once, slowly, without narrating.",
+        "Put the cloth where they can reach it and say nothing about spills."
+      ]
+    },
+    "materials": { "id": "Teko kecil yg muat satu tangan, dua gelas, nampan, lap.", "en": "A small jug they can hold one-handed, two cups, a tray, a cloth." },
+    "safety": {
+      "id": "Air suhu ruang saja. Keramik boleh, asal kamu siap kalau pecah.",
+      "en": "Room-temperature water only. Ceramic is fine if you're comfortable with it breaking."
+    },
+    "image": "",
+    "imageAlt": { "id": "Teko kecil menuang ke dua gelas di atas nampan kayu.", "en": "A small jug mid-pour over two cups on a wooden tray." }
+  },
+  {
+    "id": "wash-one-cup",
+    "band": "2-3y",
+    "poleAffinity": "C",
+    "method": "montessori-practical-life",
+    "minutes": 15,
+    "title": { "id": "Cuci satu gelas", "en": "Wash one cup" },
+    "why": {
+      "id": "Satu tugas utuh dgn awal dan akhir yg kelihatan. Anak usia ini lebih bangga sm tugas selesai daripada sm pujian.",
+      "en": "One whole task with a visible beginning and end. At this age, a finished job means more than praise."
+    },
+    "steps": {
+      "id": [
+        "Siapkan stasiun rendah: baskom, spons, handuk.",
+        "Contohkan urutannya sekali.",
+        "Tinggalkan dia mengerjakannya, termasuk bagian yg hasilnya berantakan."
+      ],
+      "en": [
+        "Set a low station: bowl, sponge, towel.",
+        "Demonstrate the sequence once.",
+        "Leave them to it, including the parts they do badly."
+      ]
+    },
+    "materials": { "id": "Baskom air hangat, spons kecil, satu gelas gak gampang pecah, handuk.", "en": "A bowl of warm water, a small sponge, one unbreakable cup, a towel." },
+    "safety": {
+      "id": "Hangat, bukan panas. Sabun yg gak perih di mata. Bangkunya harus stabil.",
+      "en": "Warm not hot. Soap that doesn't sting eyes. The stool must be stable."
+    },
+    "image": "",
+    "imageAlt": { "id": "Stasiun cuci rendah: baskom, spons, satu gelas, handuk terlipat.", "en": "A low washing station: a bowl, a sponge, one cup and a folded towel." }
+  },
+  {
+    "id": "sort-your-way",
+    "band": "2-3y",
+    "poleAffinity": "G",
+    "method": "montessori-sensorial",
+    "minutes": 10,
+    "title": { "id": "Sortir sesukamu", "en": "Sort it your way" },
+    "why": {
+      "id": "Kamu yg menyiapkan bendanya, dia yg bikin aturannya. Aturan versinya itu justru intinya.",
+      "en": "You supply the objects; they supply the rule. Their rule is the point."
+    },
+    "steps": {
+      "id": [
+        "Tumpahkan 10–15 benda rumah tangga campur dan dua mangkuk kosong.",
+        "Bilang \"boleh dipisahin sesukamu\", lalu diam.",
+        "Kalau dia memisahkan pakai aturan yg gak kepikiran olehmu, berarti berhasil."
+      ],
+      "en": [
+        "Tip out 10–15 mixed household objects and two empty bowls.",
+        "Say \"you can sort these however you like\", then stay quiet.",
+        "If they sort by something you'd never have chosen, that's the successful version."
+      ]
+    },
+    "materials": { "id": "Kancing besar, tutup botol, sendok, balok, kaus kaki.", "en": "Large buttons, bottle caps, spoons, blocks, socks." },
+    "safety": {
+      "id": "Jangan pakai benda yg muat di lubang tisu gulung kalau ada adik yg lebih kecil di ruangan yg sama.",
+      "en": "Nothing that fits through a toilet-paper tube if a younger sibling is in the room."
+    },
+    "image": "",
+    "imageAlt": { "id": "Kancing, tutup botol, dan sendok tersebar di lantai di antara dua mangkuk kosong.", "en": "Buttons, bottle caps and spoons spread on a floor between two empty bowls." }
+  },
+  {
+    "id": "calm-basket-together",
+    "band": "2-3y",
+    "poleAffinity": "G",
+    "method": "cprt-reflect",
+    "minutes": 15,
+    "title": { "id": "Bikin kotak tenang bareng", "en": "Build the calm basket together" },
+    "why": {
+      "id": "Menyiapkan kotaknya saat semua lagi tenang jauh lebih berguna daripada mencarinya di tengah tantrum.",
+      "en": "Assembling the box while nobody is upset works far better than looking for it mid-meltdown."
+    },
+    "steps": {
+      "id": [
+        "Sodorkan keranjang, lalu tanya apa yg bikin dia enakan waktu perasaannya lagi besar.",
+        "Masukkan apa pun yg dia sebut, walau menurutmu gak ada gunanya.",
+        "Sebutkan perasaan yg muncul saat ngobrol, tanpa buru-buru membereskannya."
+      ],
+      "en": [
+        "Offer a basket and ask what helps when their feelings get big.",
+        "Put in whatever they say, even if it seems useless to you.",
+        "Name the feelings that come up as you talk, without fixing them."
+      ]
+    },
+    "materials": { "id": "Keranjang, plus pilihannya: boneka, gambar, bola remas, selimut.", "en": "A basket, plus their choices: a soft toy, a picture, a squeeze ball, a blanket." },
+    "safety": {
+      "id": "Jangan masukkan apa pun yg bisa diikat, dililitkan, atau ditarik ke kepala.",
+      "en": "Nothing that can be tied, wrapped, or pulled over the head."
+    },
+    "image": "",
+    "imageAlt": { "id": "Keranjang berisi boneka lembut, gambar anak, bola remas, dan selimut terlipat.", "en": "A basket holding a soft toy, a child's drawing, a squeeze ball and a folded blanket." }
+  },
+  {
+    "id": "special-play-time",
+    "band": "3-4y",
+    "poleAffinity": "T",
+    "method": "cprt-special-play",
+    "minutes": 20,
+    "title": { "id": "Waktu main spesial", "en": "Special play time" },
+    "why": {
+      "id": "Ini sesi mingguan yg dipakai di filial therapy, dijalankan sm orang tua di rumah. Kalau cuma satu kegiatan yg kamu coba dr buklet ini, ambil yg ini.",
+      "en": "This is the weekly session used in filial therapy, run by the parent at home. If you try only one activity in this booklet, make it this one."
+    },
+    "steps": {
+      "id": [
+        "20 menit, satu anak, waktu dan tempat yg tetap, ponsel di ruangan lain.",
+        "Dia yg menentukan semuanya. Kamu ikut, dan ikut bermain hanya kalau diajak — gak mengajari, gak bertanya, gak menyarankan.",
+        "Ceritakan apa yg kamu lihat (\"Kamu lagi kasih susu bayinya\"), pantulkan perasaannya (\"Kaget ya tadi\"), dan puji usahanya, bukan hasilnya (\"Kamu coba terus sampai bisa\").",
+        "Kasih aba-aba lima menit dan satu menit sebelum selesai."
+      ],
+      "en": [
+        "20 minutes, one child, a consistent time and place, phone in another room.",
+        "They choose everything. You follow, and join in only when invited — no teaching, no questions, no suggestions.",
+        "Describe what you see (\"You're giving the baby a bottle\"), reflect what they feel (\"That surprised you\"), and praise the effort, never the result (\"You kept trying until you got it\").",
+        "Give a five-minute and a one-minute warning before you stop."
+      ]
+    },
+    "materials": { "id": "Barang sederhana yg gak pakai baterai: kertas dan krayon, boneka, binatang-binatangan, balok, mobil-mobilan.", "en": "Simple non-mechanical things: paper and crayons, a doll, animals, blocks, cars." },
+    "safety": { "id": "", "en": "" },
+    "image": "",
+    "imageAlt": { "id": "Sudut ruangan sederhana dgn kertas, krayon, boneka, balok, dan mobil-mobilan.", "en": "A simple room corner set with paper, crayons, a doll, blocks and cars." }
+  },
+  {
+    "id": "draw-and-reflect",
+    "band": "3-4y",
+    "poleAffinity": "T",
+    "method": "cprt-reflect",
+    "minutes": 15,
+    "title": { "id": "Gambar aja, aku nemenin", "en": "Draw anything, I'll just be here" },
+    "why": {
+      "id": "Pertanyaan \"ini gambar apa?\" membuat anak menebak jawaban yg kamu mau. Menceritakan apa yg kamu lihat gak menuntut apa-apa.",
+      "en": "\"What is it?\" makes a child guess the answer you want. Describing what you see asks nothing of them."
+    },
+    "steps": {
+      "id": [
+        "Kertas dan krayon, kalian berdua di meja.",
+        "Sebutkan warna, gerakan, pilihannya — \"biru kamu banyak di situ ya\".",
+        "Jangan tanya \"ini apa?\", dan jangan betulkan warna atau bentuknya."
+      ],
+      "en": [
+        "Paper and crayons, both of you at the table.",
+        "Describe colours, movements, choices — \"you used a lot of blue there\".",
+        "Never ask \"what is it?\", and never correct a colour or a shape."
+      ]
+    },
+    "materials": { "id": "Kertas dan krayon.", "en": "Paper and crayons." },
+    "safety": { "id": "", "en": "" },
+    "image": "",
+    "imageAlt": { "id": "Gambar anak yg sedang dikerjakan dgn krayon berserakan di sekelilingnya.", "en": "A child's drawing in progress with crayons scattered around it." }
+  },
+  {
+    "id": "pretend-kitchen",
+    "band": "3-4y",
+    "poleAffinity": "D",
+    "method": "cprt-special-play",
+    "minutes": 15,
+    "title": { "id": "Masak-masakan, kamu jd tamunya", "en": "You're the customer" },
+    "why": {
+      "id": "Buat orang tua yg menyayangi lewat tindakan: di sini yg bertindak dia, dan kamu yg dilayani.",
+      "en": "For parents who show love by doing: here the doing is theirs, and you're the one being served."
+    },
+    "steps": {
+      "id": [
+        "Dia yg masak, kamu yg pesan dan makan.",
+        "Terima apa pun yg datang, termasuk bagian yg jelas gak bisa dimakan.",
+        "Selipkan satu kata perasaan di tengahnya: \"kayaknya kamu bangga sm yg ini\"."
+      ],
+      "en": [
+        "They cook, you order and eat.",
+        "Accept whatever arrives, including the inedible parts of the game.",
+        "Slip in one feeling word somewhere: \"you look proud of that one\"."
+      ]
+    },
+    "materials": { "id": "Panci, sendok, gelas — apa pun yg sudah ada di kotak mainan.", "en": "Pots, spoons, cups — whatever is already in the toy box." },
+    "safety": { "id": "Gak pakai apa pun dr kompor beneran.", "en": "Nothing from the real stove." },
+    "image": "",
+    "imageAlt": { "id": "Panci dan cangkir mainan ditata seperti meja restoran kecil.", "en": "Toy pots and cups arranged as a tiny restaurant table." }
+  },
+  {
+    "id": "wash-the-toys",
+    "band": "3-4y",
+    "poleAffinity": "D",
+    "method": "montessori-practical-life",
+    "minutes": 15,
+    "title": { "id": "Mandiin mainan", "en": "Give the toys a bath" },
+    "why": {
+      "id": "Kerja nyata dgn air nyata — persis cara orang tua tipe Doer menunjukkan sayang, dan anak usia ini bisa lama sekali di situ.",
+      "en": "Real work with real water — exactly how Doer parents love, and children this age will stay with it for a long time."
+    },
+    "steps": {
+      "id": [
+        "Baskom air hangat, sikat lembut, handuk.",
+        "Dia mencuci, kamu mencuci di sebelahnya tanpa mengawasi hasilnya.",
+        "Kalau dia bilang satu mainan sudah bersih, berarti sudah bersih."
+      ],
+      "en": [
+        "A basin of warm water, a soft brush, a towel.",
+        "They wash, you wash beside them without supervising the quality.",
+        "When they say a toy is clean, it's clean."
+      ]
+    },
+    "materials": { "id": "Baskom, air hangat, sikat lembut, handuk, mainan yg boleh kena air.", "en": "A basin, warm water, a soft brush, a towel, washable toys." },
+    "safety": {
+      "id": "Air dangkal, jangan ditinggal. Jangan mainan elektronik.",
+      "en": "Shallow water, never unattended. No electronic toys."
+    },
+    "image": "",
+    "imageAlt": { "id": "Baskom air bersabun dgn mainan dan sikat lembut, handuk terbentang.", "en": "A basin of soapy water with toys and a soft brush, a towel spread beside." }
+  },
+  {
+    "id": "treasure-map",
+    "band": "4-5y",
+    "poleAffinity": "E",
+    "method": "montessori-order",
+    "minutes": 15,
+    "title": { "id": "Peta harta di rumah", "en": "A treasure map of our house" },
+    "why": {
+      "id": "Menggambar peta lalu mengikutinya itu berpikir simbolik yg langsung dipakai — dan seru.",
+      "en": "Drawing a map and then following it is symbolic thinking with legs."
+    },
+    "steps": {
+      "id": [
+        "Dia menggambar peta satu ruangan, seakurat apa pun hasilnya.",
+        "Sembunyikan satu benda kecil bareng, lalu tandai di petanya.",
+        "Ikuti petanya, bukan pengetahuanmu soal rumah sendiri."
+      ],
+      "en": [
+        "They draw a map of a room, however inaccurate.",
+        "Hide something small together and mark it.",
+        "Follow their map, not your knowledge of the house."
+      ]
+    },
+    "materials": { "id": "Kertas, krayon, satu benda kecil utk disembunyikan.", "en": "Paper, crayons, one small object to hide." },
+    "safety": { "id": "Sepakati dulu ruangan mana yg boleh dipakai.", "en": "Agree which rooms are in play." },
+    "image": "",
+    "imageAlt": { "id": "Peta rumah gambar krayon dgn tanda X dan satu benda kecil di sebelahnya.", "en": "A crayon map of a house marked with an X, a small object beside it." }
+  },
+  {
+    "id": "obstacle-course",
+    "band": "4-5y",
+    "poleAffinity": "E",
+    "method": "montessori-movement",
+    "minutes": 15,
+    "title": { "id": "Rintangan dr bantal", "en": "The cushion course" },
+    "why": {
+      "id": "Dia yg merancang, kamu yg mencoba. Menjadi pembuat aturan itu latihan yg jarang dia dapat.",
+      "en": "They design it, you attempt it. Being the rule-maker is practice they rarely get."
+    },
+    "steps": {
+      "id": [
+        "Dia yg menyusun lintasannya dan menentukan aturannya.",
+        "Kamu jalan duluan, dan ikuti aturannya persis.",
+        "Biarkan aturannya berubah di tengah jalan, karena pasti berubah."
+      ],
+      "en": [
+        "They design the course and set the rules.",
+        "You go first, and follow their rules exactly.",
+        "Let them change the rules mid-course, because they will."
+      ]
+    },
+    "materials": { "id": "Bantal, lakban, kursi, selimut.", "en": "Cushions, tape, chairs, a blanket." },
+    "safety": {
+      "id": "Gak ada yg dipanjat lebih tinggi dr pinggangnya sendiri. Jauhkan sudut furnitur yg keras.",
+      "en": "Nothing to climb higher than their own hip. Clear the corners of hard furniture."
+    },
+    "image": "",
+    "imageAlt": { "id": "Bantal, kursi, lakban, dan selimut ditata jd lintasan di lantai ruang keluarga.", "en": "Cushions, a chair, tape and a blanket arranged as a route across a living-room floor." }
+  },
+  {
+    "id": "turn-story",
+    "band": "4-5y",
+    "poleAffinity": "N",
+    "method": "cprt-reflect",
+    "minutes": 10,
+    "title": { "id": "Cerita gantian satu kalimat", "en": "One sentence each" },
+    "why": {
+      "id": "Cerita yg dibangun berdua, pelan, sebelum tidur. Menerima gilirannya apa adanya itu bentuk lain dr mendengarkan.",
+      "en": "A story built by two people, slowly, before bed. Accepting their turn as it comes is another form of listening."
+    },
+    "steps": {
+      "id": [
+        "Kamu mulai dgn satu kalimat, dia menyambung satu kalimat.",
+        "Terima setiap giliran yg dia ambil, termasuk yg merusak alur versimu.",
+        "Kalau dia menutup ceritanya, berarti ceritanya sudah selesai."
+      ],
+      "en": [
+        "You start with one sentence, they add the next.",
+        "Accept every turn they take, including the ones that break your plot.",
+        "When they end it, it's ended."
+      ]
+    },
+    "materials": { "id": "Gak perlu apa-apa.", "en": "Nothing at all." },
+    "safety": { "id": "", "en": "" },
+    "image": "",
+    "imageAlt": { "id": "Lampu tidur, dua bantal, dan buku terbuka berhalaman kosong.", "en": "A bedside lamp, two pillows and an open book with blank pages." }
+  },
+  {
+    "id": "one-real-step",
+    "band": "4-5y",
+    "poleAffinity": "N",
+    "method": "montessori-practical-life",
+    "minutes": 15,
+    "title": { "id": "Satu langkah masak beneran", "en": "One real step in the cooking" },
+    "why": {
+      "id": "Bukan masak-masakan. Satu langkah asli dr makanan yg beneran dimakan keluarga, dikerjakan sm dia.",
+      "en": "Not pretend cooking. One genuine step of the meal the family actually eats, done by them."
+    },
+    "steps": {
+      "id": [
+        "Pilih satu langkah yg aman: menyobek selada, mengupas pisang, mengoles mentega, mengaduk di luar api.",
+        "Kasih alat yg beneran, ukuran anak kalau ada.",
+        "Waktu makan, sebutkan bagian mana yg dia yg buat."
+      ],
+      "en": [
+        "Choose one safe step: tearing lettuce, peeling a banana, spreading butter, stirring off the heat.",
+        "Give them the real tool, child-sized if you have one.",
+        "At the table, say out loud which part they made."
+      ]
+    },
+    "materials": { "id": "Apa pun yg memang sedang kamu masak.", "en": "Whatever you're already cooking." },
+    "safety": {
+      "id": "Jauh dr kompor, gak ada yg tajam, gak ada yg panas. Cuci tangan dulu, dan orang dewasa tetap di dapur.",
+      "en": "Nothing at the stove, nothing sharp, nothing hot. Hands washed, and an adult stays in the kitchen."
+    },
+    "image": "",
+    "imageAlt": { "id": "Sendok kayu ukuran anak dan mangkuk di meja dapur rendah dgn selada tersobek.", "en": "A child-sized wooden spoon and a bowl on a low counter with torn lettuce beside." }
+  }
+]

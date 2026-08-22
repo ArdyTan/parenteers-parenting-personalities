@@ -1,0 +1,402 @@
+[
+  {
+    "id": "care-hot-drink",
+    "pole": "*",
+    "minutes": 5,
+    "title": { "id": "Minuman yg masih panas", "en": "One drink while it's still hot" },
+    "why": {
+      "id": "Hampir semua orang tua minum kopi atau teh yg sudah dingin. Bukan karena gak sempat, tp karena selalu ada satu hal lagi yg didahulukan.",
+      "en": "Almost every parent drinks their coffee cold. Not from lack of time, but because there is always one more thing that comes first."
+    },
+    "how": {
+      "id": "Duduk. Habiskan minumanmu di suhu aslinya, tanpa sambil ngerjain apa pun.",
+      "en": "Sit down. Finish the whole thing at its actual temperature, doing nothing else at the same time."
+    },
+    "image": "",
+    "imageAlt": { "id": "Secangkir minuman hangat di meja dapur yg kena cahaya pagi.", "en": "A warm mug on a sunlit kitchen table." }
+  },
+  {
+    "id": "p-brain-dump",
+    "pole": "P",
+    "minutes": 5,
+    "title": { "id": "Tumpahkan isi kepala", "en": "Empty your head onto paper" },
+    "why": {
+      "id": "Kepalamu megang semua daftar itu karena dia gak percaya ada tempat lain yg bakal ingat. Kertas ternyata cukup.",
+      "en": "Your head is holding every open loop because it doesn't trust anything else to remember. Paper turns out to be enough."
+    },
+    "how": {
+      "id": "Tulis semua yg belum selesai di satu lembar. Gak usah diurutkan, gak usah dikasih prioritas.",
+      "en": "Write every unfinished thing on one sheet. No order, no priorities, no tidying."
+    },
+    "image": "",
+    "imageAlt": { "id": "Buku catatan terbuka penuh coretan, pena tergeletak di atasnya.", "en": "An open notebook covered in loose marks, a pen laid across it." }
+  },
+  {
+    "id": "p-one-unplanned",
+    "pole": "P",
+    "minutes": 2,
+    "title": { "id": "Satu hal yg gak direncanakan", "en": "One unplanned thing" },
+    "why": {
+      "id": "Bukan buat melatih spontanitas. Cuma bukti kecil buat dirimu sendiri bahwa hari yg meleset dr rencana tetap baik-baik aja.",
+      "en": "Not to train spontaneity. Just small proof to yourself that a moment off-plan is survivable."
+    },
+    "how": {
+      "id": "Lakukan satu hal kecil hari ini yg gak ada di daftar mana pun. Jalan lewat rute lain, jajan yg gak dijadwalkan.",
+      "en": "Do one small thing today that was on no list. A different route home, an unscheduled snack."
+    },
+    "image": "",
+    "imageAlt": { "id": "Kunci rumah dan sandal yg menghadap arah tak terduga di dekat pintu.", "en": "House keys and sandals turned at an unexpected angle by an open door." }
+  },
+  {
+    "id": "p-empty-hour",
+    "pole": "P",
+    "minutes": 15,
+    "title": { "id": "Blok kosong di kalender", "en": "An empty block on the calendar" },
+    "why": {
+      "id": "Kalau semua waktumu punya nama, gak ada ruang buat pulih. Blok ini berhasil justru kalau tetap kosong.",
+      "en": "If every hour has a name, there is nowhere for recovery to happen. This block succeeds by staying empty."
+    },
+    "how": {
+      "id": "Taruh satu blok di kalender tanpa isi apa pun. Jaga seperti kamu menjaga janji sm orang lain.",
+      "en": "Put one block in the calendar with nothing in it. Defend it the way you'd defend a meeting with someone else."
+    },
+    "image": "",
+    "imageAlt": { "id": "Kalender dinding penuh tulisan dgn satu kotak dibiarkan bersih.", "en": "A wall calendar dense with marks, one block left clean and empty." }
+  },
+  {
+    "id": "f-one-anchor",
+    "pole": "F",
+    "minutes": 2,
+    "title": { "id": "Satu jangkar utk besok", "en": "One anchor for tomorrow" },
+    "why": {
+      "id": "Kamu bikin keputusan sepanjang hari karena harimu gak punya rel. Satu titik tetap bukan berarti kamu jd kaku.",
+      "en": "You decide all day because your day has no rail. One fixed point isn't a schedule; it's one less decision."
+    },
+    "how": {
+      "id": "Pilih satu hal yg besok terjadi di jam yg sama. Sarapan yg sama, lagu yg sama, jalan pagi yg sama.",
+      "en": "Pick one thing that will happen at the same time tomorrow. The same breakfast, the same song, the same walk."
+    },
+    "image": "",
+    "imageAlt": { "id": "Satu cangkir dan sendok disiapkan di meja dapur yg kosong.", "en": "One mug and spoon set out alone on an otherwise clear counter." }
+  },
+  {
+    "id": "f-decide-once",
+    "pole": "F",
+    "minutes": 10,
+    "title": { "id": "Putuskan sekali utk seminggu", "en": "Decide once, for the week" },
+    "why": {
+      "id": "Kamu gak lagi berubah jd tipe Planner. Kamu cuma lagi mengembalikan dua puluh keputusan kecil ke dirimu sendiri.",
+      "en": "You are not becoming a Planner. You are refunding yourself twenty small decisions."
+    },
+    "how": {
+      "id": "Tentukan menu makan malam seminggu, atau baju, atau malam mandi — sekali duduk, selesai.",
+      "en": "Choose this week's dinners, or outfits, or bath nights, in one sitting."
+    },
+    "image": "",
+    "imageAlt": { "id": "Tujuh kertas kecil dijepit berjajar di seutas tali.", "en": "Seven small paper notes pegged in a row on a string." }
+  },
+  {
+    "id": "f-recovery-basket",
+    "pole": "F",
+    "minutes": 15,
+    "title": { "id": "Keranjang pemulihan", "en": "The basket that finds itself" },
+    "why": {
+      "id": "Waktu istirahatmu sering habis buat nyari barangnya dulu. Pemulihan gak seharusnya perlu tim pencarian.",
+      "en": "Your rest often gets spent hunting for the things that make it rest. Recovery shouldn't need a search party."
+    },
+    "how": {
+      "id": "Satu keranjang, satu tempat tetap: bukumu, charger, hand cream, camilan yg memang punyamu.",
+      "en": "One basket, one fixed place: your book, your charger, your hand cream, a snack that is actually yours."
+    },
+    "image": "",
+    "imageAlt": { "id": "Keranjang anyaman berisi buku, charger, dan camilan di meja rendah.", "en": "A woven basket holding a book, a charger and a snack on a low table." }
+  },
+  {
+    "id": "c-hand-the-wheel",
+    "pole": "C",
+    "minutes": 10,
+    "title": { "id": "Serahkan kemudi 10 menit", "en": "Hand over the wheel for ten minutes" },
+    "why": {
+      "id": "Kelelahanmu bukan dr kerjanya, tp dr jd orang yg selalu memutuskan. Sepuluh menit bukan siapa-siapa itu istirahat beneran.",
+      "en": "What tires you isn't the work, it's being the one who decides. Ten minutes of not being in charge is real rest."
+    },
+    "how": {
+      "id": "Biarkan orang lain memutuskan satu hal nyata — menunya, rutenya, urutan cerita sebelum tidur — dan jangan diperbaiki setelahnya.",
+      "en": "Let someone else decide something real and small, and do not improve their decision afterwards."
+    },
+    "image": "",
+    "imageAlt": { "id": "Meja makan dgn satu kursi ditarik keluar dan piring kedua sudah disiapkan.", "en": "A dining table with one chair pulled out and a second plate already set." }
+  },
+  {
+    "id": "c-say-dont-know",
+    "pole": "C",
+    "minutes": 2,
+    "title": { "id": "Bilang \"belum tahu\"", "en": "Say \"I don't know yet\" out loud" },
+    "why": {
+      "id": "Kamu terbiasa punya jawaban di detik itu juga. Sekali aja gak punya, dan perhatikan: gak ada yg runtuh.",
+      "en": "You are used to producing an answer on the spot. Go one round without one, and notice that nothing collapses."
+    },
+    "how": {
+      "id": "Sekali hari ini, jawab satu pertanyaan dgn \"belum tahu\" — dan biarkan begitu.",
+      "en": "Once today, answer a question with \"I don't know yet\" — and leave it there."
+    },
+    "image": "",
+    "imageAlt": { "id": "Daftar setengah jadi di meja dgn baris terakhir dibiarkan kosong.", "en": "A half-written list with the final line deliberately blank." }
+  },
+  {
+    "id": "c-not-my-job",
+    "pole": "C",
+    "minutes": 5,
+    "title": { "id": "Daftar bukan tugasku", "en": "The not-mine list" },
+    "why": {
+      "id": "Sebagian beban yg kamu bawa memang bukan milikmu. Menuliskannya lebih jujur daripada berjanji mau berhenti mikirin.",
+      "en": "Some of what you're carrying genuinely isn't yours. Writing it down is more honest than promising to stop thinking about it."
+    },
+    "how": {
+      "id": "Tulis tiga hal yg hari ini bukan tugasmu utk selesaikan. Baca sekali, lalu tinggalkan kertasnya.",
+      "en": "Write three things that are not yours to fix today. Read them once, then leave the paper somewhere you'll see it."
+    },
+    "image": "",
+    "imageAlt": { "id": "Tiga kertas kecil di ambang jendela ditindih batu, ujungnya tertiup angin.", "en": "Three paper slips on a windowsill under a stone, edges lifting in a breeze." }
+  },
+  {
+    "id": "g-one-for-you",
+    "pole": "G",
+    "minutes": 2,
+    "title": { "id": "Satu keputusan murni utk kamu", "en": "One decision that is only yours" },
+    "why": {
+      "id": "Seharian kamu mengikuti ritme orang lain. Satu pilihan kecil yg gak dikompromikan mengembalikan sesuatu yg gak kelihatan.",
+      "en": "You spend the day following everyone else's pace. One small uncompromised choice gives back something invisible."
+    },
+    "how": {
+      "id": "Putuskan satu hal hari ini tanpa nanya siapa pun: lagunya, minumannya, jendelanya dibuka atau enggak.",
+      "en": "Decide one thing today with nobody consulted: the song, the drink, the window open or closed."
+    },
+    "image": "",
+    "imageAlt": { "id": "Satu cangkir favorit ditarik ke depan dr rak berisi cangkir lain.", "en": "One favourite mug pulled forward from a shelf of others." }
+  },
+  {
+    "id": "g-practice-limit",
+    "pole": "G",
+    "minutes": 5,
+    "title": { "id": "Latih satu kalimat batas", "en": "Rehearse one limit sentence" },
+    "why": {
+      "id": "Mengikuti anak tetap butuh lantai di bawahnya. Batas jd lebih gampang diucapkan kalau sudah pernah kedengeran di suaramu sendiri.",
+      "en": "Following the child still needs a floor under it. A limit is easier to say once you've heard it in your own voice."
+    },
+    "how": {
+      "id": "Ucapkan satu kalimat batas keras-keras, sendirian, sampai kedengeran biasa: \"Hari ini enggak dulu.\" \"Aku butuh sepuluh menit.\"",
+      "en": "Say one clear limit out loud, alone, until it sounds normal: \"Not today.\" \"I need ten minutes.\""
+    },
+    "image": "",
+    "imageAlt": { "id": "Pintu dgn tirai lembut setengah tertutup, cahaya hangat di satu sisi.", "en": "A doorway with a soft curtain half-drawn, warm light on one side." }
+  },
+  {
+    "id": "g-tend-something",
+    "pole": "G",
+    "minutes": 15,
+    "title": { "id": "Rawat satu hal yg tumbuh", "en": "Tend something that isn't your child" },
+    "why": {
+      "id": "Kamu ahli merawat hal yg tumbuh pelan. Lima belas menit merawat sesuatu yg gak butuh dijelaskan apa pun ke kamu.",
+      "en": "You're good at tending things that grow slowly. Fifteen minutes of care that reports to nobody and thanks you by growing."
+    },
+    "how": {
+      "id": "Siram tanaman, pangkas daun kering, kasih makan sourdough-mu. Apa pun yg tumbuh selain anakmu.",
+      "en": "Water the plants, prune something, feed the sourdough. Anything that grows and isn't your child."
+    },
+    "image": "",
+    "imageAlt": { "id": "Teko penyiram menuang ke tanaman pot di ambang jendela.", "en": "A watering can tipping into a potted plant on a windowsill." }
+  },
+  {
+    "id": "t-ten-quiet",
+    "pole": "T",
+    "minutes": 10,
+    "title": { "id": "Sepuluh menit tanpa suara", "en": "Ten minutes with no voices" },
+    "why": {
+      "id": "Telingamu sudah kerja sejak pagi: mendengar, menamai, menenangkan. Sepuluh menit tanpa kata bukan kesepian, itu jeda.",
+      "en": "Your ears have been on shift since morning — hearing, naming, soothing. Ten wordless minutes isn't loneliness, it's a break."
+    },
+    "how": {
+      "id": "Gak ada podcast, gak ada lagu berlirik, gak ada percakapan. Sepuluh menit aja.",
+      "en": "No podcast, no music with words, no conversation. Ten minutes."
+    },
+    "image": "",
+    "imageAlt": { "id": "Headphone tergeletak tidak terpasang di sebelah ponsel yg ditelungkupkan.", "en": "Headphones resting unplugged beside a phone lying face-down." }
+  },
+  {
+    "id": "t-write-dont-say",
+    "pole": "T",
+    "minutes": 5,
+    "title": { "id": "Tulis, gak usah diucapkan", "en": "Write it, don't say it" },
+    "why": {
+      "id": "Gak semua yg kamu rasakan harus jd percakapan. Sebagian cukup keluar, gak perlu dibahas bareng siapa pun.",
+      "en": "Not everything you feel needs to become a conversation. Some of it just needs to get out."
+    },
+    "how": {
+      "id": "Tulis satu kalimat yg gak akan dibaca siapa pun, dan jangan diproses bareng orang lain hari ini.",
+      "en": "Write one sentence nobody will read, and don't process it with anyone today."
+    },
+    "image": "",
+    "imageAlt": { "id": "Kertas terlipat dan amplop terbuka di samping lilin kecil.", "en": "A folded sheet of paper and an unsealed envelope beside a candle." }
+  },
+  {
+    "id": "t-long-exhale",
+    "pole": "T",
+    "minutes": 2,
+    "title": { "id": "Buang napas lebih panjang", "en": "Six long exhales" },
+    "why": {
+      "id": "Dua menit, gak perlu alat, bisa dikerjakan sambil berdiri di dapur. Buat orang tua yg seharian menampung perasaan, ini paling murah.",
+      "en": "Two minutes, no equipment, can be done standing in the kitchen. For a parent who absorbs feelings all day, this is the cheapest reset there is."
+    },
+    "how": {
+      "id": "Enam tarikan napas, dgn buangan yg lebih panjang dr tarikannya. Lebih pelan dr yg terasa wajar.",
+      "en": "Six breaths where the out-breath is longer than the in-breath. Slower than feels natural."
+    },
+    "image": "",
+    "imageAlt": { "id": "Jendela terbuka dgn tirai tipis terangkat keluar.", "en": "An open window with a light curtain lifting outward." }
+  },
+  {
+    "id": "d-sit-no-task",
+    "pole": "D",
+    "minutes": 5,
+    "title": { "id": "Duduk tanpa tugas", "en": "Sit with no task" },
+    "why": {
+      "id": "Kamu menyayangi lewat gerak: benerin, ngerapiin, nyiapin. Diam sebentar terasa aneh justru karena itu yg paling kamu butuhkan.",
+      "en": "You love by doing — fixing, tidying, preparing. Sitting still feels wrong precisely because it's what you're short of."
+    },
+    "how": {
+      "id": "Duduk tanpa apa pun di tangan. Bukan ponsel, bukan lipatan baju, bukan rencana. Lima menit tanpa hasil apa pun.",
+      "en": "Sit down with nothing in your hands. Not a phone, not folding, not planning. Five minutes of no output."
+    },
+    "image": "",
+    "imageAlt": { "id": "Kursi berlengan dgn bantal yg masih berbekas dan buku tertutup di sandarannya.", "en": "An armchair with the cushion still dented and a closed book on the arm." }
+  },
+  {
+    "id": "d-leave-one-undone",
+    "pole": "D",
+    "minutes": 2,
+    "title": { "id": "Tinggalkan satu hal gak selesai", "en": "Leave one thing undone" },
+    "why": {
+      "id": "Bukan malas — ini latihan. Kalau satu hal bisa ditinggal semalam dan besok tetap baik-baik aja, batasmu jd lebih longgar.",
+      "en": "Not laziness — practice. If one thing can wait a night and the morning still arrives, your edges get a little more room."
+    },
+    "how": {
+      "id": "Pilih satu hal malam ini dan sengaja tinggalkan: piringnya, keranjang mainannya, balasan chat-nya.",
+      "en": "Pick one thing tonight and deliberately leave it: the dishes, the toy basket, the reply."
+    },
+    "image": "",
+    "imageAlt": { "id": "Satu piring di wastafel, lampu dapur mati, cahaya bulan masuk.", "en": "One plate in the sink, the kitchen light off, moonlight through the window." }
+  },
+  {
+    "id": "d-move-for-nothing",
+    "pole": "D",
+    "minutes": 15,
+    "title": { "id": "Gerak yg gak menghasilkan apa-apa", "en": "Move for no output" },
+    "why": {
+      "id": "Badanmu bergerak seharian, tp selalu sambil membawa atau membereskan sesuatu. Gerak yg gak menuju ke mana-mana itu beda rasanya.",
+      "en": "Your body moves all day, but always while carrying or clearing something. Movement that isn't going anywhere feels different."
+    },
+    "how": {
+      "id": "Peregangan, jalan kaki, joget di dapur. Yg penting bukan sambil ngangkat, ngeberesin, atau ngejar waktu.",
+      "en": "Stretch, walk, dance in the kitchen. Anything that isn't carrying, tidying, or getting somewhere."
+    },
+    "image": "",
+    "imageAlt": { "id": "Sandal rumah tercecer di lantai dapur, karpet sedikit terlipat, radio menyala.", "en": "Slippers kicked apart on a kitchen floor, a rug slightly rucked, a radio on." }
+  },
+  {
+    "id": "e-old-route",
+    "pole": "E",
+    "minutes": 5,
+    "title": { "id": "Rute lama, sengaja", "en": "The boring route, on purpose" },
+    "why": {
+      "id": "Mengulang bukan tanda imajinasimu habis. Justru itu istirahat yg lagi diminta sm imajinasimu.",
+      "en": "Repetition isn't a failure of imagination. It's the rest your imagination is asking for."
+    },
+    "how": {
+      "id": "Lewat jalan yg biasa. Pesan yg biasa. Sekali ini, jangan cari yg baru.",
+      "en": "Take the familiar way. Order the usual. Just this once, don't look for the new thing."
+    },
+    "image": "",
+    "imageAlt": { "id": "Sudut jalan yg familiar dilihat dr ambang pintu saat senja.", "en": "A familiar street corner seen from a doorway at dusk." }
+  },
+  {
+    "id": "e-sit-still-outside",
+    "pole": "E",
+    "minutes": 10,
+    "title": { "id": "Diam di satu titik", "en": "Sit still in one spot" },
+    "why": {
+      "id": "Kamu yg biasanya jd sumber energi semua orang. Diam di luar tanpa ke mana-mana ngisi ulang yg gak bisa diisi sm kegiatan baru.",
+      "en": "You are usually everyone's source of energy. Sitting outside without going anywhere refills something a new activity can't."
+    },
+    "how": {
+      "id": "Di luar, satu tempat, gak pindah-pindah. Temukan lima hal yg bisa kamu lihat tanpa beranjak.",
+      "en": "Outside, one place, no walking anywhere. Find five things you can see without moving."
+    },
+    "image": "",
+    "imageAlt": { "id": "Undakan teras rendah dgn cangkir di atasnya dan pemandangan terbuka.", "en": "A low terrace step with a cup on it and a long open view." }
+  },
+  {
+    "id": "e-twenty-earlier",
+    "pole": "E",
+    "minutes": 2,
+    "title": { "id": "Tidur 20 menit lebih cepat", "en": "Twenty minutes earlier" },
+    "why": {
+      "id": "Petualangan berikutnya lebih dibiayai sm tidur daripada sm niat. Ini dua menit menyetel, bukan dua puluh menit kehilangan.",
+      "en": "The next adventure is better funded by sleep than by will. This is two minutes of setting, not twenty of losing."
+    },
+    "how": {
+      "id": "Pasang satu alarm malam ini — bukan buat bangun, tp buat berhenti.",
+      "en": "Set one alarm tonight — not to wake up, to stop."
+    },
+    "image": "",
+    "imageAlt": { "id": "Meja samping tempat tidur dgn lampu diredupkan, jam kecil, dan buku.", "en": "A bedside table with the lamp turned low, a small clock and a book." }
+  },
+  {
+    "id": "n-one-step-out",
+    "pole": "N",
+    "minutes": 10,
+    "title": { "id": "Satu langkah keluar", "en": "One step outside, alone" },
+    "why": {
+      "id": "Kewaspadaanmu gak pernah libur. Sepuluh menit di luar membuktikan rumahnya tetap utuh walau gak kamu awasi.",
+      "en": "Your vigilance never clocks out. Ten minutes outside proves the house holds without you watching it."
+    },
+    "how": {
+      "id": "Sepuluh menit di luar pintu, sendirian, ponsel di saku dan gak dicek.",
+      "en": "Ten minutes outside the door by yourself, phone in your pocket and unchecked."
+    },
+    "image": "",
+    "imageAlt": { "id": "Pintu depan terbuka sedikit dgn cahaya sore dan sepasang sandal di luar.", "en": "A front door ajar with warm afternoon light and one pair of sandals outside." }
+  },
+  {
+    "id": "n-final-check",
+    "pole": "N",
+    "minutes": 2,
+    "title": { "id": "Cek terakhir, lalu \"cukup\"", "en": "One last check, then say \"enough\"" },
+    "why": {
+      "id": "Rasa khawatir suka membuka ulang lingkaran yg sama. Ritual kecil yg menutupnya lebih efektif daripada menyuruh diri berhenti cemas.",
+      "en": "Worry keeps reopening the same loop. A small ritual that closes it works better than telling yourself to stop."
+    },
+    "how": {
+      "id": "Lakukan cek terakhir sekali. Lalu ucapkan kata itu keras-keras: cukup.",
+      "en": "Do the check once. Then say the word out loud: enough."
+    },
+    "image": "",
+    "imageAlt": { "id": "Lorong malam dgn satu lampu menyala dan pintu kamar tertutup pelan.", "en": "A night hallway with one lamp on and a bedroom door gently closed." }
+  },
+  {
+    "id": "n-warm-five",
+    "pole": "N",
+    "minutes": 5,
+    "title": { "id": "Lima menit hangat", "en": "Five warm minutes" },
+    "why": {
+      "id": "Kamu paling jago bikin orang lain merasa aman. Kali ini kenyamanannya diarahkan ke kamu, dan itu boleh.",
+      "en": "You are the one who makes everyone else feel safe. This time the comfort points at you, and that's allowed."
+    },
+    "how": {
+      "id": "Mandi air hangat, selimut hangat, atau cangkir hangat — lima menit panas di kulit, tanpa ada yg lain terjadi.",
+      "en": "Warm shower, warm blanket, warm mug — five minutes of heat on your skin with nothing else happening."
+    },
+    "image": "",
+    "imageAlt": { "id": "Handuk hangat terlipat di lantai keramik dgn uap dr luar bingkai.", "en": "A folded warm towel on warm tiles with steam drifting in from out of frame." }
+  }
+]

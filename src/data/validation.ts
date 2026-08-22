@@ -60,6 +60,8 @@ export const REQUIRED_I18N_KEYS = [
   'result.copied', 'result.see_all', 'result.retake', 'result.activities_cta',
   'result.products_heading', 'result.products_coming_soon', 'result.products_cta',
   'result.your_code', 'result.softsell_body', 'result.scroll_hint',
+  // Phase 8: the downloadable booklet's entry points on the Result.
+  'result.pdf_title', 'result.pdf_body', 'result.pdf_cta',
   'gallery.title', 'gallery.your_type_badge', 'gallery.send_quiz', 'gallery.back_to_result',
   'gallery.intro',
   'share.title', 'share.caption_template', 'share.whatsapp', 'share.instagram', 'share.other',
@@ -69,7 +71,18 @@ export const REQUIRED_I18N_KEYS = [
   'share.card_cta',
   'footer.disclaimer', 'footer.made_by', 'footer.copyright', 'footer.privacy',
   'error.generic', 'error.offline', 'error.save_failed', 'error.retry',
-  'error.notfound_title', 'error.notfound_cta',
+  'error.notfound_title', 'error.notfound_cta', 'error.pdf_failed',
+  // Phase 8: labels the PDF booklet prints. They never render in the app, but
+  // they are reader-facing copy, so they live in i18n like everything else.
+  'pdf.cover_eyebrow', 'pdf.code_page_title', 'pdf.code_page_intro',
+  'pdf.care_title', 'pdf.care_intro', 'pdf.play_title', 'pdf.play_intro',
+  'pdf.age_label', 'pdf.time_label', 'pdf.minutes_suffix', 'pdf.materials_label',
+  'pdf.safety_label', 'pdf.method_label', 'pdf.steps_label', 'pdf.skip_permission',
+  'pdf.qr_hint', 'pdf.closing_title', 'pdf.closing_body', 'pdf.image_placeholder',
+  'pdf.weekly_extra_label', 'pdf.care_story_1', 'pdf.care_story_2', 'pdf.care_story_3',
+  'pdf.care_drain_label', 'pdf.care_howto_label', 'pdf.care_howto', 'pdf.care_permission',
+  'pdf.drain_P', 'pdf.drain_F', 'pdf.drain_C', 'pdf.drain_G',
+  'pdf.drain_T', 'pdf.drain_D', 'pdf.drain_E', 'pdf.drain_N',
   'meta.title', 'meta.description', 'meta.og_title', 'meta.og_description',
   'a11y.progressbar', 'a11y.type_illustration_alt', 'a11y.lang_switch', 'a11y.loading',
   'a11y.sound_on', 'a11y.sound_off',
