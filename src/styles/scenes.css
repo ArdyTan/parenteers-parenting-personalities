@@ -2129,6 +2129,21 @@
     backdrop-filter: blur(0.45rem);
   }
 
+  /* The booklet section. Placed where a reader who finished the support layer
+     already is, and deliberately quieter than the save-image CTA that feeds the
+     Story — this one is for keeping, not for posting. */
+  .result__pdf {
+    display: grid;
+    gap: var(--gap-component);
+    justify-items: start;
+  }
+
+  .result__pdf-link {
+    inline-size: 100%;
+    text-align: center;
+    text-decoration: none;
+  }
+
 }
 
 @media (max-width: 23rem) {

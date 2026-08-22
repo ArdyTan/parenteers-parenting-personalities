@@ -131,6 +131,15 @@ export function createResultScene(personality: PersonalityType): FunctionalScene
       language,
       context,
     );
+    // The booklet is a committed static file, linked rather than generated:
+    // Instagram's WebView silently drops both `download` and `blob:`, so a real
+    // URL it can hand to a viewer is the only form that survives there.
+    const pdfHref = `/pdf/${language}/${personality.slug}.pdf`;
+    const watchPdfOpen = createBlockedOpenWatcher(() => {
+      toaster.show(context.t('error.pdf_failed'), 'error');
+    }, signal);
+    const pdfSection = createPdfSection(pdfHref, context, watchPdfOpen);
+
     const softSell = element(
       'aside',
       { className: 'result__soft-sell' },
@@ -236,6 +245,7 @@ export function createResultScene(personality: PersonalityType): FunctionalScene
       parentStory,
       parentSupport,
       weeklyActions,
+      pdfSection,
       powers,
       watchout,
       popCousin,
@@ -287,6 +297,67 @@ export function createResultScene(personality: PersonalityType): FunctionalScene
       },
     });
   });
+}
+
+/**
+ * The download surface. One entry point by design: a full section where a reader
+ * who finished the support layer already is. The dock stays a single primary
+ * action — the save that feeds the Instagram Story.
+ */
+function pdfLink(
+  href: string,
+  text: string,
+  onActivate: () => void,
+  options: { className: string },
+): HTMLAnchorElement {
+  const link = element('a', {
+    className: options.className,
+    text,
+    // No `download` attribute anywhere: it is the form most likely to do
+    // nothing at all inside the Instagram in-app browser.
+    attributes: { href, target: '_blank', rel: 'noopener' },
+  });
+  link.addEventListener('click', onActivate);
+  return link;
+}
+
+function createPdfSection(
+  href: string,
+  context: SceneContext,
+  onActivate: () => void,
+): HTMLElement {
+  const section = element('section', { className: 'result__section result__pdf' }, [
+    element('h2', { text: context.t('result.pdf_title') }),
+    element('p', { text: context.t('result.pdf_body') }),
+    pdfLink(href, context.t('result.pdf_cta'), onActivate, {
+      className: 'button button--secondary result__pdf-link',
+    }),
+  ]);
+  section.dataset.reveal = '';
+  return section;
+}
+
+/**
+ * A blocked navigation inside a WebView is not observable, so this measures the
+ * only proxy available: if nothing took focus off the page within a beat, the
+ * open did nothing and the reader is offered the copy-link route instead.
+ */
+function createBlockedOpenWatcher(onBlocked: () => void, signal: AbortSignal): () => void {
+  const GRACE_MS = 1500;
+  return () => {
+    let left = false;
+    const mark = (): void => {
+      left = true;
+    };
+    window.addEventListener('blur', mark, { once: true, signal });
+    document.addEventListener('visibilitychange', mark, { once: true, signal });
+    window.setTimeout(() => {
+      window.removeEventListener('blur', mark);
+      document.removeEventListener('visibilitychange', mark);
+      if (left || signal.aborted || document.visibilityState === 'hidden') return;
+      onBlocked();
+    }, GRACE_MS);
+  };
 }
 
 /**
