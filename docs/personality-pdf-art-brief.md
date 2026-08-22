@@ -156,10 +156,14 @@ Batch 1. Same style and same rules as before. Generate these at 1024x768, one im
    tomorrow, pale dawn light.
 ```
 
-**Suggested batching:** the 25 parent-care tiles and the 20 child tiles all render at
-`1024x768`, so they batch cleanly in groups of ten. The furniture splits by size — `f1`, `f4`
-and `f5` at `1536x768`; `f2`, `f3`, `f6`, `f7`, `f8`, `f9` at `1536x1024` — so keep those as
-two separate batches. Six batches total.
+**Suggested batching — seven batches.** The 25 parent-care tiles and the 20 child tiles all
+render at `1024x768`, but keep the two groups unmixed so a drifting batch is easy to spot:
+care in 10 / 10 / 5, then child in 10 / 10. The furniture splits by size — `f1`, `f4` and `f5`
+at `1536x768`; `f2`, `f3`, `f6`, `f7`, `f8`, `f9` at `1536x1024` — so those are two more.
+
+**A fully expanded, copy-paste version of all seven batches is exported to
+`~/Documents/parenteers-booklet-art-prompts.txt`**, regenerated from the tables in §7 so the
+filenames and subjects cannot drift apart from this document.
 
 ### C — Correction (when one drifts)
 
