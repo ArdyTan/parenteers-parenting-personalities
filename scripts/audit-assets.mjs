@@ -14,6 +14,12 @@ const sceneArtRegistry = JSON.parse(
 const productsRegistry = JSON.parse(
   await readFile(join(workspace, 'src', 'data', 'products.json'), 'utf8'),
 );
+const parentCareRegistry = JSON.parse(
+  await readFile(join(workspace, 'src', 'data', 'parent-care.json'), 'utf8'),
+);
+const childActivityRegistry = JSON.parse(
+  await readFile(join(workspace, 'src', 'data', 'child-activities.json'), 'utf8'),
+);
 const characterDirectory = resolve('images', 'Pastries-personalities');
 const characterFiles = (await readdir(characterDirectory))
   .filter((file) => file.endsWith('.png'))
@@ -236,8 +242,106 @@ const preloaderRows = await (async () => {
 })();
 
 console.table(preloaderRows);
+
+// The 54 booklet illustrations are a print-only derivative, so they are audited
+// as a set rather than a table of 54 near-identical rows. What actually breaks
+// here is an id drifting away from its registry record -- the generator then
+// renders an empty frame in all 32 booklets, and nothing else notices.
+const pdfArtGroups = [
+  { dir: 'care', ids: parentCareRegistry.map((r) => r.id), source: [[1024, 768]] },
+  { dir: 'play', ids: childActivityRegistry.map((r) => r.id), source: [[1024, 768]] },
+  {
+    dir: 'furniture',
+    ids: Array.from({ length: 9 }, (_, i) => `f${i + 1}`),
+    source: [[1536, 768], [1536, 1024]],
+  },
+];
+const pdfArtRows = await Promise.all(pdfArtGroups.map(async (group) => {
+  const rowIssues = [];
+  let weight = 0;
+  let present = 0;
+
+  for (const id of group.ids) {
+    const sourcePath = resolve('images', 'pdf-art', group.dir, `${id}.png`);
+    const runtimePath = resolve('public', 'pdf-art', group.dir, `${id}.webp`);
+    let source;
+    try {
+      source = await sharp(sourcePath).metadata();
+    } catch {
+      rowIssues.push(`${id}: source-missing`);
+      continue;
+    }
+    if (!group.source.some(([w, h]) => source.width === w && source.height === h)) {
+      rowIssues.push(`${id}: source-${source.width}x${source.height}`);
+    }
+    try {
+      const runtime = await sharp(runtimePath).metadata();
+      if (runtime.format !== 'webp') rowIssues.push(`${id}: runtime-not-webp`);
+      if ((runtime.width ?? Infinity) > 1240) rowIssues.push(`${id}: runtime-too-large`);
+      weight += (await stat(runtimePath)).size;
+      present += 1;
+    } catch {
+      rowIssues.push(`${id}: runtime-missing`);
+    }
+  }
+
+  const extra = (await readdir(resolve('images', 'pdf-art', group.dir)))
+    .filter((file) => file.endsWith('.png'))
+    .map((file) => file.replace(/\.png$/, ''))
+    .filter((id) => !group.ids.includes(id));
+  for (const id of extra) rowIssues.push(`${id}: not-in-registry`);
+
+  issues.push(...rowIssues.map((issue) => `pdf-art/${group.dir}/${issue}`));
+  return {
+    group: `pdf-art/${group.dir}`,
+    expected: group.ids.length,
+    derivatives: present,
+    runtimeKB: Math.ceil(weight / 1024),
+    issues: rowIssues.join(', ') || 'none',
+  };
+}));
+
+console.table(pdfArtRows);
+
+// Booklet weight is the thing that regresses silently: every frame filled took
+// a booklet from ~520 KB to ~1.1 MB, and a careless print width would double it
+// again across 32 committed files.
+const bookletRows = await Promise.all(['id', 'en'].map(async (language) => {
+  const dir = resolve('public', 'pdf', language);
+  const rowIssues = [];
+  let files = [];
+  let weight = 0;
+  let largest = 0;
+
+  try {
+    files = (await readdir(dir)).filter((file) => file.endsWith('.pdf'));
+    for (const file of files) {
+      const bytes = (await stat(join(dir, file))).size;
+      weight += bytes;
+      largest = Math.max(largest, bytes);
+      if (bytes > 2_000_000) rowIssues.push(`${file}: over-2mb`);
+    }
+  } catch {
+    rowIssues.push('booklet-directory-missing');
+  }
+  if (files.length !== registry.length) rowIssues.push(`expected-${registry.length}-booklets`);
+
+  issues.push(...rowIssues.map((issue) => `public/pdf/${language}/${issue}`));
+  return {
+    language,
+    booklets: files.length,
+    totalMB: (weight / 1024 / 1024).toFixed(2),
+    largestKB: Math.ceil(largest / 1024),
+    issues: rowIssues.join(', ') || 'none',
+  };
+}));
+
+console.table(bookletRows);
+
+const pdfArtCount = pdfArtRows.reduce((total, row) => total + row.derivatives, 0);
+const bookletCount = bookletRows.reduce((total, row) => total + row.booklets, 0);
 console.log(
-  `Asset intake: ${characterRows.length} character derivatives, ${openingRows.length} opening derivatives, ${sceneArtRows.length} scene-art derivatives, ${productRows.length} product images, ${ogRows.length} OG images, ${preloaderRows.length} preloader clip, ${issues.length} issues.`,
+  `Asset intake: ${characterRows.length} character derivatives, ${openingRows.length} opening derivatives, ${sceneArtRows.length} scene-art derivatives, ${productRows.length} product images, ${ogRows.length} OG images, ${preloaderRows.length} preloader clip, ${pdfArtCount} pdf-art derivatives, ${bookletCount} booklets, ${issues.length} issues.`,
 );
 
 if (strict && issues.length > 0) {

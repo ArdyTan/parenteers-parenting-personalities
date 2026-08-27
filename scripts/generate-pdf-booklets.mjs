@@ -1,5 +1,5 @@
 /**
- * Builds the 14-page personality booklet, one PDF per type per language, into
+ * Builds the 16-page personality booklet, one PDF per type per language, into
  * `public/pdf/{lang}/{slug}.pdf`. Content comes from the bundled JSON database
  * exactly as the app does; nothing here is hardcoded copy except layout labels,
  * which live in i18n under `pdf.*`.
@@ -16,6 +16,7 @@ import { existsSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 
+import QRCode from 'qrcode';
 import sharp from 'sharp';
 
 const root = resolve(import.meta.dirname, '..');
@@ -89,7 +90,10 @@ function selectChildActivities(personality, index) {
     const variants = childActivities.filter(
       (record) => record.band === band && record.poleAffinity === letter,
     );
-    return variants[index % variants.length];
+    const peerIndex = types.slice(0, index).filter(
+      (type) => type.code[BAND_DIMENSION[position]] === letter,
+    ).length;
+    return variants[peerIndex % variants.length];
   });
 }
 
@@ -111,20 +115,36 @@ async function dataUri(relative, mime) {
   return `data:${mime};base64,${buffer.toString('base64')}`;
 }
 
+/**
+ * The closing page's QR. It points at the quiz itself, which is what
+ * `pdf.qr_hint` ("scan to pass the quiz to someone else") already promises --
+ * the box used to hold that sentence and nothing scannable. Drawn in the brand
+ * blue on white so it survives being printed on the cream ground.
+ */
+const qrCode = await QRCode.toDataURL(config.links.site, {
+  margin: 0, width: 480, errorCorrectionLevel: 'M',
+  color: { dark: '#182799', light: '#ffffff' },
+});
+
 const fonts = {
   display: await dataUri('public/fonts/fraunces-latin-variable.woff2', 'font/woff2'),
   body: await dataUri('public/fonts/plus-jakarta-sans-latin-variable.woff2', 'font/woff2'),
 };
 
 /**
- * Art that already exists ships; the 53 commissioned pieces render as empty frames.
- *
  * Skia embeds a decoded bitmap for anything it has to resample, so handing Chrome
  * a 900px WebP for a 118mm circle produced a 3.7 MB file. Pre-encoding to JPEG at
  * the printed pixel size keeps a whole booklet near 300 KB.
+ *
+ * The 54 commissioned pieces are shared across all 32 booklets, so the encode is
+ * memoised: without this the same 45 tiles and 9 bands are re-encoded 32 times.
  */
+const encoded = new Map();
+
 async function publicImage(path, printWidth) {
   if (!path) return '';
+  const key = `${path}|${printWidth}`;
+  if (encoded.has(key)) return encoded.get(key);
   const file = resolve(root, 'public', path.replace(/^\//, ''));
   if (!existsSync(file)) return '';
   const buffer = await sharp(file)
@@ -132,7 +152,32 @@ async function publicImage(path, printWidth) {
     .flatten({ background: '#fdf2e1' })
     .jpeg({ quality: 78, mozjpeg: true })
     .toBuffer();
-  return `data:image/jpeg;base64,${buffer.toString('base64')}`;
+  const uri = `data:image/jpeg;base64,${buffer.toString('base64')}`;
+  encoded.set(key, uri);
+  return uri;
+}
+
+/**
+ * Printed widths. A tile is a fixed 34x26mm and a band is the full 174mm column,
+ * both at roughly the ~180dpi the character and story frames already ship at.
+ */
+const TILE_WIDTH = 280;
+const BAND_WIDTH = 1040;
+
+/** Page furniture, keyed f1-f9 by the slot ids in the art brief §7.3. */
+async function loadFurniture() {
+  const entries = await Promise.all(Array.from({ length: 9 }, async (_, index) => {
+    const id = `f${index + 1}`;
+    return [id, await publicImage(`/pdf-art/furniture/${id}.webp`, BAND_WIDTH)];
+  }));
+  return Object.fromEntries(entries);
+}
+
+/** Activity tiles, keyed by record id so `activityCard` can stay synchronous. */
+async function loadTiles() {
+  const entries = await Promise.all([...parentCare, ...childActivities]
+    .map(async (record) => [record.id, await publicImage(record.image, TILE_WIDTH)]));
+  return Object.fromEntries(entries);
 }
 
 function frame(source, alt, label, modifier = '') {
@@ -154,6 +199,9 @@ function styles() {
 :root {
   --blue: #182799; --orange: #e86811; --canvas: #fdf2e1; --warm: #f3e3cb;
   --outline: #dfc7ab; --muted: rgb(24 39 153 / 72%);
+  /* The body line box. Row markers centre against this, so changing the type
+     scale moves them with it instead of stranding a hardcoded nudge. */
+  --line: calc(10.5pt * 1.55);
 }
 html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: var(--blue);
@@ -189,13 +237,22 @@ p:last-child { margin-bottom: 0; }
 .code-pill { display: inline-block; background: var(--warm); color: var(--orange);
   padding: 2mm 6mm; border-radius: 20mm; font-weight: 700; letter-spacing: .32em;
   font-size: 11pt; }
-.dimension { display: flex; gap: 4mm; align-items: baseline; padding: 3.5mm 0;
+/* The letter marks the whole row, so it centres on the body block rather than
+   sharing a baseline with the 8pt eyebrow -- baseline alignment pinned a 20pt
+   glyph to the smallest line in the row and left the pole name orphaned below.
+   The last row drops its rule so the group does not end on a stray hairline. */
+.dimension { display: flex; gap: 3mm; align-items: center; padding: 5mm 0;
   border-bottom: 0.3mm solid rgb(24 39 153 / 14%); }
-.dimension__letter { font-family: 'Fraunces', Georgia, serif; font-size: 22pt; color: var(--orange);
-  width: 12mm; flex: none; }
+.dimension:last-child { border-bottom: 0; padding-bottom: 0; }
+/* margin-top is an optical correction, not a layout nudge: a capital has no
+   descender, so centring its em box leaves the glyph sitting ~0.07em high.
+   Measured at 0.51mm off centre before this line, 0.03mm after. */
+.dimension__letter { font-family: 'Fraunces', Georgia, serif; font-size: 20pt; color: var(--orange);
+  width: 9mm; flex: none; line-height: 1; text-align: center; margin-top: 0.07em; }
 .dimension__body { flex: 1; }
-.dimension__title { font-size: 8pt; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
-.dimension__pole { font-family: 'Fraunces', Georgia, serif; font-size: 13pt; }
+.dimension__title { font-size: 8pt; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--muted); line-height: 1.35; margin-bottom: 1mm; }
+.dimension__pole { font-family: 'Fraunces', Georgia, serif; font-size: 13pt; line-height: 1.2; }
 .dimension__pole span { color: var(--muted); font-family: 'Plus Jakarta Sans', sans-serif; font-size: 10pt; }
 .block { background: rgb(255 255 255 / 55%); border-radius: 4mm; padding: 6mm; }
 .block--blue { background: var(--blue); color: var(--canvas); }
@@ -205,30 +262,63 @@ p:last-child { margin-bottom: 0; }
 .block--blue .label { color: var(--warm); }
 .checklist { list-style: none; display: flex; flex-direction: column; gap: 4mm; }
 .checklist li { display: flex; gap: 4mm; align-items: flex-start; }
-.checklist li::before { content: ''; flex: none; width: 6mm; height: 6mm; margin-top: 0.6mm;
+.checklist li::before { content: ''; flex: none; width: 6mm; height: 6mm;
+  margin-top: calc((var(--line) - 6mm) / 2);
   border: 0.5mm solid var(--orange); border-radius: 1.5mm; }
 .powers { list-style: none; display: flex; flex-direction: column; gap: 3mm; counter-reset: power; }
 .powers li { display: flex; gap: 4mm; align-items: flex-start; counter-increment: power; }
+/* flex-start keeps the marker on line one when the text wraps; the offset then
+   centres it on that line instead of on the line box's top edge. */
 .powers li::before { content: counter(power); flex: none; width: 7mm; height: 7mm; border-radius: 50%;
+  margin-top: calc((var(--line) - 7mm) / 2);
   border: 0.5mm solid var(--orange); color: var(--orange); font-size: 8pt; font-weight: 700;
-  display: flex; align-items: center; justify-content: center; }
+  display: flex; align-items: center; justify-content: center; line-height: 1; }
 .activity { display: flex; flex-direction: column; gap: 3mm; padding: 5mm; border-radius: 4mm;
   background: rgb(255 255 255 / 58%); border: 0.3mm solid rgb(223 199 171 / 70%); }
-.activity__head { display: flex; gap: 4mm; align-items: flex-start; }
+/* The tile is a fixed 26mm and the copy beside it is two or three lines, so
+   flex-start stranded the text against the top edge with the picture running
+   far below it. Centring pairs them as one unit. */
+.activity__head { display: flex; gap: 4mm; align-items: center; }
 .activity__head .frame { width: 34mm; flex: none; min-height: 26mm; height: 26mm; }
 .activity__meta { font-size: 8pt; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
 .activity__steps { padding-left: 5mm; display: flex; flex-direction: column; gap: 1.5mm; }
-.activity__note { font-size: 9pt; color: var(--muted); }
+/* Materials / safety / method are a footnote group, not more description. They
+   were three loose siblings, so each picked up the card's 3mm flex gap *and* a
+   3mm paragraph margin. Wrapping them makes the group one flex item: a rule and
+   a wider gap set it apart above, and the lines sit tight inside. */
+.activity__notes { margin-top: 2mm; padding-top: 3mm;
+  border-top: 0.3mm solid rgb(223 199 171 / 90%); }
+.activity__note { font-size: 9pt; color: var(--muted); line-height: 1.4; margin-bottom: 1.2mm; }
+.activity__note:last-child { margin-bottom: 0; }
 .activity__note strong { color: var(--orange); }
 .stack { display: flex; flex-direction: column; gap: 5mm; }
 .stack--tight { gap: 3.5mm; }
 .grow { flex: 1; }
+.grow--center { display: flex; align-items: center; justify-content: center; }
+/* A band wrapped in .grow sizes itself from the flex column, not from its own
+   3:2 ratio. Left alone the img reports an intrinsic 116mm at 174mm wide, that
+   becomes .grow's min-content height, and the column can no longer shrink --
+   which overran page 15 by 5px on the eight longest ID booklets. A zero
+   flex-basis breaks that cycle; .frame--wide/.frame--slim still floor the band,
+   and object-fit: cover crops whatever height is left over. */
+.grow:has(> .frame) { display: flex; flex-direction: column; min-height: 0; }
+.grow > .frame { flex: 1 1 0; }
 .permission { font-family: 'Fraunces', Georgia, serif; font-size: 14pt; text-align: center;
   color: var(--orange); padding: 4mm 0; }
 .closing { display: flex; gap: 6mm; align-items: center; }
-.closing__qr { width: 40mm; height: 40mm; flex: none; background: #fff; border-radius: 3mm;
-  border: 0.4mm solid var(--outline); display: flex; align-items: center; justify-content: center;
-  font-size: 7.5pt; color: var(--muted); text-align: center; padding: 3mm; }
+.closing__qr { width: 32mm; height: 32mm; flex: none; background: #fff; border-radius: 3mm;
+  border: 0.4mm solid var(--outline); padding: 2.5mm; }
+.closing__qr img { display: block; width: 100%; height: 100%; }
+.closing__body { flex: 1; }
+.closing__link { font-family: 'Fraunces', Georgia, serif; font-size: 13pt; line-height: 1.2;
+  margin-bottom: 1.5mm; }
+.closing__hint { font-size: 8.5pt; color: var(--muted); line-height: 1.45; }
+/* The colophon is one block, not three stray sentences. The spacer above the
+   closing row anchors CTA + colophon together at the foot of the page; it used
+   to sit between them, which is what pulled them apart. */
+.colophon { border-top: 0.3mm solid rgb(24 39 153 / 14%); margin-top: 7mm; padding-top: 4mm; }
+.colophon p { font-size: 8.5pt; color: var(--muted); line-height: 1.45; margin-bottom: 1mm; }
+.colophon p:last-child { margin-bottom: 0; }
 .footer-note { font-size: 8.5pt; color: var(--muted); }
 `;
 }
@@ -257,15 +347,17 @@ function buildHtml({ personality, language, care, play, extras, art }) {
       ? `<ol class="activity__steps">${record.steps[language].map((step) => `<li>${escape(step)}</li>`).join('')}</ol>`
       : `<p>${escape(record.how[language])}</p>`;
     const extras = kind === 'play'
-      ? `<p class="activity__note"><strong>${escape(t('pdf.materials_label'))}:</strong> ${escape(record.materials[language])}</p>`
+      ? `<div class="activity__notes">`
+        + `<p class="activity__note"><strong>${escape(t('pdf.materials_label'))}:</strong> ${escape(record.materials[language])}</p>`
         + (record.safety[language]
           ? `<p class="activity__note"><strong>${escape(t('pdf.safety_label'))}:</strong> ${escape(record.safety[language])}</p>`
           : '')
         + `<p class="activity__note"><strong>${escape(t('pdf.method_label'))}:</strong> ${escape(METHOD_LABEL[record.method][language])}</p>`
+        + `</div>`
       : '';
     return `<article class="activity">
       <div class="activity__head">
-        ${frame('', record.imageAlt[language], placeholder, 'frame--tile')}
+        ${frame(art.tiles[record.id] ?? '', record.imageAlt[language], placeholder, 'frame--tile')}
         <div>
           <p class="activity__meta">${meta}</p>
           <h3>${escape(record.title[language])}</h3>
@@ -294,7 +386,7 @@ function buildHtml({ personality, language, care, play, extras, art }) {
     <p class="eyebrow">${escape(t('result.your_code'))}</p>
     <h2>${escape(t('pdf.code_page_title'))}</h2>
     <p class="lead">${escape(t('pdf.code_page_intro'))}</p>
-    ${frame('', '', placeholder, 'frame--slim')}
+    ${frame(art.furniture.f1, '', placeholder, 'frame--slim')}
     <div class="grow">
       ${DIMENSIONS.map((dimension, index) => {
         const letter = personality.code[index];
@@ -321,7 +413,7 @@ function buildHtml({ personality, language, care, play, extras, art }) {
   </section>`);
   pages.push(`<section class="page">
     ${paragraphs.slice(after).map((text) => `<p>${escape(text)}</p>`).join('')}
-    <div class="grow">${frame('', '', placeholder, 'frame--wide')}</div>
+    <div class="grow">${frame(art.furniture.f2, '', placeholder, 'frame--wide')}</div>
     ${folio(4)}
   </section>`);
 
@@ -334,7 +426,7 @@ function buildHtml({ personality, language, care, play, extras, art }) {
         <p>${escape(personality.parentSupport[field][language])}</p>
       </div>`).join('')}
     </div>
-    <div class="grow">${frame('', '', placeholder, 'frame--wide')}</div>
+    <div class="grow">${frame(art.furniture.f3, '', placeholder, 'frame--wide')}</div>
     ${folio(5)}
   </section>`);
 
@@ -350,7 +442,7 @@ function buildHtml({ personality, language, care, play, extras, art }) {
       <p class="label">${escape(t('result.popcousin_label'))}</p>
       <p>${escape(personality.popCousin[language])}</p>
     </div>
-    <div class="grow">${frame('', '', placeholder, 'frame--slim')}</div>
+    <div class="grow">${frame(art.furniture.f4, '', placeholder, 'frame--slim')}</div>
     ${folio(6)}
   </section>`);
 
@@ -363,7 +455,7 @@ function buildHtml({ personality, language, care, play, extras, art }) {
     <ul class="checklist">${personality.parentSupport.tryThisWeek[language].map((action) => `<li><span>${escape(action)}</span></li>`).join('')}</ul>
     <p class="label">${escape(t('pdf.weekly_extra_label'))}</p>
     <ul class="checklist">${extras.map((record) => `<li><span>${escape(record.action[language])}</span></li>`).join('')}</ul>
-    <div class="grow">${frame('', '', placeholder, 'frame--slim')}</div>
+    <div class="grow">${frame(art.furniture.f5, '', placeholder, 'frame--slim')}</div>
     ${folio(7)}
   </section>`);
 
@@ -377,7 +469,7 @@ function buildHtml({ personality, language, care, play, extras, art }) {
     <p>${escape(t('pdf.care_story_1'))}</p>
     <p>${escape(t('pdf.care_story_2'))}</p>
     <p>${escape(t('pdf.care_story_3'))}</p>
-    <div class="grow">${frame('', '', placeholder, 'frame--wide')}</div>
+    <div class="grow" style="margin-top:6mm">${frame(art.furniture.f6, '', placeholder, 'frame--wide')}</div>
     ${folio(8)}
   </section>`);
   pages.push(`<section class="page">
@@ -399,8 +491,9 @@ function buildHtml({ personality, language, care, play, extras, art }) {
       <p class="label">${escape(t('pdf.care_howto_label'))}</p>
       <p>${escape(t('pdf.care_howto'))}</p>
     </div>
-    <div class="grow"></div>
-    <p class="permission">${escape(t('pdf.care_permission'))}</p>
+    <div class="grow grow--center">
+      <p class="permission">${escape(t('pdf.care_permission'))}</p>
+    </div>
     ${folio(9)}
   </section>`);
 
@@ -420,8 +513,8 @@ function buildHtml({ personality, language, care, play, extras, art }) {
     <p class="eyebrow">${escape(t('result.for_child_label'))}</p>
     <h2>${escape(t('pdf.play_title'))}</h2>
     <p class="lead">${escape(t('pdf.play_intro'))}</p>
-    ${frame('', '', placeholder, 'frame--wide')}
-    <div class="block grow">
+    <div class="grow">${frame(art.furniture.f7, '', placeholder, 'frame--wide')}</div>
+    <div class="block">
       <p class="label">${escape(t('result.for_child_label'))}</p>
       <p>${escape(personality.parentSupport.forYourChild[language])}</p>
     </div>
@@ -441,7 +534,7 @@ function buildHtml({ personality, language, care, play, extras, art }) {
   </section>`);
   pages.push(`<section class="page">
     <div class="stack stack--tight">${play.slice(4).map((record) => activityCard(record, 'play')).join('')}</div>
-    <div class="grow">${frame('', '', placeholder, 'frame--wide')}</div>
+    <div class="grow">${frame(art.furniture.f8, '', placeholder, 'frame--wide')}</div>
     <p class="permission">${escape(t('pdf.skip_permission'))}</p>
     ${folio(15)}
   </section>`);
@@ -452,19 +545,20 @@ function buildHtml({ personality, language, care, play, extras, art }) {
     <p class="eyebrow">${escape(t('pdf.closing_title'))}</p>
     <h2>${escape(t('pdf.closing_title'))}</h2>
     <p class="lead">${escape(t('pdf.closing_body'))}</p>
-    ${frame('', '', placeholder, 'frame--wide')}
+    ${frame(art.furniture.f9, '', placeholder, 'frame--wide')}
+    <div class="grow"></div>
     <div class="closing">
-      <div class="closing__qr">${escape(t('pdf.qr_hint'))}</div>
-      <div>
+      <div class="closing__qr"><img src="${qrCode}" alt=""></div>
+      <div class="closing__body">
         <p class="label">${escape(t('result.activities_cta'))}</p>
-        <p>${escape(config.links.activities)}</p>
-        <p class="footer-note">${escape(config.links.site)}</p>
+        <p class="closing__link">${escape(config.links.activities)}</p>
+        <p class="closing__hint">${escape(t('pdf.qr_hint'))}<br>${escape(config.links.site)}</p>
       </div>
     </div>
-    <div class="grow"></div>
-    <p class="footer-note">${escape(t('footer.made_by'))}</p>
-    <p class="footer-note">${escape(t('footer.copyright').replace('{year}', String(year)))}</p>
-    <p class="footer-note">${escape(t('footer.disclaimer'))}</p>
+    <div class="colophon">
+      <p>${escape(t('footer.made_by'))} · ${escape(t('footer.copyright').replace('{year}', String(year)))}</p>
+      <p>${escape(t('footer.disclaimer'))}</p>
+    </div>
     ${folio(16)}
   </section>`);
 
@@ -534,6 +628,9 @@ function normalize(buffer) {
   return Buffer.from(text, 'latin1');
 }
 
+const furniture = await loadFurniture();
+const tiles = await loadTiles();
+
 const languages = onlyLang ? [onlyLang] : ['id', 'en'];
 const overflows = [];
 let written = 0;
@@ -550,6 +647,8 @@ for (const language of languages) {
       art: {
         character: await publicImage(personality.image, 760),
         story: await publicImage(personality.parentStory.image, 1040),
+        furniture,
+        tiles,
       },
     });
     const file = join(profile, `${language}-${personality.slug}.html`);

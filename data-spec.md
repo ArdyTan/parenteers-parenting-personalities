@@ -1,5 +1,8 @@
 # data-spec.md — JSON Database Specification
-**What this is:** the authoritative spec for the app's entire database, including the six primary JSON registries under `src/data/`. Expands plan.md §4; on any conflict, **this file wins**. The JSON is transcribed once from the content .md files (§8 map); after that, JSON is runtime truth and the .md files are editorial reference.
+**What this is:** the authoritative spec for the app's entire database: six runtime registries plus
+three booklet-only registries under `src/data/`. Expands plan.md §4; on any conflict, **this file
+wins**. The JSON is transcribed once from the content .md files (§8 map); after that, JSON is truth
+and the .md files are editorial reference.
 
 ```
 src/data/
@@ -8,6 +11,9 @@ src/data/
 ├── products.json       # 9 Indonesian products shown on Result
 ├── scene-art.json      # question/checkpoint/continuity illustration manifest
 ├── config.json         # links, flags, tunables
+├── parent-care.json    # 25 parent-recovery activities for the PDF generator
+├── child-activities.json # 20 age-banded child activities for the PDF generator
+├── weekly-extras.json  # 16 pole-keyed checklist additions for the PDF generator
 └── i18n/
     ├── en.json         # all UI + page strings
     └── id.json
@@ -62,6 +68,7 @@ Array of exactly 16 objects — the full cartesian product of the four dimension
 | `image` | string | `/characters/{slug}-{bake}.webp` (§4 table) |
 | `accent` | hex | per-type accent; **draft until final art lands**, then matched to the character palette |
 | `activityTags` | letter[2] | 2 distinct letters from the code; defaults deterministically to D2+D3, with an explicit editorial override allowed |
+| `pdfSelection` | optional object | Booklet editorial overrides: five `parentCare` ids, five `childPlay` ids and optionally four `weeklyExtras` ids; omitted by default so deterministic selection applies |
 
 ### products.json
 
@@ -70,6 +77,35 @@ Array of exactly nine unique Indonesian Parenteers products. Each object contain
 `/products/`. This registry drives only the Indonesian Result rail; English deliberately renders a
 localized Coming Soon state. The companion landing page's `stimulation-guide-large.webp` is a layout
 variant of the same guide and is not a tenth record.
+
+### PDF booklet derivative registries
+
+These three files are consumed by `scripts/generate-pdf-booklets.mjs`; they do not enter the browser
+bundle or `appData`. The generated PDFs are committed derivatives at `public/pdf/{lang}/{slug}.pdf`.
+
+**`parent-care.json`** contains exactly 25 records: one universal `pole: "*"` activity and three
+variants for each pole `P/F/C/G/T/D/E/N`. Each record has a unique `id`, `minutes` in
+`2 | 5 | 10 | 15`, localized `title`, `why`, `how` and `imageAlt`, plus `image`. The image field is
+temporarily empty while the commissioned art is pending; after art intake it becomes a
+root-relative `/pdf-art/care/{id}.webp` path.
+
+**`child-activities.json`** contains exactly 20 records: four in each band
+`0-12m | 1-2y | 2-3y | 3-4y | 4-5y`. Each band has two variants for each pole of its selecting
+dimension. Records carry a unique `id`, `poleAffinity`, an approved `method`, `minutes`, localized
+`title`, `why`, 2–3 `steps`, `materials`, `safety`, `imageAlt` and `image`. Image is temporarily
+empty, then becomes `/pdf-art/play/{id}.webp` after art intake. Approved methods are
+`serve-return`, `cprt-special-play`, `cprt-reflect`, `montessori-practical-life`,
+`montessori-sensorial`, `montessori-movement`, `montessori-order` and `montessori-heuristic`.
+
+**`weekly-extras.json`** contains exactly 16 records: two per pole. Each has a unique `id`, its
+`pole`, and a non-empty localized `action`. The booklet chooses four—one for each letter in the
+reader's type code—to extend the three authored `tryThisWeek` actions without changing the Result
+page's three-item contract.
+
+Selection is deterministic and specified in `docs/personality-pdf-plan.md` §4.3. The parent set is
+the universal record plus one variant for each code letter; the child set is one activity per age
+band; weekly extras contribute one action per code letter. Optional `types.json.pdfSelection`
+overrides must resolve to existing ids with the same shape.
 
 ## 3. config.json
 
@@ -129,7 +165,12 @@ score(poles): TypeCode
 
 At `/baking`, load the persisted `{q, pole}[]` records from `pb1.answers`, sort them by `q`, then map them to the derived `Pole[]` passed to `score`. Storage order is not a scoring input. 3 questions per dimension ⇒ majority always exists, **ties are structurally impossible**. Pure function; no state.
 
-## 7. Validation invariants (enforced by `npm run test` + dev-boot assert)
+## 7. Validation invariants
+
+The six runtime registries are enforced by `npm run test` plus the dev-boot assertion. The three
+booklet-only registries are consumed successfully by `npm run assets:pdf`, but dedicated structural
+tests and the planned `qa:pdf` command remain Phase 8 QA work; the rules below are nevertheless the
+authoritative contract.
 
 - **questions:** exactly 12 · ids 1–12 contiguous · 3 questions per dimension in the fixed order · each has exactly 2 answers carrying that dimension's two opposing poles · all `en`/`id` non-empty.
 - **types:** exactly 16 · codes = full cartesian product, unique · slug = lowercase code · every `image` file exists (build-time check) · `superpowers` length 3 in both languages · every `parentStory` has a non-empty localized title, a multi-paragraph localized body, localized image alt text, the matching 1200×800 story WebP, and `imageAfterParagraph: 2` · every `parentSupport` contains four non-empty localized parent-first fields plus exactly 3 `tryThisWeek` actions per language · all text fields non-empty both languages · `accent` valid hex · `activityTags` ⊂ code letters, length 2, values distinct.
@@ -137,6 +178,15 @@ At `/baking`, load the persisted `{q, pole}[]` records from `pb1.answers`, sort 
 - **i18n:** identical key sets across languages · interpolation vars per key match across languages.
 - **scoring:** all 16 codes reachable · shuffle-invariance (randomizing answer order never changes the result).
 - **config:** no `TBD` remaining at production build (warning in dev, error in release build).
+- **parent care:** exactly 25 unique ids · one universal record · three records per pole · allowed
+  minute values only · every localized content field non-empty · production image paths match ids.
+- **child activities:** exactly 20 unique ids · four per age band · two per relevant pole within
+  every band · method in the approved registry · 2–3 steps in both languages · a non-empty safety
+  line in both languages for every record · production image paths match ids.
+- **weekly extras:** exactly 16 unique ids · two per pole · localized actions non-empty.
+- **booklet selection:** deterministic selection resolves five parent-care records, five child
+  activities and four weekly extras for all 16 types; the default child selection covers all 20
+  activity records across the roster; any editorial override preserves the per-type shape.
 
 ## 8. Transcription map (content .md → JSON, done once in Phase 1)
 
@@ -151,6 +201,7 @@ At `/baking`, load the persisted `{q, pole}[]` records from `pb1.answers`, sort 
 | quiz-01 THE 16 RESULT COPIES | `types.json` tagline / superpowers / watchout / emoji |
 | research §4 table (pop cousins) | `types.json popCousin` |
 | `docs/personality-parent-first-content.md` | research/editorial basis → `types.json parentStory` + `parentSupport`; each result opens with a daily-life story, inserts its matching illustration after paragraph two, then summarizes the parent-first takeaways as points; the 16 profiles are interpretations of the four dimensions, not separately validated psychological types |
+| `docs/personality-pdf-plan.md` | `parent-care.json`, `child-activities.json`, `weekly-extras.json`, selection rules and booklet-only i18n keys |
 | quiz-01 PAGE 17 (gallery) | `i18n gallery.intro` (title/CTAs already in quiz-02) |
 | ~~quiz-01 PAGE 18 (end)~~ | ~~`i18n end.h2 / .body / .founder_note`~~ — route removed 2026-08-02, keys retired |
 | quiz-02 (all tables) | `i18n en.json / id.json` keys **verbatim** |

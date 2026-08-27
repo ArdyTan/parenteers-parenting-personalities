@@ -1,12 +1,17 @@
 # Personality PDF booklet — plan
 
-**Status:** specified 2026-08-22, not yet built. This document is authoritative for the per-type
-downloadable PDF: its research basis, page structure, content model, activity libraries, image
-prompt set, generation pipeline and QA contract. `plan.md` §13 carries the phase row; `progress.md`
+**Status:** built on 2026-08-22, fully illustrated on 2026-08-23. All 32 committed PDFs render at
+16 A4 pages with real art in every slot — the 54 commissioned illustrations are QC'd, derived by
+`npm run assets:pdf-art` and wired through the activity registries and the `f1`–`f9` furniture
+slots. Each booklet is ~1.1 MB (34 MB across all 32). Layout A was finalized as the sole template on
+2026-08-27; `qa:pdf` passes all 32 artifacts. Still outstanding for the phase: the Result-surface
+`qa:phase55` assertions and deployment/WebView confirmation. This document is authoritative for
+the per-type downloadable PDF: its research basis, page structure, content model, activity
+libraries, generation pipeline and QA contract. `plan.md` §13 carries the phase row; `progress.md`
 carries current status.
 
 **What it is:** a 16-page A4 illustrated booklet, one per personality per language (32 files), built
-from the existing `types.json` content plus two new activity registries, downloadable from the
+from the existing `types.json` content plus three new booklet registries, downloadable from the
 Result. It is the first surface in this project that leaves the phone — it is meant to be kept,
 re-read and printed.
 
@@ -20,7 +25,7 @@ re-read and printed.
 | Child-activity source | **Written fresh, grounded in Montessori and play-therapy method** (not curated from the 30 Resep Sensory Play booklet) |
 | Languages | Separate ID and EN files — `public/pdf/{lang}/{slug}.pdf`, 32 files |
 | Art budget | **Per-activity illustration** — 45 activity tiles + 9 page-furniture bands = **54 new pieces** |
-| Art pipeline | Claude writes the prompt set; **Ardy generates with `gpt-image-2`**. Handover: `docs/personality-pdf-art-brief.md` |
+| Art pipeline | **Ardy supplies the revised prompt; GPT generates the 54 images in the primary session.** The existing slot briefs remain a production/QC contract, not the final prompt or authorization to begin. Contract: `docs/personality-pdf-art-brief.md` |
 | Weight | ~1 MB per PDF, print quality (1240px, q78, ≈150 DPI at A4) — ≈30 MB total |
 | Button placement | Its own Result section only. A dock link shipped on 2026-08-22 and was **removed the same day** at Ardy's direction — the dock stays one primary action |
 | In-app browser | Plain `href` to the real `.pdf`, `target="_blank"`, **no** `download` attribute, toast fallback offering copy-link |
@@ -186,7 +191,7 @@ a week; three was a sparse page.
   "why":       { "id": "…", "en": "…" },   // what it builds, one line, no milestones language
   "steps":     { "id": ["…","…","…"], "en": ["…","…","…"] },  // 2–3 steps
   "materials": { "id": "…", "en": "…" },   // household only
-  "safety":    { "id": "…", "en": "…" },   // empty string only where genuinely nothing applies
+  "safety":    { "id": "…", "en": "…" },   // required in both languages
   "image":     "/pdf-art/play/treasure-basket.webp",
   "imageAlt":  { "id": "…", "en": "…" }
 }
@@ -213,12 +218,16 @@ assigned a dimension, and the four options in that band are two poles × two var
 | 1–2y | D1 structure (P/F) | 2 P-leaning, 2 F-leaning |
 | 2–3y | D2 guidance (C/G) | 2 C-leaning, 2 G-leaning |
 | 3–4y | D3 emotion (T/D) | 2 T-leaning, 2 D-leaning |
+| 4–5y | D4 adventure (E/N) again | 2 E-leaning, 2 N-leaning |
+
+Within the selected pole, the two variants alternate by that pole's occurrence count in the type
+registry. This keeps the result deterministic while guaranteeing that all 20 commissioned child
+activities appear across the 16 personalities; using the global type index accidentally locked four
+activities out because its parity is correlated with the type codes.
 
 The adventure axis picks twice, at the two ends of the range, because E/N is the split that most
 changes what a 0–1 activity and a 4–5 activity should feel like. Every dimension still selects at
 least once.
-
-| 4–5y | D4 adventure (E/N) again | 2 E-leaning, 2 N-leaning |
 
 Override in `types.json`:
 
@@ -236,8 +245,7 @@ Override in `types.json`:
   languages · every `image` exists on disk.
 - `child-activities.json`: exactly 20 records · unique ids · exactly 4 per band · within each band
   exactly 2 per pole of that band's dimension · `method` ∈ the method registry · `steps` length 2–3
-  in both languages · `safety` non-empty for every record whose materials include loose objects,
-  water, heat or cords · every `image` exists.
+  in both languages · `safety` non-empty in both languages for every record · every `image` exists.
 - `types.json`: `pdfSelection`, when present, resolves to 5 existing `parent-care` ids (one `*` plus
   one per dimension) and 5 existing `child-activities` ids (one per band).
 - The deterministic default must produce a valid selection for all 16 types with no override.
@@ -324,9 +332,9 @@ it needs released. No record asks the parent to do anything for the child.
 
 | id | min | Judul (ID) | Title (EN) | Spec |
 |---|---|---|---|---|
-| `n-one-step-out` | 10 | Satu langkah keluar | One step outside, alone | Ten minutes outside the door by yourself, phone in your pocket. The house holds without you watching it. |
+| `n-one-step-out` | 10 | Satu langkah keluar | One step outside | Another trusted adult takes over while you step out for ten minutes; if you are the only adult home, sit by an open window instead. |
 | `n-final-check` | 2 | Cek terakhir, lalu "cukup" | One last check, then say "enough" | Do the check once. Then say the word out loud. The ritual closes the loop the worry keeps reopening. |
-| `n-warm-five` | 5 | Lima menit hangat | Five warm minutes | Warm shower, warm blanket, warm mug — five minutes of heat on your skin with nothing else happening. Comfort is allowed to point at you. |
+| `n-warm-five` | 5 | Lima menit hangat | Five warm minutes | Warm shower, warm blanket, or hands around a warm mug — five minutes of comfortable warmth. Comfort is allowed to point at you. |
 
 ---
 
@@ -351,7 +359,7 @@ Carry your baby around the house and let them touch five different surfaces, nam
 **`treasure-basket`** · N · `montessori-heuristic` · 15 min · **Keranjang harta** / *Treasure basket*
 A low basket of real household objects. Your baby chooses; you stay close and do nothing.
 *Steps:* fill a shallow basket with 5–6 real objects of different materials — wood, metal, fabric, natural · sit beside them and let them lead entirely · resist handing, demonstrating, or naming unless they look up at you.
-*Materials:* wooden spoon, metal whisk, fabric scrap, small brush, pine cone, silicone cup. *Safety:* every object must be too big to pass through a toilet-paper tube, unbreakable, with no coating that can flake, and nothing with a cord or handle long enough to loop.
+*Materials:* large wooden ring, fabric square, short chunky brush, silicone cup, metal measuring cup. *Safety:* every object must be too big to pass through a toilet-paper tube, unbreakable, with no coating that can flake, and nothing with a cord or long handle.
 
 **`peekaboo-scarf`** · N · `serve-return` · 5 min · **Cilukba selendang** / *Peekaboo, with a scarf*
 The oldest serve-and-return game there is, played at your baby's pace instead of yours.
@@ -385,7 +393,7 @@ Real work, done together, with no standard to meet.
 **`pouring-jug`** · C · `montessori-practical-life` · 10 min · **Menuang dr teko kecil** / *Pour from a small jug*
 The classic Montessori presentation: show once, then hand over control completely.
 *Steps:* half-fill a small jug and set two cups on a tray · pour once, slowly, without narrating · put the cloth where they can reach it and say nothing about spills.
-*Materials:* a small jug they can hold one-handed, two cups, a tray, a cloth. *Safety:* room-temperature water only; ceramic is fine if you're comfortable with it breaking.
+*Materials:* a small unbreakable jug, two unbreakable cups, a tray, a cloth. *Safety:* room-temperature water only; use light, unbreakable vessels and keep an adult within arm's reach.
 
 **`wash-one-cup`** · C · `montessori-practical-life` · 15 min · **Cuci satu gelas** / *Wash one cup*
 One cup, one sponge, one bowl of water. A whole task with a visible beginning and end.
@@ -395,24 +403,24 @@ One cup, one sponge, one bowl of water. A whole task with a visible beginning an
 **`sort-your-way`** · G · `montessori-sensorial` · 10 min · **Sortir sesukamu** / *Sort it your way*
 You supply the objects. They supply the rule — and their rule is the point.
 *Steps:* tip out 10–15 mixed household objects and two empty bowls · say "you can sort these however you like" and then stay quiet · if they sort by something you'd never have chosen, that's the successful version.
-*Materials:* buttons too big to swallow, bottle caps, spoons, blocks, socks. *Safety:* nothing that fits through a toilet-paper tube if a younger sibling is in the room.
+*Materials:* large buttons, bottle caps, spoons, blocks, socks. *Safety:* every object must be too large for a toilet-paper tube and have no sharp edges; an adult stays with them.
 
 **`calm-basket-together`** · G · `cprt-reflect` · 15 min · **Bikin kotak tenang bareng** / *Build the calm basket together*
 Assemble the box for hard moments while nobody is having one, and let the child choose what goes in.
 *Steps:* offer a basket and ask what helps when they feel big feelings · put in whatever they say, even if it seems useless to you · name the feelings as they come up, without fixing them.
-*Materials:* a basket, plus their choices — a soft toy, a picture, a squeeze ball, a blanket. *Safety:* nothing that can be tied, wrapped, or pulled over the head.
+*Materials:* a basket, plus their choices — a soft toy, a picture, a squeeze ball, a blanket. *Safety:* every loose item must be too large for a toilet-paper tube; nothing that can be tied, wrapped, or pulled over the head.
 
 ### Band 3–4 years — picked by D3 (T / D)
 
 **`special-play-time`** · T · `cprt-special-play` · 20 min · **Waktu main spesial** / *Special play time*
 The flagship. This is filial therapy's weekly playtime, run by you, at home, exactly as parents are trained to run it.
 *Steps:* 20 minutes, one child, a consistent time and place, phone in another room · they choose everything; you follow and join only when invited — no teaching, no questions, no suggestions · describe what you see ("You're giving the baby a bottle"), reflect what they feel ("That surprised you"), and praise the effort, never the result ("You kept trying until you got it") · give a five-minute and a one-minute warning before you stop.
-*Materials:* simple non-mechanical things — paper and crayons, a doll, animals, cars, blocks. *Safety:* none beyond the toys themselves. *Note:* if you do only one activity in this booklet, this is the one with the strongest evidence behind it.
+*Materials:* simple non-mechanical things — paper and crayons, a doll, animals, cars, blocks. *Safety:* intact age-appropriate toys only, with no loose batteries or small parts; an adult stays in the room. *Note:* if you do only one activity in this booklet, this is the one with the strongest evidence behind it.
 
 **`draw-and-reflect`** · T · `cprt-reflect` · 15 min · **Gambar aja, aku yg nemenin** / *Draw anything, I'll just be here*
 They draw. You narrate what you see and never ask what it is.
 *Steps:* paper and crayons, both of you at the table · describe colours, movements, choices — "you used a lot of blue there" · never ask "what is it?" and never correct a colour or a shape.
-*Materials:* paper, crayons. *Safety:* none.
+*Materials:* paper, crayons. *Safety:* intact, non-toxic children's crayons; stay close if the child still mouths objects.
 
 **`pretend-kitchen`** · D · `cprt-special-play` · 15 min · **Masak-masakan, kamu jd tamu** / *You're the customer*
 For parents who show love by doing: here, the doing is theirs and you're the one being served.
@@ -428,18 +436,18 @@ A real job with real water — comfort through action, which is exactly how Doer
 
 **`treasure-map`** · E · `montessori-order` · 15 min · **Peta harta di rumah** / *A treasure map of our house*
 Drawing a map, then following it, is symbolic thinking with legs.
-*Steps:* they draw a map of a room, however inaccurate · hide something small together and mark it · follow their map, not your knowledge of the house.
-*Materials:* paper, crayons, one small object to hide. *Safety:* agree which rooms are in play.
+*Steps:* they draw a map of a room, however inaccurate · hide a small soft toy or block together and mark it · follow their map, not your knowledge of the house.
+*Materials:* paper, crayons, one small soft toy or block. *Safety:* agree which rooms are in play; if a child under three lives in the home, use an object too large for a toilet-paper tube.
 
 **`obstacle-course`** · E · `montessori-movement` · 15 min · **Rintangan dr bantal** / *The cushion course*
 Cushions, tape and chairs become a route they design and you attempt.
 *Steps:* they design it and set the rules · you go first and follow their rules exactly · let them change the rules mid-course, because they will.
-*Materials:* cushions, tape, chairs, a blanket. *Safety:* nothing to climb higher than their own hip; clear the corners of hard furniture.
+*Materials:* cushions, tape, chairs, a blanket. *Safety:* stable non-folding chairs only; nothing higher than the child's hip; an adult stays close.
 
 **`turn-story`** · N · `cprt-reflect` · 10 min · **Cerita gantian satu kalimat** / *One sentence each*
 A quiet bedtime story you build together, one sentence at a time.
 *Steps:* you start with one sentence, they add the next · accept every turn they take, including the ones that break your plot · when they end it, it's ended.
-*Materials:* none. *Safety:* none.
+*Materials:* none. *Safety:* stop or change direction if the story becomes upsetting; it is not a test and never needs to be finished.
 
 **`one-real-step`** · N · `montessori-practical-life` · 15 min · **Satu langkah masak beneran** / *One real step in the cooking*
 Not pretend cooking. One genuine step of the real meal, done by them.
@@ -464,17 +472,17 @@ first place, plus the CPSC baseline in §2.5. Every record must clear all of the
 5. **Allergy and mouthing.** Food-based sensory play is deliberately absent from the launch set.
 6. **No performance framing.** No streaks, no counting, no "do this and your child will…", no
    milestone claims. `why` says what the activity builds, in one non-diagnostic line.
-7. **Skip permission is mandatory.** Page 13 closes with *"Gak main hari ini? Kamu tetap cukup."*
+7. **Skip permission is mandatory.** Page 15 closes with *"Gak main hari ini? Kamu tetap cukup."*
 8. **Both languages reviewed independently**, not translated and waved through.
 
 ---
 
 ## 9. Illustration
 
-**Authoritative file: `docs/personality-pdf-art-brief.md`** — the copy-paste handover for
-generating all **54 pieces** (25 parent-care tiles, 20 child-activity tiles, 9 page-furniture
-bands) with `gpt-image-2`. It carries the style block, the reference-image anchoring, the hard
-rules, the model-legal sizes and every prompt keyed to its record id.
+**Authoritative file: `docs/personality-pdf-art-brief.md`** — the production and QC contract for
+all **54 installed pieces** (25 parent-care tiles, 20 child-activity tiles, 9 page-furniture bands).
+The accepted source images plus the briefs in that file define slot ids, sizes, composition
+constraints and acceptance checks for any future correction.
 
 Kept here only because it constrains the layout rather than the art:
 
@@ -485,7 +493,7 @@ Kept here only because it constrains the layout rather than the art:
   constraint and the method agree.
 - **Filenames are record ids.** `care/{id}.png`, `play/{id}.png`, `furniture/f{n}.png`, delivered
   into `images/pdf-art/`, derived into `public/pdf-art/`, then written into each record's `image`
-  field. The frames are already sized and positioned, so art drops in with no template change.
+  field. All accepted derivatives are now wired into the corresponding frames.
 
 ## 10. Generation pipeline
 
@@ -493,16 +501,20 @@ Prerendered at authoring time, committed, served as static files. **No runtime P
 client-side generator would add 100–300 KB to a 106 KB bundle and break the §10 budget for a button
 most readers never press.
 
+Final sequence:
+
 ```bash
-npm run assets:pdf-art   # images/pdf-art/**/*.png -> public/pdf-art/**/*.webp (sharp, 1240px)
+npm run assets:pdf-art   # images/pdf-art/**/*.png -> public/pdf-art/**/*.webp
 npm run assets:pdf       # 32 booklets -> public/pdf/{lang}/{slug}.pdf
+npm run qa:pdf           # artifact, content, selection, page-count and font contract
 ```
 
-`assets:pdf` drives headless Chrome over CDP — the same mechanism as `qa-phase55.mjs` and
-`perf-probe.mjs` — loading `scripts/pdf/booklet.html?slug=…&lang=…`, waiting on `document.fonts.ready`
-and every `<img>` decode, then calling `Page.printToPDF` with A4, `printBackground: true`, zero
-margins and CSS-controlled bleed. The template imports the real `tokens.css` and the real font files,
-so the booklet is the site rather than a generated report.
+`assets:pdf` builds the HTML and print CSS inside
+`scripts/generate-pdf-booklets.mjs`, embeds the two real WOFF2 files as data URIs, opens that HTML in
+headless Chrome over CDP, waits on `document.fonts.ready`, asserts each page has no overflow, then
+calls `Page.printToPDF` with A4, `printBackground: true`, zero margins and CSS-controlled bleed.
+The script resolves and pre-encodes the installed art before printing; there is no separate
+`scripts/pdf/booklet.html` template.
 
 **Kept out of `npm run build`.** Cloudflare Workers Builds must never need a browser. These are
 derivatives committed to the repo, exactly like `public/motion/preloader.mp4` and the character WebPs.
@@ -541,12 +553,9 @@ nothing about the share path changes.
 start a 1500 ms timer; if the document never loses visibility or focus in that window, show the
 existing toast offering copy-link, reusing the `share.ts` toast chain and `result.copy_link`.
 
-**New i18n keys** (both languages, drafted by Claude, reviewed by Ardy):
-`result.pdf_title`, `result.pdf_body`, `result.pdf_cta`, `error.pdf_failed`,
-plus the booklet's own labels: `pdf.cover_eyebrow`, `pdf.code_page_title`, `pdf.care_title`,
-`pdf.care_intro`, `pdf.play_title`, `pdf.play_intro`, `pdf.age_label`, `pdf.time_label`,
-`pdf.materials_label`, `pdf.safety_label`, `pdf.method_label`, `pdf.skip_permission`,
-`pdf.qr_hint`, `pdf.closing_cta`. 23 new strings per language as built.
+**New i18n keys:** **39 total** across `result.pdf_*`, `error.pdf_failed` and `pdf.*`, identically
+present in both languages. `REQUIRED_I18N_KEYS` in `src/data/validation.ts` is the exact key list;
+keeping a second manual list here previously drifted after the weekly and care-opener expansion.
 
 ---
 
@@ -567,7 +576,8 @@ decision; the repo already tracks 190 MB under `images/`.
 
 ## 13. QA contract
 
-Extends `npm run qa:phase55` and adds `npm run qa:pdf`.
+The target contract extends `npm run qa:phase55` and adds `npm run qa:pdf`. The artifact checker is
+implemented and passes; the Result-surface additions to `qa:phase55` remain implementation work.
 
 **`qa:phase55` additions** — Result surface:
 - The PDF section exists, is a sibling between the weekly section and other-types, and carries the
@@ -593,24 +603,25 @@ Extends `npm run qa:phase55` and adds `npm run qa:pdf`.
 
 | Step | Work | Gate |
 |---|---|---|
-| 8.1 | ✅ **done 2026-08-22** — `parent-care.json`, `child-activities.json` and `weekly-extras.json` authored bilingually with the deterministic selection rule and the `pdfSelection` override hook | 168 tests green; `data-spec.md` update still outstanding |
-| 8.2 | ✅ **done 2026-08-22** — `scripts/generate-pdf-booklets.mjs` + byte normalization + per-page overflow assertion, running on empty image frames | 32 files generate at 15 pages, ≤585 KB, no page clips |
-| 8.3 | **Next, and on Ardy:** generate the 54 illustrations per `docs/personality-pdf-art-brief.md` → write the `assets:pdf-art` derivative step → audit entries | `assets:audit` 0 issues |
+| 8.1 | ✅ **done 2026-08-22** — `parent-care.json`, `child-activities.json` and `weekly-extras.json` authored bilingually with the deterministic selection rule and the `pdfSelection` override hook | 168 tests green; registry contracts are now recorded in `data-spec.md` |
+| 8.2 | ✅ **done 2026-08-22** — `scripts/generate-pdf-booklets.mjs` + byte normalization + per-page overflow assertion, running on empty image frames | 32 files generate at 16 pages, ≤587 KB, no page clips |
+| 8.3 | ✅ **done 2026-08-23** — all 54 illustrations generated, QC'd, derived and wired; all 32 PDFs rebuilt | Source/derivative inventory complete; `assets:audit` reports 0 issues |
 | 8.4 | ✅ **done 2026-08-22** — Result section, 39 i18n strings, toast fallback. The dock link was built and removed the same day at Ardy's direction | Verified headless at 390×844; `qa:phase55` assertions still outstanding |
 | 8.5 | Deploy; verify in the Instagram in-app browser on the Samsung, plus one iOS check | Real-device sign-off recorded in `progress.md` |
 
-Steps 8.1, 8.2 and 8.4 shipped on 2026-08-22 against empty image frames. 8.3 (art) and 8.5 (real-device check) remain, plus two carried-over debts: `data-spec.md` has no section for the three new registries, and `qa:phase55` has no assertions for the Result section.
+Steps 8.1, 8.2 and 8.4 shipped on 2026-08-22; 8.3 completed on 2026-08-23. Layout A and the bilingual
+content/safety pass were finalized on 2026-08-27, with `qa:pdf` green across all 32 artifacts. Step
+8.5 and the Phase 8 Result-surface assertions in `qa:phase55` remain.
 
 ---
 
-## 15. Open questions for Ardy
+## 15. Launch decisions finalized 2026-08-27
 
-1. **QR target on page 15** — the quiz root (the booklet recruits new players) or the reader's own
-   `/r/{slug}`? Default: the quiz root. The QR itself is not drawn yet — page 15 reserves its tile.
-2. **Closing CTA** — `parenteers.id` generally, or the *Panduan stimulasi 0–5* product specifically?
-   Five free activities against a paid 200+ guide is a lead magnet, and the page should say which.
-3. **Selection overrides** — is the deterministic default acceptable for launch, or do you want to
-   hand-pick the five per type in `types.json`? Default: deterministic, override later.
-4. **Launch languages** — both at once, or ship ID and add EN after the copy review?
-5. Carried over and still open: `config.links.instagram` resolves to `@parenteers` while the artwork
-   says `parenteers.id`. Page 15 needs the same answer the share card is waiting on.
+1. **QR target on page 16:** the quiz root, matching the “send the quiz to someone else” copy.
+2. **Closing CTA:** the general `https://parenteers.id/` destination.
+3. **Selection:** deterministic per type; overrides remain available for a later editorial pass.
+4. **Languages:** ID and EN ship together.
+
+The separate Result/share-card discrepancy remains open: `config.links.instagram` resolves to
+`@parenteers` while the design artwork says `parenteers.id`. It does not appear in the booklet's
+page-16 CTA, QR or footer and therefore does not block the PDF artifact.

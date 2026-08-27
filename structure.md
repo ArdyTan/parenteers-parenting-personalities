@@ -64,7 +64,7 @@ Two pillars, and every decision follows from them:
     │   ├── share.ts          # canvas compositor + share/download fallback chain
     │   ├── haptics.ts        # vibrate patterns, always paired w/ visual pulse
     │   ├── qr.ts             # gate QR (SVG)
-    │   └── audio.ts          # muted-by-default engine: synthesized one-shots +
+    │   └── audio.ts          # enabled-by-default engine, autoplay-gated: synthesized one-shots +
     │                         # streamed theme; never decodes long audio
     ├── gestures/
     │   ├── pointer.ts        # unified Pointer Events tracking + capture helpers

@@ -27,7 +27,7 @@
       "id": "Alas rata, jangan di kasur atau tepi sofa. Bendanya harus lebih besar dr lubang tisu gulung.",
       "en": "Firm surface, never a bed or a sofa edge. The object must be too big to pass through a toilet-paper tube."
     },
-    "image": "",
+    "image": "/pdf-art/play/tummy-reach.webp",
     "imageAlt": { "id": "Mainan kayu lembut di atas alas main, sedikit di luar jangkauan.", "en": "A soft wooden rattle on a play mat, just beyond reach." }
   },
   {
@@ -58,7 +58,7 @@
       "id": "Lewati apa pun yg panas, tajam, berlistrik, atau cukup kecil utk masuk lubang tisu gulung.",
       "en": "Skip anything hot, sharp, electrical, or small enough to fit through a toilet-paper tube."
     },
-    "image": "",
+    "image": "/pdf-art/play/texture-tour.webp",
     "imageAlt": { "id": "Lima tekstur rumah tangga berjajar: tirai, kaca, sendok kayu, daun, handuk.", "en": "Five household textures in a row: curtain, glass, wooden spoon, leaf, towel." }
   },
   {
@@ -70,7 +70,7 @@
     "title": { "id": "Keranjang harta", "en": "Treasure basket" },
     "why": {
       "id": "Benda asli lebih kaya dr mainan plastik, dan memilih sendiri itu bagian yg bikin dia betah lama.",
-      "en": "Real objects are richer than plastic toys, and choosing for himself is what makes the concentration last."
+      "en": "Real objects are richer than plastic toys, and choosing independently is what makes the concentration last."
     },
     "steps": {
       "id": [
@@ -84,12 +84,12 @@
         "Resist handing, demonstrating or naming unless they look up at you."
       ]
     },
-    "materials": { "id": "Sendok kayu, pengocok telur, potongan kain, sikat kecil, gelas silikon.", "en": "A wooden spoon, a whisk, a fabric scrap, a small brush, a silicone cup." },
+    "materials": { "id": "Ring kayu besar, potongan kain, sikat pendek yg tebal, gelas silikon, cangkir ukur logam.", "en": "A large wooden ring, a fabric square, a short chunky brush, a silicone cup, a metal measuring cup." },
     "safety": {
       "id": "Semua benda harus lebih besar dr lubang tisu gulung, gak gampang pecah, gak ada lapisan yg mengelupas, dan gak ada tali atau gagang panjang.",
       "en": "Every object must be too big for a toilet-paper tube, unbreakable, with no coating that can flake and no cord or long handle."
     },
-    "image": "",
+    "image": "/pdf-art/play/treasure-basket.webp",
     "imageAlt": { "id": "Keranjang anyaman dangkal berisi benda rumah tangga asli di atas karpet.", "en": "A shallow woven basket of real household objects on a rug." }
   },
   {
@@ -120,7 +120,7 @@
       "id": "Selendangnya di wajahmu, bukan di wajah bayi. Jangan pernah tinggalkan kain di dekat wajahnya.",
       "en": "The scarf goes over you, never the baby. Never leave fabric on or near a baby's face."
     },
-    "image": "",
+    "image": "/pdf-art/play/peekaboo-scarf.webp",
     "imageAlt": { "id": "Selendang tipis melayang setengah terangkat di atas bantal.", "en": "A light scarf caught mid-air, half-lifted above a cushion." }
   },
   {
@@ -151,7 +151,7 @@
       "id": "Semua benda lebih besar dr lubang tisu gulung, dan tepi lubangnya gak tajam.",
       "en": "Every object larger than a toilet-paper tube, and no cut edges on the hole."
     },
-    "image": "",
+    "image": "/pdf-art/play/post-the-lids.webp",
     "imageAlt": { "id": "Kardus berlubang bundar dgn tutup toples berserakan di sampingnya.", "en": "A box with a round hole in its lid, jar lids scattered beside it." }
   },
   {
@@ -182,7 +182,7 @@
       "id": "Airnya sedikit saja dan selalu dalam jangkauan tanganmu. Balita bisa tenggelam di air beberapa sentimeter.",
       "en": "A very small amount of water, always within arm's reach. A toddler can drown in a few centimetres."
     },
-    "image": "",
+    "image": "/pdf-art/play/sponge-transfer.webp",
     "imageAlt": { "id": "Dua mangkuk dangkal di atas handuk dgn spons menetes di antaranya.", "en": "Two shallow bowls on a towel with a sponge dripping between them." }
   },
   {
@@ -213,7 +213,7 @@
       "id": "Bersihkan lintasannya dr sudut furnitur yg keras. Kaki telanjang atau kaus kaki anti-selip.",
       "en": "Clear the run of hard furniture corners. Bare feet or grippy socks."
     },
-    "image": "",
+    "image": "/pdf-art/play/tape-line.webp",
     "imageAlt": { "id": "Garis lakban melengkung di lantai kayu dgn sepasang kaus kaki kecil di pangkalnya.", "en": "A masking-tape line curving across a wooden floor with small socks at its start." }
   },
   {
@@ -244,7 +244,7 @@
       "id": "Pintu mesin tertutup dan mati kalau ditinggal. Deterjen kapsul disingkirkan sepenuhnya dr ruangan.",
       "en": "Machine door closed and off when unattended. Keep detergent capsules completely out of the room."
     },
-    "image": "",
+    "image": "/pdf-art/play/laundry-hand-off.webp",
     "imageAlt": { "id": "Keranjang cucian setengah terisi dgn satu kaus kaki kecil di lantai.", "en": "A laundry basket half-loaded with one small sock on the floor beside it." }
   },
   {
@@ -270,12 +270,12 @@
         "Put the cloth where they can reach it and say nothing about spills."
       ]
     },
-    "materials": { "id": "Teko kecil yg muat satu tangan, dua gelas, nampan, lap.", "en": "A small jug they can hold one-handed, two cups, a tray, a cloth." },
+    "materials": { "id": "Teko kecil dan dua gelas yg gak gampang pecah, nampan, lap.", "en": "A small unbreakable jug and two unbreakable cups, a tray, a cloth." },
     "safety": {
-      "id": "Air suhu ruang saja. Keramik boleh, asal kamu siap kalau pecah.",
-      "en": "Room-temperature water only. Ceramic is fine if you're comfortable with it breaking."
+      "id": "Air suhu ruang saja. Pakai wadah yg ringan dan gak gampang pecah; orang dewasa tetap dalam jangkauan tangan.",
+      "en": "Room-temperature water only. Use light, unbreakable vessels and keep an adult within arm's reach."
     },
-    "image": "",
+    "image": "/pdf-art/play/pouring-jug.webp",
     "imageAlt": { "id": "Teko kecil menuang ke dua gelas di atas nampan kayu.", "en": "A small jug mid-pour over two cups on a wooden tray." }
   },
   {
@@ -306,7 +306,7 @@
       "id": "Hangat, bukan panas. Sabun yg gak perih di mata. Bangkunya harus stabil.",
       "en": "Warm not hot. Soap that doesn't sting eyes. The stool must be stable."
     },
-    "image": "",
+    "image": "/pdf-art/play/wash-one-cup.webp",
     "imageAlt": { "id": "Stasiun cuci rendah: baskom, spons, satu gelas, handuk terlipat.", "en": "A low washing station: a bowl, a sponge, one cup and a folded towel." }
   },
   {
@@ -334,10 +334,10 @@
     },
     "materials": { "id": "Kancing besar, tutup botol, sendok, balok, kaus kaki.", "en": "Large buttons, bottle caps, spoons, blocks, socks." },
     "safety": {
-      "id": "Jangan pakai benda yg muat di lubang tisu gulung kalau ada adik yg lebih kecil di ruangan yg sama.",
-      "en": "Nothing that fits through a toilet-paper tube if a younger sibling is in the room."
+      "id": "Semua benda harus lebih besar dr lubang tisu gulung dan gak punya sisi tajam. Orang dewasa tetap nemenin.",
+      "en": "Every object must be too large for a toilet-paper tube and have no sharp edges. An adult stays with them."
     },
-    "image": "",
+    "image": "/pdf-art/play/sort-your-way.webp",
     "imageAlt": { "id": "Kancing, tutup botol, dan sendok tersebar di lantai di antara dua mangkuk kosong.", "en": "Buttons, bottle caps and spoons spread on a floor between two empty bowls." }
   },
   {
@@ -365,10 +365,10 @@
     },
     "materials": { "id": "Keranjang, plus pilihannya: boneka, gambar, bola remas, selimut.", "en": "A basket, plus their choices: a soft toy, a picture, a squeeze ball, a blanket." },
     "safety": {
-      "id": "Jangan masukkan apa pun yg bisa diikat, dililitkan, atau ditarik ke kepala.",
-      "en": "Nothing that can be tied, wrapped, or pulled over the head."
+      "id": "Semua benda lepas harus lebih besar dr lubang tisu gulung. Jangan masukkan apa pun yg bisa diikat, dililitkan, atau ditarik ke kepala.",
+      "en": "Every loose item must be too large for a toilet-paper tube. Nothing that can be tied, wrapped, or pulled over the head."
     },
-    "image": "",
+    "image": "/pdf-art/play/calm-basket-together.webp",
     "imageAlt": { "id": "Keranjang berisi boneka lembut, gambar anak, bola remas, dan selimut terlipat.", "en": "A basket holding a soft toy, a child's drawing, a squeeze ball and a folded blanket." }
   },
   {
@@ -397,8 +397,11 @@
       ]
     },
     "materials": { "id": "Barang sederhana yg gak pakai baterai: kertas dan krayon, boneka, binatang-binatangan, balok, mobil-mobilan.", "en": "Simple non-mechanical things: paper and crayons, a doll, animals, blocks, cars." },
-    "safety": { "id": "", "en": "" },
-    "image": "",
+    "safety": {
+      "id": "Pakai mainan utuh yg sesuai umur, tanpa baterai lepas atau bagian kecil. Orang dewasa tetap di ruangan.",
+      "en": "Use intact, age-appropriate toys with no loose batteries or small parts. An adult stays in the room."
+    },
+    "image": "/pdf-art/play/special-play-time.webp",
     "imageAlt": { "id": "Sudut ruangan sederhana dgn kertas, krayon, boneka, balok, dan mobil-mobilan.", "en": "A simple room corner set with paper, crayons, a doll, blocks and cars." }
   },
   {
@@ -425,8 +428,11 @@
       ]
     },
     "materials": { "id": "Kertas dan krayon.", "en": "Paper and crayons." },
-    "safety": { "id": "", "en": "" },
-    "image": "",
+    "safety": {
+      "id": "Pakai krayon anak yg non-toksik dan masih utuh. Temani kalau anak masih suka memasukkan benda ke mulut.",
+      "en": "Use intact, non-toxic children's crayons. Stay close if your child still puts objects in their mouth."
+    },
+    "image": "/pdf-art/play/draw-and-reflect.webp",
     "imageAlt": { "id": "Gambar anak yg sedang dikerjakan dgn krayon berserakan di sekelilingnya.", "en": "A child's drawing in progress with crayons scattered around it." }
   },
   {
@@ -454,7 +460,7 @@
     },
     "materials": { "id": "Panci, sendok, gelas — apa pun yg sudah ada di kotak mainan.", "en": "Pots, spoons, cups — whatever is already in the toy box." },
     "safety": { "id": "Gak pakai apa pun dr kompor beneran.", "en": "Nothing from the real stove." },
-    "image": "",
+    "image": "/pdf-art/play/pretend-kitchen.webp",
     "imageAlt": { "id": "Panci dan cangkir mainan ditata seperti meja restoran kecil.", "en": "Toy pots and cups arranged as a tiny restaurant table." }
   },
   {
@@ -485,7 +491,7 @@
       "id": "Air dangkal, jangan ditinggal. Jangan mainan elektronik.",
       "en": "Shallow water, never unattended. No electronic toys."
     },
-    "image": "",
+    "image": "/pdf-art/play/wash-the-toys.webp",
     "imageAlt": { "id": "Baskom air bersabun dgn mainan dan sikat lembut, handuk terbentang.", "en": "A basin of soapy water with toys and a soft brush, a towel spread beside." }
   },
   {
@@ -502,18 +508,18 @@
     "steps": {
       "id": [
         "Dia menggambar peta satu ruangan, seakurat apa pun hasilnya.",
-        "Sembunyikan satu benda kecil bareng, lalu tandai di petanya.",
+        "Sembunyikan satu boneka kecil atau balok bareng, lalu tandai di petanya.",
         "Ikuti petanya, bukan pengetahuanmu soal rumah sendiri."
       ],
       "en": [
         "They draw a map of a room, however inaccurate.",
-        "Hide something small together and mark it.",
+        "Hide a small soft toy or block together and mark it.",
         "Follow their map, not your knowledge of the house."
       ]
     },
-    "materials": { "id": "Kertas, krayon, satu benda kecil utk disembunyikan.", "en": "Paper, crayons, one small object to hide." },
-    "safety": { "id": "Sepakati dulu ruangan mana yg boleh dipakai.", "en": "Agree which rooms are in play." },
-    "image": "",
+    "materials": { "id": "Kertas, krayon, satu boneka kecil atau balok utk disembunyikan.", "en": "Paper, crayons, one small soft toy or block to hide." },
+    "safety": { "id": "Sepakati dulu ruangan mana yg boleh dipakai. Pilih benda yg gak muat di lubang tisu gulung kalau ada anak di bawah 3 tahun di rumah.", "en": "Agree which rooms are in play. If a child under three lives in the home, choose an object too large for a toilet-paper tube." },
+    "image": "/pdf-art/play/treasure-map.webp",
     "imageAlt": { "id": "Peta rumah gambar krayon dgn tanda X dan satu benda kecil di sebelahnya.", "en": "A crayon map of a house marked with an X, a small object beside it." }
   },
   {
@@ -541,10 +547,10 @@
     },
     "materials": { "id": "Bantal, lakban, kursi, selimut.", "en": "Cushions, tape, chairs, a blanket." },
     "safety": {
-      "id": "Gak ada yg dipanjat lebih tinggi dr pinggangnya sendiri. Jauhkan sudut furnitur yg keras.",
-      "en": "Nothing to climb higher than their own hip. Clear the corners of hard furniture."
+      "id": "Pakai kursi yg stabil dan gak bisa terlipat. Gak ada yg dipanjat lebih tinggi dr pinggangnya sendiri; orang dewasa tetap dekat.",
+      "en": "Use only stable, non-folding chairs. Nothing to climb higher than their own hip, with an adult staying close."
     },
-    "image": "",
+    "image": "/pdf-art/play/obstacle-course.webp",
     "imageAlt": { "id": "Bantal, kursi, lakban, dan selimut ditata jd lintasan di lantai ruang keluarga.", "en": "Cushions, a chair, tape and a blanket arranged as a route across a living-room floor." }
   },
   {
@@ -571,8 +577,11 @@
       ]
     },
     "materials": { "id": "Gak perlu apa-apa.", "en": "Nothing at all." },
-    "safety": { "id": "", "en": "" },
-    "image": "",
+    "safety": {
+      "id": "Kalau ceritanya bikin anak gak nyaman, berhenti atau ganti arah. Ini bukan tes dan gak perlu dipaksa selesai.",
+      "en": "If the story becomes upsetting, stop or change direction. This is not a test and never needs to be finished."
+    },
+    "image": "/pdf-art/play/turn-story.webp",
     "imageAlt": { "id": "Lampu tidur, dua bantal, dan buku terbuka berhalaman kosong.", "en": "A bedside lamp, two pillows and an open book with blank pages." }
   },
   {
@@ -603,7 +612,7 @@
       "id": "Jauh dr kompor, gak ada yg tajam, gak ada yg panas. Cuci tangan dulu, dan orang dewasa tetap di dapur.",
       "en": "Nothing at the stove, nothing sharp, nothing hot. Hands washed, and an adult stays in the kitchen."
     },
-    "image": "",
+    "image": "/pdf-art/play/one-real-step.webp",
     "imageAlt": { "id": "Sendok kayu ukuran anak dan mangkuk di meja dapur rendah dgn selada tersobek.", "en": "A child-sized wooden spoon and a bowl on a low counter with torn lettuce beside." }
   }
 ]

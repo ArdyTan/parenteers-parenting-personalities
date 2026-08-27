@@ -12,7 +12,7 @@
       "id": "Duduk. Habiskan minumanmu di suhu aslinya, tanpa sambil ngerjain apa pun.",
       "en": "Sit down. Finish the whole thing at its actual temperature, doing nothing else at the same time."
     },
-    "image": "",
+    "image": "/pdf-art/care/care-hot-drink.webp",
     "imageAlt": { "id": "Secangkir minuman hangat di meja dapur yg kena cahaya pagi.", "en": "A warm mug on a sunlit kitchen table." }
   },
   {
@@ -28,7 +28,7 @@
       "id": "Tulis semua yg belum selesai di satu lembar. Gak usah diurutkan, gak usah dikasih prioritas.",
       "en": "Write every unfinished thing on one sheet. No order, no priorities, no tidying."
     },
-    "image": "",
+    "image": "/pdf-art/care/p-brain-dump.webp",
     "imageAlt": { "id": "Buku catatan terbuka penuh coretan, pena tergeletak di atasnya.", "en": "An open notebook covered in loose marks, a pen laid across it." }
   },
   {
@@ -44,7 +44,7 @@
       "id": "Lakukan satu hal kecil hari ini yg gak ada di daftar mana pun. Jalan lewat rute lain, jajan yg gak dijadwalkan.",
       "en": "Do one small thing today that was on no list. A different route home, an unscheduled snack."
     },
-    "image": "",
+    "image": "/pdf-art/care/p-one-unplanned.webp",
     "imageAlt": { "id": "Kunci rumah dan sandal yg menghadap arah tak terduga di dekat pintu.", "en": "House keys and sandals turned at an unexpected angle by an open door." }
   },
   {
@@ -60,7 +60,7 @@
       "id": "Taruh satu blok di kalender tanpa isi apa pun. Jaga seperti kamu menjaga janji sm orang lain.",
       "en": "Put one block in the calendar with nothing in it. Defend it the way you'd defend a meeting with someone else."
     },
-    "image": "",
+    "image": "/pdf-art/care/p-empty-hour.webp",
     "imageAlt": { "id": "Kalender dinding penuh tulisan dgn satu kotak dibiarkan bersih.", "en": "A wall calendar dense with marks, one block left clean and empty." }
   },
   {
@@ -76,7 +76,7 @@
       "id": "Pilih satu hal yg besok terjadi di jam yg sama. Sarapan yg sama, lagu yg sama, jalan pagi yg sama.",
       "en": "Pick one thing that will happen at the same time tomorrow. The same breakfast, the same song, the same walk."
     },
-    "image": "",
+    "image": "/pdf-art/care/f-one-anchor.webp",
     "imageAlt": { "id": "Satu cangkir dan sendok disiapkan di meja dapur yg kosong.", "en": "One mug and spoon set out alone on an otherwise clear counter." }
   },
   {
@@ -92,7 +92,7 @@
       "id": "Tentukan menu makan malam seminggu, atau baju, atau malam mandi — sekali duduk, selesai.",
       "en": "Choose this week's dinners, or outfits, or bath nights, in one sitting."
     },
-    "image": "",
+    "image": "/pdf-art/care/f-decide-once.webp",
     "imageAlt": { "id": "Tujuh kertas kecil dijepit berjajar di seutas tali.", "en": "Seven small paper notes pegged in a row on a string." }
   },
   {
@@ -108,7 +108,7 @@
       "id": "Satu keranjang, satu tempat tetap: bukumu, charger, hand cream, camilan yg memang punyamu.",
       "en": "One basket, one fixed place: your book, your charger, your hand cream, a snack that is actually yours."
     },
-    "image": "",
+    "image": "/pdf-art/care/f-recovery-basket.webp",
     "imageAlt": { "id": "Keranjang anyaman berisi buku, charger, dan camilan di meja rendah.", "en": "A woven basket holding a book, a charger and a snack on a low table." }
   },
   {
@@ -124,7 +124,7 @@
       "id": "Biarkan orang lain memutuskan satu hal nyata — menunya, rutenya, urutan cerita sebelum tidur — dan jangan diperbaiki setelahnya.",
       "en": "Let someone else decide something real and small, and do not improve their decision afterwards."
     },
-    "image": "",
+    "image": "/pdf-art/care/c-hand-the-wheel.webp",
     "imageAlt": { "id": "Meja makan dgn satu kursi ditarik keluar dan piring kedua sudah disiapkan.", "en": "A dining table with one chair pulled out and a second plate already set." }
   },
   {
@@ -140,7 +140,7 @@
       "id": "Sekali hari ini, jawab satu pertanyaan dgn \"belum tahu\" — dan biarkan begitu.",
       "en": "Once today, answer a question with \"I don't know yet\" — and leave it there."
     },
-    "image": "",
+    "image": "/pdf-art/care/c-say-dont-know.webp",
     "imageAlt": { "id": "Daftar setengah jadi di meja dgn baris terakhir dibiarkan kosong.", "en": "A half-written list with the final line deliberately blank." }
   },
   {
@@ -156,7 +156,7 @@
       "id": "Tulis tiga hal yg hari ini bukan tugasmu utk selesaikan. Baca sekali, lalu tinggalkan kertasnya.",
       "en": "Write three things that are not yours to fix today. Read them once, then leave the paper somewhere you'll see it."
     },
-    "image": "",
+    "image": "/pdf-art/care/c-not-my-job.webp",
     "imageAlt": { "id": "Tiga kertas kecil di ambang jendela ditindih batu, ujungnya tertiup angin.", "en": "Three paper slips on a windowsill under a stone, edges lifting in a breeze." }
   },
   {
@@ -172,7 +172,7 @@
       "id": "Putuskan satu hal hari ini tanpa nanya siapa pun: lagunya, minumannya, jendelanya dibuka atau enggak.",
       "en": "Decide one thing today with nobody consulted: the song, the drink, the window open or closed."
     },
-    "image": "",
+    "image": "/pdf-art/care/g-one-for-you.webp",
     "imageAlt": { "id": "Satu cangkir favorit ditarik ke depan dr rak berisi cangkir lain.", "en": "One favourite mug pulled forward from a shelf of others." }
   },
   {
@@ -188,7 +188,7 @@
       "id": "Ucapkan satu kalimat batas keras-keras, sendirian, sampai kedengeran biasa: \"Hari ini enggak dulu.\" \"Aku butuh sepuluh menit.\"",
       "en": "Say one clear limit out loud, alone, until it sounds normal: \"Not today.\" \"I need ten minutes.\""
     },
-    "image": "",
+    "image": "/pdf-art/care/g-practice-limit.webp",
     "imageAlt": { "id": "Pintu dgn tirai lembut setengah tertutup, cahaya hangat di satu sisi.", "en": "A doorway with a soft curtain half-drawn, warm light on one side." }
   },
   {
@@ -204,7 +204,7 @@
       "id": "Siram tanaman, pangkas daun kering, kasih makan sourdough-mu. Apa pun yg tumbuh selain anakmu.",
       "en": "Water the plants, prune something, feed the sourdough. Anything that grows and isn't your child."
     },
-    "image": "",
+    "image": "/pdf-art/care/g-tend-something.webp",
     "imageAlt": { "id": "Teko penyiram menuang ke tanaman pot di ambang jendela.", "en": "A watering can tipping into a potted plant on a windowsill." }
   },
   {
@@ -220,7 +220,7 @@
       "id": "Gak ada podcast, gak ada lagu berlirik, gak ada percakapan. Sepuluh menit aja.",
       "en": "No podcast, no music with words, no conversation. Ten minutes."
     },
-    "image": "",
+    "image": "/pdf-art/care/t-ten-quiet.webp",
     "imageAlt": { "id": "Headphone tergeletak tidak terpasang di sebelah ponsel yg ditelungkupkan.", "en": "Headphones resting unplugged beside a phone lying face-down." }
   },
   {
@@ -236,7 +236,7 @@
       "id": "Tulis satu kalimat yg gak akan dibaca siapa pun, dan jangan diproses bareng orang lain hari ini.",
       "en": "Write one sentence nobody will read, and don't process it with anyone today."
     },
-    "image": "",
+    "image": "/pdf-art/care/t-write-dont-say.webp",
     "imageAlt": { "id": "Kertas terlipat dan amplop terbuka di samping lilin kecil.", "en": "A folded sheet of paper and an unsealed envelope beside a candle." }
   },
   {
@@ -252,7 +252,7 @@
       "id": "Enam tarikan napas, dgn buangan yg lebih panjang dr tarikannya. Lebih pelan dr yg terasa wajar.",
       "en": "Six breaths where the out-breath is longer than the in-breath. Slower than feels natural."
     },
-    "image": "",
+    "image": "/pdf-art/care/t-long-exhale.webp",
     "imageAlt": { "id": "Jendela terbuka dgn tirai tipis terangkat keluar.", "en": "An open window with a light curtain lifting outward." }
   },
   {
@@ -268,7 +268,7 @@
       "id": "Duduk tanpa apa pun di tangan. Bukan ponsel, bukan lipatan baju, bukan rencana. Lima menit tanpa hasil apa pun.",
       "en": "Sit down with nothing in your hands. Not a phone, not folding, not planning. Five minutes of no output."
     },
-    "image": "",
+    "image": "/pdf-art/care/d-sit-no-task.webp",
     "imageAlt": { "id": "Kursi berlengan dgn bantal yg masih berbekas dan buku tertutup di sandarannya.", "en": "An armchair with the cushion still dented and a closed book on the arm." }
   },
   {
@@ -284,7 +284,7 @@
       "id": "Pilih satu hal malam ini dan sengaja tinggalkan: piringnya, keranjang mainannya, balasan chat-nya.",
       "en": "Pick one thing tonight and deliberately leave it: the dishes, the toy basket, the reply."
     },
-    "image": "",
+    "image": "/pdf-art/care/d-leave-one-undone.webp",
     "imageAlt": { "id": "Satu piring di wastafel, lampu dapur mati, cahaya bulan masuk.", "en": "One plate in the sink, the kitchen light off, moonlight through the window." }
   },
   {
@@ -300,7 +300,7 @@
       "id": "Peregangan, jalan kaki, joget di dapur. Yg penting bukan sambil ngangkat, ngeberesin, atau ngejar waktu.",
       "en": "Stretch, walk, dance in the kitchen. Anything that isn't carrying, tidying, or getting somewhere."
     },
-    "image": "",
+    "image": "/pdf-art/care/d-move-for-nothing.webp",
     "imageAlt": { "id": "Sandal rumah tercecer di lantai dapur, karpet sedikit terlipat, radio menyala.", "en": "Slippers kicked apart on a kitchen floor, a rug slightly rucked, a radio on." }
   },
   {
@@ -316,7 +316,7 @@
       "id": "Lewat jalan yg biasa. Pesan yg biasa. Sekali ini, jangan cari yg baru.",
       "en": "Take the familiar way. Order the usual. Just this once, don't look for the new thing."
     },
-    "image": "",
+    "image": "/pdf-art/care/e-old-route.webp",
     "imageAlt": { "id": "Sudut jalan yg familiar dilihat dr ambang pintu saat senja.", "en": "A familiar street corner seen from a doorway at dusk." }
   },
   {
@@ -332,7 +332,7 @@
       "id": "Di luar, satu tempat, gak pindah-pindah. Temukan lima hal yg bisa kamu lihat tanpa beranjak.",
       "en": "Outside, one place, no walking anywhere. Find five things you can see without moving."
     },
-    "image": "",
+    "image": "/pdf-art/care/e-sit-still-outside.webp",
     "imageAlt": { "id": "Undakan teras rendah dgn cangkir di atasnya dan pemandangan terbuka.", "en": "A low terrace step with a cup on it and a long open view." }
   },
   {
@@ -348,23 +348,23 @@
       "id": "Pasang satu alarm malam ini — bukan buat bangun, tp buat berhenti.",
       "en": "Set one alarm tonight — not to wake up, to stop."
     },
-    "image": "",
+    "image": "/pdf-art/care/e-twenty-earlier.webp",
     "imageAlt": { "id": "Meja samping tempat tidur dgn lampu diredupkan, jam kecil, dan buku.", "en": "A bedside table with the lamp turned low, a small clock and a book." }
   },
   {
     "id": "n-one-step-out",
     "pole": "N",
     "minutes": 10,
-    "title": { "id": "Satu langkah keluar", "en": "One step outside, alone" },
+    "title": { "id": "Satu langkah keluar", "en": "One step outside" },
     "why": {
-      "id": "Kewaspadaanmu gak pernah libur. Sepuluh menit di luar membuktikan rumahnya tetap utuh walau gak kamu awasi.",
-      "en": "Your vigilance never clocks out. Ten minutes outside proves the house holds without you watching it."
+      "id": "Kewaspadaanmu gak pernah libur. Waktu orang dewasa lain pegang kendali, sepuluh menit di luar mengingatkan badanmu bahwa gak semuanya harus kamu awasi sendiri.",
+      "en": "Your vigilance never clocks out. When another trusted adult takes over, ten minutes outside reminds your body that not everything has to stay under your watch."
     },
     "how": {
-      "id": "Sepuluh menit di luar pintu, sendirian, ponsel di saku dan gak dicek.",
-      "en": "Ten minutes outside the door by yourself, phone in your pocket and unchecked."
+      "id": "Minta orang dewasa lain mengambil alih, lalu keluar sepuluh menit dgn ponsel tetap aktif di saku. Kalau kamu sendirian, duduk dekat jendela terbuka aja.",
+      "en": "Ask another trusted adult to take over, then step outside for ten minutes with your phone still on in your pocket. If you're the only adult home, sit by an open window instead."
     },
-    "image": "",
+    "image": "/pdf-art/care/n-one-step-out.webp",
     "imageAlt": { "id": "Pintu depan terbuka sedikit dgn cahaya sore dan sepasang sandal di luar.", "en": "A front door ajar with warm afternoon light and one pair of sandals outside." }
   },
   {
@@ -380,7 +380,7 @@
       "id": "Lakukan cek terakhir sekali. Lalu ucapkan kata itu keras-keras: cukup.",
       "en": "Do the check once. Then say the word out loud: enough."
     },
-    "image": "",
+    "image": "/pdf-art/care/n-final-check.webp",
     "imageAlt": { "id": "Lorong malam dgn satu lampu menyala dan pintu kamar tertutup pelan.", "en": "A night hallway with one lamp on and a bedroom door gently closed." }
   },
   {
@@ -393,10 +393,10 @@
       "en": "You are the one who makes everyone else feel safe. This time the comfort points at you, and that's allowed."
     },
     "how": {
-      "id": "Mandi air hangat, selimut hangat, atau cangkir hangat — lima menit panas di kulit, tanpa ada yg lain terjadi.",
-      "en": "Warm shower, warm blanket, warm mug — five minutes of heat on your skin with nothing else happening."
+      "id": "Mandi air hangat, selimut hangat, atau pegang cangkir hangat — lima menit rasa nyaman di kulit, tanpa ada yg lain terjadi.",
+      "en": "A warm shower, a warm blanket, or your hands around a warm mug — five minutes of comfortable warmth with nothing else happening."
     },
-    "image": "",
+    "image": "/pdf-art/care/n-warm-five.webp",
     "imageAlt": { "id": "Handuk hangat terlipat di lantai keramik dgn uap dr luar bingkai.", "en": "A folded warm towel on warm tiles with steam drifting in from out of frame." }
   }
 ]

@@ -27,6 +27,9 @@ npm run build
 npm run build:release
 npm run assets:phase4
 npm run assets:audit
+npm run assets:pdf-art
+npm run assets:pdf
+npm run qa:pdf
 npm run assets:placeholders
 npm run deploy:dry
 ```
@@ -34,6 +37,10 @@ npm run deploy:dry
 `npm test` includes scoring and JSON integrity checks. `npm run build:release` and `npm run deploy` enforce that every launch link in `src/data/config.json` is resolved before publishing.
 
 `npm run assets:phase4` deterministically rebuilds the active character, ordered opening, and 404 WebPs from `images/`. `npm run assets:placeholders` is a legacy fallback that creates only missing character WebPs and never overwrites delivered production assets unless explicitly run with `--force`.
+
+`npm run assets:pdf-art` derives the 54 commissioned booklet illustrations. `npm run assets:pdf`
+rebuilds the 32 committed 16-page A-layout booklets and fails if any page clips. `npm run qa:pdf`
+then verifies the canonical file set, content, activity coverage, page count, size and embedded fonts.
 
 ## Project map
 
@@ -45,6 +52,8 @@ npm run deploy:dry
 - `src/data/` — runtime content database
 - `docs/motion/` — the 34 selected WebAnimation Library implementation guides
 - `docs/deployment.md` — Cloudflare Workers and Workers Builds handoff
+- `docs/personality-pdf-plan.md` — booklet content, generation and QA contract
+- `docs/personality-pdf-art-brief.md` — 54-slot art production/QC contract and prompt handoff status
 
 ## Deployment
 

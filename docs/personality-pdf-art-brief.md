@@ -1,8 +1,13 @@
-# PDF booklet art brief — handover for GPT Image 2
+# PDF booklet art brief — GPT image-production contract
 
-**Status:** ready to generate, 2026-08-22. This is the copy-paste handover for the **54 illustrations**
-the personality booklet reserves. Every slot currently prints as a dashed frame reading *"Ilustrasi
-menyusul"*, so the booklet ships and improves rather than waiting on art.
+**Status: complete and installed (2026-08-23).** All **54 illustrations** are generated, reviewed
+against §9, converted to derivatives and wired into the booklets. No placeholder frames remain: every
+one of the 32 committed PDFs now renders all 16 pages with real art.
+
+The chain that produced this is `images/pdf-art/**` (committed PNG sources) → `npm run assets:pdf-art`
+→ `public/pdf-art/**` (1240px WebP masters) → `npm run assets:pdf` (re-encodes each frame to its print
+width and embeds it). The prompt catalog below is retained as the slot inventory, composition brief
+and QC baseline — it is what any regeneration or correction must be checked against.
 
 Structure, page order and the data contract live in `docs/personality-pdf-plan.md`. This file is only
 about making the pictures.
@@ -98,9 +103,11 @@ tight still life, never a full room.
 
 ---
 
-## 6b. What to actually say — paste these
+## 6b. Prompt format — historical
 
-Three messages. **A** once per session, **B** once per batch, **C** only when something drifts.
+These three messages record the handoff format that produced the delivered set. They are kept for
+reference and for regenerating a single frame; the slot ids, size constraints and QC rules in this
+file remain authoritative.
 
 ### A — Session opener (attach the two reference images from §3)
 
@@ -161,9 +168,9 @@ render at `1024x768`, but keep the two groups unmixed so a drifting batch is eas
 care in 10 / 10 / 5, then child in 10 / 10. The furniture splits by size — `f1`, `f4` and `f5`
 at `1536x768`; `f2`, `f3`, `f6`, `f7`, `f8`, `f9` at `1536x1024` — so those are two more.
 
-**A fully expanded, copy-paste version of all seven batches is exported to
-`~/Documents/parenteers-booklet-art-prompts.txt`**, regenerated from the tables in §7 so the
-filenames and subjects cannot drift apart from this document.
+The fully expanded A/B/C prompt used for the delivered set is retained at the repository root as
+`parenteers-booklet-art-prompts.txt`. It is historical reference for correction work; the accepted
+source images and this document's slot/QC contract are authoritative for the finalized booklets.
 
 ### C — Correction (when one drifts)
 
@@ -177,7 +184,7 @@ resend — consistency across 54 pieces matters more than any single image being
 
 ---
 
-## 7. The 54 prompts
+## 7. The 54 slot briefs
 
 Each line is: **filename** · size · subject. Prepend the §4 style block and append the §5 rules.
 
@@ -217,7 +224,7 @@ Each line is: **filename** · size · subject. Prepend the §4 style block and a
 |---|---|
 | `tummy-reach.png` | A soft wooden rattle resting on a firm play mat just beyond the rumpled edge of a blanket. |
 | `texture-tour.png` | Five household textures as a row of small vignettes: curtain, window pane, wooden spoon, leaf, towel. |
-| `treasure-basket.png` | A shallow woven basket on a rug holding a wooden spoon, a whisk, a fabric scrap, a brush, a pine cone and a silicone cup. |
+| `treasure-basket.png` | A shallow woven basket on a rug holding a large wooden ring, a fabric square, a short chunky brush, a silicone cup and a metal measuring cup. |
 | `peekaboo-scarf.png` | A light scarf caught mid-air, half-lifted above a cushion, soft window light behind it. |
 | `post-the-lids.png` | A cardboard box with one round hole cut in its lid, jar lids and wooden rings scattered beside it. |
 | `sponge-transfer.png` | Two shallow bowls on a folded towel, one sponge dripping in the gap between them. |
@@ -260,17 +267,29 @@ images/pdf-art/play/{id}.png
 images/pdf-art/furniture/f{n}.png
 ```
 
-Then two steps, in order:
-
-1. A derivative pass resizes to 1240px wide WebP into `public/pdf-art/**` — the same source →
-   derivative boundary every other asset in this project uses. The script for this is **not written
-   yet**; it is the first task once art lands.
-2. Set the `image` field on each record in `parent-care.json` / `child-activities.json` from `""` to
-   its `/pdf-art/...` path, and point the furniture frames at theirs. `npm run assets:pdf` then picks
-   them up with no template change — the frames are already sized and positioned.
-
 Do not skip straight to `public/`. The source PNG is what gets re-derived if the print size ever
 changes.
+
+Both wiring steps are **done**:
+
+1. `npm run assets:pdf-art` (`scripts/process-pdf-art.mjs`) rebuilds `public/pdf-art/**` as 1240px-wide
+   WebP masters — the same source → derivative boundary every other asset uses. It asserts each id
+   against the two registries and each source against its legal size, and exits non-zero rather than
+   quietly writing 53 files. 1240px is a master width, not a print width: the generator downsamples.
+2. Every record in `parent-care.json` / `child-activities.json` carries its `/pdf-art/{group}/{id}.webp`
+   path, and `scripts/generate-pdf-booklets.mjs` resolves tiles by record id and furniture by slot id.
+
+Two things worth knowing before changing any of it:
+
+- **The encode is memoised.** The same 45 tiles and 9 bands appear in all 32 booklets; without the
+  cache in `publicImage` they are re-encoded 32 times.
+- **A band must not size itself from its own ratio.** `.grow > .frame` carries `flex: 1 1 0`. Left to
+  `height: 100%`, the img reports an intrinsic 116mm at 174mm wide, that becomes the column's
+  min-content height, the page can no longer shrink, and page 15 overran by 5px on the eight longest
+  ID booklets. `object-fit: cover` crops whatever height the column actually grants.
+
+Filling every slot roughly doubled each booklet, from ~520 KB to ~1.1 MB (34 MB across all 32).
+`npm run assets:audit` now covers both the 54 derivatives and the booklet weights.
 
 ---
 

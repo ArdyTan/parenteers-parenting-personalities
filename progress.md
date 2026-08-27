@@ -7,54 +7,30 @@
 |---|---|
 | Content & research docs (pre-project) | ✅ done |
 | Planning & architecture docs | ✅ done (2026-07-17) |
-| 0 — Setup (scaffold, tokens, deploy, copy guides) | 🟨 live at `quiz.parenteers.id`; Workers Builds connection pending |
+| 0 — Setup (scaffold, tokens, deploy, copy guides) | ✅ done; live at `quiz.parenteers.id` (confirmed by Ardy 2026-08-23) |
 | 1 — Data & i18n (transcribe .md → JSON, scoring + tests) | ✅ done (2026-07-18) |
 | 2 — Core flow, zero polish | ✅ done (2026-07-18) |
 | 3 — Gesture & WebGL foundations | ✅ gestures done (2026-07-30); WebGL half removed 2026-08-02 (plan §6) |
 | 4 — Motion layer | ✅ done (2026-07-29) |
 | 4.5 — Art-led interface realignment | ✅ superseded by Phase 5.5 |
-| 5 — Share pipeline | 🟨 live domain + 16 OG shells deployed; physical share/unfurl sign-off pending |
-| 5.5 — Brilliant-spec interface revision | 🟨 revised against the user's device review (2026-08-02); headless QA green; Samsung/Instagram re-check pending |
-| 6 — QA hardening | ⬜ |
+| 5 — Share pipeline | ✅ done; live domain + 16 OG shells deployed and device-tested (confirmed by Ardy 2026-08-23) |
+| 5.5 — Brilliant-spec interface revision | ✅ done; headless and real-device review complete (confirmed by Ardy 2026-08-23) |
+| 6 — QA hardening | ✅ done; Ardy confirmed testing across the target devices (2026-08-23) |
 | 7 — Launch extras (optional) | 🟨 sound layer shipped early (2026-08-02); analytics, founder-note flag and Awwwards assets remain |
-| 8 — Personality PDF booklet | 🟨 steps 8.1/8.2/8.4 shipped 2026-08-22 — 32 booklets generate at 16 pages and the Result button reaches them; 54 art slots empty, handover ready in `docs/personality-pdf-art-brief.md` |
+| 8 — Personality PDF booklet | 🟨 A is the sole final template; 32/32 illustrated booklets and `qa:pdf` pass. Phase-8 `qa:phase55` assertions plus 8.5 deployment/WebView confirmation remain |
 
 ## Next action
 
-**Active workstream: the per-type PDF booklet (Phase 8).** Steps 8.1, 8.2 and 8.4 are done — the two activity registries are authored bilingually, `npm run assets:pdf` writes all 32 booklets, and the Result carries both a PDF section and a dock link. What remains is 8.3 (the 53 illustrations, which is on Ardy) and 8.5 (Instagram in-app browser check on a real device). Original note follows:
+**Active workstream: the per-type PDF booklet (Phase 8).** Layout A is final and is now the only
+generator path. All 54 commissioned illustrations are installed, all 32 ID/EN booklets were rebuilt,
+and `npm run qa:pdf` enforces their file set, 16-page/A4 contract, 1.2 MB ceiling, extractable
+bilingual content, complete activity selection, permission lines and embedded fonts. B/C review
+artifacts were removed. The Result still exposes one PDF section while the dock remains save-only.
 
-**Earlier plan.** Ardy asked for a downloadable PDF per
-personality with a download button on the Result. It was specified on 2026-08-22 and the spec lives in
-`docs/personality-pdf-plan.md` — 14 A4 pages, 32 files, two new activity registries, 53 image prompts.
-Steps 8.1 (author `parent-care.json` and `child-activities.json` bilingually, plus the selection rule
-and validation tests) and 8.2 (the booklet template and the Chrome `printToPDF` generator on
-placeholder art) have no dependency on the artwork and are the next things to build. Step 8.3 waits on
-Ardy for the 53 illustrations. Note that `npm install` has not been run on this machine yet.
-
-The device QA below is still outstanding and unchanged:
-
-The landing-art visibility hotfix is now live (deployed 2026-08-16). Hard-refresh on the Samsung
-and repeat the exact Chrome check that produced the blank cream band. The fix makes the primary
-illustration visible independently of the GSAP entrance timeline, so early `deviceorientation`
-events can no longer strand it at `opacity: 0`.
-
-Also new in production and unverified on a real device: the rebuilt shareable result card, the
-preloader bowl clip, and the redesigned desktop gate. On a phone, watch the preloader specifically
-on a cold, throttled load: it is still a 1.8 MB clip for a surface that is on screen for about a
-second, and how quickly the first frame lands is the whole question. On a desktop, the gate's four
-`gate.*` strings are placeholders and need a copy pass.
-
-All of this is now committed: as of 2026-08-17 the working tree is clean at `9d7f171`.
-
-Re-run the interface on the Samsung A55/S25 FE and in the Instagram in-app browser, now that the seven screenshot notes are closed. Look specifically at: the question headline sitting over the faded illustration at each of the three size tiers (Q1 / Q2 / Q5), whether the indicator row now reads in daylight, the bigger baking marquee and its 5-second auto-advance, the quick-changing "other treats" row on the result, and the ID/EN + sound toggles at arm's length. Then run the live WhatsApp unfurl check against the deployed 16 OG shells at `https://quiz.parenteers.id/r/{slug}`.
-
-Two decisions the `/end` removal left open: the "Follow @parenteers" CTA and the made-by/copyright footer had no other home and are currently gone, and `config.flags.founderNote` is an unwired flag. If any of the three should live on the Result, say where.
-
-Then listen to the sound layer on a real device with the Instagram in-app browser: confirm the bed sits under the cues rather than fighting them (tune `MUSIC_BED_GAIN`, currently 0.22, and the per-voice peaks in `core/audio.ts` — not the file), that the iOS silent switch behaves as expected, and that the theme retires cleanly at the Result so a screen recording of the share moment stays quiet.
-
-One decision is waiting on the user: the final copy pass (`landing.eyebrow` and `quiz.cta_pick` ship as marked placeholders). The WebGL question is settled — that layer was measured and removed on 2026-08-02 (plan §6).
-
-Worth adding to the device matrix: a **Samsung A23** (Snapdragon 680 class). The throttled proxy says the app should run there comfortably — peak heap ~12 MB, 60fps to 6× CPU throttle, 51fps at 8× — but GPU cost and memory bandwidth have never been measured on real budget silicon.
+Next: add the remaining Phase 8 assertions to `qa:phase55`, then deploy the updated PDFs and confirm
+opening in the Instagram in-app browser. The four booklet launch decisions are closed on the
+implemented defaults: quiz-root QR, general `parenteers.id` CTA, deterministic selections, and ID +
+EN together. Phase 0–6 are complete by Ardy's confirmation; Phase 7 remains intentionally on hold.
 
 ## Waiting on user (plan.md §15)
 
@@ -69,13 +45,125 @@ Worth adding to the device matrix: a **Samsung A23** (Snapdragon 680 class). The
 - [ ] Preloader clip weight, opened 2026-08-16: `public/motion/preloader.mp4` is 1.8 MB for 10s of animation plus a 244 KB silent audio track, where the preloader is only on screen for about a second. Trimming to ~3s and stripping audio would land under 600 KB but needs ffmpeg, which this project does not carry
 - [ ] Two result-card copy/data calls opened 2026-08-16: the EN wording of `share.card_cta` ships as a placeholder ("Want yours too? Head to"), and `config.links.instagram` resolves to `@parenteers` while the design artwork shows `parenteers.id`
 - [x] Final domain — `https://quiz.parenteers.id/` deployed 2026-08-16
-- [ ] Cloudflare Workers Builds connection — required to close Phase 0 (Wrangler authentication confirmed 2026-08-16; GitHub remote is ready)
+- [x] Phase 0 deployment/build setup confirmed complete by Ardy on 2026-08-23; the site is live at `quiz.parenteers.id`
 - [x] Official Parenteers palette, logo set, and favicon delivered and applied (2026-07-18); existing fonts retained because the brand pack contains no typography specification
-- [ ] **54 PDF booklet illustrations**, opened 2026-08-22: ready-to-run handover in `docs/personality-pdf-art-brief.md` — 25 parent-care tiles, 20 child-activity tiles, 9 furniture bands, with the style block, reference-image anchoring, `gpt-image-2`-legal sizes and a QC list. Ardy generates with `gpt-image-2`; this is the only thing blocking Phase 8.3
-- [ ] **Four PDF booklet decisions**, opened 2026-08-22 (`docs/personality-pdf-plan.md` §15): the page-14 QR target, whether the closing CTA points at parenteers.id or the *Panduan stimulasi 0–5* product, whether the five-per-type activity picks stay deterministic or get hand-authored overrides, and whether EN ships at launch or after a copy review
+- [x] **All 54 PDF booklet illustrations generated, QC'd and installed** (2026-08-23). Care 25/25, play 20/20, furniture 9/9; inventory, dimensions, hashes and a full visual review against the art brief §5/§9 all pass. Derivatives and the 32-PDF rebuild are done — nothing outstanding here.
+- [x] **Four PDF booklet decisions closed 2026-08-27:** page-16 QR → quiz root; closing CTA → `parenteers.id`; deterministic five-per-type picks; ID and EN ship together. Recorded in `docs/personality-pdf-plan.md` §15.
 - [ ] Any overrides to plan.md §14 decision defaults
 
 ## Session log (newest first)
+
+**2026-08-27, layout A finalized; B/C retired; content and safety audited.**
+Kept A's 16-page structure and the intentional 3+2 parent-care split. Removed the B/C sample PDFs
+and deleted their generator paths after taking a local rollback snapshot at
+`/tmp/parenteers-pdf-variants-JcAuOI`. Audited both languages and tightened child-safety wording for
+small parts, water, furniture, art materials and adult supervision; every child activity now has a
+non-empty safety line. Parent recovery no longer implies leaving a child unattended. Corrected the
+deterministic child selector so all 20 commissioned activities appear across the 16 types instead of
+silently excluding four.
+
+Rebuilt all 32 A PDFs. `npm run qa:pdf` passes all files at exactly 16 A4 pages, 0 content issues,
+embedded fonts and 1,060–1,144 KB; generator overflow checks report no clipping. `npm test` passes
+14 files / 168 tests, typecheck and script syntax are clean, and strict asset audit reports 0 issues.
+Visually reviewed complete ID/EN FCDE contact sheets plus ID FCTN, then inspected pages 8, 10, 11,
+13 and 15 at high resolution: the requested text/image gap is present, the 3+2 split is intact, and
+the newly reachable activities and safety lines render cleanly.
+
+**2026-08-27, FCDE sample feedback applied to layouts A and C.**
+Layout A page 8 now keeps a measured 6 mm gap between the final care-story paragraph and the `f6`
+illustration. Layout C now fits all five parent-care rows on page 10 instead of splitting them 3 / 2;
+the redundant page was removed and every following folio/progress tick now closes at 15/15. Rebuilt
+only the two Indonesian FCDE review samples (`fcde.pdf` and `fcde-c.pdf`), not the full 32-booklet
+set. Both generator overflow checks passed, the changed pages and the complete C contact sheet were
+visually reviewed, text extraction finds all five care titles on page 10, and 14 test files / 168
+tests plus typecheck are clean.
+
+**2026-08-27, three FCDE booklet design samples opened for comparison.**
+Started the local Vite project and opened the Indonesian Bagel booklet variants side by side:
+`fcde.pdf`, `fcde-b.pdf`, and `fcde-c.pdf`. This was a read-only comparison handoff; no PDF was
+regenerated or edited.
+
+**2026-08-23, booklet art QC'd and wired end to end (Phase 8).**
+Reviewed all 54 delivered illustrations before touching code, because a bad frame is 32 committed
+PDFs to redo. Filenames cross-check exactly against the 25 `parent-care.json` and 20
+`child-activities.json` record ids plus `f1`–`f9`; geometry is exactly 1024×768 for the 45 tiles and
+1536×768 / 1536×1024 for the bands; all 54 are 8-bit sRGB with no alpha. Read every frame on contact
+sheets and zoomed the ones most likely to break the hard rules — the candle on `t-write-dont-say` is
+unlit, the phone on `t-ten-quiet` is face-down, `p-empty-hour`'s calendar and `f5`'s fridge list carry
+no numerals, `e-old-route`'s warung has no signage, and `f2`'s book spines are blank. No people, no
+characters, no text anywhere. Also simulated the `object-fit: cover` band crops and the 34mm tile
+squint test rather than assuming they'd hold.
+
+Then implemented the pipeline. New `scripts/process-pdf-art.mjs` (`npm run assets:pdf-art`) writes
+1240px WebP masters to `public/pdf-art/**`, asserting ids against the registries and sizes against the
+brief — it exits non-zero rather than quietly writing 53 files. Set the `image` field on all 45
+records (line-targeted so the diff is 45 lines, not a reformat of both files), and taught the
+generator to resolve tiles by record id and furniture by slot id. Memoised `publicImage`: the same 54
+pieces appear in every booklet, so without it they were re-encoded 32 times.
+
+One real defect surfaced and was fixed by measurement, not guesswork. Filling the bands clipped page
+15 by 5px on the eight longest ID booklets (`**n`). Dumping the page's box geometry showed `.grow`
+resolving to 438.8px — exactly the img's intrinsic 116mm at 174mm wide. `height: 100%` on the img is
+cyclic against an auto-height figure, so it fell back to intrinsic ratio, that became the flex item's
+min-content height, and the column could no longer shrink. `.grow > .frame { flex: 1 1 0 }` breaks the
+cycle; the band still floors at `frame--wide`'s 56mm and `object-fit: cover` crops the rest.
+
+Verification: 32/32 booklets rebuilt with **no page clipping**, two consecutive rebuilds byte-identical
+(the normalizer still holds), typecheck clean, 14 files / **168 tests** passing, production build clean
+with both registries confirmed absent from the bundle, and `assets:audit --strict` at **0 issues** —
+extended with a `pdf-art` group table and a booklet-weight table, then negative-tested by renaming one
+source to confirm it actually fails. Cost of the art: each booklet went ~520 KB → ~1.1 MB, **34 MB**
+across all 32.
+
+**2026-08-23, PDF illustration correction checklist completed.**
+Reviewed all 54 source illustrations against the acceptance checklist in
+`parenteers-booklet-art-prompts.txt`, including contact sheets and a 34 mm-wide activity-tile pass.
+Regenerated three hard failures only: `p-brain-dump.png` replaced writing-like marks with broad
+abstract colour swashes; `d-leave-one-undone.png` retained the moonlit single-dish scene while
+lifting the interior back into the reference cream family; and `treasure-basket.png` replaced the
+long spoon/whisk with short, chunky objects consistent with its safety line. The final inventory is
+54/54 with zero filename or dimension errors, fully opaque pixels and 54 unique SHA-256 hashes.
+Full-resolution/contact-sheet review found no remaining obvious people, hands, faces, characters,
+text, numbers, logos, deep water, flame, blades or loose cords. Derivatives and PDFs were not
+rebuilt in this correction pass.
+
+**2026-08-23, PDF illustration Batches 4–7 completed; source-art set is 54/54.**
+Generated all twenty child-play tiles and all nine page-furniture bands with the built-in image
+generator, using `pcte-story.webp` for scene/light/paper treatment and `pcte-croquembouche.webp` for
+object rendering and cream-ground consistency. Message A's no-people/no-characters/no-text/safety
+rules were repeated on every call. Saved the project-bound sources under `images/pdf-art/play/` and
+`images/pdf-art/furniture/`, normalizing only the final pixel dimensions. A contact-sheet review
+found no obvious text, people or characters. Registry diff: zero missing or unexpected filenames;
+dimensions: zero mismatches; total: 54 PNGs with 54 unique SHA-256 hashes. No derivatives were
+created and the 32 placeholder PDFs were not rebuilt in this session. Ardy also confirmed Phase 0–6
+complete across the target devices and live at `quiz.parenteers.id`; Phase 7 remains on hold.
+
+**2026-08-23, PDF illustration care Batches 2–3 completed without visual QA.**
+Generated and saved the remaining fifteen parent-care tiles, bringing `images/pdf-art/care/` to
+25/25 source PNGs. Per Ardy's token-saving instruction, visual QA was skipped; only exact filenames
+and dimensions were checked. All 25 care files are exactly 1024×768. Batch 4 (play tiles) is next.
+
+**2026-08-23, PDF illustration Batch 1 completed; manual visual QA deferred.**
+Generated and saved all ten Batch 1 parent-care source PNGs under `images/pdf-art/care/`. Replaced
+`p-brain-dump.png` and `c-say-dont-know.png` with revised abstract-mark versions, then verified all
+ten files are exactly 1024×768. Per Ardy's instruction, no further visual QA was performed; Ardy
+will review manually. Batch 2 has not started.
+
+**2026-08-22 (latest), Current PDF ownership and audio default reconciled.**
+Ardy clarified two decisions. First, the PDF is already built and stays usable with placeholder art;
+the next pass is an illustration revision. Ardy will provide the exact generation prompt, then GPT
+creates all 54 images in the primary session before the derivative and 32-PDF rebuild. Updated the
+Phase 8 plan, art contract, data spec, current status and blocker wording; the earlier embedded
+prompt draft is now explicitly reference-only. Also removed the stale 14/15-page, 53-image and PDF
+dock claims from current-status surfaces. Historical session entries below remain unchanged as a
+record of what was believed at the time.
+
+Second, fresh visitors default to sound **on**, subject to the browser autoplay gate; a persisted
+explicit off remains authoritative. Synchronized `AGENTS.md`, `CLAUDE.md` and the architecture map
+with the already-correct store, tests, `plan.md` and `conventions.md`. Documentation-only except for
+correcting the PDF generator's stale 14-page/53-art comments; no runtime behavior changed.
+Verification: **14 test files / 168 tests**, typecheck clean, asset audit 0 issues, normalized
+`AGENTS.md`/`CLAUDE.md` diff empty and `git diff --check` clean.
 
 **2026-08-22 (later), Checklist extended, care opener rewritten, art handover written.**
 Three asks after Ardy tested the booklet on a phone.

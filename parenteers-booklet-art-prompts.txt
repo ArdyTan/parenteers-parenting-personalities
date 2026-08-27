@@ -1,0 +1,237 @@
+============================================================================
+PARENTING BAKES — BOOKLET ILLUSTRATION PROMPTS
+54 images for the per-personality PDF booklet
+Generate with: GPT Image 2 (gpt-image-2)
+Full brief: docs/personality-pdf-art-brief.md in the project repo
+============================================================================
+
+HOW TO USE THIS FILE
+
+  1. Send MESSAGE A once, with the two reference images attached.
+  2. Send each BATCH below as its own message, in order. Seven batches.
+  3. Use MESSAGE C to fix any single image that comes back wrong.
+  4. Save the results as {filename}.png into:
+         images/pdf-art/care/       (batches 1-3)
+         images/pdf-art/play/       (batches 4-5)
+         images/pdf-art/furniture/  (batches 6-7)
+     The filenames must match exactly — the booklet looks them up by name.
+
+REFERENCE IMAGES TO ATTACH (from the project repo)
+
+     public/story-illustrations/pcte-story.webp
+     public/characters/pcte-croquembouche.webp
+
+
+════════════════════════════════════════════════════════════════════════════
+MESSAGE A — SESSION OPENER (send once, attach both reference images)
+════════════════════════════════════════════════════════════════════════════
+
+I'm generating illustrations for a printed parenting booklet. I'll send them to you in
+batches; keep the style identical across every single one.
+
+The two attached images are the style reference. Match their illustration style, palette,
+light and paper texture exactly. Do not copy their subjects or their characters.
+
+Style, for every image in this job:
+Soft watercolour and gouache children's-book illustration on a warm cream ground (#F7EEE0).
+No hard outlines. Visible gentle paper grain. Soft ochre and honey light with dusty-blue and
+terracotta accents. A cozy Indonesian home, rendered warm and slightly wobbly rather than
+photo-real. Calm, unhurried composition with generous negative space.
+
+Hard rules, for every image in this job:
+1. No people — no hands, arms, faces or silhouettes.
+2. No characters — no animals or objects with faces.
+3. No text, letters, numbers, logos or signage anywhere, including on calendars, book
+   spines, packaging and labels.
+4. Objects and rooms only.
+5. Keep the subject centred with quiet edges; these get cropped to a band in print.
+6. Nothing unsafe on camera: no open flame, no blades, no deep water, no loose cords.
+
+Confirm you've got it and I'll send the first batch.
+
+
+════════════════════════════════════════════════════════════════════════════
+THE SEVEN BATCHES
+════════════════════════════════════════════════════════════════════════════
+
+────────────────────────────────────────────────────────────────────────────
+BATCH 1  ·  parent-care tiles 1-10  -> images/pdf-art/care/  ·  10 images  ·  1024x768
+────────────────────────────────────────────────────────────────────────────
+
+Batch 1. Same style and same rules as before. Generate these at 1024x768, one image each:
+
+1. care-hot-drink — A full mug on a sunlit kitchen table, steam curling upward, a folded
+   cloth beside it. Nothing else in progress.
+2. p-brain-dump — An open notebook covered in loose illegible handwriting marks, a pen
+   laid across it, warm lamp light from the left.
+3. p-one-unplanned — House keys and one pair of sandals turned at an unexpected angle by
+   an open door, an unplanned side path visible beyond.
+4. p-empty-hour — A paper wall calendar dense with soft abstract marks, one single block
+   left clean and cream and empty.
+5. f-one-anchor — One mug and spoon set out alone on an otherwise clear counter for
+   tomorrow, pale dawn light.
+6. f-decide-once — Seven small paper notes pegged in a neat row on a string, each
+   carrying a simple food doodle.
+7. f-recovery-basket — A woven basket on a low table holding a book, hand cream, a
+   charger cable and a wrapped snack.
+8. c-hand-the-wheel — A dining table with one empty chair pulled out at the head and a
+   second plate already set at it.
+9. c-say-dont-know — A half-written list on a table with its final line deliberately
+   blank, pen capped and set down.
+10. c-not-my-job — Three small paper slips on a windowsill under a smooth stone, their
+   edges lifting in a breeze.
+
+────────────────────────────────────────────────────────────────────────────
+BATCH 2  ·  parent-care tiles 11-20 -> images/pdf-art/care/  ·  10 images  ·  1024x768
+────────────────────────────────────────────────────────────────────────────
+
+Batch 2. Same style and same rules as before. Generate these at 1024x768, one image each:
+
+1. g-one-for-you — One favourite mug pulled forward from a shelf of identical others,
+   caught in a shaft of light.
+2. g-practice-limit — A doorway with a soft curtain half-drawn, warm light on one side
+   and cool shade on the other.
+3. g-tend-something — A watering can tipping into a potted plant on a windowsill,
+   droplets catching the light.
+4. t-ten-quiet — Headphones resting unplugged beside a phone lying face-down, still
+   evening light.
+5. t-write-dont-say — A folded sheet of paper and an unsealed envelope beside a low
+   candle, nothing addressed.
+6. t-long-exhale — An open window with a light curtain lifting outward in six soft
+   ripples.
+7. d-sit-no-task — An armchair with the cushion still dented and a closed book on the
+   arm, nothing in progress.
+8. d-leave-one-undone — One plate alone in the sink, the kitchen light off, moonlight
+   through the window instead.
+9. d-move-for-nothing — Slippers kicked apart mid-kitchen floor, a rug slightly rucked,
+   an old radio switched on.
+10. e-old-route — A familiar street corner seen from a doorway at dusk — the same
+   warung, the same tree.
+
+────────────────────────────────────────────────────────────────────────────
+BATCH 3  ·  parent-care tiles 21-25 -> images/pdf-art/care/  ·  5 images  ·  1024x768
+────────────────────────────────────────────────────────────────────────────
+
+Batch 3. Same style and same rules as before. Generate these at 1024x768, one image each:
+
+1. e-sit-still-outside — A low terrace step with a cup on it, potted plants, and a long
+   open view; nothing moving.
+2. e-twenty-earlier — A bedside table with the lamp turned low, a small clock and a book
+   set down early.
+3. n-one-step-out — A front door ajar with warm afternoon light beyond it and one pair
+   of sandals outside.
+4. n-final-check — A night hallway with one lamp still on and a bedroom door gently
+   closed, everything at rest.
+5. n-warm-five — A folded warm towel on warm tiles, steam drifting in from just out of
+   frame.
+
+────────────────────────────────────────────────────────────────────────────
+BATCH 4  ·  child-activity tiles 1-10  -> images/pdf-art/play/  ·  10 images  ·  1024x768
+────────────────────────────────────────────────────────────────────────────
+
+Batch 4. Same style and same rules as before. Generate these at 1024x768, one image each:
+
+1. tummy-reach — A soft wooden rattle resting on a firm play mat just beyond the rumpled
+   edge of a blanket.
+2. texture-tour — Five household textures as a row of small vignettes: curtain, window
+   pane, wooden spoon, leaf, towel.
+3. treasure-basket — A shallow woven basket on a rug holding a wooden spoon, a whisk, a
+   fabric scrap, a brush, a pine cone and a silicone cup.
+4. peekaboo-scarf — A light scarf caught mid-air, half-lifted above a cushion, soft
+   window light behind it.
+5. post-the-lids — A cardboard box with one round hole cut in its lid, jar lids and
+   wooden rings scattered beside it.
+6. sponge-transfer — Two shallow bowls on a folded towel, one sponge dripping in the gap
+   between them.
+7. tape-line — A masking-tape line curving across a wooden floor, a small pair of socks
+   at its start.
+8. laundry-hand-off — A laundry basket half-loaded with folded clothes, one small sock
+   on the floor beside it.
+9. pouring-jug — A small jug mid-pour over two cups on a wooden tray, a folded cloth
+   waiting at the edge.
+10. wash-one-cup — A low washing station: a bowl of water, a small sponge, one cup, a
+   folded towel and a wooden stool.
+
+────────────────────────────────────────────────────────────────────────────
+BATCH 5  ·  child-activity tiles 11-20 -> images/pdf-art/play/  ·  10 images  ·  1024x768
+────────────────────────────────────────────────────────────────────────────
+
+Batch 5. Same style and same rules as before. Generate these at 1024x768, one image each:
+
+1. sort-your-way — Large buttons, bottle caps, spoons and blocks spread on a floor
+   between two empty bowls, grouped by no obvious rule.
+2. calm-basket-together — A basket holding a soft toy, a child's crayon drawing, a
+   squeeze ball and a folded blanket.
+3. special-play-time — A simple room corner set with paper, crayons, a doll, blocks and
+   cars; a small clock nearby; a phone left face-down outside the doorway.
+4. draw-and-reflect — A child's crayon drawing in progress with crayons scattered around
+   it, no adult marks anywhere on the page.
+5. pretend-kitchen — Toy pots, cups and spoons arranged as a tiny restaurant table
+   setting.
+6. wash-the-toys — A basin of soapy water with washable toys and a soft brush, a towel
+   spread beside it.
+7. treasure-map — A child's crayon map of a house marked with an X, one small object
+   waiting beside it.
+8. obstacle-course — Cushions, a chair, tape and a blanket arranged as a route across a
+   living-room floor.
+9. turn-story — A bedside lamp, two pillows and an open book whose pages are blank.
+10. one-real-step — A child-sized wooden spoon and a bowl on a low kitchen counter, torn
+   lettuce beside them.
+
+────────────────────────────────────────────────────────────────────────────
+BATCH 6  ·  page furniture, slim bands -> images/pdf-art/furniture/  ·  3 images  ·  1536x768
+────────────────────────────────────────────────────────────────────────────
+
+Batch 6. Same style and same rules as before. Generate these at 1536x768, one image each:
+
+1. f1 — Four soft watercolour ribbons in warm ochre, terracotta, dusty blue and honey,
+   overlapping gently. Fully abstract.
+2. f4 — A soft sunburst of warm rays behind a still life of everyday parenting objects —
+   a bag, a cup, a small shoe.
+3. f5 — A small blank paper list pegged to a fridge door with three empty hand-drawn
+   boxes. No writing.
+
+────────────────────────────────────────────────────────────────────────────
+BATCH 7  ·  page furniture, wide bands -> images/pdf-art/furniture/  ·  6 images  ·  1536x1024
+────────────────────────────────────────────────────────────────────────────
+
+Batch 7. Same style and same rules as before. Generate these at 1536x1024, one image each:
+
+1. f2 — A quiet corner of a family home with rain on the window and one lamp on. Nobody
+   there.
+2. f3 — A kitchen at the end of a long day: everything slightly out of place, forgiving
+   warm light.
+3. f6 — An empty chair by a window with clean morning light falling across the seat.
+4. f7 — A low shelf with a few toys spaced neatly and generously — a prepared
+   environment, waiting.
+5. f8 — A room at rest after play: cushions back on the sofa, one toy left out on
+   purpose, late soft light.
+6. f9 — A bakery-warm still life: a folded booklet, a mug, and a doorway of light
+   beyond.
+
+
+════════════════════════════════════════════════════════════════════════════
+MESSAGE C — CORRECTION (use per image, as needed)
+════════════════════════════════════════════════════════════════════════════
+
+Regenerate [filename] only. Same style and rules. It [what went wrong — e.g. "has writing
+on the calendar", "shows a hand", "reads too dark and saturated"]. Keep everything else
+about it.
+
+If a WHOLE batch drifts, attach one approved image from that batch as a THIRD reference
+image and resend the batch. Consistency across all 54 matters more than any single image
+being perfect.
+
+
+════════════════════════════════════════════════════════════════════════════
+CHECK BEFORE ACCEPTING A BATCH
+════════════════════════════════════════════════════════════════════════════
+
+  [ ] No people, hands, faces or characters in any frame.
+  [ ] NO TEXT, numbers or logos — check calendars, book spines, packaging, labels.
+      This is the most common failure of this model.
+  [ ] Cream ground reads as the same family as the reference images.
+  [ ] Subject sits in the centre; edges quiet enough to crop to a band.
+  [ ] The 45 activity tiles print at 34mm wide — squint at that size before accepting.
+  [ ] Nothing contradicts a safety line: no deep water, flame, blades or loose cords.
+  [ ] Filenames match exactly, hyphens included.

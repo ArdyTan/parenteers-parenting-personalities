@@ -1,6 +1,6 @@
 # Parenting Bakes — Asset Intake and Order
 
-**Status:** scanned, reconciled, and implemented for Phase 4 on 2026-07-29.
+**Status:** scanned and reconciled through the finalized Phase 8 booklet assets on 2026-08-27.
 
 This file is authoritative for the source-art inventory, folder roles, and image order. Runtime filenames and the 16-type registry remain authoritative in `data-spec.md`.
 
@@ -16,6 +16,7 @@ This file is authoritative for the source-art inventory, folder roles, and image
 | `scene-art/` | Phase 4.5 text-free question art plus retained checkpoint sources | Twelve normalized 1536×1024 question PNGs feed active 720×480 WebPs; two 600×900 checkpoint WebPs remain as inactive rollback assets |
 | `Pastries-personalities/` | Active 16-character source set | Full-bleed 900×900 result WebPs plus 360×360 shelf WebPs in `public/characters/` |
 | `story-illustrations/` | Sixteen 1536×1024 narrative sources, one per personality | `npm run assets:stories` builds matching 1200×800 WebPs in `public/story-illustrations/`; each appears after story paragraph two |
+| `pdf-art/` | Source home for the 54 finalized booklet illustrations | 25 care + 20 play + 9 furniture PNGs; `npm run assets:pdf-art` derives the matching committed WebPs in `public/pdf-art/` |
 | `web-component/` | Supporting 404 art and preloader motion reference | 404 derivative in `public/art/`; MP4 retained as reference-only |
 | `old images/` | Superseded first delivery plus the archived image-prompt document | Archive only; never use as the active source |
 
@@ -134,6 +135,15 @@ in `src/data/products.json`. They are exact runtime copies of the matching produ
 tenth product, and is intentionally excluded from the rail. English renders a localized Coming Soon
 panel instead of these Indonesian product cards. Every Indonesian card and its CTA target
 `https://parenteers.id/` through `config.links.activities`.
+
+## 7. PDF booklet art (finalized 2026-08-27)
+
+All 54 commissioned sources are installed under `images/pdf-art/{care,play,furniture}/`: 25
+parent-care tiles, 20 child-activity tiles and 9 furniture bands. `npm run assets:pdf-art` validates
+their ids and dimensions, then writes the optimized WebPs under `public/pdf-art/`; `npm run
+assets:pdf` embeds those derivatives into the 32 bilingual A-layout booklets. The exact filename,
+size and QC contract lives in `docs/personality-pdf-art-brief.md`. The historical expanded prompt is
+retained at the repository root as `parenteers-booklet-art-prompts.txt` for correction work only.
 
 ## Production rules
 
