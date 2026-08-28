@@ -17,7 +17,7 @@
 | 5.5 — Brilliant-spec interface revision | ✅ done; headless and real-device review complete (confirmed by Ardy 2026-08-23) |
 | 6 — QA hardening | ✅ done; Ardy confirmed testing across the target devices (2026-08-23) |
 | 7 — Launch extras (optional) | 🟨 sound layer shipped early (2026-08-02); analytics, founder-note flag and Awwwards assets remain |
-| 8 — Personality PDF booklet | 🟨 A is the sole final template; 32/32 illustrated booklets and `qa:pdf` pass. Phase-8 `qa:phase55` assertions plus 8.5 deployment/WebView confirmation remain |
+| 8 — Personality PDF booklet | 🟨 A is the sole final template; 32/32 illustrated booklets and `qa:pdf` pass; deployed 2026-08-28. Phase-8 `qa:phase55` assertions plus Instagram WebView confirmation remain |
 
 ## Next action
 
@@ -27,8 +27,8 @@ and `npm run qa:pdf` enforces their file set, 16-page/A4 contract, 1.2 MB ceilin
 bilingual content, complete activity selection, permission lines and embedded fonts. B/C review
 artifacts were removed. The Result still exposes one PDF section while the dock remains save-only.
 
-Next: add the remaining Phase 8 assertions to `qa:phase55`, then deploy the updated PDFs and confirm
-opening in the Instagram in-app browser. The four booklet launch decisions are closed on the
+Next: add the remaining Phase 8 assertions to `qa:phase55`, then confirm the deployed booklet opens
+in the Instagram in-app browser. The four booklet launch decisions are closed on the
 implemented defaults: quiz-root QR, general `parenteers.id` CTA, deterministic selections, and ID +
 EN together. Phase 0–6 are complete by Ardy's confirmation; Phase 7 remains intentionally on hold.
 
@@ -52,6 +52,17 @@ EN together. Phase 0–6 are complete by Ardy's confirmation; Phase 7 remains in
 - [ ] Any overrides to plan.md §14 decision defaults
 
 ## Session log (newest first)
+
+**2026-08-28, final layout-A booklets committed, pushed and deployed.**
+Committed the sole A generator, all 54 optimized illustrations and all 32 rebuilt ID/EN booklets as
+`8f43ecd`; pushed `main`, and GitHub CI run `33089911498` passed. Authenticated Wrangler against the
+correct Cloudflare account (`Ardy Tanto`) without persisting its account id in the repository, then
+deployed 272 static assets: 106 uploaded and 128 reused. Cloudflare activated Worker version
+`532b8dba-725e-4d6b-9d00-e61ee73ab744` on both `parenting-bakes.ardy-tanto.workers.dev` and the
+`quiz.parenteers.id` custom domain. Live ID and EN FCDE PDFs return HTTP 200 as `application/pdf`;
+each production SHA-256 is byte-identical to its committed file. The untracked `public/_figma/`
+scratch directory was excluded from the build and preserved locally. Instagram WebView and physical
+iOS review remain external acceptance checks.
 
 **2026-08-27, layout A finalized; B/C retired; content and safety audited.**
 Kept A's 16-page structure and the intentional 3+2 parent-care split. Removed the B/C sample PDFs
