@@ -17,7 +17,7 @@
 | 5.5 — Brilliant-spec interface revision | ✅ done; headless and real-device review complete (confirmed by Ardy 2026-08-23) |
 | 6 — QA hardening | ✅ done; Ardy confirmed testing across the target devices (2026-08-23) |
 | 7 — Launch extras (optional) | 🟨 sound layer shipped early (2026-08-02); analytics, founder-note flag and Awwwards assets remain |
-| 8 — Personality PDF booklet | 🟨 A is the sole final template; the approved Saweria closing is rebuilt into all 32 ID/EN booklets and the shared Result component covers all 16 types. Changes were committed and pushed 2026-09-08; deploy and real-device WebView sign-off remain |
+| 8 — Personality PDF booklet | 🟨 A is the sole final template; the approved Saweria closing is live across all 32 ID/EN booklets and the shared Result component covers all 16 types. Worker version `aa06f077-1bae-4378-88ee-e71198542425` deployed and hash-verified 2026-09-08; real-device WebView sign-off remains |
 
 ## Next action
 
@@ -33,9 +33,9 @@ also rebuilt: page 16 has one focused Saweria QR and a lightweight icon row for 
 `parenteers.id`, with no quiz QR or quiz URL. `qa:pdf`, the strict asset audit, the production build,
 and normal plus reduced-motion `qa:phase55` all pass; the build contains all 16 result routes. The
 support path uses the public `saweria.co/parenteers` URL and a committed local QR, never the widget
-stream key. The release changes are committed and pushed to `origin/main`. Next: with explicit
-permission, deploy, then confirm the Result and booklet in the Instagram in-app browser on Samsung
-plus one iOS device.
+stream key. The release changes are committed on `origin/main` and deployed to Cloudflare Workers.
+Next: confirm the Result and booklet in the Instagram in-app browser on Samsung plus one iOS
+device.
 Phase 0–6 are complete by Ardy's confirmation; Phase 7 remains intentionally on hold.
 
 ## Waiting on user (plan.md §15)
@@ -58,6 +58,21 @@ Phase 0–6 are complete by Ardy's confirmation; Phase 7 remains intentionally o
 - [ ] Any overrides to plan.md §14 decision defaults
 
 ## Session log (newest first)
+
+**2026-09-08, Saweria Result and 32 revised booklets deployed to Cloudflare Workers.**
+Validated the authenticated account as `Ardy Tanto`, ran the release configuration gate and
+production build, then deployed Worker version `aa06f077-1bae-4378-88ee-e71198542425` to both
+`parenting-bakes.ardy-tanto.workers.dev` and `quiz.parenteers.id`. Live verification compared every
+production PDF against its local source: 32 checked, 0 hash mismatches. The live Saweria QR is also
+byte-identical, the home page references the new JS bundle, the PGDE route carries its type-specific
+OG URL, and both Worker endpoints return 200.
+
+Protected the unrelated user-owned `public/_figma/` throughout the release by moving it outside the
+public tree for the build and restoring it afterward. It is absent from `dist`; requesting its old
+path on the SPA returns the generic HTML shell rather than the private PNG. The generated OG diffs
+were restored after deployment. No dependency update was accepted despite Wrangler advertising a
+newer version. Remaining acceptance work is the physical Instagram WebView check on Samsung and one
+iOS device.
 
 **2026-09-08, Fedora launcher and Saweria release changes committed and pushed.**
 Revalidated the intended release scope before committing: launcher shell syntax, 14 test files /
