@@ -6,6 +6,8 @@ coverage/
 .cache/
 .tmp/
 artifacts/
+output/
+public/_figma/
 tmp/
 temp/
 *.tsbuildinfo

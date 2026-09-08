@@ -59,6 +59,12 @@ Phase 0–6 are complete by Ardy's confirmation; Phase 7 remains intentionally o
 
 ## Session log (newest first)
 
+**2026-09-08, local design and review artifacts excluded from Git.**
+Added explicit ignore rules for the local `public/_figma/` scratch exports and `output/` review
+artifacts, then removed the redundant 71 MB `images/image-backup.zip` from the tracked working tree.
+The source artwork, production derivatives and committed PDF booklets remain untouched. The ZIP is
+still recoverable from Git history; no commit, push, history rewrite or repository cleanup ran.
+
 **2026-09-08, Saweria Result and 32 revised booklets deployed to Cloudflare Workers.**
 Validated the authenticated account as `Ardy Tanto`, ran the release configuration gate and
 production build, then deployed Worker version `aa06f077-1bae-4378-88ee-e71198542425` to both
