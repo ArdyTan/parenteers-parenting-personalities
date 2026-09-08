@@ -17,7 +17,7 @@
 | 5.5 — Brilliant-spec interface revision | ✅ done; headless and real-device review complete (confirmed by Ardy 2026-08-23) |
 | 6 — QA hardening | ✅ done; Ardy confirmed testing across the target devices (2026-08-23) |
 | 7 — Launch extras (optional) | 🟨 sound layer shipped early (2026-08-02); analytics, founder-note flag and Awwwards assets remain |
-| 8 — Personality PDF booklet | 🟨 A is the sole final template; 32/32 illustrated booklets and `qa:pdf` pass; deployed 2026-08-28. Phase-8 `qa:phase55` assertions plus Instagram WebView confirmation remain |
+| 8 — Personality PDF booklet | 🟨 A is the sole final template; the approved Saweria closing is rebuilt into all 32 ID/EN booklets and the shared Result component covers all 16 types. Changes were committed and pushed 2026-09-08; deploy and real-device WebView sign-off remain |
 
 ## Next action
 
@@ -27,10 +27,16 @@ and `npm run qa:pdf` enforces their file set, 16-page/A4 contract, 1.2 MB ceilin
 bilingual content, complete activity selection, permission lines and embedded fonts. B/C review
 artifacts were removed. The Result still exposes one PDF section while the dock remains save-only.
 
-Next: add the remaining Phase 8 assertions to `qa:phase55`, then confirm the deployed booklet opens
-in the Instagram in-app browser. The four booklet launch decisions are closed on the
-implemented defaults: quiz-root QR, general `parenteers.id` CTA, deterministic selections, and ID +
-EN together. Phase 0–6 are complete by Ardy's confirmation; Phase 7 remains intentionally on hold.
+The approved Result booklet reward and final Saweria support card are implemented locally across the
+shared Result component, which serves all 16 personality routes. The 32 production ID/EN PDFs are
+also rebuilt: page 16 has one focused Saweria QR and a lightweight icon row for `@parenteers` plus
+`parenteers.id`, with no quiz QR or quiz URL. `qa:pdf`, the strict asset audit, the production build,
+and normal plus reduced-motion `qa:phase55` all pass; the build contains all 16 result routes. The
+support path uses the public `saweria.co/parenteers` URL and a committed local QR, never the widget
+stream key. The release changes are committed and pushed to `origin/main`. Next: with explicit
+permission, deploy, then confirm the Result and booklet in the Instagram in-app browser on Samsung
+plus one iOS device.
+Phase 0–6 are complete by Ardy's confirmation; Phase 7 remains intentionally on hold.
 
 ## Waiting on user (plan.md §15)
 
@@ -48,10 +54,100 @@ EN together. Phase 0–6 are complete by Ardy's confirmation; Phase 7 remains in
 - [x] Phase 0 deployment/build setup confirmed complete by Ardy on 2026-08-23; the site is live at `quiz.parenteers.id`
 - [x] Official Parenteers palette, logo set, and favicon delivered and applied (2026-07-18); existing fonts retained because the brand pack contains no typography specification
 - [x] **All 54 PDF booklet illustrations generated, QC'd and installed** (2026-08-23). Care 25/25, play 20/20, furniture 9/9; inventory, dimensions, hashes and a full visual review against the art brief §5/§9 all pass. Derivatives and the 32-PDF rebuild are done — nothing outstanding here.
-- [x] **Four PDF booklet decisions closed 2026-08-27:** page-16 QR → quiz root; closing CTA → `parenteers.id`; deterministic five-per-type picks; ID and EN ship together. Recorded in `docs/personality-pdf-plan.md` §15.
+- [x] **PDF closing decision revised 2026-09-03:** page 16 uses one Saweria QR; the quiz QR is removed, and Instagram plus `parenteers.id` appear as icon links. Deterministic picks and ID + EN remain unchanged. Recorded in `docs/personality-pdf-plan.md` §15.
 - [ ] Any overrides to plan.md §14 decision defaults
 
 ## Session log (newest first)
+
+**2026-09-08, Fedora launcher and Saweria release changes committed and pushed.**
+Revalidated the intended release scope before committing: launcher shell syntax, 14 test files /
+168 tests, typecheck, all 32 production PDFs, strict asset inventory and the production build are
+green. Kept the executable Fedora launcher in its own small commit, then committed the shared
+Result support UI, bilingual copy, static QR, generator/QA contracts, documentation and all 32
+rebuilt production booklets together. Pushed both commits to `origin/main`. Deliberately left the
+local review artifacts in `output/` and the unrelated user-owned `public/_figma/` directory
+untracked; no Cloudflare deployment was performed.
+
+**2026-09-04, approved Saweria treatment rolled out to every Result and production PDF.**
+Applied the reviewed design to the shared Result component used by all 16 personality routes and
+rebuilt all 32 production booklets across ID and EN. Page 16 now has one Saweria QR, localized
+value-and-impact copy, and exactly three link annotations: Saweria, Instagram `@parenteers`, and
+`parenteers.id`; the quiz QR and quiz URL are absent. Rendered and visually inspected production
+PGDE page 16 in both languages. `qa:pdf` passes all 32 files at 16 A4 pages, 13 embedded fonts,
+three closing links and 1,076–1,157 KB each, with no clipping or missing bilingual content.
+
+The Result keeps its QR and orange CTA vertically stacked, retains one save-image sticky action,
+and exposes no widget stream key. Verification passes: 14 test files / 168 tests, typecheck,
+production build with all 16 result routes, strict asset audit with zero issues, and normal plus
+reduced-motion browser QA at 390×844 and the 390×720 short view with zero failures or runtime
+errors. No commit, deploy, or public upload was performed.
+
+**2026-09-03, support copy tightened around value and impact.**
+Selected a marketing-focused combination of Ardy's options 2 and 1: first acknowledge the value the
+reader received (“Kalau ini bermanfaat buat kamu…”), then name the concrete outcome (“Dukunganmu
+membantu Parenteers terus membuat produk dan pengalaman yang bermanfaat untuk lebih banyak orang
+tua”), with the direct CTA “Dukung Parenteers”. Kept `kamu` instead of formal `Anda` to match the
+product's conversational register; did not use the pantun at this conversion point because its
+indirect future promise is less scannable and less specific about impact. Added equivalent EN copy
+and a shorter PDF line carrying the same promise.
+
+Regenerated only the Indonesian PGDE review artifact; all 32 production PDFs remain untouched. The
+sample is 16-page A4 and 1,122,864 bytes with no clipping and exactly the intended Saweria,
+Instagram and Parenteers web annotations. Visually reviewed the latest Result and page 16 renders.
+Tests (168), typecheck, production build, and normal plus reduced-motion `qa:phase55` all pass with
+no runtime errors, sticky overlap or horizontal overflow. Batch rebuild still awaits approval.
+
+**2026-09-03, Saweria focus pass applied to the web and one PDF sample.**
+Applied Ardy's review without touching the 32 production booklets. On Result, changed the support
+action from a two-column row to a strict vertical sequence: 168px QR, scan hint, full-width orange
+CTA and readable URL. Added browser assertions for QR size, vertical ordering and CTA width; normal
+and reduced-motion `qa:phase55` pass with no overlap, runtime errors or horizontal overflow.
+
+On PDF page 16, removed the quiz QR and quiz URL entirely. The single Saweria QR now owns the focal
+card; below it, the existing Instagram and web SVG icons link to `@parenteers` and `parenteers.id`.
+Regenerated only `output/pdf/pgde-saweria-review.pdf`: 16-page A4, 1,122,788 bytes, no clipping,
+embedded fonts and exactly three page-16 link annotations (Saweria, Instagram and Parenteers web).
+Rendered and visually inspected the latest page 16. Tests (168), typecheck, production build and
+the unchanged 32-file `qa:pdf` pass. Batch rebuild still waits for explicit sample approval.
+
+**2026-09-03, Saweria support implemented; one PDF review sample only.**
+Added a final optional-support card to the Result in ID and EN: warm-tan field, direct orange Saweria
+link, secondary local QR, explicit no-pressure copy, and enough bottom clearance for the existing
+single save-image dock. The QR and CTA target the public `https://saweria.co/parenteers` page; the
+Saweria widget URL and its stream key are not shipped in markup, assets or PDFs. Extended config
+typing/validation, exact i18n inventory and `qa:phase55` coverage for placement, localization,
+external-link safety, QR loading, one-action dock, token non-exposure, overflow and bottom overlap.
+
+Updated page 16 of the Layout-A generator to retain the general `parenteers.id` activity CTA and
+show two clearly labelled QR cards: quiz sharing and optional Saweria support. Added a guarded
+`--output` review mode that requires one language and one slug, then generated only the Indonesian
+PGDE sample at `output/pdf/pgde-saweria-review.pdf`; none of the 32 production PDFs changed. The
+sample is 16-page A4, 1,137,205 bytes, has embedded fonts, extractable copy and zero clipped pages;
+page 16 was rendered and reviewed at full resolution, with all three URL annotations present.
+Verification: 14 test files / 168 tests, typecheck, production build, unchanged 32-file `qa:pdf`,
+and normal plus reduced-motion `qa:phase55` all pass with no runtime errors or horizontal overflow.
+Awaiting Ardy's visual approval before the 32-file rebuild.
+
+**2026-09-03, Result booklet reward promoted visually.**
+Reworked “Simpan profil lengkapnya” into a centered, spacious reward section with the current
+personality illustration above its title and a full brand-blue, borderless CTA carrying the standard
+orange expression accent. Corrected its stale 14-page copy to the shipped 16 pages in ID and EN.
+Kept the sticky dock intentionally focused on the save-image/Story action; PDF opening remains the
+single WebView-safe link in its dedicated section. Added `qa:phase55` coverage for the PDF image,
+spacing, CTA treatment, link contract, section order, bilingual page count, overflow and one-action
+dock. Warmed the sticky save button's inner outline from stark white to the same cream as the
+editorial canvas, preserving separation over blue content without a sticker-like edge. Both motion
+modes pass every new Result/PDF assertion. Also pinned the desktop pointer signals
+inside the QA harness after current headless Chrome stopped exposing `(pointer: fine)` consistently,
+which had prevented its existing 820px stacked-gate case from mounting the gate at all. Final checks:
+14 test files / 168 tests, typecheck, production build, and the complete normal plus reduced-motion
+`qa:phase55` suites all pass with no runtime errors or horizontal overflow. The two PDF captures were
+reviewed visually at full resolution.
+
+**2026-09-03, Fedora app-server launcher added.**
+Added executable `Start App Server.sh` as the Fedora counterpart to the Windows BAT launcher. It
+starts Vite on port 5173, opens the default browser, detects an already-running project server, and
+supports `PARENTING_BAKES_SKIP_BROWSER`. Shell syntax and the executable bit were verified.
 
 **2026-08-28, final layout-A booklets committed, pushed and deployed.**
 Committed the sole A generator, all 54 optimized illustrations and all 32 rebuilt ID/EN booklets as

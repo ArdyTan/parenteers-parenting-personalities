@@ -62,6 +62,8 @@ export const REQUIRED_I18N_KEYS = [
   'result.your_code', 'result.softsell_body', 'result.scroll_hint',
   // Phase 8: the downloadable booklet's entry points on the Result.
   'result.pdf_title', 'result.pdf_body', 'result.pdf_cta',
+  'result.support_eyebrow', 'result.support_title', 'result.support_body',
+  'result.support_cta', 'result.support_qr_hint',
   'gallery.title', 'gallery.your_type_badge', 'gallery.send_quiz', 'gallery.back_to_result',
   'gallery.intro',
   'share.title', 'share.caption_template', 'share.whatsapp', 'share.instagram', 'share.other',
@@ -78,14 +80,15 @@ export const REQUIRED_I18N_KEYS = [
   'pdf.care_title', 'pdf.care_intro', 'pdf.play_title', 'pdf.play_intro',
   'pdf.age_label', 'pdf.time_label', 'pdf.minutes_suffix', 'pdf.materials_label',
   'pdf.safety_label', 'pdf.method_label', 'pdf.steps_label', 'pdf.skip_permission',
-  'pdf.qr_hint', 'pdf.closing_title', 'pdf.closing_body', 'pdf.image_placeholder',
+  'pdf.support_label', 'pdf.support_hint',
+  'pdf.closing_title', 'pdf.closing_body', 'pdf.image_placeholder',
   'pdf.weekly_extra_label', 'pdf.care_story_1', 'pdf.care_story_2', 'pdf.care_story_3',
   'pdf.care_drain_label', 'pdf.care_howto_label', 'pdf.care_howto', 'pdf.care_permission',
   'pdf.drain_P', 'pdf.drain_F', 'pdf.drain_C', 'pdf.drain_G',
   'pdf.drain_T', 'pdf.drain_D', 'pdf.drain_E', 'pdf.drain_N',
   'meta.title', 'meta.description', 'meta.og_title', 'meta.og_description',
   'a11y.progressbar', 'a11y.type_illustration_alt', 'a11y.lang_switch', 'a11y.loading',
-  'a11y.sound_on', 'a11y.sound_off',
+  'a11y.sound_on', 'a11y.sound_off', 'a11y.saweria_qr_alt',
   'activity.P', 'activity.F', 'activity.C', 'activity.G', 'activity.T', 'activity.D',
   'activity.E', 'activity.N',
 ] as const;
@@ -426,7 +429,7 @@ function validateConfig(
   const utm = asRecord(config.utm, 'config.utm', errors);
 
   if (links) {
-    for (const key of ['activities', 'instagram', 'site']) {
+    for (const key of ['activities', 'instagram', 'saweria', 'site']) {
       expectNonEmptyString(links[key], `config.links.${key}`, errors);
     }
   }

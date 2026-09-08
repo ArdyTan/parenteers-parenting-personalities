@@ -1267,6 +1267,72 @@
     line-height: var(--line-height-ref-body);
   }
 
+  /* The booklet is the result's personal take-home reward. Its character sits
+     on a soft pastry-plate field, giving this one section a ceremonial pause
+     without introducing another bordered card into the editorial flow. */
+  .scene--result .result__pdf {
+    position: relative;
+    justify-items: center;
+    gap: 22px;
+    margin-block: 28px 38px;
+    padding-block: 14px 24px;
+    isolation: isolate;
+    text-align: center;
+  }
+
+  .scene--result .result__pdf-portrait {
+    position: relative;
+    display: grid;
+    inline-size: min(62cqi, 232px);
+    aspect-ratio: 1;
+    place-items: center;
+  }
+
+  .scene--result .result__pdf-portrait::before {
+    position: absolute;
+    inset: 12%;
+    z-index: -1;
+    border-radius: 48% 52% 46% 54%;
+    background: var(--color-capsule-warm);
+    box-shadow: 0 0 0 10px rgb(232 104 17 / 7%);
+    content: "";
+    rotate: -6deg;
+  }
+
+  .scene--result .result__pdf-illustration {
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: contain;
+  }
+
+  .scene--result .result__pdf-copy {
+    display: grid;
+    justify-items: center;
+    gap: var(--gap-tight);
+  }
+
+  .scene--result .result__pdf h2 {
+    max-inline-size: 12ch;
+    font-size: var(--font-size-ref-display-md);
+    line-height: 1.05;
+    text-align: center;
+    text-wrap: balance;
+  }
+
+  .scene--result .result__pdf p {
+    max-inline-size: 32ch;
+    color: var(--color-text-muted);
+    text-align: center;
+    text-wrap: pretty;
+  }
+
+  .scene--result .result__pdf-link {
+    inline-size: 100%;
+    border-width: 0;
+    text-align: center;
+    text-decoration: none;
+  }
+
   /* Parent-first reading flow. The prose stays quiet and book-like; the one
      full-bleed scene is the deliberate signature, a visual breath exactly at
      the story midpoint rather than another decorative card. */
@@ -1632,6 +1698,101 @@
     background: #ecd9bd;
   }
 
+  /* Optional support comes last, after the reader already owns the full result.
+     A quiet warm field separates it from the editorial sections; the orange
+     action is intentionally secondary to the persistent blue save control. */
+  .scene--result .result__support-work {
+    display: grid;
+    gap: 10px;
+    margin-block-start: 12px;
+    padding: 22px 18px 20px;
+    border-radius: 24px;
+    background: var(--color-capsule-warm);
+    color: var(--brand-blue);
+    text-align: center;
+  }
+
+  .scene--result .result__support-eyebrow {
+    color: var(--brand-orange);
+    font-size: var(--font-size-ref-micro);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.12em;
+    line-height: 1.35;
+  }
+
+  .scene--result .result__support-title {
+    font-family: var(--font-family-display);
+    font-size: 1.625rem;
+    font-weight: var(--font-weight-semibold);
+    line-height: 1.08;
+  }
+
+  .scene--result .result__support-body {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-ref-body);
+    line-height: var(--line-height-ref-body);
+  }
+
+  .scene--result .result__support-actions {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
+    gap: 18px;
+    margin-block-start: 10px;
+  }
+
+  .scene--result .result__support-qr-group,
+  .scene--result .result__support-link-group {
+    display: grid;
+    justify-items: center;
+    gap: 7px;
+    inline-size: 100%;
+    min-inline-size: 0;
+  }
+
+  .scene--result .result__support-qr {
+    display: block;
+    inline-size: 168px;
+    block-size: 168px;
+    padding: 12px;
+    border-radius: 22px;
+    background: var(--color-surface-raised);
+  }
+
+  .scene--result .result__support-qr img {
+    display: block;
+    inline-size: 100%;
+    block-size: 100%;
+  }
+
+  .scene--result .result__support-qr-hint,
+  .scene--result .result__support-url {
+    max-inline-size: 100%;
+    overflow-wrap: anywhere;
+    color: var(--color-text-muted);
+    font-size: 0.6875rem;
+    line-height: 1.35;
+  }
+
+  .scene--result .result__support-link {
+    display: flex;
+    inline-size: 100%;
+    min-block-size: 52px;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 14px;
+    border: 0;
+    border-radius: 25px;
+    background: var(--brand-orange);
+    box-shadow: none;
+    color: var(--color-surface-raised);
+    font-size: var(--font-size-ref-body);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.25;
+    text-align: center;
+    text-decoration: none;
+  }
+
   /* The soft-sell block shares the chip language so the whole tail of the page
      reads as one warm family instead of blue outlines beside tan capsules. */
   .scene--result .result__activity-tags {
@@ -1694,7 +1855,9 @@
   }
 
   .scene--result .result__save-image {
-    outline: 2px solid var(--color-surface-raised);
+    /* The warm ring belongs to the paper canvas, so the floating action reads
+       as part of the page instead of carrying a stark white sticker edge. */
+    outline: 2px solid var(--color-editorial-canvas);
     outline-offset: -2px;
   }
 

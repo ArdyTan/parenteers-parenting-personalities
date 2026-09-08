@@ -138,7 +138,13 @@ export function createResultScene(personality: PersonalityType): FunctionalScene
     const watchPdfOpen = createBlockedOpenWatcher(() => {
       toaster.show(context.t('error.pdf_failed'), 'error');
     }, signal);
-    const pdfSection = createPdfSection(pdfHref, context, watchPdfOpen);
+    const pdfSection = createPdfSection(
+      pdfHref,
+      personality,
+      language,
+      context,
+      watchPdfOpen,
+    );
 
     const softSell = element(
       'aside',
@@ -240,6 +246,7 @@ export function createResultScene(personality: PersonalityType): FunctionalScene
     const chipTray = element('div', { className: 'result__chips' }, [copyButton, retakeChip]);
 
     const otherTypes = createOtherTypesSection(context, personality, signal);
+    const supportWork = createSupportWorkSection(context);
 
     const detail = element('div', { className: 'result__detail' }, [
       parentStory,
@@ -255,6 +262,7 @@ export function createResultScene(personality: PersonalityType): FunctionalScene
       element('p', { className: 'result__disclaimer', text: context.t('footer.disclaimer') }),
       chipTray,
       copyStatus,
+      supportWork,
     ]);
 
     const body = sceneBody('result__body', [hero, detail]);
@@ -323,15 +331,102 @@ function pdfLink(
 
 function createPdfSection(
   href: string,
+  personality: PersonalityType,
+  language: Language,
   context: SceneContext,
   onActivate: () => void,
 ): HTMLElement {
+  const titleId = 'result-pdf-title';
   const section = element('section', { className: 'result__section result__pdf' }, [
-    element('h2', { text: context.t('result.pdf_title') }),
-    element('p', { text: context.t('result.pdf_body') }),
+    element('div', {
+      className: 'result__pdf-portrait',
+      attributes: { 'aria-hidden': 'true' },
+    }, [
+      element('img', {
+        className: 'result__pdf-illustration',
+        attributes: {
+          src: personality.image,
+          alt: '',
+          width: '900',
+          height: '900',
+          loading: 'lazy',
+          decoding: 'async',
+        },
+      }),
+    ]),
+    element('div', { className: 'result__pdf-copy' }, [
+      element('h2', {
+        text: context.t('result.pdf_title'),
+        attributes: { id: titleId },
+      }),
+      element('p', {
+        text: context.t('result.pdf_body'),
+        attributes: { lang: language },
+      }),
+    ]),
     pdfLink(href, context.t('result.pdf_cta'), onActivate, {
-      className: 'button button--secondary result__pdf-link',
+      className: 'button button--primary result__pdf-link',
     }),
+  ]);
+  section.setAttribute('aria-labelledby', titleId);
+  section.dataset.reveal = '';
+  return section;
+}
+
+function createSupportWorkSection(context: SceneContext): HTMLElement {
+  const titleId = 'result-support-work-title';
+  const saweriaUrl = context.data.config.links.saweria;
+  const supportLink = externalLink(
+    context.t('result.support_cta'),
+    saweriaUrl,
+    'result__support-link',
+  );
+  supportLink.dataset.supportLink = '';
+
+  const section = element('aside', {
+    className: 'result__support-work',
+    attributes: { 'aria-labelledby': titleId },
+  }, [
+    element('p', {
+      className: 'result__support-eyebrow',
+      text: context.t('result.support_eyebrow'),
+    }),
+    element('h2', {
+      className: 'result__support-title',
+      text: context.t('result.support_title'),
+      attributes: { id: titleId },
+    }),
+    element('p', {
+      className: 'result__support-body',
+      text: context.t('result.support_body'),
+    }),
+    element('div', { className: 'result__support-actions' }, [
+      element('div', { className: 'result__support-qr-group' }, [
+        element('span', { className: 'result__support-qr' }, [
+          element('img', {
+            attributes: {
+              src: '/qr/saweria.svg',
+              alt: context.t('a11y.saweria_qr_alt'),
+              width: '168',
+              height: '168',
+              loading: 'lazy',
+              decoding: 'async',
+            },
+          }),
+        ]),
+        element('span', {
+          className: 'result__support-qr-hint',
+          text: context.t('result.support_qr_hint'),
+        }),
+      ]),
+      element('div', { className: 'result__support-link-group' }, [
+        supportLink,
+        element('span', {
+          className: 'result__support-url',
+          text: 'saweria.co/parenteers',
+        }),
+      ]),
+    ]),
   ]);
   section.dataset.reveal = '';
   return section;

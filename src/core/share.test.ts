@@ -15,6 +15,7 @@ const config = {
   links: {
     activities: 'TBD',
     instagram: 'https://instagram.com/parenteers',
+    saweria: 'https://saweria.co/parenteers',
     site: 'https://quiz.parenteers.com/',
   },
   flags: {

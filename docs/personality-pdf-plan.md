@@ -553,9 +553,23 @@ nothing about the share path changes.
 start a 1500 ms timer; if the document never loses visibility or focus in that window, show the
 existing toast offering copy-link, reusing the `share.ts` toast chain and `result.copy_link`.
 
-**New i18n keys:** **39 total** across `result.pdf_*`, `error.pdf_failed` and `pdf.*`, identically
-present in both languages. `REQUIRED_I18N_KEYS` in `src/data/validation.ts` is the exact key list;
-keeping a second manual list here previously drifted after the weekly and care-opener expansion.
+**New i18n keys:** **46 total** across `result.pdf_*`, `result.support_*`,
+`a11y.saweria_qr_alt`, `error.pdf_failed` and `pdf.*`, identically present in both languages.
+`REQUIRED_I18N_KEYS` in `src/data/validation.ts` is the exact key list; keeping a second manual list
+here previously drifted after the weekly and care-opener expansion.
+
+The Result's Saweria prompt is a separate final card, after the reader has received the result and
+secondary actions. Its hierarchy is vertical: copy, a large 168px QR, scan hint, full-width tap link
+and readable URL. The sticky dock remains save-image only. Both routes target the public
+`https://saweria.co/parenteers` page; the widget endpoint and its private stream key must never
+enter source, markup or generated artifacts.
+
+**Support-copy decision (2026-09-03).** Use a value-confirmation hook followed by a concrete impact:
+“Kalau ini bermanfaat buat kamu…” then explain that the reader's support helps Parenteers continue
+making useful products and experiences for more parents. The CTA is the direct “Dukung Parenteers”.
+This combines the user's options 2 and 1, keeps the established conversational `kamu` register, and
+avoids the pantun at the conversion point because its indirect promise weakens scanability and does
+not explain what the support funds. The PDF uses a shorter version of the same message.
 
 ---
 
@@ -576,8 +590,8 @@ decision; the repo already tracks 190 MB under `images/`.
 
 ## 13. QA contract
 
-The target contract extends `npm run qa:phase55` and adds `npm run qa:pdf`. The artifact checker is
-implemented and passes; the Result-surface additions to `qa:phase55` remain implementation work.
+The target contract extends `npm run qa:phase55` and adds `npm run qa:pdf`. Both contracts are
+implemented; the Saweria additions pass locally in the normal and reduced-motion browser suites.
 
 **`qa:phase55` additions** — Result surface:
 - The PDF section exists, is a sibling between the weekly section and other-types, and carries the
@@ -586,6 +600,8 @@ implemented and passes; the Result-surface additions to `qa:phase55` remain impl
   swaps it.
 - The link has `target="_blank"`, `rel="noopener"` and **no** `download` attribute.
 - The docked bar contains `result.save_image` and nothing else.
+- The optional-support card is the final Result block; its direct link and local QR target the
+  public Saweria page, expose no widget stream key, and remain clear of the dock at page bottom.
 - Zero horizontal overflow at 390×844 **and** 390×720; reduced-motion parity.
 
 **`qa:pdf`** — the artifacts themselves:
@@ -606,22 +622,27 @@ implemented and passes; the Result-surface additions to `qa:phase55` remain impl
 | 8.1 | ✅ **done 2026-08-22** — `parent-care.json`, `child-activities.json` and `weekly-extras.json` authored bilingually with the deterministic selection rule and the `pdfSelection` override hook | 168 tests green; registry contracts are now recorded in `data-spec.md` |
 | 8.2 | ✅ **done 2026-08-22** — `scripts/generate-pdf-booklets.mjs` + byte normalization + per-page overflow assertion, running on empty image frames | 32 files generate at 16 pages, ≤587 KB, no page clips |
 | 8.3 | ✅ **done 2026-08-23** — all 54 illustrations generated, QC'd, derived and wired; all 32 PDFs rebuilt | Source/derivative inventory complete; `assets:audit` reports 0 issues |
-| 8.4 | ✅ **done 2026-08-22** — Result section, 39 i18n strings, toast fallback. The dock link was built and removed the same day at Ardy's direction | Verified headless at 390×844; `qa:phase55` assertions still outstanding |
+| 8.4 | ✅ **done 2026-09-03** — Result booklet reward, vertically stacked Saweria support card, 46 workstream i18n strings and toast fallback. The dock stays save-image only | Normal + reduced-motion `qa:phase55` pass at 390×844 and the 390×720 short view |
+| 8.4a | ✅ **approved and completed 2026-09-04** — page 16 has one Saweria QR; Instagram and `parenteers.id` remain as small icon links, with no quiz QR or quiz URL. The approved sample treatment is rebuilt into all 32 production files | All ID/EN booklets are 16-page A4, ≤1.2 MB, with embedded fonts, extractable bilingual text, no clipping and exactly three correct URL annotations |
 | 8.5 | Deploy; verify in the Instagram in-app browser on the Samsung, plus one iOS check | Real-device sign-off recorded in `progress.md` |
 
-Steps 8.1, 8.2 and 8.4 shipped on 2026-08-22; 8.3 completed on 2026-08-23. Layout A and the bilingual
-content/safety pass were finalized on 2026-08-27, with `qa:pdf` green across all 32 artifacts. Step
-8.5 and the Phase 8 Result-surface assertions in `qa:phase55` remain.
+Steps 8.1, 8.2 and the original 8.4 shipped on 2026-08-22; 8.3 completed on 2026-08-23. Layout A and
+the bilingual content/safety pass were finalized on 2026-08-27, with `qa:pdf` green across all 32
+artifacts. The Result support path and its browser assertions were added on 2026-09-03. Ardy
+approved the sample and the PDF change was rebuilt across all 32 production artifacts on
+2026-09-04; step 8.5 remains.
 
 ---
 
 ## 15. Launch decisions finalized 2026-08-27
 
-1. **QR target on page 16:** the quiz root, matching the “send the quiz to someone else” copy.
-2. **Closing CTA:** the general `https://parenteers.id/` destination.
+1. **QR target on page 16 (revised 2026-09-03):** one QR only, pointing to the public Saweria
+   support page. The quiz QR and quiz URL are intentionally absent to preserve focus.
+2. **Closing contacts:** Instagram `@parenteers` and `https://parenteers.id/`, each paired with its
+   existing brand-blue icon beneath the Saweria block.
 3. **Selection:** deterministic per type; overrides remain available for a later editorial pass.
 4. **Languages:** ID and EN ship together.
 
-The separate Result/share-card discrepancy remains open: `config.links.instagram` resolves to
-`@parenteers` while the design artwork says `parenteers.id`. It does not appear in the booklet's
-page-16 CTA, QR or footer and therefore does not block the PDF artifact.
+The closing page now treats those identities as separate destinations rather than a discrepancy:
+the Instagram icon labels `@parenteers`, while the web icon labels `parenteers.id`. Neither competes
+with the single Saweria QR.

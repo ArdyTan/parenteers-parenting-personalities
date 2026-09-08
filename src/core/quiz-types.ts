@@ -102,6 +102,7 @@ export type AppConfig = Readonly<{
   links: Readonly<{
     activities: string;
     instagram: string;
+    saweria: string;
     site: string;
   }>;
   flags: Readonly<{

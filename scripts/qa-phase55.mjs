@@ -604,6 +604,11 @@ report.result = await evaluate(`(() => {
     supportOrder: [...document.querySelectorAll('.result__support-item')]
       .map((item) => item.dataset.supportField),
     weeklyActions: document.querySelectorAll('.result__weekly-list > li').length,
+    pdfBeforePowers: (() => {
+      const pdf = document.querySelector('.result__pdf');
+      const powers = document.querySelector('.result__powers');
+      return !!(pdf && powers && pdf.compareDocumentPosition(powers) & Node.DOCUMENT_POSITION_FOLLOWING);
+    })(),
     parentFirstBeforePowers: (() => {
       const story = document.querySelector('.result__parent-story');
       const support = document.querySelector('.result__parent-support');
@@ -719,11 +724,80 @@ report.resultSupport = await evaluate(`(() => ({
 }))()`);
 await capture('05c-result-support');
 
-await evaluate(`document.querySelector('.result__copy-status')?.scrollIntoView({ block: 'end' })`);
+await evaluate(`document.querySelector('.result__pdf')?.scrollIntoView({ block: 'center' })`);
+await delay(650);
+report.resultPdf = await evaluate(`(() => {
+  const section = document.querySelector('.result__pdf');
+  const image = document.querySelector('.result__pdf-illustration');
+  const title = document.querySelector('.result__pdf h2');
+  const link = document.querySelector('.result__pdf-link');
+  const style = link ? getComputedStyle(link) : null;
+  const sectionStyle = section ? getComputedStyle(section) : null;
+  return {
+    imageComplete: image?.complete ?? false,
+    imageNaturalWidth: image?.naturalWidth ?? 0,
+    imageBeforeTitle: !!(image && title && image.compareDocumentPosition(title) & Node.DOCUMENT_POSITION_FOLLOWING),
+    title: title?.textContent?.trim() ?? null,
+    body: document.querySelector('.result__pdf p')?.textContent?.trim() ?? null,
+    buttonText: link?.textContent?.trim() ?? null,
+    buttonBackground: style?.backgroundColor ?? null,
+    buttonBorderWidth: style?.borderTopWidth ?? null,
+    buttonHeight: link ? Math.round(link.getBoundingClientRect().height) : null,
+    buttonAccent: link ? getComputedStyle(link, '::after').backgroundImage : null,
+    linkTarget: link?.getAttribute('target') ?? null,
+    hasDownload: link?.hasAttribute('download') ?? null,
+    marginTop: sectionStyle?.marginTop ?? null,
+    marginBottom: sectionStyle?.marginBottom ?? null,
+    dockActions: document.querySelectorAll('.result__bottom .button').length,
+    docked: document.querySelector('.result__bottom')?.dataset.docked ?? null,
+    overflow: document.documentElement.scrollWidth - innerWidth,
+  };
+})()`);
+await capture('05d-result-pdf');
+
+await evaluate(`document.querySelector('.result__support-work')?.scrollIntoView({ block: 'center' })`);
+await delay(650);
+report.resultSupportWork = await evaluate(`(() => {
+  const section = document.querySelector('.result__support-work');
+  const link = document.querySelector('.result__support-link');
+  const qr = document.querySelector('.result__support-qr img');
+  const qrBox = document.querySelector('.result__support-qr')?.getBoundingClientRect();
+  const linkBox = link?.getBoundingClientRect();
+  const sectionStyle = section ? getComputedStyle(section) : null;
+  const linkStyle = link ? getComputedStyle(link) : null;
+  return {
+    title: document.querySelector('.result__support-title')?.textContent?.trim() ?? null,
+    body: document.querySelector('.result__support-body')?.textContent?.trim() ?? null,
+    cta: link?.textContent?.trim() ?? null,
+    href: link?.getAttribute('href') ?? null,
+    target: link?.getAttribute('target') ?? null,
+    rel: link?.getAttribute('rel') ?? null,
+    isLast: document.querySelector('.result__detail')?.lastElementChild === section,
+    background: sectionStyle?.backgroundColor ?? null,
+    linkBackground: linkStyle?.backgroundColor ?? null,
+    linkHeight: link ? Math.round(link.getBoundingClientRect().height) : null,
+    qrComplete: qr?.complete ?? false,
+    qrNaturalWidth: qr?.naturalWidth ?? 0,
+    qrSource: qr?.getAttribute('src') ?? null,
+    qrWidth: qrBox ? Math.round(qrBox.width) : null,
+    verticalOrder: !!(qrBox && linkBox && qrBox.bottom < linkBox.top),
+    linkWidth: linkBox ? Math.round(linkBox.width) : null,
+    dockActions: document.querySelectorAll('.result__bottom .button').length,
+    exposesWidgetToken: document.documentElement.outerHTML.includes('streamKey'),
+    overflow: document.documentElement.scrollWidth - innerWidth,
+  };
+})()`);
+await capture('05e-result-saweria');
+
+await evaluate(`(() => {
+  const surface = document.querySelector('.phone-frame__screen');
+  if (surface) surface.scrollTo({ top: surface.scrollHeight, behavior: 'instant' });
+  else window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'instant' });
+})()`);
 await delay(900);
 report.resultDocked = await evaluate(`(() => {
   const bar = document.querySelector('.result__bottom');
-  const links = document.querySelector('.result__quiet-links');
+  const links = document.querySelector('.result__support-work');
   const barBox = bar?.getBoundingClientRect();
   const linkBox = links?.getBoundingClientRect();
   return {
@@ -751,6 +825,10 @@ report.resultEnglish = await evaluate(`(() => ({
   storyLabel: document.querySelector('.result__story-label')?.textContent?.trim() ?? null,
   storyImageAlt: document.querySelector('.result__story-image')?.getAttribute('alt') ?? null,
   weeklyActions: document.querySelectorAll('.result__weekly-list > li').length,
+  pdfBody: document.querySelector('.result__pdf p')?.textContent?.trim() ?? null,
+  supportTitle: document.querySelector('.result__support-title')?.textContent?.trim() ?? null,
+  supportCta: document.querySelector('.result__support-link')?.textContent?.trim() ?? null,
+  supportHref: document.querySelector('.result__support-link')?.getAttribute('href') ?? null,
   overflow: document.documentElement.scrollWidth - innerWidth,
 }))()`);
 await capture('07-result-products-en');
@@ -866,6 +944,26 @@ await capture('08-gallery-spacing');
 // leave phone emulation to reach: the gate triggers on a wide viewport or on a
 // fine pointer with no touch points.
 report.gate = {};
+// Headless Chrome does not consistently expose `(pointer: fine)` after touch
+// emulation is disabled. Pin the two desktop signals this section claims to
+// exercise so the 820px case reaches the gate through its fine-pointer branch
+// and tests the stacked CSS breakpoint instead of mounting the phone app.
+await command('Page.addScriptToEvaluateOnNewDocument', {
+  source: `(() => {
+    Object.defineProperty(Navigator.prototype, 'maxTouchPoints', {
+      configurable: true,
+      get: () => 0,
+    });
+    const nativeMatchMedia = window.matchMedia.bind(window);
+    window.matchMedia = (query) => {
+      const result = nativeMatchMedia(query);
+      if (query === '(pointer: fine)') {
+        Object.defineProperty(result, 'matches', { configurable: true, value: true });
+      }
+      return result;
+    };
+  })();`,
+});
 for (const [label, width, height] of [
   ['wide', 1440, 900],
   ['laptop', 1366, 768],
@@ -1172,7 +1270,7 @@ if (!/\w( \w){3}/.test(report.result.codeText ?? '')) {
 if (report.result.codeBackground !== 'rgb(243, 227, 203)') {
   failures.push(`result: code capsule is ${report.result.codeBackground}, expected the warm tan`);
 }
-if (report.result.sections !== 7) failures.push(`result: ${report.result.sections} detail sections, expected 7`);
+if (report.result.sections !== 8) failures.push(`result: ${report.result.sections} detail sections, expected 8`);
 if (!report.result.storyTitle) failures.push('result: parent story title is missing');
 if (report.result.storyParagraphs < 4) {
   failures.push(`result: story has ${report.result.storyParagraphs} paragraphs, expected at least 4`);
@@ -1191,6 +1289,9 @@ if (report.result.weeklyActions !== 3) {
 }
 if (!report.result.parentFirstBeforePowers) {
   failures.push('result: parent-first story and support do not precede the legacy personality summary');
+}
+if (!report.result.pdfBeforePowers) {
+  failures.push('result PDF: booklet reward does not precede the legacy personality summary');
 }
 if (!report.resultStory.imageComplete || report.resultStory.imageNaturalWidth !== 1200) {
   failures.push(`result: story image did not load at 1200px (${report.resultStory.imageNaturalWidth})`);
@@ -1245,8 +1346,8 @@ if (report.resultSupport.weeklyBulletColor !== 'rgb(232, 104, 17)') {
 if (report.resultSupport.careBackground !== 'rgba(255, 255, 255, 0.1)') {
   failures.push(`result support: parent-care emphasis is ${report.resultSupport.careBackground}`);
 }
-if (report.resultSupport.saveOutline !== 'rgb(255, 255, 255)') {
-  failures.push(`result support: save button outline is ${report.resultSupport.saveOutline}`);
+if (report.resultSupport.saveOutline !== 'rgb(253, 242, 225)') {
+  failures.push(`result support: save button outline is ${report.resultSupport.saveOutline}, expected the cream canvas`);
 }
 if (!report.resultSupport.saveText
   || report.resultSupport.saveLabelOpacity !== '1'
@@ -1261,6 +1362,85 @@ if (report.resultSupport.docked !== 'true') {
 }
 if (report.resultSupport.overflow > 0) {
   failures.push(`result support: ${report.resultSupport.overflow}px horizontal overflow`);
+}
+if (!report.resultPdf.imageComplete || report.resultPdf.imageNaturalWidth !== 900) {
+  failures.push(`result PDF: personality image did not load at 900px (${report.resultPdf.imageNaturalWidth})`);
+}
+if (!report.resultPdf.imageBeforeTitle) {
+  failures.push('result PDF: personality image is not above the title');
+}
+if (!report.resultPdf.body?.startsWith('16 halaman:')) {
+  failures.push(`result PDF: Indonesian booklet count is stale (${report.resultPdf.body})`);
+}
+if (report.resultPdf.buttonBackground !== 'rgb(24, 39, 153)') {
+  failures.push(`result PDF: CTA background is ${report.resultPdf.buttonBackground}, expected brand blue`);
+}
+if (report.resultPdf.buttonBorderWidth !== '0px') {
+  failures.push(`result PDF: CTA still has a ${report.resultPdf.buttonBorderWidth} border`);
+}
+if (report.resultPdf.buttonHeight < 52) {
+  failures.push(`result PDF: CTA is only ${report.resultPdf.buttonHeight}px tall`);
+}
+if (!report.resultPdf.buttonAccent?.includes('button-expression.svg')) {
+  failures.push('result PDF: CTA is missing the orange expression accent');
+}
+if (parseFloat(report.resultPdf.marginTop) < 24 || parseFloat(report.resultPdf.marginBottom) < 32) {
+  failures.push(`result PDF: spacing is only ${report.resultPdf.marginTop} / ${report.resultPdf.marginBottom}`);
+}
+if (report.resultPdf.linkTarget !== '_blank' || report.resultPdf.hasDownload !== false) {
+  failures.push('result PDF: WebView-safe link contract changed');
+}
+if (report.resultPdf.dockActions !== 1) {
+  failures.push(`result PDF: sticky dock has ${report.resultPdf.dockActions} actions, expected one`);
+}
+if (report.resultPdf.docked !== 'true') {
+  failures.push('result PDF: save-image CTA disappeared while the booklet reward was in view');
+}
+if (report.resultPdf.overflow > 0) {
+  failures.push(`result PDF: ${report.resultPdf.overflow}px horizontal overflow`);
+}
+if (!report.resultSupportWork.isLast) {
+  failures.push('result support: Saweria card is not the final content block');
+}
+if (report.resultSupportWork.href !== 'https://saweria.co/parenteers') {
+  failures.push(`result support: Saweria target is ${report.resultSupportWork.href}`);
+}
+if (report.resultSupportWork.target !== '_blank'
+  || !report.resultSupportWork.rel?.includes('noopener')) {
+  failures.push('result support: external-link safety contract changed');
+}
+if (!report.resultSupportWork.qrComplete || report.resultSupportWork.qrNaturalWidth === 0) {
+  failures.push(`result support: QR did not load (${report.resultSupportWork.qrNaturalWidth}px)`);
+}
+if (report.resultSupportWork.qrSource !== '/qr/saweria.svg') {
+  failures.push(`result support: unexpected QR source ${report.resultSupportWork.qrSource}`);
+}
+if (report.resultSupportWork.qrWidth < 160) {
+  failures.push(`result support: QR is only ${report.resultSupportWork.qrWidth}px wide`);
+}
+if (!report.resultSupportWork.verticalOrder) {
+  failures.push('result support: QR and Saweria CTA are not stacked vertically');
+}
+if (report.resultSupportWork.linkWidth < 250) {
+  failures.push(`result support: stacked CTA is only ${report.resultSupportWork.linkWidth}px wide`);
+}
+if (report.resultSupportWork.background !== 'rgb(243, 227, 203)') {
+  failures.push(`result support: card background is ${report.resultSupportWork.background}`);
+}
+if (report.resultSupportWork.linkBackground !== 'rgb(232, 104, 17)') {
+  failures.push(`result support: CTA background is ${report.resultSupportWork.linkBackground}`);
+}
+if (report.resultSupportWork.linkHeight < 52) {
+  failures.push(`result support: CTA is only ${report.resultSupportWork.linkHeight}px tall`);
+}
+if (report.resultSupportWork.dockActions !== 1) {
+  failures.push(`result support: sticky dock has ${report.resultSupportWork.dockActions} actions, expected one`);
+}
+if (report.resultSupportWork.exposesWidgetToken) {
+  failures.push('result support: the private widget stream key leaked into page markup');
+}
+if (report.resultSupportWork.overflow > 0) {
+  failures.push(`result support: ${report.resultSupportWork.overflow}px horizontal overflow`);
 }
 if (!report.result.softSell) failures.push('result: soft-sell block is missing');
 if (!report.result.disclaimer) failures.push('result: disclaimer is missing');
@@ -1336,6 +1516,18 @@ if (!report.resultEnglish.storyImageAlt || report.resultEnglish.storyImageAlt.in
 }
 if (report.resultEnglish.weeklyActions !== 3) {
   failures.push(`result EN: ${report.resultEnglish.weeklyActions} weekly actions, expected 3`);
+}
+if (!report.resultEnglish.pdfBody?.startsWith('16 pages:')) {
+  failures.push(`result PDF EN: booklet count is stale (${report.resultEnglish.pdfBody})`);
+}
+if (report.resultEnglish.supportTitle !== 'If this was useful to you…'
+  || report.resultEnglish.supportCta !== 'Support Parenteers') {
+  failures.push(
+    `result support EN: copy is not localized (${report.resultEnglish.supportTitle} / ${report.resultEnglish.supportCta})`,
+  );
+}
+if (report.resultEnglish.supportHref !== 'https://saweria.co/parenteers') {
+  failures.push(`result support EN: target is ${report.resultEnglish.supportHref}`);
 }
 if (report.resultEnglish.overflow > 0) failures.push(`result EN: ${report.resultEnglish.overflow}px horizontal overflow`);
 

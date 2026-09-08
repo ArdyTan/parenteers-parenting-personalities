@@ -9,12 +9,13 @@
  * browser. See docs/personality-pdf-plan.md.
  *
  * Usage: node ./scripts/generate-pdf-booklets.mjs [--lang id] [--slug pcte]
+ *   [--output output/pdf/pcte-review.pdf]
  */
 import { spawn } from 'node:child_process';
 import { mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import { tmpdir } from 'node:os';
-import { join, resolve } from 'node:path';
+import { dirname, join, resolve } from 'node:path';
 
 import QRCode from 'qrcode';
 import sharp from 'sharp';
@@ -38,6 +39,11 @@ const argument = (flag) => {
 };
 const onlyLang = argument('--lang');
 const onlySlug = argument('--slug');
+const reviewOutput = argument('--output');
+
+if (reviewOutput && (!onlyLang || !onlySlug)) {
+  throw new Error('--output requires both --lang and --slug so it can never overwrite a batch.');
+}
 
 const BANDS = ['0-12m', '1-2y', '2-3y', '3-4y', '4-5y'];
 /** Which dimension letter selects within each band. Adventure picks at both ends. */
@@ -115,16 +121,16 @@ async function dataUri(relative, mime) {
   return `data:${mime};base64,${buffer.toString('base64')}`;
 }
 
-/**
- * The closing page's QR. It points at the quiz itself, which is what
- * `pdf.qr_hint` ("scan to pass the quiz to someone else") already promises --
- * the box used to hold that sentence and nothing scannable. Drawn in the brand
- * blue on white so it survives being printed on the cream ground.
- */
-const qrCode = await QRCode.toDataURL(config.links.site, {
+/** The closing page keeps one QR and one purpose: optional Saweria support. */
+const supportQrCode = await QRCode.toDataURL(config.links.saweria, {
   margin: 0, width: 480, errorCorrectionLevel: 'M',
   color: { dark: '#182799', light: '#ffffff' },
 });
+const closingIcons = {
+  instagram: await dataUri('public/icons/instagram.svg', 'image/svg+xml'),
+  web: await dataUri('public/icons/web.svg', 'image/svg+xml'),
+};
+const instagramHandle = `@${new URL(config.links.instagram).pathname.replace(/^\/+|\/+$/g, '')}`;
 
 const fonts = {
   display: await dataUri('public/fonts/fraunces-latin-variable.woff2', 'font/woff2'),
@@ -305,14 +311,22 @@ p:last-child { margin-bottom: 0; }
 .grow > .frame { flex: 1 1 0; }
 .permission { font-family: 'Fraunces', Georgia, serif; font-size: 14pt; text-align: center;
   color: var(--orange); padding: 4mm 0; }
-.closing { display: flex; gap: 6mm; align-items: center; }
-.closing__qr { width: 32mm; height: 32mm; flex: none; background: #fff; border-radius: 3mm;
+.closing { display: flex; justify-content: center; }
+.closing__card { display: grid; grid-template-columns: 34mm minmax(0, 1fr); gap: 6mm;
+  width: 126mm; align-items: center; padding: 5mm; border-radius: 4mm;
+  background: rgb(232 104 17 / 9%); }
+.closing__qr { width: 34mm; height: 34mm; background: #fff; border-radius: 3mm;
   border: 0.4mm solid var(--outline); padding: 2.5mm; }
 .closing__qr img { display: block; width: 100%; height: 100%; }
-.closing__body { flex: 1; }
-.closing__link { font-family: 'Fraunces', Georgia, serif; font-size: 13pt; line-height: 1.2;
-  margin-bottom: 1.5mm; }
-.closing__hint { font-size: 8.5pt; color: var(--muted); line-height: 1.45; }
+.closing__body { min-width: 0; }
+.closing__link { display: block; color: var(--blue); font-family: 'Fraunces', Georgia, serif;
+  font-size: 12pt; line-height: 1.2; overflow-wrap: anywhere; text-decoration: none;
+  margin-bottom: 1.2mm; }
+.closing__hint { font-size: 8.5pt; color: var(--muted); line-height: 1.4; }
+.closing__contacts { display: flex; align-items: center; justify-content: center; gap: 12mm; }
+.closing__contact { display: inline-flex; align-items: center; gap: 2mm; color: var(--blue);
+  font-size: 9pt; font-weight: 700; text-decoration: none; }
+.closing__contact img { display: block; width: 5mm; height: 5mm; }
 /* The colophon is one block, not three stray sentences. The spacer above the
    closing row anchors CTA + colophon together at the foot of the page; it used
    to sit between them, which is what pulled them apart. */
@@ -548,12 +562,22 @@ function buildHtml({ personality, language, care, play, extras, art }) {
     ${frame(art.furniture.f9, '', placeholder, 'frame--wide')}
     <div class="grow"></div>
     <div class="closing">
-      <div class="closing__qr"><img src="${qrCode}" alt=""></div>
-      <div class="closing__body">
-        <p class="label">${escape(t('result.activities_cta'))}</p>
-        <p class="closing__link">${escape(config.links.activities)}</p>
-        <p class="closing__hint">${escape(t('pdf.qr_hint'))}<br>${escape(config.links.site)}</p>
+      <div class="closing__card">
+        <div class="closing__qr"><img src="${supportQrCode}" alt=""></div>
+        <div class="closing__body">
+          <p class="label">${escape(t('pdf.support_label'))}</p>
+          <a class="closing__link" href="${escape(config.links.saweria)}">saweria.co/parenteers</a>
+          <p class="closing__hint">${escape(t('pdf.support_hint'))}</p>
+        </div>
       </div>
+    </div>
+    <div class="closing__contacts">
+      <a class="closing__contact" href="${escape(config.links.instagram)}">
+        <img src="${closingIcons.instagram}" alt="">${escape(instagramHandle)}
+      </a>
+      <a class="closing__contact" href="${escape(config.links.activities)}">
+        <img src="${closingIcons.web}" alt="">parenteers.id
+      </a>
     </div>
     <div class="colophon">
       <p>${escape(t('footer.made_by'))} · ${escape(t('footer.copyright').replace('{year}', String(year)))}</p>
@@ -635,7 +659,7 @@ const languages = onlyLang ? [onlyLang] : ['id', 'en'];
 const overflows = [];
 let written = 0;
 for (const language of languages) {
-  await mkdir(resolve(root, 'public/pdf', language), { recursive: true });
+  if (!reviewOutput) await mkdir(resolve(root, 'public/pdf', language), { recursive: true });
   for (const [index, personality] of types.entries()) {
     if (onlySlug && personality.slug !== onlySlug) continue;
     const html = buildHtml({
@@ -675,10 +699,13 @@ for (const language of languages) {
       preferCSSPageSize: true,
       marginTop: 0, marginBottom: 0, marginLeft: 0, marginRight: 0,
     }, sessionId);
-    const target = resolve(root, 'public/pdf', language, `${personality.slug}.pdf`);
+    const target = reviewOutput
+      ? resolve(root, reviewOutput)
+      : resolve(root, 'public/pdf', language, `${personality.slug}.pdf`);
+    await mkdir(dirname(target), { recursive: true });
     await writeFile(target, normalize(Buffer.from(data, 'base64')));
     written += 1;
-    process.stdout.write(`  ${language}/${personality.slug}.pdf\n`);
+    process.stdout.write(`  ${reviewOutput ?? `${language}/${personality.slug}.pdf`}\n`);
   }
 }
 
@@ -695,7 +722,7 @@ for (let attempt = 0; attempt < 5; attempt += 1) {
     await new Promise((res) => setTimeout(res, 300));
   }
 }
-console.log(`\n${written} booklets written to public/pdf/`);
+console.log(`\n${written} booklet${written === 1 ? '' : 's'} written to ${reviewOutput ?? 'public/pdf/'}`);
 if (overflows.length > 0) {
   console.error(`\n${overflows.length} page(s) clipped content:`);
   overflows.forEach((line) => console.error(`  ${line}`));

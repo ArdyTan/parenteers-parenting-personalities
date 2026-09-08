@@ -10,6 +10,7 @@ const types = await readJson('src/data/types.json');
 const parentCare = await readJson('src/data/parent-care.json');
 const childActivities = await readJson('src/data/child-activities.json');
 const weeklyExtras = await readJson('src/data/weekly-extras.json');
+const config = await readJson('src/data/config.json');
 const translations = {
   id: await readJson('src/data/i18n/id.json'),
   en: await readJson('src/data/i18n/en.json'),
@@ -93,6 +94,12 @@ function requireText(text, expected, label, file) {
   if (needle && !text.includes(needle)) issues.push(`${file}: missing ${label}: ${needle}`);
 }
 
+function requireTrackedText(text, expected, label, file) {
+  const haystack = normalized(text).replace(/\s+/g, '').toLowerCase();
+  const needle = normalized(expected).replace(/\s+/g, '').toLowerCase();
+  if (needle && !haystack.includes(needle)) issues.push(`${file}: missing ${label}: ${normalized(expected)}`);
+}
+
 function rejectText(text, forbidden, label, file) {
   const needle = normalized(forbidden);
   if (needle.length > 4 && text.includes(needle)) {
@@ -144,6 +151,9 @@ for (const language of ['id', 'en']) {
     const text = normalized(run('pdftotext', ['-layout', file, '-']));
     const page9 = normalized(run('pdftotext', ['-f', '9', '-l', '9', '-layout', file, '-']));
     const page15 = normalized(run('pdftotext', ['-f', '15', '-l', '15', '-layout', file, '-']));
+    const page16 = normalized(run('pdftotext', ['-f', '16', '-l', '16', '-layout', file, '-']));
+    const urls = [...run('pdfinfo', ['-url', file]).matchAll(/Annotation\s+(\S+)/g)]
+      .map((match) => match[1]);
     const care = selectParentCare(personality, index);
     const play = selectChildActivities(personality, index);
     const extras = selectWeeklyExtras(personality, index);
@@ -178,10 +188,29 @@ for (const language of ['id', 'en']) {
       ]),
       ['parent permission', translations[language]['pdf.care_permission']],
       ['child permission', translations[language]['pdf.skip_permission']],
+      ['support impact', translations[language]['pdf.support_hint']],
     ];
     required.forEach(([label, value]) => requireText(text, value, label, relative));
     requireText(page9, translations[language]['pdf.care_permission'], 'page 9 parent permission', relative);
     requireText(page15, translations[language]['pdf.skip_permission'], 'page 15 child permission', relative);
+    requireTrackedText(page16, translations[language]['pdf.support_label'], 'page 16 support label', relative);
+    requireText(page16, translations[language]['pdf.support_hint'], 'page 16 support impact', relative);
+    requireText(page16, '@parenteers', 'page 16 Instagram handle', relative);
+    requireText(page16, 'parenteers.id', 'page 16 website', relative);
+    rejectText(page16, 'quiz.parenteers.id', 'page 16 quiz URL', relative);
+
+    const expectedUrls = [config.links.saweria, config.links.instagram, config.links.activities];
+    for (const expectedUrl of expectedUrls) {
+      if (!urls.includes(expectedUrl)) {
+        issues.push(`${relative}: missing page 16 URL annotation: ${expectedUrl}`);
+      }
+    }
+    if (urls.includes(config.links.site)) {
+      issues.push(`${relative}: page 16 still links to the quiz: ${config.links.site}`);
+    }
+    if (urls.length !== expectedUrls.length) {
+      issues.push(`${relative}: expected ${expectedUrls.length} URL annotations, found ${urls.length}`);
+    }
 
     for (const record of [...care, ...play]) {
       if (record.title[language] !== record.title[opposite]) {
@@ -203,6 +232,7 @@ for (const language of ['id', 'en']) {
       pages,
       kb: Math.ceil(bytes / 1024),
       fonts: fontRows.length,
+      links: urls.length,
       issues: issues.filter((issue) => issue.startsWith(`${relative}:`)).length,
     });
   }
@@ -214,5 +244,5 @@ if (issues.length > 0) {
   console.error(issues.join('\n'));
   process.exitCode = 1;
 } else {
-  console.log(`PDF QA passed: ${rows.length} files, 16 pages each, bilingual content complete, fonts embedded.`);
+  console.log(`PDF QA passed: ${rows.length} files, 16 pages each, bilingual content complete, 3 closing links, fonts embedded.`);
 }
