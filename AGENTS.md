@@ -26,6 +26,7 @@
 | `quiz-01-flow-dialogue.md` | Page-by-page copy EN/ID (transcribe, never rewrite) |
 | `quiz-02-ui-strings.md` | UI string table → i18n JSON verbatim |
 | `docs/phase-5-5-interface-plan.md` | Phase 5.5 interface spec: the design-system token table, the three-band shell, per-screen composition, and the `qa:phase55` contract |
+| `docs/question-swipe-plan.md` | Phase 9: rewritten bilingual question contract, directional swipe + tap auto-advance, correction, implementation sequence and QA |
 | `docs/performance-probes.md` | How runtime cost is measured: the `perf:probe`/`perf:canvas` harnesses, the recorded baselines, and the interpretation traps |
 | `docs/design-tokens.md` | Figma-facing export of the implemented token system (colour, type, spacing, motion, the 16 result accents) |
 | `docs/deployment.md` | Cloudflare Workers deploy: asset fallback, the prerendered `/r/{slug}` exception, custom domain and Workers Builds |

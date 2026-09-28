@@ -38,11 +38,23 @@ Array of exactly 12 objects, ordered by `id`:
 
 ```json
 {
-  "id": 7, "dimension": "emotion",
-  "scenario": { "en": "Meltdown at the mall. (Yes, that one.)", "id": "Tantrum di mal. (Iya, yg itu.)" },
+  "id": 7,
+  "dimension": "emotion",
+  "scenario": {
+    "en": "A mall meltdown. Your usual first move…",
+    "id": "Anak tantrum di mal. Kamu biasanya mulai dr…"
+  },
   "answers": [
-    { "pole": "T", "en": "I crouch down and name it: “You're really upset, huh…”", "id": "Aku jongkok, sebut perasaannya: “Kamu kesel ya…”" },
-    { "pole": "D", "en": "Scoop up, hug, change of scenery, offer water", "id": "Gendong, peluk, ganti suasana, tawarin minum" }
+    {
+      "pole": "T",
+      "en": "Crouch down: “You’re really upset, huh…”",
+      "id": "Jongkok, bilang: “Kamu kesel ya…”"
+    },
+    {
+      "pole": "D",
+      "en": "Give a hug and move somewhere calmer",
+      "id": "Peluk, ajak ke tempat yg lebih tenang"
+    }
   ]
 }
 ```

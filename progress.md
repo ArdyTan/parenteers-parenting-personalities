@@ -18,10 +18,19 @@
 | 6 — QA hardening | ✅ done; Ardy confirmed testing across the target devices (2026-08-23) |
 | 7 — Launch extras (optional) | 🟨 sound layer shipped early (2026-08-02); analytics, founder-note flag and Awwwards assets remain |
 | 8 — Personality PDF booklet | 🟨 A is the sole final template; the approved Saweria closing is live across all 32 ID/EN booklets and the shared Result component covers all 16 types. Worker version `aa06f077-1bae-4378-88ee-e71198542425` deployed and hash-verified 2026-09-08; real-device WebView sign-off remains |
+| 9 — Single-action questions + swipe | 🟨 12 ID/EN pairs restructured locally; development plan complete; gesture implementation and browser/device QA pending |
 
 ## Next action
 
-**Active workstream: the per-type PDF booklet (Phase 8).** Layout A is final and is now the only
+**Active workstream: single-action questions and playful swipe (Phase 9).** Ardy approved
+restructuring all 12 question pairs and requested the development plan on 2026-09-28. The bilingual
+copy is updated in `src/data/questions.json` and its editorial reference; the build sequence and
+acceptance contract are in `docs/question-swipe-plan.md`. Next: implement step B (directional
+answer layout and a single tap-to-commit path), then the swipe controller and feedback. The current
+runtime still uses selection + Next. Phase 9 supersedes only the question interaction/composition;
+its browser and physical acceptance have not started.
+
+**Existing Phase 8 follow-up: the per-type PDF booklet.** Layout A is final and is now the only
 generator path. All 54 commissioned illustrations are installed, all 32 ID/EN booklets were rebuilt,
 and `npm run qa:pdf` enforces their file set, 16-page/A4 contract, 1.2 MB ceiling, extractable
 bilingual content, complete activity selection, permission lines and embedded fonts. B/C review
@@ -34,7 +43,7 @@ also rebuilt: page 16 has one focused Saweria QR and a lightweight icon row for 
 and normal plus reduced-motion `qa:phase55` all pass; the build contains all 16 result routes. The
 support path uses the public `saweria.co/parenteers` URL and a committed local QR, never the widget
 stream key. The release changes are committed on `origin/main` and deployed to Cloudflare Workers.
-Next: confirm the Result and booklet in the Instagram in-app browser on Samsung plus one iOS
+Phase 8 follow-up: confirm the Result and booklet in the Instagram in-app browser on Samsung plus one iOS
 device.
 Phase 0–6 are complete by Ardy's confirmation; Phase 7 remains intentionally on hold.
 
@@ -58,6 +67,29 @@ Phase 0–6 are complete by Ardy's confirmation; Phase 7 remains intentionally o
 - [ ] Any overrides to plan.md §14 decision defaults
 
 ## Session log (newest first)
+
+**2026-09-28 — All questions restructured; Phase 9 swipe development planned.**
+Rewrote the 12 scenarios and 24 responses in both ID and EN, preserving question IDs, dimensions,
+poles and scenario-art subjects. Q7–9 explicitly ask for the initial response. Updated the matching
+editorial section and added `docs/question-swipe-plan.md`: left/right card drag, stationary tap
+alternatives, one commit/advance, cancellation and race handling, removal of custom edge-back,
+Baking correction, reduced motion, file-by-file steps and full QA/device gates. Routed Phase 9
+through `plan.md` and `AGENTS.md`. Source inspection confirmed checkpoint strings currently have
+no question-scene renderer. Runtime interaction is not implemented; no deploy or browser QA ran.
+Validation: existing data-integrity/scoring/randomization suites passed (3 files, 67 tests). A
+source comparison confirms all 12 IDs/dimensions/pole pairs are preserved and all 72 localized
+scenario/answer strings match the editorial reference. `git diff --check` passes. The Obsidian
+quiz playbook links this decision and the local development plan. Browser layout remains pending.
+
+**2026-09-28 — Single-action answer interaction assessed; implementation undecided.**
+Reviewed all 12 current question pairs and `src/scenes/question.ts`: tap and card swipe both
+save a selection, then require Next. The 16 count refers to result types; removing confirmation
+would reduce answer actions from 24 to 12, excluding other journey controls. Recommendation for
+discussion: tap either answer to advance, with directional swipe as an optional equivalent and a
+visible back/edit path. Keep the two explicit parenting responses: a no to one response does not
+necessarily mean the other, especially for Q7–9. Any directional redesign must show both meanings,
+preserve randomized answer-to-pole mapping, and resolve the existing left-edge back gesture.
+No runtime/copy changes or browser tests were made; this is a source-based proposal, not acceptance.
 
 **2026-09-08, local design and review artifacts excluded from Git.**
 Added explicit ignore rules for the local `public/_figma/` scratch exports and `output/` review

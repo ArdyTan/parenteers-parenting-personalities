@@ -53,123 +53,133 @@
 
 ## PAGES 3–14 — The 12 Questions
 
-Frame per question: progress indicator ("Question {n} of 12" / "Pertanyaan {n} dr 12") + scenario + two answer cards. Optional delight: progress bar styled as oven temperature rising 45°C → 180°C.
+Copy revised 2026-09-28 for a single-action choice: short situation + two concrete responses. Pick what is closest to everyday behavior; Q7–9 ask for the first response because both may happen. IDs, dimensions and poles are preserved. `src/data/questions.json` is the runtime authority.
 
-### Q1 · Dimension: Structure
-**EN** — Scenario: *Sunday morning. No plans, no schedule.*
-- Answer (P): I already prepped activity ideas last night ✨
-- Answer (F): We'll see — I follow the mood of the morning 🍃
+Planned interaction: swipe the scenario card toward either visible answer, or tap that answer, to save and advance. Direction is assigned after shuffling; the order below is editorial, not a fixed left/right mapping. Full development contract: `docs/question-swipe-plan.md`. Current runtime still requires Next until that feature is implemented.
 
-**ID** — Skenario: *Minggu pagi. Gak ada acara apa-apa.*
-- Jawaban (P): Aku udah nyiapin ide aktivitas dr semalam ✨
-- Jawaban (F): Lihat nanti aja — ikutin mood pagi ini 🍃
+### Q1 · Structure
+
+**EN** — Scenario: *A free Sunday morning. You usually…*
+- (P): Have activity ideas ready from last night ✨
+- (F): See how the morning feels, then decide 🍃
+
+**ID** — Skenario: *Minggu pagi yg kosong. Kamu biasanya…*
+- (P): Udah siapin ide aktivitas dr semalam ✨
+- (F): Lihat mood pagi ini, baru tentuin 🍃
 
 ### Q2 · Structure
-**EN** — Scenario: *Packing for a family day out.*
-- (P): Full checklist: spare outfit, snacks sorted by the hour, all covered
-- (F): Grab the essentials — we'll figure out the rest on the way
 
-**ID** — Skenario: *Mau pergi seharian sekeluarga. Soal packing…*
-- (P): Checklist lengkap: baju ganti, snack per jam, semua aman
-- (F): Bawa yg penting-penting aja, sisanya pikirin di jalan
+**EN** — Scenario: *A family day out. How do you pack?*
+- (P): Use a checklist, with spares packed too
+- (F): Pack the essentials, figure out the rest as we go
+
+**ID** — Skenario: *Mau pergi seharian. Gaya packing kamu…*
+- (P): Pakai checklist, termasuk barang cadangan
+- (F): Bawa yg penting, sisanya sambil jalan
 
 ### Q3 · Structure
-**EN** — Scenario: *Your little one's daily schedule…*
-- (P): Nap, meals, play — roughly the same time every day
-- (F): We follow the child's rhythm — every day can be different
 
-**ID** — Skenario: *Jadwal harian si kecil…*
-- (P): Tidur, makan, main — jamnya kurang lebih sama tiap hari
-- (F): Ngikutin ritme anak — tiap hari bisa beda
+**EN** — Scenario: *Sleep, meals, play. Your child's daily rhythm…*
+- (P): Roughly the same times each day
+- (F): Follows my child's rhythm; each day can differ
 
-### Q4 · Dimension: Guidance
-**EN** — Scenario: *Choosing today's play activity.*
-- (C): I pick and set up something good for their development
-- (G): I lay out a few options and see what pulls them in
+**ID** — Skenario: *Tidur, makan, main. Ritme harian si kecil…*
+- (P): Jamnya kurang lebih sama tiap hari
+- (F): Ngikutin ritme anak, tiap hari bisa beda
 
-**ID** — Skenario: *Milih aktivitas main hari ini…*
-- (C): Aku yg pilih & siapkan sesuatu yg bagus buat perkembangannya
-- (G): Aku gelar beberapa pilihan, lihat dia tertarik yg mana
+### Q4 · Guidance
+
+**EN** — Scenario: *Playtime! Who picks the activity?*
+- (C): I choose and set up the activity
+- (G): I set out options; my child chooses
+
+**ID** — Skenario: *Waktunya main. Siapa yg pilih aktivitas?*
+- (C): Aku pilih & siapin aktivitasnya
+- (G): Aku siapin pilihan, anak yg tentuin
 
 ### Q5 · Guidance
-**EN** — Scenario: *Your kid wants to wear a superhero costume + rain boots to a family lunch.*
-- (C): Cute — but for events like this, I choose the outfit
-- (G): Go for it — it's their fashion era 😎
 
-**ID** — Skenario: *Anak mau pakai kostum superhero + sepatu boots ke acara keluarga.*
-- (C): Lucu sih, tp utk acara begini aku yg tentuin bajunya
-- (G): Boleh dong — ini era fashion dia 😎
+**EN** — Scenario: *Your child picks a superhero costume + boots for a family event. You…*
+- (C): Choose an outfit that suits the event
+- (G): Let them wear their choice 😎
+
+**ID** — Skenario: *Ke acara keluarga, anak pilih kostum superhero + boots. Kamu…*
+- (C): Pilihkan baju yg cocok utk acaranya
+- (G): Biarin dia pakai pilihannya 😎
 
 ### Q6 · Guidance
-**EN** — Scenario: *About tidying up toys…*
-- (C): Clear rule: playtime ends = toys go back
-- (G): I make cleanup inviting and let the habit grow from their lead
 
-**ID** — Skenario: *Soal beresin mainan…*
-- (C): Aturannya jelas: selesai main = mainan balik ke tempatnya
-- (G): Aku bikin beres-beres jadi menarik, pelan-pelan jd kebiasaan dia
+**EN** — Scenario: *Playtime's over. How do you approach cleanup?*
+- (C): Set a clear rule: after play, toys go back
+- (G): Make cleanup inviting so they start on their own
 
-> **Interstitial after Q6**
-> EN: *Halfway there! The dough is coming together 🥣*
-> ID: *Setengah jalan! Adonannya mulai kalis 🥣*
+**ID** — Skenario: *Selesai main. Cara kamu ngajak beres-beres…*
+- (C): Pakai aturan: selesai main, beresin dulu
+- (G): Bikin beres-beres menarik, biar dia mulai sendiri
 
-### Q7 · Dimension: Emotion
-**EN** — Scenario: *Meltdown at the mall. (Yes, that one.)*
-- (T): I crouch down and name it: "You're really upset, huh…"
-- (D): Scoop up, hug, change of scenery, offer water
+> Historical checkpoint copy remains in i18n. It is not currently rendered by the question scene; the swipe release introduces no extra checkpoint action.
 
-**ID** — Skenario: *Tantrum di mal. (Iya, yg itu.)*
-- (T): Aku jongkok, sebut perasaannya: "Kamu kesel ya…"
-- (D): Gendong, peluk, ganti suasana, tawarin minum
+### Q7 · Emotion
+
+**EN** — Scenario: *A mall meltdown. Your usual first move…*
+- (T): Crouch down: “You’re really upset, huh…”
+- (D): Give a hug and move somewhere calmer
+
+**ID** — Skenario: *Anak tantrum di mal. Kamu biasanya mulai dr…*
+- (T): Jongkok, bilang: “Kamu kesel ya…”
+- (D): Peluk, ajak ke tempat yg lebih tenang
 
 ### Q8 · Emotion
-**EN** — Scenario: *Their block tower collapses and they burst into tears.*
-- (T): "That's so frustrating — you worked hard on it." Talk first
-- (D): "Let's build it again together" — hands already moving
 
-**ID** — Skenario: *Menara baloknya roboh, dia nangis kencang.*
-- (T): "Sebel banget ya, padahal udah nyusun lama." Ngobrol dulu
-- (D): "Yuk bangun lagi bareng" — tangan langsung gerak
+**EN** — Scenario: *The block tower falls. Tears follow. Your first move…*
+- (T): “That’s frustrating…” Hear their feelings first
+- (D): “Let’s rebuild.” Help put it back together
+
+**ID** — Skenario: *Menara balok roboh, anak nangis. Respons awalmu…*
+- (T): “Sebel ya…” Dengerin perasaannya dulu
+- (D): “Yuk bangun lagi.” Bantu susun bareng
 
 ### Q9 · Emotion
-**EN** — Scenario: *Bedtime. Your kid seems a little sad.*
-- (T): I ask gentle questions about their day and let the feelings out
-- (D): Extra-long cuddle, favorite blanket, warm milk
 
-**ID** — Skenario: *Menjelang tidur, anak kelihatan sedih.*
-- (T): Aku tanya pelan-pelan tentang harinya, biarin perasaannya keluar
-- (D): Peluk ekstra lama, selimut favorit, susu hangat
+**EN** — Scenario: *Your child seems sad at bedtime. You start with…*
+- (T): Ask gently and listen to their story
+- (D): A long cuddle and their favorite blanket
 
-> **Interstitial after Q9**
-> EN: *Almost done — it already smells good 🍞*
-> ID: *Dikit lagi — udah mulai wangi 🍞*
+**ID** — Skenario: *Mau tidur, anak kelihatan sedih. Kamu mulai dr…*
+- (T): Tanya pelan-pelan, dengerin ceritanya
+- (D): Peluk lama, ambilin selimut favorit
 
-### Q10 · Dimension: Adventure
-**EN** — Scenario: *At the playground, they eye the taller slide.*
-- (E): "Try it! I'm right here." I spot them up close
-- (N): "Maybe next time" — I steer them to the lower one first
+> Historical checkpoint copy remains in i18n. It is not currently rendered by the question scene; the swipe release introduces no extra checkpoint action.
 
-**ID** — Skenario: *Di playground, dia ngelirik perosotan yg tinggi.*
-- (E): "Coba aja! Aku di sini." Aku jagain dr dekat
-- (N): "Nanti dulu ya" — arahkan ke yg lebih rendah dulu
+### Q10 · Adventure
+
+**EN** — Scenario: *Your child eyes the tall slide. You…*
+- (E): “Want to try?” I stay close to help
+- (N): Suggest the lower slide first
+
+**ID** — Skenario: *Anak tertarik perosotan tinggi. Kamu…*
+- (E): “Coba yuk.” Aku jagain dr dekat
+- (N): Ajak ke yg lebih rendah dulu
 
 ### Q11 · Adventure
-**EN** — Scenario: *After the rain: puddles everywhere.*
-- (E): Jump in! Clothes can be washed 😄
-- (N): We go around — dry socks are happiness
 
-**ID** — Skenario: *Habis hujan, ada genangan di mana-mana.*
-- (E): Nyebur! Baju bisa dicuci 😄
-- (N): Muter dikit — kaos kaki kering itu kebahagiaan
+**EN** — Scenario: *Puddles after the rain. You choose…*
+- (E): A little splash; clothes can be washed 😄
+- (N): Take the dry path and stay comfy
+
+**ID** — Skenario: *Ada genangan habis hujan. Kamu pilih…*
+- (E): Main air sebentar, baju bisa dicuci 😄
+- (N): Cari jalan kering, tetap nyaman
 
 ### Q12 · Adventure
-**EN** — Scenario: *Meeting new kids at a party.*
-- (E): I give a gentle push: "Go say hi — I'm watching from here"
-- (N): They can stay on my lap until they're ready — no rush
 
-**ID** — Skenario: *Ketemu anak-anak baru di sebuah acara.*
-- (E): Aku dorong halus: "Kenalan yuk, aku lihatin dr sini"
-- (N): Biarin dia nempel dulu sm aku sampai siap — gak buru-buru
+**EN** — Scenario: *Meeting new kids. You usually…*
+- (E): Encourage a hello while staying close
+- (N): Let them stay close until they feel ready
+
+**ID** — Skenario: *Ketemu anak-anak baru. Kamu biasanya…*
+- (E): Ajak kenalan, aku temenin dr dekat
+- (N): Biarin nempel dulu sampai dia siap
 
 ---
 
