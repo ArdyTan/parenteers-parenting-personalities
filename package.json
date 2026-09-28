@@ -28,6 +28,7 @@
     "content:parent-doc": "node ./scripts/sync-parent-content-doc.mjs",
     "qa:phase45": "node ./scripts/qa-phase45.mjs",
     "qa:phase55": "node ./scripts/qa-phase55.mjs",
+    "qa:phase9": "node ./scripts/qa-phase9.mjs",
     "qa:pdf": "node ./scripts/qa-pdf.mjs",
     "perf:probe": "node ./scripts/perf-probe.mjs",
     "perf:canvas": "node ./scripts/perf-canvas-audit.mjs",

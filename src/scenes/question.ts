@@ -1,10 +1,9 @@
 import { gsap } from 'gsap';
-import { Flip } from 'gsap/Flip';
-
 import { playSfx } from '../core/audio';
 import { triggerHaptic } from '../core/haptics';
 import { randomizeQuestionAnswers } from '../core/randomize';
-import type { Question } from '../core/quiz-types';
+import type { Question, QuestionAnswer } from '../core/quiz-types';
+import { createAnswerSwipe, type AnswerSide } from '../gestures/answer-swipe';
 import {
   bindPressFeedback,
   burstAt,
@@ -14,13 +13,13 @@ import {
 import { actionButton, element, sceneBody, sceneBottom, sceneCaption } from './dom';
 import { FunctionalScene, type SceneContext } from './scene';
 
-gsap.registerPlugin(Flip);
-
 export function createQuestionScene(question: Question): FunctionalScene {
   return new FunctionalScene('question', (root, context, signal) => {
     const { lang, answers } = context.store.get();
     const randomized = randomizeQuestionAnswers(question);
-    let selectedPole = answers.find(({ q }) => q === question.id)?.pole;
+    const savedPole = answers.find(({ q }) => q === question.id)?.pole;
+    let committing = false;
+    let exitSide: AnswerSide | null = null;
 
     const progressText = context.t('quiz.progress', { n: question.id, total: 12 });
     const progress = element('progress', {
@@ -53,7 +52,7 @@ export function createQuestionScene(question: Question): FunctionalScene {
     const backPath = question.id === 1 ? '/intro' : `/q/${question.id - 1}`;
     const back = actionButton(
       context.t('nav.back'),
-      () => context.navigate(backPath),
+      () => { if (!committing) context.navigate(backPath); },
       signal,
       {
         className: 'quiz-indicator__back button--icon',
@@ -90,38 +89,28 @@ export function createQuestionScene(question: Question): FunctionalScene {
     });
 
     const answerButtons = randomized.answers.map((answer, index) => {
-      const labelKey = index === 0 ? 'quiz.answer_a_label' : 'quiz.answer_b_label';
+      const side: AnswerSide = index === 0 ? 'left' : 'right';
       const button = element('button', {
-        className: 'answer-card',
+        className: `answer-card${savedPole === answer.pole ? ' is-selected' : ''}`,
         attributes: {
           type: 'button',
-          'aria-pressed': String(selectedPole === answer.pole),
+          'aria-label': context.t(index === 0 ? 'a11y.answer_left' : 'a11y.answer_right', { answer: answer[lang] }),
+          'aria-pressed': String(savedPole === answer.pole),
           'data-pole': answer.pole,
+          'data-side': side,
         },
       }, [
-        element('span', { className: 'answer-card__label', text: context.t(labelKey) }),
+        element('span', { className: 'answer-card__label', text: index === 0 ? '←' : '→', attributes: { 'aria-hidden': 'true' } }),
         element('span', { className: 'answer-card__copy', text: answer[lang] }),
+        ...(savedPole === answer.pole ? [element('span', { className: 'answer-card__previous', text: context.t('quiz.previous_answer'), attributes: { 'aria-hidden': 'true' } })] : []),
       ]);
 
-      button.addEventListener(
-        'click',
-        () => selectAnswer(answer.pole, button),
-        { signal },
-      );
+      button.addEventListener('click', () => commitAnswer(answer, side), { signal });
 
       return button;
     });
 
-    // One always-present CTA. Its label carries the affordance instead of a
-    // separate "change answer" link, which is what used to shove the button
-    // around as the answer state flipped.
     const nextPath = question.id === 12 ? '/baking' : `/q/${question.id + 1}`;
-    const next = actionButton(
-      context.t('quiz.cta_pick'),
-      () => context.navigate(nextPath),
-      signal,
-      { className: 'button--primary question__cta' },
-    );
 
     const title = element('h1', {
       className: 'question__title',
@@ -150,192 +139,135 @@ export function createQuestionScene(question: Question): FunctionalScene {
       element('div', { className: 'quiz-indicator__row' }, [back, progressLabel, close]),
       progressRail,
     ]);
-    const stack = element('div', { className: 'question__stack' }, [title, answerGrid]);
+    const stack = element('div', { className: 'question__stack' }, [title]);
+    const card = element('div', { className: 'question__card' }, [artBand, stack]);
+    const peek = element('div', { className: 'question__peek', attributes: { 'aria-hidden': 'true' } });
+    const deck = element('div', { className: 'question__deck' }, [peek, card]);
+    const bottom = sceneBottom('question__bottom', [answerGrid, instruction]);
 
     root.append(
-      sceneBody('question__body', [indicator, artBand, stack]),
-      sceneBottom('question__bottom', [next, instruction]),
+      sceneBody('question__body', [indicator, deck]),
+      bottom,
       exitDialog,
     );
 
-    let answerStateInitialized = false;
-    updateAnswerState();
     bindPressFeedback(root.querySelectorAll('.button, .answer-card'), signal);
-    answerButtons.forEach((button) => bindAnswerGesture(button));
-    bindBackEdgeGesture();
+    const swipe = createAnswerSwipe(card, root, {
+      preview(dx, side, dragging) {
+        if (committing || signal.aborted) return;
+        gsap.killTweensOf(card);
+        if (!prefersReducedMotion()) gsap.set(card, { x: dx, rotate: Math.max(-8, Math.min(8, dx * 0.045)) });
+        peek.classList.toggle('is-revealed', dragging);
+        answerButtons.forEach((button) => button.classList.toggle('is-preview', button.dataset.side === side));
+        instruction.textContent = side ? context.t('quiz.release_hint') : context.t('quiz.select_hint');
+      },
+      commit(side) {
+        commitAnswer(randomized.answers[side === 'left' ? 0 : 1], side);
+      },
+      cancel() {
+        if (committing || signal.aborted) return;
+        answerButtons.forEach((button) => button.classList.remove('is-preview'));
+        instruction.textContent = context.t('quiz.select_hint');
+        peek.classList.remove('is-revealed');
+        gsap.to(card, { x: 0, rotate: 0, duration: prefersReducedMotion() ? 0 : 0.2, ease: 'power2.out', overwrite: true });
+      },
+    });
+    swipe.attach();
+    const cancelDrag = () => { if (!signal.aborted && swipe.activePointerId !== null) { swipe.detach(); swipe.attach(); } };
+    window.addEventListener('resize', cancelDrag, { signal });
+    document.addEventListener('visibilitychange', cancelDrag, { signal });
 
-    function updateAnswerState(): void {
-      const flipState = answerStateInitialized && !prefersReducedMotion()
-        ? Flip.getState([answerGrid])
-        : null;
+    function commitAnswer(answer: QuestionAnswer, side: AnswerSide): void {
+      if (committing || signal.aborted) return;
+      committing = true;
+      exitSide = side;
+      context.store.upsertAnswer({ q: question.id, pole: answer.pole });
       answerButtons.forEach((button) => {
-        const selected = button.dataset.pole === selectedPole;
-        button.classList.toggle('is-selected', selected);
-        button.setAttribute('aria-pressed', String(selected));
-        if (selected && !prefersReducedMotion()) {
-          gsap.fromTo(
-            button,
-            { scale: 0.98 },
-            {
-              scale: 1,
-              duration: 0.5,
-              ease: 'elastic.out(1, 0.55)',
-              clearProps: 'transform',
-            },
-          );
-        }
+        const chosen = button.dataset.pole === answer.pole;
+        button.classList.toggle('is-selected', chosen);
+        button.classList.remove('is-preview');
+        button.setAttribute('aria-pressed', String(chosen));
       });
-      const pending = selectedPole === undefined;
-      next.disabled = pending;
-      next.setAttribute('aria-disabled', String(pending));
-      const label = context.t(pending ? 'quiz.cta_pick' : 'nav.next');
-      const labelHost = next.querySelector('.async-button__label') ?? next;
-      if (labelHost.textContent !== label) labelHost.textContent = label;
-      if (flipState) {
-        Flip.from(flipState, {
-          duration: 0.38,
-          ease: 'power2.out',
-          absolute: false,
-          nested: true,
-          prune: true,
-        });
-      }
-      answerStateInitialized = true;
-    }
-
-    function selectAnswer(pole: typeof selectedPole, button: HTMLButtonElement): void {
-      if (!pole) return;
-      selectedPole = pole;
-      context.store.upsertAnswer({ q: question.id, pole });
-      updateAnswerState();
+      const button = answerButtons[side === 'left' ? 0 : 1]!;
       const rect = button.getBoundingClientRect();
-      // Visual pulse, haptic tick and audio cue stay paired (conventions.md §1).
-      // The tick used to ride the removed WebGL burst listener in app.ts; it
-      // belongs here, next to the burst it accompanies.
       burstAt(button, rect.width / 2, rect.height / 2);
       triggerHaptic('tick');
-      // A swipe-to-choose reaches this same path, so the selection cue covers
-      // both input styles; layering a swipe whoosh on top only muddies it.
       playSfx('select');
-    }
-
-    function bindAnswerGesture(button: HTMLButtonElement): void {
-      let pointerId = -1;
-      let startX = 0;
-      let startY = 0;
-      let startTime = 0;
-      let dragging = false;
-
-      button.addEventListener(
-        'pointerdown',
-        (event) => {
-          if (!event.isPrimary) return;
-          pointerId = event.pointerId;
-          startX = event.clientX;
-          startY = event.clientY;
-          startTime = performance.now();
-          dragging = false;
-          button.setPointerCapture(pointerId);
-        },
-        { signal },
-      );
-      button.addEventListener(
-        'pointermove',
-        (event) => {
-          if (event.pointerId !== pointerId) return;
-          const dx = event.clientX - startX;
-          const dy = event.clientY - startY;
-          if (!dragging && Math.abs(dx) > 10 && Math.abs(dx) > Math.abs(dy)) dragging = true;
-          if (!dragging) return;
-          gsap.set(button, { x: dx, rotate: dx * 0.025 });
-        },
-        { signal },
-      );
-      button.addEventListener(
-        'pointerup',
-        (event) => {
-          if (event.pointerId !== pointerId) return;
-          const dx = event.clientX - startX;
-          const elapsed = Math.max(1, performance.now() - startTime);
-          const velocity = Math.abs(dx) / elapsed;
-          const shouldChoose = dragging && (Math.abs(dx) > 64 || velocity > 0.55);
-
-          if (shouldChoose) {
-            selectAnswer(button.dataset.pole as typeof selectedPole, button);
-          }
-          gsap.to(button, {
-            x: 0,
-            rotate: 0,
-            duration: prefersReducedMotion() ? 0 : 0.52,
-            ease: 'elastic.out(1, 0.55)',
-            clearProps: 'transform',
-          });
-          pointerId = -1;
-          dragging = false;
-        },
-        { signal },
-      );
-    }
-
-    function bindBackEdgeGesture(): void {
-      let edgePointer = -1;
-      let edgeStart = 0;
-      root.addEventListener(
-        'pointerdown',
-        (event) => {
-          const rect = root.getBoundingClientRect();
-          if (!event.isPrimary || event.clientX - rect.left > 24) return;
-          edgePointer = event.pointerId;
-          edgeStart = event.clientX;
-        },
-        { signal },
-      );
-      root.addEventListener(
-        'pointerup',
-        (event) => {
-          if (event.pointerId !== edgePointer) return;
-          if (event.clientX - edgeStart > 72) context.navigate(backPath);
-          edgePointer = -1;
-        },
-        { signal },
-      );
+      context.navigate(nextPath);
     }
 
     const currentStop = progressStops.children.item(question.id - 1);
 
-    return createSceneMotion(root, {
+    function animateStar(): void {
+      if (signal.aborted || committing || prefersReducedMotion() || !currentStop) return;
+      gsap.fromTo(
+        currentStop,
+        { scale: 0.2, rotate: -35, opacity: 0.2 },
+        {
+          scale: 1,
+          rotate: 0,
+          opacity: 1,
+          duration: 0.62,
+          ease: 'elastic.out(1, 0.48)',
+          clearProps: 'transform,opacity',
+        },
+      );
+      const bounds = currentStop.getBoundingClientRect();
+      const railBounds = progressRail.getBoundingClientRect();
+      burstAt(
+        progressRail,
+        bounds.left - railBounds.left + bounds.width / 2,
+        bounds.top - railBounds.top + bounds.height / 2,
+      );
+    }
+
+    const motion = createSceneMotion(root, {
       enterTargets: [
         indicator,
-        scenarioArt,
+        card,
         title,
         ...answerButtons,
-        root.querySelector('.question__bottom'),
-      ].filter((target): target is Element => target instanceof Element),
-      onEnter() {
-        if (prefersReducedMotion() || !currentStop) return;
-        // The star for this question pops in — the rail is a better home for the
-        // "one more step" beat than a rolling digit ever was.
-        gsap.fromTo(
-          currentStop,
-          { scale: 0.2, rotate: -35, opacity: 0.2 },
-          {
-            scale: 1,
-            rotate: 0,
-            opacity: 1,
-            duration: 0.62,
-            ease: 'elastic.out(1, 0.48)',
-            clearProps: 'transform,opacity',
-          },
-        );
-        const bounds = currentStop.getBoundingClientRect();
-        const railBounds = progressRail.getBoundingClientRect();
-        burstAt(
-          progressRail,
-          bounds.left - railBounds.left + bounds.width / 2,
-          bounds.top - railBounds.top + bounds.height / 2,
-        );
-      },
+        bottom,
+      ],
+      onEnter: animateStar,
+      onDestroy() { swipe.detach(); },
     });
+    return {
+      ...motion,
+      enter(from) {
+        if (from !== 'question') return motion.enter?.(from);
+        return new Promise<void>((resolve) => {
+          gsap.fromTo(
+            [indicator, card, bottom],
+            { opacity: 0 },
+            {
+              opacity: 1,
+              duration: prefersReducedMotion() ? 0 : 0.08,
+              ease: 'power2.out',
+              onComplete() { animateStar(); resolve(); },
+              onInterrupt: resolve,
+            },
+          );
+        });
+      },
+      exit(to) {
+        if (exitSide === null || (to !== 'question' && to !== 'calculating')) {
+          return motion.exit?.(to);
+        }
+        return new Promise<void>((resolve) => {
+          gsap.to(card, {
+            x: prefersReducedMotion() ? 0 : (exitSide === 'left' ? -root.clientWidth : root.clientWidth),
+            rotate: prefersReducedMotion() ? 0 : (exitSide === 'left' ? -8 : 8),
+            opacity: 0,
+            duration: prefersReducedMotion() ? 0 : 0.1,
+            ease: 'power2.in',
+            overwrite: 'auto',
+            onComplete: resolve,
+            onInterrupt: resolve,
+          });
+        });
+      },
+    };
   });
 }
 

@@ -393,9 +393,9 @@ report.intro = await evaluate(`(() => ({
 }))()`);
 await capture('02-quiz-opening');
 
-// --- 3 Questions: shortest, both step-down tiers, and the last one ---------
+// --- 3 Questions: every rewritten prompt and both directional choices -------
 report.questions = [];
-for (const question of [1, 2, 5, 10, 12]) {
+for (const question of Array.from({ length: 12 }, (_, index) => index + 1)) {
   const answers = Array.from({ length: question - 1 }, (_, index) => ({
     q: index + 1,
     pole: poleForQuestion(index + 1),
@@ -462,12 +462,14 @@ for (const question of [1, 2, 5, 10, 12]) {
         const s = document.querySelector('.question__stack');
         return s ? round(s.getBoundingClientRect().width) : null;
       })(),
-      changeAnswerPresent: !!document.querySelector('.question__stack .button--text, .question__bottom .button--text'),
+      deckPresent: !!document.querySelector('.question__card'),
       cards: cards.length,
+      buttonsSideBySide: cards.length === 2 && Math.abs(cards[0].getBoundingClientRect().top - cards[1].getBoundingClientRect().top) < 1,
+      namedAnswers: cards.every((card) => card.getAttribute('aria-label')?.includes(card.querySelector('.answer-card__copy')?.textContent ?? '')),
+      sides: cards.map((card) => card.dataset.side),
       cardBottom: cards.at(-1) ? round(cards.at(-1).getBoundingClientRect().bottom) : null,
       cardRadius: cards[0] ? getComputedStyle(cards[0]).borderRadius : null,
-      ctaDisabled: document.querySelector('.question__cta')?.disabled ?? null,
-      ctaText: document.querySelector('.question__cta')?.textContent ?? null,
+      nextPresent: !!document.querySelector('.question__cta'),
       artBottom: (() => { const a = document.querySelector('.question__art'); return a ? round(a.getBoundingClientRect().bottom) : null; })(),
       bandTop: (() => { const a = document.querySelector('.question__art-band'); return a ? round(a.getBoundingClientRect().top) : null; })(),
       railBottom: rail ? round(rail.getBoundingClientRect().bottom) : null,
@@ -491,13 +493,13 @@ report.shortViewport = await evaluate(`(() => {
   const round = (v) => Math.round(v * 10) / 10;
   const art = document.querySelector('.question__art');
   const title = document.querySelector('.question__title');
-  const cta = document.querySelector('.question__cta');
+  const choices = [...document.querySelectorAll('.answer-card')];
   return {
     artHeight: art ? round(art.getBoundingClientRect().height) : null,
     artBottom: art ? round(art.getBoundingClientRect().bottom) : null,
     titleTop: title ? round(title.getBoundingClientRect().top) : null,
     titleFontPx: title ? Math.round(parseFloat(getComputedStyle(title).fontSize)) : null,
-    ctaBottom: cta ? round(cta.getBoundingClientRect().bottom) : null,
+    choicesBottom: choices.length ? round(choices.at(-1).getBoundingClientRect().bottom) : null,
     artMask: art ? getComputedStyle(art).maskImage : null,
     overflow: document.documentElement.scrollWidth - innerWidth,
   };
@@ -507,10 +509,10 @@ await go('/q/10');
 report.shortQuestion10 = await evaluate(`(() => {
   const round = (v) => Math.round(v * 10) / 10;
   const art = document.querySelector('.question__art');
-  const cta = document.querySelector('.question__cta');
+  const choices = [...document.querySelectorAll('.answer-card')];
   return {
     artHeight: art ? round(art.getBoundingClientRect().height) : null,
-    ctaBottom: cta ? round(cta.getBoundingClientRect().bottom) : null,
+    choicesBottom: choices.length ? round(choices.at(-1).getBoundingClientRect().bottom) : null,
     overflow: document.documentElement.scrollWidth - innerWidth,
   };
 })()`);
@@ -554,6 +556,7 @@ report.baking = await evaluate(`(() => {
       return li ? Math.round(parseFloat(getComputedStyle(li).fontSize)) : null;
     })(),
     continuePresent: !!document.querySelector('.baking__continue'),
+    editLastPresent: !!document.querySelector('.baking__edit'),
     itemPx: items[0] ? Math.round(items[0].getBoundingClientRect().height) : null,
     itemSquare: items[0]
       ? Math.abs(items[0].getBoundingClientRect().width - items[0].getBoundingClientRect().height) < 1.5
@@ -1020,8 +1023,8 @@ const shells = [
   ['result', report.result],
   ...report.questions.map((row) => [`q${row.id}`, row]),
 ];
-// Baking deliberately has neither: it advances on a timer, so there is nothing
-// to press and no bottom band to hold it.
+// Baking has a correction control near its title, while the timer still owns
+// advancement and therefore there is no bottom band.
 const BANDLESS_SCENES = new Set(['baking']);
 
 for (const [name, state] of shells) {
@@ -1033,18 +1036,20 @@ for (const [name, state] of shells) {
     if (state.bottomBox) failures.push(`${name}: should have no bottom band`);
   } else {
     if (!state.bottomBox) failures.push(`${name}: no bottom band`);
-    const cta = state.ctaExpression;
-    if (!cta?.bg?.includes('button-expression')) {
-      failures.push(`${name}: bottom CTA is missing the expression mark`);
-    }
-    // 52px is pad(16,32) around a 16/1.25 label — the spec's Button-blue height.
-    if (cta && cta.height > 0 && Math.abs(cta.height - 52) > 1.5) {
-      failures.push(`${name}: bottom CTA is ${cta.height}px tall, expected 52`);
-    }
-    if (cta && cta.gap > 3) failures.push(`${name}: ${cta.gap}px between CTA label and mark`);
-    if (cta && cta.afterRotate !== 'none') failures.push(`${name}: expression mark is still rotated`);
-    if (cta && cta.afterHeight >= 20) {
-      failures.push(`${name}: expression mark (${cta.afterHeight}px) can drive the CTA height`);
+    if (!name.startsWith('q')) {
+      const cta = state.ctaExpression;
+      if (!cta?.bg?.includes('button-expression')) {
+        failures.push(`${name}: bottom CTA is missing the expression mark`);
+      }
+      // 52px is pad(16,32) around a 16/1.25 label — the spec's Button-blue height.
+      if (cta && cta.height > 0 && Math.abs(cta.height - 52) > 1.5) {
+        failures.push(`${name}: bottom CTA is ${cta.height}px tall, expected 52`);
+      }
+      if (cta && cta.gap > 3) failures.push(`${name}: ${cta.gap}px between CTA label and mark`);
+      if (cta && cta.afterRotate !== 'none') failures.push(`${name}: expression mark is still rotated`);
+      if (cta && cta.afterHeight >= 20) {
+        failures.push(`${name}: expression mark (${cta.afterHeight}px) can drive the CTA height`);
+      }
     }
   }
   // The bands own their insets; any gap here means a stale scene padding is
@@ -1150,8 +1155,12 @@ for (const row of report.questions) {
   if (row.labelNodes !== 1 || row.labelNodeType !== 3) {
     failures.push(`${tag}: progress label is ${row.labelNodes} nodes, expected a single text node`);
   }
-  if (row.changeAnswerPresent) failures.push(`${tag}: the change-answer link is still rendered`);
+  if (!row.deckPresent) failures.push(`${tag}: draggable scenario card is missing`);
   if (row.cards !== 2) failures.push(`${tag}: ${row.cards} answer cards`);
+  if (!row.buttonsSideBySide) failures.push(`${tag}: directional answers are not side by side`);
+  if (!row.namedAnswers) failures.push(`${tag}: answer accessible name does not contain its visible response`);
+  if (row.sides?.join(',') !== 'left,right') failures.push(`${tag}: displayed direction binding is ${row.sides}`);
+  if (row.nextPresent) failures.push(`${tag}: old Next CTA is still rendered`);
   if (!row.art?.fullBleed) failures.push(`${tag}: art band is not full-bleed`);
   // Never rescaled at any viewport height: always its native 3:2 at 390 wide.
   // The band now spans the headline row too, so this holds even when the copy
@@ -1182,7 +1191,6 @@ for (const row of report.questions) {
     );
   }
   if (row.langVisible) failures.push(`${tag}: language toggle should be hidden`);
-  if (row.ctaDisabled !== true) failures.push(`${tag}: CTA should start disabled`);
   // Answers must sit low enough that the art keeps the upper composition.
   if (row.cardBottom < 470) failures.push(`${tag}: answers end at ${row.cardBottom}px, too high up the screen`);
   // The star rail must still read against flat cream: the band starts below it.
@@ -1207,8 +1215,8 @@ if (report.shortViewport) {
   if (short.artBottom <= short.titleTop) {
     failures.push('q5@720: art stops above the headline instead of running behind it');
   }
-  if (short.ctaBottom > 720.5) {
-    failures.push(`q5@720: the CTA is ${Math.round(short.ctaBottom - 720)}px below the fold`);
+  if (short.choicesBottom > 720.5) {
+    failures.push(`q5@720: the choices are ${Math.round(short.choicesBottom - 720)}px below the fold`);
   }
   if (short.overflow > 0) failures.push(`q5@720: ${short.overflow}px horizontal overflow`);
   // The display scale is a percentage of the screen, not a fixed size: the same
@@ -1231,8 +1239,8 @@ if (report.shortQuestion10) {
   if (Math.abs(short.artHeight - 260) > 1) {
     failures.push(`q10@720: art collapsed to ${short.artHeight}px, expected its native 260`);
   }
-  if (short.ctaBottom > 720.5) {
-    failures.push(`q10@720: the CTA is ${Math.round(short.ctaBottom - 720)}px below the fold`);
+  if (short.choicesBottom > 720.5) {
+    failures.push(`q10@720: the choices are ${Math.round(short.choicesBottom - 720)}px below the fold`);
   }
   if (short.overflow > 0) failures.push(`q10@720: ${short.overflow}px horizontal overflow`);
 }
@@ -1253,6 +1261,7 @@ if (report.baking.lineFontPx < 18) {
   failures.push(`baking: status line is ${report.baking.lineFontPx}px, expected 18`);
 }
 if (report.baking.continuePresent) failures.push('baking: the continue button is still rendered');
+if (!report.baking.editLastPresent) failures.push('baking: last-answer correction is missing');
 if (!report.baking.itemSquare) failures.push('baking: marquee thumbnails are not square');
 // Sized off the row rather than a fixed 104px, so the cast reads big.
 if (report.baking.itemPx < 120) {

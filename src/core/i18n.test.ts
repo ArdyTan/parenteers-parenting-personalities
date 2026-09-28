@@ -12,6 +12,7 @@ const EXAMPLE_VALUES = {
   link: 'https://example.test/r/pcte',
   year: 2026,
   lang: 'EN',
+  answer: 'Aku temenin dr dekat',
 } as const satisfies InterpolationValues;
 
 describe('i18n rendering', () => {

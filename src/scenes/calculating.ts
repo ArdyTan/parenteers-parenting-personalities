@@ -6,7 +6,7 @@ import {
   createSceneMotion,
   prefersReducedMotion,
 } from '../motion/shared';
-import { element, localizedList, sceneBody } from './dom';
+import { actionButton, element, localizedList, sceneBody } from './dom';
 import { FunctionalScene } from './scene';
 
 /** Three rows read as a whole bakery drifting past rather than a two-line ticker. */
@@ -60,15 +60,31 @@ export function createCalculatingScene(): FunctionalScene {
       marquees.map(({ marquee }) => marquee),
     );
 
-    root.setAttribute('aria-label', context.t('loading.a11y'));
-    root.append(sceneBody('baking__body', [title, marqueeStage, loadingList]));
-
     let holdTimer: number | undefined;
     let advanced = false;
     let tick: ((time: number, deltaTime: number) => void) | null = null;
     let heatTween: gsap.core.Tween | null = null;
     const heat = { value: 45 };
     const holdMs = context.data.config.loading.holdMs;
+
+    function editLastAnswer(): void {
+      if (advanced || signal.aborted) return;
+      advanced = true;
+      window.clearTimeout(holdTimer);
+      context.navigate('/q/12');
+    }
+
+    const edit = actionButton(context.t('quiz.edit_last_answer'), editLastAnswer, signal, {
+      className: 'baking__edit button--text',
+    });
+    edit.addEventListener('pointerdown', (event) => {
+      event.stopPropagation();
+      editLastAnswer();
+    }, { signal });
+    const top = element('div', { className: 'baking__top' }, [edit, title]);
+
+    root.setAttribute('aria-label', context.t('loading.a11y'));
+    root.append(sceneBody('baking__body', [top, marqueeStage, loadingList]));
 
     /** Idempotent: the tap shortcut and the timer race, and only one may win. */
     function advance(): void {
@@ -83,8 +99,9 @@ export function createCalculatingScene(): FunctionalScene {
     root.addEventListener('pointerdown', advance, { signal });
 
     return createSceneMotion(root, {
-      enterTargets: [title, marqueeStage],
+      enterTargets: [top, marqueeStage],
       onEnter() {
+        if (signal.aborted || advanced) return;
         holdTimer = window.setTimeout(advance, holdMs);
         if (prefersReducedMotion()) return;
         startMarquee();
