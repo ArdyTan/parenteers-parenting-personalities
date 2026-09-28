@@ -144,6 +144,14 @@ type State = {
 
 A ~40-line observable store (get/set/subscribe). No state library. `pb1.answers` persists `{q, pole}[]`; at `/baking`, the app derives the scoring input with `[...answers].sort((a, b) => a.q - b.q).map(({ pole }) => pole)`. Result is always **derived** from that sorted `Pole[]` by `scoring.ts` — never accumulated during the quiz, so refresh-mid-quiz can't corrupt it. The versioned key names and stored shapes are authoritative in data-spec.md §9.
 
+**Phase 9 question interaction (local, browser QA pending):** `question.ts` randomizes the two
+answer objects on mount. The visible left/right buttons and `gestures/answer-swipe.ts` resolve
+to one of those same objects, then a scene-owned commit lock saves its `{q, pole}` and navigates
+once. A cancelled drag never writes. Back restores a saved answer by pole and waits for another
+explicit choice. Baking allows correction of Q12 before its timer reaches Result; re-entry scores
+the current 12 answers afresh. The question uses a 100ms exit and 80ms entrance handoff, while other scenes retain
+the shared transition. See `docs/question-swipe-plan.md` for the full behavior contract.
+
 ## 7. The Clock & Performance Model
 
 ```ts

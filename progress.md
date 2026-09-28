@@ -18,17 +18,20 @@
 | 6 — QA hardening | ✅ done; Ardy confirmed testing across the target devices (2026-08-23) |
 | 7 — Launch extras (optional) | 🟨 sound layer shipped early (2026-08-02); analytics, founder-note flag and Awwwards assets remain |
 | 8 — Personality PDF booklet | 🟨 A is the sole final template; the approved Saweria closing is live across all 32 ID/EN booklets and the shared Result component covers all 16 types. Worker version `aa06f077-1bae-4378-88ee-e71198542425` deployed and hash-verified 2026-09-08; real-device WebView sign-off remains |
-| 9 — Single-action questions + swipe | 🟨 12 ID/EN pairs restructured locally; development plan complete; gesture implementation and browser/device QA pending |
+| 9 — Single-action questions + swipe | 🟨 local interaction and canonical Chrome QA pass in ID/EN, normal/reduced motion; physical Instagram WebView acceptance pending |
 
 ## Next action
 
 **Active workstream: single-action questions and playful swipe (Phase 9).** Ardy approved
 restructuring all 12 question pairs and requested the development plan on 2026-09-28. The bilingual
 copy is updated in `src/data/questions.json` and its editorial reference; the build sequence and
-acceptance contract are in `docs/question-swipe-plan.md`. Next: implement step B (directional
-answer layout and a single tap-to-commit path), then the swipe controller and feedback. The current
-runtime still uses selection + Next. Phase 9 supersedes only the question interaction/composition;
-its browser and physical acceptance have not started.
+acceptance contract are in `docs/question-swipe-plan.md`. The local runtime now has directional
+answer buttons, a draggable scenario, one commit path, auto-advance and a Q12 correction control
+on Baking. Canonical Vite/Chrome QA now passes: all 12 screens at 390×844 and the short-viewport
+checks, normal and reduced motion, plus a full ID/EN touch, swipe and keyboard journey with pole
+binding and Q12 correction. Next: physical Instagram WebView acceptance on Samsung and iOS,
+including native back, sound unlock and real gesture intent. Phase 9 supersedes only the question
+interaction/composition; no Phase 9 production deployment is claimed.
 
 **Existing Phase 8 follow-up: the per-type PDF booklet.** Layout A is final and is now the only
 generator path. All 54 commissioned illustrations are installed, all 32 ID/EN booklets were rebuilt,
@@ -67,6 +70,42 @@ Phase 0–6 are complete by Ardy's confirmation; Phase 7 remains intentionally o
 - [ ] Any overrides to plan.md §14 decision defaults
 
 ## Session log (newest first)
+
+**2026-09-28 — Phase 9 canonical browser QA completed locally.**
+After Ardy authorized opening Chrome, started the existing Vite/Chrome toolchain on loopback with
+Chrome CDP port 9223. An initial Chrome launch unexpectedly attempted GCM registration despite
+`--disable-background-networking` (`PHONE_REGISTRATION_ERROR`, `wrong_secret`); stopped it and
+relaunched the same browser with an isolated profile, a loopback-only proxy sink and localhost
+bypass. The QA Chrome's observed sockets were localhost only. A later unfiltered socket check
+showed non-local connections from pre-existing Chrome processes (PIDs 6350 and 40250), not the
+temporary QA Chrome (PID 59705), which was stopped for inspection. The incident and observation
+limit are recorded in the Obsidian project playbook. `qa:phase55`
+normal and `--reduced` each reported zero failures/runtime errors across all 12 questions,
+390×844 and short 390×720 checks. `qa:phase9` completed all 12 ID and EN answers using tap,
+directional swipe and keyboard, checked cancellation/vertical intent, stored pole binding,
+Q12 Baking correction, and reached Result in both languages with zero runtime errors. Visual
+inspection caught and removed the idle deck outline. Typecheck and 171 tests pass. Physical
+Instagram WebView acceptance and any deployment remain pending.
+
+**2026-09-28 — Canonical browser QA requested; Chrome prerequisite still inactive.**
+Ardy chose option A to continue Phase 9 QA with the project's Vite and Chrome CDP harness.
+One read-only check of port 9223 and `/json/version` found no listener (`curl: (7) Failed to
+connect to 127.0.0.1 port 9223`). Per the project runtime-readiness gate, no substitute browser
+or server was launched and no browser acceptance is claimed. Waiting for Ardy to start Chrome
+with remote debugging on port 9223, then run Vite and the normal/reduced QA harness.
+
+
+**2026-09-28 — Phase 9 local interaction implemented; browser QA waiting on runtime.**
+Replaced selection plus Next with stationary left/right response buttons and a movable scenario
+card. Tap or committed horizontal swipe now saves the displayed answer object's pole once and
+advances. Removed question edge-back, added cancellation, short question handoff, saved-answer
+state on revisit, bilingual prompts and accessible button names, and last-answer correction in
+Baking with timer cancellation. The Phase 5.5 QA harness now checks the new two-button composition
+and all 12 questions. Validation: 171 tests pass, typecheck passes, build passes at 101.45 KB JS
+gzip, and `git diff --check` passes. The canonical Vite and Chrome 9223 ports were inactive at the
+read-only check, so no browser or device acceptance is claimed; user choice is pending. The build
+regenerated OG images, which were restored because this feature does not change them.
+
 
 **2026-09-28 — All questions restructured; Phase 9 swipe development planned.**
 Rewrote the 12 scenarios and 24 responses in both ID and EN, preserving question IDs, dimensions,

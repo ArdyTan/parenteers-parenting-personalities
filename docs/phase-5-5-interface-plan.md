@@ -133,6 +133,14 @@ the art is gone.
 - Points are `Text Point`: 27px blue circle + 12px/1.5 copy, gap 11.
 
 ### 3 & 4 · Questions — `src/scenes/question.ts`
+
+**Phase 9 revision (2026-09-28):** The Phase 5.5 choice layout below is historical.
+`docs/question-swipe-plan.md` now owns the interaction: a draggable scenario/art card,
+two stationary directional answer buttons in the bottom band, one tap or swipe to save
+and advance, and a visible Back control. There is no question Next CTA. The star rail,
+native 390×260 artwork, copy-over-art layering, short-height fade and framed-mode
+protections remain part of the layout contract.
+
 | Note | Resolution |
 |---|---|
 | 1 · `progress-bar-star.svg` | The rail is now 35px tall, `border-radius: 60px`, 1px outline, 12 stops each an 18×20 star image — answered at `opacity: 1`, remaining at `0.20` per spec. The `content: "✱"` glyph hack and three competing stale rule blocks are deleted. The `<progress>` element stays, visually hidden, for the a11y semantic. |

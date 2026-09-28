@@ -160,7 +160,7 @@ overrides must resolve to existing ids with the same shape.
 - Keys are dot-namespaced exactly as in `quiz-02-ui-strings.md` (`nav.*`, `landing.*`, `intro.*`, `quiz.*`, `loading.*`, `result.*`, `gallery.*`, `share.*`, `footer.*`, `error.*`, `meta.*`, `a11y.*`). The `end.*` namespace was retired with the `/end` route on 2026-08-02.
 - **Page content from quiz-01 that quiz-02 doesn't cover gets new keys in the same namespaces:** `landing.h1`, `landing.subtitle`, `landing.trust` · `intro.h2`, `intro.point1..3` · `quiz.interstitial_q6`, `quiz.interstitial_q9` · `loading.line1..4` · `result.softsell_body`, `result.other_types_label` · `gallery.intro` · `share.hold_hint`, `share.image_shared`, `share.image_saved`, `share.link_shared` · `activity.P` … `activity.N` (the 8 activity-tag labels).
 - **Boundary rule:** if a string belongs to a *record* (a question, a type), it lives embedded in that record's JSON. If it belongs to a *page or reusable UI*, it lives in i18n. No third place.
-- Interpolation variables `{n} {total} {type} {emoji} {link} {year} {lang}` — never translated/reordered (conventions.md §6.5).
+- Interpolation variables `{n} {total} {type} {emoji} {link} {year} {lang} {answer}` — never translated/reordered (conventions.md §6.5). The directional answer labels interpolate the displayed answer text after shuffling; the stored pole comes from that answer object, never from left/right.
 - `en.json` and `id.json` must have **identical key sets** (validated).
 
 ## 6. Scoring (core/scoring.ts)

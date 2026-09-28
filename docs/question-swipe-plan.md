@@ -2,8 +2,9 @@
 
 Date: 2026-09-28. Phase 9 in `plan.md`.
 
-**Status:** all 12 ID/EN question pairs have been rewritten in the local data and editorial
-reference. Swipe development is planned, not implemented. No runtime or device acceptance is claimed.
+**Status:** all 12 ID/EN pairs and the local tap/swipe implementation are in the working tree.
+Unit tests, typecheck, build and canonical Chrome browser QA pass. Physical Instagram WebView
+acceptance remains pending.
 Ardy requested the copy restructuring and this development plan on 2026-09-28.
 
 ## 1. Outcome and boundaries
@@ -38,7 +39,7 @@ All 24 answers have ID and EN text. Current maximum answer length across both la
 characters; longest scenario is 69. These are editorial measurements, not proof of layout fit.
 Use wrapped full text, never ellipsis. Maintain the conversational Indonesian register.
 
-Proposed UI strings for the implementation phase (not yet installed):
+Implemented UI strings:
 
 | Key | ID | EN |
 |---|---|---|
