@@ -1,11 +1,8 @@
-import { gsap } from 'gsap';
-
 import type { PersonalityType, TypeCode } from '../core/quiz-types';
 import { characterThumbnail } from '../data';
 import {
   bindPressFeedback,
   createSceneMotion,
-  prefersReducedMotion,
   revealOnScroll,
 } from '../motion/shared';
 import { actionButton, element } from './dom';
@@ -22,18 +19,12 @@ export function createGalleryScene(): FunctionalScene {
 
     const heading = element('h1', { className: 'gallery__title', text: context.t('gallery.title') });
     heading.tabIndex = -1;
-    const sheet = createGallerySheet(context, signal);
-
     const grid = element(
       'ul',
       { className: 'gallery__grid' },
       context.data.types.map((personality) => {
         const isCurrent = personality.code === result;
-        const link = createResultLink(
-          personality,
-          signal,
-          () => openGallerySheet(sheet, personality, context, signal),
-        );
+        const link = createResultLink(personality, context, signal);
 
         link.append(
           element('img', {
@@ -104,7 +95,6 @@ export function createGalleryScene(): FunctionalScene {
         element('div', { className: 'gallery__actions' }, actions),
         copyStatus,
       ]),
-      sheet,
     );
     revealOnScroll(root, signal);
     bindPressFeedback(root.querySelectorAll('.button, .gallery__type-link'), signal);
@@ -118,8 +108,8 @@ export function createGalleryScene(): FunctionalScene {
 
 function createResultLink(
   personality: PersonalityType,
+  context: SceneContext,
   signal: AbortSignal,
-  open: () => void,
 ): HTMLAnchorElement {
   const path = `/r/${personality.slug}`;
   const link = element('a', {
@@ -142,112 +132,11 @@ function createResultLink(
       }
 
       event.preventDefault();
-      open();
+      context.navigate(path);
     },
     { signal },
   );
   return link;
-}
-
-function createGallerySheet(
-  context: SceneContext,
-  signal: AbortSignal,
-): HTMLDialogElement {
-  const dialog = element('dialog', { className: 'gallery-sheet' });
-  const stage = element('div', { className: 'gallery-sheet__stage' });
-  dialog.append(stage);
-  dialog.addEventListener(
-    'cancel',
-    (event) => {
-      event.preventDefault();
-      closeGallerySheet(dialog);
-    },
-    { signal },
-  );
-  dialog.addEventListener(
-    'click',
-    (event) => {
-      if (event.target === dialog) closeGallerySheet(dialog);
-    },
-    { signal },
-  );
-  dialog.setAttribute('aria-label', context.t('gallery.title'));
-  return dialog;
-}
-
-function openGallerySheet(
-  dialog: HTMLDialogElement,
-  personality: PersonalityType,
-  context: SceneContext,
-  signal: AbortSignal,
-): void {
-  const stage = dialog.querySelector<HTMLElement>('.gallery-sheet__stage');
-  if (!stage) return;
-  const language = context.store.get().lang;
-  const image = element('img', {
-    className: 'gallery-sheet__image',
-    attributes: {
-      src: personality.image,
-      alt: context.t('a11y.type_illustration_alt', { type: personality.name[language] }),
-      decoding: 'async',
-    },
-  });
-  const close = actionButton(
-    context.t('nav.close'),
-    () => closeGallerySheet(dialog),
-    signal,
-    { className: 'button--text' },
-  );
-  const view = actionButton(
-    context.t('nav.continue'),
-    () => {
-      closeGallerySheet(dialog);
-      context.navigate(`/r/${personality.slug}`);
-    },
-    signal,
-    { className: 'button--primary' },
-  );
-  stage.style.setProperty('--type-accent', personality.accent);
-  stage.replaceChildren(
-    element('span', { className: 'gallery-sheet__handle', attributes: { 'aria-hidden': 'true' } }),
-    image,
-    element('p', { className: 'gallery__code', text: formatCode(personality.code) }),
-    element('h2', { text: personality.name[language] }),
-    element('p', { text: personality.tagline[language] }),
-    element('div', { className: 'scene-actions' }, [close, view]),
-  );
-
-  if (typeof dialog.showModal === 'function') dialog.showModal();
-  else dialog.setAttribute('open', '');
-  gsap.fromTo(
-    stage,
-    { yPercent: prefersReducedMotion() ? 0 : 104 },
-    {
-      yPercent: 0,
-      duration: prefersReducedMotion() ? 0 : 0.46,
-      ease: 'power3.out',
-      clearProps: 'transform',
-    },
-  );
-}
-
-function closeGallerySheet(dialog: HTMLDialogElement): void {
-  const stage = dialog.querySelector<HTMLElement>('.gallery-sheet__stage');
-  if (!stage || prefersReducedMotion()) {
-    if (typeof dialog.close === 'function' && dialog.open) dialog.close();
-    else dialog.removeAttribute('open');
-    return;
-  }
-  gsap.to(stage, {
-    yPercent: 104,
-    duration: 0.28,
-    ease: 'power2.in',
-    onComplete: () => {
-      if (typeof dialog.close === 'function' && dialog.open) dialog.close();
-      else dialog.removeAttribute('open');
-      gsap.set(stage, { clearProps: 'transform' });
-    },
-  });
 }
 
 function findPersonality(
@@ -271,4 +160,3 @@ function buildQuizUrl(context: SceneContext): string {
 function formatCode(code: string): string {
   return [...code].join('·');
 }
-

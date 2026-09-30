@@ -38,20 +38,18 @@
 | Key | EN | ID |
 |---|---|---|
 | `intro.cta_begin` | Let's bake | Gas, mulai! |
-| `intro.disclaimer_short` | For fun & reflection — not a clinical assessment. | Buat seru-seruan & refleksi — bukan penilaian klinis. |
 
 ## Quiz Screens
 
 | Key | EN | ID |
 |---|---|---|
 | `quiz.progress` | Question {n} of {total} | Pertanyaan {n} dr {total} |
-| `quiz.select_hint` | Swipe the card toward your choice, or tap an answer. You'll move straight on. | Geser kartu ke arah pilihanmu, atau tap jawabannya. Langsung lanjut. |
+| `quiz.select_hint` | Choose the answer that feels most like you | Pilih jawaban yg kamu banget |
 | `quiz.swipe_first_hint` | Pick what you usually do. If both fit, choose what you tend to do first. | Pilih yg paling sering kamu lakukan. Kalau dua-duanya, pilih yg biasanya duluan. |
-| `quiz.release_hint` | Release to choose | Lepas utk pilih |
+| `quiz.release_hint` | Choose your answer | Pilih jawabanmu |
 | `quiz.previous_answer` | Your previous answer | Jawabanmu tadi |
-| `quiz.edit_last_answer` | Edit last answer | Ubah jawaban terakhir |
-| `quiz.answer_a_label` | A | A |
-| `quiz.answer_b_label` | B | B |
+| `quiz.answer_a_label` | Team A | Tim A |
+| `quiz.answer_b_label` | Team B | Tim B |
 | `quiz.change_answer` | Change answer | Ubah jawaban |
 | `quiz.exit_confirm_title` | Leave the quiz? | Keluar dr quiz? |
 | `quiz.exit_confirm_body` | Your answers won't be saved. | Jawaban kamu gak akan tersimpan. |

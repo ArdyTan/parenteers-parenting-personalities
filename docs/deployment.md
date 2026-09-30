@@ -16,6 +16,10 @@ npm run deploy:dry
 ```
 
 Use `npm run deploy` only when authenticated with the intended Cloudflare account.
+`build:release` temporarily holds the ignored `public/_figma/` folder outside
+Vite's public directory, verifies it is absent from `dist/`, and restores the
+folder even if the build fails. The release build also disables and checks for
+public source maps. `deploy:dry` uses the same protected build.
 
 ## Workers Builds settings
 

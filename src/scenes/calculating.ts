@@ -6,7 +6,7 @@ import {
   createSceneMotion,
   prefersReducedMotion,
 } from '../motion/shared';
-import { actionButton, element, localizedList, sceneBody } from './dom';
+import { element, localizedList, sceneBody } from './dom';
 import { FunctionalScene } from './scene';
 
 /** Three rows read as a whole bakery drifting past rather than a two-line ticker. */
@@ -67,21 +67,7 @@ export function createCalculatingScene(): FunctionalScene {
     const heat = { value: 45 };
     const holdMs = context.data.config.loading.holdMs;
 
-    function editLastAnswer(): void {
-      if (advanced || signal.aborted) return;
-      advanced = true;
-      window.clearTimeout(holdTimer);
-      context.navigate('/q/12');
-    }
-
-    const edit = actionButton(context.t('quiz.edit_last_answer'), editLastAnswer, signal, {
-      className: 'baking__edit button--text',
-    });
-    edit.addEventListener('pointerdown', (event) => {
-      event.stopPropagation();
-      editLastAnswer();
-    }, { signal });
-    const top = element('div', { className: 'baking__top' }, [edit, title]);
+    const top = element('div', { className: 'baking__top' }, [title]);
 
     root.setAttribute('aria-label', context.t('loading.a11y'));
     root.append(sceneBody('baking__body', [top, marqueeStage, loadingList]));

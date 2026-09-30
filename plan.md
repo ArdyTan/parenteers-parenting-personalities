@@ -167,13 +167,13 @@ The core of the build. Each row names the technique number(s) and guide file(s) 
 | Moment | Behavior | Steal from |
 |---|---|---|
 | **Preloader** | Oven display counts real asset progress as `45°C → 180°C`; curtain-wipe out; the logo mark FLIP-flies into the landing header as UI cascades in | **13** Preloader & Counter · **71** Splash → Hero Launch |
-| **Landing hero** | H1 chars "proof" up with masked stagger; 16-character marquee drifts with scroll-velocity skew; layered hero parallax from gyro (iOS permission flow included, pointer fallback) | **02** Split-Text Hero · **10** Marquee & Velocity Skew · **95** Gyro Parallax Hero |
+| **Landing hero** | H1 chars "proof" up with masked stagger; the group artwork stays static and borderless so pointer or gyro transforms cannot expose a clipped edge. One Start button always begins fresh. | **02** Split-Text Hero |
 | **Lang toggle EN/ID** | Grabbable springy thumb, content crossfades in sync | **64** Springy Segmented Control |
 | **Intro screen** | Three points stagger in with masked line reveals; CTA squash-on-press | **01** reveal pattern · **83** Tactile Toggles (press physics) |
-| **Question deck** | Phase 9 local runtime: swipe the scenario card left/right toward a visible answer, or tap that answer, to save and advance once. Stationary directional answer buttons; decorative card peeks beneath. Browser/device acceptance pending. Full contract: `docs/question-swipe-plan.md`. | **52** Swipe Card Stack (deck physics, fling, refill) · **83** press squash |
-| **Answer feedback** | Phase 9 local runtime: matching answer highlight, one visual pulse + haptic tick + selection sound, directional card exit; reduced motion uses static feedback/brief fade. The 180ms handoff target needs browser measurement. | **82** Double-Tap Heart Burst (burst-at-point) · **98** Haptic patterns |
+| **Question choice** | 2026-09-30 revision: oversized centred art, centred question, two stationary bottom choices; tap one to save and advance. The swipe deck is retired. Reference: `images/Questions-sample-newlayout.jpg`. Browser/device acceptance pending. | **83** press squash |
+| **Answer feedback** | Matching answer highlight, one visual pulse + haptic tick + selection sound, then a brief fade to the next question. Reduced motion retains static feedback. | **82** Double-Tap Heart Burst (burst-at-point) · **98** Haptic patterns |
 | **Progress thermometer** | Oven temperature climbs 12 notches (45°→180°C); the °C readout rolls per-digit with direction awareness | **85** Odometer Stepper |
-| **Back one question** | Phase 9 local runtime: visible Back restores the previous question and its saved pole. Custom question edge-swipe is removed to reserve native edges. Baking offers last-answer correction before Result. Browser/device acceptance pending. | Existing router/store; question use of **73** retired in Phase 9 |
+| **Back one question** | The visible Back control restores the previous question and its saved pole. Custom question edge-swipe is removed to reserve native edges. Baking has no edit control and advances on its timer or a tap. Browser/device acceptance pending. | Existing router/store; question use of **73** retired in Phase 9 |
 | **Exit-confirm dialog** | Sheet pops over a depth-pushed page (page scales/tucks/dims behind) | **72** Stacked Modal Sheets |
 | **Calculating** | The 4 rotating copy lines swap via masked line reveals (tap-to-skip once computed); shader swirl syncs to line changes; a skeleton of the result card shimmers and **morphs into the real card** as the reveal begins | **01** masked lines · **70** Skeleton → Content Morph |
 | **Result reveal** | Oven-door wipe; character springs out (squash-and-stretch); self-drawing accent ring + **one-shot canvas confetti with gravity** (battery-friendly, stops itself); background tints to type accent; haptic celebration pattern | **89** Success Confetti Moment · **17** wipe · **98** haptics |
@@ -182,7 +182,7 @@ The core of the build. Each row names the technique number(s) and guide file(s) 
 | **Story-share mode** | IG-native: segment bars across the top, **tap thirds to move between 2–3 panels** (card / superpowers / watch-out), hold-to-pause hides all chrome for a clean screenshot, swipe-down dismisses with scale-away follow. No auto-advance (screenshot-friendly) | **66** Stories Viewer |
 | **Save / share buttons** | One button node morphs idle → loading pill → success tick / error shake ("Couldn't save — try screenshotting") | **84** Button State Machine |
 | **"Link copied!"** | Toast stack with squish, velocity swipe-to-dismiss, auto-expire bar | **86** Toast Choreography |
-| **Gallery (all 16)** | Bakery shelves: horizontal snap rows with peek margins + per-shelf entrance cascade; tap a bake → cell FLIP-expands to a detail sheet with snap points (peek/half/full), drag-dismiss | **79** Horizontal Snap Shelves · **69** Shared-Element Card → Detail · **53** Bottom Sheet |
+| **Gallery (all 16)** | Bakery shelves keep horizontal snap rows and peek margins. Transparent cards have a subtle tan border and no shadow; a tap opens that personality's Result directly, without a detail sheet. | **79** Horizontal Snap Shelves |
 | ~~**End page**~~ | ~~Fixed footer revealed curtain-lift style; CTA marquee band~~ — **cut 2026-08-02**: the journey now ends on the Result, so `/end` no longer exists | ~~48 · 10~~ |
 | **404** | Bitten-cookie illustration + tap to fling crumb reactions | **30** Floating Emoji Reactions |
 | **Baking marquee** | Three counter-scrolling rows of the whole 16-bake cast, shuffled per render, accelerating with the oven ramp; replaces the dial-in-a-card so the art carries the wait | **10** Marquee & Velocity Skew |
@@ -268,7 +268,7 @@ Transcribe the 3 content .md files into `questions.json`, `types.json`, `en/id.j
 ✓ `score(answers)` passes; every string renders from JSON in both languages.
 
 **Phase 2 — Core flow, zero polish (M)**
-Scene manager + router + all screens as functional DOM (landing → … → end, 404, exit-confirm, resume). Lang toggle persisting. Desktop gate with live QR + phone-frame fallback (lib frame snippet).
+Scene manager + router + all screens as functional DOM (landing → … → Result, 404, exit-confirm). The Landing resume control is removed; Start clears any unfinished answers. Lang toggle persists. Desktop gate with live QR + phone-frame fallback (lib frame snippet).
 ✓ Full quiz completable on a phone; refresh resumes; `/r/pcte` deep link renders.
 
 **Phase 3 — Gesture & WebGL foundations (M)**
@@ -306,16 +306,18 @@ A 16-page A4 illustrated booklet per type per language (32 files), downloadable 
 ✓ 32 files exist at 16 pages and ≤1.2 MB each; `qa:pdf` confirms the canonical file set, extractable per-language content, complete deterministic activity coverage, permission lines, exactly three closing links and embedded fonts. The Result's PDF and vertically stacked Saweria sections pass `qa:phase55` in both motion modes at 390×844 and 390×720. Remaining phase gate: deploy with explicit permission, then open the Result and booklet in the Instagram in-app browser on a real device.
 
 
-**Phase 9 — Single-action questions and playful swipe (M)**
+**Phase 9 — Single-action questions (M)**
 Requested 2026-09-28. Copy restructuring and the first local runtime implementation cover all 12 ID/EN questions:
-left/right scenario-card swipe plus equivalent one-tap answer buttons, auto-advance, cancellable
-drag, visible Back and Q12 correction during Baking. Local canonical Chrome QA passes in ID/EN,
-normal and reduced motion; physical Instagram WebView acceptance remains pending. Preserve randomized answer/pole binding and
+one-tap answer buttons, auto-advance, and visible Back. Baking has no Q12 edit control. The
+2026-09-30 reference `images/Questions-sample-newlayout.jpg` retires swipe and sets 34px
+question padding, smaller stars, centred art that shrinks with the available middle-row height
+while bleeding at least 12px past each side, and responsive question-screen type. Ardy is
+handling browser acceptance of this revision; physical Instagram WebView acceptance remains pending. Preserve randomized answer/pole binding and
 the four-dimension scoring model. Detailed sequence, file map, gesture values and QA matrix:
-`docs/question-swipe-plan.md`. This scoped question-layout revision supersedes Phase 5.5's
+`docs/question-swipe-plan.md` records the earlier swipe pass; the 2026-09-30 reference supersedes its interaction and composition. This scoped question-layout revision supersedes Phase 5.5's
 selected-answer + Next composition in the local runtime.
-✓ 12 questions answered in 12 deliberate actions; no duplicate commit on pointer/click races;
-all 16 scores reachable; corrections and cancellation verified; ID/EN at 390×844 and 390×720,
+✓ 12 questions answered in 12 deliberate taps or keyboard actions; no swipe-to-answer;
+all 16 scores reachable; corrections verified; ID/EN at 390×844 and 390×720,
 framed mode, keyboard and reduced motion pass; physical Instagram WebView acceptance recorded.
 
 ---
@@ -324,7 +326,7 @@ framed mode, keyboard and reduced motion pass; physical Instagram WebView accept
 
 1. **Bake roster** — the 16 as drafted (incl. Lapis Legit, Pandan Chiffon, Bolu Kukus). Swappable via types.json.
 2. **Loading duration** — 4 lines × 2.5s ≈ 10s, tap-to-skip after line 2. Tunable constant.
-3. **Swipe-to-answer** — revised by Ardy 2026-09-28: playful left/right swipe on every question, with equivalent visible tap buttons; either saves and advances in one action. Both answers remain explicit parenting responses, not universal yes/no. Plan: `docs/question-swipe-plan.md`; local implementation exists, browser/device acceptance pending.
+3. **Answer interaction** — revised by Ardy 2026-09-30: tap one of the two bottom responses to save and advance; swipe-to-answer is removed. Both answers remain explicit parenting responses, not universal yes/no. The Tim A/B labels reflect displayed order only; scoring follows each answer's pole. Browser/device acceptance pending.
 4. **Activity-tag pairs per type** — deterministic default: D2+D3 letters; editorial override in types.json.
 5. **Sound** — ✅ **shipped 2026-08-02; default revised 2026-08-15.** Fresh visitors start with sound enabled: playback is attempted immediately and, where mobile autoplay blocks it, begins on the first pointer or keyboard interaction anywhere. An explicit stored "off" remains off. The reachable header toggle satisfies WCAG 1.4.2. Synthesized one-shots run on press/select/swipe/boundary/confetti/reveal; `ayo-main-bersama-asik` plays under Landing→Calculating and crossfades to `ayo-main-bersama-asik-result` at the reveal. Both streamed beds loop while active. Story and everything after stay silent so a screen recording of the share moment carries no music.
 6. **Desktop escape hatch** — phone-frame "continue here anyway." Default: yes.

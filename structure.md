@@ -148,8 +148,7 @@ A ~40-line observable store (get/set/subscribe). No state library. `pb1.answers`
 answer objects on mount. The visible left/right buttons and `gestures/answer-swipe.ts` resolve
 to one of those same objects, then a scene-owned commit lock saves its `{q, pole}` and navigates
 once. A cancelled drag never writes. Back restores a saved answer by pole and waits for another
-explicit choice. Baking allows correction of Q12 before its timer reaches Result; re-entry scores
-the current 12 answers afresh. The question uses a 100ms exit and 80ms entrance handoff, while other scenes retain
+explicit choice. Baking advances on its timer or a tap and has no edit control. The question uses a 100ms exit and 80ms entrance handoff, while other scenes retain
 the shared transition. See `docs/question-swipe-plan.md` for the full behavior contract.
 
 ## 7. The Clock & Performance Model

@@ -1,5 +1,19 @@
 # Question rewrite and playful directional swipe
 
+**Historical interaction plan.** Ardy's 2026-09-30 reference at
+`images/Questions-sample-newlayout.jpg` supersedes the swipe/deck composition below.
+The current Question scene uses only the two bottom tap buttons, with 34px page
+padding, 16px progress stars, art centred and sized by the available middle-row height
+with at least 12px of side bleed, and a centred prompt. Question-screen type also
+responds to width and height. The
+bilingual question copy, answer poles, correction path and auto-advance contract
+remain current. Browser and physical Instagram WebView acceptance of this
+revision are pending.
+
+**2026-09-30 flow override:** Back can revise earlier questions while still in the
+question sequence; Baking no longer shows a Q12 edit button. The detailed Baking
+correction section below records the superseded implementation.
+
 Date: 2026-09-28. Phase 9 in `plan.md`.
 
 **Status:** all 12 ID/EN pairs and the local tap/swipe implementation are in the working tree.
@@ -47,7 +61,6 @@ Implemented UI strings:
 | `quiz.swipe_first_hint` | Pilih yg paling sering kamu lakukan. Kalau dua-duanya, pilih yg biasanya duluan. | Pick what you usually do. If both fit, choose what you tend to do first. |
 | `quiz.release_hint` | Lepas utk pilih | Release to choose |
 | `quiz.previous_answer` | Jawabanmu tadi | Your previous answer |
-| `quiz.edit_last_answer` | Ubah jawaban terakhir | Edit last answer |
 | `a11y.answer_left` | Pilih jawaban kiri: {answer}. Langsung lanjut. | Choose the left answer: {answer}. Moves to the next screen. |
 | `a11y.answer_right` | Pilih jawaban kanan: {answer}. Langsung lanjut. | Choose the right answer: {answer}. Moves to the next screen. |
 

@@ -41,10 +41,10 @@ export const REQUIRED_I18N_KEYS = [
   // Phase 5.5 placeholders: the desktop gate has no source copy document, so
   // these four were written for the layout and still need a copy pass.
   'gate.scan_title', 'gate.scan_hint', 'gate.reason', 'gate.continue_anyway',
-  'intro.cta_begin', 'intro.disclaimer_short', 'intro.h2', 'intro.point1', 'intro.point2',
+  'intro.cta_begin', 'intro.h2', 'intro.point1', 'intro.point2',
   'intro.point3',
   'quiz.progress', 'quiz.select_hint', 'quiz.swipe_first_hint', 'quiz.release_hint',
-  'quiz.previous_answer', 'quiz.edit_last_answer', 'quiz.answer_a_label', 'quiz.answer_b_label',
+  'quiz.previous_answer', 'quiz.answer_a_label', 'quiz.answer_b_label',
   // Phase 5.5 placeholder — the "nothing picked yet" CTA label.
   'quiz.cta_pick',
   'quiz.change_answer', 'quiz.exit_confirm_title', 'quiz.exit_confirm_body',

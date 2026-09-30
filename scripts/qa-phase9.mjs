@@ -97,12 +97,10 @@ for (const lang of ['id', 'en']) {
   await evaluate(`sessionStorage.setItem('pb1.answers', '[]'); localStorage.setItem('pb1.lang', '${lang}'); localStorage.setItem('pb1.sound', 'off')`);
   await command('Page.navigate', { url: `${base}/q/1` });
   await waitQuestion(1);
-  const initialAnswerPoles = [];
-
   for (let q = 1; q <= 12; q += 1) {
     await waitQuestion(q);
     const side = q % 2 === 0 ? 'right' : 'left';
-    const mode = q % 3 === 1 ? 'tap' : q % 3 === 2 ? 'swipe' : 'keyboard';
+    const mode = q % 3 === 0 ? 'keyboard' : 'tap';
     const displayed = await evaluate(`(() => ({
       pole: document.querySelector('.answer-card[data-side="${side}"]')?.dataset.pole,
       title: document.querySelector('.question__title')?.textContent,
@@ -113,24 +111,21 @@ for (const lang of ['id', 'en']) {
     assert(displayed.lang === lang, `${lang} Q${q}: wrong language ${displayed.lang}`);
 
     if (q === 1) {
-      const point = await center('.question__card');
-      await drag(point.x, point.y, 30, 0);
+      const point = await center('.question__art-band');
+      await drag(point.x, point.y, 130, 0);
       assert((await evaluate(`JSON.parse(sessionStorage.getItem('pb1.answers') ?? '[]').length`)) === 0,
-        `${lang} Q1: cancelled drag saved an answer`);
+        `${lang} Q1: art swipe saved an answer`);
       await new Promise((resolve) => setTimeout(resolve, 250));
     }
     if (q === 2) {
-      const point = await center('.question__card');
+      const point = await center('.question__art-band');
       await drag(point.x, point.y, 20, 110);
       assert((await evaluate(`JSON.parse(sessionStorage.getItem('pb1.answers') ?? '[]').length`)) === 1,
         `${lang} Q2: vertical drag saved an answer`);
       await new Promise((resolve) => setTimeout(resolve, 250));
     }
 
-    if (mode === 'swipe') {
-      const point = await center('.question__card');
-      await drag(point.x, point.y, side === 'left' ? -130 : 130, 0);
-    } else if (mode === 'keyboard') {
+    if (mode === 'keyboard') {
       // Wait for the scene's programmed h1 focus after its short entrance.
       await new Promise((resolve) => setTimeout(resolve, 120));
       await evaluate(`document.querySelector('.answer-card[data-side="${side}"]').focus()`);
@@ -148,30 +143,11 @@ for (const lang of ['id', 'en']) {
     assert(saved.length === q, `${lang} Q${q}: expected ${q} answers, got ${saved.length}`);
     assert(saved[q - 1]?.q === q && saved[q - 1]?.pole === displayed.pole,
       `${lang} Q${q}: stored pole differs from displayed ${side} answer`);
-    initialAnswerPoles.push(displayed.pole);
     report.push({ lang, q, side, mode, pole: displayed.pole });
   }
 
-  if (lang === 'id') {
-    await waitUntil(`!!document.querySelector('.baking__edit')`, 'Baking edit button');
-    const point = await center('.baking__edit');
-    await tap(point.x, point.y);
-    await waitQuestion(12);
-    const saved = await evaluate(`JSON.parse(sessionStorage.getItem('pb1.answers') ?? '[]')`);
-    assert(saved.length === 12 && saved[11].pole === initialAnswerPoles[11], 'Baking edit lost Q12 answer');
-    const opposite = await evaluate(`document.querySelector('.answer-card:not(.is-selected)')?.dataset.side`);
-    assert(opposite === 'left' || opposite === 'right', 'Q12 correction choice missing');
-    const oppositePole = await evaluate(`document.querySelector('.answer-card[data-side="${opposite}"]')?.dataset.pole`);
-    await waitUntil(`(() => { const bottom = document.querySelector('.question__bottom'); const button = document.querySelector('.answer-card[data-side="${opposite}"]'); return !!button && getComputedStyle(bottom).visibility === 'visible' && Number(getComputedStyle(bottom).opacity) > 0.95; })()`, 'Q12 correction control ready');
-    const answerPoint = await center(`.answer-card[data-side="${opposite}"]`);
-    await tap(answerPoint.x, answerPoint.y);
-    await waitUntil(`location.pathname === '/baking' && !!document.querySelector('.baking__edit')`, 'Baking after Q12 correction');
-    const edited = await evaluate(`JSON.parse(sessionStorage.getItem('pb1.answers') ?? '[]')`);
-    assert(edited[11]?.pole === oppositePole, 'Q12 correction did not replace pole');
-    assert(edited.slice(0, 11).every((item, index) => item.pole === initialAnswerPoles[index]),
-      'Q12 correction changed earlier answers');
-    report.push({ lang, correction: true, from: initialAnswerPoles[11], to: oppositePole });
-  }
+  assert(!(await evaluate(`!!document.querySelector('.baking__edit')`)),
+    `${lang}: Baking still shows an edit button`);
 
   // Baking advances on a timer. If it is still visible, exercise the tap skip.
   if (await evaluate(`location.pathname === '/baking' && !!document.querySelector('.baking__title')`)) {

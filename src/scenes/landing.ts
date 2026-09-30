@@ -19,13 +19,6 @@ function renderLanding(
   context: SceneContext,
   signal: AbortSignal,
 ): ReturnType<typeof createSceneMotion> {
-  const state = context.store.get();
-  const answeredQuestions = new Set(state.answers.map(({ q }) => q));
-  const resumeQuestion = context.data.questions.find(
-    ({ id }) => !answeredQuestions.has(id),
-  )?.id;
-  const hasProgress = state.answers.length > 0;
-
   // `Capsules-warm`: the eyebrow slot the design file puts above the headline.
   // The 3-minute line it used to hold now sits under the CTA as plain text.
   const eyebrow = element('p', {
@@ -73,86 +66,26 @@ function renderLanding(
     },
     signal,
     {
-      className: `landing__cta landing__cta--start ${
-        hasProgress ? 'button--secondary' : 'button--primary'
-      }`,
+      className: 'landing__cta landing__cta--start button--primary',
     },
   );
-
-  const bottomChildren: HTMLElement[] = [];
-
-  if (hasProgress) {
-    const resumeStatus =
-      resumeQuestion === undefined
-        ? context.t('loading.title')
-        : context.t('quiz.progress', {
-            n: resumeQuestion,
-            total: context.data.questions.length,
-          });
-
-    bottomChildren.push(
-      actionButton(
-        context.t('nav.continue'),
-        () => {
-          context.navigate(resumeQuestion === undefined ? '/baking' : `/q/${resumeQuestion}`);
-        },
-        signal,
-        { className: 'landing__cta landing__cta--resume button--primary' },
-      ),
-      element('p', { className: 'landing__resume-status', text: resumeStatus }),
-    );
-  }
-
-  bottomChildren.push(startButton, sceneCaption(context.t('landing.trust'), 'landing__caption'));
 
   // Header first, art second: the art fills whatever the copy leaves, so the
   // subtitle can never end up printed over the illustration.
   const body = sceneBody('landing__body', [header, openingArt]);
-  const bottom = sceneBottom('landing__bottom', bottomChildren);
+  const bottom = sceneBottom('landing__bottom', [
+    startButton,
+    sceneCaption(context.t('landing.trust'), 'landing__caption'),
+  ]);
 
   root.setAttribute('aria-labelledby', 'landing-title');
   root.append(body, bottom);
 
   bindPressFeedback(root.querySelectorAll('.button'), signal);
 
-  if (!prefersReducedMotion()) {
-    const moveArt = (event: PointerEvent): void => {
-      if (!event.isPrimary) return;
-      const rect = openingArt.getBoundingClientRect();
-      const x = (event.clientX - rect.left) / rect.width - 0.5;
-      const y = (event.clientY - rect.top) / rect.height - 0.5;
-      gsap.to(openingArt, {
-        rotateY: x * 2.2,
-        rotateX: -y * 1.8,
-        x: x * 3,
-        y: y * 3,
-        duration: 0.55,
-        ease: 'power2.out',
-        overwrite: 'auto',
-      });
-    };
-    root.addEventListener('pointermove', moveArt, { signal });
-    window.addEventListener(
-      'deviceorientation',
-      (event) => {
-        if (event.gamma === null || event.beta === null) return;
-        gsap.to(openingArt, {
-          rotateY: Math.max(-3.5, Math.min(3.5, event.gamma * 0.08)),
-          rotateX: Math.max(-2.5, Math.min(2.5, (event.beta - 45) * -0.04)),
-          duration: 0.65,
-          ease: 'power2.out',
-          overwrite: 'auto',
-        });
-      },
-      { signal },
-    );
-  }
-
   return createSceneMotion(root, {
-    // Keep the hero artwork visible independently of the entrance timeline.
-    // Real phones can emit `deviceorientation` while this scene is mounting;
-    // if the same node is also mid-autoAlpha tween, a sensor transform can
-    // interrupt it and strand the artwork at opacity: 0.
+    // Keep the artwork visible independently of the entrance timeline.
+    // It stays static so the full-bleed band cannot reveal a tilted edge.
     enterTargets: [eyebrow, title, subtitle, bottom],
     onEnter() {
       revealSplitText(titleCharacters);

@@ -120,6 +120,8 @@
      `universal-padding` 34 · `header-to-body` 16 · `component-spacing` 12. */
   --pad-universal: 34px;
   --pad-chrome: 17px;
+  --question-star-size: 16px;
+  --question-answer-height: 100px;
   --gap-header-body: 16px;
   --gap-component: 12px;
   --gap-tight: 10px;

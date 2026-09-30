@@ -3,7 +3,6 @@ import { playSfx } from '../core/audio';
 import { triggerHaptic } from '../core/haptics';
 import { randomizeQuestionAnswers } from '../core/randomize';
 import type { Question, QuestionAnswer } from '../core/quiz-types';
-import { createAnswerSwipe, type AnswerSide } from '../gestures/answer-swipe';
 import {
   bindPressFeedback,
   burstAt,
@@ -19,7 +18,6 @@ export function createQuestionScene(question: Question): FunctionalScene {
     const randomized = randomizeQuestionAnswers(question);
     const savedPole = answers.find(({ q }) => q === question.id)?.pole;
     let committing = false;
-    let exitSide: AnswerSide | null = null;
 
     const progressText = context.t('quiz.progress', { n: question.id, total: 12 });
     const progress = element('progress', {
@@ -89,7 +87,7 @@ export function createQuestionScene(question: Question): FunctionalScene {
     });
 
     const answerButtons = randomized.answers.map((answer, index) => {
-      const side: AnswerSide = index === 0 ? 'left' : 'right';
+      const side = index === 0 ? 'left' : 'right';
       const button = element('button', {
         className: `answer-card${savedPole === answer.pole ? ' is-selected' : ''}`,
         attributes: {
@@ -100,12 +98,12 @@ export function createQuestionScene(question: Question): FunctionalScene {
           'data-side': side,
         },
       }, [
-        element('span', { className: 'answer-card__label', text: index === 0 ? '←' : '→', attributes: { 'aria-hidden': 'true' } }),
+        element('span', { className: 'answer-card__label', text: context.t(index === 0 ? 'quiz.answer_a_label' : 'quiz.answer_b_label'), attributes: { 'aria-hidden': 'true' } }),
         element('span', { className: 'answer-card__copy', text: answer[lang] }),
         ...(savedPole === answer.pole ? [element('span', { className: 'answer-card__previous', text: context.t('quiz.previous_answer'), attributes: { 'aria-hidden': 'true' } })] : []),
       ]);
 
-      button.addEventListener('click', () => commitAnswer(answer, side), { signal });
+      button.addEventListener('click', () => commitAnswer(answer), { signal });
 
       return button;
     });
@@ -117,9 +115,8 @@ export function createQuestionScene(question: Question): FunctionalScene {
       text: question.scenario[lang],
       attributes: { tabindex: '-1' },
     });
-    // The reference headline is ~20 characters; the real prompts run to 74. Two
-    // step-downs keep even the longest scenario inside three lines so the art
-    // band, the answers and the CTA all still fit a short phone viewport.
+    // The real prompts are longer than the reference; step down before they
+    // take the space reserved for the art and bottom choices.
     const scenarioLength = question.scenario[lang].length;
     if (scenarioLength > 58) title.dataset.scale = 'sm';
     else if (scenarioLength > 40) title.dataset.scale = 'md';
@@ -127,8 +124,6 @@ export function createQuestionScene(question: Question): FunctionalScene {
     const answerGrid = element('div', { className: 'answer-grid' }, answerButtons);
     const instruction = sceneCaption(context.t('quiz.select_hint'), 'question__instruction');
 
-    // Centres the scenario art in whatever space the headline and answers leave,
-    // clipping symmetrically rather than rescaling the illustration.
     const artBand = element('figure', { className: 'question__art-band' }, [scenarioArt]);
 
     const progressRail = element('div', { className: 'quiz-progress__rail' }, [
@@ -140,55 +135,25 @@ export function createQuestionScene(question: Question): FunctionalScene {
       progressRail,
     ]);
     const stack = element('div', { className: 'question__stack' }, [title]);
-    const card = element('div', { className: 'question__card' }, [artBand, stack]);
-    const peek = element('div', { className: 'question__peek', attributes: { 'aria-hidden': 'true' } });
-    const deck = element('div', { className: 'question__deck' }, [peek, card]);
     const bottom = sceneBottom('question__bottom', [answerGrid, instruction]);
 
     root.append(
-      sceneBody('question__body', [indicator, deck]),
+      sceneBody('question__body', [indicator, artBand, stack]),
       bottom,
       exitDialog,
     );
 
     bindPressFeedback(root.querySelectorAll('.button, .answer-card'), signal);
-    const swipe = createAnswerSwipe(card, root, {
-      preview(dx, side, dragging) {
-        if (committing || signal.aborted) return;
-        gsap.killTweensOf(card);
-        if (!prefersReducedMotion()) gsap.set(card, { x: dx, rotate: Math.max(-8, Math.min(8, dx * 0.045)) });
-        peek.classList.toggle('is-revealed', dragging);
-        answerButtons.forEach((button) => button.classList.toggle('is-preview', button.dataset.side === side));
-        instruction.textContent = side ? context.t('quiz.release_hint') : context.t('quiz.select_hint');
-      },
-      commit(side) {
-        commitAnswer(randomized.answers[side === 'left' ? 0 : 1], side);
-      },
-      cancel() {
-        if (committing || signal.aborted) return;
-        answerButtons.forEach((button) => button.classList.remove('is-preview'));
-        instruction.textContent = context.t('quiz.select_hint');
-        peek.classList.remove('is-revealed');
-        gsap.to(card, { x: 0, rotate: 0, duration: prefersReducedMotion() ? 0 : 0.2, ease: 'power2.out', overwrite: true });
-      },
-    });
-    swipe.attach();
-    const cancelDrag = () => { if (!signal.aborted && swipe.activePointerId !== null) { swipe.detach(); swipe.attach(); } };
-    window.addEventListener('resize', cancelDrag, { signal });
-    document.addEventListener('visibilitychange', cancelDrag, { signal });
-
-    function commitAnswer(answer: QuestionAnswer, side: AnswerSide): void {
+    function commitAnswer(answer: QuestionAnswer): void {
       if (committing || signal.aborted) return;
       committing = true;
-      exitSide = side;
       context.store.upsertAnswer({ q: question.id, pole: answer.pole });
       answerButtons.forEach((button) => {
         const chosen = button.dataset.pole === answer.pole;
         button.classList.toggle('is-selected', chosen);
-        button.classList.remove('is-preview');
         button.setAttribute('aria-pressed', String(chosen));
       });
-      const button = answerButtons[side === 'left' ? 0 : 1]!;
+      const button = answerButtons.find((candidate) => candidate.dataset.pole === answer.pole)!;
       const rect = button.getBoundingClientRect();
       burstAt(button, rect.width / 2, rect.height / 2);
       triggerHaptic('tick');
@@ -224,13 +189,12 @@ export function createQuestionScene(question: Question): FunctionalScene {
     const motion = createSceneMotion(root, {
       enterTargets: [
         indicator,
-        card,
+        artBand,
         title,
         ...answerButtons,
         bottom,
       ],
       onEnter: animateStar,
-      onDestroy() { swipe.detach(); },
     });
     return {
       ...motion,
@@ -238,7 +202,7 @@ export function createQuestionScene(question: Question): FunctionalScene {
         if (from !== 'question') return motion.enter?.(from);
         return new Promise<void>((resolve) => {
           gsap.fromTo(
-            [indicator, card, bottom],
+            [indicator, artBand, stack, bottom],
             { opacity: 0 },
             {
               opacity: 1,
@@ -251,13 +215,11 @@ export function createQuestionScene(question: Question): FunctionalScene {
         });
       },
       exit(to) {
-        if (exitSide === null || (to !== 'question' && to !== 'calculating')) {
+        if (!committing || (to !== 'question' && to !== 'calculating')) {
           return motion.exit?.(to);
         }
         return new Promise<void>((resolve) => {
-          gsap.to(card, {
-            x: prefersReducedMotion() ? 0 : (exitSide === 'left' ? -root.clientWidth : root.clientWidth),
-            rotate: prefersReducedMotion() ? 0 : (exitSide === 'left' ? -8 : 8),
+          gsap.to([artBand, stack], {
             opacity: 0,
             duration: prefersReducedMotion() ? 0 : 0.1,
             ease: 'power2.in',

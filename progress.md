@@ -18,20 +18,44 @@
 | 6 — QA hardening | ✅ done; Ardy confirmed testing across the target devices (2026-08-23) |
 | 7 — Launch extras (optional) | 🟨 sound layer shipped early (2026-08-02); analytics, founder-note flag and Awwwards assets remain |
 | 8 — Personality PDF booklet | 🟨 A is the sole final template; the approved Saweria closing is live across all 32 ID/EN booklets and the shared Result component covers all 16 types. Worker version `aa06f077-1bae-4378-88ee-e71198542425` deployed and hash-verified 2026-09-08; real-device WebView sign-off remains |
-| 9 — Single-action questions + swipe | 🟨 local interaction and canonical Chrome QA pass in ID/EN, normal/reduced motion; physical Instagram WebView acceptance pending |
+| 9 — Single-action questions and flow cleanup | 🟨 responsive tap-only questions plus Landing/Opening/Baking/Gallery cleanup deployed 2026-09-30; Ardy's browser/device review pending |
 
 ## Next action
 
-**Active workstream: single-action questions and playful swipe (Phase 9).** Ardy approved
-restructuring all 12 question pairs and requested the development plan on 2026-09-28. The bilingual
-copy is updated in `src/data/questions.json` and its editorial reference; the build sequence and
-acceptance contract are in `docs/question-swipe-plan.md`. The local runtime now has directional
-answer buttons, a draggable scenario, one commit path, auto-advance and a Q12 correction control
-on Baking. Canonical Vite/Chrome QA now passes: all 12 screens at 390×844 and the short-viewport
-checks, normal and reduced motion, plus a full ID/EN touch, swipe and keyboard journey with pole
-binding and Q12 correction. Next: physical Instagram WebView acceptance on Samsung and iOS,
-including native back, sound unlock and real gesture intent. Phase 9 supersedes only the question
-interaction/composition; no Phase 9 production deployment is claimed.
+**Active workstream: revised single-action questions (Phase 9).** Ardy's
+`images/Questions-sample-newlayout.jpg` supersedes the swipe composition. The Question scene now
+uses 34px horizontal padding, 16px progress stars, art centred on both axes, a centred prompt, and
+two Tim A/B (Team A/B) bottom tap choices. A choice still saves its own randomized pole and
+advances; Back remains. Baking's Q12 edit control is removed. The Q1-only fixed zoom is removed. All illustrations
+now size from the flexible art band's height, keep at least 12px of bleed on each side, and cap
+at 136% of the scene width. Question-screen typography also responds to width and height.
+Ardy's annotated follow-up lifts the art 8px and gives the question stack 8px top and 28px
+bottom padding, raising the title while opening space toward the choices.
+Ardy asked to do browser QA himself, so this revision has not been checked in Chrome or on a
+device by Magda. The preceding fixed-size revision passed typecheck, 171 tests, build and isolated
+Chrome QA; those results do not verify this new revision. Next: Ardy's browser review at normal
+and short phone heights, then physical Instagram WebView acceptance including native back and
+sound unlock. Ardy explicitly waived browser QA for the 2026-09-30 deploy; this
+does not close the Phase 9 acceptance gate.
+
+**2026-09-30 additional UI cleanup:** Landing now presents one Start button, clearing any
+unfinished answers instead of offering Resume. Its static portrait artwork uses the extra
+space left by the removed control and a higher crop intended to keep the bakery group inside a
+borderless, canvas-matched band. Opening omits the extra short disclaimer paragraph;
+Result keeps its terminal disclaimer. Gallery cards are transparent with a fine tan border
+and no shadow; clicking one navigates directly to its Result, with the detail dialog removed.
+Ardy requested no QA for this batch, so these changes are awaiting his browser review.
+
+**Release 2026-09-30:** Static gates passed: 171 tests, strict asset audit,
+32-booklet PDF QA, release configuration, typecheck, and protected production
+build with all 16 result stubs. The release build excludes ignored private
+`public/_figma/` and source maps; `dist/_figma` and `*.map` are absent.
+Cloudflare Worker `parenting-bakes` version `57d5c713-541b-40ce-a78e-44269ccd34ca`
+is live at `quiz.parenteers.id` with 100% traffic. Public HTTP byte checks
+matched 23/23 local artifacts, including all 16 result routes and two PDFs.
+Rollback predecessor: `aa06f077-1bae-4378-88ee-e71198542425`.
+Chrome CDP on port 9223 was inactive; Ardy requested deployment without browser
+QA. The working tree remains uncommitted and unpushed.
 
 **Existing Phase 8 follow-up: the per-type PDF booklet.** Layout A is final and is now the only
 generator path. All 54 commissioned illustrations are installed, all 32 ID/EN booklets were rebuilt,
@@ -70,6 +94,117 @@ Phase 0–6 are complete by Ardy's confirmation; Phase 7 remains intentionally o
 - [ ] Any overrides to plan.md §14 decision defaults
 
 ## Session log (newest first)
+
+**2026-09-30 — Phase 9 candidate deployed to Cloudflare Workers.**
+Ardy reversed the prior hold and instructed deployment without browser QA.
+Confirmed the exact `parenting-bakes` Worker in Ardy Tanto's Cloudflare account,
+with `aa06f077-1bae-4378-88ee-e71198542425` active before release. Found a
+Vite `.js.map` in the first build, so release builds now disable source maps
+and fail if one reaches `dist/assets`; private `_figma` exclusion remains.
+Protected build and Wrangler dry run passed with 273 assets. Wrangler uploaded
+19 new or changed assets and deployed version
+`57d5c713-541b-40ce-a78e-44269ccd34ca` to `quiz.parenteers.id` and
+`parenting-bakes.ardy-tanto.workers.dev`. Cloudflare reports 100% traffic on
+that version. Public byte comparison passed 23/23 artifacts: homepage, all 16
+result routes, JS, CSS, one ID and one EN PDF, Saweria QR, and default OG.
+The old source-map URL serves HTML fallback rather than a source map.
+Browser, short-height, reduced-motion, and physical Instagram WebView QA were
+not run at Ardy's direction; Phase 9 acceptance remains pending. No commit or
+Git push ran.
+
+**2026-09-30 — Release candidate prepared; deployment deferred by Ardy.**
+Initial `npm test` failed 1/171 because the UI-key count assertion still
+expected 88 after the two retired strings were removed. Updated the assertion
+to 86 and synchronized the editorial table with the current Tim A/B copy;
+15 files and 171 tests now pass. Added a protected `build:release` that holds
+the ignored private `_figma` folder outside Vite's public directory, checks
+`dist/_figma` is absent, and restores the folder even on build failure;
+`deploy:dry` uses the same build. Release configuration, 32-PDF QA, strict
+asset audit, typecheck, production build, all 16 prerendered result routes,
+and `git diff --check` pass. Chrome CDP port 9223 was inactive at the one
+read-only check. Ardy selected the option to wait for his browser/device
+review before deploying. No Cloudflare deploy, Git push or commit ran.
+
+**2026-09-30 — Landing, Opening, Baking, and Gallery feedback applied.**
+Removed Landing Resume and its progress label; Start always begins fresh. Removed the
+Landing art tilt handlers, centred the portrait crop higher inside the enlarged single-CTA
+band, and matched its flat background to the page. Removed the Opening's extra short
+disclaimer paragraph and the Baking Q12 edit button. Gallery cards now use a subtle tan
+border, transparent background, and no shadow; selecting a card navigates directly to
+that personality Result. Deleted the gallery detail-dialog implementation and stale UI
+strings for the removed Opening/Baking text. Updated browser QA expectations without
+running them; Ardy will review in his browser. No build, deploy, or push ran.
+
+**2026-09-30 — Art and question title lifted from annotated browser screenshot.**
+Moved the responsive illustration up 8px and changed the question stack from 0/16px to
+8/28px top/bottom padding. This lifts the title and opens space above and below it while
+the flexible art row absorbs the added stack height. Copy and answer behavior are unchanged.
+Per Ardy's direction, no browser QA or build was run; his browser review remains pending.
+
+**2026-09-30 — Question art and type made responsive; browser QA handed to Ardy.**
+Removed the fixed 125% Q1 transform and the 560×373 CSS art box. Every question illustration
+now uses the middle band's width and height: minimum viewport width plus 24px, preferred width
+at a 3:2 aspect from band height, maximum 136% of scene width. It remains centred and clipped
+inside the band. Added width-and-height responsive sizes for question navigation, close mark,
+option labels/copy, previous-answer text and helper; the headline already had both axes.
+Framed presentation keeps width-only fallbacks so browser `svh` cannot shrink its type. Updated
+the browser QA contract for this sizing, but did not run QA or build: Ardy explicitly chose to
+check the revision himself in his browser. Acceptance and deployment remain pending.
+
+**2026-09-30 — Q1 illustration increased 25% from its centred base.**
+Scaled Q1 alone to 125% of 560×373 (700px transformed width at 390px viewport), retaining
+its centred position and the other 11 illustrations' size. Updated the Phase 5.5 browser
+contract with a Q1 short-viewport capture. Typecheck, 171 tests and build pass. Inside the
+approved loopback-only `bwrap` namespace, `qa:phase55` normal and reduced motion and
+`qa:phase9` pass, then the added Q1 390×720 assertion passes on a follow-up normal run.
+Visually inspected Q1 at both 390×844 and 390×720: illustration is deliberately cropped by
+its middle band, while question and both choices remain visible. Physical Instagram WebView
+review and deployment remain pending.
+
+**2026-09-30 — Q1 art reduced 50%; isolated Chrome QA passed.**
+Ardy chose OS-level network isolation for browser QA and asked to halve the 2× Q1 art. Removed
+the Q1-only transform and left the centred 560×373 image shared by all questions. Verified that
+`bwrap --unshare-net` exposed only `lo` with no LAN or internet route, then ran Vite and Chrome
+CDP together inside that namespace. `qa:phase55` normal and reduced motion and `qa:phase9`
+all exited successfully; the latter covered ID/EN tap and keyboard answers, randomized pole
+binding, Q12 correction and Result navigation. Inspected Q1 at 390×844 and Q5 at 390×720:
+art, prompt and both choices remain visible. Typecheck, 171 tests, Vite build and diff checks
+pass. The earlier proxy-sink LAN incident and the successful loopback-only workaround are
+recorded in the Obsidian project playbook. Physical Instagram WebView QA remains pending;
+no deploy or push ran.
+
+**2026-09-30 — Art doubled and browser isolation failure during Question QA.**
+After Ardy authorized option B, started isolated local Chrome CDP against the already running
+Vite server. Initial browser QA exposed a stale overlap assertion (measuring the transformed
+image rather than the clipped art band) and a real Q5 short-height type-scale floor; corrected
+both. The grid track had remained anchored at x=0 despite `place-items: center`; added track
+centering and scaled Q1 art 2×. A Q5 short-viewport capture showed that applying 2× to every
+question would cut off both characters, so the extra scale was scoped to the annotated Q1 image;
+all art keeps the centring fix. Targeted captures measured Q1 image width 1120 at x=-365 on
+390×844 and Q5 choices above the fold on 390×720, both with zero horizontal overflow. Typecheck
+and 171 tests pass. A repeat full QA was stopped because socket inspection showed the QA Chrome
+connected to LAN ports 8008/8009 despite its proxy sink. No listener remains on CDP port 9223;
+payload and cause are unconfirmed. Documented the material error in the Obsidian project
+playbook. Full normal/reduced browser and physical Instagram WebView QA are pending a network
+isolation choice; no deploy or push ran.
+
+**2026-09-30 — Question layout revised to the supplied 390×768 reference.**
+Removed the draggable scenario and swipe answer binding; kept one-tap auto-advance, displayed
+answer/pole binding, keyboard buttons, Back and Baking correction. Enlarged and centred the
+illustration in a flexible middle row, centred the question, changed question chrome to 34px
+side padding and 16px stars, and restyled the two bottom choices as Tim A/B. Updated ID/EN
+helper copy and the relevant QA contracts and project handoff docs. Typecheck, all 171 tests,
+script syntax, Vite client build and `git diff --check` pass. Chrome CDP port 9223 was inactive;
+no revised browser or device acceptance is claimed. The pre-existing uncommitted workbook
+output and prior `progress.md` log entry were preserved.
+
+**2026-09-29 — Quiz content workbook exported for editorial review.**
+Created `outputs/01a0eb0c-8eea-75a3-ae0c-085188bbd129/parenteers-quiz-content.xlsx`
+from the current JSON registries. It has separate ID/EN question, personality, UI, parent-care,
+child-activity, and weekly-extra tabs, plus the ID product catalog and a source index. Preserved
+question IDs and answer poles, including the Phase 9 copy. Verified all 14 tabs, filters, row counts,
+and exported cell content against the JSON. This is a review copy; runtime data and phase status did
+not change.
 
 **2026-09-28 — Phase 9 canonical browser QA completed locally.**
 After Ardy authorized opening Chrome, started the existing Vite/Chrome toolchain on loopback with
