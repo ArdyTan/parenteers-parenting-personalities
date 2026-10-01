@@ -20,7 +20,28 @@
 | 8 — Personality PDF booklet | 🟨 A is the sole final template; the approved Saweria closing is live across all 32 ID/EN booklets and the shared Result component covers all 16 types. Worker version `aa06f077-1bae-4378-88ee-e71198542425` deployed and hash-verified 2026-09-08; real-device WebView sign-off remains |
 | 9 — Single-action questions and flow cleanup | 🟨 responsive tap-only questions plus Landing/Opening/Baking/Gallery cleanup deployed 2026-09-30; Ardy's browser/device review pending |
 
+**Marketing (2026-09-30):** six-week organic Instagram/Threads plan and full copy bank
+drafted in `docs/marketing/`. Includes an overview of all 16 types, 16 individual
+personality carousels, one reflection carousel, six Reels, 24 two-post Threads,
+Story prompts, and three main Christine appearances. All 16 personality carousels now
+have eight slides with revised everyday Indonesian scenarios (2026-09-30). The older
+five-slide C01 preview and prior Excel export predate this revision and need updating
+before production.
+Remaining production, personal-script review, launch date/timezone, publishing, and
+performance measurement remain pending.
+
 ## Next action
+
+**Marketing handoff:** review the revised eight-slide C01–C16 copy in
+`docs/marketing/instagram-threads-content-bank.md` and synchronized hooks in
+`docs/marketing/instagram-threads-launch-plan.md`; refresh the previous C01 preview
+and workbook from the revised copy when producing assets. Choose the launch Monday/audience
+timezone, produce week 1–2 assets, and have Christine supply her actual quiz result
+and personal reaction for R02. Primary CTA is the quiz; secondary is Instagram
+`@parenteers`. No account changes, external uploads, scheduling, or tracking activation
+were performed. Local source checks found no quiz-start/completion event wiring;
+link taps must not be reported as quiz completions. Existing device acceptance below
+remains open.
 
 **Active workstream: revised single-action questions (Phase 9).** Ardy's
 `images/Questions-sample-newlayout.jpg` supersedes the swipe composition. The Question scene now
@@ -94,6 +115,66 @@ Phase 0–6 are complete by Ardy's confirmation; Phase 7 remains intentionally o
 - [ ] Any overrides to plan.md §14 decision defaults
 
 ## Session log (newest first)
+
+**2026-09-30 — Revised 16-carousel workbook delivered.**
+Exported `outputs/01a0f200-f35e-7980-9171-b9c4ae0f011c/parenteers-16-carousel-id.xlsx`
+from the revised C01–C16 copy: one summary tab and 16 named personality tabs,
+128 slides, and 16 captions with the required disclaimer. Verified every slide
+and caption against the source, all codes/names against the type registry, zero
+formula-error matches, and rendered all 17 tabs for visual inspection. The older
+full-campaign workbook and five-slide C01 artwork remain separate prior versions.
+
+**2026-09-30 — All 16 personality carousels rewritten around Indonesian daily life.**
+Revised C01–C16 in `docs/marketing/instagram-threads-content-bank.md` to eight slides
+per personality, following Ardy's hook → relatable situation → recognition → type
+explanation → reflection → 16 profiles → quiz → closing sequence. Replaced the
+Croquembouche cardboard example with delayed departure and rain, and differentiated
+all profiles using ordinary family situations: school preparation, snacks, bedtime,
+play, household routines, and listening. Updated companion copy where needed and
+synchronized all 16 calendar hooks plus the production slide count. Verified 16/16
+names and codes against current `src/data/types.json`, eight ordered slides each,
+128 total slides, and no more than 45 words per slide (157–175 per carousel).
+No new research claims or runtime content changes. The five-slide C01 preview and
+previous Excel export remain earlier versions; draft review, refreshed derivatives,
+design, and publication remain pending.
+
+**2026-09-30 — Complete marketing content exported to Excel.**
+Created `Parenting-Bakes-Semua-Konten-Marketing.xlsx` in the secondary project's
+`marketing/outputs/01a0f1c5-927a-7f52-aa84-1da701f8ea31/` folder. Nine tabs cover the
+24-post calendar, 18 carousels / 95 slides, 24 captions, six Reels / 29 script rows
+(including both Z01 alternatives), 48 Threads posts, 24 Story prompts, campaign
+guidance, and copy/production rules. All 16 personality captions include the required
+disclaimer; Christine placeholders are retained and highlighted. Source headings
+and filenames are recorded in the workbook. Verified extracted counts, all written
+table values, current character names/codes, formula-error scan, and rendered tab
+samples. No external upload, scheduling, publishing, or application change.
+
+**2026-09-30 — C01 marketing carousel preview produced in secondary project.**
+Created `marketing/C01-croquembouche/` under `/home/ardy/Projects/Parenteers/Parenting Personalities`:
+five 1080×1350 PNG slides, local HTML carousel preview, contact sheet, editable HTML master,
+caption/disclaimer, per-slide alt text, copied official art/fonts/logos, and local Chrome renderer.
+Uses C01/PCTE from `docs/marketing` and the official Croquembouche character/story artwork.
+Local renders verify all five dimensions, fonts, image loading, element bounds, main-copy
+parity, and preview navigation/no horizontal overflow at 1280px and 390px; visual review
+corrected the slide 2 artwork position to preserve the final checklist line. Creative acceptance
+and Instagram readability review remain with Ardy. No external generation/upload, app-source
+change, publishing, or deployment. This is one sample of the planned 16 personality carousels.
+
+
+**2026-09-30 — Instagram and Threads marketing plan drafted.**
+Created `docs/marketing/instagram-threads-launch-plan.md` and
+`docs/marketing/instagram-threads-content-bank.md` for Ardy's quiz-first, everyday-life
+campaign request. Six weeks at four feed posts/week: 18 carousels (all-types overview,
+16 dedicated profiles, one reflection piece) plus six Reels; 24 matching two-post
+Threads and Story prompts. Christine appears in introduction, actual quiz reaction,
+and closing reflection. Her result/reaction placeholders require genuine input.
+Verified all 16 names/codes against current `src/data/types.json`, five slides per
+profile, all 24 calendar codes, 48 Threads drafts, and 24 direct quiz URLs. Threads
+drafts are at most 258 characters each before any placeholder/UTM substitution.
+Documented measurement limits: analytics config alone does not prove event wiring;
+source inspection found no start/completion implementation. Wrote a local Obsidian
+strategy note. No application changes, new trackers, account actions, publishing,
+external transmission, or Git commit/push. Existing runtime QA remains unchanged.
 
 **2026-09-30 — Phase 9 candidate deployed to Cloudflare Workers.**
 Ardy reversed the prior hold and instructed deployment without browser QA.
