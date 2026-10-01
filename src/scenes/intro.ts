@@ -62,7 +62,7 @@ function renderIntro(
   );
   const bottom = sceneBottom('intro__bottom', [
     begin,
-    sceneCaption(context.t('intro.disclaimer_short'), 'intro__caption'),
+    sceneCaption(context.t('quiz.swipe_first_hint'), 'intro__swipe-hint'),
   ]);
 
   root.setAttribute('aria-labelledby', 'intro-title');

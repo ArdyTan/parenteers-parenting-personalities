@@ -60,15 +60,17 @@ export function createCalculatingScene(): FunctionalScene {
       marquees.map(({ marquee }) => marquee),
     );
 
-    root.setAttribute('aria-label', context.t('loading.a11y'));
-    root.append(sceneBody('baking__body', [title, marqueeStage, loadingList]));
-
     let holdTimer: number | undefined;
     let advanced = false;
     let tick: ((time: number, deltaTime: number) => void) | null = null;
     let heatTween: gsap.core.Tween | null = null;
     const heat = { value: 45 };
     const holdMs = context.data.config.loading.holdMs;
+
+    const top = element('div', { className: 'baking__top' }, [title]);
+
+    root.setAttribute('aria-label', context.t('loading.a11y'));
+    root.append(sceneBody('baking__body', [top, marqueeStage, loadingList]));
 
     /** Idempotent: the tap shortcut and the timer race, and only one may win. */
     function advance(): void {
@@ -83,8 +85,9 @@ export function createCalculatingScene(): FunctionalScene {
     root.addEventListener('pointerdown', advance, { signal });
 
     return createSceneMotion(root, {
-      enterTargets: [title, marqueeStage],
+      enterTargets: [top, marqueeStage],
       onEnter() {
+        if (signal.aborted || advanced) return;
         holdTimer = window.setTimeout(advance, holdMs);
         if (prefersReducedMotion()) return;
         startMarquee();

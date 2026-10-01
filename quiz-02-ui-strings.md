@@ -6,7 +6,7 @@
 **Dev notes:**
 - Keys are stable identifiers, ready to convert to JSON (`en.json` / `id.json`).
 - Default locale: **id**. Toggle persists (localStorage-equivalent per stack; in-memory if artifact preview).
-- `{n}`, `{total}`, `{type}`, `{emoji}`, `{link}`, `{year}`, `{lang}` are interpolation variables.
+- `{n}`, `{total}`, `{type}`, `{emoji}`, `{link}`, `{year}`, `{lang}`, `{answer}` are interpolation variables.
 - Page-specific content (scenarios, result copy, end-page body) lives in File 1 — do not duplicate here.
 
 ## Global & Navigation
@@ -38,16 +38,18 @@
 | Key | EN | ID |
 |---|---|---|
 | `intro.cta_begin` | Let's bake | Gas, mulai! |
-| `intro.disclaimer_short` | For fun & reflection — not a clinical assessment. | Buat seru-seruan & refleksi — bukan penilaian klinis. |
 
 ## Quiz Screens
 
 | Key | EN | ID |
 |---|---|---|
 | `quiz.progress` | Question {n} of {total} | Pertanyaan {n} dr {total} |
-| `quiz.select_hint` | Tap the answer that feels most like you | Pilih jawaban yg paling "kamu banget" |
-| `quiz.answer_a_label` | A | A |
-| `quiz.answer_b_label` | B | B |
+| `quiz.select_hint` | Choose the answer that feels most like you | Pilih jawaban yg kamu banget |
+| `quiz.swipe_first_hint` | Pick what you usually do. If both fit, choose what you tend to do first. | Pilih yg paling sering kamu lakukan. Kalau dua-duanya, pilih yg biasanya duluan. |
+| `quiz.release_hint` | Choose your answer | Pilih jawabanmu |
+| `quiz.previous_answer` | Your previous answer | Jawabanmu tadi |
+| `quiz.answer_a_label` | Team A | Tim A |
+| `quiz.answer_b_label` | Team B | Tim B |
 | `quiz.change_answer` | Change answer | Ubah jawaban |
 | `quiz.exit_confirm_title` | Leave the quiz? | Keluar dr quiz? |
 | `quiz.exit_confirm_body` | Your answers won't be saved. | Jawaban kamu gak akan tersimpan. |
@@ -168,6 +170,8 @@ above `quiz.parenteers.id`.
 | Key | EN | ID |
 |---|---|---|
 | `a11y.progressbar` | Quiz progress: question {n} of {total} | Progres quiz: pertanyaan {n} dr {total} |
+| `a11y.answer_left` | Choose the left answer: {answer}. Moves to the next screen. | Pilih jawaban kiri: {answer}. Langsung lanjut. |
+| `a11y.answer_right` | Choose the right answer: {answer}. Moves to the next screen. | Pilih jawaban kanan: {answer}. Langsung lanjut. |
 | `a11y.type_illustration_alt` | Cute illustration of {type}, a parenting-style bakery character | Ilustrasi lucu {type}, karakter kue gaya parenting |
 | `a11y.lang_switch` | Switch language to {lang} | Ganti bahasa ke {lang} |
 | `a11y.loading` | Loading, please wait | Memuat, mohon tunggu |

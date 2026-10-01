@@ -10,7 +10,7 @@
   "scripts": {
     "dev": "node ./scripts/run-tool.mjs vite --host 0.0.0.0",
     "build": "npm run typecheck && npm run assets:share && node ./scripts/run-tool.mjs vite build && npm run prerender:og",
-    "build:release": "node ./scripts/check-release-config.mjs && npm run build",
+    "build:release": "node ./scripts/check-release-config.mjs && node ./scripts/build-release.mjs",
     "preview": "node ./scripts/run-tool.mjs vite preview --host 0.0.0.0",
     "test": "node ./scripts/run-tool.mjs vitest run",
     "test:watch": "node ./scripts/run-tool.mjs vitest",
@@ -28,12 +28,13 @@
     "content:parent-doc": "node ./scripts/sync-parent-content-doc.mjs",
     "qa:phase45": "node ./scripts/qa-phase45.mjs",
     "qa:phase55": "node ./scripts/qa-phase55.mjs",
+    "qa:phase9": "node ./scripts/qa-phase9.mjs",
     "qa:pdf": "node ./scripts/qa-pdf.mjs",
     "perf:probe": "node ./scripts/perf-probe.mjs",
     "perf:canvas": "node ./scripts/perf-canvas-audit.mjs",
     "assets:placeholders": "node ./scripts/create-character-placeholders.mjs",
     "deploy": "npm run build:release && node ./scripts/run-tool.mjs wrangler deploy",
-    "deploy:dry": "npm run build && node ./scripts/run-tool.mjs wrangler deploy --dry-run",
+    "deploy:dry": "npm run build:release && node ./scripts/run-tool.mjs wrangler deploy --dry-run",
     "cf:types": "node ./scripts/run-tool.mjs wrangler types ./src/worker-configuration.d.ts"
   },
   "dependencies": {

@@ -41,9 +41,10 @@ export const REQUIRED_I18N_KEYS = [
   // Phase 5.5 placeholders: the desktop gate has no source copy document, so
   // these four were written for the layout and still need a copy pass.
   'gate.scan_title', 'gate.scan_hint', 'gate.reason', 'gate.continue_anyway',
-  'intro.cta_begin', 'intro.disclaimer_short', 'intro.h2', 'intro.point1', 'intro.point2',
+  'intro.cta_begin', 'intro.h2', 'intro.point1', 'intro.point2',
   'intro.point3',
-  'quiz.progress', 'quiz.select_hint', 'quiz.answer_a_label', 'quiz.answer_b_label',
+  'quiz.progress', 'quiz.select_hint', 'quiz.swipe_first_hint', 'quiz.release_hint',
+  'quiz.previous_answer', 'quiz.answer_a_label', 'quiz.answer_b_label',
   // Phase 5.5 placeholder — the "nothing picked yet" CTA label.
   'quiz.cta_pick',
   'quiz.change_answer', 'quiz.exit_confirm_title', 'quiz.exit_confirm_body',
@@ -87,7 +88,8 @@ export const REQUIRED_I18N_KEYS = [
   'pdf.drain_P', 'pdf.drain_F', 'pdf.drain_C', 'pdf.drain_G',
   'pdf.drain_T', 'pdf.drain_D', 'pdf.drain_E', 'pdf.drain_N',
   'meta.title', 'meta.description', 'meta.og_title', 'meta.og_description',
-  'a11y.progressbar', 'a11y.type_illustration_alt', 'a11y.lang_switch', 'a11y.loading',
+  'a11y.progressbar', 'a11y.answer_left', 'a11y.answer_right',
+  'a11y.type_illustration_alt', 'a11y.lang_switch', 'a11y.loading',
   'a11y.sound_on', 'a11y.sound_off', 'a11y.saweria_qr_alt',
   'activity.P', 'activity.F', 'activity.C', 'activity.G', 'activity.T', 'activity.D',
   'activity.E', 'activity.N',

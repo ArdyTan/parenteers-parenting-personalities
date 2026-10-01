@@ -8,6 +8,7 @@ coverage/
 artifacts/
 output/
 public/_figma/
+.release-hold-_figma/
 tmp/
 temp/
 *.tsbuildinfo

@@ -106,6 +106,11 @@ Shared band primitives live in `src/scenes/dom.ts`: `sceneBody`, `sceneBottom`, 
   family.
 
 ### 1 · Splash — `src/scenes/landing.ts`
+**2026-09-30 override:** the unfinished-session Resume control is removed. Start always
+clears prior answers. The portrait group art no longer tilts with pointer or device sensors;
+its crop is repositioned toward the character group in the enlarged single-CTA art band,
+without a card border or shadow. Browser acceptance is with Ardy.
+
 | Note | Resolution |
 |---|---|
 | 1 · "3 minutes" must not be a capsule | The capsule slot holds an eyebrow label (`Capsules-warm`); the duration line moved under the CTA as plain 12px text. New key `landing.eyebrow`. |
@@ -120,6 +125,9 @@ first attempt anchored the art absolutely and did exactly that. The Phase 4.5 gr
 the art is gone.
 
 ### 2 · Quiz Opening — `src/scenes/intro.ts`
+**2026-09-30 override:** the short “Buat seru-seruan & refleksi” caption below the
+instruction is removed. The disclaimer on the terminal Result remains.
+
 - Spacing on the tokens: header `padding 34`, `gap 16`, points `gap 12`, bottom band `0/34/34`.
 - **Seamless art:** `sceneArt.continuity.intro` now points at `/art/scenes/q03-daily-schedule.webp`,
   a native **720×480 (3:2)** derivative, in a full-bleed `aspect-ratio: 3/2` band with the mask
@@ -133,6 +141,25 @@ the art is gone.
 - Points are `Text Point`: 27px blue circle + 12px/1.5 copy, gap 11.
 
 ### 3 & 4 · Questions — `src/scenes/question.ts`
+
+**2026-09-30 revision:** `images/Questions-sample-newlayout.jpg` is the current
+visual authority for Question. The swipe deck and the copy-over-art layout below
+are historical. Current composition: 34px question/header inset, 16px stars,
+all art centred on both axes within the flexible middle row and sized from its
+available height, with at least 12px side bleed and a 136%-width cap. Question
+type scales with width and height; the art is lifted 8px and the centred
+question sits beneath it with 8px top and 28px bottom stack padding,
+and two Tim A/B (Team A/B) tap choices at the bottom. A tap saves and advances;
+short viewports shrink the art before displacing the choices. Ardy is doing
+browser QA of this revision.
+
+**Phase 9 revision (2026-09-28):** The Phase 5.5 choice layout below is historical.
+`docs/question-swipe-plan.md` now owns the interaction: a draggable scenario/art card,
+two stationary directional answer buttons in the bottom band, one tap or swipe to save
+and advance, and a visible Back control. There is no question Next CTA. The star rail,
+native 390×260 artwork, copy-over-art layering, short-height fade and framed-mode
+protections remain part of the layout contract.
+
 | Note | Resolution |
 |---|---|
 | 1 · `progress-bar-star.svg` | The rail is now 35px tall, `border-radius: 60px`, 1px outline, 12 stops each an 18×20 star image — answered at `opacity: 1`, remaining at `0.20` per spec. The `content: "✱"` glyph hack and three competing stale rule blocks are deleted. The `<progress>` element stays, visually hidden, for the a11y semantic. |
@@ -243,6 +270,9 @@ starts below the indicator instead — same composition, but the star rail alway
 flat cream.
 
 ### Baking — `src/scenes/calculating.ts`
+**2026-09-30 override:** no “Ubah jawaban terakhir” button appears. The timer and
+tap-to-skip both go directly to the Result.
+
 The oven dial, the temperature readout and the white centred card are gone. In their place, three
 counter-scrolling marquee rows of the whole cast, shuffled per render (technique 10: clone each
 row until the copies cover 2× the stage, translate with a modulo wrap on the shared `gsap.ticker`,

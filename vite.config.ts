@@ -13,7 +13,7 @@ export default defineConfig({
     target: 'es2022',
     assetsInlineLimit: 4_096,
     cssCodeSplit: true,
-    sourcemap: true,
+    sourcemap: process.env.PARENTING_BAKES_RELEASE !== '1',
   },
   server: {
     host: true,

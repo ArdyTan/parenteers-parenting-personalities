@@ -393,9 +393,9 @@ report.intro = await evaluate(`(() => ({
 }))()`);
 await capture('02-quiz-opening');
 
-// --- 3 Questions: shortest, both step-down tiers, and the last one ---------
+// --- 3 Questions: every prompt and both bottom tap choices -------------------
 report.questions = [];
-for (const question of [1, 2, 5, 10, 12]) {
+for (const question of Array.from({ length: 12 }, (_, index) => index + 1)) {
   const answers = Array.from({ length: question - 1 }, (_, index) => ({
     q: index + 1,
     pole: poleForQuestion(index + 1),
@@ -411,12 +411,15 @@ for (const question of [1, 2, 5, 10, 12]) {
     return {
       ...${SHELL},
       id: ${question},
+      lang: document.documentElement.lang,
       art: ${ART('.question__art')},
       stops: stops.length,
       complete: stops.filter((s) => s.classList.contains('is-complete')).length,
       starImage: stops[0] ? getComputedStyle(stops[0]).backgroundImage : null,
       dimOpacity: stops.at(-1) ? getComputedStyle(stops.at(-1)).opacity : null,
       railHeight: rail ? round(rail.getBoundingClientRect().height) : null,
+      starWidth: stops[0] ? round(stops[0].getBoundingClientRect().width) : null,
+      railInset: rail ? round(rail.getBoundingClientRect().left) : null,
       labelNodes: label ? label.childNodes.length : null,
       labelNodeType: label?.firstChild?.nodeType ?? null,
       labelText: label?.textContent ?? null,
@@ -436,24 +439,7 @@ for (const question of [1, 2, 5, 10, 12]) {
         const a = document.querySelector('.question__art');
         return a ? getComputedStyle(a).maskImage : null;
       })(),
-      // The band is the scene's background layer; the copy paints over it. This
-      // is z-order, not a fade — assert the stacking rather than a gradient.
-      layerOrder: (() => {
-        const band = document.querySelector('.question__art-band');
-        const stack = document.querySelector('.question__stack');
-        const body = document.querySelector('.question__body');
-        if (!band || !stack || !body) return null;
-        return {
-          band: getComputedStyle(band).zIndex,
-          stack: getComputedStyle(stack).zIndex,
-          stackPositioned: getComputedStyle(stack).position,
-          isolated: getComputedStyle(body).isolation,
-        };
-      })(),
-      // The art band spans the headline's row, so the stack must be pinned to
-      // column 1 or it auto-places into an implicit second column and the whole
-      // scene halves. Named explicitly: the symptom (a cropped art band) is a
-      // long way from the cause.
+      titleAlign: (() => { const t = document.querySelector('.question__title'); return t ? getComputedStyle(t).textAlign : null; })(),
       stackColumn: (() => {
         const s = document.querySelector('.question__stack');
         return s ? getComputedStyle(s).gridColumnStart : null;
@@ -462,14 +448,18 @@ for (const question of [1, 2, 5, 10, 12]) {
         const s = document.querySelector('.question__stack');
         return s ? round(s.getBoundingClientRect().width) : null;
       })(),
-      changeAnswerPresent: !!document.querySelector('.question__stack .button--text, .question__bottom .button--text'),
+      swipeSurfacePresent: !!document.querySelector('.question__card, .question__peek'),
       cards: cards.length,
+      buttonsSideBySide: cards.length === 2 && Math.abs(cards[0].getBoundingClientRect().top - cards[1].getBoundingClientRect().top) < 1,
+      namedAnswers: cards.every((card) => card.getAttribute('aria-label')?.includes(card.querySelector('.answer-card__copy')?.textContent ?? '')),
+      sides: cards.map((card) => card.dataset.side),
       cardBottom: cards.at(-1) ? round(cards.at(-1).getBoundingClientRect().bottom) : null,
       cardRadius: cards[0] ? getComputedStyle(cards[0]).borderRadius : null,
-      ctaDisabled: document.querySelector('.question__cta')?.disabled ?? null,
-      ctaText: document.querySelector('.question__cta')?.textContent ?? null,
+      optionLabels: cards.map((card) => card.querySelector('.answer-card__label')?.textContent),
+      nextPresent: !!document.querySelector('.question__cta'),
       artBottom: (() => { const a = document.querySelector('.question__art'); return a ? round(a.getBoundingClientRect().bottom) : null; })(),
       bandTop: (() => { const a = document.querySelector('.question__art-band'); return a ? round(a.getBoundingClientRect().top) : null; })(),
+      bandBottom: (() => { const a = document.querySelector('.question__art-band'); return a ? round(a.getBoundingClientRect().bottom) : null; })(),
       railBottom: rail ? round(rail.getBoundingClientRect().bottom) : null,
       titleTop: (() => { const t = document.querySelector('.question__title'); return t ? round(t.getBoundingClientRect().top) : null; })(),
     };
@@ -486,18 +476,37 @@ await command('Emulation.setDeviceMetricsOverride', {
   screenWidth: 390,
   screenHeight: 720,
 });
+await go('/q/1');
+report.shortQuestion1 = await evaluate(`(() => {
+  const round = (v) => Math.round(v * 10) / 10;
+  const art = document.querySelector('.question__art')?.getBoundingClientRect();
+  const title = document.querySelector('.question__title')?.getBoundingClientRect();
+  const choices = [...document.querySelectorAll('.answer-card')];
+  return {
+    artWidth: art ? round(art.width) : null,
+    artX: art ? round(art.x) : null,
+    titleTop: title ? round(title.top) : null,
+    bandHeight: (() => { const band = document.querySelector('.question__art-band'); return band ? round(band.getBoundingClientRect().height) : null; })(),
+    bandBottom: (() => { const band = document.querySelector('.question__art-band'); return band ? round(band.getBoundingClientRect().bottom) : null; })(),
+    choicesBottom: choices.length ? round(choices.at(-1).getBoundingClientRect().bottom) : null,
+    overflow: document.documentElement.scrollWidth - innerWidth,
+  };
+})()`);
+await capture('03-question-1-short');
 await go('/q/5');
 report.shortViewport = await evaluate(`(() => {
   const round = (v) => Math.round(v * 10) / 10;
   const art = document.querySelector('.question__art');
   const title = document.querySelector('.question__title');
-  const cta = document.querySelector('.question__cta');
+  const choices = [...document.querySelectorAll('.answer-card')];
   return {
     artHeight: art ? round(art.getBoundingClientRect().height) : null,
+    artWidth: art ? round(art.getBoundingClientRect().width) : null,
     artBottom: art ? round(art.getBoundingClientRect().bottom) : null,
+    bandBottom: (() => { const band = document.querySelector('.question__art-band'); return band ? round(band.getBoundingClientRect().bottom) : null; })(),
     titleTop: title ? round(title.getBoundingClientRect().top) : null,
     titleFontPx: title ? Math.round(parseFloat(getComputedStyle(title).fontSize)) : null,
-    ctaBottom: cta ? round(cta.getBoundingClientRect().bottom) : null,
+    choicesBottom: choices.length ? round(choices.at(-1).getBoundingClientRect().bottom) : null,
     artMask: art ? getComputedStyle(art).maskImage : null,
     overflow: document.documentElement.scrollWidth - innerWidth,
   };
@@ -507,10 +516,11 @@ await go('/q/10');
 report.shortQuestion10 = await evaluate(`(() => {
   const round = (v) => Math.round(v * 10) / 10;
   const art = document.querySelector('.question__art');
-  const cta = document.querySelector('.question__cta');
+  const choices = [...document.querySelectorAll('.answer-card')];
   return {
     artHeight: art ? round(art.getBoundingClientRect().height) : null,
-    ctaBottom: cta ? round(cta.getBoundingClientRect().bottom) : null,
+    artWidth: art ? round(art.getBoundingClientRect().width) : null,
+    choicesBottom: choices.length ? round(choices.at(-1).getBoundingClientRect().bottom) : null,
     overflow: document.documentElement.scrollWidth - innerWidth,
   };
 })()`);
@@ -554,6 +564,7 @@ report.baking = await evaluate(`(() => {
       return li ? Math.round(parseFloat(getComputedStyle(li).fontSize)) : null;
     })(),
     continuePresent: !!document.querySelector('.baking__continue'),
+    editLastPresent: !!document.querySelector('.baking__edit'),
     itemPx: items[0] ? Math.round(items[0].getBoundingClientRect().height) : null,
     itemSquare: items[0]
       ? Math.abs(items[0].getBoundingClientRect().width - items[0].getBoundingClientRect().height) < 1.5
@@ -1020,8 +1031,8 @@ const shells = [
   ['result', report.result],
   ...report.questions.map((row) => [`q${row.id}`, row]),
 ];
-// Baking deliberately has neither: it advances on a timer, so there is nothing
-// to press and no bottom band to hold it.
+// Baking has a correction control near its title, while the timer still owns
+// advancement and therefore there is no bottom band.
 const BANDLESS_SCENES = new Set(['baking']);
 
 for (const [name, state] of shells) {
@@ -1033,18 +1044,20 @@ for (const [name, state] of shells) {
     if (state.bottomBox) failures.push(`${name}: should have no bottom band`);
   } else {
     if (!state.bottomBox) failures.push(`${name}: no bottom band`);
-    const cta = state.ctaExpression;
-    if (!cta?.bg?.includes('button-expression')) {
-      failures.push(`${name}: bottom CTA is missing the expression mark`);
-    }
-    // 52px is pad(16,32) around a 16/1.25 label — the spec's Button-blue height.
-    if (cta && cta.height > 0 && Math.abs(cta.height - 52) > 1.5) {
-      failures.push(`${name}: bottom CTA is ${cta.height}px tall, expected 52`);
-    }
-    if (cta && cta.gap > 3) failures.push(`${name}: ${cta.gap}px between CTA label and mark`);
-    if (cta && cta.afterRotate !== 'none') failures.push(`${name}: expression mark is still rotated`);
-    if (cta && cta.afterHeight >= 20) {
-      failures.push(`${name}: expression mark (${cta.afterHeight}px) can drive the CTA height`);
+    if (!name.startsWith('q')) {
+      const cta = state.ctaExpression;
+      if (!cta?.bg?.includes('button-expression')) {
+        failures.push(`${name}: bottom CTA is missing the expression mark`);
+      }
+      // 52px is pad(16,32) around a 16/1.25 label — the spec's Button-blue height.
+      if (cta && cta.height > 0 && Math.abs(cta.height - 52) > 1.5) {
+        failures.push(`${name}: bottom CTA is ${cta.height}px tall, expected 52`);
+      }
+      if (cta && cta.gap > 3) failures.push(`${name}: ${cta.gap}px between CTA label and mark`);
+      if (cta && cta.afterRotate !== 'none') failures.push(`${name}: expression mark is still rotated`);
+      if (cta && cta.afterHeight >= 20) {
+        failures.push(`${name}: expression mark (${cta.afterHeight}px) can drive the CTA height`);
+      }
     }
   }
   // The bands own their insets; any gap here means a stale scene padding is
@@ -1138,6 +1151,8 @@ if (report.intro.titleAlign !== 'left' && report.intro.titleAlign !== 'start') {
   failures.push('intro: headline is not left-aligned');
 }
 
+const expectedQuestionArtWidth = (bandHeight) => Math.max(414, Math.min(bandHeight * 1.5, 530.4));
+
 for (const row of report.questions) {
   const tag = `q${row.id}`;
   if (row.stops !== 12) failures.push(`${tag}: ${row.stops} progress stops`);
@@ -1150,39 +1165,33 @@ for (const row of report.questions) {
   if (row.labelNodes !== 1 || row.labelNodeType !== 3) {
     failures.push(`${tag}: progress label is ${row.labelNodes} nodes, expected a single text node`);
   }
-  if (row.changeAnswerPresent) failures.push(`${tag}: the change-answer link is still rendered`);
+  if (row.swipeSurfacePresent) failures.push(`${tag}: swipe surface is still rendered`);
   if (row.cards !== 2) failures.push(`${tag}: ${row.cards} answer cards`);
-  if (!row.art?.fullBleed) failures.push(`${tag}: art band is not full-bleed`);
-  // Never rescaled at any viewport height: always its native 3:2 at 390 wide.
-  // The band now spans the headline row too, so this holds even when the copy
-  // is long — which is the whole point of the change.
-  if (Math.abs(row.art.rendered[1] - 260) > 1) {
-    failures.push(`${tag}: art is ${row.art.rendered[1]}px tall, expected its native 260`);
+  if (!row.buttonsSideBySide) failures.push(`${tag}: answers are not side by side`);
+  if (!row.namedAnswers) failures.push(`${tag}: answer accessible name does not contain its visible response`);
+  if (row.sides?.join(',') !== 'left,right') failures.push(`${tag}: displayed direction binding is ${row.sides}`);
+  if (row.nextPresent) failures.push(`${tag}: old Next CTA is still rendered`);
+  const expectedArtWidth = expectedQuestionArtWidth(row.bandBottom - row.bandTop);
+  const expectedArtX = (390 - expectedArtWidth) / 2;
+  if (Math.abs(row.art?.rendered[0] - expectedArtWidth) > 2 || Math.abs(row.art?.x - expectedArtX) > 2) {
+    failures.push(`${tag}: illustration is not sized and centred (${row.art?.rendered[0]}px at x=${row.art?.x})`);
   }
-  // At the 844 canvas the copy clears the artwork, so the illustration is a
-  // plain layer. The fade belongs only to the short-viewport case below.
   if (row.artMask !== 'none') {
-    failures.push(`${tag}@844: art carries a mask (${row.artMask}); it should be a plain layer`);
+    failures.push(`${tag}: art carries a mask (${row.artMask})`);
   }
-  const layers = row.layerOrder;
-  if (!layers || Number(layers.stack) <= Number(layers.band)) {
-    failures.push(
-      `${tag}: copy is not above the art layer (band ${layers?.band}, stack ${layers?.stack})`,
-    );
-  }
-  if (layers && layers.stackPositioned === 'static') {
-    failures.push(`${tag}: the copy stack is static, so its z-index does nothing`);
-  }
-  if (layers && layers.isolated !== 'isolate') {
-    failures.push(`${tag}: the scene body is not an isolated stacking context`);
-  }
+  if (row.titleAlign !== 'center') failures.push(`${tag}: question is not centred`);
+  if (row.bandBottom > row.titleTop + 1) failures.push(`${tag}: art band overlaps the question`);
   if (row.stackColumn !== '1' || Math.abs(row.stackWidth - 390) > 1) {
     failures.push(
       `${tag}: headline column collapsed — stack is ${row.stackWidth}px in grid column ${row.stackColumn}`,
     );
   }
   if (row.langVisible) failures.push(`${tag}: language toggle should be hidden`);
-  if (row.ctaDisabled !== true) failures.push(`${tag}: CTA should start disabled`);
+  if (Math.abs(row.railInset - 34) > 1) failures.push(`${tag}: rail is not inset 34px`);
+  if (Math.abs(row.starWidth - 16) > 1) failures.push(`${tag}: star is ${row.starWidth}px, expected 16`);
+  if (row.optionLabels?.join(',') !== (row.lang === 'id' ? 'Tim A,Tim B' : 'Team A,Team B')) {
+    failures.push(`${tag}: choice labels do not match the revised design`);
+  }
   // Answers must sit low enough that the art keeps the upper composition.
   if (row.cardBottom < 470) failures.push(`${tag}: answers end at ${row.cardBottom}px, too high up the screen`);
   // The star rail must still read against flat cream: the band starts below it.
@@ -1196,19 +1205,36 @@ for (const row of report.questions) {
   }
 }
 
-// The short-viewport case this was built for: a Galaxy A55 with browser chrome
-// is ~720 CSS px, not the 844 design canvas. The art must still be its full
-// 260px there — it runs behind the headline rather than giving up its height.
+// On a short phone the flexible image row may shrink; the controls must remain
+// visible and the illustration must stay separate from the centred question.
+if (report.shortQuestion1) {
+  const short = report.shortQuestion1;
+  const expectedArtWidth = expectedQuestionArtWidth(short.bandHeight);
+  if (Math.abs(short.artWidth - expectedArtWidth) > 2 || Math.abs(short.artX - (390 - expectedArtWidth) / 2) > 2) {
+    failures.push(`q1@720: illustration is not responsive and centred (${short.artWidth}px at x=${short.artX})`);
+  }
+  if (short.artWidth >= report.questions.find((row) => row.id === 1)?.art?.rendered[0]) {
+    failures.push('q1@720: illustration did not shrink from the taller viewport');
+  }
+  if (short.bandBottom > short.titleTop + 1) {
+    failures.push('q1@720: illustration band overlaps the question');
+  }
+  if (short.choicesBottom > 720.5) {
+    failures.push(`q1@720: the choices are ${Math.round(short.choicesBottom - 720)}px below the fold`);
+  }
+  if (short.overflow > 0) failures.push(`q1@720: ${short.overflow}px horizontal overflow`);
+}
+
 if (report.shortViewport) {
   const short = report.shortViewport;
-  if (Math.abs(short.artHeight - 260) > 1) {
-    failures.push(`q5@720: art collapsed to ${short.artHeight}px, expected its native 260`);
+  if (short.artWidth < 414 || short.artWidth >= report.questions.find((row) => row.id === 5)?.art?.rendered[0]) {
+    failures.push(`q5@720: illustration is not bleeding and shrinking (${short.artWidth}px)`);
   }
-  if (short.artBottom <= short.titleTop) {
-    failures.push('q5@720: art stops above the headline instead of running behind it');
+  if (short.bandBottom > short.titleTop + 1) {
+    failures.push('q5@720: illustration band overlaps the question');
   }
-  if (short.ctaBottom > 720.5) {
-    failures.push(`q5@720: the CTA is ${Math.round(short.ctaBottom - 720)}px below the fold`);
+  if (short.choicesBottom > 720.5) {
+    failures.push(`q5@720: the choices are ${Math.round(short.choicesBottom - 720)}px below the fold`);
   }
   if (short.overflow > 0) failures.push(`q5@720: ${short.overflow}px horizontal overflow`);
   // The display scale is a percentage of the screen, not a fixed size: the same
@@ -1219,20 +1245,18 @@ if (report.shortViewport) {
       `q5@720: headline is ${short.titleFontPx}px, same as at 844 — the height term is not applying`,
     );
   }
-  // Here the copy genuinely sits on the picture (~95px of it at this height), so
-  // the fade is on — the one place it is wanted.
-  if (!short.artMask?.includes('gradient')) {
-    failures.push('q5@720: art has no fade where the copy runs onto it');
+  if (short.artMask !== 'none') {
+    failures.push('q5@720: illustration has an unwanted fade');
   }
 }
 
 if (report.shortQuestion10) {
   const short = report.shortQuestion10;
-  if (Math.abs(short.artHeight - 260) > 1) {
-    failures.push(`q10@720: art collapsed to ${short.artHeight}px, expected its native 260`);
+  if (short.artWidth < 414 || short.artWidth >= report.questions.find((row) => row.id === 10)?.art?.rendered[0]) {
+    failures.push(`q10@720: illustration is not bleeding and shrinking (${short.artWidth}px)`);
   }
-  if (short.ctaBottom > 720.5) {
-    failures.push(`q10@720: the CTA is ${Math.round(short.ctaBottom - 720)}px below the fold`);
+  if (short.choicesBottom > 720.5) {
+    failures.push(`q10@720: the choices are ${Math.round(short.choicesBottom - 720)}px below the fold`);
   }
   if (short.overflow > 0) failures.push(`q10@720: ${short.overflow}px horizontal overflow`);
 }
@@ -1253,6 +1277,7 @@ if (report.baking.lineFontPx < 18) {
   failures.push(`baking: status line is ${report.baking.lineFontPx}px, expected 18`);
 }
 if (report.baking.continuePresent) failures.push('baking: the continue button is still rendered');
+if (report.baking.editLastPresent) failures.push('baking: last-answer correction button is still rendered');
 if (!report.baking.itemSquare) failures.push('baking: marquee thumbnails are not square');
 // Sized off the row rather than a fixed 104px, so the cast reads big.
 if (report.baking.itemPx < 120) {

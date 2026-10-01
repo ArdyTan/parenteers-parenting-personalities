@@ -1,9 +1,24 @@
 # Question rewrite and playful directional swipe
 
+**Historical interaction plan.** Ardy's 2026-09-30 reference at
+`images/Questions-sample-newlayout.jpg` supersedes the swipe/deck composition below.
+The current Question scene uses only the two bottom tap buttons, with 34px page
+padding, 16px progress stars, art centred and sized by the available middle-row height
+with at least 12px of side bleed, and a centred prompt. Question-screen type also
+responds to width and height. The
+bilingual question copy, answer poles, correction path and auto-advance contract
+remain current. Browser and physical Instagram WebView acceptance of this
+revision are pending.
+
+**2026-09-30 flow override:** Back can revise earlier questions while still in the
+question sequence; Baking no longer shows a Q12 edit button. The detailed Baking
+correction section below records the superseded implementation.
+
 Date: 2026-09-28. Phase 9 in `plan.md`.
 
-**Status:** all 12 ID/EN question pairs have been rewritten in the local data and editorial
-reference. Swipe development is planned, not implemented. No runtime or device acceptance is claimed.
+**Status:** all 12 ID/EN pairs and the local tap/swipe implementation are in the working tree.
+Unit tests, typecheck, build and canonical Chrome browser QA pass. Physical Instagram WebView
+acceptance remains pending.
 Ardy requested the copy restructuring and this development plan on 2026-09-28.
 
 ## 1. Outcome and boundaries
@@ -38,7 +53,7 @@ All 24 answers have ID and EN text. Current maximum answer length across both la
 characters; longest scenario is 69. These are editorial measurements, not proof of layout fit.
 Use wrapped full text, never ellipsis. Maintain the conversational Indonesian register.
 
-Proposed UI strings for the implementation phase (not yet installed):
+Implemented UI strings:
 
 | Key | ID | EN |
 |---|---|---|
@@ -46,7 +61,6 @@ Proposed UI strings for the implementation phase (not yet installed):
 | `quiz.swipe_first_hint` | Pilih yg paling sering kamu lakukan. Kalau dua-duanya, pilih yg biasanya duluan. | Pick what you usually do. If both fit, choose what you tend to do first. |
 | `quiz.release_hint` | Lepas utk pilih | Release to choose |
 | `quiz.previous_answer` | Jawabanmu tadi | Your previous answer |
-| `quiz.edit_last_answer` | Ubah jawaban terakhir | Edit last answer |
 | `a11y.answer_left` | Pilih jawaban kiri: {answer}. Langsung lanjut. | Choose the left answer: {answer}. Moves to the next screen. |
 | `a11y.answer_right` | Pilih jawaban kanan: {answer}. Langsung lanjut. | Choose the right answer: {answer}. Moves to the next screen. |
 
