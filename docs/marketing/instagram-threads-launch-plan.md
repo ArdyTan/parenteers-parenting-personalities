@@ -82,7 +82,7 @@ Kode terhubung dengan naskah lengkap di [bank konten](instagram-threads-content-
 | 3 · Rabu | C07 | Pretzel | Suruh beresin mainan, ujungnya bikin permainan. | “Mainan masuk kotak: biasa atau pakai misi?” |
 | 3 · Jumat | R02 | Reel Christine | Christine coba kuis dan baca hasil aslinya. | Christine memperlihatkan hasil nyata. |
 | 3 · Minggu | C08 | Muffin | Anak ditanya mau apa. Kamu selalu “ikut aja”. | “Hari ini kamu sudah pilih sesuatu buat dirimu?” |
-| 4 · Senin | C09 | Molten Lava Cake | Si paling ngajak jalan. Pulangnya paling butuh diam. | “Setelah hari rame, kamu pulihnya lewat apa?” |
+| 4 · Senin | C09 | Molten Lava Cake | Si paling ngajak jalan. Pulangnya paling butuh menyendiri. | “Setelah hari rame, kamu pulihnya lewat apa?” |
 | 4 · Rabu | R03 | Reel dua gaya | Satu mau susun rencana. Satu mau lihat nanti. | “Di rumahmu, siapa yg pegang itinerary?” |
 | 4 · Jumat | C10 | Cinnamon Roll | “Lima menit lagi” kok jadi setengah jam? | “Kalimat penunda tidur favorit di rumah?” |
 | 4 · Minggu | C11 | Bagel | Rencana berubah? “Ya udah, cari cara lain.” | “Kalau ada masalah, refleks pertama kamu apa?” |

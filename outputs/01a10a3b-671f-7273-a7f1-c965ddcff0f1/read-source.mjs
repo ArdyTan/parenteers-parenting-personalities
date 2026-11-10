@@ -1,0 +1,11 @@
+import fs from 'node:fs/promises';
+import { FileBlob, SpreadsheetFile } from '@oai/artifact-tool';
+const source = '/home/ardy/Projects/Parenteers/Parenting Personalities/marketing/outputs/01a0f1c5-927a-7f52-aa84-1da701f8ea31/Parenting-Bakes-Semua-Konten-Marketing.xlsx';
+const wb = await SpreadsheetFile.importXlsx(await FileBlob.load(source));
+const names = ['Mulai','Kalender','Carousel','Caption','Reels','Threads','Story','Arahan Kampanye','Ketentuan Konten'];
+const data = Object.fromEntries(names.map(n=>[n,wb.worksheets.getItem(n).getUsedRange().values]));
+await fs.writeFile(new URL('source-data.json',import.meta.url),JSON.stringify(data));
+console.log((await wb.inspect({kind:'sheet',include:'name',maxChars:1800})).ndjson);
+const image = await wb.render({sheetName:'Mulai',range:'A1:C8',scale:1,format:'png'});
+await fs.writeFile(new URL('source-preview.png',import.meta.url),new Uint8Array(await image.arrayBuffer()));
+console.log(JSON.stringify({source,rows:Object.fromEntries(names.map(n=>[n,data[n].length]))}));

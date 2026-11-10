@@ -1,0 +1,1316 @@
+{
+  "Feed": {
+    "spreadsheetId": "1ZVtJYwzAc4yCVUjqyTJ2zbz0gk7vmMoFCSAlj8GOUWY",
+    "url": "https://docs.google.com/spreadsheets/d/1ZVtJYwzAc4yCVUjqyTJ2zbz0gk7vmMoFCSAlj8GOUWY/edit",
+    "properties": {
+      "sheetId": 1849648112,
+      "title": "Daftar Posting",
+      "index": 0,
+      "sheetType": "GRID",
+      "gridProperties": {
+        "rowCount": 1000,
+        "columnCount": 6,
+        "frozenRowCount": 4,
+        "hideGridlines": true,
+        "rowGroupControlAfter": true,
+        "columnGroupControlAfter": true
+      }
+    },
+    "rows": [
+      {
+        "values": [
+          1,
+          "01 - Kenali 16 Personality",
+          "Ada yg sayangnya lewat bekal cadangan. Ada yg lewat pelukan panjang. Kalau cara parenting kamu jadi kue, kira-kira kamu yg mana?\n\nJawab 12 pertanyaan keseharian. Setelah ketemu karakter kuemu, kamu bisa membaca bahan refleksi dan booklet berisi ide merawat diri serta aktivitas bareng anak.\n\nCari kuemu lewat link bio @parenteers. Parenting Bakes by Parenteers.\n\nBuat seru-seruan & refleksi; bukan tes klinis.",
+          "#ParentingBakes #Parenteers",
+          false,
+          "Carousel, 10 gambar. Upload 01.jpg sampai 10.jpg sesuai urutan. Rencana hari 1."
+        ],
+        "url": "https://drive.google.com/drive/folders/1isAyyH35ecisOJ9Vm5Gd7RLCzFSqOneF",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          2,
+          "02 - Kenalan dengan Christine",
+          "Kenalan dengan Christine Yunita, @christine.yunita, orang di balik Parenteers.\n\nKali ini, obrolannya mulai dari hal kecil yg kita lakukan sehari-hari sebagai orang tua. Lalu ketemu… kue.\n\nCoba Parenting Bakes lewat link bio @parenteers. Kalau mau mengenal Parenteers lebih dekat, cerita-ceritanya ada di akun ini.",
+          "#ParentingBakes #Parenteers",
+          false,
+          "Carousel, 4 gambar. Upload 01.jpg sampai 04.jpg sesuai urutan. Rencana hari 3. Wording Christine perlu ditinjau Christine sebelum tayang."
+        ],
+        "url": "https://drive.google.com/drive/folders/17EWiOBkwctvTrSBNCr8FBxCs2lKMZbu8",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          3,
+          "03 - Cara Mengikuti Kuis",
+          "Parenting Bakes mengajak kamu kenalan dengan kebiasaanmu lewat 12 pertanyaan keseharian. Pilih jawaban yg terasa paling dekat, lalu temui karakter kuemu.\n\nDi hasilnya ada bahan refleksi dan booklet dengan ide merawat diri serta aktivitas bareng anak. Ambil yg sesuai keadaanmu.\n\nCari kuemu lewat link bio @parenteers. Buat seru-seruan & refleksi; bukan tes klinis.",
+          "#ParentingBakes #Parenteers",
+          false,
+          "Carousel, 5 gambar. Upload 01.jpg sampai 05.jpg sesuai urutan. Rencana hari 5."
+        ],
+        "url": "https://drive.google.com/drive/folders/11Hxy3fbvMocbtjuX9Qd5jL7FyVJg7PbS",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          4,
+          "04 - Croquembouche",
+          "Kadang yg bikin kecewa bukan batal perginya. Tapi semua yg sudah kamu pikirkan sejak jauh-jauh hari.\n\nThe Croquembouche dekat dengan orang tua yg menyiapkan pengalaman, semangat, dan tempat untuk perasaan. Sesekali, agendanya boleh lebih kecil.\n\nCari kuemu lewat 12 pertanyaan di link bio @parenteers. Di hasilnya ada bahan refleksi dan booklet dengan ide merawat diri serta aktivitas bareng anak.\n\nBuat seru-seruan & refleksi; bukan tes klinis.",
+          "#ParentingBakes #Parenteers",
+          false,
+          "Carousel, 8 gambar. Upload 01.jpg sampai 08.jpg sesuai urutan. Rencana hari 7."
+        ],
+        "url": "https://drive.google.com/drive/folders/1ys7PYzYP8lUyucJuWh3isBN3UmBYaezr",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          5,
+          "05 - Lapis Legit",
+          "Untuk yg punya urutan pagi di kepala, perubahan kecil bisa terasa besar. Apalagi kalau kamu yg biasanya menjaga semuanya tetap jalan.\n\nThe Lapis Legit punya kehangatan dari hal-hal yg dilakukan berulang. Hari ini urutannya boleh bergeser sedikit.\n\nKenali kecenderunganmu lewat kuis di link bio @parenteers.\n\nCari kuemu lewat 12 pertanyaan di link bio @parenteers. Di hasilnya ada bahan refleksi dan booklet dengan ide merawat diri serta aktivitas bareng anak.\n\nBuat seru-seruan & refleksi; bukan tes klinis.",
+          "#ParentingBakes #Parenteers",
+          false,
+          "Carousel, 8 gambar. Upload 01.jpg sampai 08.jpg sesuai urutan. Rencana hari 8."
+        ],
+        "url": "https://drive.google.com/drive/folders/1JgpCoIOSxFWo49jkHeIQpOJvG0YvVwR5",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          6,
+          "06 - Kopi yang Dipanaskan Lagi",
+          "Kopinya satu. Percobaan meminumnya beberapa kali.\n\nAda banyak hal kecil yg kamu urus sebelum ingat giliranmu. Parenting Bakes mengajak kamu melihat kebiasaanmu sebagai orang tua lewat 12 pertanyaan.\n\nDi hasilnya, ada karakter kue, bahan refleksi, dan booklet dengan ide merawat diri serta aktivitas bareng anak. Ambil yg sesuai keadaanmu.\n\nCoba lewat link bio @parenteers. Buat seru-seruan & refleksi; bukan tes klinis.",
+          "#ParentingBakes #Parenteers",
+          false,
+          "Carousel, 5 gambar. Upload 01.jpg sampai 05.jpg sesuai urutan. Rencana hari 10."
+        ],
+        "url": "https://drive.google.com/drive/folders/1Mgs-JYeFTP0P32LCpIi1xX0m9Lywx_iE",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          7,
+          "07 - Baguette",
+          "Ada sayang yg bentuknya bukan kalimat panjang. Bentuknya plester di saku depan, botol yg sudah diisi, dan orang yg tahu harus belok ke mana.\n\nThe Baguette mengingatkan kita pada perhatian yg praktis. Si paling sigap juga boleh gantian dibantu.\n\nCari kuemu lewat 12 pertanyaan di link bio @parenteers. Di hasilnya ada bahan refleksi dan booklet dengan ide merawat diri serta aktivitas bareng anak.\n\nBuat seru-seruan & refleksi; bukan tes klinis.",
+          "#ParentingBakes #Parenteers",
+          false,
+          "Carousel, 8 gambar. Upload 01.jpg sampai 08.jpg sesuai urutan. Rencana hari 12."
+        ],
+        "url": "https://drive.google.com/drive/folders/1lT08wEFBOJYOY9_F_1qKsi-w6i-DX_Bq",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          8,
+          "08 - Milk Bread",
+          "Kalimat “siapa tahu nanti butuh” bisa memenuhi satu tas. Dan satu kepala.\n\nThe Milk Bread dekat dengan orang tua yg membuat keseharian terasa nyaman lewat perhatian praktis. Semoga ada yg ingat menyiapkan kenyamanan untukmu juga.\n\nCari kuemu lewat 12 pertanyaan di link bio @parenteers. Di hasilnya ada bahan refleksi dan booklet dengan ide merawat diri serta aktivitas bareng anak.\n\nBuat seru-seruan & refleksi; bukan tes klinis.",
+          "#ParentingBakes #Parenteers",
+          false,
+          "Carousel, 8 gambar. Upload 01.jpg sampai 08.jpg sesuai urutan. Rencana hari 14."
+        ],
+        "url": "https://drive.google.com/drive/folders/1cW5ielPf23FUk4wO4hg7SA2PxSW7s2t3",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          9,
+          "09 - Cronut",
+          "Proyek setengah jadi kadang bikin kepikiran. Padahal bisa saja pertanyaannya sudah terjawab, lalu rasa penasarannya pindah.\n\nThe Cronut membawa ruang bereksperimen. Orang tuanya juga boleh punya kegiatan kreatif yg cuma untuk dirinya sendiri.\n\nCari kuemu lewat 12 pertanyaan di link bio @parenteers. Di hasilnya ada bahan refleksi dan booklet dengan ide merawat diri serta aktivitas bareng anak.\n\nBuat seru-seruan & refleksi; bukan tes klinis.",
+          "#ParentingBakes #Parenteers",
+          false,
+          "Carousel, 8 gambar. Upload 01.jpg sampai 08.jpg sesuai urutan. Rencana hari 15."
+        ],
+        "url": "https://drive.google.com/drive/folders/1iU81S51GXuhkz7qCelqsAfLiEpU7vKPG",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          10,
+          "10 - Pandan Chiffon",
+          "Kadang setelah bilang gak, yg paling lama mengulang percakapannya justru orang tuanya.\n\nThe Pandan Chiffon dekat dengan kelembutan yg peka. Ruang untuk perasaan anak boleh berjalan bersama batas energimu sendiri.\n\nKenali kecenderunganmu lewat kuis di link bio @parenteers.\n\nCari kuemu lewat 12 pertanyaan di link bio @parenteers. Di hasilnya ada bahan refleksi dan booklet dengan ide merawat diri serta aktivitas bareng anak.\n\nBuat seru-seruan & refleksi; bukan tes klinis.",
+          "#ParentingBakes #Parenteers",
+          false,
+          "Carousel, 8 gambar. Upload 01.jpg sampai 08.jpg sesuai urutan. Rencana hari 17."
+        ],
+        "url": "https://drive.google.com/drive/folders/10nt6ncPxrIjLvFgj5y8Yi2ytjqXi4Lxg",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          11,
+          "11 - Dua Gaya Berangkat",
+          "Kadang percakapannya kelihatan cuma soal jam berangkat. Ternyata yg satu ingin rencana terasa jelas, yg satu ingin punya ruang mengubahnya.\n\nParenting Bakes bisa jadi pembuka obrolan tentang kebiasaanmu. Masing-masing coba sendiri, lalu ngobrol dari bagian yg terasa dekat.\n\nLink bio @parenteers. Hasil kuis bukan ukuran kecocokan pasangan.",
+          "#ParentingBakes #Parenteers",
+          false,
+          "Carousel, 5 gambar. Upload 01.jpg sampai 05.jpg sesuai urutan. Rencana hari 19."
+        ],
+        "url": "https://drive.google.com/drive/folders/1YuXtax-zAHaZJfT5EUV5cnJlTqyA4Rcg",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          12,
+          "12 - Pretzel",
+          "Untuk yg spontan mengubah tugas jadi permainan: kreativitasmu menyenangkan. Tapi kamu gak harus terus punya ide baru setiap hari.\n\nThe Pretzel juga boleh menikmati kegiatan yg sederhana.\n\nCari kuemu lewat 12 pertanyaan di link bio @parenteers. Di hasilnya ada bahan refleksi dan booklet dengan ide merawat diri serta aktivitas bareng anak.\n\nBuat seru-seruan & refleksi; bukan tes klinis.",
+          "#ParentingBakes #Parenteers",
+          false,
+          "Carousel, 8 gambar. Upload 01.jpg sampai 08.jpg sesuai urutan. Rencana hari 21."
+        ],
+        "url": "https://drive.google.com/drive/folders/1f3UXNYOET54rtoG8TLDd4NBmqgdQmhQQ",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          13,
+          "13 - Muffin",
+          "“Terserah” kadang memang santai. Kadang juga karena sudah terbiasa mendahulukan pilihan semua orang.\n\nThe Muffin memberi ruang tanpa banyak drama. Hari ini, semoga ada ruang untuk pilihanmu juga.\n\nCari kuemu lewat 12 pertanyaan di link bio @parenteers. Di hasilnya ada bahan refleksi dan booklet dengan ide merawat diri serta aktivitas bareng anak.\n\nBuat seru-seruan & refleksi; bukan tes klinis.",
+          "#ParentingBakes #Parenteers",
+          false,
+          "Carousel, 8 gambar. Upload 01.jpg sampai 08.jpg sesuai urutan. Rencana hari 22."
+        ],
+        "url": "https://drive.google.com/drive/folders/1aX6-GMfUsXvFPx-87k9_Y-IpJ2w0Fps4",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          14,
+          "14 - Molten Lava Cake",
+          "Si paling semangat juga bisa kehabisan tenaga. Kamu boleh mencari jeda dan tempat bercerita ke orang dewasa yg kamu percaya.\n\nThe Molten Lava Cake membawa energi dan perasaan yg terasa. Sesudah hari penuh, satu ritual kecil yg akrab boleh jadi penutup.\n\nCari kuemu lewat 12 pertanyaan di link bio @parenteers. Di hasilnya ada bahan refleksi dan booklet dengan ide merawat diri serta aktivitas bareng anak.\n\nBuat seru-seruan & refleksi; bukan tes klinis.",
+          "#ParentingBakes #Parenteers",
+          false,
+          "Carousel, 8 gambar. Upload 01.jpg sampai 08.jpg sesuai urutan. Rencana hari 24."
+        ],
+        "url": "https://drive.google.com/drive/folders/1zKo3Zg-feYTz6vz8xhVvMbXOHPAN7SCM",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          15,
+          "15 - Hari Ini Cukupnya Apa",
+          "Ambil satu kalimat yg terasa membantu hari ini. Yang lainnya boleh lewat dulu.\n\nDi Parenting Bakes, tiap karakter punya kekuatan sekaligus kebutuhan yg perlu diperhatikan. Termasuk kebutuhan orang tuanya.\n\nCari kuemu lewat link bio @parenteers. Buat seru-seruan & refleksi; bukan tes klinis.",
+          "#ParentingBakes #Parenteers",
+          false,
+          "Carousel, 5 gambar. Upload 01.jpg sampai 05.jpg sesuai urutan. Rencana hari 26."
+        ],
+        "url": "https://drive.google.com/drive/folders/1joiHLM7FmP_urYHzmDjUnVRXYjzWRwnM",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          16,
+          "16 - Cinnamon Roll",
+          "Ada momen yg manis sekaligus melelahkan. Mau menemani lebih lama, tapi badan sudah minta tidur.\n\nThe Cinnamon Roll dekat dengan cara merawat yg hangat dan lentur. Kebutuhan istirahatmu ikut penting di dalamnya.\n\nCari kuemu lewat 12 pertanyaan di link bio @parenteers. Di hasilnya ada bahan refleksi dan booklet dengan ide merawat diri serta aktivitas bareng anak.\n\nBuat seru-seruan & refleksi; bukan tes klinis.",
+          "#ParentingBakes #Parenteers",
+          false,
+          "Carousel, 8 gambar. Upload 01.jpg sampai 08.jpg sesuai urutan. Rencana hari 28."
+        ],
+        "url": "https://drive.google.com/drive/folders/1xvpoOuzYLA8R_LVA7TGJ1YWKD3bvCH84",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          17,
+          "17 - Bagel",
+          "Gak semua orang menunjukkan perhatian lewat percakapan panjang. Ada yg langsung menggeser kursi, mengambil air, lalu membantu.\n\nThe Bagel membawa ketenangan yg praktis. Sebuah jeda kecil bisa memberi tempat untuk perasaan juga.\n\nCari kuemu lewat 12 pertanyaan di link bio @parenteers. Di hasilnya ada bahan refleksi dan booklet dengan ide merawat diri serta aktivitas bareng anak.\n\nBuat seru-seruan & refleksi; bukan tes klinis.",
+          "#ParentingBakes #Parenteers",
+          false,
+          "Carousel, 8 gambar. Upload 01.jpg sampai 08.jpg sesuai urutan. Rencana hari 29."
+        ],
+        "url": "https://drive.google.com/drive/folders/1hAu4OwKMO9xqQqOVcoq9xhUE-hfa23Kv",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          18,
+          "18 - Banana Bread",
+          "Kadang habis lihat Story orang, hari yg tadinya terasa enak mendadak terasa kurang.\n\nThe Banana Bread mengingatkan pada kehangatan yg bisa lahir dari yg sudah ada. Pagi di rumah juga boleh jadi hal yg kamu suka.\n\nCari kuemu lewat 12 pertanyaan di link bio @parenteers. Di hasilnya ada bahan refleksi dan booklet dengan ide merawat diri serta aktivitas bareng anak.\n\nBuat seru-seruan & refleksi; bukan tes klinis.",
+          "#ParentingBakes #Parenteers",
+          false,
+          "Carousel, 8 gambar. Upload 01.jpg sampai 08.jpg sesuai urutan. Rencana hari 31."
+        ],
+        "url": "https://drive.google.com/drive/folders/1Qg3JHrSAVfhMjNcIlC6_y4_LRWFo9iiy",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          19,
+          "19 - Keluar Sebentar",
+          "“Sebentar” kadang cuma menjelaskan durasi perginya. Persiapannya punya kalender sendiri.\n\nAda yg suka menyiapkan semua dari awal. Ada yg lebih nyaman menyesuaikan sambil jalan. Kamu mengenali yg mana?\n\nCari kuemu lewat Parenting Bakes di link bio @parenteers.",
+          "#ParentingBakes #Parenteers",
+          false,
+          "Carousel, 6 gambar. Upload 01.jpg sampai 06.jpg sesuai urutan. Rencana hari 33."
+        ],
+        "url": "https://drive.google.com/drive/folders/1iMwug_VnXFL9T_fomsgEYaQvCawNMkSw",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          20,
+          "20 - Pavlova",
+          "Menyambut ide anak bisa menyenangkan. Lalu datang titik saat kamu sadar tenaga yg tersedia gak sebanyak ide yg disambut.\n\nThe Pavlova senang mengikuti ide anak. Hari ini, waktu main juga boleh lebih singkat kalau tenagamu sudah menipis.\n\nCari kuemu lewat 12 pertanyaan di link bio @parenteers. Di hasilnya ada bahan refleksi dan booklet dengan ide merawat diri serta aktivitas bareng anak.\n\nBuat seru-seruan & refleksi; bukan tes klinis.",
+          "#ParentingBakes #Parenteers",
+          false,
+          "Carousel, 8 gambar. Upload 01.jpg sampai 08.jpg sesuai urutan. Rencana hari 35."
+        ],
+        "url": "https://drive.google.com/drive/folders/133xLF_w66oDmX1Ytzup7Emlyo5kDmsN-",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          21,
+          "21 - Tiramisu",
+          "Untuk yg sering dititipi cerita: semoga ada tempat kamu menaruh ceritamu sendiri.\n\nThe Tiramisu dekat dengan pendampingan yg sabar dan mengikuti ritme. Keinginan untuk sunyi sebentar juga boleh kamu akui.\n\nCari kuemu lewat 12 pertanyaan di link bio @parenteers. Di hasilnya ada bahan refleksi dan booklet dengan ide merawat diri serta aktivitas bareng anak.\n\nBuat seru-seruan & refleksi; bukan tes klinis.",
+          "#ParentingBakes #Parenteers",
+          false,
+          "Carousel, 8 gambar. Upload 01.jpg sampai 08.jpg sesuai urutan. Rencana hari 36."
+        ],
+        "url": "https://drive.google.com/drive/folders/102z9sgCd9xOK3QJqW080GLtpoJ5Cnqf_",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          22,
+          "22 - Focaccia",
+          "Rumah yg memberi ruang mencoba kadang menyisakan bukti di lantai. Kamu boleh menikmati prosesnya sekaligus punya batas soal beres-beres.\n\nThe Focaccia membawa semangat praktik dan keluwesan.\n\nCari kuemu lewat 12 pertanyaan di link bio @parenteers. Di hasilnya ada bahan refleksi dan booklet dengan ide merawat diri serta aktivitas bareng anak.\n\nBuat seru-seruan & refleksi; bukan tes klinis.",
+          "#ParentingBakes #Parenteers",
+          false,
+          "Carousel, 8 gambar. Upload 01.jpg sampai 08.jpg sesuai urutan. Rencana hari 38."
+        ],
+        "url": "https://drive.google.com/drive/folders/1EoZ1QlGxIDJyL7_ZiYN9OfbAwzFGThve",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          23,
+          "23 - Bolu Kukus",
+          "Kadang menemani berarti menahan tangan supaya gak buru-buru membetulkan. Ada rasa percaya di dalamnya.\n\nThe Bolu Kukus dekat dengan ruang tumbuh yg tenang. Kamu boleh hadir tanpa terus menciptakan kegiatan baru.\n\nCari kuemu lewat 12 pertanyaan di link bio @parenteers. Di hasilnya ada bahan refleksi dan booklet dengan ide merawat diri serta aktivitas bareng anak.\n\nBuat seru-seruan & refleksi; bukan tes klinis.",
+          "#ParentingBakes #Parenteers",
+          false,
+          "Carousel, 8 gambar. Upload 01.jpg sampai 08.jpg sesuai urutan. Rencana hari 40."
+        ],
+        "url": "https://drive.google.com/drive/folders/1KHtgsJAlv8WIRVCGmM6UVXXQok8RAvNt",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          24,
+          "24 - Setelah Ketemu Kuemu",
+          "Setelah ketemu kuemu, pilih satu bagian yg terasa dekat. Bisa tentang apa yg sudah kamu lakukan, atau kebutuhanmu yg belakangan terlupakan.\n\nBooklet di hasil kuis berisi ide merawat diri dan aktivitas bareng anak. Pilih yg sesuai keadaanmu; kegiatan boleh dilewati.\n\nChristine Yunita (@christine.yunita), orang di balik Parenteers, mengajak kita ngobrol dari sana. Kalau belum coba, cari kuemu lewat link bio @parenteers.\n\nBuat seru-seruan & refleksi; bukan tes klinis.",
+          "#ParentingBakes #Parenteers",
+          false,
+          "Carousel, 4 gambar. Upload 01.jpg sampai 04.jpg sesuai urutan. Rencana hari 42. Wording Christine perlu ditinjau Christine sebelum tayang."
+        ],
+        "url": "https://drive.google.com/drive/folders/1cxLXpKeLtCMb6OQG9Crqd9cf1iLjczoT",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          25,
+          "25 - Kartu Croquembouche",
+          "Kadang yg bikin kecewa bukan batal perginya. Tapi semua yg sudah kamu pikirkan sejak jauh-jauh hari.\n\nThe Croquembouche dekat dengan orang tua yg menyiapkan pengalaman, semangat, dan tempat untuk perasaan. Sesekali, agendanya boleh lebih kecil.\n\nCari kuemu lewat 12 pertanyaan di link bio @parenteers. Di hasilnya ada bahan refleksi dan booklet dengan ide merawat diri serta aktivitas bareng anak.\n\nBuat seru-seruan & refleksi; bukan tes klinis.",
+          "#ParentingBakes #Parenteers",
+          false,
+          "Kartu tunggal, 1 gambar. Pilihan posting terpisah dari carousel; di luar urutan utama."
+        ],
+        "url": "https://drive.google.com/drive/folders/1vJHK7WXgSBbaK2PRXE2UCS7BdQSCX68w",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          26,
+          "26 - Kartu Lapis Legit",
+          "Untuk yg punya urutan pagi di kepala, perubahan kecil bisa terasa besar. Apalagi kalau kamu yg biasanya menjaga semuanya tetap jalan.\n\nThe Lapis Legit punya kehangatan dari hal-hal yg dilakukan berulang. Hari ini urutannya boleh bergeser sedikit.\n\nKenali kecenderunganmu lewat kuis di link bio @parenteers.\n\nCari kuemu lewat 12 pertanyaan di link bio @parenteers. Di hasilnya ada bahan refleksi dan booklet dengan ide merawat diri serta aktivitas bareng anak.\n\nBuat seru-seruan & refleksi; bukan tes klinis.",
+          "#ParentingBakes #Parenteers",
+          false,
+          "Kartu tunggal, 1 gambar. Pilihan posting terpisah dari carousel; di luar urutan utama."
+        ],
+        "url": "https://drive.google.com/drive/folders/1M-jFH66hjTjltav3qsIDYd5z1LbjIeNG",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          27,
+          "27 - Kartu Baguette",
+          "Ada sayang yg bentuknya bukan kalimat panjang. Bentuknya plester di saku depan, botol yg sudah diisi, dan orang yg tahu harus belok ke mana.\n\nThe Baguette mengingatkan kita pada perhatian yg praktis. Si paling sigap juga boleh gantian dibantu.\n\nCari kuemu lewat 12 pertanyaan di link bio @parenteers. Di hasilnya ada bahan refleksi dan booklet dengan ide merawat diri serta aktivitas bareng anak.\n\nBuat seru-seruan & refleksi; bukan tes klinis.",
+          "#ParentingBakes #Parenteers",
+          false,
+          "Kartu tunggal, 1 gambar. Pilihan posting terpisah dari carousel; di luar urutan utama."
+        ],
+        "url": "https://drive.google.com/drive/folders/1sUQdLLd612mw7NV3jQEwd7WHZcyphawB",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          28,
+          "28 - Kartu Milk Bread",
+          "Kalimat “siapa tahu nanti butuh” bisa memenuhi satu tas. Dan satu kepala.\n\nThe Milk Bread dekat dengan orang tua yg membuat keseharian terasa nyaman lewat perhatian praktis. Semoga ada yg ingat menyiapkan kenyamanan untukmu juga.\n\nCari kuemu lewat 12 pertanyaan di link bio @parenteers. Di hasilnya ada bahan refleksi dan booklet dengan ide merawat diri serta aktivitas bareng anak.\n\nBuat seru-seruan & refleksi; bukan tes klinis.",
+          "#ParentingBakes #Parenteers",
+          false,
+          "Kartu tunggal, 1 gambar. Pilihan posting terpisah dari carousel; di luar urutan utama."
+        ],
+        "url": "https://drive.google.com/drive/folders/1F-jXy9-ioVh5sCGFawwCG-nVlrYDvvx6",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          29,
+          "29 - Kartu Cronut",
+          "Proyek setengah jadi kadang bikin kepikiran. Padahal bisa saja pertanyaannya sudah terjawab, lalu rasa penasarannya pindah.\n\nThe Cronut membawa ruang bereksperimen. Orang tuanya juga boleh punya kegiatan kreatif yg cuma untuk dirinya sendiri.\n\nCari kuemu lewat 12 pertanyaan di link bio @parenteers. Di hasilnya ada bahan refleksi dan booklet dengan ide merawat diri serta aktivitas bareng anak.\n\nBuat seru-seruan & refleksi; bukan tes klinis.",
+          "#ParentingBakes #Parenteers",
+          false,
+          "Kartu tunggal, 1 gambar. Pilihan posting terpisah dari carousel; di luar urutan utama."
+        ],
+        "url": "https://drive.google.com/drive/folders/1zRyL5K3FixfJnU3dJH2IYdINFQENs0l_",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          30,
+          "30 - Kartu Pandan Chiffon",
+          "Kadang setelah bilang gak, yg paling lama mengulang percakapannya justru orang tuanya.\n\nThe Pandan Chiffon dekat dengan kelembutan yg peka. Ruang untuk perasaan anak boleh berjalan bersama batas energimu sendiri.\n\nKenali kecenderunganmu lewat kuis di link bio @parenteers.\n\nCari kuemu lewat 12 pertanyaan di link bio @parenteers. Di hasilnya ada bahan refleksi dan booklet dengan ide merawat diri serta aktivitas bareng anak.\n\nBuat seru-seruan & refleksi; bukan tes klinis.",
+          "#ParentingBakes #Parenteers",
+          false,
+          "Kartu tunggal, 1 gambar. Pilihan posting terpisah dari carousel; di luar urutan utama."
+        ],
+        "url": "https://drive.google.com/drive/folders/1DWwpFyE0Ip0v7o2X3VDZAN0cZ2kqBREe",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          31,
+          "31 - Kartu Pretzel",
+          "Untuk yg spontan mengubah tugas jadi permainan: kreativitasmu menyenangkan. Tapi kamu gak harus terus punya ide baru setiap hari.\n\nThe Pretzel juga boleh menikmati kegiatan yg sederhana.\n\nCari kuemu lewat 12 pertanyaan di link bio @parenteers. Di hasilnya ada bahan refleksi dan booklet dengan ide merawat diri serta aktivitas bareng anak.\n\nBuat seru-seruan & refleksi; bukan tes klinis.",
+          "#ParentingBakes #Parenteers",
+          false,
+          "Kartu tunggal, 1 gambar. Pilihan posting terpisah dari carousel; di luar urutan utama."
+        ],
+        "url": "https://drive.google.com/drive/folders/1VJPVIXBMuSDR101-vUkwkpDWRWT562Gz",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          32,
+          "32 - Kartu Muffin",
+          "“Terserah” kadang memang santai. Kadang juga karena sudah terbiasa mendahulukan pilihan semua orang.\n\nThe Muffin memberi ruang tanpa banyak drama. Hari ini, semoga ada ruang untuk pilihanmu juga.\n\nCari kuemu lewat 12 pertanyaan di link bio @parenteers. Di hasilnya ada bahan refleksi dan booklet dengan ide merawat diri serta aktivitas bareng anak.\n\nBuat seru-seruan & refleksi; bukan tes klinis.",
+          "#ParentingBakes #Parenteers",
+          false,
+          "Kartu tunggal, 1 gambar. Pilihan posting terpisah dari carousel; di luar urutan utama."
+        ],
+        "url": "https://drive.google.com/drive/folders/1LUqDGWWapo7H5mvLSnYosgBwMb6RYKo8",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          33,
+          "33 - Kartu Molten Lava Cake",
+          "Si paling semangat juga bisa kehabisan tenaga. Kamu boleh mencari jeda dan tempat bercerita ke orang dewasa yg kamu percaya.\n\nThe Molten Lava Cake membawa energi dan perasaan yg terasa. Sesudah hari penuh, satu ritual kecil yg akrab boleh jadi penutup.\n\nCari kuemu lewat 12 pertanyaan di link bio @parenteers. Di hasilnya ada bahan refleksi dan booklet dengan ide merawat diri serta aktivitas bareng anak.\n\nBuat seru-seruan & refleksi; bukan tes klinis.",
+          "#ParentingBakes #Parenteers",
+          false,
+          "Kartu tunggal, 1 gambar. Pilihan posting terpisah dari carousel; di luar urutan utama."
+        ],
+        "url": "https://drive.google.com/drive/folders/1LSza5ZHvd2-VH9E8ucOs3AB37ZosZ6g5",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          34,
+          "34 - Kartu Cinnamon Roll",
+          "Ada momen yg manis sekaligus melelahkan. Mau menemani lebih lama, tapi badan sudah minta tidur.\n\nThe Cinnamon Roll dekat dengan cara merawat yg hangat dan lentur. Kebutuhan istirahatmu ikut penting di dalamnya.\n\nCari kuemu lewat 12 pertanyaan di link bio @parenteers. Di hasilnya ada bahan refleksi dan booklet dengan ide merawat diri serta aktivitas bareng anak.\n\nBuat seru-seruan & refleksi; bukan tes klinis.",
+          "#ParentingBakes #Parenteers",
+          false,
+          "Kartu tunggal, 1 gambar. Pilihan posting terpisah dari carousel; di luar urutan utama."
+        ],
+        "url": "https://drive.google.com/drive/folders/1-gIlw5XSA4NCpKRskLSuZH91Hjw8GxL-",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          35,
+          "35 - Kartu Bagel",
+          "Gak semua orang menunjukkan perhatian lewat percakapan panjang. Ada yg langsung menggeser kursi, mengambil air, lalu membantu.\n\nThe Bagel membawa ketenangan yg praktis. Sebuah jeda kecil bisa memberi tempat untuk perasaan juga.\n\nCari kuemu lewat 12 pertanyaan di link bio @parenteers. Di hasilnya ada bahan refleksi dan booklet dengan ide merawat diri serta aktivitas bareng anak.\n\nBuat seru-seruan & refleksi; bukan tes klinis.",
+          "#ParentingBakes #Parenteers",
+          false,
+          "Kartu tunggal, 1 gambar. Pilihan posting terpisah dari carousel; di luar urutan utama."
+        ],
+        "url": "https://drive.google.com/drive/folders/1Dqo1DYxpD7BuVrxOOWu0iW8O-a750Qzb",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          36,
+          "36 - Kartu Banana Bread",
+          "Kadang habis lihat Story orang, hari yg tadinya terasa enak mendadak terasa kurang.\n\nThe Banana Bread mengingatkan pada kehangatan yg bisa lahir dari yg sudah ada. Pagi di rumah juga boleh jadi hal yg kamu suka.\n\nCari kuemu lewat 12 pertanyaan di link bio @parenteers. Di hasilnya ada bahan refleksi dan booklet dengan ide merawat diri serta aktivitas bareng anak.\n\nBuat seru-seruan & refleksi; bukan tes klinis.",
+          "#ParentingBakes #Parenteers",
+          false,
+          "Kartu tunggal, 1 gambar. Pilihan posting terpisah dari carousel; di luar urutan utama."
+        ],
+        "url": "https://drive.google.com/drive/folders/1rn2_bCZrP7R4Q3x-MZgHPFWsYahtTE6R",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          37,
+          "37 - Kartu Pavlova",
+          "Menyambut ide anak bisa menyenangkan. Lalu datang titik saat kamu sadar tenaga yg tersedia gak sebanyak ide yg disambut.\n\nThe Pavlova senang mengikuti ide anak. Hari ini, waktu main juga boleh lebih singkat kalau tenagamu sudah menipis.\n\nCari kuemu lewat 12 pertanyaan di link bio @parenteers. Di hasilnya ada bahan refleksi dan booklet dengan ide merawat diri serta aktivitas bareng anak.\n\nBuat seru-seruan & refleksi; bukan tes klinis.",
+          "#ParentingBakes #Parenteers",
+          false,
+          "Kartu tunggal, 1 gambar. Pilihan posting terpisah dari carousel; di luar urutan utama."
+        ],
+        "url": "https://drive.google.com/drive/folders/1pTJjl3BFw4SUBoCQAVHFb0PrWyjM4mag",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          38,
+          "38 - Kartu Tiramisu",
+          "Untuk yg sering dititipi cerita: semoga ada tempat kamu menaruh ceritamu sendiri.\n\nThe Tiramisu dekat dengan pendampingan yg sabar dan mengikuti ritme. Keinginan untuk sunyi sebentar juga boleh kamu akui.\n\nCari kuemu lewat 12 pertanyaan di link bio @parenteers. Di hasilnya ada bahan refleksi dan booklet dengan ide merawat diri serta aktivitas bareng anak.\n\nBuat seru-seruan & refleksi; bukan tes klinis.",
+          "#ParentingBakes #Parenteers",
+          false,
+          "Kartu tunggal, 1 gambar. Pilihan posting terpisah dari carousel; di luar urutan utama."
+        ],
+        "url": "https://drive.google.com/drive/folders/1FaUQzp11DPwT3wvqE7oZhz0gaG-FCZYT",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          39,
+          "39 - Kartu Focaccia",
+          "Rumah yg memberi ruang mencoba kadang menyisakan bukti di lantai. Kamu boleh menikmati prosesnya sekaligus punya batas soal beres-beres.\n\nThe Focaccia membawa semangat praktik dan keluwesan.\n\nCari kuemu lewat 12 pertanyaan di link bio @parenteers. Di hasilnya ada bahan refleksi dan booklet dengan ide merawat diri serta aktivitas bareng anak.\n\nBuat seru-seruan & refleksi; bukan tes klinis.",
+          "#ParentingBakes #Parenteers",
+          false,
+          "Kartu tunggal, 1 gambar. Pilihan posting terpisah dari carousel; di luar urutan utama."
+        ],
+        "url": "https://drive.google.com/drive/folders/1OTIqfQ13WHZ6j1e_pz1aFT-vjqoqbEeW",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          40,
+          "40 - Kartu Bolu Kukus",
+          "Kadang menemani berarti menahan tangan supaya gak buru-buru membetulkan. Ada rasa percaya di dalamnya.\n\nThe Bolu Kukus dekat dengan ruang tumbuh yg tenang. Kamu boleh hadir tanpa terus menciptakan kegiatan baru.\n\nCari kuemu lewat 12 pertanyaan di link bio @parenteers. Di hasilnya ada bahan refleksi dan booklet dengan ide merawat diri serta aktivitas bareng anak.\n\nBuat seru-seruan & refleksi; bukan tes klinis.",
+          "#ParentingBakes #Parenteers",
+          false,
+          "Kartu tunggal, 1 gambar. Pilihan posting terpisah dari carousel; di luar urutan utama."
+        ],
+        "url": "https://drive.google.com/drive/folders/1bh_y0bFLoBlCmMf5mDHQx4BCz1Rw3ASU",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      }
+    ]
+  },
+  "Story": {
+    "spreadsheetId": "17ciAAkw7S12fRbb-Ak1Lf1JgeYBmXJw9rsXJdJ-0B0Q",
+    "url": "https://docs.google.com/spreadsheets/d/17ciAAkw7S12fRbb-Ak1Lf1JgeYBmXJw9rsXJdJ-0B0Q/edit",
+    "properties": {
+      "sheetId": 584469842,
+      "title": "Daftar Posting",
+      "index": 0,
+      "sheetType": "GRID",
+      "gridProperties": {
+        "rowCount": 1000,
+        "columnCount": 6,
+        "frozenRowCount": 4,
+        "hideGridlines": true,
+        "rowGroupControlAfter": true,
+        "columnGroupControlAfter": true
+      }
+    },
+    "rows": [
+      {
+        "values": [
+          1,
+          "01 - Kenali 16 Personality",
+          "01.jpg:\nKalau cara parenting kamu jadi kue, kamu yg mana? Ada yg sayangnya lewat bekal. Ada yg lewat pelukan. Parenting Bakes by Parenteers.\n\n02.jpg:\nParenting Bakes by Parenteers. 12 pertanyaan keseharian, 16 karakter kue.\n\n03.jpg:\nCari kuemu lewat 12 pertanyaan keseharian. Di hasilnya ada bahan refleksi dan booklet aktivitas.",
+          null,
+          false,
+          "3 frame. Upload 01.jpg sampai 03.jpg sesuai urutan. Frame 03: tambahkan sticker link Cari kuemu ke https://quiz.parenteers.id/"
+        ],
+        "url": "https://drive.google.com/drive/folders/13X8MwQqiheKkHdTOSQ7C6xMOr2DrBnbh",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          2,
+          "02 - Hari Ini Butuh Didengar",
+          "01.jpg:\nHari ini kamu butuh didengar soal apa?\n\n02.jpg:\nGak harus ada cerita besar. Satu hal kecil yg terasa berat juga boleh diakui.\n\n03.jpg:\nHari ini kamu butuh apa?",
+          null,
+          false,
+          "3 frame. Upload 01.jpg sampai 03.jpg sesuai urutan. Frame 03: respons opsional; boleh pakai question sticker atau balasan biasa."
+        ],
+        "url": "https://drive.google.com/drive/folders/14CbbBiyYgmWBOlpNMPSBnWk9yoK8vqpI",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          3,
+          "03 - Kenalan dengan Christine",
+          "01.jpg:\nKenalan dulu, sebelum ngomongin kuenya.\n\n02.jpg:\nParenting Bakes by Parenteers. 12 pertanyaan keseharian, 16 karakter kue.\n\n03.jpg:\nCari kuemu lewat 12 pertanyaan keseharian. Di hasilnya ada bahan refleksi dan booklet aktivitas.",
+          null,
+          false,
+          "3 frame. Upload 01.jpg sampai 03.jpg sesuai urutan. Frame 03: tambahkan sticker link Cari kuemu ke https://quiz.parenteers.id/"
+        ],
+        "url": "https://drive.google.com/drive/folders/1-w-FNcrapH253K4ShuK9lxsCAFOa2Vka",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          4,
+          "04 - Cek Tenagamu",
+          "01.jpg:\nSetelah ngurus semua, kamu sempat cek tenagamu?\n\n02.jpg:\nKamu juga punya kebutuhan. Kuis ini mengajak melihat kebiasaanmu dengan ringan.\n\n03.jpg:\nKalau ingin kenalan dengan kebiasaanmu, coba 12 pertanyaan Parenting Bakes.",
+          null,
+          false,
+          "3 frame. Upload 01.jpg sampai 03.jpg sesuai urutan. Frame 03: tambahkan sticker link Cari kuemu ke https://quiz.parenteers.id/"
+        ],
+        "url": "https://drive.google.com/drive/folders/1qXYW-_bQCPUfve1YvrDfebRZ9pz8Ifpj",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          5,
+          "05 - Cara Mengikuti Kuis",
+          "01.jpg:\nCari kuemu lewat 12 pertanyaan keseharian.\n\n02.jpg:\nPilih jawaban yg terasa paling dekat, lalu temui salah satu dari 16 karakter kue.\n\n03.jpg:\nCari kuemu lewat 12 pertanyaan keseharian. Di hasilnya ada bahan refleksi dan booklet aktivitas.",
+          null,
+          false,
+          "3 frame. Upload 01.jpg sampai 03.jpg sesuai urutan. Frame 03: tambahkan sticker link Cari kuemu ke https://quiz.parenteers.id/"
+        ],
+        "url": "https://drive.google.com/drive/folders/1poJm38B95r4cNJRCSA1vZdxcv9lcyVfN",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          6,
+          "06 - Kalau Parenting Jadi Kue",
+          "01.jpg:\nKalau cara parenting kamu jadi kue, kira-kira apa?\n\n02.jpg:\nAda 16 karakter, masing-masing punya kekuatan dan kebutuhan.\n\n03.jpg:\nKalau ingin kenalan dengan kebiasaanmu, coba 12 pertanyaan Parenting Bakes.",
+          null,
+          false,
+          "3 frame. Upload 01.jpg sampai 03.jpg sesuai urutan. Frame 03: tambahkan sticker link Cari kuemu ke https://quiz.parenteers.id/"
+        ],
+        "url": "https://drive.google.com/drive/folders/1To4Gh5ZNBIRkv1U4Hsk754Yty4nYiFyO",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          7,
+          "07 - Croquembouche",
+          "01.jpg:\nSi paling bikin rencana, tapi meleset.\n\n02.jpg:\nHari ini: The Croquembouche. Kamu mungkin mengenali sebagian ceritanya. Satu kejadian belum menentukan hasil kuis.\n\n03.jpg:\nCari kuemu lewat 12 pertanyaan keseharian. Di hasilnya ada bahan refleksi dan booklet aktivitas.",
+          null,
+          false,
+          "3 frame. Upload 01.jpg sampai 03.jpg sesuai urutan. Frame 03: tambahkan sticker link Cari kuemu ke https://quiz.parenteers.id/"
+        ],
+        "url": "https://drive.google.com/drive/folders/1HPUyFIJL-CoHEmJyVv6ZjM1QOuMAUaVN",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          8,
+          "08 - Lapis Legit",
+          "01.jpg:\nSi paling hafal urutan pagi seisi rumah.\n\n02.jpg:\nHari ini: The Lapis Legit. Kamu mungkin mengenali sebagian ceritanya. Satu kejadian belum menentukan hasil kuis.\n\n03.jpg:\nCari kuemu lewat 12 pertanyaan keseharian. Di hasilnya ada bahan refleksi dan booklet aktivitas.",
+          null,
+          false,
+          "3 frame. Upload 01.jpg sampai 03.jpg sesuai urutan. Frame 03: tambahkan sticker link Cari kuemu ke https://quiz.parenteers.id/"
+        ],
+        "url": "https://drive.google.com/drive/folders/1fnq77KtUVhB0jPDD-WOl20ZVR4Ak7qeX",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          9,
+          "09 - Bagian Hasil yang Terasa Dekat",
+          "01.jpg:\nSudah baca hasilmu? Bagian mana yg terasa dekat?\n\n02.jpg:\nHasilnya boleh jadi bahan obrolan. Kamu gak harus cocok dengan setiap kalimat.\n\n03.jpg:\nCerita kalau mau",
+          null,
+          false,
+          "3 frame. Upload 01.jpg sampai 03.jpg sesuai urutan. Frame 03: respons opsional; boleh pakai question sticker atau balasan biasa."
+        ],
+        "url": "https://drive.google.com/drive/folders/1qEPiYsZ1ZM6xtTiPwZsnzUS826Robw9U",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          10,
+          "10 - Giliran Minum Kopi",
+          "01.jpg:\nKopinya belum diminum. Giliranmu kapan?\n\n02.jpg:\nDi hasil kuis ada refleksi dan booklet dengan ide merawat diri serta aktivitas bareng anak.\n\n03.jpg:\nCari kuemu lewat 12 pertanyaan keseharian. Di hasilnya ada bahan refleksi dan booklet aktivitas.",
+          null,
+          false,
+          "3 frame. Upload 01.jpg sampai 03.jpg sesuai urutan. Frame 03: tambahkan sticker link Cari kuemu ke https://quiz.parenteers.id/"
+        ],
+        "url": "https://drive.google.com/drive/folders/1t0llVy4mXoiv6t8K3H6cOXDso4LOU-Gg",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          11,
+          "11 - Sudah Buka Booklet",
+          "01.jpg:\nDi hasil kuis ada booklet. Kamu sudah sempat buka?\n\n02.jpg:\nAda ide merawat diri dan aktivitas bareng anak. Ambil yg sesuai keadaanmu.\n\n03.jpg:\nKalau ingin kenalan dengan kebiasaanmu, coba 12 pertanyaan Parenting Bakes.",
+          null,
+          false,
+          "3 frame. Upload 01.jpg sampai 03.jpg sesuai urutan. Frame 03: tambahkan sticker link Cari kuemu ke https://quiz.parenteers.id/"
+        ],
+        "url": "https://drive.google.com/drive/folders/12gnyc3nqppsiO4dW6BhgFOCKdHRqVXwl",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          12,
+          "12 - Baguette",
+          "01.jpg:\nSi paling “tenang, sudah aku siapin”.\n\n02.jpg:\nHari ini: The Baguette. Kamu mungkin mengenali sebagian ceritanya. Satu kejadian belum menentukan hasil kuis.\n\n03.jpg:\nCari kuemu lewat 12 pertanyaan keseharian. Di hasilnya ada bahan refleksi dan booklet aktivitas.",
+          null,
+          false,
+          "3 frame. Upload 01.jpg sampai 03.jpg sesuai urutan. Frame 03: tambahkan sticker link Cari kuemu ke https://quiz.parenteers.id/"
+        ],
+        "url": "https://drive.google.com/drive/folders/1oEmh-N4e74KKWKeo80UkG9JndrWEW2Mt",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          13,
+          "13 - Apa yang Bikin Penasaran",
+          "01.jpg:\nApa yg membuat kamu ingin mencoba kuisnya?\n\n02.jpg:\nMungkin penasaran kuenya, mungkin ada cerita yg terasa dekat.\n\n03.jpg:\nBagian mana yg bikin penasaran?",
+          null,
+          false,
+          "3 frame. Upload 01.jpg sampai 03.jpg sesuai urutan. Frame 03: respons opsional; boleh pakai question sticker atau balasan biasa."
+        ],
+        "url": "https://drive.google.com/drive/folders/1nkENFqF28jnot2ujrOHLAbvi3b-2Fau8",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          14,
+          "14 - Milk Bread",
+          "01.jpg:\nPergi sebentar. Isi tas kayak mau menginap.\n\n02.jpg:\nHari ini: The Milk Bread. Kamu mungkin mengenali sebagian ceritanya. Satu kejadian belum menentukan hasil kuis.\n\n03.jpg:\nCari kuemu lewat 12 pertanyaan keseharian. Di hasilnya ada bahan refleksi dan booklet aktivitas.",
+          null,
+          false,
+          "3 frame. Upload 01.jpg sampai 03.jpg sesuai urutan. Frame 03: tambahkan sticker link Cari kuemu ke https://quiz.parenteers.id/"
+        ],
+        "url": "https://drive.google.com/drive/folders/1edepZQgTltFjciUOnHDFksvN3p6Ks5bI",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          15,
+          "15 - Cronut",
+          "01.jpg:\nAnak lagi suka dinosaurus. Kamu ikut belajar namanya.\n\n02.jpg:\nHari ini: The Cronut. Kamu mungkin mengenali sebagian ceritanya. Satu kejadian belum menentukan hasil kuis.\n\n03.jpg:\nCari kuemu lewat 12 pertanyaan keseharian. Di hasilnya ada bahan refleksi dan booklet aktivitas.",
+          null,
+          false,
+          "3 frame. Upload 01.jpg sampai 03.jpg sesuai urutan. Frame 03: tambahkan sticker link Cari kuemu ke https://quiz.parenteers.id/"
+        ],
+        "url": "https://drive.google.com/drive/folders/1_Yy5jTTt7WvXh_3UnhEYbdT3QV_4x50E",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          16,
+          "16 - Siapa Siapkan Barang Cadangan",
+          "01.jpg:\nDi rumahmu, siapa yg biasa siapin barang cadangan?\n\n02.jpg:\nCara perhatian bisa beda-beda. Satu kebiasaan belum menentukan karakter.\n\n03.jpg:\nKalau ingin kenalan dengan kebiasaanmu, coba 12 pertanyaan Parenting Bakes.",
+          null,
+          false,
+          "3 frame. Upload 01.jpg sampai 03.jpg sesuai urutan. Frame 03: tambahkan sticker link Cari kuemu ke https://quiz.parenteers.id/"
+        ],
+        "url": "https://drive.google.com/drive/folders/1pwEDB-jFxbSszhbuqeHM2gLN2MbaNZDH",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          17,
+          "17 - Pandan Chiffon",
+          "01.jpg:\nBilang “gak boleh”, yg kepikiran malah kamu.\n\n02.jpg:\nHari ini: The Pandan Chiffon. Kamu mungkin mengenali sebagian ceritanya. Satu kejadian belum menentukan hasil kuis.\n\n03.jpg:\nCari kuemu lewat 12 pertanyaan keseharian. Di hasilnya ada bahan refleksi dan booklet aktivitas.",
+          null,
+          false,
+          "3 frame. Upload 01.jpg sampai 03.jpg sesuai urutan. Frame 03: tambahkan sticker link Cari kuemu ke https://quiz.parenteers.id/"
+        ],
+        "url": "https://drive.google.com/drive/folders/1Up0PkU8Q6hzfNk0teQFEgZNjDYHQflL3",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          18,
+          "18 - Hasil yang Kurang Cocok",
+          "01.jpg:\nAda bagian hasil yg kurang cocok?\n\n02.jpg:\nBoleh kok. Ambil yg membantu kamu refleksi, sisanya gak perlu dipaksakan.\n\n03.jpg:\nBagian mana yg kurang cocok?",
+          null,
+          false,
+          "3 frame. Upload 01.jpg sampai 03.jpg sesuai urutan. Frame 03: respons opsional; boleh pakai question sticker atau balasan biasa."
+        ],
+        "url": "https://drive.google.com/drive/folders/1M_DMxkAbaA9a6DL-9TBodVxNtLyhCCQS",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          19,
+          "19 - Dua Gaya Berangkat",
+          "01.jpg:\nSatu butuh rencana. Satu butuh ruang berubah.\n\n02.jpg:\nMasing-masing coba sendiri, lalu ngobrol dari bagian yg terasa dekat. Gak ada skor kecocokan.\n\n03.jpg:\nCari kuemu lewat 12 pertanyaan keseharian. Di hasilnya ada bahan refleksi dan booklet aktivitas.",
+          null,
+          false,
+          "3 frame. Upload 01.jpg sampai 03.jpg sesuai urutan. Frame 03: tambahkan sticker link Cari kuemu ke https://quiz.parenteers.id/"
+        ],
+        "url": "https://drive.google.com/drive/folders/1PaasSAfGPO5Z4xAp9_UUTgaylyLbuzUS",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          20,
+          "20 - Ajak Pasangan Ikut Kuis",
+          "01.jpg:\nKalau pasanganmu ikut coba, kira-kira sama atau beda?\n\n02.jpg:\nMasing-masing jawab sendiri, lalu ngobrol dari satu bagian hasilnya.\n\n03.jpg:\nKalau ingin kenalan dengan kebiasaanmu, coba 12 pertanyaan Parenting Bakes.",
+          null,
+          false,
+          "3 frame. Upload 01.jpg sampai 03.jpg sesuai urutan. Frame 03: tambahkan sticker link Cari kuemu ke https://quiz.parenteers.id/"
+        ],
+        "url": "https://drive.google.com/drive/folders/1F35GqI9XdZ-wjdp04poxd-aLXahFlgf1",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          21,
+          "21 - Pretzel",
+          "01.jpg:\nSuruh beresin mainan, ujungnya bikin permainan.\n\n02.jpg:\nHari ini: The Pretzel. Kamu mungkin mengenali sebagian ceritanya. Satu kejadian belum menentukan hasil kuis.\n\n03.jpg:\nCari kuemu lewat 12 pertanyaan keseharian. Di hasilnya ada bahan refleksi dan booklet aktivitas.",
+          null,
+          false,
+          "3 frame. Upload 01.jpg sampai 03.jpg sesuai urutan. Frame 03: tambahkan sticker link Cari kuemu ke https://quiz.parenteers.id/"
+        ],
+        "url": "https://drive.google.com/drive/folders/14aNTaumjSqMZb9stQ2W_RaHmncLXmwgi",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          22,
+          "22 - Muffin",
+          "01.jpg:\nAnak ditanya mau apa. Kamu selalu “ikut aja”.\n\n02.jpg:\nHari ini: The Muffin. Kamu mungkin mengenali sebagian ceritanya. Satu kejadian belum menentukan hasil kuis.\n\n03.jpg:\nCari kuemu lewat 12 pertanyaan keseharian. Di hasilnya ada bahan refleksi dan booklet aktivitas.",
+          null,
+          false,
+          "3 frame. Upload 01.jpg sampai 03.jpg sesuai urutan. Frame 03: tambahkan sticker link Cari kuemu ke https://quiz.parenteers.id/"
+        ],
+        "url": "https://drive.google.com/drive/folders/1nxnxCgsR9VCFLg1Edgt8om3SqA1xd86K",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          23,
+          "23 - Bikin Satu Hal Lebih Sederhana",
+          "01.jpg:\nHari ini kamu bisa bikin satu hal lebih sederhana?\n\n02.jpg:\nKalau sudah punya booklet, pilih satu ide yg sesuai tenaga dan keadaanmu.\n\n03.jpg:\nKalau ingin kenalan dengan kebiasaanmu, coba 12 pertanyaan Parenting Bakes.",
+          null,
+          false,
+          "3 frame. Upload 01.jpg sampai 03.jpg sesuai urutan. Frame 03: tambahkan sticker link Cari kuemu ke https://quiz.parenteers.id/"
+        ],
+        "url": "https://drive.google.com/drive/folders/1VzK47RIw4GPmda_fFtPH-4p-FLL7DRFp",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          24,
+          "24 - Molten Lava Cake",
+          "01.jpg:\nSi paling ngajak jalan. Pulangnya paling butuh menyendiri.\n\n02.jpg:\nHari ini: The Molten Lava Cake. Kamu mungkin mengenali sebagian ceritanya. Satu kejadian belum menentukan hasil kuis.\n\n03.jpg:\nCari kuemu lewat 12 pertanyaan keseharian. Di hasilnya ada bahan refleksi dan booklet aktivitas.",
+          null,
+          false,
+          "3 frame. Upload 01.jpg sampai 03.jpg sesuai urutan. Frame 03: tambahkan sticker link Cari kuemu ke https://quiz.parenteers.id/"
+        ],
+        "url": "https://drive.google.com/drive/folders/1ENvPQcTCJXSU__GC8iDc9R8nWdguntcY",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          25,
+          "25 - Kalimat yang Kamu Ingat",
+          "01.jpg:\nSetelah ketemu kuemu, ada satu kalimat yg kamu ingat?\n\n02.jpg:\nBoleh tentang kekuatanmu, boleh tentang kebutuhan yg ingin kamu jaga.\n\n03.jpg:\nKalimat mana yg kamu ingat?",
+          null,
+          false,
+          "3 frame. Upload 01.jpg sampai 03.jpg sesuai urutan. Frame 03: respons opsional; boleh pakai question sticker atau balasan biasa. Jika mengganti dengan cerita audiens, minta izin sebelum repost."
+        ],
+        "url": "https://drive.google.com/drive/folders/16QMRDCqHQmYgWk2Eb8KuBtxnFjMhGhLO",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          26,
+          "26 - Hari Ini Cukupnya Apa",
+          "01.jpg:\nHari ini, versi cukupnya apa?\n\n02.jpg:\nParenting Bakes by Parenteers. 12 pertanyaan keseharian, 16 karakter kue.\n\n03.jpg:\nCari kuemu lewat 12 pertanyaan keseharian. Di hasilnya ada bahan refleksi dan booklet aktivitas.",
+          null,
+          false,
+          "3 frame. Upload 01.jpg sampai 03.jpg sesuai urutan. Frame 03: tambahkan sticker link Cari kuemu ke https://quiz.parenteers.id/"
+        ],
+        "url": "https://drive.google.com/drive/folders/1_WtwQKB3hOrmauGdXprLOJt6XNBPPyPJ",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          27,
+          "27 - Cara Memulihkan Tenaga",
+          "01.jpg:\nCara pulih tiap orang bisa beda. Kamu biasanya gimana?\n\n02.jpg:\nAda yg pengin ngobrol. Ada yg pengin sendiri sebentar.\n\n03.jpg:\nKamu pulihnya lewat apa?",
+          null,
+          false,
+          "3 frame. Upload 01.jpg sampai 03.jpg sesuai urutan. Frame 03: respons opsional; boleh pakai question sticker atau balasan biasa."
+        ],
+        "url": "https://drive.google.com/drive/folders/19SgAatTtT7enAK-WRqSglPh2sBmzC3Ca",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          28,
+          "28 - Cinnamon Roll",
+          "01.jpg:\n“Lima menit lagi” kok jadi setengah jam?\n\n02.jpg:\nHari ini: The Cinnamon Roll. Kamu mungkin mengenali sebagian ceritanya. Satu kejadian belum menentukan hasil kuis.\n\n03.jpg:\nCari kuemu lewat 12 pertanyaan keseharian. Di hasilnya ada bahan refleksi dan booklet aktivitas.",
+          null,
+          false,
+          "3 frame. Upload 01.jpg sampai 03.jpg sesuai urutan. Frame 03: tambahkan sticker link Cari kuemu ke https://quiz.parenteers.id/"
+        ],
+        "url": "https://drive.google.com/drive/folders/1qyrRURiY2ib4uK7y636RwUhG-qn3QVjp",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          29,
+          "29 - Bagel",
+          "01.jpg:\nRencana berubah? “Ya udah, cari cara lain.”\n\n02.jpg:\nHari ini: The Bagel. Kamu mungkin mengenali sebagian ceritanya. Satu kejadian belum menentukan hasil kuis.\n\n03.jpg:\nCari kuemu lewat 12 pertanyaan keseharian. Di hasilnya ada bahan refleksi dan booklet aktivitas.",
+          null,
+          false,
+          "3 frame. Upload 01.jpg sampai 03.jpg sesuai urutan. Frame 03: tambahkan sticker link Cari kuemu ke https://quiz.parenteers.id/"
+        ],
+        "url": "https://drive.google.com/drive/folders/1uo9ku0dxEJ0y8RybhNw42KWsiOYfVN9b",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          30,
+          "30 - Booklet Dibaca Pelan-Pelan",
+          "01.jpg:\nBooklet gak harus dibaca atau dikerjakan sekaligus.\n\n02.jpg:\nPilih satu bagian yg terasa berguna. Kegiatan boleh dilewati.\n\n03.jpg:\nKalau ingin kenalan dengan kebiasaanmu, coba 12 pertanyaan Parenting Bakes.",
+          null,
+          false,
+          "3 frame. Upload 01.jpg sampai 03.jpg sesuai urutan. Frame 03: tambahkan sticker link Cari kuemu ke https://quiz.parenteers.id/"
+        ],
+        "url": "https://drive.google.com/drive/folders/1c_IpewtTKfc_H3LtKifuyWaz3haPFDhi",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          31,
+          "31 - Banana Bread",
+          "01.jpg:\nMinggu di rumah aja. Kok jadi merasa kurang?\n\n02.jpg:\nHari ini: The Banana Bread. Kamu mungkin mengenali sebagian ceritanya. Satu kejadian belum menentukan hasil kuis.\n\n03.jpg:\nCari kuemu lewat 12 pertanyaan keseharian. Di hasilnya ada bahan refleksi dan booklet aktivitas.",
+          null,
+          false,
+          "3 frame. Upload 01.jpg sampai 03.jpg sesuai urutan. Frame 03: tambahkan sticker link Cari kuemu ke https://quiz.parenteers.id/"
+        ],
+        "url": "https://drive.google.com/drive/folders/1sB0Nv9bLvih3vHArjLnT6OhnXxQIma3v",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          32,
+          "32 - Pembuka Obrolan Parents",
+          "01.jpg:\nMau bikin pembuka obrolan saat ketemu parents lain?\n\n02.jpg:\nMasing-masing coba kuis, lalu cerita satu bagian hasil yg terasa dekat.\n\n03.jpg:\nKalau ingin kenalan dengan kebiasaanmu, coba 12 pertanyaan Parenting Bakes.",
+          null,
+          false,
+          "3 frame. Upload 01.jpg sampai 03.jpg sesuai urutan. Frame 03: tambahkan sticker link Cari kuemu ke https://quiz.parenteers.id/"
+        ],
+        "url": "https://drive.google.com/drive/folders/10FgvVY67omRP30mAEAIicibVx3LHsPtF",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          33,
+          "33 - Keluar Sebentar",
+          "01.jpg:\nCuma keluar sebentar. Kok bolak-balik pintu?\n\n02.jpg:\nParenting Bakes by Parenteers. 12 pertanyaan keseharian, 16 karakter kue.\n\n03.jpg:\nCari kuemu lewat 12 pertanyaan keseharian. Di hasilnya ada bahan refleksi dan booklet aktivitas.",
+          null,
+          false,
+          "3 frame. Upload 01.jpg sampai 03.jpg sesuai urutan. Frame 03: tambahkan sticker link Cari kuemu ke https://quiz.parenteers.id/"
+        ],
+        "url": "https://drive.google.com/drive/folders/1TfN30TEeqsw6VvfilAL3zDxX2KUOxcwB",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          34,
+          "34 - Siapa yang Ingin Kamu Ajak",
+          "01.jpg:\nSetelah coba, kamu ingin mengajak siapa?\n\n02.jpg:\nPasangan, teman, atau gak siapa-siapa dulu. Berbagi tetap pilihan.\n\n03.jpg:\nApa alasanmu ingin mengajak?",
+          null,
+          false,
+          "3 frame. Upload 01.jpg sampai 03.jpg sesuai urutan. Frame 03: respons opsional; boleh pakai question sticker atau balasan biasa."
+        ],
+        "url": "https://drive.google.com/drive/folders/137QBQojSGD7J5jDJHILkbfV5bsPdfDNx",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          35,
+          "35 - Pavlova",
+          "01.jpg:\nAnak bilang “yuk”, kamu gampang ikut.\n\n02.jpg:\nHari ini: The Pavlova. Kamu mungkin mengenali sebagian ceritanya. Satu kejadian belum menentukan hasil kuis.\n\n03.jpg:\nCari kuemu lewat 12 pertanyaan keseharian. Di hasilnya ada bahan refleksi dan booklet aktivitas.",
+          null,
+          false,
+          "3 frame. Upload 01.jpg sampai 03.jpg sesuai urutan. Frame 03: tambahkan sticker link Cari kuemu ke https://quiz.parenteers.id/"
+        ],
+        "url": "https://drive.google.com/drive/folders/1Q4Bwx-vlUeYpnjH1rnw-ViYd6Jq_WBpe",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          36,
+          "36 - Tiramisu",
+          "01.jpg:\nAnak sudah cerita semua. Kamu cerita ke siapa?\n\n02.jpg:\nHari ini: The Tiramisu. Kamu mungkin mengenali sebagian ceritanya. Satu kejadian belum menentukan hasil kuis.\n\n03.jpg:\nCari kuemu lewat 12 pertanyaan keseharian. Di hasilnya ada bahan refleksi dan booklet aktivitas.",
+          null,
+          false,
+          "3 frame. Upload 01.jpg sampai 03.jpg sesuai urutan. Frame 03: tambahkan sticker link Cari kuemu ke https://quiz.parenteers.id/"
+        ],
+        "url": "https://drive.google.com/drive/folders/1OesXNk3I9Q1iPXlNbr2wTJQm45n6MOAI",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          37,
+          "37 - Cara Sayang dari Hal Kecil",
+          "01.jpg:\nCara sayang kita kadang kelihatan dari hal kecil.\n\n02.jpg:\nAjak satu orang dekat mencoba kalau kamu ingin ngobrol dari hasilnya.\n\n03.jpg:\nKalau ingin kenalan dengan kebiasaanmu, coba 12 pertanyaan Parenting Bakes.",
+          null,
+          false,
+          "3 frame. Upload 01.jpg sampai 03.jpg sesuai urutan. Frame 03: tambahkan sticker link Cari kuemu ke https://quiz.parenteers.id/"
+        ],
+        "url": "https://drive.google.com/drive/folders/1F0GI4dPgoqM6HEzbaBx_ZAx1fNySdGu0",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          38,
+          "38 - Focaccia",
+          "01.jpg:\nAnak main air. Kamu sudah siap ngepel.\n\n02.jpg:\nHari ini: The Focaccia. Kamu mungkin mengenali sebagian ceritanya. Satu kejadian belum menentukan hasil kuis.\n\n03.jpg:\nCari kuemu lewat 12 pertanyaan keseharian. Di hasilnya ada bahan refleksi dan booklet aktivitas.",
+          null,
+          false,
+          "3 frame. Upload 01.jpg sampai 03.jpg sesuai urutan. Frame 03: tambahkan sticker link Cari kuemu ke https://quiz.parenteers.id/"
+        ],
+        "url": "https://drive.google.com/drive/folders/1xmA1Oj35n_kN1ofDc5MMqLWoxcT-Jx9Z",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          39,
+          "39 - Satu Hal untuk Minggu Depan",
+          "01.jpg:\nDari hasil kuismu, bagian apa yg mau kamu bawa ke minggu depan?\n\n02.jpg:\nSatu hal kecil cukup. Gak perlu mengubah seluruh rutinitas.\n\n03.jpg:\nSatu hal yg ingin kamu jaga?",
+          null,
+          false,
+          "3 frame. Upload 01.jpg sampai 03.jpg sesuai urutan. Frame 03: respons opsional; boleh pakai question sticker atau balasan biasa. Jika mengganti dengan cerita audiens, minta izin sebelum repost."
+        ],
+        "url": "https://drive.google.com/drive/folders/1At8NMCaT0nKkhISqjISkC-BvCDS8A_AI",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          40,
+          "40 - Bolu Kukus",
+          "01.jpg:\n“Biar dia coba dulu.” Padahal tangan sudah gatel.\n\n02.jpg:\nHari ini: The Bolu Kukus. Kamu mungkin mengenali sebagian ceritanya. Satu kejadian belum menentukan hasil kuis.\n\n03.jpg:\nCari kuemu lewat 12 pertanyaan keseharian. Di hasilnya ada bahan refleksi dan booklet aktivitas.",
+          null,
+          false,
+          "3 frame. Upload 01.jpg sampai 03.jpg sesuai urutan. Frame 03: tambahkan sticker link Cari kuemu ke https://quiz.parenteers.id/"
+        ],
+        "url": "https://drive.google.com/drive/folders/1bdEfLu4lDrjGh87PKk8oKWqYkWtIPiWj",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          41,
+          "41 - Apa yang Kamu Ingat",
+          "01.jpg:\nApa yg paling kamu ingat dari Parenting Bakes?\n\n02.jpg:\nKuemu, satu refleksi, atau ide di booklet?\n\n03.jpg:\nApa yg terasa berguna?",
+          null,
+          false,
+          "3 frame. Upload 01.jpg sampai 03.jpg sesuai urutan. Frame 03: respons opsional; boleh pakai question sticker atau balasan biasa."
+        ],
+        "url": "https://drive.google.com/drive/folders/1CG78TyfUcMmGU58oC_XcUy7nBj1ULGud",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          42,
+          "42 - Setelah Ketemu Kuemu",
+          "01.jpg:\nSudah ketemu kuemu? Bawa satu hal ke keseharian.\n\n02.jpg:\nParenting Bakes by Parenteers. 12 pertanyaan keseharian, 16 karakter kue.\n\n03.jpg:\nCari kuemu lewat 12 pertanyaan keseharian. Di hasilnya ada bahan refleksi dan booklet aktivitas.",
+          null,
+          false,
+          "3 frame. Upload 01.jpg sampai 03.jpg sesuai urutan. Frame 03: tambahkan sticker link Cari kuemu ke https://quiz.parenteers.id/"
+        ],
+        "url": "https://drive.google.com/drive/folders/1JAw9NvEYEoVraJnGH4-MWg-0LAvW8lVs",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          43,
+          "43 - Kartu Croquembouche",
+          "Cari kuemu lewat 12 pertanyaan keseharian. Di hasilnya ada bahan refleksi dan booklet aktivitas.",
+          null,
+          false,
+          "Kartu tunggal, 1 frame. Teks tambahan opsional. Tambahkan sticker link Cari kuemu ke https://quiz.parenteers.id/ Pilihan di luar urutan utama."
+        ],
+        "url": "https://drive.google.com/drive/folders/1ULF1BY5UI7dPHH5rtgCUT0jJiWc7CFeE",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          44,
+          "44 - Kartu Lapis Legit",
+          "Cari kuemu lewat 12 pertanyaan keseharian. Di hasilnya ada bahan refleksi dan booklet aktivitas.",
+          null,
+          false,
+          "Kartu tunggal, 1 frame. Teks tambahan opsional. Tambahkan sticker link Cari kuemu ke https://quiz.parenteers.id/ Pilihan di luar urutan utama."
+        ],
+        "url": "https://drive.google.com/drive/folders/16PYJvsLw4avoUG2XfE1RaykxaXgj2Cm_",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          45,
+          "45 - Kartu Baguette",
+          "Cari kuemu lewat 12 pertanyaan keseharian. Di hasilnya ada bahan refleksi dan booklet aktivitas.",
+          null,
+          false,
+          "Kartu tunggal, 1 frame. Teks tambahan opsional. Tambahkan sticker link Cari kuemu ke https://quiz.parenteers.id/ Pilihan di luar urutan utama."
+        ],
+        "url": "https://drive.google.com/drive/folders/1ORzYSA3RsFx0uOMFhVI-q00UcGQJ9lEk",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          46,
+          "46 - Kartu Milk Bread",
+          "Cari kuemu lewat 12 pertanyaan keseharian. Di hasilnya ada bahan refleksi dan booklet aktivitas.",
+          null,
+          false,
+          "Kartu tunggal, 1 frame. Teks tambahan opsional. Tambahkan sticker link Cari kuemu ke https://quiz.parenteers.id/ Pilihan di luar urutan utama."
+        ],
+        "url": "https://drive.google.com/drive/folders/1LBRC1BNKUmTOP17qD0H1C3jLLY5yj9x7",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          47,
+          "47 - Kartu Cronut",
+          "Cari kuemu lewat 12 pertanyaan keseharian. Di hasilnya ada bahan refleksi dan booklet aktivitas.",
+          null,
+          false,
+          "Kartu tunggal, 1 frame. Teks tambahan opsional. Tambahkan sticker link Cari kuemu ke https://quiz.parenteers.id/ Pilihan di luar urutan utama."
+        ],
+        "url": "https://drive.google.com/drive/folders/1gDa-UtBvQaAsoHsymgz0sxgtZxGMHZcO",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          48,
+          "48 - Kartu Pandan Chiffon",
+          "Cari kuemu lewat 12 pertanyaan keseharian. Di hasilnya ada bahan refleksi dan booklet aktivitas.",
+          null,
+          false,
+          "Kartu tunggal, 1 frame. Teks tambahan opsional. Tambahkan sticker link Cari kuemu ke https://quiz.parenteers.id/ Pilihan di luar urutan utama."
+        ],
+        "url": "https://drive.google.com/drive/folders/1Rt-JI8rBDwVnNZ7p7LJV45fhjI3aq_gg",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          49,
+          "49 - Kartu Pretzel",
+          "Cari kuemu lewat 12 pertanyaan keseharian. Di hasilnya ada bahan refleksi dan booklet aktivitas.",
+          null,
+          false,
+          "Kartu tunggal, 1 frame. Teks tambahan opsional. Tambahkan sticker link Cari kuemu ke https://quiz.parenteers.id/ Pilihan di luar urutan utama."
+        ],
+        "url": "https://drive.google.com/drive/folders/12TWzLDN4bFyPvJ_FwuJmHgp0TMDc-X5a",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          50,
+          "50 - Kartu Muffin",
+          "Cari kuemu lewat 12 pertanyaan keseharian. Di hasilnya ada bahan refleksi dan booklet aktivitas.",
+          null,
+          false,
+          "Kartu tunggal, 1 frame. Teks tambahan opsional. Tambahkan sticker link Cari kuemu ke https://quiz.parenteers.id/ Pilihan di luar urutan utama."
+        ],
+        "url": "https://drive.google.com/drive/folders/1Lmk56ni4HpV3FA4-AHGV4XlQyAyuBZF7",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          51,
+          "51 - Kartu Molten Lava Cake",
+          "Cari kuemu lewat 12 pertanyaan keseharian. Di hasilnya ada bahan refleksi dan booklet aktivitas.",
+          null,
+          false,
+          "Kartu tunggal, 1 frame. Teks tambahan opsional. Tambahkan sticker link Cari kuemu ke https://quiz.parenteers.id/ Pilihan di luar urutan utama."
+        ],
+        "url": "https://drive.google.com/drive/folders/15Ds4gNXenU7_1FUQzMcVsEJmtCJirghK",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          52,
+          "52 - Kartu Cinnamon Roll",
+          "Cari kuemu lewat 12 pertanyaan keseharian. Di hasilnya ada bahan refleksi dan booklet aktivitas.",
+          null,
+          false,
+          "Kartu tunggal, 1 frame. Teks tambahan opsional. Tambahkan sticker link Cari kuemu ke https://quiz.parenteers.id/ Pilihan di luar urutan utama."
+        ],
+        "url": "https://drive.google.com/drive/folders/1b52MuBfCdG_087zwfOYZ8JWp__SePNV4",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          53,
+          "53 - Kartu Bagel",
+          "Cari kuemu lewat 12 pertanyaan keseharian. Di hasilnya ada bahan refleksi dan booklet aktivitas.",
+          null,
+          false,
+          "Kartu tunggal, 1 frame. Teks tambahan opsional. Tambahkan sticker link Cari kuemu ke https://quiz.parenteers.id/ Pilihan di luar urutan utama."
+        ],
+        "url": "https://drive.google.com/drive/folders/1JNam1sXFzuuKixl7_eu1QEhK6R1ulAlR",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          54,
+          "54 - Kartu Banana Bread",
+          "Cari kuemu lewat 12 pertanyaan keseharian. Di hasilnya ada bahan refleksi dan booklet aktivitas.",
+          null,
+          false,
+          "Kartu tunggal, 1 frame. Teks tambahan opsional. Tambahkan sticker link Cari kuemu ke https://quiz.parenteers.id/ Pilihan di luar urutan utama."
+        ],
+        "url": "https://drive.google.com/drive/folders/1c-TRGI8BOmIrDwi6U-PfsRvZpWDlSq5t",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          55,
+          "55 - Kartu Pavlova",
+          "Cari kuemu lewat 12 pertanyaan keseharian. Di hasilnya ada bahan refleksi dan booklet aktivitas.",
+          null,
+          false,
+          "Kartu tunggal, 1 frame. Teks tambahan opsional. Tambahkan sticker link Cari kuemu ke https://quiz.parenteers.id/ Pilihan di luar urutan utama."
+        ],
+        "url": "https://drive.google.com/drive/folders/1xRF80MmYOe2sK1vc3yD3-pbWXQ2ahlX-",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          56,
+          "56 - Kartu Tiramisu",
+          "Cari kuemu lewat 12 pertanyaan keseharian. Di hasilnya ada bahan refleksi dan booklet aktivitas.",
+          null,
+          false,
+          "Kartu tunggal, 1 frame. Teks tambahan opsional. Tambahkan sticker link Cari kuemu ke https://quiz.parenteers.id/ Pilihan di luar urutan utama."
+        ],
+        "url": "https://drive.google.com/drive/folders/1xdJeDKs4BXF1-x6ES4aCGWlLxqSleyOO",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          57,
+          "57 - Kartu Focaccia",
+          "Cari kuemu lewat 12 pertanyaan keseharian. Di hasilnya ada bahan refleksi dan booklet aktivitas.",
+          null,
+          false,
+          "Kartu tunggal, 1 frame. Teks tambahan opsional. Tambahkan sticker link Cari kuemu ke https://quiz.parenteers.id/ Pilihan di luar urutan utama."
+        ],
+        "url": "https://drive.google.com/drive/folders/1Ri-4ACx2gRQs0rSyViEJ0e0bZG5axUP2",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      },
+      {
+        "values": [
+          58,
+          "58 - Kartu Bolu Kukus",
+          "Cari kuemu lewat 12 pertanyaan keseharian. Di hasilnya ada bahan refleksi dan booklet aktivitas.",
+          null,
+          false,
+          "Kartu tunggal, 1 frame. Teks tambahan opsional. Tambahkan sticker link Cari kuemu ke https://quiz.parenteers.id/ Pilihan di luar urutan utama."
+        ],
+        "url": "https://drive.google.com/drive/folders/1C7qfFhMlmAYvTFYh9QSJBBYjr04NnMYs",
+        "checkbox": "BOOLEAN",
+        "wrap": "WRAP"
+      }
+    ]
+  }
+}

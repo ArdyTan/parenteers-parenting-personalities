@@ -1,0 +1,119 @@
+{
+  "sheets": [
+    {
+      "name": "Mulai",
+      "rows": 13,
+      "columns": 3,
+      "last": "C",
+      "end": 17
+    },
+    {
+      "name": "Strategi",
+      "rows": 13,
+      "columns": 5,
+      "last": "E",
+      "end": 17
+    },
+    {
+      "name": "Kalender",
+      "rows": 42,
+      "columns": 12,
+      "last": "L",
+      "end": 46
+    },
+    {
+      "name": "Carousel",
+      "rows": 143,
+      "columns": 8,
+      "last": "H",
+      "end": 147
+    },
+    {
+      "name": "Caption",
+      "rows": 24,
+      "columns": 7,
+      "last": "G",
+      "end": 28
+    },
+    {
+      "name": "Reels",
+      "rows": 29,
+      "columns": 8,
+      "last": "H",
+      "end": 33
+    },
+    {
+      "name": "Threads",
+      "rows": 48,
+      "columns": 6,
+      "last": "F",
+      "end": 52
+    },
+    {
+      "name": "Story",
+      "rows": 42,
+      "columns": 9,
+      "last": "I",
+      "end": 46
+    },
+    {
+      "name": "Komunitas",
+      "rows": 9,
+      "columns": 6,
+      "last": "F",
+      "end": 13
+    },
+    {
+      "name": "Pilot",
+      "rows": 10,
+      "columns": 6,
+      "last": "F",
+      "end": 14
+    },
+    {
+      "name": "Catatan Hasil",
+      "rows": 42,
+      "columns": 13,
+      "last": "M",
+      "end": 50
+    },
+    {
+      "name": "Ketentuan",
+      "rows": 16,
+      "columns": 2,
+      "last": "B",
+      "end": 20
+    },
+    {
+      "name": "Sumber",
+      "rows": 10,
+      "columns": 4,
+      "last": "D",
+      "end": 14
+    }
+  ],
+  "feed": 24,
+  "days": 42,
+  "personalitySlides": 128,
+  "carouselSlides": 143,
+  "captions": 24,
+  "threads": 48,
+  "storySequences": 42,
+  "reelCodes": 6,
+  "wordLimit": 45,
+  "formulaSample": 0.4,
+  "inputsCleared": true,
+  "dateSample": [
+    [
+      46307
+    ],
+    [
+      46308
+    ],
+    [
+      46309
+    ]
+  ],
+  "scan": "{\"kind\":\"notice\",\"message\":\"Cell search matched 0 entries.\"}",
+  "font": "Arial; local render fallback Liberation Sans"
+}

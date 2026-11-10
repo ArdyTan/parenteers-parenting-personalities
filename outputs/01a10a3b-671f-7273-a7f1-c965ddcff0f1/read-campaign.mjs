@@ -1,0 +1,10 @@
+import fs from 'node:fs/promises';
+import {FileBlob,SpreadsheetFile} from '@oai/artifact-tool';
+const path='/home/ardy/dev/parenteers-parenting-personalities/outputs/01a10a3b-671f-7273-a7f1-c965ddcff0f1/Parenting-Bakes-Strategi-dan-Konten-Harian-v2.xlsx';
+const wb=await SpreadsheetFile.importXlsx(await FileBlob.load(path));
+const names=['Mulai','Strategi','Kalender','Carousel','Caption','Reels','Threads','Story','Komunitas','Pilot','Catatan Hasil','Ketentuan','Sumber'];
+const data=Object.fromEntries(names.map(n=>[n,wb.worksheets.getItem(n).getUsedRange().values]));
+await fs.writeFile(new URL('campaign-from-xlsx.json',import.meta.url),JSON.stringify(data,null,2));
+const report=names.map(n=>({name:n,rows:data[n].length,header:data[n][3]}));
+const placeholderRows={};for(const n of ['Caption','Reels','Threads','Story'])placeholderRows[n]=data[n].slice(4).filter(r=>r.some(v=>/\[[A-Z][^\]]+\]/.test(String(v??'')))).map(r=>r.slice(0,7));
+console.log(JSON.stringify({path,sheets:report,placeholderRows},null,2));

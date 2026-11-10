@@ -327,7 +327,7 @@ Memberi pilihan sambil menjaga ritme yg nyaman dekat dengan The Muffin di Parent
 
 ## C09 — FCTE · The Molten Lava Cake
 
-**Slide 1:** Si paling ngajak jalan. Pulangnya paling butuh diam.
+**Slide 1:** Si paling ngajak jalan. Pulangnya paling butuh menyendiri.
 
 **Slide 2:** Pagi lihat cuaca cerah, langsung bilang, “Yuk, ke taman!” Kamu yg ajak main, dengar cerita, dan semangatin anak coba perosotan. Sore-sore, tenagamu sudah habis duluan.
 

@@ -1,0 +1,50 @@
+[
+  {
+    "id": "01-coffee",
+    "art": "coffee",
+    "label": "KESEHARIAN PARENTS",
+    "lines": [
+      "Kopinya dingin.",
+      "Kamu belum",
+      "sempat duduk."
+    ],
+    "body": [
+      "Ada banyak hal kecil yg kamu urus",
+      "sebelum ingat giliranmu."
+    ],
+    "alt": "Cangkir kopi dengan benda kebutuhan keluarga dan garis uap yang menghubungkannya.",
+    "caption": "Kopinya satu. Kesempatan meminumnya berkali-kali tertunda. Ada banyak hal kecil yg kamu urus sebelum ingat giliranmu. Semoga hari ini ada jeda yg benar-benar jadi milikmu.\n\nCari kuemu lewat 12 pertanyaan Parenting Bakes di link bio @parenteers. Buat seru-seruan & refleksi; bukan tes klinis."
+  },
+  {
+    "id": "02-bag",
+    "art": "bag",
+    "label": "KESEHARIAN PARENTS",
+    "lines": [
+      "Pergi sebentar.",
+      "Tasnya kayak",
+      "mau menginap."
+    ],
+    "body": [
+      "Baju cadangan, botol minum, tisu.",
+      "Kamu biasanya ingat apa dulu?"
+    ],
+    "alt": "Tas berisi botol minum, bekal, baju cadangan, dan mainan dengan aksen orange.",
+    "caption": "Ada yg sayangnya lewat barang cadangan. Botol minum, baju ganti, tisu—sering sudah kamu pikirkan sebelum orang lain bertanya. Si paling siap juga boleh gantian dibantu.\n\nCari karakter parenting yg terasa dekat lewat link bio @parenteers. Buat seru-seruan & refleksi; bukan tes klinis."
+  },
+  {
+    "id": "03-quiz",
+    "art": "booklet",
+    "label": "PARENTING BAKES",
+    "lines": [
+      "Kalau jadi kue,",
+      "kamu yg mana?"
+    ],
+    "body": [
+      "12 pertanyaan keseharian.",
+      "Ada refleksi & booklet di hasilnya."
+    ],
+    "cta": "Cari kuemu lewat link bio @parenteers.",
+    "alt": "Booklet terbuka bersama tiga kue sebagai metafora refleksi ringan tentang kebiasaan parenting.",
+    "caption": "Ada yg sayangnya lewat bekal cadangan. Ada yg lewat pelukan panjang. Kalau cara parenting kamu jadi kue, kira-kira kamu yg mana?\n\nCoba 12 pertanyaan keseharian. Di hasilnya, ada karakter kue, bahan refleksi, dan booklet dengan ide merawat diri serta aktivitas bareng anak. Cari kuemu lewat link bio @parenteers.\n\nBuat seru-seruan & refleksi; bukan tes klinis."
+  }
+]

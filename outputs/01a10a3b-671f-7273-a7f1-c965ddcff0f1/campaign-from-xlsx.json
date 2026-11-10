@@ -1,0 +1,4980 @@
+{
+  "Mulai": [
+    [
+      "Strategi marketing Parenting Bakes",
+      null,
+      null
+    ],
+    [
+      "Parenteers · Versi 2 · 6 Oktober 2026 · Rencana 6 minggu",
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null
+    ],
+    [
+      "Bagian",
+      "Isi",
+      "Penggunaan"
+    ],
+    [
+      "Fokus",
+      "Parents mulai, selesai, mendapat manfaat, dan mengajak orang terdekat bila mau.",
+      "Arah strategi; belum hasil kampanye."
+    ],
+    [
+      "Paket",
+      "42 hari; 24 feed; 18 carousel / 143 slide; 6 Reel; 48 Threads; 42 Story.",
+      "Empat feed per minggu. Story non-feed opsional mengikuti kapasitas."
+    ],
+    [
+      "Pilot",
+      "25 undangan yang diusulkan selama dua minggu pertama.",
+      "Belajar alasan mencoba dan berhenti; bukan target peserta terjamin."
+    ],
+    [
+      "Tanggal mulai",
+      null,
+      "Isi tanggal mulai setelah diputuskan. Tanggal pada Kalender dan Catatan Hasil mengikuti sel B8."
+    ],
+    [
+      "Zona waktu",
+      null,
+      "Isi zona audiens. Jam tayang dibahas terpisah; tidak ada jam terbaik yang diklaim."
+    ],
+    [
+      "Penanggung jawab",
+      null,
+      "Tentukan siapa menangani konten, undangan, respons, dan evaluasi."
+    ],
+    [
+      "Strategi",
+      "Perbandingan lama dan baru beserta alasan dan bukti yang dicari.",
+      "Mulai dari tab Strategi lalu Pilot."
+    ],
+    [
+      "Konten harian",
+      "Kalender berisi agenda D1–D42 dan kode materi.",
+      "Copy lengkap ada pada Carousel, Caption, Reels, Threads, Story."
+    ],
+    [
+      "Komunitas",
+      "Teks undangan personal, izin admin, ajakan pasangan, dan feedback.",
+      "Tim memilih kontak relevan; belum ada pesan yang dikirim."
+    ],
+    [
+      "Catatan Hasil",
+      "Kolom input kosong; data event dan laporan peserta dipisahkan.",
+      "Kuning muda berarti input. Isi angka hanya dengan sumber yang tersedia."
+    ],
+    [
+      "Bahan asli",
+      "R02 dan versi testimoni Z01 memerlukan hasil / kutipan asli.",
+      "Sel placeholder berwarna kuning. Jangan tayangkan sebelum diisi."
+    ],
+    [
+      "Versi lama",
+      "Workbook lengkap lama diberi prefix (old).",
+      "Naskah carousel delapan slide terbaru sudah masuk pada versi ini."
+    ],
+    [
+      "Batas",
+      "Tidak ada publikasi sosial, budget iklan, atau tracking baru dalam penyusunan.",
+      "Tanggal, kapasitas, data performa, dan acceptance perangkat masih perlu keputusan."
+    ]
+  ],
+  "Strategi": [
+    [
+      "Upgrade strategi marketing",
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      "Arah baru dan bukti yang dicari; hipotesis kreatif",
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      "Topik",
+      "Strategi sebelumnya",
+      "Strategi baru",
+      "Alasan perubahan",
+      "Cara menilai"
+    ],
+    [
+      "Tujuan",
+      "Kalender konten organik enam minggu.",
+      "Mulai dan selesai kuis, manfaat hasil, lalu undangan sukarela.",
+      "Setiap materi punya satu tujuan tindakan.",
+      "Klik, selesai, dan laporan peserta dipisahkan."
+    ],
+    [
+      "Positioning",
+      "Ternyata, aku ada kuenya.",
+      "Kenalan dengan cara kamu hadir sebagai orang tua, lewat 12 pertanyaan dan karakter kue.",
+      "Menghubungkan rasa penasaran dengan refleksi diri.",
+      "Uji apakah pesan dipahami sebelum memperbesar distribusi."
+    ],
+    [
+      "Nilai hasil",
+      "Karakter dan bahan refleksi.",
+      "Karakter, refleksi, serta booklet merawat diri dan aktivitas bareng anak.",
+      "Menjelaskan manfaat setelah orang mencoba.",
+      "Tanya kegunaan booklet, bukan hanya apakah diunduh."
+    ],
+    [
+      "Urutan awal",
+      "Personality serial dominan sejak minggu pertama.",
+      "L0, pengantar Christine, hasil aslinya, baru C01.",
+      "Memberi konteks dan contoh penggunaan lebih awal.",
+      "R02 hanya tayang setelah hasil asli tersedia."
+    ],
+    [
+      "Pilot",
+      "Evaluasi setelah dua minggu; undangan belum dirinci.",
+      "25 undangan yang diusulkan dalam lima kelompok kecil selama 14 hari.",
+      "Belajar alasan mulai, selesai, dan berhenti.",
+      "Sampel kecil; sinyal kualitatif, bukan bukti statistik."
+    ],
+    [
+      "Distribusi",
+      "Feed, Story, dan Threads.",
+      "Tambahkan undangan personal, admin komunitas, dan obrolan pasangan.",
+      "Memakai hubungan nyata yang tersedia.",
+      "Izin admin dan persetujuan follow-up; tanpa kiriman massal."
+    ],
+    [
+      "Konten harian",
+      "24 hari feed, hari kosong untuk respons.",
+      "42 agenda: 24 feed, 18 hari Story ringan dan aktivitas tim.",
+      "Memberi pegangan harian tanpa 42 desain feed baru.",
+      "Empat feed per minggu; hari non-feed boleh tanpa posting bila kapasitas terbatas."
+    ],
+    [
+      "Carousel",
+      "Workbook lengkap lama masih lima slide per tipe.",
+      "16 tipe memakai delapan slide terbaru dan CTA manfaat hasil.",
+      "Menyatukan revisi copy dengan strategi baru.",
+      "128 slide personality; semua nama/kode cocok dengan registry."
+    ],
+    [
+      "Reel manfaat",
+      "R01 hanya kopi yang terlupakan.",
+      "R01 menunjukkan hasil dan letak booklet setelah hook kopi.",
+      "Menghubungkan keseharian dengan tindakan dan manfaat nyata.",
+      "Rekam hasil asli dan PDF yang benar-benar terbuka."
+    ],
+    [
+      "Berbagi",
+      "Story hasil dan identitas brand.",
+      "Teks ajakan pasangan/teman dan percakapan dari satu bagian hasil.",
+      "Memberi alasan sosial untuk mencoba tanpa tekanan.",
+      "Tidak menjanjikan fitur compare, skor pasangan, atau reward referral."
+    ],
+    [
+      "Pengukuran",
+      "Klik belum dapat disamakan dengan selesai.",
+      "Log event dan laporan peserta terpisah; angka kosong sampai ada sumber.",
+      "Mencegah klaim konversi tanpa data.",
+      "GA4 base tag tercatat; event kuis dan receipt belum dikonfirmasi."
+    ],
+    [
+      "Evaluasi",
+      "Ritme tetap enam minggu.",
+      "Review D13, D27, D41 untuk memperbaiki pesan dan distribusi.",
+      "Memakai respons nyata untuk langkah berikutnya.",
+      "Ulang pesan yang membawa tindakan, beri ruang setara kepada semua tipe."
+    ],
+    [
+      "Skala berikutnya",
+      "Produksi seluruh stok editorial.",
+      "Selesaikan bahan minggu 1–2, lalu sesuaikan minggu berikutnya.",
+      "Mengendalikan beban tim sambil mempertahankan stok 16 karakter.",
+      "Budget, akses komunitas, kapasitas, dan tanggal mulai belum diisi."
+    ]
+  ],
+  "Kalender": [
+    [
+      "Agenda 42 hari",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      "D1 adalah hari peluncuran; tanggal otomatis setelah Mulai!B8 diisi",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      "Hari ke",
+      "Minggu",
+      "Tanggal",
+      "Kode",
+      "Format",
+      "Hook / tema",
+      "Tujuan",
+      "Fase",
+      "Tindakan tim",
+      "Penanggung jawab",
+      "Pendamping",
+      "Status produksi"
+    ],
+    [
+      1,
+      1,
+      null,
+      "L0",
+      "Carousel",
+      "Kalau cara parenting kamu jadi kue, kamu yg mana? Ada yg sayangnya lewat bekal. Ada yg lewat pelukan. Parenting Bakes by Parenteers.",
+      "Mulai kuis",
+      "Pilot terbatas",
+      "Terbitkan feed; pakai dua Threads dan tiga panel Story terkait.",
+      "Tim konten / komunitas",
+      "Threads + Story",
+      "Draft"
+    ],
+    [
+      2,
+      1,
+      null,
+      "WA01",
+      "Story dan aktivitas tim",
+      "Hari ini kamu butuh didengar soal apa?",
+      "Percakapan",
+      "Pilot terbatas",
+      "Undang 5 parents yg dikenal; gunakan angle penasaran kue.",
+      "Tim konten / komunitas",
+      "Story ringan",
+      "Draft"
+    ],
+    [
+      3,
+      1,
+      null,
+      "F01",
+      "Reel",
+      "Kenalan dulu, sebelum ngomongin kuenya.",
+      "Mulai kuis",
+      "Pilot terbatas",
+      "Christine meninjau dan merekam pengantar.",
+      "Christine dan tim konten",
+      "Threads + Story",
+      "Draft"
+    ],
+    [
+      4,
+      1,
+      null,
+      "WA02",
+      "Story dan aktivitas tim",
+      "Setelah ngurus semua, kamu sempat cek tenagamu?",
+      "Mulai kuis",
+      "Pilot terbatas",
+      "Undang 5 parents berbeda dengan angle merasa dipahami.",
+      "Tim konten / komunitas",
+      "Story ringan",
+      "Draft"
+    ],
+    [
+      5,
+      1,
+      null,
+      "R02",
+      "Reel",
+      "Aku coba kuisnya. Ini hasil asliku.",
+      "Mulai kuis",
+      "Pilot terbatas",
+      "Rekam dan tinjau hasil asli Christine sebelum tayang.",
+      "Christine dan tim konten",
+      "Threads + Story",
+      "Draft"
+    ],
+    [
+      6,
+      1,
+      null,
+      "WA03",
+      "Story dan aktivitas tim",
+      "Kalau cara parenting kamu jadi kue, kira-kira apa?",
+      "Mulai kuis",
+      "Pilot terbatas",
+      "Undang 5 parents berbeda dengan angle humor keseharian.",
+      "Tim konten / komunitas",
+      "Story ringan",
+      "Draft"
+    ],
+    [
+      7,
+      1,
+      null,
+      "C01",
+      "Carousel",
+      "Si paling bikin rencana, tapi meleset.",
+      "Mulai kuis",
+      "Pilot terbatas",
+      "Terbitkan feed; pakai dua Threads dan tiga panel Story terkait.",
+      "Tim konten / komunitas",
+      "Threads + Story",
+      "Draft"
+    ],
+    [
+      8,
+      2,
+      null,
+      "C02",
+      "Carousel",
+      "Si paling hafal urutan pagi seisi rumah.",
+      "Mulai kuis",
+      "Pilot terbatas",
+      "Terbitkan feed; pakai dua Threads dan tiga panel Story terkait.",
+      "Tim konten / komunitas",
+      "Threads + Story",
+      "Draft"
+    ],
+    [
+      9,
+      2,
+      null,
+      "WA04",
+      "Story dan aktivitas tim",
+      "Sudah baca hasilmu? Bagian mana yg terasa dekat?",
+      "Percakapan",
+      "Pilot terbatas",
+      "Follow-up peserta awal sekali bila mereka setuju; undang 5 parents dengan pesan yg diperjelas.",
+      "Tim konten / komunitas",
+      "Story ringan",
+      "Draft"
+    ],
+    [
+      10,
+      2,
+      null,
+      "R01",
+      "Reel",
+      "Kopinya belum diminum. Giliranmu kapan?",
+      "Mulai kuis",
+      "Pilot terbatas",
+      "Terbitkan feed; pakai dua Threads dan tiga panel Story terkait.",
+      "Tim konten / komunitas",
+      "Threads + Story",
+      "Draft"
+    ],
+    [
+      11,
+      2,
+      null,
+      "WA05",
+      "Story dan aktivitas tim",
+      "Di hasil kuis ada booklet. Kamu sudah sempat buka?",
+      "Mulai kuis",
+      "Pilot terbatas",
+      "Undang 5 parents berbeda dengan angle manfaat hasil; catat apakah bonus ini menarik.",
+      "Tim konten / komunitas",
+      "Story ringan",
+      "Draft"
+    ],
+    [
+      12,
+      2,
+      null,
+      "C03",
+      "Carousel",
+      "Si paling “tenang, sudah aku siapin”.",
+      "Mulai kuis",
+      "Pilot terbatas",
+      "Terbitkan feed; pakai dua Threads dan tiga panel Story terkait.",
+      "Tim konten / komunitas",
+      "Threads + Story",
+      "Draft"
+    ],
+    [
+      13,
+      2,
+      null,
+      "EV01",
+      "Story dan aktivitas tim",
+      "Apa yg membuat kamu ingin mencoba kuisnya?",
+      "Belajar dari respons",
+      "Pilot terbatas",
+      "Evaluasi 25 undangan, mulai/selesai menurut peserta, dan penyebab berhenti.",
+      "Tim konten / komunitas",
+      "Evaluasi tanpa feed baru",
+      "Draft"
+    ],
+    [
+      14,
+      2,
+      null,
+      "C04",
+      "Carousel",
+      "Pergi sebentar. Isi tas kayak mau menginap.",
+      "Mulai kuis",
+      "Pilot terbatas",
+      "Terbitkan feed; pakai dua Threads dan tiga panel Story terkait.",
+      "Tim konten / komunitas",
+      "Threads + Story",
+      "Draft"
+    ],
+    [
+      15,
+      3,
+      null,
+      "C05",
+      "Carousel",
+      "Anak lagi suka dinosaurus. Kamu ikut belajar namanya.",
+      "Mulai kuis",
+      "Komunitas dan manfaat",
+      "Terbitkan feed; pakai dua Threads dan tiga panel Story terkait.",
+      "Tim konten / komunitas",
+      "Threads + Story",
+      "Draft"
+    ],
+    [
+      16,
+      3,
+      null,
+      "CM01",
+      "Story dan aktivitas tim",
+      "Di rumahmu, siapa yg biasa siapin barang cadangan?",
+      "Mulai kuis",
+      "Komunitas dan manfaat",
+      "Minta izin satu admin komunitas yg dikenal; kirim WA06 bila disetujui.",
+      "Tim konten / komunitas",
+      "Story ringan",
+      "Draft"
+    ],
+    [
+      17,
+      3,
+      null,
+      "C06",
+      "Carousel",
+      "Bilang “gak boleh”, yg kepikiran malah kamu.",
+      "Mulai kuis",
+      "Komunitas dan manfaat",
+      "Terbitkan feed; pakai dua Threads dan tiga panel Story terkait.",
+      "Tim konten / komunitas",
+      "Threads + Story",
+      "Draft"
+    ],
+    [
+      18,
+      3,
+      null,
+      "FB01",
+      "Story dan aktivitas tim",
+      "Ada bagian hasil yg kurang cocok?",
+      "Percakapan",
+      "Komunitas dan manfaat",
+      "Catat feedback tanpa menyimpulkan tipe dari komentar.",
+      "Tim konten / komunitas",
+      "Story ringan",
+      "Draft"
+    ],
+    [
+      19,
+      3,
+      null,
+      "R03",
+      "Reel",
+      "Satu butuh rencana. Satu butuh ruang berubah.",
+      "Mulai kuis",
+      "Komunitas dan manfaat",
+      "Terbitkan feed; pakai dua Threads dan tiga panel Story terkait.",
+      "Tim konten / komunitas",
+      "Threads + Story",
+      "Draft"
+    ],
+    [
+      20,
+      3,
+      null,
+      "SH01",
+      "Story dan aktivitas tim",
+      "Kalau pasanganmu ikut coba, kira-kira sama atau beda?",
+      "Mulai kuis",
+      "Komunitas dan manfaat",
+      "Bagikan contoh undangan pasangan; belum ada fitur compare otomatis.",
+      "Tim konten / komunitas",
+      "Story ringan",
+      "Draft"
+    ],
+    [
+      21,
+      3,
+      null,
+      "C07",
+      "Carousel",
+      "Suruh beresin mainan, ujungnya bikin permainan.",
+      "Mulai kuis",
+      "Komunitas dan manfaat",
+      "Terbitkan feed; pakai dua Threads dan tiga panel Story terkait.",
+      "Tim konten / komunitas",
+      "Threads + Story",
+      "Draft"
+    ],
+    [
+      22,
+      4,
+      null,
+      "C08",
+      "Carousel",
+      "Anak ditanya mau apa. Kamu selalu “ikut aja”.",
+      "Mulai kuis",
+      "Komunitas dan manfaat",
+      "Terbitkan feed; pakai dua Threads dan tiga panel Story terkait.",
+      "Tim konten / komunitas",
+      "Threads + Story",
+      "Draft"
+    ],
+    [
+      23,
+      4,
+      null,
+      "PD01",
+      "Story dan aktivitas tim",
+      "Hari ini kamu bisa bikin satu hal lebih sederhana?",
+      "Mulai kuis",
+      "Komunitas dan manfaat",
+      "Tanyakan manfaat booklet kepada peserta yg bersedia; jangan mewajibkan aktivitas.",
+      "Tim konten / komunitas",
+      "Story ringan",
+      "Draft"
+    ],
+    [
+      24,
+      4,
+      null,
+      "C09",
+      "Carousel",
+      "Si paling ngajak jalan. Pulangnya paling butuh menyendiri.",
+      "Mulai kuis",
+      "Komunitas dan manfaat",
+      "Terbitkan feed; pakai dua Threads dan tiga panel Story terkait.",
+      "Tim konten / komunitas",
+      "Threads + Story",
+      "Draft"
+    ],
+    [
+      25,
+      4,
+      null,
+      "RP01",
+      "Story dan aktivitas tim",
+      "Setelah ketemu kuemu, ada satu kalimat yg kamu ingat?",
+      "Percakapan",
+      "Komunitas dan manfaat",
+      "Minta izin sebelum repost cerita asli; bila belum ada, pakai refleksi brand ini.",
+      "Tim konten / komunitas",
+      "Story ringan",
+      "Draft"
+    ],
+    [
+      26,
+      4,
+      null,
+      "S01",
+      "Carousel",
+      "Hari ini, versi cukupnya apa?",
+      "Mulai kuis",
+      "Komunitas dan manfaat",
+      "Terbitkan feed; pakai dua Threads dan tiga panel Story terkait.",
+      "Tim konten / komunitas",
+      "Threads + Story",
+      "Draft"
+    ],
+    [
+      27,
+      4,
+      null,
+      "EV02",
+      "Story dan aktivitas tim",
+      "Cara pulih tiap orang bisa beda. Kamu biasanya gimana?",
+      "Belajar dari respons",
+      "Komunitas dan manfaat",
+      "Evaluasi minggu 3–4; pilih pesan untuk diulang, bukan tipe untuk diunggulkan.",
+      "Tim konten / komunitas",
+      "Evaluasi tanpa feed baru",
+      "Draft"
+    ],
+    [
+      28,
+      4,
+      null,
+      "C10",
+      "Carousel",
+      "“Lima menit lagi” kok jadi setengah jam?",
+      "Mulai kuis",
+      "Komunitas dan manfaat",
+      "Terbitkan feed; pakai dua Threads dan tiga panel Story terkait.",
+      "Tim konten / komunitas",
+      "Threads + Story",
+      "Draft"
+    ],
+    [
+      29,
+      5,
+      null,
+      "C11",
+      "Carousel",
+      "Rencana berubah? “Ya udah, cari cara lain.”",
+      "Mulai kuis",
+      "Cerita dan undangan",
+      "Terbitkan feed; pakai dua Threads dan tiga panel Story terkait.",
+      "Tim konten / komunitas",
+      "Threads + Story",
+      "Draft"
+    ],
+    [
+      30,
+      5,
+      null,
+      "PD02",
+      "Story dan aktivitas tim",
+      "Booklet gak harus dibaca atau dikerjakan sekaligus.",
+      "Mulai kuis",
+      "Cerita dan undangan",
+      "Demokan cara menemukan booklet pada hasil asli tanpa menampilkan data pribadi.",
+      "Tim konten / komunitas",
+      "Story ringan",
+      "Draft"
+    ],
+    [
+      31,
+      5,
+      null,
+      "C12",
+      "Carousel",
+      "Minggu di rumah aja. Kok jadi merasa kurang?",
+      "Mulai kuis",
+      "Cerita dan undangan",
+      "Terbitkan feed; pakai dua Threads dan tiga panel Story terkait.",
+      "Tim konten / komunitas",
+      "Threads + Story",
+      "Draft"
+    ],
+    [
+      32,
+      5,
+      null,
+      "CM02",
+      "Story dan aktivitas tim",
+      "Mau bikin pembuka obrolan saat ketemu parents lain?",
+      "Mulai kuis",
+      "Cerita dan undangan",
+      "Tawarkan sesi ringan ke komunitas bila admin mengizinkan; jangan menjanjikan acara yg belum ada.",
+      "Tim konten / komunitas",
+      "Story ringan",
+      "Draft"
+    ],
+    [
+      33,
+      5,
+      null,
+      "R04",
+      "Reel",
+      "Cuma keluar sebentar. Kok bolak-balik pintu?",
+      "Mulai kuis",
+      "Cerita dan undangan",
+      "Terbitkan feed; pakai dua Threads dan tiga panel Story terkait.",
+      "Tim konten / komunitas",
+      "Threads + Story",
+      "Draft"
+    ],
+    [
+      34,
+      5,
+      null,
+      "FB02",
+      "Story dan aktivitas tim",
+      "Setelah coba, kamu ingin mengajak siapa?",
+      "Percakapan",
+      "Cerita dan undangan",
+      "Kumpulkan alasan mengajak atau enggan mengajak; tanyakan sekali, tanpa tuntutan tag.",
+      "Tim konten / komunitas",
+      "Story ringan",
+      "Draft"
+    ],
+    [
+      35,
+      5,
+      null,
+      "C13",
+      "Carousel",
+      "Anak bilang “yuk”, kamu gampang ikut.",
+      "Mulai kuis",
+      "Cerita dan undangan",
+      "Terbitkan feed; pakai dua Threads dan tiga panel Story terkait.",
+      "Tim konten / komunitas",
+      "Threads + Story",
+      "Draft"
+    ],
+    [
+      36,
+      6,
+      null,
+      "C14",
+      "Carousel",
+      "Anak sudah cerita semua. Kamu cerita ke siapa?",
+      "Mulai kuis",
+      "Cerita dan undangan",
+      "Terbitkan feed; pakai dua Threads dan tiga panel Story terkait.",
+      "Tim konten / komunitas",
+      "Threads + Story",
+      "Draft"
+    ],
+    [
+      37,
+      6,
+      null,
+      "SH02",
+      "Story dan aktivitas tim",
+      "Cara sayang kita kadang kelihatan dari hal kecil.",
+      "Mulai kuis",
+      "Cerita dan undangan",
+      "Sediakan teks WA07 agar peserta dapat mengundang sendiri.",
+      "Tim konten / komunitas",
+      "Story ringan",
+      "Draft"
+    ],
+    [
+      38,
+      6,
+      null,
+      "C15",
+      "Carousel",
+      "Anak main air. Kamu sudah siap ngepel.",
+      "Mulai kuis",
+      "Cerita dan undangan",
+      "Terbitkan feed; pakai dua Threads dan tiga panel Story terkait.",
+      "Tim konten / komunitas",
+      "Threads + Story",
+      "Draft"
+    ],
+    [
+      39,
+      6,
+      null,
+      "RP02",
+      "Story dan aktivitas tim",
+      "Dari hasil kuismu, bagian apa yg mau kamu bawa ke minggu depan?",
+      "Percakapan",
+      "Cerita dan undangan",
+      "Gunakan cerita asli dengan izin, atau pertanyaan brand ini bila belum ada cerita.",
+      "Tim konten / komunitas",
+      "Story ringan",
+      "Draft"
+    ],
+    [
+      40,
+      6,
+      null,
+      "C16",
+      "Carousel",
+      "“Biar dia coba dulu.” Padahal tangan sudah gatel.",
+      "Mulai kuis",
+      "Cerita dan undangan",
+      "Terbitkan feed; pakai dua Threads dan tiga panel Story terkait.",
+      "Tim konten / komunitas",
+      "Threads + Story",
+      "Draft"
+    ],
+    [
+      41,
+      6,
+      null,
+      "EV03",
+      "Story dan aktivitas tim",
+      "Apa yg paling kamu ingat dari Parenting Bakes?",
+      "Belajar dari respons",
+      "Cerita dan undangan",
+      "Evaluasi 6 minggu: pesan, kanal, penyelesaian yg benar-benar tercatat, kapasitas tim.",
+      "Tim konten / komunitas",
+      "Evaluasi tanpa feed baru",
+      "Draft"
+    ],
+    [
+      42,
+      6,
+      null,
+      "Z01",
+      "Reel",
+      "Sudah ketemu kuemu? Bawa satu hal ke keseharian.",
+      "Mulai kuis",
+      "Cerita dan undangan",
+      "Pilih versi Z01 sesuai bahan nyata; Christine meninjau rekaman.",
+      "Christine dan tim konten",
+      "Threads + Story",
+      "Draft"
+    ]
+  ],
+  "Carousel": [
+    [
+      "Naskah carousel",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      "16 personality × 8 slide; L0 10 slide; S01 5 slide; total 143",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      "Kode",
+      "Tipe",
+      "Personality / tema",
+      "Slide",
+      "Teks slide",
+      "Footer semua slide",
+      "Identitas cover / akhir",
+      "Sumber"
+    ],
+    [
+      "L0",
+      null,
+      "Carousel pengantar semua 16 personality",
+      1,
+      "Kalau cara parenting kamu jadi kue, kamu yg mana? Ada yg sayangnya lewat bekal. Ada yg lewat pelukan. Parenting Bakes by Parenteers.",
+      "@parenteers · quiz.parenteers.id",
+      "Parenting Bakes by Parenteers",
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "L0",
+      null,
+      "Carousel pengantar semua 16 personality",
+      2,
+      "The Croquembouche: weekend sudah punya rencana besar. The Lapis Legit: ritual kecil dirawat hari demi hari.",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "L0",
+      null,
+      "Carousel pengantar semua 16 personality",
+      3,
+      "The Baguette: petualangan jalan, logistik beres. The Milk Bread: kenyamanan disiapkan, sampai baju cadangan.",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "L0",
+      null,
+      "Carousel pengantar semua 16 personality",
+      4,
+      "The Cronut: minat anak jadi eksperimen bersama. The Pandan Chiffon: ada ritme, ada ruang untuk perasaan.",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "L0",
+      null,
+      "Carousel pengantar semua 16 personality",
+      5,
+      "The Pretzel: beres-beres bisa berubah jadi misi. The Muffin: kerangkanya ada, pilihannya anak ikut tentukan.",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "L0",
+      null,
+      "Carousel pengantar semua 16 personality",
+      6,
+      "The Molten Lava Cake: spontan, seru, perasaannya ikut hadir. The Cinnamon Roll: pelukan dulu, lalu cari jalan bareng.",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "L0",
+      null,
+      "Carousel pengantar semua 16 personality",
+      7,
+      "The Bagel: rencana boleh berubah, solusi tetap dicari. The Banana Bread: yg ada di rumah bisa jadi momen hangat.",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "L0",
+      null,
+      "Carousel pengantar semua 16 personality",
+      8,
+      "The Pavlova: ikut binar mata anak, lalu rayakan. The Tiramisu: mengikuti ritme sambil mendengarkan.",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "L0",
+      null,
+      "Carousel pengantar semua 16 personality",
+      9,
+      "The Focaccia: kasih ruang untuk mencoba dan main kotor. The Bolu Kukus: menemani sambil memberi ruang tumbuh.",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "L0",
+      null,
+      "Carousel pengantar semua 16 personality",
+      10,
+      "Ada yg terasa familiar? Cari kuemu lewat 12 pertanyaan di link bio @parenteers. Di hasilnya ada bahan refleksi dan booklet aktivitas. Buat seru-seruan & refleksi; bukan tes klinis.",
+      "@parenteers · quiz.parenteers.id",
+      "Parenting Bakes by Parenteers",
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C01",
+      "PCTE",
+      "The Croquembouche",
+      1,
+      "Si paling bikin rencana, tapi meleset.",
+      "@parenteers · quiz.parenteers.id",
+      "Parenting Bakes by Parenteers",
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C01",
+      "PCTE",
+      "The Croquembouche",
+      2,
+      "Ayo ngaku, Moms, Dads… pernah gak, sudah sepakat berangkat jam 8, eh anak belum mau mandi? Pas semua siap, malah hujan. Padahal kamu sudah semangat ngajak ke tempat baru.",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C01",
+      "PCTE",
+      "The Croquembouche",
+      3,
+      "Kalau yg bikin kecewa justru semua persiapannya, cerita ini buat kamu. Kamu sudah mikirin jam berangkat, bekal, sampai gimana caranya supaya semua senang.",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C01",
+      "PCTE",
+      "The Croquembouche",
+      4,
+      "Kenalan dengan The Croquembouche. Kamu suka menyusun rencana dan mengajak anak mencoba hal baru. Saat anak ragu, kamu ajak ngobrol dulu: “Takut bagian mananya? Kita coba bareng, ya.”",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C01",
+      "PCTE",
+      "The Croquembouche",
+      5,
+      "Tapi rencana yg meleset gak bikin kamu gagal jadi orang tua. Dari cerita ini, kamu paling relate sama sibuk menyiapkan, nemenin perasaan anak, atau kecewa saat batal?",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C01",
+      "PCTE",
+      "The Croquembouche",
+      6,
+      "Di Parenting Bakes, kami merumuskan 16 personality parenting dalam karakter kue. Setiap tipe punya kekuatan dan tantangan. Kira-kira, parents termasuk yg mana?",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C01",
+      "PCTE",
+      "The Croquembouche",
+      7,
+      "Cari kuemu lewat 12 pertanyaan keseharian di link bio @parenteers. Di hasilnya, ada bahan refleksi dan booklet berisi ide merawat diri serta aktivitas bareng anak.",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C01",
+      "PCTE",
+      "The Croquembouche",
+      8,
+      "Sampai ketemu di hasil kuismu! Hari ini, satu agenda boleh dicoret. Kamu juga boleh menikmati harinya.",
+      "@parenteers · quiz.parenteers.id",
+      "Parenting Bakes by Parenteers",
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C02",
+      "PCTN",
+      "The Lapis Legit",
+      1,
+      "Si paling hafal urutan pagi seisi rumah.",
+      "@parenteers · quiz.parenteers.id",
+      "Parenting Bakes by Parenteers",
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C02",
+      "PCTN",
+      "The Lapis Legit",
+      2,
+      "Pernah gak, sudah bilang “habis sarapan, sikat gigi”, eh anak malah buka mainan? Kamu langsung lihat jam. Soalnya kalau satu mundur, berangkat sekolah ikut mundur.",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C02",
+      "PCTN",
+      "The Lapis Legit",
+      3,
+      "Di kepalamu, urutan itu sudah jalan sejak malam. Seragam di mana, sarapan apa, siapa yg antar. Ada banyak hal kecil yg kamu ingat supaya pagi terasa lebih tenang.",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C02",
+      "PCTN",
+      "The Lapis Legit",
+      4,
+      "Ini sisi The Lapis Legit: suka rutinitas, memberi arahan jelas, dan menyediakan waktu buat ngobrol. Kalimat “hari ini gimana?” sama pentingnya dengan “tasnya sudah siap?”.",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C02",
+      "PCTN",
+      "The Lapis Legit",
+      5,
+      "Satu pagi berantakan gak menghapus perhatianmu selama ini. Kamu relate sama rutinitas yg rapi, obrolan sebelum tidur, atau dua-duanya?",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C02",
+      "PCTN",
+      "The Lapis Legit",
+      6,
+      "Di Parenting Bakes, kami merumuskan 16 personality parenting dalam karakter kue. Setiap tipe punya kekuatan dan tantangan. Kira-kira, parents termasuk yg mana?",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C02",
+      "PCTN",
+      "The Lapis Legit",
+      7,
+      "Cari kuemu lewat 12 pertanyaan keseharian di link bio @parenteers. Di hasilnya, ada bahan refleksi dan booklet berisi ide merawat diri serta aktivitas bareng anak.",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C02",
+      "PCTN",
+      "The Lapis Legit",
+      8,
+      "Sampai ketemu di hasil kuismu! Kalau pagi ini agak kacau, besok boleh coba lagi.",
+      "@parenteers · quiz.parenteers.id",
+      "Parenting Bakes by Parenteers",
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C03",
+      "PCDE",
+      "The Baguette",
+      1,
+      "Si paling “tenang, sudah aku siapin”.",
+      "@parenteers · quiz.parenteers.id",
+      "Parenting Bakes by Parenteers",
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C03",
+      "PCDE",
+      "The Baguette",
+      2,
+      "Mau ngajak anak berenang, kamu sudah cek jam buka, siapin baju ganti, sampai bekal. Di lokasi anak bingung mulai dari mana? Kamu langsung kasih contoh.",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C03",
+      "PCDE",
+      "The Baguette",
+      3,
+      "Kalau ada yg butuh sesuatu, semua otomatis manggil kamu. Soalnya kamu biasanya sudah tahu barangnya di mana dan habis ini harus ngapain.",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C03",
+      "PCDE",
+      "The Baguette",
+      4,
+      "Kenalan dengan The Baguette: suka persiapan, memberi arahan, dan menunjukkan sayang lewat bantuan nyata. Kamu senang anak mencoba hal baru, sambil kamu siapkan kebutuhan dan dampingi langkahnya.",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C03",
+      "PCDE",
+      "The Baguette",
+      5,
+      "Si paling siap juga boleh gantian dibantu. Relate gak: tanganmu sudah sibuk membantu, baru ingat tanya, “Tadi kamu takut, ya?”",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C03",
+      "PCDE",
+      "The Baguette",
+      6,
+      "Di Parenting Bakes, kami merumuskan 16 personality parenting dalam karakter kue. Setiap tipe punya kekuatan dan tantangan. Kira-kira, parents termasuk yg mana?",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C03",
+      "PCDE",
+      "The Baguette",
+      7,
+      "Cari kuemu lewat 12 pertanyaan keseharian di link bio @parenteers. Di hasilnya, ada bahan refleksi dan booklet berisi ide merawat diri serta aktivitas bareng anak.",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C03",
+      "PCDE",
+      "The Baguette",
+      8,
+      "Sampai ketemu di hasil kuismu! Besok, urusan bekal boleh gantian siapa yg pegang.",
+      "@parenteers · quiz.parenteers.id",
+      "Parenting Bakes by Parenteers",
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C04",
+      "PCDN",
+      "The Milk Bread",
+      1,
+      "Pergi sebentar. Isi tas kayak mau menginap.",
+      "@parenteers · quiz.parenteers.id",
+      "Parenting Bakes by Parenteers",
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C04",
+      "PCDN",
+      "The Milk Bread",
+      2,
+      "Cuma mau ke rumah nenek, tapi sudah bawa baju ganti, tisu, minum, camilan. Pas ditanya kenapa banyak banget, jawabanmu: “Ya siapa tahu nanti perlu.”",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C04",
+      "PCDN",
+      "The Milk Bread",
+      3,
+      "Kamu tahu rasanya cari baju ganti pas anak ketumpahan minum. Jadi sebelum pergi, kepalamu sudah mikirin hal-hal yg mungkin dibutuhkan nanti.",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C04",
+      "PCDN",
+      "The Milk Bread",
+      4,
+      "Itu dekat dengan The Milk Bread: terencana, jelas mengarahkan, dan sigap merawat lewat tindakan. Kamu senang menjaga rutinitas yg akrab supaya anak merasa nyaman.",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C04",
+      "PCDN",
+      "The Milk Bread",
+      5,
+      "Siap-siap juga makan tenaga. Ada satu urusan yg bisa dibagi hari ini? Atau kamu masih tim “sini, aku aja yg siapin”?",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C04",
+      "PCDN",
+      "The Milk Bread",
+      6,
+      "Di Parenting Bakes, kami merumuskan 16 personality parenting dalam karakter kue. Setiap tipe punya kekuatan dan tantangan. Kira-kira, parents termasuk yg mana?",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C04",
+      "PCDN",
+      "The Milk Bread",
+      7,
+      "Cari kuemu lewat 12 pertanyaan keseharian di link bio @parenteers. Di hasilnya, ada bahan refleksi dan booklet berisi ide merawat diri serta aktivitas bareng anak.",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C04",
+      "PCDN",
+      "The Milk Bread",
+      8,
+      "Sampai ketemu di hasil kuismu! Si yg selalu bawa cadangan juga boleh minta bantuan.",
+      "@parenteers · quiz.parenteers.id",
+      "Parenting Bakes by Parenteers",
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C05",
+      "PGTE",
+      "The Cronut",
+      1,
+      "Anak lagi suka dinosaurus. Kamu ikut belajar namanya.",
+      "@parenteers · quiz.parenteers.id",
+      "Parenting Bakes by Parenteers",
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C05",
+      "PGTE",
+      "The Cronut",
+      2,
+      "Awalnya anak cuma nanya, “Ini dinosaurus apa?” Malamnya kamu cari namanya, pinjam buku, lalu siapin kegiatan buat besok. Eh, besok dia penasaran sama planet.",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C05",
+      "PGTE",
+      "The Cronut",
+      3,
+      "Kamu ikut senang saat anak tertarik sesuatu. Sampai pengin menyiapkan banyak cara supaya kalian bisa cari tahu bareng. Walau kadang minatnya keburu pindah duluan.",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C05",
+      "PGTE",
+      "The Cronut",
+      4,
+      "Kenalan dengan The Cronut. Kamu suka menyiapkan kegiatan, dengan minat anak sebagai arahnya. Kamu menyambut ide baru dan mau mendengar cerita maupun rasa frustrasinya saat mencoba.",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C05",
+      "PGTE",
+      "The Cronut",
+      5,
+      "Gak semua rasa penasaran harus berakhir jadi hasil karya. Kamu relate sama ikut semangat belajar, atau banyaknya bahan kegiatan yg belum kepakai?",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C05",
+      "PGTE",
+      "The Cronut",
+      6,
+      "Di Parenting Bakes, kami merumuskan 16 personality parenting dalam karakter kue. Setiap tipe punya kekuatan dan tantangan. Kira-kira, parents termasuk yg mana?",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C05",
+      "PGTE",
+      "The Cronut",
+      7,
+      "Cari kuemu lewat 12 pertanyaan keseharian di link bio @parenteers. Di hasilnya, ada bahan refleksi dan booklet berisi ide merawat diri serta aktivitas bareng anak.",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C05",
+      "PGTE",
+      "The Cronut",
+      8,
+      "Sampai ketemu di hasil kuismu! Satu pertanyaan yg dicari jawabannya bareng juga berarti.",
+      "@parenteers · quiz.parenteers.id",
+      "Parenting Bakes by Parenteers",
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C06",
+      "PGTN",
+      "The Pandan Chiffon",
+      1,
+      "Bilang “gak boleh”, yg kepikiran malah kamu.",
+      "@parenteers · quiz.parenteers.id",
+      "Parenting Bakes by Parenteers",
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C06",
+      "PGTN",
+      "The Pandan Chiffon",
+      2,
+      "Anak minta jajan lagi di minimarket. Kamu bilang cukup satu, lalu lihat mukanya berubah. Sampai rumah masih kepikiran: “Tadi aku terlalu tegas gak, ya?”",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C06",
+      "PGTN",
+      "The Pandan Chiffon",
+      3,
+      "Kamu ingin batasnya jelas, sekaligus ingin anak tahu perasaannya didengar. Makanya satu penolakan kecil bisa kamu pikirkan lama setelah kejadiannya selesai.",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C06",
+      "PGTN",
+      "The Pandan Chiffon",
+      4,
+      "Ini sisi The Pandan Chiffon: ada rutinitas, ada pilihan untuk anak, dan ada ruang buat cerita. Kamu mengikuti kesiapannya pelan-pelan, terutama saat suasananya masih terasa asing.",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C06",
+      "PGTN",
+      "The Pandan Chiffon",
+      5,
+      "“Kamu kecewa, ya. Hari ini kita beli satu dulu.” Kamu boleh tetap lembut sambil memegang batas. Kalimat seperti ini terasa dekat dengan keseharianmu?",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C06",
+      "PGTN",
+      "The Pandan Chiffon",
+      6,
+      "Di Parenting Bakes, kami merumuskan 16 personality parenting dalam karakter kue. Setiap tipe punya kekuatan dan tantangan. Kira-kira, parents termasuk yg mana?",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C06",
+      "PGTN",
+      "The Pandan Chiffon",
+      7,
+      "Cari kuemu lewat 12 pertanyaan keseharian di link bio @parenteers. Di hasilnya, ada bahan refleksi dan booklet berisi ide merawat diri serta aktivitas bareng anak.",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C06",
+      "PGTN",
+      "The Pandan Chiffon",
+      8,
+      "Sampai ketemu di hasil kuismu! Satu kata “enggak” gak menghapus semua perhatianmu.",
+      "@parenteers · quiz.parenteers.id",
+      "Parenting Bakes by Parenteers",
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C07",
+      "PGDE",
+      "The Pretzel",
+      1,
+      "Suruh beresin mainan, ujungnya bikin permainan.",
+      "@parenteers · quiz.parenteers.id",
+      "Parenting Bakes by Parenteers",
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C07",
+      "PGDE",
+      "The Pretzel",
+      2,
+      "“Ayo beresin” sudah tiga kali, belum ada yg bergerak. Begitu kamu bilang, “Mobilnya mau parkir di kotak mana?”, anak mulai ikut. Kamu akhirnya jadi petugas parkir.",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C07",
+      "PGDE",
+      "The Pretzel",
+      3,
+      "Kamu sering menemukan jalan lewat permainan. Tujuannya tetap beres-beres, tapi anak bisa ikut memilih caranya. Kadang kamu ikut main sampai lupa awalnya mau ngapain.",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C07",
+      "PGDE",
+      "The Pretzel",
+      4,
+      "Kenalan dengan The Pretzel: suka rutinitas yg bisa dibuat lentur, memberi anak ruang memilih, dan membantu lewat praktik. Kamu senang mengajak mencoba hal baru, meski sedikit berantakan.",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C07",
+      "PGDE",
+      "The Pretzel",
+      5,
+      "Hari ini gak punya ide permainan? Beres-beres boleh biasa aja. Kamu relate sama jadi pembuat permainan, atau capek karena merasa harus selalu kreatif?",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C07",
+      "PGDE",
+      "The Pretzel",
+      6,
+      "Di Parenting Bakes, kami merumuskan 16 personality parenting dalam karakter kue. Setiap tipe punya kekuatan dan tantangan. Kira-kira, parents termasuk yg mana?",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C07",
+      "PGDE",
+      "The Pretzel",
+      7,
+      "Cari kuemu lewat 12 pertanyaan keseharian di link bio @parenteers. Di hasilnya, ada bahan refleksi dan booklet berisi ide merawat diri serta aktivitas bareng anak.",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C07",
+      "PGDE",
+      "The Pretzel",
+      8,
+      "Sampai ketemu di hasil kuismu! Hari biasa juga boleh seru tanpa persiapan macam-macam.",
+      "@parenteers · quiz.parenteers.id",
+      "Parenting Bakes by Parenteers",
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C08",
+      "PGDN",
+      "The Muffin",
+      1,
+      "Anak ditanya mau apa. Kamu selalu “ikut aja”.",
+      "@parenteers · quiz.parenteers.id",
+      "Parenting Bakes by Parenteers",
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C08",
+      "PGDN",
+      "The Muffin",
+      2,
+      "Pagi-pagi kamu kasih pilihan: “Mau telur atau tempe? Baju yg ini atau itu?” Begitu giliran ditanya kamu mau makan apa, refleks jawab, “Apa aja, yg gampang.”",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C08",
+      "PGDN",
+      "The Muffin",
+      3,
+      "Kamu terbiasa memberi anak pilihan dalam rutinitas yg sudah ada. Urusan anak dipikirkan satu-satu. Keinginanmu sendiri kadang baru kepikiran belakangan.",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C08",
+      "PGDN",
+      "The Muffin",
+      4,
+      "Itu dekat dengan The Muffin: konsisten, memberi ruang memilih, dan perhatian lewat hal praktis. Kamu suka suasana yg akrab dan tenang, sambil menemani anak menentukan pilihannya.",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C08",
+      "PGDN",
+      "The Muffin",
+      5,
+      "Pilihanmu juga boleh masuk daftar. Hari ini kamu pengin apa? Kalau pertanyaan sesederhana ini bikin mikir lama, mungkin bagian ini relate banget.",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C08",
+      "PGDN",
+      "The Muffin",
+      6,
+      "Di Parenting Bakes, kami merumuskan 16 personality parenting dalam karakter kue. Setiap tipe punya kekuatan dan tantangan. Kira-kira, parents termasuk yg mana?",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C08",
+      "PGDN",
+      "The Muffin",
+      7,
+      "Cari kuemu lewat 12 pertanyaan keseharian di link bio @parenteers. Di hasilnya, ada bahan refleksi dan booklet berisi ide merawat diri serta aktivitas bareng anak.",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C08",
+      "PGDN",
+      "The Muffin",
+      8,
+      "Sampai ketemu di hasil kuismu! Sekali-sekali, bilang “aku maunya ini” juga boleh.",
+      "@parenteers · quiz.parenteers.id",
+      "Parenting Bakes by Parenteers",
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C09",
+      "FCTE",
+      "The Molten Lava Cake",
+      1,
+      "Si paling ngajak jalan. Pulangnya paling butuh menyendiri.",
+      "@parenteers · quiz.parenteers.id",
+      "Parenting Bakes by Parenteers",
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C09",
+      "FCTE",
+      "The Molten Lava Cake",
+      2,
+      "Pagi lihat cuaca cerah, langsung bilang, “Yuk, ke taman!” Kamu yg ajak main, dengar cerita, dan semangatin anak coba perosotan. Sore-sore, tenagamu sudah habis duluan.",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C09",
+      "FCTE",
+      "The Molten Lava Cake",
+      3,
+      "Kamu menikmati hari yg spontan dan ramai. Tapi setelah banyak bergerak, ngobrol, dan mengurus semuanya, kamu juga bisa ingin duduk tanpa diajak bicara sebentar.",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C09",
+      "FCTE",
+      "The Molten Lava Cake",
+      4,
+      "Kenalan dengan The Molten Lava Cake: fleksibel soal rencana, suka mengambil inisiatif, dan terbuka soal perasaan. Kamu senang mengajak anak mencoba pengalaman baru dan membicarakannya bersama.",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C09",
+      "FCTE",
+      "The Molten Lava Cake",
+      5,
+      "Kamu boleh bilang, “Aku capek, istirahat dulu ya.” Kalau tadi sempat membentak, tetap bisa minta maaf. Kamu relate sama spontan ngajaknya atau habis tenaganya?",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C09",
+      "FCTE",
+      "The Molten Lava Cake",
+      6,
+      "Di Parenting Bakes, kami merumuskan 16 personality parenting dalam karakter kue. Setiap tipe punya kekuatan dan tantangan. Kira-kira, parents termasuk yg mana?",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C09",
+      "FCTE",
+      "The Molten Lava Cake",
+      7,
+      "Cari kuemu lewat 12 pertanyaan keseharian di link bio @parenteers. Di hasilnya, ada bahan refleksi dan booklet berisi ide merawat diri serta aktivitas bareng anak.",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C09",
+      "FCTE",
+      "The Molten Lava Cake",
+      8,
+      "Sampai ketemu di hasil kuismu! Si paling semangat juga boleh punya sore yg tenang.",
+      "@parenteers · quiz.parenteers.id",
+      "Parenting Bakes by Parenteers",
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "S01",
+      null,
+      "Carousel refleksi: hari ini, versi cukupnya apa?",
+      1,
+      "Hari ini, versi cukupnya apa?",
+      "@parenteers · quiz.parenteers.id",
+      "Parenting Bakes by Parenteers",
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "S01",
+      null,
+      "Carousel refleksi: hari ini, versi cukupnya apa?",
+      2,
+      "Kalau rencananya terlalu penuh: pilih satu agenda yg paling mungkin dilakukan.",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "S01",
+      null,
+      "Carousel refleksi: hari ini, versi cukupnya apa?",
+      3,
+      "Kalau semua orang sudah memilih: sebutkan satu hal yg kamu inginkan juga.",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "S01",
+      null,
+      "Carousel refleksi: hari ini, versi cukupnya apa?",
+      4,
+      "Kalau belum sempat punya cerita besar: ingat satu momen kecil yg kamu nikmati hari ini.",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "S01",
+      null,
+      "Carousel refleksi: hari ini, versi cukupnya apa?",
+      5,
+      "Kalau belum tahu kecenderunganmu: mulai dari 12 pertanyaan keseharian. Cari kuemu di Parenting Bakes, link bio @parenteers.",
+      "@parenteers · quiz.parenteers.id",
+      "Parenting Bakes by Parenteers",
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C10",
+      "FCTN",
+      "The Cinnamon Roll",
+      1,
+      "“Lima menit lagi” kok jadi setengah jam?",
+      "@parenteers · quiz.parenteers.id",
+      "Parenting Bakes by Parenteers",
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C10",
+      "FCTN",
+      "The Cinnamon Roll",
+      2,
+      "Sudah waktunya tidur, anak baru cerita soal temannya. Kamu duduk lagi. Habis itu minta peluk, lalu cerita satu lagi. Pas lihat jam: “Lho, sudah jam segini?”",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C10",
+      "FCTN",
+      "The Cinnamon Roll",
+      3,
+      "Kamu suka momen anak mau cerita. Jadwal bisa sedikit mundur kalau ia masih butuh ditemani. Kadang kamu sendiri yg berat mengakhiri obrolannya.",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C10",
+      "FCTN",
+      "The Cinnamon Roll",
+      4,
+      "Ini sisi The Cinnamon Roll: ritmenya lentur, arah tetap kamu pegang, dan perasaan diajak ngobrol. Kamu senang membuat rumah terasa nyaman lewat kedekatan yg sederhana.",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C10",
+      "FCTN",
+      "The Cinnamon Roll",
+      5,
+      "“Aku senang dengar ceritamu. Sekarang tidur, besok lanjut.” Kamu paling relate sama pelukan panjangnya atau susah bilang “cukup dulu”-nya?",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C10",
+      "FCTN",
+      "The Cinnamon Roll",
+      6,
+      "Di Parenting Bakes, kami merumuskan 16 personality parenting dalam karakter kue. Setiap tipe punya kekuatan dan tantangan. Kira-kira, parents termasuk yg mana?",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C10",
+      "FCTN",
+      "The Cinnamon Roll",
+      7,
+      "Cari kuemu lewat 12 pertanyaan keseharian di link bio @parenteers. Di hasilnya, ada bahan refleksi dan booklet berisi ide merawat diri serta aktivitas bareng anak.",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C10",
+      "FCTN",
+      "The Cinnamon Roll",
+      8,
+      "Sampai ketemu di hasil kuismu! Malam ini, kamu juga kebagian istirahat, ya.",
+      "@parenteers · quiz.parenteers.id",
+      "Parenting Bakes by Parenteers",
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C11",
+      "FCDE",
+      "The Bagel",
+      1,
+      "Rencana berubah? “Ya udah, cari cara lain.”",
+      "@parenteers · quiz.parenteers.id",
+      "Parenting Bakes by Parenteers",
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C11",
+      "FCDE",
+      "The Bagel",
+      2,
+      "Sampai di taman, ternyata tutup. Anak sudah mau nangis. Kamu langsung cari pilihan: “Kita jalan di lapangan dekat rumah aja, yuk. Bisa bawa bola juga.”",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C11",
+      "FCDE",
+      "The Bagel",
+      3,
+      "Kamu cepat melihat apa yg masih bisa dilakukan. Gak harus menunggu rencana baru yg lengkap; yg penting anak tetap bisa mencoba dan kamu tahu langkah berikutnya.",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C11",
+      "FCDE",
+      "The Bagel",
+      4,
+      "Kenalan dengan The Bagel: fleksibel, cepat mengambil arah, dan sayangnya terasa lewat tindakan. Kamu senang mencoba alternatif, lalu turun tangan saat anak membutuhkan bantuan.",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C11",
+      "FCDE",
+      "The Bagel",
+      5,
+      "Sebelum cari pengganti, boleh tambah: “Kecewa ya, padahal sudah pengin main di sana.” Relate gak, solusimu kadang lebih cepat keluar daripada pertanyaanmu?",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C11",
+      "FCDE",
+      "The Bagel",
+      6,
+      "Di Parenting Bakes, kami merumuskan 16 personality parenting dalam karakter kue. Setiap tipe punya kekuatan dan tantangan. Kira-kira, parents termasuk yg mana?",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C11",
+      "FCDE",
+      "The Bagel",
+      7,
+      "Cari kuemu lewat 12 pertanyaan keseharian di link bio @parenteers. Di hasilnya, ada bahan refleksi dan booklet berisi ide merawat diri serta aktivitas bareng anak.",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C11",
+      "FCDE",
+      "The Bagel",
+      8,
+      "Sampai ketemu di hasil kuismu! Si paling sigap juga boleh berhenti sebentar buat didengar.",
+      "@parenteers · quiz.parenteers.id",
+      "Parenting Bakes by Parenteers",
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C12",
+      "FCDN",
+      "The Banana Bread",
+      1,
+      "Minggu di rumah aja. Kok jadi merasa kurang?",
+      "@parenteers · quiz.parenteers.id",
+      "Parenting Bakes by Parenteers",
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C12",
+      "FCDN",
+      "The Banana Bread",
+      2,
+      "Pagi santai, bikin nasi goreng, anak main di dekatmu. Semuanya terasa enak. Lalu buka Story: ada yg berenang, ikut kelas, jalan-jalan. Kamu mulai mikir, “Anakku kurang kegiatan gak, ya?”",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C12",
+      "FCDN",
+      "The Banana Bread",
+      3,
+      "Padahal tadi kamu menikmati pagi itu. Kamu bikin yg ada di rumah terasa cukup: ada makanan, tempat main, dan waktu buat menemani.",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C12",
+      "FCDN",
+      "The Banana Bread",
+      4,
+      "Itu dekat dengan The Banana Bread: lentur soal jadwal, tetap memberi arahan, dan praktis merawat. Kamu lebih nyaman dengan kegiatan yg akrab dan sederhana.",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C12",
+      "FCDN",
+      "The Banana Bread",
+      5,
+      "Hari di rumah juga layak dinikmati. Kalau ingin variasi, jalan sore dekat rumah bisa jadi pilihan. Kamu relate sama nyamannya, atau rasa kurang setelah lihat Story?",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C12",
+      "FCDN",
+      "The Banana Bread",
+      6,
+      "Di Parenting Bakes, kami merumuskan 16 personality parenting dalam karakter kue. Setiap tipe punya kekuatan dan tantangan. Kira-kira, parents termasuk yg mana?",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C12",
+      "FCDN",
+      "The Banana Bread",
+      7,
+      "Cari kuemu lewat 12 pertanyaan keseharian di link bio @parenteers. Di hasilnya, ada bahan refleksi dan booklet berisi ide merawat diri serta aktivitas bareng anak.",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C12",
+      "FCDN",
+      "The Banana Bread",
+      8,
+      "Sampai ketemu di hasil kuismu! Semoga hari sederhanamu tetap boleh terasa menyenangkan.",
+      "@parenteers · quiz.parenteers.id",
+      "Parenting Bakes by Parenteers",
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C13",
+      "FGTE",
+      "The Pavlova",
+      1,
+      "Anak bilang “yuk”, kamu gampang ikut.",
+      "@parenteers · quiz.parenteers.id",
+      "Parenting Bakes by Parenteers",
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C13",
+      "FGTE",
+      "The Pavlova",
+      2,
+      "Lagi jalan sore, anak lihat teman-temannya main bola. “Aku boleh ikut?” Kamu tadinya cuma mau keliling sebentar. Tapi lihat dia semangat, kamu bilang, “Boleh, ayo coba!”",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C13",
+      "FGTE",
+      "The Pavlova",
+      3,
+      "Kamu gampang ikut antusias saat anak punya ide. Rencana bisa berubah karena kamu penasaran juga: dia bakal menikmati hal baru apa hari ini?",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C13",
+      "FGTE",
+      "The Pavlova",
+      4,
+      "Kenalan dengan The Pavlova: spontan, mengikuti minat anak, dan ikut mendengarkan perasaannya. Kamu senang membuka kesempatan mencoba, sambil memperhatikan apakah anak masih nyaman.",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C13",
+      "FGTE",
+      "The Pavlova",
+      5,
+      "Kadang yg ingin dicoba lebih banyak dari tenagamu. “Besok lanjut, ya” juga boleh. Kamu relate sama gampang bilang “ayo”, atau baru sadar capek belakangan?",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C13",
+      "FGTE",
+      "The Pavlova",
+      6,
+      "Di Parenting Bakes, kami merumuskan 16 personality parenting dalam karakter kue. Setiap tipe punya kekuatan dan tantangan. Kira-kira, parents termasuk yg mana?",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C13",
+      "FGTE",
+      "The Pavlova",
+      7,
+      "Cari kuemu lewat 12 pertanyaan keseharian di link bio @parenteers. Di hasilnya, ada bahan refleksi dan booklet berisi ide merawat diri serta aktivitas bareng anak.",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C13",
+      "FGTE",
+      "The Pavlova",
+      8,
+      "Sampai ketemu di hasil kuismu! Ikut senang boleh. Menyisakan tenaga buat diri sendiri juga boleh.",
+      "@parenteers · quiz.parenteers.id",
+      "Parenting Bakes by Parenteers",
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C14",
+      "FGTN",
+      "The Tiramisu",
+      1,
+      "Anak sudah cerita semua. Kamu cerita ke siapa?",
+      "@parenteers · quiz.parenteers.id",
+      "Parenting Bakes by Parenteers",
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C14",
+      "FGTN",
+      "The Tiramisu",
+      2,
+      "Pulang sekolah, anak cerita soal temannya. Lanjut cerita gambar, mainan, sampai hal kecil yg kamu hampir lupa. Kamu dengarkan. Malamnya baru sadar: kamu juga punya banyak cerita.",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C14",
+      "FGTN",
+      "The Tiramisu",
+      3,
+      "Kamu mengikuti alurnya, meski ceritanya ke mana-mana. Kamu ingin anak merasa boleh datang dan ngomong tanpa harus buru-buru selesai.",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C14",
+      "FGTN",
+      "The Tiramisu",
+      4,
+      "Ini sisi The Tiramisu: fleksibel, mengikuti ritme anak, dan senang memahami perasaannya lewat obrolan. Kamu memilih suasana akrab, memberi waktu sampai anak siap bercerita.",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C14",
+      "FGTN",
+      "The Tiramisu",
+      5,
+      "Pendengar juga boleh butuh didengar. Hari ini ada orang dewasa yg bisa kamu ajak cerita? Atau kamu justru butuh waktu tenang dulu?",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C14",
+      "FGTN",
+      "The Tiramisu",
+      6,
+      "Di Parenting Bakes, kami merumuskan 16 personality parenting dalam karakter kue. Setiap tipe punya kekuatan dan tantangan. Kira-kira, parents termasuk yg mana?",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C14",
+      "FGTN",
+      "The Tiramisu",
+      7,
+      "Cari kuemu lewat 12 pertanyaan keseharian di link bio @parenteers. Di hasilnya, ada bahan refleksi dan booklet berisi ide merawat diri serta aktivitas bareng anak.",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C14",
+      "FGTN",
+      "The Tiramisu",
+      8,
+      "Sampai ketemu di hasil kuismu! Semoga hari ini ada yg tanya, “Kalau kamu, gimana harinya?”",
+      "@parenteers · quiz.parenteers.id",
+      "Parenting Bakes by Parenteers",
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C15",
+      "FGDE",
+      "The Focaccia",
+      1,
+      "Anak main air. Kamu sudah siap ngepel.",
+      "@parenteers · quiz.parenteers.id",
+      "Parenting Bakes by Parenteers",
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C15",
+      "FGDE",
+      "The Focaccia",
+      2,
+      "Awalnya anak cuma ikut nyiram tanaman. Lalu pengin tuang air, pegang tanah, bikin adonan sendiri. Kamu ambil wadah dan ikut menemani. Handuk di dekat pintu akhirnya kepakai juga.",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C15",
+      "FGDE",
+      "The Focaccia",
+      3,
+      "Kamu suka memberi anak kesempatan mencoba langsung. Kadang berantakan, kadang hasilnya beda dari yg dibayangkan. Kamu biasanya bantu cari cara sambil jalan.",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C15",
+      "FGDE",
+      "The Focaccia",
+      4,
+      "Kenalan dengan The Focaccia: fleksibel soal rencana, mengikuti rasa penasaran anak, dan membantu lewat praktik. Kamu terbuka pada pengalaman baru, dengan batas aman yg tetap jelas.",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C15",
+      "FGDE",
+      "The Focaccia",
+      5,
+      "Boleh main air di teras, habis itu beresin bareng. Kamu relate sama santainya membolehkan, atau banyaknya cucian setelah main?",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C15",
+      "FGDE",
+      "The Focaccia",
+      6,
+      "Di Parenting Bakes, kami merumuskan 16 personality parenting dalam karakter kue. Setiap tipe punya kekuatan dan tantangan. Kira-kira, parents termasuk yg mana?",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C15",
+      "FGDE",
+      "The Focaccia",
+      7,
+      "Cari kuemu lewat 12 pertanyaan keseharian di link bio @parenteers. Di hasilnya, ada bahan refleksi dan booklet berisi ide merawat diri serta aktivitas bareng anak.",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C15",
+      "FGDE",
+      "The Focaccia",
+      8,
+      "Sampai ketemu di hasil kuismu! Ruang mencoba boleh ada. Batas tenagamu juga boleh ada.",
+      "@parenteers · quiz.parenteers.id",
+      "Parenting Bakes by Parenteers",
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C16",
+      "FGDN",
+      "The Bolu Kukus",
+      1,
+      "“Biar dia coba dulu.” Padahal tangan sudah gatel.",
+      "@parenteers · quiz.parenteers.id",
+      "Parenting Bakes by Parenteers",
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C16",
+      "FGDN",
+      "The Bolu Kukus",
+      2,
+      "Mau pergi, anak ngotot pakai sandal sendiri. Kamu lihat talinya belum pas. Sudah hampir membetulkan, tapi kamu tahan: “Coba dulu. Kalau perlu bantuan, bilang, ya.”",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C16",
+      "FGDN",
+      "The Bolu Kukus",
+      3,
+      "Kamu nyaman memberi anak waktu menemukan caranya. Gak setiap kesulitan kecil langsung kamu ambil alih. Kamu tetap dekat dan siap membantu kalau dibutuhkan.",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C16",
+      "FGDN",
+      "The Bolu Kukus",
+      4,
+      "Itu dekat dengan The Bolu Kukus: ritmenya lentur, memberi anak ruang menentukan cara, dan menemani lewat tindakan. Kamu suka suasana yg akrab, tempat anak bisa mencoba tanpa terburu-buru.",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C16",
+      "FGDN",
+      "The Bolu Kukus",
+      5,
+      "Kadang dari luar kelihatannya kamu cuma menunggu. Padahal kamu sedang memberi kesempatan. Kamu relate sama sabar menunggunya atau susah menahan tangan buat bantu?",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C16",
+      "FGDN",
+      "The Bolu Kukus",
+      6,
+      "Di Parenting Bakes, kami merumuskan 16 personality parenting dalam karakter kue. Setiap tipe punya kekuatan dan tantangan. Kira-kira, parents termasuk yg mana?",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C16",
+      "FGDN",
+      "The Bolu Kukus",
+      7,
+      "Cari kuemu lewat 12 pertanyaan keseharian di link bio @parenteers. Di hasilnya, ada bahan refleksi dan booklet berisi ide merawat diri serta aktivitas bareng anak.",
+      "@parenteers · quiz.parenteers.id",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C16",
+      "FGDN",
+      "The Bolu Kukus",
+      8,
+      "Sampai ketemu di hasil kuismu! Menemani dengan tenang juga salah satu cara menunjukkan sayang.",
+      "@parenteers · quiz.parenteers.id",
+      "Parenting Bakes by Parenteers",
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ]
+  ],
+  "Caption": [
+    [
+      "Caption Instagram",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      "24 caption; manfaat hasil diperjelas; satu ajakan utama",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      "Kode",
+      "Format",
+      "Personality / tema",
+      "Caption",
+      "Hashtag opsional",
+      "Bahan asli yang diperlukan",
+      "Sumber"
+    ],
+    [
+      "L0",
+      "Carousel",
+      "Carousel pengantar semua 16 personality",
+      "Ada yg sayangnya lewat bekal cadangan. Ada yg lewat pelukan panjang. Kalau cara parenting kamu jadi kue, kira-kira kamu yg mana?\n\nJawab 12 pertanyaan keseharian. Setelah ketemu karakter kuemu, kamu bisa membaca bahan refleksi dan booklet berisi ide merawat diri serta aktivitas bareng anak.\n\nCari kuemu lewat link bio @parenteers. Parenting Bakes by Parenteers.\n\nBuat seru-seruan & refleksi; bukan tes klinis.",
+      "#ParentingBakes #Parenteers",
+      null,
+      "Bank naskah terbaru; revisi manfaat hasil 6 Oktober 2026"
+    ],
+    [
+      "F01",
+      "Reel",
+      "Reel Christine: orang di balik Parenteers",
+      "Kenalan dengan Christine Yunita, @christine.yunita, orang di balik Parenteers.\n\nKali ini, obrolannya mulai dari hal kecil yg kita lakukan sehari-hari sebagai orang tua. Lalu ketemu… kue.\n\nCoba Parenting Bakes lewat link bio @parenteers. Kalau mau mengenal Parenteers lebih dekat, cerita-ceritanya ada di akun ini.",
+      "#ParentingBakes #Parenteers",
+      null,
+      "Bank naskah terbaru; revisi manfaat hasil 6 Oktober 2026"
+    ],
+    [
+      "R02",
+      "Reel",
+      "Reel Christine: coba kuis, hasil asli",
+      "Christine Yunita (@christine.yunita), orang di balik Parenteers, coba Parenting Bakes.\n\nHasilnya: [NAMA KUE HASIL ASLI]. Bagian yg paling terasa dekat buat Christine: “[KUTIPAN REAKSI ASLI].”\n\nPenasaran dengan hasilmu sendiri? Coba lewat link bio @parenteers. Buat seru-seruan & refleksi; bukan tes klinis.",
+      "#ParentingBakes #Parenteers",
+      "[NAMA KUE HASIL ASLI]; [KUTIPAN REAKSI ASLI]",
+      "Bank naskah terbaru; revisi manfaat hasil 6 Oktober 2026"
+    ],
+    [
+      "C01",
+      "Carousel",
+      "The Croquembouche",
+      "Kadang yg bikin kecewa bukan batal perginya. Tapi semua yg sudah kamu pikirkan sejak jauh-jauh hari.\n\nThe Croquembouche dekat dengan orang tua yg menyiapkan pengalaman, semangat, dan tempat untuk perasaan. Sesekali, agendanya boleh lebih kecil.\n\nCari kuemu lewat 12 pertanyaan di link bio @parenteers. Di hasilnya ada bahan refleksi dan booklet dengan ide merawat diri serta aktivitas bareng anak.\n\nBuat seru-seruan & refleksi; bukan tes klinis.",
+      "#ParentingBakes #Parenteers",
+      null,
+      "Bank naskah terbaru; revisi manfaat hasil 6 Oktober 2026"
+    ],
+    [
+      "C02",
+      "Carousel",
+      "The Lapis Legit",
+      "Untuk yg punya urutan pagi di kepala, perubahan kecil bisa terasa besar. Apalagi kalau kamu yg biasanya menjaga semuanya tetap jalan.\n\nThe Lapis Legit punya kehangatan dari hal-hal yg dilakukan berulang. Hari ini urutannya boleh bergeser sedikit.\n\nKenali kecenderunganmu lewat kuis di link bio @parenteers.\n\nCari kuemu lewat 12 pertanyaan di link bio @parenteers. Di hasilnya ada bahan refleksi dan booklet dengan ide merawat diri serta aktivitas bareng anak.\n\nBuat seru-seruan & refleksi; bukan tes klinis.",
+      "#ParentingBakes #Parenteers",
+      null,
+      "Bank naskah terbaru; revisi manfaat hasil 6 Oktober 2026"
+    ],
+    [
+      "R01",
+      "Reel",
+      "Reel keseharian: kopi yg dipanasin lagi",
+      "Kopinya satu. Percobaan meminumnya beberapa kali.\n\nAda banyak hal kecil yg kamu urus sebelum ingat giliranmu. Parenting Bakes mengajak kamu melihat kebiasaanmu sebagai orang tua lewat 12 pertanyaan.\n\nDi hasilnya, ada karakter kue, bahan refleksi, dan booklet dengan ide merawat diri serta aktivitas bareng anak. Ambil yg sesuai keadaanmu.\n\nCoba lewat link bio @parenteers. Buat seru-seruan & refleksi; bukan tes klinis.",
+      "#ParentingBakes #Parenteers",
+      null,
+      "Bank naskah terbaru; revisi manfaat hasil 6 Oktober 2026"
+    ],
+    [
+      "C03",
+      "Carousel",
+      "The Baguette",
+      "Ada sayang yg bentuknya bukan kalimat panjang. Bentuknya plester di saku depan, botol yg sudah diisi, dan orang yg tahu harus belok ke mana.\n\nThe Baguette mengingatkan kita pada perhatian yg praktis. Si paling sigap juga boleh gantian dibantu.\n\nCari kuemu lewat 12 pertanyaan di link bio @parenteers. Di hasilnya ada bahan refleksi dan booklet dengan ide merawat diri serta aktivitas bareng anak.\n\nBuat seru-seruan & refleksi; bukan tes klinis.",
+      "#ParentingBakes #Parenteers",
+      null,
+      "Bank naskah terbaru; revisi manfaat hasil 6 Oktober 2026"
+    ],
+    [
+      "C04",
+      "Carousel",
+      "The Milk Bread",
+      "Kalimat “siapa tahu nanti butuh” bisa memenuhi satu tas. Dan satu kepala.\n\nThe Milk Bread dekat dengan orang tua yg membuat keseharian terasa nyaman lewat perhatian praktis. Semoga ada yg ingat menyiapkan kenyamanan untukmu juga.\n\nCari kuemu lewat 12 pertanyaan di link bio @parenteers. Di hasilnya ada bahan refleksi dan booklet dengan ide merawat diri serta aktivitas bareng anak.\n\nBuat seru-seruan & refleksi; bukan tes klinis.",
+      "#ParentingBakes #Parenteers",
+      null,
+      "Bank naskah terbaru; revisi manfaat hasil 6 Oktober 2026"
+    ],
+    [
+      "C05",
+      "Carousel",
+      "The Cronut",
+      "Proyek setengah jadi kadang bikin kepikiran. Padahal bisa saja pertanyaannya sudah terjawab, lalu rasa penasarannya pindah.\n\nThe Cronut membawa ruang bereksperimen. Orang tuanya juga boleh punya kegiatan kreatif yg cuma untuk dirinya sendiri.\n\nCari kuemu lewat 12 pertanyaan di link bio @parenteers. Di hasilnya ada bahan refleksi dan booklet dengan ide merawat diri serta aktivitas bareng anak.\n\nBuat seru-seruan & refleksi; bukan tes klinis.",
+      "#ParentingBakes #Parenteers",
+      null,
+      "Bank naskah terbaru; revisi manfaat hasil 6 Oktober 2026"
+    ],
+    [
+      "C06",
+      "Carousel",
+      "The Pandan Chiffon",
+      "Kadang setelah bilang gak, yg paling lama mengulang percakapannya justru orang tuanya.\n\nThe Pandan Chiffon dekat dengan kelembutan yg peka. Ruang untuk perasaan anak boleh berjalan bersama batas energimu sendiri.\n\nKenali kecenderunganmu lewat kuis di link bio @parenteers.\n\nCari kuemu lewat 12 pertanyaan di link bio @parenteers. Di hasilnya ada bahan refleksi dan booklet dengan ide merawat diri serta aktivitas bareng anak.\n\nBuat seru-seruan & refleksi; bukan tes klinis.",
+      "#ParentingBakes #Parenteers",
+      null,
+      "Bank naskah terbaru; revisi manfaat hasil 6 Oktober 2026"
+    ],
+    [
+      "R03",
+      "Reel",
+      "Reel dua gaya: berangkat jam berapa?",
+      "Kadang percakapannya kelihatan cuma soal jam berangkat. Ternyata yg satu ingin rencana terasa jelas, yg satu ingin punya ruang mengubahnya.\n\nParenting Bakes bisa jadi pembuka obrolan tentang kebiasaanmu. Masing-masing coba sendiri, lalu ngobrol dari bagian yg terasa dekat.\n\nLink bio @parenteers. Hasil kuis bukan ukuran kecocokan pasangan.",
+      "#ParentingBakes #Parenteers",
+      null,
+      "Bank naskah terbaru; revisi manfaat hasil 6 Oktober 2026"
+    ],
+    [
+      "C07",
+      "Carousel",
+      "The Pretzel",
+      "Untuk yg spontan mengubah tugas jadi permainan: kreativitasmu menyenangkan. Tapi kamu gak harus terus punya ide baru setiap hari.\n\nThe Pretzel juga boleh menikmati kegiatan yg sederhana.\n\nCari kuemu lewat 12 pertanyaan di link bio @parenteers. Di hasilnya ada bahan refleksi dan booklet dengan ide merawat diri serta aktivitas bareng anak.\n\nBuat seru-seruan & refleksi; bukan tes klinis.",
+      "#ParentingBakes #Parenteers",
+      null,
+      "Bank naskah terbaru; revisi manfaat hasil 6 Oktober 2026"
+    ],
+    [
+      "C08",
+      "Carousel",
+      "The Muffin",
+      "“Terserah” kadang memang santai. Kadang juga karena sudah terbiasa mendahulukan pilihan semua orang.\n\nThe Muffin memberi ruang tanpa banyak drama. Hari ini, semoga ada ruang untuk pilihanmu juga.\n\nCari kuemu lewat 12 pertanyaan di link bio @parenteers. Di hasilnya ada bahan refleksi dan booklet dengan ide merawat diri serta aktivitas bareng anak.\n\nBuat seru-seruan & refleksi; bukan tes klinis.",
+      "#ParentingBakes #Parenteers",
+      null,
+      "Bank naskah terbaru; revisi manfaat hasil 6 Oktober 2026"
+    ],
+    [
+      "C09",
+      "Carousel",
+      "The Molten Lava Cake",
+      "Si paling semangat juga bisa kehabisan tenaga. Kamu boleh mencari jeda dan tempat bercerita ke orang dewasa yg kamu percaya.\n\nThe Molten Lava Cake membawa energi dan perasaan yg terasa. Sesudah hari penuh, satu ritual kecil yg akrab boleh jadi penutup.\n\nCari kuemu lewat 12 pertanyaan di link bio @parenteers. Di hasilnya ada bahan refleksi dan booklet dengan ide merawat diri serta aktivitas bareng anak.\n\nBuat seru-seruan & refleksi; bukan tes klinis.",
+      "#ParentingBakes #Parenteers",
+      null,
+      "Bank naskah terbaru; revisi manfaat hasil 6 Oktober 2026"
+    ],
+    [
+      "S01",
+      "Carousel",
+      "Carousel refleksi: hari ini, versi cukupnya apa?",
+      "Ambil satu kalimat yg terasa membantu hari ini. Yang lainnya boleh lewat dulu.\n\nDi Parenting Bakes, tiap karakter punya kekuatan sekaligus kebutuhan yg perlu diperhatikan. Termasuk kebutuhan orang tuanya.\n\nCari kuemu lewat link bio @parenteers. Buat seru-seruan & refleksi; bukan tes klinis.",
+      "#ParentingBakes #Parenteers",
+      null,
+      "Bank naskah terbaru; revisi manfaat hasil 6 Oktober 2026"
+    ],
+    [
+      "C10",
+      "Carousel",
+      "The Cinnamon Roll",
+      "Ada momen yg manis sekaligus melelahkan. Mau menemani lebih lama, tapi badan sudah minta tidur.\n\nThe Cinnamon Roll dekat dengan cara merawat yg hangat dan lentur. Kebutuhan istirahatmu ikut penting di dalamnya.\n\nCari kuemu lewat 12 pertanyaan di link bio @parenteers. Di hasilnya ada bahan refleksi dan booklet dengan ide merawat diri serta aktivitas bareng anak.\n\nBuat seru-seruan & refleksi; bukan tes klinis.",
+      "#ParentingBakes #Parenteers",
+      null,
+      "Bank naskah terbaru; revisi manfaat hasil 6 Oktober 2026"
+    ],
+    [
+      "C11",
+      "Carousel",
+      "The Bagel",
+      "Gak semua orang menunjukkan perhatian lewat percakapan panjang. Ada yg langsung menggeser kursi, mengambil air, lalu membantu.\n\nThe Bagel membawa ketenangan yg praktis. Sebuah jeda kecil bisa memberi tempat untuk perasaan juga.\n\nCari kuemu lewat 12 pertanyaan di link bio @parenteers. Di hasilnya ada bahan refleksi dan booklet dengan ide merawat diri serta aktivitas bareng anak.\n\nBuat seru-seruan & refleksi; bukan tes klinis.",
+      "#ParentingBakes #Parenteers",
+      null,
+      "Bank naskah terbaru; revisi manfaat hasil 6 Oktober 2026"
+    ],
+    [
+      "C12",
+      "Carousel",
+      "The Banana Bread",
+      "Kadang habis lihat Story orang, hari yg tadinya terasa enak mendadak terasa kurang.\n\nThe Banana Bread mengingatkan pada kehangatan yg bisa lahir dari yg sudah ada. Pagi di rumah juga boleh jadi hal yg kamu suka.\n\nCari kuemu lewat 12 pertanyaan di link bio @parenteers. Di hasilnya ada bahan refleksi dan booklet dengan ide merawat diri serta aktivitas bareng anak.\n\nBuat seru-seruan & refleksi; bukan tes klinis.",
+      "#ParentingBakes #Parenteers",
+      null,
+      "Bank naskah terbaru; revisi manfaat hasil 6 Oktober 2026"
+    ],
+    [
+      "R04",
+      "Reel",
+      "Reel keseharian: keluar sebentar",
+      "“Sebentar” kadang cuma menjelaskan durasi perginya. Persiapannya punya kalender sendiri.\n\nAda yg suka menyiapkan semua dari awal. Ada yg lebih nyaman menyesuaikan sambil jalan. Kamu mengenali yg mana?\n\nCari kuemu lewat Parenting Bakes di link bio @parenteers.",
+      "#ParentingBakes #Parenteers",
+      null,
+      "Bank naskah terbaru; revisi manfaat hasil 6 Oktober 2026"
+    ],
+    [
+      "C13",
+      "Carousel",
+      "The Pavlova",
+      "Menyambut ide anak bisa menyenangkan. Lalu datang titik saat kamu sadar tenaga yg tersedia gak sebanyak ide yg disambut.\n\nThe Pavlova senang mengikuti ide anak. Hari ini, waktu main juga boleh lebih singkat kalau tenagamu sudah menipis.\n\nCari kuemu lewat 12 pertanyaan di link bio @parenteers. Di hasilnya ada bahan refleksi dan booklet dengan ide merawat diri serta aktivitas bareng anak.\n\nBuat seru-seruan & refleksi; bukan tes klinis.",
+      "#ParentingBakes #Parenteers",
+      null,
+      "Bank naskah terbaru; revisi manfaat hasil 6 Oktober 2026"
+    ],
+    [
+      "C14",
+      "Carousel",
+      "The Tiramisu",
+      "Untuk yg sering dititipi cerita: semoga ada tempat kamu menaruh ceritamu sendiri.\n\nThe Tiramisu dekat dengan pendampingan yg sabar dan mengikuti ritme. Keinginan untuk sunyi sebentar juga boleh kamu akui.\n\nCari kuemu lewat 12 pertanyaan di link bio @parenteers. Di hasilnya ada bahan refleksi dan booklet dengan ide merawat diri serta aktivitas bareng anak.\n\nBuat seru-seruan & refleksi; bukan tes klinis.",
+      "#ParentingBakes #Parenteers",
+      null,
+      "Bank naskah terbaru; revisi manfaat hasil 6 Oktober 2026"
+    ],
+    [
+      "C15",
+      "Carousel",
+      "The Focaccia",
+      "Rumah yg memberi ruang mencoba kadang menyisakan bukti di lantai. Kamu boleh menikmati prosesnya sekaligus punya batas soal beres-beres.\n\nThe Focaccia membawa semangat praktik dan keluwesan.\n\nCari kuemu lewat 12 pertanyaan di link bio @parenteers. Di hasilnya ada bahan refleksi dan booklet dengan ide merawat diri serta aktivitas bareng anak.\n\nBuat seru-seruan & refleksi; bukan tes klinis.",
+      "#ParentingBakes #Parenteers",
+      null,
+      "Bank naskah terbaru; revisi manfaat hasil 6 Oktober 2026"
+    ],
+    [
+      "C16",
+      "Carousel",
+      "The Bolu Kukus",
+      "Kadang menemani berarti menahan tangan supaya gak buru-buru membetulkan. Ada rasa percaya di dalamnya.\n\nThe Bolu Kukus dekat dengan ruang tumbuh yg tenang. Kamu boleh hadir tanpa terus menciptakan kegiatan baru.\n\nCari kuemu lewat 12 pertanyaan di link bio @parenteers. Di hasilnya ada bahan refleksi dan booklet dengan ide merawat diri serta aktivitas bareng anak.\n\nBuat seru-seruan & refleksi; bukan tes klinis.",
+      "#ParentingBakes #Parenteers",
+      null,
+      "Bank naskah terbaru; revisi manfaat hasil 6 Oktober 2026"
+    ],
+    [
+      "Z01",
+      "Reel",
+      "Reel Christine: setelah ketemu kuemu",
+      "Setelah ketemu kuemu, pilih satu bagian yg terasa dekat. Bisa tentang apa yg sudah kamu lakukan, atau kebutuhanmu yg belakangan terlupakan.\n\nBooklet di hasil kuis berisi ide merawat diri dan aktivitas bareng anak. Pilih yg sesuai keadaanmu; kegiatan boleh dilewati.\n\nChristine Yunita (@christine.yunita), orang di balik Parenteers, mengajak kita ngobrol dari sana. Kalau belum coba, cari kuemu lewat link bio @parenteers.\n\nBuat seru-seruan & refleksi; bukan tes klinis.",
+      "#ParentingBakes #Parenteers",
+      null,
+      "Bank naskah terbaru; revisi manfaat hasil 6 Oktober 2026"
+    ]
+  ],
+  "Reels": [
+    [
+      "Naskah Reel",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      "6 Reel; R01 diperbarui; Z01 pilih satu versi sesuai bahan nyata",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      "Kode",
+      "Judul",
+      "Versi",
+      "Waktu",
+      "Visual / teks layar",
+      "Ucapan / VO",
+      "Arahan produksi",
+      "Sumber"
+    ],
+    [
+      "F01",
+      "Reel Christine: orang di balik Parenteers",
+      "Utama",
+      "0–4 dtk",
+      "Christine, “Sebelum bicara soal kuenya…”",
+      "“Sebelum ngomongin kuenya, kenalan dulu. Aku Christine Yunita, orang di balik Parenteers.”",
+      null,
+      "instagram-threads-content-bank.md — F01"
+    ],
+    [
+      "F01",
+      "Reel Christine: orang di balik Parenteers",
+      "Utama",
+      "4–13 dtk",
+      "Christine + benda keseharian",
+      "“Ada banyak cara kita hadir sebagai orang tua. Ada yg ingat semua perlengkapan. Ada yg betah dengerin cerita panjang.”",
+      null,
+      "instagram-threads-content-bank.md — F01"
+    ],
+    [
+      "F01",
+      "Reel Christine: orang di balik Parenteers",
+      "Utama",
+      "13–24 dtk",
+      "Potongan kuis, pertanyaan dan karakter",
+      "“Di Parenting Bakes, kami ajak kamu melihat kebiasaan kecil itu lewat 12 pertanyaan. Hasilnya? Salah satu dari 16 karakter kue.”",
+      null,
+      "instagram-threads-content-bank.md — F01"
+    ],
+    [
+      "F01",
+      "Reel Christine: orang di balik Parenteers",
+      "Utama",
+      "24–32 dtk",
+      "Christine + kartu akhir",
+      "“Buat seru-seruan dan refleksi. Kalau penasaran kuemu apa, coba lewat link bio @parenteers.”",
+      null,
+      "instagram-threads-content-bank.md — F01"
+    ],
+    [
+      "R02",
+      "Reel Christine: coba kuis, hasil asli",
+      "Utama",
+      "0–4 dtk",
+      "0–4 dtk, Christine: “Oke, sekarang aku coba kuis Parenteers sendiri.”",
+      null,
+      "Isi hasil dan reaksi asli Christine; bila belum tersedia, geser tayang dan jangan mengarang hasil.",
+      "instagram-threads-content-bank.md — R02"
+    ],
+    [
+      "R02",
+      "Reel Christine: coba kuis, hasil asli",
+      "Utama",
+      "4–11 dtk",
+      "4–11 dtk, screen recording dua potongan pilihan: “Aku jawab yg paling sering kejadian.” Pilih adegan yg tidak mengekspos notifikasi pribadi.",
+      null,
+      "Isi hasil dan reaksi asli Christine; bila belum tersedia, geser tayang dan jangan mengarang hasil.",
+      "instagram-threads-content-bank.md — R02"
+    ],
+    [
+      "R02",
+      "Reel Christine: coba kuis, hasil asli",
+      "Utama",
+      "11–17 dtk",
+      "11–17 dtk, hasil nyata: “Aku dapat [NAMA KUE HASIL ASLI].”",
+      null,
+      "[NAMA KUE HASIL ASLI] Isi hasil dan reaksi asli Christine; bila belum tersedia, geser tayang dan jangan mengarang hasil.",
+      "instagram-threads-content-bank.md — R02"
+    ],
+    [
+      "R02",
+      "Reel Christine: coba kuis, hasil asli",
+      "Utama",
+      "17–27 dtk",
+      "17–27 dtk, wajah Christine: “Bagian [KALIMAT HASIL] ini terasa dekat, karena [CONTOH NYATA SATU KALIMAT].” Bila tidak cocok, ganti dengan respons jujurnya.",
+      null,
+      "[KALIMAT HASIL]\n[CONTOH NYATA SATU KALIMAT] Isi hasil dan reaksi asli Christine; bila belum tersedia, geser tayang dan jangan mengarang hasil.",
+      "instagram-threads-content-bank.md — R02"
+    ],
+    [
+      "R02",
+      "Reel Christine: coba kuis, hasil asli",
+      "Utama",
+      "27–33 dtk",
+      "27–33 dtk: “Kalau kamu penasaran, coba dulu. Link-nya di bio @parenteers.”",
+      null,
+      "Isi hasil dan reaksi asli Christine; bila belum tersedia, geser tayang dan jangan mengarang hasil.",
+      "instagram-threads-content-bank.md — R02"
+    ],
+    [
+      "R01",
+      "Kopi dan giliran orang tua",
+      "Utama",
+      "0–4 dtk",
+      "Tangan menaruh cangkir. Teks: Kopinya belum diminum.",
+      "Kopinya belum diminum. Kamu sudah ngurus berapa hal?",
+      "Screen recording asli; cek PDF terbuka di HP sebelum merekam.",
+      "Revisi 6 Oktober 2026"
+    ],
+    [
+      "R01",
+      "Kopi dan giliran orang tua",
+      "Utama",
+      "4–10 dtk",
+      "Tangan menyiapkan botol, tas, lalu kembali ke cangkir.",
+      "Ada banyak hal kecil yg kamu urus sebelum ingat giliranmu.",
+      "Screen recording asli; cek PDF terbuka di HP sebelum merekam.",
+      "Revisi 6 Oktober 2026"
+    ],
+    [
+      "R01",
+      "Kopi dan giliran orang tua",
+      "Utama",
+      "10–16 dtk",
+      "Screen recording 12 pertanyaan dan satu hasil nyata.",
+      "Parenting Bakes mengajak kamu kenalan lagi dengan kebiasaanmu lewat 12 pertanyaan.",
+      "Screen recording asli; cek PDF terbuka di HP sebelum merekam.",
+      "Revisi 6 Oktober 2026"
+    ],
+    [
+      "R01",
+      "Kopi dan giliran orang tua",
+      "Utama",
+      "16–23 dtk",
+      "Buka booklet milik hasil nyata. Tunjukkan satu bagian merawat diri.",
+      "Di hasilnya ada bahan refleksi dan booklet dengan ide merawat diri serta aktivitas bareng anak.",
+      "Screen recording asli; cek PDF terbuka di HP sebelum merekam.",
+      "Revisi 6 Oktober 2026"
+    ],
+    [
+      "R01",
+      "Kopi dan giliran orang tua",
+      "Utama",
+      "23–28 dtk",
+      "Kartu akhir: Cari kuemu. Link bio @parenteers.",
+      "Cari kuemu lewat link bio @parenteers. Buat seru-seruan & refleksi.",
+      "Screen recording asli; cek PDF terbuka di HP sebelum merekam.",
+      "Revisi 6 Oktober 2026"
+    ],
+    [
+      "R03",
+      "Reel dua gaya: berangkat jam berapa?",
+      "Utama",
+      "0–5 dtk",
+      "0–5 dtk, orang A menatap catatan: “Berangkat jam sembilan, ya? Biar keburu dua tempat.”",
+      null,
+      null,
+      "instagram-threads-content-bank.md — R03"
+    ],
+    [
+      "R03",
+      "Reel dua gaya: berangkat jam berapa?",
+      "Utama",
+      "5–10 dtk",
+      "5–10 dtk, orang B memegang cangkir: “Aku pengin lihat dulu energi kita pagi ini.”",
+      null,
+      null,
+      "instagram-threads-content-bank.md — R03"
+    ],
+    [
+      "R03",
+      "Reel dua gaya: berangkat jam berapa?",
+      "Utama",
+      "10–17 dtk",
+      "10–17 dtk, teks: “Satu ingin pegangan. Satu ingin ruang berubah.”",
+      null,
+      null,
+      "instagram-threads-content-bank.md — R03"
+    ],
+    [
+      "R03",
+      "Reel dua gaya: berangkat jam berapa?",
+      "Utama",
+      "17–23 dtk",
+      "17–23 dtk, A/B: “Gimana kalau satu tujuan dulu, sisanya lihat nanti?”",
+      null,
+      null,
+      "instagram-threads-content-bank.md — R03"
+    ],
+    [
+      "R03",
+      "Reel dua gaya: berangkat jam berapa?",
+      "Utama",
+      "23–28 dtk",
+      "23–28 dtk, kartu akhir: “Kamu biasanya mulai dari mana? Cari kuemu di link bio @parenteers.”",
+      null,
+      null,
+      "instagram-threads-content-bank.md — R03"
+    ],
+    [
+      "R04",
+      "Reel keseharian: keluar sebentar",
+      "Utama",
+      "0–3 dtk",
+      "0–3 dtk, berdiri di pintu: “Kita cuma keluar sebentar.”",
+      null,
+      null,
+      "instagram-threads-content-bank.md — R04"
+    ],
+    [
+      "R04",
+      "Reel keseharian: keluar sebentar",
+      "Utama",
+      "3–7 dtk",
+      "3–7 dtk, balik ambil botol: “Air.”",
+      null,
+      null,
+      "instagram-threads-content-bank.md — R04"
+    ],
+    [
+      "R04",
+      "Reel keseharian: keluar sebentar",
+      "Utama",
+      "7–11 dtk",
+      "7–11 dtk, balik ambil baju: “Cadangan.”",
+      null,
+      null,
+      "instagram-threads-content-bank.md — R04"
+    ],
+    [
+      "R04",
+      "Reel keseharian: keluar sebentar",
+      "Utama",
+      "11–15 dtk",
+      "11–15 dtk, cek saku: “Kunci… yg tadi aku pegang.”",
+      null,
+      null,
+      "instagram-threads-content-bank.md — R04"
+    ],
+    [
+      "R04",
+      "Reel keseharian: keluar sebentar",
+      "Utama",
+      "15–20 dtk",
+      "15–20 dtk, berhenti dan tersenyum: “Di rumahmu, siapa yg paling sering putar balik?”",
+      null,
+      null,
+      "instagram-threads-content-bank.md — R04"
+    ],
+    [
+      "R04",
+      "Reel keseharian: keluar sebentar",
+      "Utama",
+      "20–25 dtk",
+      "20–25 dtk, kartu akhir: “Kebiasaan kecil, cerita yg familiar. Cari kuemu di link bio @parenteers.”",
+      null,
+      null,
+      "instagram-threads-content-bank.md — R04"
+    ],
+    [
+      "Z01",
+      "Reel Christine: setelah ketemu kuemu",
+      "Komentar nyata + izin",
+      "0–6 dtk",
+      "0–6 dtk, Christine: “Ada yg cerita setelah coba Parenting Bakes: [SATU KUTIPAN ASLI YG DIIZINKAN].”",
+      null,
+      "[SATU KUTIPAN ASLI YG DIIZINKAN]",
+      "Bank naskah terbaru; pilih satu versi berdasarkan bahan nyata"
+    ],
+    [
+      "Z01",
+      "Reel Christine: setelah ketemu kuemu",
+      "Komentar nyata + izin",
+      "6–19 dtk",
+      "6–19 dtk: “Bagian yg menarik buatku dari cerita ini, [TANGGAPAN CHRISTINE SENDIRI, TANPA MENILAI TIPE ORANGNYA].”",
+      null,
+      "[TANGGAPAN CHRISTINE SENDIRI, TANPA MENILAI TIPE ORANGNYA]",
+      "Bank naskah terbaru; pilih satu versi berdasarkan bahan nyata"
+    ],
+    [
+      "Z01",
+      "Reel Christine: setelah ketemu kuemu",
+      "Komentar nyata + izin",
+      "19–28 dtk",
+      "19–28 dtk: “Kalau kamu belum ketemu kuemu, coba lewat link bio @parenteers. Setelah itu, ambil satu bagian yg terasa dekat untuk dipikirkan pelan-pelan.”",
+      null,
+      null,
+      "Bank naskah terbaru; pilih satu versi berdasarkan bahan nyata"
+    ],
+    [
+      "Z01",
+      "Reel Christine: setelah ketemu kuemu",
+      "Tanpa kiriman audiens",
+      "25–35 dtk",
+      "“Aku Christine, di balik Parenteers. Setelah coba Parenting Bakes, ada satu pertanyaan yg bisa kamu bawa: dari hasil ini, bagian mana yg terasa dekat dengan hariku? Gak harus semuanya cocok. Kalau kamu belum coba, cari kuemu lewat link bio @parenteers. Kita mulai dari kebiasaan kecil dulu.”",
+      null,
+      null,
+      "Bank naskah terbaru; pilih satu versi berdasarkan bahan nyata"
+    ]
+  ],
+  "Threads": [
+    [
+      "Naskah Threads",
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      "24 rangkaian; dua post per kode; link kuis pada post kedua",
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      "Kode",
+      "Urutan",
+      "Naskah post",
+      "Tujuan",
+      "Bahan asli yang diperlukan",
+      "Sumber"
+    ],
+    [
+      "L0",
+      1,
+      "Kalau cara parenting jadi kue, kayaknya yg diukur bukan seberapa sering bikin bekal estetik. Kadang justru: siapa yg selalu ingat kaos kaki cadangan, siapa yg spontan ngajak keluar, siapa yg paling lama duduk mendengarkan.",
+      "Percakapan",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "L0",
+      2,
+      "Parenting Bakes by Parenteers: 12 pertanyaan keseharian, karakter kue, bahan refleksi, dan booklet aktivitas. Buat seru-seruan & refleksi; bukan tes klinis. Cari kuemu: https://quiz.parenteers.id/",
+      "Mulai kuis",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "F01",
+      1,
+      "Di balik Parenteers ada Christine Yunita. Kali ini kami mengajak kamu ngobrol lewat kuis ringan: bagaimana kebiasaan sehari-hari kita sebagai orang tua kalau digambarkan jadi karakter kue?",
+      "Percakapan",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "F01",
+      2,
+      "Parenting Bakes by Parenteers: 12 pertanyaan keseharian, karakter kue, bahan refleksi, dan booklet aktivitas. Buat seru-seruan & refleksi; bukan tes klinis. Cari kuemu: https://quiz.parenteers.id/",
+      "Mulai kuis",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "R02",
+      1,
+      "Christine Yunita, orang di balik Parenteers, sudah coba Parenting Bakes. Hasilnya [NAMA KUE HASIL ASLI]. Reaksinya: “[SATU KALIMAT REAKSI ASLI].”",
+      "Percakapan",
+      "[NAMA KUE HASIL ASLI]; [SATU KALIMAT REAKSI ASLI]",
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "R02",
+      2,
+      "Parenting Bakes by Parenteers: 12 pertanyaan keseharian, karakter kue, bahan refleksi, dan booklet aktivitas. Buat seru-seruan & refleksi; bukan tes klinis. Cari kuemu: https://quiz.parenteers.id/",
+      "Mulai kuis",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C01",
+      1,
+      "Ada jenis capek yg datang dari jadi panitia jalan-jalan keluarga. Jam berangkat, bekal, tempat tujuan sudah dipikirkan. Lalu anak belum siap, hujan turun, rencana berubah. Wajar kalau persiapannya ikut kepikiran.",
+      "Percakapan",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C01",
+      2,
+      "Kebiasaan ini mungkin terasa dekat dengan The Croquembouche. Satu kejadian belum menentukan hasilmu. Cari kuemu lewat 12 pertanyaan. Di hasilnya ada refleksi dan booklet aktivitas: https://quiz.parenteers.id/",
+      "Mulai kuis",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C02",
+      1,
+      "“Cuma telat sedikit” bisa terasa beda buat orang yg dari semalam sudah menata urutan pagi. Ada banyak kerja yg gak kelihatan di balik satu keluarga berangkat dari rumah.",
+      "Percakapan",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C02",
+      2,
+      "Kebiasaan ini mungkin terasa dekat dengan The Lapis Legit. Satu kejadian belum menentukan hasilmu. Cari kuemu lewat 12 pertanyaan. Di hasilnya ada refleksi dan booklet aktivitas: https://quiz.parenteers.id/",
+      "Mulai kuis",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "R01",
+      1,
+      "Kopi orang tua kadang punya tiga fase: dibuat, terlupakan, dipanaskan lagi. Yang lupa diminum bukan cuma kopinya. Kadang kita juga lupa mengecek tenaga sendiri.",
+      "Percakapan",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "R01",
+      2,
+      "Parenting Bakes by Parenteers: 12 pertanyaan keseharian, karakter kue, bahan refleksi, dan booklet aktivitas. Buat seru-seruan & refleksi; bukan tes klinis. Cari kuemu: https://quiz.parenteers.id/",
+      "Mulai kuis",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C03",
+      1,
+      "Orang yg paling siap di keluarga kadang jarang ditanya: “Kamu mau dibantu apa?” Semua keburu terbiasa dia tahu jawabannya.",
+      "Percakapan",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C03",
+      2,
+      "Kebiasaan ini mungkin terasa dekat dengan The Baguette. Satu kejadian belum menentukan hasilmu. Cari kuemu lewat 12 pertanyaan. Di hasilnya ada refleksi dan booklet aktivitas: https://quiz.parenteers.id/",
+      "Mulai kuis",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C04",
+      1,
+      "Tas orang tua yg penuh cadangan sebenarnya seperti daftar kemungkinan: kalau tumpah, kalau lapar, kalau basah. Beratnya bukan cuma di bahu.",
+      "Percakapan",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C04",
+      2,
+      "Kebiasaan ini mungkin terasa dekat dengan The Milk Bread. Satu kejadian belum menentukan hasilmu. Cari kuemu lewat 12 pertanyaan. Di hasilnya ada refleksi dan booklet aktivitas: https://quiz.parenteers.id/",
+      "Mulai kuis",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C05",
+      1,
+      "Ada meja yg isinya proyek setengah jadi semua. Dilihat dari sisi lain: ada banyak pertanyaan yg sempat dicoba dijawab di situ. Gak semuanya perlu berakhir jadi pajangan.",
+      "Percakapan",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C05",
+      2,
+      "Kebiasaan ini mungkin terasa dekat dengan The Cronut. Satu kejadian belum menentukan hasilmu. Cari kuemu lewat 12 pertanyaan. Di hasilnya ada refleksi dan booklet aktivitas: https://quiz.parenteers.id/",
+      "Mulai kuis",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C06",
+      1,
+      "Pernah bilang “gak dulu”, lalu di kepala masih menjelaskan alasannya sampai malam? Ingin tetap lembut bisa bikin satu batas kecil terasa berat.",
+      "Percakapan",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C06",
+      2,
+      "Kebiasaan ini mungkin terasa dekat dengan The Pandan Chiffon. Satu kejadian belum menentukan hasilmu. Cari kuemu lewat 12 pertanyaan. Di hasilnya ada refleksi dan booklet aktivitas: https://quiz.parenteers.id/",
+      "Mulai kuis",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "R03",
+      1,
+      "“Kita perlu itinerary.”\n“Kita perlu lihat nanti.”\n\nKalau dua kalimat ini pernah bertemu di rumahmu, mungkin obrolannya bisa mulai dari: apa yg bikin masing-masing merasa lebih tenang saat pergi?",
+      "Percakapan",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "R03",
+      2,
+      "Coba Parenting Bakes sendiri-sendiri, lalu ngobrol dari bagian yg terasa dekat. Gak ada skor kecocokan atau fitur perbandingan otomatis. Mulai di sini: https://quiz.parenteers.id/",
+      "Mulai kuis",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C07",
+      1,
+      "Kalau beres-beres selalu harus jadi misi, siapa yg bikin misi untuk mengisi ulang tenaga pembuat misinya? Hari ini kotak mainan boleh tetap jadi kotak mainan.",
+      "Percakapan",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C07",
+      2,
+      "Kebiasaan ini mungkin terasa dekat dengan The Pretzel. Satu kejadian belum menentukan hasilmu. Cari kuemu lewat 12 pertanyaan. Di hasilnya ada refleksi dan booklet aktivitas: https://quiz.parenteers.id/",
+      "Mulai kuis",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C08",
+      1,
+      "Satu pertanyaan buat si paling “aku ikut aja”: kalau hari ini benar-benar boleh pilih, kamu pengin apa? Jawabannya boleh sekecil makan selagi masih hangat.",
+      "Percakapan",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C08",
+      2,
+      "Kebiasaan ini mungkin terasa dekat dengan The Muffin. Satu kejadian belum menentukan hasilmu. Cari kuemu lewat 12 pertanyaan. Di hasilnya ada refleksi dan booklet aktivitas: https://quiz.parenteers.id/",
+      "Mulai kuis",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C09",
+      1,
+      "Kadang yg bikin bingung diri sendiri: tadi aku yg paling semangat, kok sekarang ingin sunyi? Energi berubah. Kalau ada ucapan yg melukai, tetap ada ruang untuk mengakui dan memperbaikinya.",
+      "Percakapan",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C09",
+      2,
+      "Kebiasaan ini mungkin terasa dekat dengan The Molten Lava Cake. Satu kejadian belum menentukan hasilmu. Cari kuemu lewat 12 pertanyaan. Di hasilnya ada refleksi dan booklet aktivitas: https://quiz.parenteers.id/",
+      "Mulai kuis",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "S01",
+      1,
+      "Kalau hari ini cuma bisa dibuat sedikit lebih ringan, bagian mana yg mau kamu sederhanakan? Menu makan, satu agenda, atau tuntutan untuk selalu punya kegiatan seru?",
+      "Percakapan",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "S01",
+      2,
+      "Parenting Bakes by Parenteers: 12 pertanyaan keseharian, karakter kue, bahan refleksi, dan booklet aktivitas. Buat seru-seruan & refleksi; bukan tes klinis. Cari kuemu: https://quiz.parenteers.id/",
+      "Mulai kuis",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C10",
+      1,
+      "“Satu cerita lagi” punya definisi waktu yg sangat lentur. Kadang kita ikut ingin memperpanjang. Kadang mata sudah menyerah duluan. Dua-duanya bisa terjadi di malam yg sama.",
+      "Percakapan",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C10",
+      2,
+      "Kebiasaan ini mungkin terasa dekat dengan The Cinnamon Roll. Satu kejadian belum menentukan hasilmu. Cari kuemu lewat 12 pertanyaan. Di hasilnya ada refleksi dan booklet aktivitas: https://quiz.parenteers.id/",
+      "Mulai kuis",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C11",
+      1,
+      "Ada orang yg kalau lihat masalah langsung tahu harus mengambil apa. Lap. Plester. Kunci. Kadang satu hal yg bisa ditambahkan cuma: “Kamu kaget ya?”",
+      "Percakapan",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C11",
+      2,
+      "Kebiasaan ini mungkin terasa dekat dengan The Bagel. Satu kejadian belum menentukan hasilmu. Cari kuemu lewat 12 pertanyaan. Di hasilnya ada refleksi dan booklet aktivitas: https://quiz.parenteers.id/",
+      "Mulai kuis",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C12",
+      1,
+      "Weekend tadinya nyaman. Lalu buka Story, mendadak merasa harus punya agenda. Padahal tadi menikmati sarapan pelan-pelan juga sudah terasa menyenangkan.",
+      "Percakapan",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C12",
+      2,
+      "Kebiasaan ini mungkin terasa dekat dengan The Banana Bread. Satu kejadian belum menentukan hasilmu. Cari kuemu lewat 12 pertanyaan. Di hasilnya ada refleksi dan booklet aktivitas: https://quiz.parenteers.id/",
+      "Mulai kuis",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "R04",
+      1,
+      "Keluar sebentar bersama keluarga: lima menit memilih tujuan, lalu bolak-balik pintu untuk barang yg baru keingat. Plot twist-nya, kunci ada di tangan sendiri.",
+      "Percakapan",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "R04",
+      2,
+      "Parenting Bakes by Parenteers: 12 pertanyaan keseharian, karakter kue, bahan refleksi, dan booklet aktivitas. Buat seru-seruan & refleksi; bukan tes klinis. Cari kuemu: https://quiz.parenteers.id/",
+      "Mulai kuis",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C13",
+      1,
+      "Ada “iya” yg keluar karena ikut senang. Baru beberapa menit kemudian badan mengingatkan: tadi belum istirahat. Boleh kok bikin versi yg lebih kecil dari rencana awal.",
+      "Percakapan",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C13",
+      2,
+      "Kebiasaan ini mungkin terasa dekat dengan The Pavlova. Satu kejadian belum menentukan hasilmu. Cari kuemu lewat 12 pertanyaan. Di hasilnya ada refleksi dan booklet aktivitas: https://quiz.parenteers.id/",
+      "Mulai kuis",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C14",
+      1,
+      "Setelah seharian mendengarkan, kadang kita gak butuh pertanyaan besar. Cuma seseorang yg bilang, “Sekarang giliran kamu. Hari ini gimana?”",
+      "Percakapan",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C14",
+      2,
+      "Kebiasaan ini mungkin terasa dekat dengan The Tiramisu. Satu kejadian belum menentukan hasilmu. Cari kuemu lewat 12 pertanyaan. Di hasilnya ada refleksi dan booklet aktivitas: https://quiz.parenteers.id/",
+      "Mulai kuis",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C15",
+      1,
+      "Awalnya cuma nyiram tanaman. Lima menit kemudian sudah main air dan tanah. Kalau kamu sering bilang “boleh, di sini aja ya, habis itu kita bersihin bareng”, mungkin ini terasa familiar.",
+      "Percakapan",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C15",
+      2,
+      "Kebiasaan ini mungkin terasa dekat dengan The Focaccia. Satu kejadian belum menentukan hasilmu. Cari kuemu lewat 12 pertanyaan. Di hasilnya ada refleksi dan booklet aktivitas: https://quiz.parenteers.id/",
+      "Mulai kuis",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C16",
+      1,
+      "Melihat anak mencoba, lalu menahan diri untuk gak langsung membantu, juga sebuah tindakan. Dari luar kelihatannya diam. Di dalam kepala ada: “Aku lihat dulu caranya.”",
+      "Percakapan",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "C16",
+      2,
+      "Kebiasaan ini mungkin terasa dekat dengan The Bolu Kukus. Satu kejadian belum menentukan hasilmu. Cari kuemu lewat 12 pertanyaan. Di hasilnya ada refleksi dan booklet aktivitas: https://quiz.parenteers.id/",
+      "Mulai kuis",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "Z01",
+      1,
+      "Setelah baca hasil kuis, mungkin pertanyaan lanjutannya cukup: “Bagian mana yg paling terasa seperti hariku?” Kamu gak harus merasa cocok dengan setiap kalimat untuk mendapatkan bahan refleksi.",
+      "Percakapan",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ],
+    [
+      "Z01",
+      2,
+      "Parenting Bakes by Parenteers: 12 pertanyaan keseharian, karakter kue, bahan refleksi, dan booklet aktivitas. Buat seru-seruan & refleksi; bukan tes klinis. Cari kuemu: https://quiz.parenteers.id/",
+      "Mulai kuis",
+      null,
+      "Bank naskah terbaru; CTA diperbarui 6 Oktober 2026"
+    ]
+  ],
+  "Story": [
+    [
+      "Naskah Story harian",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      "42 urutan tiga panel; respons opsional; link kuis tersedia pada panel ajakan",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      "Hari ke",
+      "Kode",
+      "Panel 1",
+      "Panel 2",
+      "Panel 3",
+      "Ajakan",
+      "URL",
+      "Bahan / izin",
+      "Footer"
+    ],
+    [
+      1,
+      "L0",
+      "Kalau cara parenting kamu jadi kue, kamu yg mana? Ada yg sayangnya lewat bekal. Ada yg lewat pelukan. Parenting Bakes by Parenteers.",
+      "Parenting Bakes by Parenteers. 12 pertanyaan keseharian, 16 karakter kue.",
+      "Cari kuemu lewat 12 pertanyaan keseharian. Di hasilnya ada bahan refleksi dan booklet aktivitas.",
+      "Cari kuemu",
+      "https://quiz.parenteers.id/",
+      "Materi brand; jawaban audiens opsional",
+      "@parenteers · quiz.parenteers.id"
+    ],
+    [
+      2,
+      "WA01",
+      "Hari ini kamu butuh didengar soal apa?",
+      "Gak harus ada cerita besar. Satu hal kecil yg terasa berat juga boleh diakui.",
+      "Hari ini kamu butuh apa?",
+      "Balas kalau mau",
+      null,
+      "Materi brand; jawaban audiens opsional",
+      "@parenteers · quiz.parenteers.id"
+    ],
+    [
+      3,
+      "F01",
+      "Kenalan dulu, sebelum ngomongin kuenya.",
+      "Parenting Bakes by Parenteers. 12 pertanyaan keseharian, 16 karakter kue.",
+      "Cari kuemu lewat 12 pertanyaan keseharian. Di hasilnya ada bahan refleksi dan booklet aktivitas.",
+      "Cari kuemu",
+      "https://quiz.parenteers.id/",
+      "Materi brand; jawaban audiens opsional",
+      "@parenteers · quiz.parenteers.id"
+    ],
+    [
+      4,
+      "WA02",
+      "Setelah ngurus semua, kamu sempat cek tenagamu?",
+      "Kamu juga punya kebutuhan. Kuis ini mengajak melihat kebiasaanmu dengan ringan.",
+      "Kalau ingin kenalan dengan kebiasaanmu, coba 12 pertanyaan Parenting Bakes.",
+      "Cari kuemu",
+      "https://quiz.parenteers.id/",
+      "Materi brand; jawaban audiens opsional",
+      "@parenteers · quiz.parenteers.id"
+    ],
+    [
+      5,
+      "R02",
+      "Aku coba kuisnya. Ini hasil asliku.",
+      "Tampilkan hasil dan satu reaksi asli Christine setelah ia menyetujuinya.",
+      "Cari kuemu lewat 12 pertanyaan keseharian. Di hasilnya ada bahan refleksi dan booklet aktivitas.",
+      "Cari kuemu",
+      "https://quiz.parenteers.id/",
+      "Butuh hasil dan reaksi asli Christine",
+      "@parenteers · quiz.parenteers.id"
+    ],
+    [
+      6,
+      "WA03",
+      "Kalau cara parenting kamu jadi kue, kira-kira apa?",
+      "Ada 16 karakter, masing-masing punya kekuatan dan kebutuhan.",
+      "Kalau ingin kenalan dengan kebiasaanmu, coba 12 pertanyaan Parenting Bakes.",
+      "Cari kuemu",
+      "https://quiz.parenteers.id/",
+      "Materi brand; jawaban audiens opsional",
+      "@parenteers · quiz.parenteers.id"
+    ],
+    [
+      7,
+      "C01",
+      "Si paling bikin rencana, tapi meleset.",
+      "Hari ini: The Croquembouche. Kamu mungkin mengenali sebagian ceritanya. Satu kejadian belum menentukan hasil kuis.",
+      "Cari kuemu lewat 12 pertanyaan keseharian. Di hasilnya ada bahan refleksi dan booklet aktivitas.",
+      "Cari kuemu",
+      "https://quiz.parenteers.id/",
+      "Materi brand; jawaban audiens opsional",
+      "@parenteers · quiz.parenteers.id"
+    ],
+    [
+      8,
+      "C02",
+      "Si paling hafal urutan pagi seisi rumah.",
+      "Hari ini: The Lapis Legit. Kamu mungkin mengenali sebagian ceritanya. Satu kejadian belum menentukan hasil kuis.",
+      "Cari kuemu lewat 12 pertanyaan keseharian. Di hasilnya ada bahan refleksi dan booklet aktivitas.",
+      "Cari kuemu",
+      "https://quiz.parenteers.id/",
+      "Materi brand; jawaban audiens opsional",
+      "@parenteers · quiz.parenteers.id"
+    ],
+    [
+      9,
+      "WA04",
+      "Sudah baca hasilmu? Bagian mana yg terasa dekat?",
+      "Hasilnya boleh jadi bahan obrolan. Kamu gak harus cocok dengan setiap kalimat.",
+      "Cerita kalau mau",
+      "Balas kalau mau",
+      null,
+      "Materi brand; jawaban audiens opsional",
+      "@parenteers · quiz.parenteers.id"
+    ],
+    [
+      10,
+      "R01",
+      "Kopinya belum diminum. Giliranmu kapan?",
+      "Di hasil kuis ada refleksi dan booklet dengan ide merawat diri serta aktivitas bareng anak.",
+      "Cari kuemu lewat 12 pertanyaan keseharian. Di hasilnya ada bahan refleksi dan booklet aktivitas.",
+      "Cari kuemu",
+      "https://quiz.parenteers.id/",
+      "Materi brand; jawaban audiens opsional",
+      "@parenteers · quiz.parenteers.id"
+    ],
+    [
+      11,
+      "WA05",
+      "Di hasil kuis ada booklet. Kamu sudah sempat buka?",
+      "Ada ide merawat diri dan aktivitas bareng anak. Ambil yg sesuai keadaanmu.",
+      "Kalau ingin kenalan dengan kebiasaanmu, coba 12 pertanyaan Parenting Bakes.",
+      "Cari kuemu",
+      "https://quiz.parenteers.id/",
+      "Materi brand; jawaban audiens opsional",
+      "@parenteers · quiz.parenteers.id"
+    ],
+    [
+      12,
+      "C03",
+      "Si paling “tenang, sudah aku siapin”.",
+      "Hari ini: The Baguette. Kamu mungkin mengenali sebagian ceritanya. Satu kejadian belum menentukan hasil kuis.",
+      "Cari kuemu lewat 12 pertanyaan keseharian. Di hasilnya ada bahan refleksi dan booklet aktivitas.",
+      "Cari kuemu",
+      "https://quiz.parenteers.id/",
+      "Materi brand; jawaban audiens opsional",
+      "@parenteers · quiz.parenteers.id"
+    ],
+    [
+      13,
+      "EV01",
+      "Apa yg membuat kamu ingin mencoba kuisnya?",
+      "Mungkin penasaran kuenya, mungkin ada cerita yg terasa dekat.",
+      "Bagian mana yg bikin penasaran?",
+      "Balas kalau mau",
+      null,
+      "Materi brand; jawaban audiens opsional",
+      "@parenteers · quiz.parenteers.id"
+    ],
+    [
+      14,
+      "C04",
+      "Pergi sebentar. Isi tas kayak mau menginap.",
+      "Hari ini: The Milk Bread. Kamu mungkin mengenali sebagian ceritanya. Satu kejadian belum menentukan hasil kuis.",
+      "Cari kuemu lewat 12 pertanyaan keseharian. Di hasilnya ada bahan refleksi dan booklet aktivitas.",
+      "Cari kuemu",
+      "https://quiz.parenteers.id/",
+      "Materi brand; jawaban audiens opsional",
+      "@parenteers · quiz.parenteers.id"
+    ],
+    [
+      15,
+      "C05",
+      "Anak lagi suka dinosaurus. Kamu ikut belajar namanya.",
+      "Hari ini: The Cronut. Kamu mungkin mengenali sebagian ceritanya. Satu kejadian belum menentukan hasil kuis.",
+      "Cari kuemu lewat 12 pertanyaan keseharian. Di hasilnya ada bahan refleksi dan booklet aktivitas.",
+      "Cari kuemu",
+      "https://quiz.parenteers.id/",
+      "Materi brand; jawaban audiens opsional",
+      "@parenteers · quiz.parenteers.id"
+    ],
+    [
+      16,
+      "CM01",
+      "Di rumahmu, siapa yg biasa siapin barang cadangan?",
+      "Cara perhatian bisa beda-beda. Satu kebiasaan belum menentukan karakter.",
+      "Kalau ingin kenalan dengan kebiasaanmu, coba 12 pertanyaan Parenting Bakes.",
+      "Cari kuemu",
+      "https://quiz.parenteers.id/",
+      "Materi brand; jawaban audiens opsional",
+      "@parenteers · quiz.parenteers.id"
+    ],
+    [
+      17,
+      "C06",
+      "Bilang “gak boleh”, yg kepikiran malah kamu.",
+      "Hari ini: The Pandan Chiffon. Kamu mungkin mengenali sebagian ceritanya. Satu kejadian belum menentukan hasil kuis.",
+      "Cari kuemu lewat 12 pertanyaan keseharian. Di hasilnya ada bahan refleksi dan booklet aktivitas.",
+      "Cari kuemu",
+      "https://quiz.parenteers.id/",
+      "Materi brand; jawaban audiens opsional",
+      "@parenteers · quiz.parenteers.id"
+    ],
+    [
+      18,
+      "FB01",
+      "Ada bagian hasil yg kurang cocok?",
+      "Boleh kok. Ambil yg membantu kamu refleksi, sisanya gak perlu dipaksakan.",
+      "Bagian mana yg kurang cocok?",
+      "Balas kalau mau",
+      null,
+      "Materi brand; jawaban audiens opsional",
+      "@parenteers · quiz.parenteers.id"
+    ],
+    [
+      19,
+      "R03",
+      "Satu butuh rencana. Satu butuh ruang berubah.",
+      "Masing-masing coba sendiri, lalu ngobrol dari bagian yg terasa dekat. Gak ada skor kecocokan.",
+      "Cari kuemu lewat 12 pertanyaan keseharian. Di hasilnya ada bahan refleksi dan booklet aktivitas.",
+      "Cari kuemu",
+      "https://quiz.parenteers.id/",
+      "Materi brand; jawaban audiens opsional",
+      "@parenteers · quiz.parenteers.id"
+    ],
+    [
+      20,
+      "SH01",
+      "Kalau pasanganmu ikut coba, kira-kira sama atau beda?",
+      "Masing-masing jawab sendiri, lalu ngobrol dari satu bagian hasilnya.",
+      "Kalau ingin kenalan dengan kebiasaanmu, coba 12 pertanyaan Parenting Bakes.",
+      "Cari kuemu",
+      "https://quiz.parenteers.id/",
+      "Materi brand; jawaban audiens opsional",
+      "@parenteers · quiz.parenteers.id"
+    ],
+    [
+      21,
+      "C07",
+      "Suruh beresin mainan, ujungnya bikin permainan.",
+      "Hari ini: The Pretzel. Kamu mungkin mengenali sebagian ceritanya. Satu kejadian belum menentukan hasil kuis.",
+      "Cari kuemu lewat 12 pertanyaan keseharian. Di hasilnya ada bahan refleksi dan booklet aktivitas.",
+      "Cari kuemu",
+      "https://quiz.parenteers.id/",
+      "Materi brand; jawaban audiens opsional",
+      "@parenteers · quiz.parenteers.id"
+    ],
+    [
+      22,
+      "C08",
+      "Anak ditanya mau apa. Kamu selalu “ikut aja”.",
+      "Hari ini: The Muffin. Kamu mungkin mengenali sebagian ceritanya. Satu kejadian belum menentukan hasil kuis.",
+      "Cari kuemu lewat 12 pertanyaan keseharian. Di hasilnya ada bahan refleksi dan booklet aktivitas.",
+      "Cari kuemu",
+      "https://quiz.parenteers.id/",
+      "Materi brand; jawaban audiens opsional",
+      "@parenteers · quiz.parenteers.id"
+    ],
+    [
+      23,
+      "PD01",
+      "Hari ini kamu bisa bikin satu hal lebih sederhana?",
+      "Kalau sudah punya booklet, pilih satu ide yg sesuai tenaga dan keadaanmu.",
+      "Kalau ingin kenalan dengan kebiasaanmu, coba 12 pertanyaan Parenting Bakes.",
+      "Cari kuemu",
+      "https://quiz.parenteers.id/",
+      "Materi brand; jawaban audiens opsional",
+      "@parenteers · quiz.parenteers.id"
+    ],
+    [
+      24,
+      "C09",
+      "Si paling ngajak jalan. Pulangnya paling butuh menyendiri.",
+      "Hari ini: The Molten Lava Cake. Kamu mungkin mengenali sebagian ceritanya. Satu kejadian belum menentukan hasil kuis.",
+      "Cari kuemu lewat 12 pertanyaan keseharian. Di hasilnya ada bahan refleksi dan booklet aktivitas.",
+      "Cari kuemu",
+      "https://quiz.parenteers.id/",
+      "Materi brand; jawaban audiens opsional",
+      "@parenteers · quiz.parenteers.id"
+    ],
+    [
+      25,
+      "RP01",
+      "Setelah ketemu kuemu, ada satu kalimat yg kamu ingat?",
+      "Boleh tentang kekuatanmu, boleh tentang kebutuhan yg ingin kamu jaga.",
+      "Kalimat mana yg kamu ingat?",
+      "Balas kalau mau",
+      null,
+      "Repost opsional; izin wajib; naskah brand tersedia",
+      "@parenteers · quiz.parenteers.id"
+    ],
+    [
+      26,
+      "S01",
+      "Hari ini, versi cukupnya apa?",
+      "Parenting Bakes by Parenteers. 12 pertanyaan keseharian, 16 karakter kue.",
+      "Cari kuemu lewat 12 pertanyaan keseharian. Di hasilnya ada bahan refleksi dan booklet aktivitas.",
+      "Cari kuemu",
+      "https://quiz.parenteers.id/",
+      "Materi brand; jawaban audiens opsional",
+      "@parenteers · quiz.parenteers.id"
+    ],
+    [
+      27,
+      "EV02",
+      "Cara pulih tiap orang bisa beda. Kamu biasanya gimana?",
+      "Ada yg pengin ngobrol. Ada yg pengin sendiri sebentar.",
+      "Kamu pulihnya lewat apa?",
+      "Balas kalau mau",
+      null,
+      "Materi brand; jawaban audiens opsional",
+      "@parenteers · quiz.parenteers.id"
+    ],
+    [
+      28,
+      "C10",
+      "“Lima menit lagi” kok jadi setengah jam?",
+      "Hari ini: The Cinnamon Roll. Kamu mungkin mengenali sebagian ceritanya. Satu kejadian belum menentukan hasil kuis.",
+      "Cari kuemu lewat 12 pertanyaan keseharian. Di hasilnya ada bahan refleksi dan booklet aktivitas.",
+      "Cari kuemu",
+      "https://quiz.parenteers.id/",
+      "Materi brand; jawaban audiens opsional",
+      "@parenteers · quiz.parenteers.id"
+    ],
+    [
+      29,
+      "C11",
+      "Rencana berubah? “Ya udah, cari cara lain.”",
+      "Hari ini: The Bagel. Kamu mungkin mengenali sebagian ceritanya. Satu kejadian belum menentukan hasil kuis.",
+      "Cari kuemu lewat 12 pertanyaan keseharian. Di hasilnya ada bahan refleksi dan booklet aktivitas.",
+      "Cari kuemu",
+      "https://quiz.parenteers.id/",
+      "Materi brand; jawaban audiens opsional",
+      "@parenteers · quiz.parenteers.id"
+    ],
+    [
+      30,
+      "PD02",
+      "Booklet gak harus dibaca atau dikerjakan sekaligus.",
+      "Pilih satu bagian yg terasa berguna. Kegiatan boleh dilewati.",
+      "Kalau ingin kenalan dengan kebiasaanmu, coba 12 pertanyaan Parenting Bakes.",
+      "Cari kuemu",
+      "https://quiz.parenteers.id/",
+      "Materi brand; jawaban audiens opsional",
+      "@parenteers · quiz.parenteers.id"
+    ],
+    [
+      31,
+      "C12",
+      "Minggu di rumah aja. Kok jadi merasa kurang?",
+      "Hari ini: The Banana Bread. Kamu mungkin mengenali sebagian ceritanya. Satu kejadian belum menentukan hasil kuis.",
+      "Cari kuemu lewat 12 pertanyaan keseharian. Di hasilnya ada bahan refleksi dan booklet aktivitas.",
+      "Cari kuemu",
+      "https://quiz.parenteers.id/",
+      "Materi brand; jawaban audiens opsional",
+      "@parenteers · quiz.parenteers.id"
+    ],
+    [
+      32,
+      "CM02",
+      "Mau bikin pembuka obrolan saat ketemu parents lain?",
+      "Masing-masing coba kuis, lalu cerita satu bagian hasil yg terasa dekat.",
+      "Kalau ingin kenalan dengan kebiasaanmu, coba 12 pertanyaan Parenting Bakes.",
+      "Cari kuemu",
+      "https://quiz.parenteers.id/",
+      "Materi brand; jawaban audiens opsional",
+      "@parenteers · quiz.parenteers.id"
+    ],
+    [
+      33,
+      "R04",
+      "Cuma keluar sebentar. Kok bolak-balik pintu?",
+      "Parenting Bakes by Parenteers. 12 pertanyaan keseharian, 16 karakter kue.",
+      "Cari kuemu lewat 12 pertanyaan keseharian. Di hasilnya ada bahan refleksi dan booklet aktivitas.",
+      "Cari kuemu",
+      "https://quiz.parenteers.id/",
+      "Materi brand; jawaban audiens opsional",
+      "@parenteers · quiz.parenteers.id"
+    ],
+    [
+      34,
+      "FB02",
+      "Setelah coba, kamu ingin mengajak siapa?",
+      "Pasangan, teman, atau gak siapa-siapa dulu. Berbagi tetap pilihan.",
+      "Apa alasanmu ingin mengajak?",
+      "Balas kalau mau",
+      null,
+      "Materi brand; jawaban audiens opsional",
+      "@parenteers · quiz.parenteers.id"
+    ],
+    [
+      35,
+      "C13",
+      "Anak bilang “yuk”, kamu gampang ikut.",
+      "Hari ini: The Pavlova. Kamu mungkin mengenali sebagian ceritanya. Satu kejadian belum menentukan hasil kuis.",
+      "Cari kuemu lewat 12 pertanyaan keseharian. Di hasilnya ada bahan refleksi dan booklet aktivitas.",
+      "Cari kuemu",
+      "https://quiz.parenteers.id/",
+      "Materi brand; jawaban audiens opsional",
+      "@parenteers · quiz.parenteers.id"
+    ],
+    [
+      36,
+      "C14",
+      "Anak sudah cerita semua. Kamu cerita ke siapa?",
+      "Hari ini: The Tiramisu. Kamu mungkin mengenali sebagian ceritanya. Satu kejadian belum menentukan hasil kuis.",
+      "Cari kuemu lewat 12 pertanyaan keseharian. Di hasilnya ada bahan refleksi dan booklet aktivitas.",
+      "Cari kuemu",
+      "https://quiz.parenteers.id/",
+      "Materi brand; jawaban audiens opsional",
+      "@parenteers · quiz.parenteers.id"
+    ],
+    [
+      37,
+      "SH02",
+      "Cara sayang kita kadang kelihatan dari hal kecil.",
+      "Ajak satu orang dekat mencoba kalau kamu ingin ngobrol dari hasilnya.",
+      "Kalau ingin kenalan dengan kebiasaanmu, coba 12 pertanyaan Parenting Bakes.",
+      "Cari kuemu",
+      "https://quiz.parenteers.id/",
+      "Materi brand; jawaban audiens opsional",
+      "@parenteers · quiz.parenteers.id"
+    ],
+    [
+      38,
+      "C15",
+      "Anak main air. Kamu sudah siap ngepel.",
+      "Hari ini: The Focaccia. Kamu mungkin mengenali sebagian ceritanya. Satu kejadian belum menentukan hasil kuis.",
+      "Cari kuemu lewat 12 pertanyaan keseharian. Di hasilnya ada bahan refleksi dan booklet aktivitas.",
+      "Cari kuemu",
+      "https://quiz.parenteers.id/",
+      "Materi brand; jawaban audiens opsional",
+      "@parenteers · quiz.parenteers.id"
+    ],
+    [
+      39,
+      "RP02",
+      "Dari hasil kuismu, bagian apa yg mau kamu bawa ke minggu depan?",
+      "Satu hal kecil cukup. Gak perlu mengubah seluruh rutinitas.",
+      "Satu hal yg ingin kamu jaga?",
+      "Balas kalau mau",
+      null,
+      "Repost opsional; izin wajib; naskah brand tersedia",
+      "@parenteers · quiz.parenteers.id"
+    ],
+    [
+      40,
+      "C16",
+      "“Biar dia coba dulu.” Padahal tangan sudah gatel.",
+      "Hari ini: The Bolu Kukus. Kamu mungkin mengenali sebagian ceritanya. Satu kejadian belum menentukan hasil kuis.",
+      "Cari kuemu lewat 12 pertanyaan keseharian. Di hasilnya ada bahan refleksi dan booklet aktivitas.",
+      "Cari kuemu",
+      "https://quiz.parenteers.id/",
+      "Materi brand; jawaban audiens opsional",
+      "@parenteers · quiz.parenteers.id"
+    ],
+    [
+      41,
+      "EV03",
+      "Apa yg paling kamu ingat dari Parenting Bakes?",
+      "Kuemu, satu refleksi, atau ide di booklet?",
+      "Apa yg terasa berguna?",
+      "Balas kalau mau",
+      null,
+      "Materi brand; jawaban audiens opsional",
+      "@parenteers · quiz.parenteers.id"
+    ],
+    [
+      42,
+      "Z01",
+      "Sudah ketemu kuemu? Bawa satu hal ke keseharian.",
+      "Parenting Bakes by Parenteers. 12 pertanyaan keseharian, 16 karakter kue.",
+      "Cari kuemu lewat 12 pertanyaan keseharian. Di hasilnya ada bahan refleksi dan booklet aktivitas.",
+      "Cari kuemu",
+      "https://quiz.parenteers.id/",
+      "Materi brand; jawaban audiens opsional",
+      "@parenteers · quiz.parenteers.id"
+    ]
+  ],
+  "Komunitas": [
+    [
+      "Undangan dan percakapan",
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      "Gunakan hubungan nyata; izin admin sebelum kirim ke grup",
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      "Kode",
+      "Penerima",
+      "Angle / tujuan",
+      "Naskah pesan",
+      "Rencana penggunaan",
+      "Batas / izin"
+    ],
+    [
+      "WA01",
+      "Parents yang dikenal",
+      "Penasaran kue",
+      "Kami bikin Parenting Bakes: 12 pertanyaan keseharian, hasilnya karakter kue. Penasaran kalau cara parenting kamu jadi kue, kamu yg mana? Kalau lagi ada ruang, boleh coba: https://quiz.parenteers.id/",
+      "5 undangan D2",
+      "Satu kiriman personal; pilih orang yang memang relevan."
+    ],
+    [
+      "WA02",
+      "Parents berbeda yang dikenal",
+      "Merasa dipahami",
+      "Ada banyak hal kecil yg kita urus sebagai orang tua. Parenting Bakes mengajak melihat kebiasaan itu lewat 12 pertanyaan, buat seru-seruan dan refleksi. Kalau lagi ada ruang, boleh coba: https://quiz.parenteers.id/",
+      "5 undangan D4",
+      "Jangan menambahkan diagnosis atau janji perubahan anak."
+    ],
+    [
+      "WA03",
+      "Parents berbeda yang dikenal",
+      "Humor keseharian",
+      "Pergi sebentar, isi tas kayak mau menginap. Ada yg begini juga? Kebiasaan sehari-hari jadi bahan kuis Parenting Bakes. Kalau penasaran karakter kuemu, coba di sini: https://quiz.parenteers.id/",
+      "5 undangan D6",
+      "Contoh editorial; satu kebiasaan tidak menentukan tipe."
+    ],
+    [
+      "WA04",
+      "Parents baru yang dikenal",
+      "Pesan yang diperjelas",
+      "Kami bikin kuis ringan tentang keseharian jadi orang tua. Ada 12 pertanyaan, karakter kue, dan bahan refleksi. Kalau ingin coba, ini link-nya: https://quiz.parenteers.id/",
+      "5 undangan D9",
+      "Boleh sesuaikan pembuka dengan feedback asli D2–D6."
+    ],
+    [
+      "WA05",
+      "Parents baru yang dikenal",
+      "Manfaat hasil",
+      "Parenting Bakes mengajak kenalan dengan kebiasaanmu lewat 12 pertanyaan. Di hasilnya ada karakter kue dan booklet berisi ide merawat diri serta aktivitas bareng anak. Kalau ingin coba: https://quiz.parenteers.id/",
+      "5 undangan D11",
+      "Uji ketertarikan pada booklet; jangan menjanjikan semua ide cocok."
+    ],
+    [
+      "WA06",
+      "Admin komunitas yang dikenal",
+      "Minta izin",
+      "Halo, kami dari Parenteers. Kami punya kuis ringan, Parenting Bakes, tentang keseharian jadi orang tua. Ada 12 pertanyaan dan booklet aktivitas di hasilnya. Boleh kami bagikan satu undangan singkat di grup? Ini buat seru-seruan dan refleksi, bukan tes klinis.",
+      "D16 bila ada akses",
+      "Kirim ke grup hanya setelah admin mengizinkan."
+    ],
+    [
+      "WA07",
+      "Peserta mengajak pasangan atau teman",
+      "Obrolan setelah hasil",
+      "Aku dapat [NAMA KUE HASIL SENDIRI] di Parenting Bakes. Ada bagian yg terasa dekat sama hariku. Coba juga kalau mau, penasaran kita mirip atau beda: https://quiz.parenteers.id/",
+      "D20 / D37",
+      "Peserta mengirim sendiri bila mau; tidak perlu mengirim hasil ke tim."
+    ],
+    [
+      "WA08",
+      "Peserta yang setuju dihubungi kembali",
+      "Feedback",
+      "Kalau sudah sempat coba, apa yg bikin kamu mulai? Kamu sampai hasil atau berhenti di tengah? Satu bagian yg terasa dekat atau kurang cocok juga boleh diceritakan. Kalau belum sempat, gak apa-apa.",
+      "Sekali setelah undangan",
+      "Persetujuan follow-up diperlukan; jangan menekan untuk menyelesaikan."
+    ],
+    [
+      "CM01",
+      "Komunitas / pertemuan parents",
+      "Pembuka obrolan",
+      "Kalau ada ruang di pertemuan berikutnya, kita bisa coba kuis masing-masing lalu ngobrol dari satu bagian hasil yg terasa dekat. Gak ada tipe terbaik, dan cerita pribadi boleh disimpan sendiri.",
+      "Setelah izin penyelenggara",
+      "Lokasi dan acara belum ditentukan; tanpa menjanjikan sesi yang belum ada."
+    ]
+  ],
+  "Pilot": [
+    [
+      "Pilot dan evaluasi",
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      "D1–D14: 25 undangan diusulkan; review lanjut D27 dan D41",
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      "Hari",
+      "Tahap",
+      "Penanggung jawab",
+      "Tindakan",
+      "Data / input",
+      "Catatan"
+    ],
+    [
+      "D1",
+      "Persiapan",
+      "Tim konten",
+      "Pastikan link, booklet, materi L0, dan cara mencatat feedback.",
+      "Tanggal mulai; zona waktu; kesiapan aset",
+      "Ardy memeriksa pengalaman HP dan Instagram yang masih pending."
+    ],
+    [
+      "D2",
+      "Penasaran kue",
+      "Tim komunitas",
+      "Undang 5 parents berbeda yang dikenal dengan WA01.",
+      "Orang diundang; pesan; alasan mencoba",
+      "Nama dan cerita pribadi tidak perlu disimpan."
+    ],
+    [
+      "D4",
+      "Merasa dipahami",
+      "Tim komunitas",
+      "Undang 5 parents berbeda dengan WA02.",
+      "Alasan mencoba; apakah sampai hasil",
+      "Kelompok bisa berbeda karakteristik; hindari klaim perbandingan kausal."
+    ],
+    [
+      "D6",
+      "Humor keseharian",
+      "Tim komunitas",
+      "Undang 5 parents berbeda dengan WA03.",
+      "Apakah hook membuat ingin mencoba",
+      "Tidak menyimpulkan tipe dari satu cerita."
+    ],
+    [
+      "D9",
+      "Perbaikan pesan",
+      "Tim komunitas",
+      "Tinjau feedback awal. Undang 5 parents baru dengan pesan yang diperjelas.",
+      "Apa yang diubah dan alasan perubahan",
+      "Follow-up sebelumnya hanya bila disetujui."
+    ],
+    [
+      "D11",
+      "Manfaat hasil",
+      "Tim komunitas",
+      "Undang 5 parents baru dengan WA05.",
+      "Apakah booklet menarik; manfaat yang dicari",
+      "25 undangan total adalah rencana kerja, bukan peserta yang dijamin."
+    ],
+    [
+      "D13",
+      "Review pilot",
+      "Ardy dan tim",
+      "Bandingkan alasan mulai, selesai, berhenti, serta beban produksi.",
+      "Sumber angka; feedback anonim; keputusan",
+      "Bukan A/B test konklusif; lanjutkan pesan yang punya sinyal tindakan."
+    ],
+    [
+      "D14",
+      "Keputusan berikutnya",
+      "Ardy dan tim",
+      "Pilih pesan minggu 3–4, akses komunitas, dan perubahan yang diperlukan.",
+      "Pesan yang diulang; hambatan yang diperbaiki",
+      "Hentikan klaim/pesan yang membingungkan atau terasa menghakimi."
+    ],
+    [
+      "D27",
+      "Review kedua",
+      "Ardy dan tim",
+      "Tinjau partisipasi tercatat, kegunaan booklet, dan undangan sukarela.",
+      "Kanal yang benar-benar digunakan",
+      "Jangan menggabungkan klik, laporan peserta, dan event."
+    ],
+    [
+      "D41",
+      "Review enam minggu",
+      "Ardy dan tim",
+      "Pilih materi yang layak diulang dan kapasitas ritme berikutnya.",
+      "Bukti; keputusan; kebutuhan produksi",
+      "Iklan atau kerja sama berbayar baru dibahas bila budget dan bukti tersedia."
+    ]
+  ],
+  "Catatan Hasil": [
+    [
+      "Catatan hasil harian",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      "Kosong berarti belum ada data; event dan laporan peserta tidak digabung",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      "Hari ke",
+      "Tanggal",
+      "Kode",
+      "Sumber data / kanal",
+      "Klik link",
+      "Event mulai",
+      "Event selesai",
+      "Rasio event",
+      "Peserta lapor mulai",
+      "Peserta lapor selesai",
+      "Lapor berbagi",
+      "Lapor buka booklet",
+      "Feedback / keputusan"
+    ],
+    [
+      1,
+      null,
+      "L0",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      2,
+      null,
+      "WA01",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      3,
+      null,
+      "F01",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      4,
+      null,
+      "WA02",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      5,
+      null,
+      "R02",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      6,
+      null,
+      "WA03",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      7,
+      null,
+      "C01",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      8,
+      null,
+      "C02",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      9,
+      null,
+      "WA04",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      10,
+      null,
+      "R01",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      11,
+      null,
+      "WA05",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      12,
+      null,
+      "C03",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      13,
+      null,
+      "EV01",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      14,
+      null,
+      "C04",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      15,
+      null,
+      "C05",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      16,
+      null,
+      "CM01",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      17,
+      null,
+      "C06",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      18,
+      null,
+      "FB01",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      19,
+      null,
+      "R03",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      20,
+      null,
+      "SH01",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      21,
+      null,
+      "C07",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      22,
+      null,
+      "C08",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      23,
+      null,
+      "PD01",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      24,
+      null,
+      "C09",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      25,
+      null,
+      "RP01",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      26,
+      null,
+      "S01",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      27,
+      null,
+      "EV02",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      28,
+      null,
+      "C10",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      29,
+      null,
+      "C11",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      30,
+      null,
+      "PD02",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      31,
+      null,
+      "C12",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      32,
+      null,
+      "CM02",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      33,
+      null,
+      "R04",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      34,
+      null,
+      "FB02",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      35,
+      null,
+      "C13",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      36,
+      null,
+      "C14",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      37,
+      null,
+      "SH02",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      38,
+      null,
+      "C15",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      39,
+      null,
+      "RP02",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      40,
+      null,
+      "C16",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      41,
+      null,
+      "EV03",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      42,
+      null,
+      "Z01",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      "Definisi data",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      "Klik link: tindakan klik, bukan selesai. Event mulai/selesai: hanya diisi dari event yang benar-benar tercatat. Laporan peserta: self-report, bukan pengguna unik otomatis.",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      "Rasio event: selesai/mulai per hari, bukan cohort conversion atau proporsi parents unik. Selesai hari ini bisa berasal dari mulai sebelumnya. Isi sumber, periode, dan definisi pada kolom D.",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ]
+  ],
+  "Ketentuan": [
+    [
+      "Ketentuan copy dan produksi",
+      null
+    ],
+    [
+      "Aturan yang berlaku untuk seluruh materi",
+      null
+    ],
+    [
+      null,
+      null
+    ],
+    [
+      "Topik",
+      "Ketentuan"
+    ],
+    [
+      "Nada",
+      "Percakapan sehari-hari Indonesia; yg, dr, tp, gak boleh dipakai. Jangan menghakimi atau memberi peringkat."
+    ],
+    [
+      "Brand",
+      "Parenting Bakes by Parenteers; @parenteers; quiz.parenteers.id. Identitas terlihat pada panel yang mungkin discreenshot."
+    ],
+    [
+      "Disclaimer",
+      "Buat seru-seruan & refleksi; bukan tes klinis."
+    ],
+    [
+      "CTA",
+      "Satu ajakan utama. Feed menuju link bio yang sudah diarahkan ke kuis; Story link jika tersedia; Threads dan WA memakai URL awal kuis."
+    ],
+    [
+      "Ilustrasi kejadian",
+      "Contoh adalah ilustrasi editorial, bukan pengalaman Christine kecuali ia mengonfirmasi."
+    ],
+    [
+      "Christine",
+      "Hasil dan reaksinya asli. Placeholder R02 wajib diisi sebelum tayang. Pilih satu versi Z01 sesuai bahan nyata."
+    ],
+    [
+      "Berbagi",
+      "Sukarela; tidak mensyaratkan follow, tag, share, atau komentar untuk memperoleh hasil dan booklet."
+    ],
+    [
+      "Repost",
+      "Minta izin, batasi identitas, dan jangan menampilkan nama anak atau cerita sensitif. Materi brand menjadi alternatif bila belum ada kiriman."
+    ],
+    [
+      "Pasangan",
+      "Masing-masing menjawab sendiri. Belum ada fitur compare otomatis atau skor kecocokan."
+    ],
+    [
+      "Booklet",
+      "Berisi ide merawat diri dan aktivitas bareng anak. Pilih sesuai keadaan; kegiatan boleh dilewati. Tidak menjanjikan memperbaiki anak."
+    ],
+    [
+      "Format produksi",
+      "Carousel 1080×1350; Reel dan Story 1080×1920 sebagai ukuran master kerja. Subtitle dan teks terbaca tanpa suara."
+    ],
+    [
+      "Ritme",
+      "24 feed selama 6 minggu. Agenda non-feed dapat berupa membalas, meminta izin, atau evaluasi tanpa posting baru."
+    ],
+    [
+      "Jam tayang",
+      "Tanggal mulai dan zona waktu belum disetujui. Jika memakai 20.00, perlakukan sebagai slot percobaan, bukan jam terbaik."
+    ],
+    [
+      "Pemeriksaan HP",
+      "Pastikan link utama dan PDF terbuka. Ardy masih memegang acceptance revisi app di Instagram dan viewport pendek."
+    ],
+    [
+      "Angka",
+      "Jangan mengisi metrik dengan perkiraan peserta atau hasil buatan. Kosong berarti belum ada data. Klik tidak sama dengan selesai."
+    ],
+    [
+      "Privasi pilot",
+      "Catat alasan secara anonim, tanpa nama anak, nomor kontak, atau cerita sensitif. Izin diperlukan untuk follow-up dan penggunaan cerita."
+    ]
+  ],
+  "Sumber": [
+    [
+      "Sumber dan batas informasi",
+      null,
+      null,
+      null
+    ],
+    [
+      "Data produk dan dokumen lokal; tidak ada audit performa platform",
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      "Sumber",
+      "Tanggal / konteks",
+      "Digunakan untuk",
+      "URL"
+    ],
+    [
+      "Parenting-Bakes-Semua-Konten-Marketing.xlsx",
+      "30 September; wording Molten diperbarui 5 Oktober 2026",
+      "Sumber kalender dan naskah Reel lama. Versi lima slide diupgrade pada file baru.",
+      null
+    ],
+    [
+      "instagram-threads-content-bank.md",
+      "Versi lokal 6 Oktober 2026",
+      "Sumber C01–C16 delapan slide, caption, Threads, dan aturan editorial.",
+      null
+    ],
+    [
+      "instagram-threads-launch-plan.md",
+      "Disusun 30 September 2026",
+      "Sumber kampanye enam minggu dan prinsip distribusi; jadwal baru ada pada workbook ini.",
+      null
+    ],
+    [
+      "parent-participation-brainstorming-brief.md",
+      "5 Oktober 2026",
+      "Dasar hipotesis partisipasi, pilot, manfaat hasil, dan undangan sukarela.",
+      null
+    ],
+    [
+      "types.json",
+      "Registry proyek saat penyusunan",
+      "Nama dan kode 16 karakter; semua dicek saat generasi.",
+      null
+    ],
+    [
+      "progress.md",
+      "Catatan proyek 6 Oktober 2026",
+      "GA4 base tag terpasang; event khusus dan Realtime belum dikonfirmasi. Bukan audit analytics langsung.",
+      null
+    ],
+    [
+      "Tujuan kuis",
+      "Produk",
+      "Link awal kuis untuk semua peserta baru.",
+      "https://quiz.parenteers.id/"
+    ],
+    [
+      "Brand",
+      "Produk",
+      "Parenteers dan Instagram @parenteers.",
+      "https://parenteers.id/"
+    ],
+    [
+      "Instagram",
+      "Akun tujuan",
+      "Handle yang digunakan dalam copy.",
+      "https://www.instagram.com/parenteers/"
+    ],
+    [
+      "Data kampanye",
+      "Belum tersedia",
+      "Workbook berisi rencana kreatif. Tidak ada audit Insights, tren platform, reach, konversi, atau hasil pilot buatan.",
+      null
+    ]
+  ]
+}

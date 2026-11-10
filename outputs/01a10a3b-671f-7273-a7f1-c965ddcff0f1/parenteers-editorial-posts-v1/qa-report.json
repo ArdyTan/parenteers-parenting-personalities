@@ -1,0 +1,77 @@
+{
+  "generated": "2026-10-06T04:02:54.346Z",
+  "network": "HTTP/HTTPS blocked in renderer",
+  "postSafeMargins": 90,
+  "files": [
+    {
+      "file": "vector/01-coffee",
+      "width": 1080,
+      "height": 1350,
+      "fonts": true,
+      "violations": []
+    },
+    {
+      "file": "vector/02-bag",
+      "width": 1080,
+      "height": 1350,
+      "fonts": true,
+      "violations": []
+    },
+    {
+      "file": "vector/03-quiz",
+      "width": 1080,
+      "height": 1350,
+      "fonts": true,
+      "violations": []
+    },
+    {
+      "file": "gpt-image/01-coffee",
+      "width": 1080,
+      "height": 1350,
+      "fonts": true,
+      "violations": []
+    },
+    {
+      "file": "gpt-image/02-bag",
+      "width": 1080,
+      "height": 1350,
+      "fonts": true,
+      "violations": []
+    },
+    {
+      "file": "gpt-image/03-quiz",
+      "width": 1080,
+      "height": 1350,
+      "fonts": true,
+      "violations": []
+    },
+    {
+      "file": "design-system/design-system",
+      "width": 1080,
+      "height": 1350,
+      "fonts": true,
+      "violations": []
+    },
+    {
+      "file": "design-system/grid-example",
+      "width": 1080,
+      "height": 1350,
+      "fonts": true,
+      "violations": []
+    }
+  ],
+  "gallery": [
+    {
+      "width": 1280,
+      "overflow": false,
+      "posts": 6,
+      "guides": 6
+    },
+    {
+      "width": 390,
+      "overflow": false,
+      "posts": 6,
+      "guides": 6
+    }
+  ]
+}

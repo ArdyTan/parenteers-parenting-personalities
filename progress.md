@@ -16,30 +16,76 @@
 | 5 — Share pipeline | ✅ done; live domain + 16 OG shells deployed and device-tested (confirmed by Ardy 2026-08-23) |
 | 5.5 — Brilliant-spec interface revision | ✅ done; headless and real-device review complete (confirmed by Ardy 2026-08-23) |
 | 6 — QA hardening | ✅ done; Ardy confirmed testing across the target devices (2026-08-23) |
-| 7 — Launch extras (optional) | 🟨 sound layer shipped early (2026-08-02); analytics, founder-note flag and Awwwards assets remain |
+| 7 — Launch extras (optional) | 🟨 sound layer shipped early (2026-08-02); GA4 base tag deployed and HTML-verified (2026-10-01); custom quiz events, founder-note flag and Awwwards assets remain |
 | 8 — Personality PDF booklet | 🟨 A is the sole final template; the approved Saweria closing is live across all 32 ID/EN booklets and the shared Result component covers all 16 types. Worker version `aa06f077-1bae-4378-88ee-e71198542425` deployed and hash-verified 2026-09-08; real-device WebView sign-off remains |
 | 9 — Single-action questions and flow cleanup | 🟨 responsive tap-only questions plus Landing/Opening/Baking/Gallery cleanup deployed 2026-09-30; Ardy's browser/device review pending |
 
-**Marketing (2026-09-30):** six-week organic Instagram/Threads plan and full copy bank
-drafted in `docs/marketing/`. Includes an overview of all 16 types, 16 individual
-personality carousels, one reflection carousel, six Reels, 24 two-post Threads,
-Story prompts, and three main Christine appearances. All 16 personality carousels now
-have eight slides with revised everyday Indonesian scenarios (2026-09-30). The older
-five-slide C01 preview and prior Excel export predate this revision and need updating
-before production.
-Remaining production, personal-script review, launch date/timezone, publishing, and
-performance measurement remain pending.
+**Social media handover (2026-10-13):** complete in Drive [Konten Social Media](https://drive.google.com/drive/folders/111Q9IOs4sa3MjswKtJX8JXL9dIyz7gNf).
+Separate Feed/Story folders each contain one one-tab Google Sheet and Materi.
+40 Feed / 58 Story entries include the original 16 single-card alternatives per
+format. Six requested columns, direct folder links, native checkboxes, filters
+and frozen headers. All 98 live rows matched; 330 ordered JPGs retain IDs/sizes;
+312 support files and four source spreadsheets preserved in a separate archive.
+Team permissions verified. Operations/rollback: `docs/marketing/social-media-handover.md`;
+evidence: `outputs/social-media-handover-2026-10-13/`. Historical posted status
+is not evidenced, so checkboxes start unchecked with a visible instruction.
+
+**Marketing (2026-10-06):** strategy and daily workbook v2 delivered:
+`outputs/01a10a3b-671f-7273-a7f1-c965ddcff0f1/Parenting-Bakes-Strategi-dan-Konten-Harian-v2.xlsx`.
+13 tabs cover 42 agendas, 24 feed posts, 18 carousels / 143 slides (128 personality
+slides), six Reels, 48 Threads, 42 Story sequences, invitations, pilot and blank
+measurement inputs. Original marketing MDs remain source copy; the workbook owns
+the upgraded sequence and CTAs. Uploaded to `🎏 Parenteers → 12 Personalities`;
+previous complete XLSX renamed with `(old)` locally and in Drive. Old five-slide
+C01 visual preview needs replacement. Asset production, Christine's real inputs,
+launch date/timezone, social publication and performance measurement remain pending.
+
+**Instagram batch (2026-10-06):** all 24 feed codes and 42 Story days from the v2
+workbook are rendered in
+`/home/ardy/Projects/Parenteers/Parenting Personalities/Instagram Posts/Campaign-v2-JPG`.
+172 feed JPGs (143 carousel source slides + 29 static Reel-adaptation slides),
+126 Story JPGs; captions, Threads pairs, alt text, calendar, source mapping and
+per-post upload notes accompany them. Ardy authorized replacing R02's missing
+Christine result with a Parenteers brand demo; source workbook remains intact.
+
+**Creative revision delivered:** Ardy rejected the simple vector motifs, then
+chose built-in generation with model-name uncertainty and supplied rule-v2
+composition. Active complete batch is `Instagram Posts/Campaign-v3-Rule-v2-JPG/`:
+all 298 JPGs repaired with unique illustration per group, alternating layouts,
+text-only vertical centering and edge-to-edge bottom-cropped art. Existing 13
+generative assets supply scenes, original official PNGs anchor personality covers.
+Copy, dimensions, text/brand margins and folder structure remain verified.
+Exact model name is unverified; no claim that the model is GPT Image 2. No SDK
+installation or API-key setup performed. Prior vector proof retained separately.
 
 ## Next action
 
-**Marketing handoff:** review the revised eight-slide C01–C16 copy in
-`docs/marketing/instagram-threads-content-bank.md` and synchronized hooks in
-`docs/marketing/instagram-threads-launch-plan.md`; refresh the previous C01 preview
-and workbook from the revised copy when producing assets. Choose the launch Monday/audience
-timezone, produce week 1–2 assets, and have Christine supply her actual quiz result
-and personal reaction for R02. Primary CTA is the quiz; secondary is Instagram
-`@parenteers`. No account changes, external uploads, scheduling, or tracking activation
-were performed. Local source checks found no quiz-start/completion event wiring;
+**Cover update (2026-10-06):** all 16 C01–C16 feed slide-1 JPEGs in active Campaign v3 now use Ardy's original curved-title designs supplied locally in `Carousel Covers/Parenting Personalities/feed`. Exact JPEG bytes preserved; 282 other exports, caption and Threads hashes unchanged. Original cover design supersedes generated cover copy/layout. Review index and `Parenteers-16-Original-Covers-Upload.zip` for manual upload. Story covers remain unchanged.
+
+**Latest design rule (2026-10-06):** no repeated illustration within a carousel;
+alternate image/text-only pages; text vertically centered on text-only pages;
+image pages use wide bottom-anchored edge bleed/crop per Ardy's Croquembouche
+reference. 90px safety now applies to text/brand, not illustration. Current rule
+is `Instagram Posts/design-system/CAROUSEL-RULES-v2.md`. Applied to every existing
+post in `Instagram Posts/Campaign-v3-Rule-v2-JPG/`: 298 JPGs / 66 groups; no
+repeated illustration within a group. C01 proof remains the composition reference.
+
+**Immediate:** Ardy reviews `Campaign-v3-Rule-v2-JPG/index.html` and the images
+on HP/Instagram preview. Use this rule-v2 version for production review;
+do not resume the rejected simple vector motifs. Model identity remains unverified
+under the built-in route Ardy selected. All local exports are complete.
+
+**Marketing handoff:** the manager uses the new Feed/Story Daftar Posting sheets
+and their direct Materi links; see `docs/marketing/social-media-handover.md`.
+Original v2 planning/content workbooks remain in the separate Drive archive.
+Review copy and compressed Instagram previews before publication; launch date
+and historical posted status still need actual team information. R02 is a brand
+demo per Ardy's decision; its production assets do not require a Christine result.
+F01/Z01 founder wording still merits her review, recorded beside those rows.
+Pilot proposes 25 invitations on D2/D4/D6/D9/D11. No messages or social posts
+sent/scheduled. Drive handover restructuring was authorized and verified;
+no tracking changes. Primary CTA is the quiz; secondary is Instagram
+`@parenteers`. Local source checks found no quiz-start/completion event wiring;
 link taps must not be reported as quiz completions. Existing device acceptance below
 remains open.
 
@@ -115,6 +161,284 @@ Phase 0–6 are complete by Ardy's confirmation; Phase 7 remains intentionally o
 - [ ] Any overrides to plan.md §14 decision defaults
 
 ## Session log (newest first)
+
+### 2026-10-18 — Marquee target clarification pending
+
+Ardy requested full colour from the start and no pause on mouse hover. Inspected the active
+Parenting Bakes source: the baking marquee in `src/scenes/calculating.ts` and
+`src/styles/motion.css` already has no grayscale filter or hover-pause handler. No runtime
+code changed. Await the intended page URL or source file before applying the requested edit;
+browser acceptance has not been run. Existing working-tree changes preserved.
+
+**2026-10-13 — Social media manager Drive handover restructured.**
+Ardy approved separate Feed/Story folders, one sheet per file and six operational
+columns. Created native Daftar Posting Feed/Story (40/58 rows), with caption and
+hashtags separated, exact final-production R02 brand-demo copy, direct material
+links, BOOLEAN checkboxes, filters and four frozen opening/header rows. Retained
+all 66 existing sequence folder IDs and all 330 image IDs/sizes; renamed sets for
+humans and moved 312 technical support files plus four source workbooks outside
+the upload area. Live readback checked every row and all 98 material folders,
+plus inherited team permissions. Locale/merged-freeze and MCP response-timeout
+errors were resolved and documented in Obsidian. The chat/project move was
+reconciled against Drive before resuming. Source snapshots, original parents/names
+and final readback are in `outputs/social-media-handover-2026-10-13/`; operational
+guide is `docs/marketing/social-media-handover.md`. Local XLSX layouts were rendered;
+native browser screenshots, publication, historical posted status and existing
+app/device acceptance were not claimed. No originals deleted, app changes,
+public sharing, deployment or Git push.
+
+**2026-10-06 — Original cover uploads authorized and verified in existing Drive files.**
+Ardy requested uploading only 16 changed cover images. Replaced existing C01–C16
+`01.jpg` IDs under `Post - Carousel/Feed` with local Campaign v3 exports. All uploads
+succeeded; fresh metadata matches local sizes and preserves names, parents and
+sharing. All folders still contain 14 items; other 208 items retain ID, name, size
+and modified time. No other files uploaded or duplicates created. Remote checksums
+are not exposed by connector metadata; no remote byte/hash comparison claimed.
+Evidence: `Instagram Posts/drive-cover-upload-verification-2026-10-06.json`.
+Supersedes manual-upload handoff for these 16 covers. Obsidian updated.
+
+**2026-10-06 — All 16 feed carousel covers replaced with Ardy originals, local only.**
+Ardy supplied `Carousel Covers/Parenting Personalities/feed`; mapped 16 numbered
+JPEGs by C01–C16 and exact personality name. All are 1080×1350; copied original
+bytes directly into active Campaign v3 Feed `01.jpg`, without resize/recompression.
+Verified SHA-256 identity for all 16 and unchanged hashes for 282 other JPGs and
+all caption/Threads text. Updated manifest, copy provenance, cover alt text and
+posting notes; renderer/package source respects externalCover on future rerender.
+Generated-cover copy/geometry reports explicitly remain historical for these covers.
+Reviewed all 16 originals via contact sheet; original Molten Lava Cake cover still
+says "butuh diam" as supplied, while editorial source says "butuh menyendiri";
+no copy editing was authorized in this replacement task. Index/per-post HTML uses
+updated JPEGs; refreshed cover contact sheets and full ZIP, plus a 16-file
+`Parenteers-16-Original-Covers-Upload.zip` using the existing Feed folder structure.
+Both archives pass CRC and cover byte identity; full archive matches local files.
+Backups of prior covers, companion metadata/source and full ZIP are under
+`Instagram Posts/Backups/before-original-covers-2026-10-06/`. Node syntax checks
+pass for both adjusted renderer/package scripts; browser execution unnecessary
+for exact file copying and was not run. Earlier download 403 gate resolved by
+Ardy supplying local originals; recorded in Obsidian. No Drive writes, generation,
+installation, social publication, or Git push.
+
+**2026-10-06 — Original curved-title carousel covers located; local replacement pending download.**
+Ardy requested replacing all 16 personality feed carousel slide-1 exports with his
+existing curved-title covers, working locally for his manual Drive upload.
+Confirmed all 16 JPEGs in Drive `Post - Personality/feed` and matching C01–C16
+folders under `Instagram Posts/Campaign-v3-Rule-v2-JPG/Feed`. Local source inventory
+found only `/home/ardy/Personality Post - Feed - 01 Croquembouche.jpg`.
+Drive metadata/fetch succeeded, but materializing the returned authenticated file
+references through local Python urllib failed with `HTTP Error 403: Forbidden`.
+Cause remains unconfirmed; links were still within their stated expiry. No image
+bytes downloaded, no covers or campaign files changed. Empty task-created
+`Instagram Posts/User-Cover-Originals/` remains reserved for original covers.
+Stopped before alternate download strategies and offered native Drive ZIP download
+to Downloads (recommended) or explicitly approved logged-in browser retrieval.
+All 16 replacement, preview/archive refresh, and byte-identity checks remain pending.
+Recorded the error in the Obsidian editorial-design-system note. No Drive writes,
+image generation, installation, publication, or Git push.
+
+**2026-10-06 — Internal metadata row removed from all active post images.**
+Ardy supplied a crop identifying left “Parenting Bakes · L0” and right “01/10”.
+Removed the entire #info topic/position row and its JS references from Campaign v3
+master, retaining a scoped source backup. Added absence-of-metadata DOM validation
+and regenerated all 298 JPGs. Copy/font/layout safety still pass. Checked the
+former row region in every non-personality-cover JPEG against blank canvas with
+JPEG tolerance; covers already had this row hidden. Companion posting text hashes
+preserved before refreshing previews. Updated README/design rules, preview contact
+sheets and ZIP. Recorded in Obsidian. No generation, external upload or publication.
+**2026-10-06 — All 298 posts repaired to carousel rule v2.**
+At Ardy's request, created `Instagram Posts/Campaign-v3-Rule-v2-JPG/` from the
+approved effective batch. All 24 feed groups / 172 JPGs (1080×1350) and 42 Story
+groups / 126 JPGs (1080×1920) exported. Odd pages illustrated, even pages text-only:
+172 image layouts, 126 centered text layouts. Every one of 66 groups has distinct
+art hashes internally; brand logo repeats as identity. Personality covers use
+official original PNGs with straight blue names/orange hooks and reference crop;
+other illustrations use the existing 13 generative assets, chosen by topic and
+without repetition per group. No generation/API call needed. Full-width ink bounds,
+bottom crop, text/brand safe margins 90 and text-only center checked on all frames.
+Copy/counts/order match prior approved batch, including R02 brand-demo substitution.
+Source XLSX unchanged. Rewrote alt text/upload notes to reflect image vs text pages.
+Reviewed sample variants, all covers, all 16 text-only profile pages. Verified JPEG
+format/dimensions, actual asset hashes, zero posting placeholders and uniqueness.
+Template initially reset hook cssText after hiding it, leaking prior cover words;
+visual review caught this despite component-only copy checks. Fixed targeted font
+reset, added explicit hidden-hook validation, rerendered all frames; final zero
+violations. Preserved punctuation-based cover wrapping; enlarged the single very
+short “Air.” text page and checked it incrementally. Obsidian documents cause/fix.
+Updated active README/rules, per-group previews, source/effective manifest, calendar,
+QA/uniqueness proof and ZIP. Older versions retained; no publishing/upload/push.
+**2026-10-06 — Carousel rule v2 documented and C01 reproduced from attachment.**
+Ardy prohibited repeated illustration within one carousel, allowed alternating
+image/text-only slides, requested vertical centering for text-only copy, and
+bottom-anchored art touching both frame sides with lower cropping. This explicitly
+overrides prior 90px art margins; text/brand safe area remains 90. Straight titles
+are allowed. Documented full rules and precedence in the working design-system
+folder and Obsidian. Reproduced C01 as eight 1080×1350 JPGs: official Croquembouche
+source PNG on 1, existing generative rain/home/booklet on 3/5/7, no art on 2/4/6/8.
+Four distinct illustration hashes, each used once; no new generation or bulk rerender.
+Warm canvas sampled from attachment, original mark and four-letter code retained;
+straight blue name and orange hook. Visible alpha bounds used for full-width
+scaling; secondary art crops 72px at bottom. Full workbook copy/required caption
+preserved. All eight pass font, copy and safe-text checks; text-only center y690.
+Reference/header/cover crop and all pages visually reviewed. HTML master, preview,
+caption, content/geometry QA and ZIP delivered under Instagram Posts. Full 298-image
+batch remains the prior layout pending rule-v2 application; no publish or external calls.
+**2026-10-06 — Entire campaign regenerated with built-in image generation.**
+Ardy chose the built-in route without setup and accepted model-name uncertainty.
+Generated ten richer editorial parent/child scenes: rainy-plan change, morning
+routine, conversation, block play, dinosaur reading, watering plants, independent
+sandal attempt, quiet home time, park pause, bedtime cuddle. Reused the prior three
+generative coffee/bag/booklet assets. All thirteen PNGs copied into the new
+`Instagram Posts/Campaign-v2-Generated-JPG/_assets`; alpha verified; no SVG motif
+assets in the new package. Original official type artwork remains in overview /
+profile cards. Founder F01/Z01 use object artwork instead of fictional people.
+All 298 JPEGs regenerated (172 feed at 1080×1350, 126 Story at 1080×1920), exact
+copy parity with the approved effective batch, fonts and 90px geometry pass.
+Reviewed 14 sample frames and every feed cover; JPEG validity/counts/order and
+absence of posting placeholders verified. Captions/Threads/alt text, native-JPG
+previews, calendar, raw/effective source, thirteen prompts and archive delivered.
+README points to new active version; rejected vector proof retained. R02 brand
+demo and original workbook preserved. README patch initially rejected duplicate
+delete/add operations on one path; fixed with a single scoped file write, no
+render impact. Obsidian updated. No exact GPT Image 2 claim, install, API-key
+setup, social publication, Drive upload, Figma write or Git push.
+
+**2026-10-06 — Vector campaign artwork rejected; GPT Image 2 route awaiting choice.**
+Ardy prefers richer GPT Image 2 illustration over the code-authored vector motifs.
+Read imagegen skill and CLI/API references. One read-only prerequisite check in
+the bundled Python runtime confirms `OPENAI_API_KEY_set:false` and
+`openai_library_available:false` (no key value inspected or displayed). The
+canonical CLI can specify `gpt-image-2`; actual account/model access is untested.
+Built-in generator requires no API-key setup but exposes no model selector/name.
+Presented two ordered-cost routes: built-in now with model uncertainty, or explicit
+Image 2 API with local key and separately approved isolated SDK setup. No tool
+installation, external API request, substitute runtime, or replacement render.
+Existing JPG package and R02 brand-demo decision retained; creative acceptance
+of the vector illustration version is revoked. Recorded pending route in Obsidian.
+
+**2026-10-06 — Entire v2 Instagram campaign rendered to grouped JPG folders.**
+Read all 13 tabs of the actual v2 XLSX. Produced 24 feed folders / 172 JPGs:
+18 source carousels / 143 slides (16 personalities eight each), plus six Reel
+scripts adapted to 29 static carousel slides. Also produced 42 Story folders /
+126 JPGs. Feed 1080×1350; Story 1080×1920; grid 90 and foreground margins 90.
+Ardy explicitly chose replacement of R02 with a Parenteers demo; its five slides,
+caption, Threads first post and first two D05 Story panels are adapted without
+inventing Christine's result or reaction. Z01 uses the workbook's no-audience
+version, split verbatim into four cards; unused testimonial alternative retained
+as source. All other carousel/Story source wording preserved; Reel VO extracted
+without timestamps/camera directions. Official type images used only in profile
+and overview slides; vector editorial motifs authored locally, no new imagegen.
+All 298 renders pass copy parity, font and safe-area checks. Reviewed samples,
+all 24 covers and 16 personality profiles. Each post has alt text, preview,
+upload notes; feed has caption + Threads pair. Added 42-day calendar, all-tab
+source JSON, source/effective manifests, internal team materials and ZIP.
+Initial L0 sample falsely flagged visible font-ink overflow as clipping; corrected
+audit to distinguish hidden overflow, split long cover into headline/body without
+changing copy, and capped portrait size. One focused retry and full batch passed;
+error/cause/verification recorded in Obsidian. Final file-format/count/source-hash
+and archive integrity checks recorded in delivery-verification.json. No XLSX
+mutation, account actions, external upload, publication, deployment or Git push.
+
+**2026-10-06 — Instagram post package copied to Ardy's requested production folder.**
+Copied all six SVG/PNG samples, assets, prompts, copy/captions, design system and
+offline preview into `/home/ardy/Projects/Parenteers/Parenting Personalities/Instagram Posts`.
+Target existed and was empty; no existing files overwritten. Added six text-free
+SVG bases under `figma-kit/`, native-text starting-position specs and copy sheet,
+plus expanded README, Figma guide and export guide. These allow manual native
+text layers without depending on SVG text import; no `.fig` or native Figma
+canvas was created because no destination Figma file was supplied. Copied PNGs
+remain original verified 1080×1350 outputs with 90px blank margins. Delivery
+manifest and ZIP are regenerated for the destination. Obsidian records the new
+canonical working folder; original thread output retained as a snapshot. No new
+image generation, external upload, install, app change, social publication or push.
+
+**2026-10-06 — Editorial post examples and design system produced in two methods.**
+At Ardy's request, interpreted two supplied editorial references into Parenteers
+brand typography, blue `#182799`, orange `#E86811`, and canvas `#F0F1F5`.
+Created `outputs/01a10a3b-671f-7273-a7f1-c965ddcff0f1/parenteers-editorial-posts-v1/`:
+three post concepts (coffee, spare-items bag, quiz/booklet invitation), each in
+a code-authored SVG illustration version and built-in GPT Image illustration
+version. All six post PNGs are 1080×1350; SVG masters separate copy, illustration
+and official wordmark. Grid is 90×90 (12×15), foreground margin 90 on every side.
+Delivered offline comparison/toggle-grid preview, PNG/SVG exports, design-system
+MD/JSON/board, grid proof, captions/alt text, prompt set, and ZIP. Three generated
+alpha assets copied into the project; no replacement of official character art.
+Chrome render verifies dimensions, font loading and safe-area bounds. Preview
+passes 1280/390 widths with six posts/six guide groups and no overflow. Fixed a
+nested-SVG grid selector that initially returned nine guides; recorded exact
+error/cause/repair in Obsidian. Native Figma import and Instagram compression /
+creative acceptance remain pending. No Drive upload, Figma write, social publish,
+application source changes, deployment, or Git push.
+
+**2026-10-06 — Marketing strategy v2 and daily XLSX uploaded.**
+Grounded previous complete-marketing XLSX locally and in Drive file
+`1PqBmPnMIExCBAW7v7ZqsBkqt_M_PCX3F`. Created a new 13-tab workbook with 42-day
+calendar, 143 carousel slides (all 16 types eight each), 24 captions, six Reels /
+29 script rows including Z01 alternatives, 48 Threads, 42 Story sequences,
+nine invitation scripts, pilot steps, blank event/self-report inputs, and sources.
+Moved Christine's real result earlier; revised R01 to show booklet value and
+quiz CTAs to explain Result/booklet benefits. Verified counts/type names/codes,
+45-word personality-slide ceiling, quiz links, sample date/ratio formulas and
+blank-input behavior, zero formula errors, and visual samples from all 13 tabs.
+Molten retains “butuh menyendiri”. Old local complete XLSX and inspect sidecar
+renamed with `(old)`; old SHA-256 unchanged:
+`a2ddda5dc9c487497689579bf5750fe7c33a4e7ef2115be3bb9e329a99f9c751`.
+Uploaded new XLSX `1742soWdiUJstFSGzVkiT95d5m1dJ0Gf3` to
+`🎏 Parenteers → 12 Personalities` (`1qGQ585s2PexxEnTQW96aq6_Xs0rmS2XD`).
+Metadata readback confirms name, XLSX MIME, parent and 56,577-byte size. Old Drive
+file renamed in place to `(old) Parenting-Bakes-Semua-Konten-Marketing.xlsx`;
+folder readback confirms both names and old 53,736-byte size. Native carousel
+and quiz Sheets/sharing unchanged. Obsidian marketing handoff updated. No app
+changes, outgoing invitations, social publication, tracking, deployment or Git push.
+
+**2026-10-05 — Portable marketing brainstorming brief created.**
+At Ardy's request, saved `docs/marketing/parent-participation-brainstorming-brief.md`
+with product context, communication principles, participation hypotheses,
+sample invitations, a proposed two-week pilot, measurement limits, and prompts
+for a separate brainstorming chat. Identified the two existing marketing MDs
+as originally prepared on 2026-09-30; the new brief supplements them.
+No campaign approval, external upload, publication, or runtime changes.
+
+**2026-10-05 — Parent participation marketing strategy discussed.**
+Reviewed the current editorial launch plan and content bank for Ardy's strategy
+question. Proposed a small participation pilot: everyday recognition and pastry
+curiosity, useful Result/booklet value, genuine founder participation, trusted
+parent-community invitations with permission, and optional result sharing.
+These are creative hypotheses for discussion, not approved campaign changes or
+verified channel performance. Existing six-week assets remain available; no
+runtime changes, account actions, external research, publishing or tracking work.
+Completion measurement and Instagram in-app-browser acceptance remain pending.
+
+**2026-10-05 — Revised Molten Lava Cake copy synchronized to Google Drive.**
+At Ardy's request, resolved My Drive → 🎏 Parenteers → 12 Personalities
+(`1qGQ585s2PexxEnTQW96aq6_Xs0rmS2XD`). Updated existing native carousel Sheet
+`1_Jk2JiKfeWNW8lquR3a3DTRld-Loekhx_OdFQNzW4uw`: `Ringkasan!C13` and
+`C09 Molten Lava Cake!B5`; connector readback confirms “butuh menyendiri” with
+existing formatting retained. Replaced the raw bytes of existing marketing XLSX
+`1PqBmPnMIExCBAW7v7ZqsBkqt_M_PCX3F` with the revised local workbook; metadata
+readback confirms its unchanged ID, target parent and 53,736-byte size.
+No duplicate files or sharing changes. Native browser layout was not inspected.
+
+**2026-10-05 — Molten Lava Cake recharge wording clarified.**
+Changed C09's Slide 1 and calendar hook from “butuh diam” to “butuh menyendiri”.
+Synchronized the latest 16-carousel workbook (`Ringkasan!C13`, `C09 Molten Lava Cake!B5`)
+and the previous complete-marketing workbook (`Kalender!F17`, `Carousel!E55`).
+Six copy locations changed; unrelated uses of “diam” and runtime type descriptions
+are unchanged. All workbook values outside those four cells were checked unchanged;
+formula-error scans and changed-row visual checks passed. No runtime rebuild or deploy.
+
+**2026-10-01 — Google Analytics tag deployed with Ardy's approval.**
+`npm run deploy` passed the release gate, typecheck, build, and private-art/source-map
+exclusion checks, then deployed Worker version `3c15fd75-e530-4cb7-97b6-8df9f429e20c`
+to `quiz.parenteers.id` in the Ardy Tanto account. All 17 public HTML pages returned
+HTTP 200, matched the release build's SHA-256, and contained `G-VT8CSMXC9R`.
+GA Realtime/event receipt remains unverified; custom quiz events remain unwired.
+Source and session notes remain uncommitted; no Git push performed.
+
+**2026-10-01 — Google Analytics base tag installed.**
+Added Ardy's exact Google tag configuration `G-VT8CSMXC9R` to the shared
+`index.html` head. Production build and typecheck pass; all 17 built HTML pages
+(root plus 16 result routes) contain one async loader and the correct initialization.
+Custom quiz events remain unwired. No deployment or live Google Analytics request
+was performed; production collection and GA Realtime verification remain pending.
 
 **2026-09-30 — Revised 16-carousel workbook delivered.**
 Exported `outputs/01a0f200-f35e-7980-9171-b9c4ae0f011c/parenteers-16-carousel-id.xlsx`

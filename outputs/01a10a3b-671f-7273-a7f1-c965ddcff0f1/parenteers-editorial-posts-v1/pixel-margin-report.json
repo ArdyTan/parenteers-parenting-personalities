@@ -1,0 +1,50 @@
+[
+  {
+    "file": "vector/01-coffee.png",
+    "size": [
+      1080,
+      1350
+    ],
+    "outer90pxUniform": true
+  },
+  {
+    "file": "vector/02-bag.png",
+    "size": [
+      1080,
+      1350
+    ],
+    "outer90pxUniform": true
+  },
+  {
+    "file": "vector/03-quiz.png",
+    "size": [
+      1080,
+      1350
+    ],
+    "outer90pxUniform": true
+  },
+  {
+    "file": "gpt-image/01-coffee.png",
+    "size": [
+      1080,
+      1350
+    ],
+    "outer90pxUniform": true
+  },
+  {
+    "file": "gpt-image/02-bag.png",
+    "size": [
+      1080,
+      1350
+    ],
+    "outer90pxUniform": true
+  },
+  {
+    "file": "gpt-image/03-quiz.png",
+    "size": [
+      1080,
+      1350
+    ],
+    "outer90pxUniform": true
+  }
+]
